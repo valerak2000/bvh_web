@@ -4,6 +4,7 @@
 .idea
 .vscode
 .settings
+tmp/
 
 # Random files
 *~
