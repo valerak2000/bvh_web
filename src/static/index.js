@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createHistory from 'history/createBrowserHistory';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import * as Colors from 'material-ui/styles/colors';
 
 import { authLoginUserSuccess } from './actions/auth';
 import Root from './containers/Root/Root';
@@ -13,8 +16,26 @@ const target = document.getElementById('root');
 const history = createHistory();
 const store = configureStore(initialState, history);
 
+const muiTheme = getMuiTheme({
+  palette: {
+    textColor: Colors.cyan500,
+  },
+  appBar: {
+    height: 50,
+    color: Colors.blue900
+  },
+  title: {
+    cursor: 'pointer'
+  },
+  color:{
+    color: Colors.blue900
+  },
+});
+
 const node = (
-    <Root store={store} history={history} />
+    <MuiThemeProvider muiTheme={muiTheme}>
+        <Root store={store} history={history} />
+    </MuiThemeProvider>
 );
 
 const token = sessionStorage.getItem('token');
