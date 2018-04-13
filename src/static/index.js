@@ -18,17 +18,18 @@ const store = configureStore(initialState, history);
 
 const muiTheme = getMuiTheme({
   palette: {
-    textColor: Colors.cyan500,
+    textColor: Colors.blue900,
   },
   appBar: {
     height: 50,
-    color: Colors.blue900
+    color: Colors.lightGreen50,
+    logo: {
+        height: 50,
+        objectFit: 'contain'
+    }
   },
   title: {
     cursor: 'pointer'
-  },
-  color:{
-    color: Colors.blue900
   },
 });
 

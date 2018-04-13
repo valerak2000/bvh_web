@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import './style.scss';
-import reactLogo from './images/react-logo.png';
-import reduxLogo from './images/redux-logo.png';
+import bvhLogo from '../../images/logo_bvh.png';
 
 class HomeView extends React.Component {
     static propTypes = {
@@ -28,16 +27,13 @@ class HomeView extends React.Component {
             <div className="container">
                 <div className="margin-top-medium text-center">
                     <img className="page-logo margin-bottom-medium"
-                        src={reactLogo}
+                        src={bvhLogo}
                         alt="ReactJs"
-                    />
-                    <img className="page-logo margin-bottom-medium"
-                        src={reduxLogo}
-                        alt="Redux"
                     />
                 </div>
                 <div className="text-center">
                     <h1>ООО «Брюховецкое водопроводное хозяйство»</h1>
+                    <h3>352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196</h3>
                     <h4>Привет, {this.props.userName || 'guest'}.</h4>
                 </div>
                 <div className="margin-top-medium text-center">

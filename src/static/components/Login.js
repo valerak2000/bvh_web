@@ -1,15 +1,43 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
+import FontIcon from 'material-ui/FontIcon';
 import muiThemeable from 'material-ui/styles/muiThemeable';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 class Login extends React.Component {
-  static muiName = 'FlatButton';
+    constructor(props) {
+        super(props);
+    }
 
-  render() {
-    return (
-      <FlatButton {...this.props} label="Личный кабинет" />
-    );
-  }
+    goToLogin = () => {
+        console.log("login");
+        this.props.dispatch(push('/login'));
+    };
+
+    render() {
+        return (
+            <FlatButton
+                /*{...this.props}*/
+                label = "Личный кабинет"
+                icon = {
+                    <FontIcon
+                        className = "fa fa-sign-in"
+                    />
+                }
+                onClick = {() => this.goToLogin()}
+            />
+        );
+    }
 }
 
-export default muiThemeable()(Login);
+const mapStateToProps = (state, ownProps) => {
+    return {
+    };
+};
+
+export default muiThemeable()(connect(mapStateToProps)(Login));
