@@ -12,15 +12,12 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
-import Login from './components/Login'
-import Logged from './components/Logged'
+import LoginControl from './components/LoginControl'
 
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import { authLogoutAndRedirect } from './actions/auth';
 import './styles/main.scss';
 
 class App extends React.Component {
@@ -36,16 +33,9 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.toggle = this.toggle.bind(this);
         this.state = {
           isOpen: false
         };
-    }
-
-    toggle() {
-        this.setState({
-          isOpen: !this.state.isOpen
-        });
     }
 
     static defaultProps = {
@@ -54,10 +44,6 @@ class App extends React.Component {
 
     goToIndex = () => {
         this.props.dispatch(push('/'));
-    };
-
-    goToProtected = () => {
-        this.props.dispatch(push('/protected'));
     };
 
     render() {
@@ -75,91 +61,10 @@ class App extends React.Component {
             <div className="app">
                 <AppBar
                     title={<img src={bvhLogo} style={this.props.muiTheme.appBar.logo} alt="ООО «Брюховецкое водопроводное хозяйство»"/>}
-                     //title={<span style={this.props.muiTheme.palette.title}>ООО «БВХ»</span>}
-                    titleStyle={this.props.muiTheme.palette.color}
                     onTitleClick={this.goToIndex}
                     showMenuIconButton={false}
-                    iconElementLeft={<IconButton></IconButton>}
-                    iconElementRight={this.props.isAuthenticated ? <Logged /> : <Login />}
-                    style={this.props.muiTheme.palette.appBar}
+                    iconElementRight={<LoginControl isAuthenticated={this.props.isAuthenticated} />}
                 />
-
-                <nav className="navbar navbar-default">
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                            <button type="button"
-                                className="navbar-toggle collapsed"
-                                data-toggle="collapse"
-                                data-target="#top-navbar"
-                                aria-expanded="false"
-                            >
-                                <span className="sr-only">Переключить навигацию</span>
-                                <span className="icon-bar" />
-                                <span className="icon-bar" />
-                                <span className="icon-bar" />
-                            </button>
-                            <a className="navbar-brand" onClick={this.goToIndex}>
-                                <div id="name-and-slogan">
-                                  <div id="site-name" style={{
-                                        fontSize: "24px",
-                                        lineHeight: 0.7,
-                                        width: "400px",
-                                        height: "auto",
-                                        padding: "20px 0 0",
-                                        margin: 0,
-                                        position: "relative"
-                                    }}>
-                                        <strong style={{
-                                            fontWeight: "bold",
-                                            fontFamily: "arial"
-                                            }}>
-                                            <span>ООО «Брюховецкое водопроводное хозяйство»</span>
-                                        </strong>
-                                  </div>
-                                  <small>
-                                      <div id="site-slogan">
-                                        352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196
-                                      </div>
-                                  </small>
-                                </div>
-                            </a>
-                        </div>
-                        <div className="collapse navbar-collapse" id="top-navbar">
-                            {this.props.isAuthenticated ?
-                                <ul className="nav navbar-nav navbar-right">
-                                    <li className={homeClass}>
-                                        <a className="js-go-to-index-button" onClick={this.goToIndex}>
-                                            <i className="fa fa-home" /> Главная
-                                        </a>
-                                    </li>
-                                    <li className={protectedClass}>
-                                        <a className="js-go-to-protected-button" onClick={this.goToProtected}>
-                                            <i className="fa fa-lock" /> Личная информация
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="js-logout-button" onClick={this.logout}>
-                                            <i className="fa fa-sign-out" /> Выйти
-                                        </a>
-                                    </li>
-                                </ul>
-                                :
-                                <ul className="nav navbar-nav navbar-right">
-                                    <li className={homeClass}>
-                                        <a className="js-go-to-index-button" onClick={this.goToIndex}>
-                                            <i className="fa fa-home" /> Главная
-                                        </a>
-                                    </li>
-                                    <li className={loginClass}>
-                                        <a className="js-login-button" onClick={this.goToLogin}>
-                                            <i className="fa fa-sign-in" /> Личный кабинет
-                                        </a>
-                                    </li>
-                                </ul>
-                            }
-                        </div>
-                    </div>
-                </nav>
 
                 <div>
                     {this.props.children}

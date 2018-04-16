@@ -31,9 +31,30 @@ class HomeView extends React.Component {
                         alt="ReactJs"
                     />
                 </div>
-                <div className="text-center">
-                    <h1>ООО «Брюховецкое водопроводное хозяйство»</h1>
-                    <h3>352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196</h3>
+                <div className="text-left">
+                    <div id="name-and-slogan">
+                      <div id="site-name" style={{
+                            fontSize: "24px",
+                            lineHeight: 0.7,
+                            width: "400px",
+                            height: "auto",
+                            padding: "20px 0 0",
+                            margin: 0,
+                            position: "relative"
+                        }}>
+                            <strong style={{
+                                fontWeight: "bold",
+                                fontFamily: "arial"
+                                }}>
+                                <span>ООО «Брюховецкое водопроводное хозяйство»</span>
+                            </strong>
+                      </div>
+                      <small>
+                          <div id="site-slogan">
+                            352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196
+                          </div>
+                      </small>
+                    </div>
                     <h4>Привет, {this.props.userName || 'guest'}.</h4>
                 </div>
                 <div className="margin-top-medium text-center">

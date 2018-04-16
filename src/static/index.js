@@ -16,21 +16,38 @@ const target = document.getElementById('root');
 const history = createHistory();
 const store = configureStore(initialState, history);
 
+//        color: Colors.lightGreen50,
 const muiTheme = getMuiTheme({
-  palette: {
-    textColor: Colors.blue900,
-  },
-  appBar: {
-    height: 50,
-    color: Colors.lightGreen50,
-    logo: {
-        height: 50,
-        objectFit: 'contain'
-    }
-  },
-  title: {
-    cursor: 'pointer'
-  },
+    palette: {
+        textColor: Colors.blue900,
+        backgroundColor: Colors.lightGreen50,
+    },
+    appBar: {
+        height: 56,
+        width: '100%',
+        textColor: Colors.blue900,
+        backgroundColor: Colors.lightGreen50,
+        logo: {
+            height: 56,
+            width: 200,
+            objectFit: 'contain',
+        },
+        flexWrap: 'wrap',
+    },
+    title: {
+        cursor: 'pointer',
+    },
+    button: {
+        textTransform: 'none',
+    },
+    tabs: {
+        textColor: Colors.blue900,
+        backgroundColor: Colors.lightGreen50,
+        selectedTextColor: Colors.blue900,
+        width: '100%',
+        textTransform: 'none',
+        paddingLeft: 20,
+    },
 });
 
 const node = (

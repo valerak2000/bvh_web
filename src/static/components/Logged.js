@@ -2,13 +2,16 @@ import React from 'react';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
+import Divider from 'material-ui/Divider';
 import muiThemeable from 'material-ui/styles/muiThemeable';
-//import { authLogoutAndRedirect } from '../actions/auth';
 
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+
+import { authLogoutAndRedirect } from '../actions/auth';
 
 class Logged extends React.Component {
     logout = () => {
@@ -27,20 +30,17 @@ class Logged extends React.Component {
                     targetOrigin={{horizontal: 'right', vertical: 'top'}}
                     anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                 >
-                    <MenuItem primaryText="Refresh" />
-                    <MenuItem primaryText="Help" />
-                    <MenuItem primaryText="Sign out" />
+                    <MenuItem
+                        primaryText="Личная информация"
+                        leftIcon={<FontIcon className="fa fa-lock" />}
+                    />
+                    <Divider />
+                    <MenuItem
+                        primaryText="Выйти"
+                        leftIcon={<FontIcon className="fa fa-sign-out" />}
+                        onClick = {() => this.logout()}
+                    />
                 </IconMenu>
-                <FlatButton
-                    /*{...this.props}*/
-                    label = "Выйти"
-                    onClick = {() => this.logout()}
-                    icon = {
-                        <FontIcon
-                            className = "fa fa-sign-out"
-                        />
-                    }
-                />
             </div>
         );
     }
