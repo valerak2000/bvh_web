@@ -19,8 +19,8 @@ import { authLogoutAndRedirect } from '../actions/auth';
 import { SiteMenu } from './SiteMenu'
 
 export function Login(props) {
+//        (<SiteMenu />)
     return (
-        (<SiteMenu />)
         (<FlatButton
             /*{...this.props}*/
             label = "Личный кабинет"
@@ -86,7 +86,7 @@ class LoginControl extends React.Component {
     render() {
         const isAuthenticated = this.props.isAuthenticated;
 
-        const button = isAuthenticated ? (
+        const appButtons = isAuthenticated ? (
               <Logged
                 onClickLogout={this.handleLogoutClick}
                 onClickProtected={this.handleProtectedClick}
@@ -98,13 +98,15 @@ class LoginControl extends React.Component {
 
         return (
             <div>
-                {button}
+        <SiteMenu />
             </div>
         );
     }
 }
 
 /*
+                 {appButtons}
+
             <div>
   <ToolbarGroup>
     <FlatButton label="Dashboard"/>

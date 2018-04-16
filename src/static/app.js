@@ -64,6 +64,10 @@ class App extends React.Component {
                     onTitleClick={this.goToIndex}
                     showMenuIconButton={false}
                     iconElementRight={<LoginControl isAuthenticated={this.props.isAuthenticated} />}
+                    style={{
+                            textColor: Colors.blue900,
+                            backgroundColor: Colors.lightGreen50,
+                    }}
                 />
 
                 <div>
@@ -73,7 +77,7 @@ class App extends React.Component {
         );
     }
 }
-
+//this.props.muiTheme.appBar
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,

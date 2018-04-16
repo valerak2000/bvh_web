@@ -13,11 +13,11 @@ import { push } from 'react-router-redux';
 //                style={this.props.muiTheme.appBar.tabs}
 export function SiteMenu() {
     return (
-            <Tabs>
-                <Tab label="О компании" />
-                <Tab label="Абонентам" />
-                <Tab label="Новости" />
-                <Tab label="Контакты" />
+            <Tabs style={{paddingLeft: 20, textTransform: 'none'}}>
+                <Tab label="О компании" style={{textTransform: 'none'}}/>
+                <Tab label="Абонентам" style={{textTransform: 'none'}}/>
+                <Tab label="Новости" style={{textTransform: 'none'}}/>
+                <Tab label="Контакты" style={{textTransform: 'none'}}/>
             </Tabs>
     );
 }

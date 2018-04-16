@@ -45,8 +45,8 @@ const muiTheme = getMuiTheme({
         backgroundColor: Colors.lightGreen50,
         selectedTextColor: Colors.blue900,
         width: '100%',
-        textTransform: 'none',
         paddingLeft: 20,
+        tab: {textTransform: 'none',}
     },
 });
 
