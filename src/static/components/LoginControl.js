@@ -6,7 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import Divider from 'material-ui/Divider';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+//import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
@@ -16,7 +16,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import { authLogoutAndRedirect } from '../actions/auth';
-import { SiteMenu } from './SiteMenu'
 
 export function Login(props) {
 //        (<SiteMenu />)
@@ -37,24 +36,23 @@ export function Login(props) {
 export function Logged(props) {
     return (
         <div>
-            <SiteMenu />
             <IconMenu
                 /*{...props}*/
                 iconButtonElement={
                   <IconButton><MoreVertIcon /></IconButton>
                 }
-                targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+                targetOrigin = {{horizontal: 'right', vertical: 'top'}}
+                anchorOrigin = {{horizontal: 'right', vertical: 'top'}}
             >
                 <MenuItem
-                    primaryText="Личная информация"
-                    leftIcon={<FontIcon className="fa fa-lock" />}
+                    primaryText = "Личная информация"
+                    leftIcon = {<FontIcon className="fa fa-lock" />}
                     onClick = {props.onClickProtected}
                 />
                 <Divider />
                 <MenuItem
-                    primaryText="Выйти"
-                    leftIcon={<FontIcon className="fa fa-sign-out" />}
+                    primaryText = "Выйти"
+                    leftIcon = {<FontIcon className="fa fa-sign-out" />}
                     onClick = {props.onClickLogout}
                 />
             </IconMenu>
@@ -88,26 +86,24 @@ class LoginControl extends React.Component {
 
         const appButtons = isAuthenticated ? (
               <Logged
-                onClickLogout={this.handleLogoutClick}
-                onClickProtected={this.handleProtectedClick}
+                onClickLogout = {this.handleLogoutClick}
+                onClickProtected = {this.handleProtectedClick}
               />
             ) : (
-              <Login onClick={this.handleLoginClick}/>
+              <Login onClick = {this.handleLoginClick}/>
         );
 
 
         return (
             <div>
-        <SiteMenu />
+                 {appButtons}
             </div>
         );
     }
 }
 
 /*
-                 {appButtons}
-
-            <div>
+            <div style = {{width: '80%'}}>
   <ToolbarGroup>
     <FlatButton label="Dashboard"/>
     <FlatButton label="Settings"/>

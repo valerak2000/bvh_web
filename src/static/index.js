@@ -9,14 +9,11 @@ import { authLoginUserSuccess } from './actions/auth';
 import Root from './containers/Root/Root';
 import configureStore from './store/configureStore';
 
-
 const initialState = {};
 const target = document.getElementById('root');
-
 const history = createHistory();
 const store = configureStore(initialState, history);
 
-//        color: Colors.lightGreen50,
 const muiTheme = getMuiTheme({
     palette: {
         textColor: Colors.blue900,
@@ -29,8 +26,11 @@ const muiTheme = getMuiTheme({
         backgroundColor: Colors.lightGreen50,
         logo: {
             height: 56,
-            width: 200,
+            width: 148,
             objectFit: 'contain',
+            cursor: 'pointer',
+            marginTop: -6,
+//            marginLeft: -8,
         },
         flexWrap: 'wrap',
     },
@@ -51,8 +51,8 @@ const muiTheme = getMuiTheme({
 });
 
 const node = (
-    <MuiThemeProvider muiTheme={muiTheme}>
-        <Root store={store} history={history} />
+    <MuiThemeProvider muiTheme = {muiTheme}>
+        <Root store = {store} history = {history} />
     </MuiThemeProvider>
 );
 

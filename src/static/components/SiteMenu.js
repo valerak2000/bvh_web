@@ -1,24 +1,19 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+//import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import {FlatButton} from 'material-ui/FlatButton';
 import {FontIcon} from 'material-ui/FontIcon';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {IconButton} from 'material-ui/IconButton';
 import * as Colors from 'material-ui/styles/colors';
 
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-
-//                style={this.props.muiTheme.appBar.tabs}
 export function SiteMenu() {
     return (
-            <Tabs style={{paddingLeft: 20, textTransform: 'none'}}>
-                <Tab label="О компании" style={{textTransform: 'none'}}/>
-                <Tab label="Абонентам" style={{textTransform: 'none'}}/>
-                <Tab label="Новости" style={{textTransform: 'none'}}/>
-                <Tab label="Контакты" style={{textTransform: 'none'}}/>
-            </Tabs>
+        <Tabs>
+            <Tab label="О компании" style={{textTransform: 'none'}}/>
+            <Tab label="Абонентам" style={{textTransform: 'none'}}/>
+            <Tab label="Новости" style={{textTransform: 'none'}}/>
+            <Tab label="Контакты" style={{textTransform: 'none'}}/>
+        </Tabs>
     );
 }
 
