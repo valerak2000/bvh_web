@@ -1,7 +1,7 @@
 git submodule init
 
-virtualenv -p /usr/bin/python3 virtualenv
-source virtualenv/bin/activate`
+virtualenv -p /usr/bin/python3 py3
+source py3/bin/activate
 pip install -r py-requirements/dev.txt
 
 cd src
