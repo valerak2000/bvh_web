@@ -1,15 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import * as Colors from 'material-ui/styles/colors';
 import AppBar from 'material-ui/AppBar';
+//import { getStyles } from 'material-ui/AppBar/AppBar';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
-import { getStyles }     from 'material-ui/AppBar/AppBar';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 
@@ -17,10 +19,7 @@ import LoginControl from './components/LoginControl'
 import { SiteMenu } from './components/SiteMenu'
 import bvhLogo from './images/logo_bvh.png';
 
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-
-import './styles/main.scss';
+//import './styles/main.scss';
 
 class App extends React.Component {
     static propTypes = {
@@ -65,6 +64,7 @@ class App extends React.Component {
 
 /*
     const styles = getStyles(this.props, this.context);
+    const styles = getStyles(this.props, this.context);
       styles.flatButton.top = -styles.flatButton.marginTop;
       styles.flatButton.marginTop = 0;
       styles.iconButtonStyle.top = -styles.iconButtonStyle.marginTop;
@@ -107,16 +107,19 @@ class App extends React.Component {
                             </IconButton>
                             <SiteMenu />
                         </div>
-                    iconStyleLeft = {{ width: '80%' }}
-{{ width: 148, height: 56, objectFit: 'contain', cursor: 'pointer'}}
+
+                                muiTheme = { this.props.muiTheme.appBar.ElementRight.Login }
+
 */
         return (
             <div className="app">
                 <AppBar
+                    titleStyle = {{ width: 0 }}
                     iconElementLeft = {
-                        <div>
+                        <div id = "ElementLeft" style = { this.props.muiTheme.appBar.ElementLeft }>
                             <IconButton
-                                iconStyle = { this.props.muiTheme.appBar.logo }
+                                style = { this.props.muiTheme.appBar.ElementLeft.Logo }
+                                iconStyle = { this.props.muiTheme.appBar.ElementLeft.Logo.Pict }
                                 onClick = { this.goToIndex }
                             >
                                 <img
@@ -124,13 +127,19 @@ class App extends React.Component {
                                     alt = "ООО «Брюховецкое водопроводное хозяйство»"
                                 />
                             </IconButton>
-                            <SiteMenu />
+                            <SiteMenu muiTheme = { this.props.muiTheme.appBar.ElementLeft.Menu } />
                         </div>
                     }
-                    iconStyleLeft = {{ width: '70%' }}
-                    titleStyle = {{ width: 0 }}
-                    iconElementRight = { <LoginControl isAuthenticated = {this.props.isAuthenticated} /> }
-                    iconStyleRight = {{ width: '30%' }}
+                    iconStyleLeft = {{ width: '60%' }}
+                    iconElementRight = {
+                        <div id = "ElementRight" style = { this.props.muiTheme.appBar.ElementRight }>
+                            <LoginControl
+                                isAuthenticated = { this.props.isAuthenticated }
+                                muiTheme = { this.props.muiTheme.appBar.ElementRight.Login }
+                            />
+                        </div>
+                    }
+                    iconStyleRight = {{ width: 'auto' }}
                     style = {{
                         textColor: Colors.blue900,
                         backgroundColor: Colors.lightGreen50,
@@ -138,7 +147,7 @@ class App extends React.Component {
                 />
 
                 <div>
-                    {this.props.children}
+                    { this.props.children }
                 </div>
             </div>
         );

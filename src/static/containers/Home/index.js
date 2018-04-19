@@ -3,6 +3,9 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
+
 import './style.scss';
 import bvhLogo from '../../images/logo_bvh.png';
 
@@ -24,13 +27,16 @@ class HomeView extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <Paper className={container}>
                 <div className="margin-top-medium text-center">
                     <img className="page-logo margin-bottom-medium"
                         src={bvhLogo}
                         alt="ReactJs"
                     />
                 </div>
+		<Typography variant="title" color="inherit">
+		            Title
+	        </Typography>
                 <div className="text-left">
                     <div id="name-and-slogan">
                       <div id="site-name" style={{
@@ -69,7 +75,7 @@ class HomeView extends React.Component {
                         null
                     }
                 </div>
-            </div>
+            </Paper>
         );
     }
 }

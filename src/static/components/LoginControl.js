@@ -1,4 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+//import { StyleSheet } from 'react-native'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+
+import AppBar from 'material-ui/AppBar';
+//import { getStyles } from 'material-ui/AppBar/AppBar';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -10,17 +18,11 @@ import Divider from 'material-ui/Divider';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-
 import { authLogoutAndRedirect } from '../actions/auth';
 
 export function Login(props) {
-//        (<SiteMenu />)
     return (
-        (<FlatButton
+        <FlatButton
             /*{...this.props}*/
             label = "Личный кабинет"
             icon = {
@@ -28,42 +30,40 @@ export function Login(props) {
                     className = "fa fa-sign-in"
                 />
             }
-            onClick = {props.onClick}
-        />)
+            onClick = { props.onClick }
+        />
     );
 }
 
 export function Logged(props) {
     return (
-        <div>
-            <IconMenu
-                /*{...props}*/
-                iconButtonElement={
-                  <IconButton><MoreVertIcon /></IconButton>
-                }
-                targetOrigin = {{horizontal: 'right', vertical: 'top'}}
-                anchorOrigin = {{horizontal: 'right', vertical: 'top'}}
-            >
-                <MenuItem
-                    primaryText = "Личная информация"
-                    leftIcon = {<FontIcon className="fa fa-lock" />}
-                    onClick = {props.onClickProtected}
-                />
-                <Divider />
-                <MenuItem
-                    primaryText = "Выйти"
-                    leftIcon = {<FontIcon className="fa fa-sign-out" />}
-                    onClick = {props.onClickLogout}
-                />
-            </IconMenu>
-        </div>
+        <IconMenu
+            /*{...props}*/
+            iconButtonElement = {
+              <IconButton><MoreVertIcon /></IconButton>
+            }
+            targetOrigin = {{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin = {{ horizontal: 'right', vertical: 'top' }}
+        >
+            <MenuItem
+                primaryText = "Личная информация"
+                leftIcon = { <FontIcon className="fa fa-lock" /> }
+                onClick = { props.onClickProtected }
+            />
+            <Divider />
+            <MenuItem
+                primaryText = "Выйти"
+                leftIcon = { <FontIcon className="fa fa-sign-out" /> }
+                onClick = { props.onClickLogout }
+            />
+        </IconMenu>
     );
 }
 
 class LoginControl extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isAuthenticated: false};
+        this.state = { isAuthenticated: false };
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleProtectedClick = this.handleProtectedClick.bind(this);
@@ -83,20 +83,18 @@ class LoginControl extends React.Component {
 
     render() {
         const isAuthenticated = this.props.isAuthenticated;
-
         const appButtons = isAuthenticated ? (
               <Logged
-                onClickLogout = {this.handleLogoutClick}
-                onClickProtected = {this.handleProtectedClick}
+                onClickLogout = { this.handleLogoutClick }
+                onClickProtected = { this.handleProtectedClick }
               />
             ) : (
-              <Login onClick = {this.handleLoginClick}/>
+              <Login onClick = { this.handleLoginClick } />
         );
 
-
         return (
-            <div>
-                 {appButtons}
+            <div id = "LoginControl" style = { this.props.muiTheme } >
+                { appButtons }
             </div>
         );
     }
