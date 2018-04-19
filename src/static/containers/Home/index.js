@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
+import Divider from 'material-ui/Divider';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+
+//import Typography from 'material-ui/Typography';
 
 import './style.scss';
 import bvhLogo from '../../images/logo_bvh.png';
@@ -24,19 +28,21 @@ class HomeView extends React.Component {
     goToProtected = () => {
         this.props.dispatch(push('/protected'));
     };
-
-    render() {
-        return (
+/*
             <Paper className={container}>
+
+		<Typography variant="title" color="inherit">
+		            Title
+	        </Typography>
+            <Paper style={style} zDepth={2}>
                 <div className="margin-top-medium text-center">
                     <img className="page-logo margin-bottom-medium"
                         src={bvhLogo}
                         alt="ReactJs"
                     />
                 </div>
-		<Typography variant="title" color="inherit">
-		            Title
-	        </Typography>
+                <Divider />
+                <CardTitle title="Card title" subtitle="Card subtitle" />
                 <div className="text-left">
                     <div id="name-and-slogan">
                       <div id="site-name" style={{
@@ -76,6 +82,42 @@ class HomeView extends React.Component {
                     }
                 </div>
             </Paper>
+*/
+
+    render() {
+        const style = {
+          height: '100%',
+          width: '99%',
+          margin: 10,
+          textAlign: 'center',
+          display: 'inline-block',
+        };
+
+        return (
+  <Card>
+    <CardHeader
+      title="URL Avatar"
+      subtitle="Subtitle"
+      avatar="images/jsa-128.jpg"
+    />
+    <CardMedia
+      overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+    >
+      <img src="images/nature-600-337.jpg" alt="" />
+    </CardMedia>
+    <CardTitle title="Card title" subtitle="Card subtitle" />
+    <CardText>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+      Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+      Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+    </CardText>
+    <CardActions>
+      <FlatButton label="Action1" />
+      <FlatButton label="Action2" />
+    </CardActions>
+  </Card>
+
         );
     }
 }
