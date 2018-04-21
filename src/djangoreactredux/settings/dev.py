@@ -8,10 +8,10 @@ PAGE_CACHE_SECONDS = 1
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangoreactredux_prod',
+        'NAME': 'djangoreactredux_dev',
         'USER': 'djangoreactredux',
         'PASSWORD': '123',
-        'HOST': 'postgres',
+        'HOST': 'localhost',
         'PORT': 5432,
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite'),  # NOQA (ignore all errors on this line)

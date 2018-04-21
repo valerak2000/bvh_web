@@ -14,8 +14,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'djangoreactredux_prod',
         'USER': 'djangoreactredux',
-        'PASSWORD': 'password',
-        'HOST': 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
         'PORT': 5432,
     }
 }
