@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -8,14 +11,10 @@ import FontIcon from 'material-ui/FontIcon';
 import Divider from 'material-ui/Divider';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-
 import { authLogoutAndRedirect } from '../actions/auth';
 
 class Logged extends React.Component {
     logout = () => {
-        console.log("logout");
         this.props.dispatch(authLogoutAndRedirect());
     };
 
@@ -46,13 +45,11 @@ class Logged extends React.Component {
     }
 }
 
-/*const Logged = (props) => (
-);*/
 const mapStateToProps = (state, ownProps) => {
     return {
     };
 };
 
-Logged.muiName = 'IconMenu';
+Logged.muiName = 'Logged';
 
 export default muiThemeable()(connect(mapStateToProps)(Logged));

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-//import { StyleSheet } from 'react-native'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -23,14 +22,16 @@ import { authLogoutAndRedirect } from '../actions/auth';
 export function Login(props) {
     return (
         <FlatButton
-            /*{...this.props}*/
-            label = "Личный кабинет"
+            label = 'Личный кабинет'
+            labelPosition = 'before'
+            labelStyle = { props.style.label }
             icon = {
                 <FontIcon
-                    className = "fa fa-sign-in"
+                    className = 'fa fa-sign-in'
                 />
             }
             onClick = { props.onClick }
+            style = { props.style }
         />
     );
 }
@@ -46,14 +47,14 @@ export function Logged(props) {
             anchorOrigin = {{ horizontal: 'right', vertical: 'top' }}
         >
             <MenuItem
-                primaryText = "Личная информация"
-                leftIcon = { <FontIcon className="fa fa-lock" /> }
+                primaryText = 'Личная информация'
+                leftIcon = { <FontIcon className='fa fa-lock' /> }
                 onClick = { props.onClickProtected }
             />
             <Divider />
             <MenuItem
-                primaryText = "Выйти"
-                leftIcon = { <FontIcon className="fa fa-sign-out" /> }
+                primaryText = { props.userName } /*'Выйти'*/
+                rightIcon = { <FontIcon className='fa fa-sign-out' /> }
                 onClick = { props.onClickLogout }
             />
         </IconMenu>
@@ -68,6 +69,16 @@ class LoginControl extends React.Component {
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleProtectedClick = this.handleProtectedClick.bind(this);
     }
+
+    static propTypes = {
+        userName: PropTypes.string,
+        dispatch: PropTypes.func.isRequired
+    };
+
+    static defaultProps = {
+        userName: ''
+    };
+
 
     handleLoginClick = () => {
         this.props.dispatch(push('/login'));
@@ -85,40 +96,32 @@ class LoginControl extends React.Component {
         const isAuthenticated = this.props.isAuthenticated;
         const appButtons = isAuthenticated ? (
               <Logged
+                userName = { this.props.userName }
                 onClickLogout = { this.handleLogoutClick }
                 onClickProtected = { this.handleProtectedClick }
+                style = { this.props.style }
               />
             ) : (
-              <Login onClick = { this.handleLoginClick } />
+              <Login
+                onClick = { this.handleLoginClick }
+                style = { this.props.style }
+              />
         );
 
         return (
-            <div id = "LoginControl" style = { this.props.muiTheme } >
+            <div id = 'LoginControl' style = { this.props.style } >
                 { appButtons }
             </div>
         );
     }
 }
 
-/*
-            <div style = {{width: '80%'}}>
-  <ToolbarGroup>
-    <FlatButton label="Dashboard"/>
-    <FlatButton label="Settings"/>
-    <FlatButton label="Profile"/>
-                {button}
-  </ToolbarGroup>
-            </div>
-
-            <div style={{width: '100%',}}>
-                <SiteMenu />
-                {button}
-            </div>
-*/
-
 const mapStateToProps = (state, ownProps) => {
     return {
+        userName: state.auth.userName,
     };
 };
+
+LoginControl.muiName = 'Login';
 
 export default muiThemeable()(connect(mapStateToProps)(LoginControl));

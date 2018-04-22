@@ -1,6 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+//import { withRouter } from 'react-router';
+//import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom'
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -10,53 +14,83 @@ import {FlatButton} from 'material-ui/FlatButton';
 import {FontIcon} from 'material-ui/FontIcon';
 import {IconButton} from 'material-ui/IconButton';
 import * as Colors from 'material-ui/styles/colors';
+import Slider from 'material-ui/Slider';
 
-export function SiteMenu(props) {
-    return (
-        <Tabs style = { props.muiTheme }
-        >
-            <Tab label = "О компании" style = {{ textTransform: 'none' }}/>
-            <Tab label = "Абонентам" style = {{ textTransform: 'none' }}/>
-            <Tab label = "Новости" style = {{ textTransform: 'none' }}/>
-            <Tab label = "Контакты" style = {{ textTransform: 'none' }}/>
-        </Tabs>
-    );
-}
+class SiteMenu extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            tabSelected: 0,
+        };
+    }
 
-/*
-style = {{ width: '100%',
-            height: 'inherit',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            marginTop: 'auto',
-            }}
+    static propTypes = {
+        dispatch: PropTypes.func.isRequired
+    };
 
-        <div>
-            <ToolbarGroup>
-                <FlatButton
-                    label="Dashboard"
-                    icon = {
-                        <FontIcon
-                            className = "fa fa-sign-in"
-                        />
-                    }
-                />
-            </ToolbarGroup>
-        </div>
+    static defaultProps = {
+    };
 
+    goToProtected = () => {
+        this.props.dispatch(push('/protected'));
+    };
+
+    handleChange = (tab) => {
+        //alert(`A tab with this route property ${tab.props['data-route']} was activated.`);
+        this.setState({
+            tabSelected: tab,
+        });
+        /*this.props.history.push({
+            pathname: path.join(this.props.match.url, tabSelected),
+            state: { tabSelected }
+        });*/
+    };
+
+    handleActive = (tab) => {
+        alert(`A tab with this route property ${tab.props['data-route']} was activated.`);
+    };
+
+    render() {
+        return (
             <Tabs
-                    style={{
-        textColor: Colors.blue900,
-        backgroundColor: Colors.lightGreen50,
-        selectedTextColor: Colors.blue900,
-        width: '100%',
-        textTransform: 'none',
-    }}
+                value= { this.state.tabSelected }
+                style = { props.style }
             >
-                <Tab label="О компании"
+                <Tab
+                    label = "О компании"
+                    style = { props.style.tab }
+                    data-route="/about"
+                    onActive = { handleActive }
+                 />
+                <Tab
+                    label = "Абонентам"
+                    style = { props.style.tab }
+                    data-route="/customers"
                 />
-                <Tab label="Абонентам" />
-                <Tab label="Новости" />
-                <Tab label="Контакты" />
+                <Tab
+                    label = "Новости"
+                    style = { props.style.tab }
+                    data-route="/news"
+                />
+                <Tab
+                    label = "Контакты"
+                    style = { props.style.tab }
+                    data-route="/Home"
+                />
             </Tabs>
+        );
+    }
+}
+/*
+                onChange= { this.handleChange }
 */
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+    };
+};
+
+SiteMenu.muiName = 'SiteMenu';
+
+export default muiThemeable()(connect(mapStateToProps)(SiteMenu));
+//export default withRouter()(connect(mapStateToProps)(SiteMenu));

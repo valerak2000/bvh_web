@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createHistory from 'history/createBrowserHistory';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import * as Colors from 'material-ui/styles/colors';
+
+injectTapEventPlugin();
 
 import { authLoginUserSuccess } from './actions/auth';
 import Root from './containers/Root/Root';
@@ -15,7 +18,11 @@ const target = document.getElementById('root');
 const history = createHistory();
 const store = configureStore(initialState, history);
 
+import './styles/main.scss';
+
 const muiTheme = getMuiTheme({
+    html: {
+    },
     palette: {
         textColor: Colors.blue900,
         backgroundColor: Colors.lightGreen50,
@@ -48,6 +55,11 @@ const muiTheme = getMuiTheme({
                 marginLeft: 'auto',
                 marginRight: 'auto',
                 marginTop: 'auto',
+                tab: {
+                    fontSize: 18,
+                    fontWeight: 500,
+                    textTransform: 'none',
+                }
             },
         },
         ElementRight: {
@@ -56,9 +68,13 @@ const muiTheme = getMuiTheme({
             marginLeft: 'auto',
             marginRight: 'auto',
             marginTop: 'inherit',
-            float: 'right',
+            //float: 'right',
             Login: {
-                marginTop: 'inherit'
+                marginTop: 4,
+                label: {
+                    fontSize: 18,
+                    fontWeight: 500,
+                },
             }
         },
         flexWrap: 'wrap',
@@ -75,7 +91,9 @@ const muiTheme = getMuiTheme({
         selectedTextColor: Colors.blue900,
         width: '100%',
         paddingLeft: 20,
-        tab: {textTransform: 'none',}
+        tab: {
+            textTransform: 'none',
+        },
     },
 });
 
