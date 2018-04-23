@@ -16,7 +16,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 //import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 
 import LoginControl from './components/LoginControl'
-import { SiteMenu } from './components/SiteMenu'
+import SiteMenu from './components/SiteMenu'
 import bvhLogo from './images/logo_bvh.png';
 
 class App extends React.Component {
@@ -73,11 +73,17 @@ class App extends React.Component {
         });
 
         return (
-            <div className="app">
+            <div
+                className = 'app'
+                style = { this.props.muiTheme.app }
+            >
                 <AppBar
-                    titleStyle = {{ width: 'auto' }}
+                    titleStyle = { this.props.muiTheme.appBar.titleStyle }
                     iconElementLeft = {
-                        <div id = "ElementLeft" style = { this.props.muiTheme.appBar.ElementLeft }>
+                        <div
+                            id = 'ElementLeft'
+                            style = { this.props.muiTheme.appBar.ElementLeft }
+                        >
                             <IconButton
                                 style = { this.props.muiTheme.appBar.ElementLeft.Logo }
                                 iconStyle = { this.props.muiTheme.appBar.ElementLeft.Logo.Pict }
@@ -85,22 +91,27 @@ class App extends React.Component {
                             >
                                 <img
                                     src = { bvhLogo }
-                                    alt = "ООО «Брюховецкое водопроводное хозяйство»"
+                                    alt = 'Главная'
                                 />
                             </IconButton>
-                            <SiteMenu style = { this.props.muiTheme.appBar.ElementLeft.Menu } />
+                            <SiteMenu
+                                style = { this.props.muiTheme.appBar.ElementLeft.Menu }
+                            />
                         </div>
                     }
+                    iconStyleLeft = { this.props.muiTheme.appBar.ElementLeft.iconStyleLeft }
                     iconElementRight = {
-                        <div id = "ElementRight" style = { this.props.muiTheme.appBar.ElementRight }>
+                        <div
+                            id = 'ElementRight'
+                            style = { this.props.muiTheme.appBar.ElementRight }
+                        >
                             <LoginControl
                                 isAuthenticated = { this.props.isAuthenticated }
                                 style = { this.props.muiTheme.appBar.ElementRight.Login }
                             />
                         </div>
                     }
-                    iconStyleRight = {{ width: 'auto' }}
-                    iconStyleLeft = {{ width: '70rem' }}
+                    iconStyleRight = { this.props.muiTheme.appBar.ElementLeft.iconStyleRight }
                     style = {{
                         textColor: Colors.blue900,
                         backgroundColor: Colors.lightGreen50,
@@ -129,7 +140,9 @@ class App extends React.Component {
                                     alt = "ООО «Брюховецкое водопроводное хозяйство»"
                                 />
                             </IconButton>
-                            <SiteMenu style = { this.props.muiTheme.appBar.ElementLeft.Menu } />
+                            <SiteMenu
+                                style = { this.props.muiTheme.appBar.ElementLeft.Menu }
+                            />
                         </div>
                     }
                     iconStyleLeft = {{ width: '70rem' }}

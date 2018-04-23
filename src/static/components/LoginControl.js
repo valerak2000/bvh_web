@@ -4,7 +4,9 @@ import { push } from 'react-router-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import AppBar from 'material-ui/AppBar';
+import muiThemeable from 'material-ui/styles/muiThemeable';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+//import AppBar from 'material-ui/AppBar';
 //import { getStyles } from 'material-ui/AppBar/AppBar';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -14,15 +16,13 @@ import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import Divider from 'material-ui/Divider';
 //import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import { authLogoutAndRedirect } from '../actions/auth';
 
 export function Login(props) {
     return (
         <FlatButton
-            label = 'Личный кабинет'
+            label = 'Войти'
             labelPosition = 'before'
             labelStyle = { props.style.label }
             icon = {
@@ -64,7 +64,9 @@ export function Logged(props) {
 class LoginControl extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isAuthenticated: false };
+        this.state = {
+            isAuthenticated: false
+        };
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleProtectedClick = this.handleProtectedClick.bind(this);
@@ -72,13 +74,12 @@ class LoginControl extends React.Component {
 
     static propTypes = {
         userName: PropTypes.string,
-        dispatch: PropTypes.func.isRequired
+        dispatch: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
-        userName: ''
+        userName: '',
     };
-
 
     handleLoginClick = () => {
         this.props.dispatch(push('/login'));

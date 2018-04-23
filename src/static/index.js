@@ -18,10 +18,15 @@ const target = document.getElementById('root');
 const history = createHistory();
 const store = configureStore(initialState, history);
 
-import './styles/main.scss';
+//import './styles/main.scss';
 
 const muiTheme = getMuiTheme({
-    html: {
+    app: {
+        maxWidth: '128rem',
+        minWidth: '128rem',
+        margin: 'auto',
+        fontSize: '16px',
+        fontWeight: 500,
     },
     palette: {
         textColor: Colors.blue900,
@@ -38,6 +43,9 @@ const muiTheme = getMuiTheme({
             marginLeft: 'auto',
             marginRight: 'auto',
             display: 'flex',
+            iconStyleLeft: {
+                width: '70rem'
+            },
             Logo: {
                 height: 56,
                 width: 172,
@@ -62,13 +70,18 @@ const muiTheme = getMuiTheme({
                 }
             },
         },
+        titleStyle: {
+            width: 'auto'
+        },
         ElementRight: {
             width: '100%',
             height: 'inherit',
             marginLeft: 'auto',
-            marginRight: 'auto',
+            marginRight: '2rem',
             marginTop: 'inherit',
-            //float: 'right',
+            iconStyleRight: {
+                width: 'auto'
+            },
             Login: {
                 marginTop: 4,
                 label: {

@@ -3,85 +3,84 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-//import { withRouter } from 'react-router';
-//import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom'
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tabs, Tab} from 'material-ui/Tabs';
 //import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-import {FlatButton} from 'material-ui/FlatButton';
-import {FontIcon} from 'material-ui/FontIcon';
-import {IconButton} from 'material-ui/IconButton';
-import * as Colors from 'material-ui/styles/colors';
-import Slider from 'material-ui/Slider';
+//import {FlatButton} from 'material-ui/FlatButton';
+//import {FontIcon} from 'material-ui/FontIcon';
+//import {IconButton} from 'material-ui/IconButton';
+//import * as Colors from 'material-ui/styles/colors';
+//import Slider from 'material-ui/Slider';
 
 class SiteMenu extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            tabSelected: 0,
-        };
     }
 
     static propTypes = {
-        dispatch: PropTypes.func.isRequired
+        dispatch: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
     };
 
-    goToProtected = () => {
+    /*goToProtected = () => {
         this.props.dispatch(push('/protected'));
-    };
-
-    handleChange = (tab) => {
-        //alert(`A tab with this route property ${tab.props['data-route']} was activated.`);
-        this.setState({
-            tabSelected: tab,
-        });
-        /*this.props.history.push({
-            pathname: path.join(this.props.match.url, tabSelected),
-            state: { tabSelected }
-        });*/
-    };
+    };*/
 
     handleActive = (tab) => {
-        alert(`A tab with this route property ${tab.props['data-route']} was activated.`);
+        console.log(tab);
+        this.props.dispatch(push(tab.props['data-route']));
     };
 
     render() {
         return (
             <Tabs
-                value= { this.state.tabSelected }
-                style = { props.style }
+                style = { this.props.style }
             >
                 <Tab
-                    label = "О компании"
-                    style = { props.style.tab }
-                    data-route="/about"
-                    onActive = { handleActive }
+                    id = 'main'
+                    label = 'Главная'
+                    style = { this.props.style.tab }
+                    data-route = '/'
+                    onActive = { this.handleActive }
                  />
                 <Tab
-                    label = "Абонентам"
-                    style = { props.style.tab }
-                    data-route="/customers"
+                    id = 'about'
+                    label = 'О компании'
+                    style = { this.props.style.tab }
+                    data-route = '/about'
+                    onActive = { this.handleActive }
+                 />
+                <Tab
+                    id = 'customers'
+                    label = 'Абонентам'
+                    style = { this.props.style.tab }
+                    data-route = '/customers'
+                    onActive = { this.handleActive }
                 />
                 <Tab
-                    label = "Новости"
-                    style = { props.style.tab }
-                    data-route="/news"
+                    id = 'news'
+                    label = 'Новости'
+                    style = { this.props.style.tab }
+                    data-route = '/news'
+                    onActive = { this.handleActive }
                 />
                 <Tab
-                    label = "Контакты"
-                    style = { props.style.tab }
-                    data-route="/Home"
+                    id = 'contacts'
+                    label = 'Контакты'
+                    style = { this.props.style.tab }
+                    data-route = '/contacts'
+                    onActive = { this.handleActive }
                 />
             </Tabs>
         );
     }
 }
 /*
+                value= { this.state.tabSelected }
                 onChange= { this.handleChange }
 */
 

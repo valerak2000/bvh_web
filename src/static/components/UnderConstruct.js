@@ -8,7 +8,7 @@ class UnderConstruct extends React.Component {
     render() {
         return (
             <div>
-                <p>Страница находится в раработке</p>
+                <p>Раздел находится в раработке</p>
             </div>
         );
     }
