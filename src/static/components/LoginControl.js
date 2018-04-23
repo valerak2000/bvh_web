@@ -31,7 +31,7 @@ export function Login(props) {
                 />
             }
             onClick = { props.onClick }
-            style = { props.style }
+            style = { props.style.button }
         />
     );
 }
@@ -100,22 +100,29 @@ class LoginControl extends React.Component {
                 userName = { this.props.userName }
                 onClickLogout = { this.handleLogoutClick }
                 onClickProtected = { this.handleProtectedClick }
-                style = { this.props.style }
+                style = { this.props.muiTheme.appBar.ElementRight.Login }
               />
             ) : (
               <Login
                 onClick = { this.handleLoginClick }
-                style = { this.props.style }
+                style = { this.props.muiTheme.appBar.ElementRight.Login }
               />
         );
 
         return (
-            <div id = 'LoginControl' style = { this.props.style } >
+            <div id = 'LoginControl' style = { this.props.muiTheme.appBar.ElementRight.Login } >
+                <div style = {{ margin: '-1rem -1rem', height: '2rem', }}>
+                    <span style = { this.props.muiTheme.appBar.titleStyle.phoneHeader }>
+                        Телефон горячей линии:
+                    </span>
+                    <a href="tel:88615635117" style = { this.props.muiTheme.appBar.titleStyle.phone }>8 (86156) 35-117</a>
+                </div>
                 { appButtons }
             </div>
         );
     }
 }
+//                { appButtons }
 
 const mapStateToProps = (state, ownProps) => {
     return {

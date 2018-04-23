@@ -22,9 +22,10 @@ const store = configureStore(initialState, history);
 
 const muiTheme = getMuiTheme({
     app: {
-        maxWidth: '128rem',
-        minWidth: '128rem',
-        margin: 'auto',
+        maxWidth: '118rem',
+        minWidth: '118rem',
+        minHeight: '58rem',
+        margin: '0 auto',
         fontSize: '16px',
         fontWeight: 500,
     },
@@ -71,22 +72,44 @@ const muiTheme = getMuiTheme({
             },
         },
         titleStyle: {
-            width: 'auto'
+            width: 'auto',
+            fontSize: 14,
+            phoneHeader: {
+                fontSize: 14,
+                margin: '0px 5px 0 0',
+                float: 'unset',
+                padding: '0 0 0 40px',
+                fontWeight: 'normal',
+                fontFamily: 'pfbeausanspro-reg, sans-serif',
+            },
+            phone: {
+                fontSize: 14,
+                width: 340,
+                //margin: '0 0 10px',
+                fontWeight: 'bold',
+                textDecoration: 'blink',
+                fontFamily: 'pfbeausanspro-bold, sans-serif',
+            },
         },
         ElementRight: {
             width: '100%',
             height: 'inherit',
             marginLeft: 'auto',
-            marginRight: '2rem',
+            marginRight: '11rem', //2rem
             marginTop: 'inherit',
             iconStyleRight: {
                 width: 'auto'
             },
             Login: {
-                marginTop: 4,
+                margin: '0px 1rem',
+                display: 'block',
+                float: 'right',
                 label: {
                     fontSize: 18,
                     fontWeight: 500,
+                },
+                button: {
+                    margin: '7px 35px 0',
                 },
             }
         },

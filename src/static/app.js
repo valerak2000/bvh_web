@@ -72,6 +72,18 @@ class App extends React.Component {
             active: this.props.location && this.props.location.pathname === '/contacts'
         });
 
+/*
+                    title = {
+                        <div>
+                            <div style = { this.props.muiTheme.appBar.titleStyle.phoneHeader }>
+                                Телефон горячей линии:
+                            </div>
+                            <p>
+                                <a href="tel:88615635117" style = { this.props.muiTheme.appBar.titleStyle.phone }>8 (86156) 35-117</a>
+                            </p>
+                        </div>
+                    }
+*/
         return (
             <div
                 className = 'app'
