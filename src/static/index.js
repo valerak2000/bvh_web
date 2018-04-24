@@ -18,7 +18,7 @@ const target = document.getElementById('root');
 const history = createHistory();
 const store = configureStore(initialState, history);
 
-//import './styles/main.scss';
+import './styles/main.scss';
 
 const muiTheme = getMuiTheme({
     app: {
@@ -34,36 +34,35 @@ const muiTheme = getMuiTheme({
         backgroundColor: Colors.lightGreen50,
     },
     appBar: {
-        height: 60,
+        height: 80,
         width: '100%',
         textColor: Colors.blue900,
         backgroundColor: Colors.lightGreen50,
         ElementLeft: {
             width: '100%',
             height: 'inherit',
-            marginLeft: 'auto',
-            marginRight: 'auto',
+            margin: '0.5rem 0 -1rem 0',
             display: 'flex',
             iconStyleLeft: {
-                width: '70rem'
+                width: '75rem',
+                margin: '1.5rem 0 0rem 0',
             },
             Logo: {
-                height: 56,
-                width: 172,
+                //2,646370023419204
+                width: 220,
+                height: 76,
                 cursor: 'pointer',
                 Pict: {
                     height: 'inherit',
-                    width: 148,
+                    width: 201,
                     objectFit: 'contain',
-                    marginTop: -14,
+                    margin: '-2.5rem auto auto -1rem',
                 },
             },
             Menu: {
                 width: '100%',
                 height: 'inherit',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                marginTop: 'auto',
+                margin: 'auto auto auto',
                 tab: {
                     fontSize: 18,
                     fontWeight: 500,
@@ -73,44 +72,52 @@ const muiTheme = getMuiTheme({
         },
         titleStyle: {
             width: 'auto',
-            fontSize: 14,
-            phoneHeader: {
-                fontSize: 14,
-                margin: '0px 5px 0 0',
-                float: 'unset',
-                padding: '0 0 0 40px',
-                fontWeight: 'normal',
-                fontFamily: 'pfbeausanspro-reg, sans-serif',
-            },
-            phone: {
-                fontSize: 14,
-                width: 340,
-                //margin: '0 0 10px',
-                fontWeight: 'bold',
-                textDecoration: 'blink',
-                fontFamily: 'pfbeausanspro-bold, sans-serif',
-            },
         },
         ElementRight: {
             width: '100%',
             height: 'inherit',
-            marginLeft: 'auto',
-            marginRight: '11rem', //2rem
-            marginTop: 'inherit',
+            margin: '-0.3rem auto',
             iconStyleRight: {
-                width: 'auto'
+                width: 'auto',
             },
             Login: {
-                margin: '0px 1rem',
-                display: 'block',
-                float: 'right',
-                label: {
-                    fontSize: 18,
-                    fontWeight: 500,
-                },
+                top: '0rem',
+                right: '3rem',
+                height: 'inherit',
+                width: '28rem',
+                backgroundColor: 'inherit',
+                fontFamily: 'pfbeausanspro-reg, sans-serif',
+                fontSize: 14,
+                //width: '100%',
+                //height: 'inherit',
+                //margin: 'auto',
                 button: {
-                    margin: '7px 35px 0',
+                    margin: '0rem 0rem 0', //'1rem 1rem 0',
+                    label: {
+                        fontSize: 18,
+                        fontWeight: 500,
+                    },
                 },
+                /*phoneHeader: {
+                    //width: '100%',
+                    //whiteSpace: 'nowrap',
+                    //display: 'flex',
+
+                    //margin: '0px 5px 0 0',
+                    //float: 'unset',
+                    //padding: '0 0 0 40px',
+                    fontSize: 14,
+                    fontWeight: 100,
+                    fontFamily: 'pfbeausanspro-reg, sans-serif',
+                },
+                phone: {
+                    fontSize: 14,
+                    fontWeight: 700,
+                    //width: 340,
+                    //margin: '0 0 10px',
+                    textDecoration: 'blink',
+                    fontFamily: 'pfbeausanspro-bold, sans-serif',
+                },*/
             }
         },
         flexWrap: 'wrap',

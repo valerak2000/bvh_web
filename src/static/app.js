@@ -138,6 +138,18 @@ class App extends React.Component {
     }
 }
 /*
+                    iconElementRight = {
+                        <div
+                            id = 'ElementRight'
+                            style = { this.props.muiTheme.appBar.ElementRight }
+                        >
+                            <LoginControl
+                                isAuthenticated = { this.props.isAuthenticated }
+                                style = { this.props.muiTheme.appBar.ElementRight.Login }
+                            />
+                        </div>
+                    }
+
                 <AppBar
                     titleStyle = {{ width: 'auto' }}
                     iconElementLeft = {

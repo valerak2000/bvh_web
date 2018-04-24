@@ -68,11 +68,6 @@ class ContactsView extends React.Component {
     }
 }
 
-/*
-     <Card style={{width: '50%', margin: '0 auto'}}>
-      <CardMedia><img src="http://www.material-ui.com/images/get-started.svg" alt=""/></CardMedia>
-     </Card>
-*/
 const mapStateToProps = (state) => {
     return {
     };

@@ -15,6 +15,7 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import Divider from 'material-ui/Divider';
+import Badge from 'material-ui/Badge';
 //import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 import { authLogoutAndRedirect } from '../actions/auth';
@@ -24,7 +25,7 @@ export function Login(props) {
         <FlatButton
             label = 'Войти'
             labelPosition = 'before'
-            labelStyle = { props.style.label }
+            labelStyle = { props.style.button.label }
             icon = {
                 <FontIcon
                     className = 'fa fa-sign-in'
@@ -39,7 +40,6 @@ export function Login(props) {
 export function Logged(props) {
     return (
         <IconMenu
-            /*{...props}*/
             iconButtonElement = {
               <IconButton><MoreVertIcon /></IconButton>
             }
@@ -110,19 +110,97 @@ class LoginControl extends React.Component {
         );
 
         return (
-            <div id = 'LoginControl' style = { this.props.muiTheme.appBar.ElementRight.Login } >
+            <Badge
+                id = 'LoginControl'
+                badgeContent = {
+                    <div>
+                        <span style = {{ fontWeight: 100, }}>Телефон горячей линии:</span>
+                        <span style = {{ fontWeight: 700, }}> 8 (86156) 35-117</span>
+                    </div>
+                }
+                badgeStyle = {{
+                    top: '0rem',
+                    right: '3rem',
+                    height: 'inherit',
+                    width: '28rem',
+                    backgroundColor: 'inherit',
+                    fontFamily: 'pfbeausanspro-reg, sans-serif',
+                    fontSize: 14,
+                }}
+            >
+                { appButtons }
+            </Badge>
+        );
+    }
+}
+//this.props.muiTheme.appBar.ElementRight.Login } >
+/*
+                    fontSize: 12,
+                    fontWeight: 'normal',
+                    fontFamily: 'pfbeausanspro-reg, sans-serif',
+            <div
+                id = 'LoginControl'
+            >
+                <Badge
+                    badgeContent = {
+                        <div>
+                            <span style = { this.props.muiTheme.appBar.titleStyle.phoneHeader }>
+                                Телефон горячей линии:
+                            </span>
+                            <span style = { this.props.muiTheme.appBar.titleStyle.phone }>
+                                8 (86156) 35-117
+                            </span>
+                        </div>
+                    }
+                    badgeStyle = {{
+                        top: '1.5rem',
+                        right: '4rem',
+                        height: 'inherit',
+                        width: '24rem',
+                        backgroundColor: 'inherit',
+                        fontSize: 12,
+                        fontWeight: 'normal',
+                        fontFamily: 'pfbeausanspro-reg, sans-serif',
+                    }}
+                >
+                    { appButtons }
+                </Badge>
+            </div>
+
+            <div
+                id = 'LoginControl'
+                style = {{
+                    width: '100%',
+                    height: 'inherit',
+                    margin: 'auto',
+                }}
+            >
+                <div
+                    style = {{
+                        width: '100%',
+                        whiteSpace: 'nowrap',
+                        display: 'flex',
+                    }}
+                >
+                </div>
+
+                <div style = {{ margin: '-1rem -1rem', height: '2rem', }}>
+                    <span style = { this.props.muiTheme.appBar.ElementRight.Login.phoneHeader }>
+                        Телефон горячей линии:
+                    </span>
+                </div>
+                { appButtons }
+            </div>
+
+
                 <div style = {{ margin: '-1rem -1rem', height: '2rem', }}>
                     <span style = { this.props.muiTheme.appBar.titleStyle.phoneHeader }>
                         Телефон горячей линии:
                     </span>
                     <a href="tel:88615635117" style = { this.props.muiTheme.appBar.titleStyle.phone }>8 (86156) 35-117</a>
                 </div>
-                { appButtons }
-            </div>
-        );
-    }
-}
-//                { appButtons }
+
+*/
 
 const mapStateToProps = (state, ownProps) => {
     return {
