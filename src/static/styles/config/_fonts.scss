@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'PFBeauSansPro';
+  font-family: 'pfbeausanspro-reg';
   font-style: normal;
   font-weight: normal;
-  src: local('PFBeauSansPro'), url(../fonts/PFBeauSansPro-Regular.otf) format('opentype');
+  src: local('pfbeausanspro-reg'), url(../fonts/pfbeausanspro-reg.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: 'PFBeauSansPro';
+  font-family: 'pfbeausanspro-bold';
   font-style: normal;
   font-weight: bold;
-  src: local('PFBeauSansPro'), url(../fonts/PFBeauSansPro-Bold.otf) format('opentype');
+  src: local('pfbeausanspro-bold'), url(../fonts/pfbeausanspro-bold.ttf) format('truetype');
 }

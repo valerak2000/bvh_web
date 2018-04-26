@@ -31,13 +31,24 @@ const muiTheme = getMuiTheme({
     },
     palette: {
         textColor: Colors.blue900,
-        backgroundColor: Colors.lightGreen50,
+        alternateTextColor: Colors.blue900,
+        primary1Color: Colors.teal200,
+
+        //backgroundColor: Colors.teal200,
+        //selectedTextColor: Colors.blue900,
+        //secondaryTextColor: Colors.blue900,
+        //primary2Color: Colors.teal200,
+        //accent1Color: Colors.teal200,
+        //primary: Colors.blue900,
+        //secondary: Colors.teal200,
+        //color: Colors.teal200,
     },
     appBar: {
         height: 80,
         width: '100%',
-        textColor: Colors.blue900,
-        backgroundColor: Colors.lightGreen50,
+        //textColor: Colors.blue900,
+        //backgroundColor: Colors.lightGreen50,
+        //color: Colors.teal200,
         ElementLeft: {
             width: '100%',
             height: 'inherit',
@@ -129,9 +140,9 @@ const muiTheme = getMuiTheme({
         textTransform: 'none',
     },
     tabs: {
-        textColor: Colors.blue900,
-        backgroundColor: Colors.lightGreen50,
-        selectedTextColor: Colors.blue900,
+        //textColor: Colors.blue900,
+        //backgroundColor: Colors.lightGreen50,
+        //selectedTextColor: Colors.blue900,
         width: '100%',
         paddingLeft: 20,
         tab: {

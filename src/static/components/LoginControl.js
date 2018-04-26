@@ -124,7 +124,7 @@ class LoginControl extends React.Component {
                     height: 'inherit',
                     width: '28rem',
                     backgroundColor: 'inherit',
-                    fontFamily: 'pfbeausanspro-reg, sans-serif',
+                    fontFamily: 'PFBeauSansPro-Reg, sans-serif',
                     fontSize: 14,
                 }}
             >

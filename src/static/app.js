@@ -72,18 +72,6 @@ class App extends React.Component {
             active: this.props.location && this.props.location.pathname === '/contacts'
         });
 
-/*
-                    title = {
-                        <div>
-                            <div style = { this.props.muiTheme.appBar.titleStyle.phoneHeader }>
-                                Телефон горячей линии:
-                            </div>
-                            <p>
-                                <a href="tel:88615635117" style = { this.props.muiTheme.appBar.titleStyle.phone }>8 (86156) 35-117</a>
-                            </p>
-                        </div>
-                    }
-*/
         return (
             <div
                 className = 'app'
@@ -124,10 +112,6 @@ class App extends React.Component {
                         </div>
                     }
                     iconStyleRight = { this.props.muiTheme.appBar.ElementLeft.iconStyleRight }
-                    style = {{
-                        textColor: Colors.blue900,
-                        backgroundColor: Colors.lightGreen50,
-                    }}
                 />
 
                 <div>
@@ -138,19 +122,13 @@ class App extends React.Component {
     }
 }
 /*
-                    iconElementRight = {
-                        <div
-                            id = 'ElementRight'
-                            style = { this.props.muiTheme.appBar.ElementRight }
-                        >
-                            <LoginControl
-                                isAuthenticated = { this.props.isAuthenticated }
-                                style = { this.props.muiTheme.appBar.ElementRight.Login }
-                            />
-                        </div>
-                    }
+                    style = { this.props.muiTheme.palette
+                        {
+                        textColor: Colors.blue900,
+                        backgroundColor: Colors.lightGreen50,
+                    }}
 
-                <AppBar
+                    <AppBar
                     titleStyle = {{ width: 'auto' }}
                     iconElementLeft = {
                         <div id = "ElementLeft" style = { this.props.muiTheme.appBar.ElementLeft }>

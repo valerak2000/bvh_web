@@ -20,9 +20,17 @@ class SiteMenu extends React.Component {
     static defaultProps = {
     };
 
+    componentWillReceiveProps(nextProps) {
+        const nextPath = nextProps.location.pathname
+        // call onChange when path exactly matches /tabs
+        if (/^\/tabs$/.test(nextPath))
+            this.onChange(nextProps.tabSelected)
+    }
+
     handleActive = (tab) => {
         console.log(tab);
         this.props.dispatch(push(tab.props['data-route']));
+	//this.context.router.transitionTo(tab.props.route)
     };
 
     render() {
@@ -59,10 +67,10 @@ class SiteMenu extends React.Component {
                     onActive = { this.handleActive }
                 />
                 <Tab
-                    id = 'contacts'
+                    id = 'contact'
                     label = 'Контакты'
                     style = { this.props.muiTheme.appBar.ElementLeft.Menu.tab }
-                    data-route = '/contacts'
+                    data-route = '/contact'
                     onActive = { this.handleActive }
                 />
             </Tabs>
