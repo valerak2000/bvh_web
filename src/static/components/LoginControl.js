@@ -21,18 +21,18 @@ import Badge from 'material-ui/Badge';
 import { authLogoutAndRedirect } from '../actions/auth';
 
 export function Login(props) {
+    //labelStyle = { props.style.button.Label }
+//    style = { props.style.Button }
     return (
         <FlatButton
             label = 'Войти'
             labelPosition = 'before'
-            labelStyle = { props.style.button.label }
             icon = {
                 <FontIcon
                     className = 'fa fa-sign-in'
                 />
             }
             onClick = { props.onClick }
-            style = { props.style.button }
         />
     );
 }
@@ -94,27 +94,27 @@ class LoginControl extends React.Component {
     };
 
     render() {
-        const isAuthenticated = this.props.isAuthenticated;
-        const appButtons = isAuthenticated ? (
-              <Logged
-                userName = { this.props.userName }
+        const { isAuthenticated, userName } = this.props;
+        const { Login } = this.props.muiTheme.appBar.ElementRight;
+/*        const appButtons = isAuthenticated ? (
+            <Logged
+                userName = { userName }
                 onClickLogout = { this.handleLogoutClick }
                 onClickProtected = { this.handleProtectedClick }
-                style = { this.props.muiTheme.appBar.ElementRight.Login }
-              />
+                style = { Login }
+            />
             ) : (
-              <Login
+            <Login
                 onClick = { this.handleLoginClick }
-                style = { this.props.muiTheme.appBar.ElementRight.Login }
-              />
-        );
+            />
+        );*/
 
         return (
             <Badge
                 id = 'LoginControl'
                 badgeContent = {
                     <div>
-                        <span style = {{ fontWeight: 100, }}>Телефон горячей линии:</span>
+                        <span style = {{ fontWeight: 100, }}>Круглосуточный диспетчер:</span>
                         <span style = {{ fontWeight: 700, }}> 8 (86156) 35-117</span>
                     </div>
                 }
@@ -122,13 +122,26 @@ class LoginControl extends React.Component {
                     top: '0rem',
                     right: '3rem',
                     height: 'inherit',
-                    width: '28rem',
+                    width: '30rem',
                     backgroundColor: 'inherit',
                     fontFamily: 'PFBeauSansPro-Reg, sans-serif',
                     fontSize: 14,
                 }}
             >
-                { appButtons }
+                { 
+                    isAuthenticated === true &&
+                    <Logged
+                        userName = { userName }
+                        onClickLogout = { this.handleLogoutClick }
+                        onClickProtected = { this.handleProtectedClick }
+                    />
+                }
+                { 
+                    isAuthenticated === false &&
+                    <Login
+                        onClick = { this.handleLoginClick }
+                    />
+                }
             </Badge>
         );
     }

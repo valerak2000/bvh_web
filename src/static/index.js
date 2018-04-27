@@ -74,7 +74,7 @@ const muiTheme = getMuiTheme({
                 width: '100%',
                 height: 'inherit',
                 margin: 'auto auto auto',
-                tab: {
+                Tab: {
                     fontSize: 18,
                     fontWeight: 500,
                     textTransform: 'none',
@@ -102,9 +102,9 @@ const muiTheme = getMuiTheme({
                 //width: '100%',
                 //height: 'inherit',
                 //margin: 'auto',
-                button: {
+                Button: {
                     margin: '0rem 0rem 0', //'1rem 1rem 0',
-                    label: {
+                    Label: {
                         fontSize: 18,
                         fontWeight: 500,
                     },

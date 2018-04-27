@@ -9,67 +9,91 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
 class SiteMenu extends React.Component {
+    static propTypes = {
+        isAuthenticated: PropTypes.bool.isRequired,
+        //children: PropTypes.shape().isRequired,
+        dispatch: PropTypes.func.isRequired,
+        location: PropTypes.shape({
+            pathname: PropTypes.string
+        })
+    };
+
+    static defaultProps = {
+        location: undefined
+    };
+
+    state = {
+        activeTab: 0,
+    };
+
     constructor(props) {
         super(props);
     }
 
-    static propTypes = {
-        dispatch: PropTypes.func.isRequired,
-    };
+//    componentWillReceiveProps(nextProps) {
+    componentWillMount() {
+        //this.props.children.history.location.pathname;
+        let currentTab = this.props.location != null && this.props.location.pathname ? 
+            this.props.location.pathname.split('/').pop() : 'default';
+        this.setState({ activeTab: currentTab });
 
-    static defaultProps = {
-    };
-
-    componentWillReceiveProps(nextProps) {
-        const nextPath = nextProps.location.pathname
+        //const nextPath = windows.location.pathname
         // call onChange when path exactly matches /tabs
-        if (/^\/tabs$/.test(nextPath))
-            this.onChange(nextProps.tabSelected)
+        //if (/^\/tabs$/.test(nextPath))
+        //    this.onChange(nextProps.tabSelected)
     }
 
+    handleChange = (event, value) => {
+        this.setState({ activeTab: event });
+      };
+
     handleActive = (tab) => {
-        console.log(tab);
         this.props.dispatch(push(tab.props['data-route']));
-	//this.context.router.transitionTo(tab.props.route)
+	    //this.context.router.transitionTo(tab.props.route)
     };
 
     render() {
+        const { activeTab, ...props } = this.state;
+        const { Menu } = this.props.muiTheme.appBar.ElementLeft;
+
         return (
             <Tabs
-                style = { this.props.muiTheme.appBar.ElementLeft.Menu }
+                value = { activeTab }
+                onChange = { this.handleChange }
+                style = { Menu }
             >
                 <Tab
-                    id = 'main'
+                    value = 'default'
                     label = 'Главная'
-                    style = { this.props.muiTheme.appBar.ElementLeft.Menu.tab }
+                    style = { Menu.Tab }
                     data-route = '/'
                     onActive = { this.handleActive }
                  />
                 <Tab
-                    id = 'about'
+                    value = 'about'
                     label = 'О компании'
-                    style = { this.props.muiTheme.appBar.ElementLeft.Menu.tab }
+                    style = { Menu.Tab }
                     data-route = '/about'
                     onActive = { this.handleActive }
                  />
                 <Tab
-                    id = 'customers'
+                    value = 'customers'
                     label = 'Абонентам'
-                    style = { this.props.muiTheme.appBar.ElementLeft.Menu.tab }
+                    style = { Menu.Tab }
                     data-route = '/customers'
                     onActive = { this.handleActive }
                 />
                 <Tab
-                    id = 'news'
+                    value = 'news'
                     label = 'Новости'
-                    style = { this.props.muiTheme.appBar.ElementLeft.Menu.tab }
+                    style = { Menu.Tab }
                     data-route = '/news'
                     onActive = { this.handleActive }
                 />
                 <Tab
-                    id = 'contact'
+                    value = 'contact'
                     label = 'Контакты'
-                    style = { this.props.muiTheme.appBar.ElementLeft.Menu.tab }
+                    style = { Menu.Tab }
                     data-route = '/contact'
                     onActive = { this.handleActive }
                 />
@@ -80,9 +104,14 @@ class SiteMenu extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
+        isAuthenticated: state.auth.isAuthenticated,
+        location: state.routing.location,
     };
 };
 
 SiteMenu.muiName = 'SiteMenu';
+/*SiteMenu.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};*/
 
 export default muiThemeable()(connect(mapStateToProps)(SiteMenu));

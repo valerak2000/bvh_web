@@ -40,16 +40,14 @@ class ContactView extends React.Component {
                         <li><strong>Бухгалтерия</strong> 8(86156) 35-200</li>
                         <li><strong>Секретарь/факс&nbsp;</strong>8(86156) 31-194</li>
                     </ul>
-                    <ul>
-                        <li><strong>Секретарь/факс&nbsp;</strong>8(86156) 31-194</li>
                     <address>
-                        <strong>адрес сайта:</strong> <a href="http://www.brhvh.ru"><strong>http://www.brhvh.ru</a>
-                        <strong>адрес электронной почты:</strong> <a href="mailto:br_teploseti@mail.ru"><strong>br_teploseti@mail.ru</a>
+                        <strong>адрес сайта:</strong> <a href="http://www.brhvh.ru">http://www.brhvh.ru</a>
+                        <br/><strong>адрес электронной почты:</strong> <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
                     </address>
-                    <li><strong>ИНН</strong> 2327009703</li>
-                    <li><strong>КПП</strong> 232701001</li>
                     <h4>Коды</h4>
                     <ul>
+                        <li><strong>ИНН</strong> 2327009703</li>
+                        <li><strong>КПП</strong> 232701001</li>
                         <li><strong>ОГРН</strong> 105 231 529 0 961</li>
                         <li><strong>ОГРН</strong> 105 231 529 0 961</li>
                         <li><strong>ОКПО</strong> 950 79 317</li>

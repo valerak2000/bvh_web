@@ -30,15 +30,13 @@ class App extends React.Component {
     };
 
     static get contextTypes() {
-        return { muiTheme: React.PropTypes.object.isRequired };
+        return {
+            muiTheme: React.PropTypes.object.isRequired
+        };
     }
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            isOpen: false
-        };
     }
 
     static defaultProps = {
@@ -96,6 +94,7 @@ class App extends React.Component {
                             </IconButton>
                             <SiteMenu
                                 style = { this.props.muiTheme.appBar.ElementLeft.Menu }
+                                { ...this.props }
                             />
                         </div>
                     }
