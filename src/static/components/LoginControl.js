@@ -21,12 +21,12 @@ import Badge from 'material-ui/Badge';
 import { authLogoutAndRedirect } from '../actions/auth';
 
 export function Login(props) {
-    //labelStyle = { props.style.button.Label }
-//    style = { props.style.Button }
+//            style = { props.Button }
     return (
         <FlatButton
             label = 'Войти'
-            labelPosition = 'before'
+            belPosition = 'before'
+            labelStyle = { props.Button.Label }
             icon = {
                 <FontIcon
                     className = 'fa fa-sign-in'
@@ -95,7 +95,7 @@ class LoginControl extends React.Component {
 
     render() {
         const { isAuthenticated, userName } = this.props;
-        const { Login } = this.props.muiTheme.appBar.ElementRight;
+        const Login = this.props.muiTheme.appBar.ElementRight.Login;
 /*        const appButtons = isAuthenticated ? (
             <Logged
                 userName = { userName }
@@ -128,26 +128,34 @@ class LoginControl extends React.Component {
                     fontSize: 14,
                 }}
             >
-                { 
-                    isAuthenticated === true &&
-                    <Logged
-                        userName = { userName }
-                        onClickLogout = { this.handleLogoutClick }
-                        onClickProtected = { this.handleProtectedClick }
-                    />
-                }
-                { 
                     isAuthenticated === false &&
                     <Login
                         onClick = { this.handleLoginClick }
+                        style = {Login}
                     />
-                }
             </Badge>
         );
     }
 }
 //this.props.muiTheme.appBar.ElementRight.Login } >
 /*
+                {
+                    isAuthenticated === true &&
+                    <Logged
+                        userName = { userName }
+                        onClickLogout = { this.handleLogoutClick }
+                        onClickProtected = { this.handleProtectedClick }
+                        style = { style }
+                    />
+                }
+                {
+                    isAuthenticated === false &&
+                    <Login
+                        onClick = { this.handleLoginClick }
+                        style = Login
+                    />
+                }
+
                     fontSize: 12,
                     fontWeight: 'normal',
                     fontFamily: 'pfbeausanspro-reg, sans-serif',
