@@ -93,10 +93,16 @@ class HomeView extends React.Component {
         return (
             <Card
                 style= {{
-                    width: '50%',
+                    //width: '50%',
                     margin: '0 auto'
                 }}
             >
+                <CardHeader
+                    title="Without Avatar"
+                    subtitle="Subtitle"
+                    actAsExpander={true}
+                    showExpandableButton={true}
+                />
                 <CardMedia
                     //overlay = {
                     //  <CardTitle title="ООО «Брюховецкое водопроводное хозяйство»"

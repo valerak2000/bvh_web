@@ -30,7 +30,15 @@ class SiteMenu extends React.Component {
         super(props);
     }
 
-//    componentWillReceiveProps(nextProps) {
+    componentDidMount() {
+    }
+
+    componentWillUnmount() {
+    }
+
+    componentWillReceiveProps(nextProps) {
+
+    }
     componentWillMount() {
         //this.props.children.history.location.pathname;
         let currentTab = this.props.location != null && this.props.location.pathname ? 
@@ -109,9 +117,14 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
+function mapDispatchToProps (dispatch) {
+    return {
+    }
+}
+
 SiteMenu.muiName = 'SiteMenu';
 /*SiteMenu.contextTypes = {
     router: React.PropTypes.object.isRequired
 };*/
 
-export default muiThemeable()(connect(mapStateToProps)(SiteMenu));
+export default muiThemeable()(connect(mapStateToProps, mapDispatchToProps)(SiteMenu));

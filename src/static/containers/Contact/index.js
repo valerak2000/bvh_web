@@ -27,9 +27,11 @@ class ContactView extends React.Component {
             >
                 <CardTitle
                     title = 'Контакты'
-                    subtitle = 'ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»'
                 />
                 <CardText>
+                    <CardTitle
+                        title = 'ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»'
+                    />
                     <strong>Юридический адрес:</strong> 352750, Краснодарский край, ст. Брюховецкая, ул. О. Кошевого, 196
                     <p><strong>Директор:</strong> Ляшенко Александр Николаевич<br/>
                     <strong>Главный бухгалтер:</strong> Романова Ольга Григорьевна</p>
@@ -78,3 +80,55 @@ const mapStateToProps = (state) => {
 
 export default muiThemeable()(connect(mapStateToProps)(ContactView));
 export { ContactView as ContactViewNotConnected };
+
+/*
+.one-sidebar #main-content {
+    width: 880px;
+    float: left;
+}
+<main id="main-content">
+
+
+                            <h1>Контакты</h1>
+
+
+
+
+          <div class="region region-content">
+    <div id="node-39" class="node node-page node-full clearfix" about="/Kompaniya/Kontakty" typeof="sioc:Item foaf:Document">
+
+            <span property="dc:title" content="Контакты" class="rdf-meta element-hidden"></span>
+
+  <div class="content clearfix">
+
+<div class="field field-name-body field-type-text-with-summary field-label-hidden">
+    <div class="field-items">
+          <div class="field-item even" property="content:encoded"><p><strong>Почтовый адрес и адрес фактического нахождения органов управления ООО «Краснодар Водоканал»:</strong></p>
+<p>350062,  Краснодарский край, г. Краснодар, ул. Каляева, 198,<br>
+адрес сайта: <a href="http://www.krasnodarvodokanal.ru">www.krasnodarvodokanal.ru</a><br>
+адрес электронной почты: <a href="mailto:krn_sec@rosvodokanal.ru">krn_sec@rosvodokanal.ru</a></p>
+<p>Телефон:</p>
+<p><strong>8 (861) 220-29-87</strong> — приемная<br><strong>8 (861) 220-28-38</strong> — диспетчер</p>
+<p><strong>Режим работы ООО «Краснодар Водоканал»:</strong></p>
+<p>Понедельник-четверг с 08-00 до 17-00 перерыв с 12-00 до 12-48.<br>
+Пятница с 08-00 до 16-00 перерыв с 12-00 до 12-48.</p>
+<p><strong>Коммерческая дирекция ООО «Краснодар Водоканал», г. Краснодар, ул. Каляева, 259:</strong></p>
+<p>Понедельник-четверг с 08-00 до 17-00 перерыв с 12-00 до 12-48.<br>
+Пятница с 08-00 до 16-00 перерыв с 12-00 до 12-48.</p>
+<!--p><p><strong>Приемные дни для граждан:</strong></p>
+<p>Понедельник, вторник, четверг с 09-00 до 16-00, перерыв с 12-00 до 13-00;</br><br />
+Пятница с 09-00 до 15-00, перерыв с 12-00 до 13-00.</br-->
+<p><strong>Диспетчерская служба ООО «Краснодар Водоканал»:</strong></p>
+<p>круглосуточно, без перерыва и выходных.</p>
+</div>
+      </div>
+</div>
+  </div>
+
+
+
+</div>  </div>
+
+
+    </main>
+*/

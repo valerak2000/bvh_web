@@ -21,18 +21,18 @@ import Badge from 'material-ui/Badge';
 import { authLogoutAndRedirect } from '../actions/auth';
 
 export function Login(props) {
-//            style = { props.Button }
     return (
         <FlatButton
             label = 'Войти'
-            belPosition = 'before'
-            labelStyle = { props.Button.Label }
+            labelPosition = 'before'
+            labelStyle = { props.style.Button.Label }
             icon = {
                 <FontIcon
                     className = 'fa fa-sign-in'
                 />
             }
             onClick = { props.onClick }
+            style = { props.style.Button }
         />
     );
 }
@@ -47,7 +47,7 @@ export function Logged(props) {
             anchorOrigin = {{ horizontal: 'right', vertical: 'top' }}
         >
             <MenuItem
-                primaryText = 'Личная информация'
+                primaryText = 'Личный кабинет'
                 leftIcon = { <FontIcon className='fa fa-lock' /> }
                 onClick = { props.onClickProtected }
             />
@@ -95,19 +95,7 @@ class LoginControl extends React.Component {
 
     render() {
         const { isAuthenticated, userName } = this.props;
-        const Login = this.props.muiTheme.appBar.ElementRight.Login;
-/*        const appButtons = isAuthenticated ? (
-            <Logged
-                userName = { userName }
-                onClickLogout = { this.handleLogoutClick }
-                onClickProtected = { this.handleProtectedClick }
-                style = { Login }
-            />
-            ) : (
-            <Login
-                onClick = { this.handleLoginClick }
-            />
-        );*/
+        const login = this.props.muiTheme.appBar.ElementRight.Login;
 
         return (
             <Badge
@@ -128,92 +116,26 @@ class LoginControl extends React.Component {
                     fontSize: 14,
                 }}
             >
-                    isAuthenticated === false &&
-                    <Login
-                        onClick = { this.handleLoginClick }
-                        style = {Login}
-                    />
-            </Badge>
-        );
-    }
-}
-//this.props.muiTheme.appBar.ElementRight.Login } >
-/*
-                {
-                    isAuthenticated === true &&
+            {
+                isAuthenticated ? (
                     <Logged
                         userName = { userName }
                         onClickLogout = { this.handleLogoutClick }
                         onClickProtected = { this.handleProtectedClick }
-                        style = { style }
+                        style = { login }
                     />
-                }
-                {
-                    isAuthenticated === false &&
+                ) : (
                     <Login
                         onClick = { this.handleLoginClick }
-                        style = Login
+                        style = { login }
                     />
-                }
-
-                    fontSize: 12,
-                    fontWeight: 'normal',
-                    fontFamily: 'pfbeausanspro-reg, sans-serif',
-            <div
-                id = 'LoginControl'
-            >
-                <Badge
-                    badgeContent = {
-                        <div>
-                            <span style = { this.props.muiTheme.appBar.titleStyle.phoneHeader }>
-                                Телефон горячей линии:
-                            </span>
-                            <span style = { this.props.muiTheme.appBar.titleStyle.phone }>
-                                8 (86156) 35-117
-                            </span>
-                        </div>
-                    }
-                    badgeStyle = {{
-                        top: '1.5rem',
-                        right: '4rem',
-                        height: 'inherit',
-                        width: '24rem',
-                        backgroundColor: 'inherit',
-                        fontSize: 12,
-                        fontWeight: 'normal',
-                        fontFamily: 'pfbeausanspro-reg, sans-serif',
-                    }}
-                >
-                    { appButtons }
-                </Badge>
-            </div>
-
-            <div
-                id = 'LoginControl'
-                style = {{
-                    width: '100%',
-                    height: 'inherit',
-                    margin: 'auto',
-                }}
-            >
-                <div
-                    style = {{
-                        width: '100%',
-                        whiteSpace: 'nowrap',
-                        display: 'flex',
-                    }}
-                >
-                </div>
-
-                <div style = {{ margin: '-1rem -1rem', height: '2rem', }}>
-                    <span style = { this.props.muiTheme.appBar.ElementRight.Login.phoneHeader }>
-                        Телефон горячей линии:
-                    </span>
-                </div>
-                { appButtons }
-            </div>
-
-
+                )
+            }
+            </Badge>
+        );
+    }
+}
+/*
                 <div style = {{ margin: '-1rem -1rem', height: '2rem', }}>
                     <span style = { this.props.muiTheme.appBar.titleStyle.phoneHeader }>
                         Телефон горячей линии:

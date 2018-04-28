@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
-import { UnderConstructView, NotFoundView, LoginView, ProtectedView, HomeView, ContactView, AboutView } from './containers';
+import { UnderConstructView, NotFoundView, LoginView, ProtectedView, HomeView,
+    ContactView, AboutView } from './containers';
 import requireAuthentication from './utils/requireAuthentication';
 
 export default(

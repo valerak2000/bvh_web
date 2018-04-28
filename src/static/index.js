@@ -21,6 +21,7 @@ const store = configureStore(initialState, history);
 import './styles/main.scss';
 
 const muiTheme = getMuiTheme({
+    fontFamily: 'pfbeausanspro-reg, sans-serif',
     app: {
         maxWidth: '118rem',
         minWidth: '118rem',
@@ -97,7 +98,6 @@ const muiTheme = getMuiTheme({
                 height: 'inherit',
                 width: '28rem',
                 backgroundColor: 'inherit',
-                fontFamily: 'pfbeausanspro-reg, sans-serif',
                 fontSize: 14,
                 //width: '100%',
                 //height: 'inherit',
