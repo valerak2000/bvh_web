@@ -1,6 +1,6 @@
 {
-  "name": "django-react-redux-base",
-  "version": "1.0.0",
+  "name": "bvh_web",
+  "version": "0.0.1",
   "description": "Django, React and Redux!",
   "scripts": {
     "dev": "webpack --progress --display-error-details --config webpack/common.config.js --watch",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Seedstars/django-react-redux-base.git"
+    "url": "git+https://github.com/valerak2000/bvh_web.git"
   },
   "author": "Kozlitin Valeriy <valera_k2000@inbox.ru>",
   "license": "MIT",

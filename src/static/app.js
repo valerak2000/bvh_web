@@ -4,6 +4,9 @@ import { push } from 'react-router-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import * as Colors from 'material-ui/styles/colors';

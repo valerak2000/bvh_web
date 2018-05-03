@@ -13,6 +13,6 @@ export default(
         <Route path = "/contact" component = { ContactView } />
         <Route path = "/login" component = { LoginView } />
         <Route path = "/protected" component = { requireAuthentication(ProtectedView) } />
-        <Route path = "*" component = { NotFoundView } />
+        <Route component = { NotFoundView } />
     </Switch>
 );
