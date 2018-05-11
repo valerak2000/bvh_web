@@ -7,9 +7,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import * as Colors from 'material-ui/styles/colors';
 
-//import injectTapEventPlugin from 'react-tap-event-plugin';
-//injectTapEventPlugin();
-
 import routes from '../../routes';
 import DevTools from './DevTools';
 import App from '../../app';
