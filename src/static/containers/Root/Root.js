@@ -25,16 +25,16 @@ export default class Root extends React.Component {
         return (
             <div>
                 <Provider store = { this.props.store }>
-		    <MuiThemeProvider muiTheme = { muiTheme }>
-                	<div>
-        	            <App>
-	                    	<ConnectedRouter history={ this.props.history }>
-                                    { routes }
-                        	</ConnectedRouter>
-                	    </App>
-        	            { dev && <DevTools /> }
-	                </div>
-		    </MuiThemeProvider>
+                    <MuiThemeProvider muiTheme = { muiTheme }>
+                            <div>
+                                <App>
+                                    <ConnectedRouter history={ this.props.history }>
+                                            { routes }
+                                    </ConnectedRouter>
+                                </App>
+                                { dev && <DevTools /> }
+                            </div>
+                    </MuiThemeProvider>
                 </Provider>
             </div>
         );
