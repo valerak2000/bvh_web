@@ -81,11 +81,13 @@ class LoginControl extends React.Component {
         userName: '',
     };
 
-    handleLoginClick = () => {
+    handleLoginClick = (e) => {
+        e.preventDefault();
         this.props.dispatch(push('/login'));
     };
 
-    handleLogoutClick = () => {
+    handleLogoutClick = (e) => {
+        e.preventDefault();
         this.props.dispatch(authLogoutAndRedirect());
     };
 

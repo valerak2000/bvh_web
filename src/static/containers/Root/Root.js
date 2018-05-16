@@ -23,20 +23,18 @@ export default class Root extends React.Component {
     render() {
 	const dev = (process.env.NODE_ENV === 'production');
         return (
-            <div>
+            <MuiThemeProvider muiTheme = { muiTheme }>
                 <Provider store = { this.props.store }>
-                    <MuiThemeProvider muiTheme = { muiTheme }>
-                            <div>
-                                <App>
-                                    <ConnectedRouter history={ this.props.history }>
-                                            { routes }
-                                    </ConnectedRouter>
-                                </App>
-                                { dev && <DevTools /> }
-                            </div>
-                    </MuiThemeProvider>
+                        <div>
+                            <App>
+                                <ConnectedRouter history={ this.props.history }>
+                                        { routes }
+                                </ConnectedRouter>
+                            </App>
+                            { dev && <DevTools /> }
+                        </div>
                 </Provider>
-            </div>
+            </MuiThemeProvider>
         );
     }
 }

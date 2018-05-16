@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import classNames from 'classnames';
@@ -15,11 +15,13 @@ import FontIcon from 'material-ui/FontIcon';
 import {Tabs, Tab} from 'material-ui/Tabs';
 //import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 
+//import Footer from '../modules/common/Footer';
+//import Header from '../modules/common/Header';
 import LoginControl from './components/LoginControl'
 import SiteMenu from './components/SiteMenu'
 import bvhLogo from './images/logo_bvh.png';
 
-class App extends React.Component {
+class App extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         children: PropTypes.shape().isRequired,
