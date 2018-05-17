@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import * as actionCreators from '../../actions/data';
 import UnderConstruct from '../../components/UnderConstruct'
 
-class ProtectedView extends React.Component {
+class ProtectedView extends Component {
     static propTypes = {
         isFetching: PropTypes.bool.isRequired,
         data: PropTypes.string,

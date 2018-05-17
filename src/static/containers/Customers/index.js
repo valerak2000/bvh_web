@@ -12,7 +12,7 @@ import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui
 
 import UnderConstruct from '../../components/UnderConstruct';
 
-class AboutView extends Component {
+class CustomersView extends Component {
     static propTypes = {
         dispatch: PropTypes.func.isRequired
     };
@@ -28,7 +28,7 @@ class AboutView extends Component {
                 }}
             >
                 <CardTitle
-                    title = 'О компании'
+                    title = 'Абонентам'
                     subtitle = ''
                 />
                 <CardText>
@@ -44,5 +44,5 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default muiThemeable()(connect(mapStateToProps)(AboutView));
-export { AboutView as AboutViewNotConnected };
+export default muiThemeable()(connect(mapStateToProps)(CustomersView));
+export { CustomersView as CustomersViewNotConnected };

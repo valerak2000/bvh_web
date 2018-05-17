@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import classNames from 'classnames';
@@ -8,7 +8,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
-class SiteMenu extends React.Component {
+class SiteMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         //children: PropTypes.shape().isRequired,
@@ -62,46 +62,46 @@ class SiteMenu extends React.Component {
 
     render() {
         const { activeTab, ...props } = this.state;
-        const { Menu } = this.props.muiTheme.appBar.ElementLeft;
+        const { menu } = this.props.muiTheme.header.appBar.elementLeft;
 
         return (
             <Tabs
                 value = { activeTab }
                 onChange = { this.handleChange }
-                style = { Menu }
+                style = { menu }
             >
                 <Tab
                     value = 'default'
                     label = 'Главная'
-                    style = { Menu.Tab }
+                    style = { menu.tab }
                     data-route = '/'
                     onActive = { this.handleActive }
                  />
                 <Tab
                     value = 'about'
                     label = 'О компании'
-                    style = { Menu.Tab }
+                    style = { menu.tab }
                     data-route = '/about'
                     onActive = { this.handleActive }
                  />
                 <Tab
                     value = 'customers'
                     label = 'Абонентам'
-                    style = { Menu.Tab }
+                    style = { menu.tab }
                     data-route = '/customers'
                     onActive = { this.handleActive }
                 />
                 <Tab
                     value = 'news'
                     label = 'Новости'
-                    style = { Menu.Tab }
+                    style = { menu.tab }
                     data-route = '/news'
                     onActive = { this.handleActive }
                 />
                 <Tab
                     value = 'contact'
                     label = 'Контакты'
-                    style = { Menu.Tab }
+                    style = { menu.tab }
                     data-route = '/contact'
                     onActive = { this.handleActive }
                 />

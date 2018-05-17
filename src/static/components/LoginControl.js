@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import classNames from 'classnames';
@@ -25,14 +25,14 @@ export function Login(props) {
         <FlatButton
             label = 'Войти'
             labelPosition = 'before'
-            labelStyle = { props.style.Button.Label }
+            labelStyle = { props.style.button.label }
             icon = {
                 <FontIcon
                     className = 'fa fa-sign-in'
                 />
             }
             onClick = { props.onClick }
-            style = { props.style.Button }
+            style = { props.style.button }
         />
     );
 }
@@ -61,7 +61,7 @@ export function Logged(props) {
     );
 }
 
-class LoginControl extends React.Component {
+class LoginControl extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -97,7 +97,8 @@ class LoginControl extends React.Component {
 
     render() {
         const { isAuthenticated, userName } = this.props;
-        const login = this.props.muiTheme.appBar.ElementRight.Login;
+        const login = this.props.muiTheme.header.appBar.elementRight.login;
+        const badge = this.props.muiTheme.header.appBar.elementRight.login.badge;
 
         return (
             <Badge
@@ -108,15 +109,7 @@ class LoginControl extends React.Component {
                         <span style = {{ fontWeight: 700, }}> 8 (86156) 35-117</span>
                     </div>
                 }
-                badgeStyle = {{
-                    top: '0rem',
-                    right: '3rem',
-                    height: 'inherit',
-                    width: '30rem',
-                    backgroundColor: 'inherit',
-                    fontFamily: 'PFBeauSansPro-Reg, sans-serif',
-                    fontSize: 14,
-                }}
+                badgeStyle = { badge }
             >
             {
                 isAuthenticated ? (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,7 +10,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
-class ContactView extends React.Component {
+class ContactView extends Component {
     static propTypes = {
         dispatch: PropTypes.func.isRequired
     };
@@ -28,6 +28,13 @@ class ContactView extends React.Component {
                 <CardTitle
                     title = 'Контакты'
                 />
+                <CardHeader
+                    title="ООО «Брюховецкое водопроводное хозяйство»"
+                    subtitle="352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196"
+                    actAsExpander={true}
+                    showExpandableButton={true}
+                >
+                </CardHeader>
                 <CardText>
                     <CardTitle
                         title = 'ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»'
@@ -82,6 +89,11 @@ export default muiThemeable()(connect(mapStateToProps)(ContactView));
 export { ContactView as ContactViewNotConnected };
 
 /*
+                <CardTitle
+                    title = 'ООО «Брюховецкое водопроводное хозяйство»'
+                    subtitle = '352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196'
+                />
+
 .one-sidebar #main-content {
     width: 880px;
     float: left;

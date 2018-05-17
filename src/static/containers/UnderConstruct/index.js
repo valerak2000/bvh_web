@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
-class UnderConstructView extends React.Component {
+class UnderConstructView extends Component {
     static propTypes = {
         dispatch: PropTypes.func.isRequired
     };

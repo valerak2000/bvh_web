@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
+import muiThemeable from 'material-ui/styles/muiThemeable';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -9,11 +10,30 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import Divider from 'material-ui/Divider';
-import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import { authLogoutAndRedirect } from '../actions/auth';
 
-class Logged extends React.Component {
+class Logged extends Component {
+    static propTypes = {
+    };
+
+	getInitialState() {
+		return {
+		};
+	};
+
+    static get contextTypes() {
+        return {
+        };
+    }
+
+    constructor(props) {
+        super(props);
+    }
+
+    static defaultProps = {
+    };
+
     logout = () => {
         this.props.dispatch(authLogoutAndRedirect());
     };

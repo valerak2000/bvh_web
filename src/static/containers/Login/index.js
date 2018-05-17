@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
@@ -46,7 +46,7 @@ const LoginFormOptions = {
     }
 };
 
-class LoginView extends React.Component {
+class LoginView extends Component {
     static propTypes = {
         dispatch: PropTypes.func.isRequired,
         isAuthenticated: PropTypes.bool.isRequired,

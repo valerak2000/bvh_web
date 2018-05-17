@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import PropTypes from 'prop-types';
@@ -10,31 +10,37 @@ import * as Colors from 'material-ui/styles/colors';
 import routes from '../../routes';
 import DevTools from './DevTools';
 import App from '../../app';
-//import Footer from '../modules/common/Footer';
-//import Header from '../modules/common/Header';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 
 import '../../styles/main.scss';
-import muiTheme from '../../styles/main';
+import { MUI_THEME } from '../../styles';
+//import '../../styles/main.jsx';
 
-export default class Root extends React.Component {
+export default class Root extends Component {
     static propTypes = {
         store: PropTypes.shape().isRequired,
         history: PropTypes.shape().isRequired
     };
 
     render() {
-	const dev = (process.env.NODE_ENV === 'production');
+        const dev = (process.env.NODE_ENV === 'production');
+
         return (
-            <MuiThemeProvider muiTheme = { muiTheme }>
+            <MuiThemeProvider muiTheme = { MUI_THEME }>
                 <Provider store = { this.props.store }>
                         <div>
-                            <Header />
+                            <Header
+                                { ...this.props }
+                            />
                             <App>
-                                <ConnectedRouter history={ this.props.history }>
-                                        { routes }
+                                <ConnectedRouter history = { this.props.history }>
+                                    { routes }
                                 </ConnectedRouter>
                             </App>
-                            <Footer />                            
+                            <Footer
+                                { ...this.props }
+                            />
                             { dev && <DevTools /> }
                         </div>
                 </Provider>
@@ -42,3 +48,13 @@ export default class Root extends React.Component {
         );
     }
 }
+                            /*
+                            <App>
+                                <ConnectedRouter history = { this.props.history }>
+                                    { routes }
+                                </ConnectedRouter>
+                            </App>
+                            <Header
+                                { ...this.props }
+                            />
+                            */

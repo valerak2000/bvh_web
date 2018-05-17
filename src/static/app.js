@@ -5,19 +5,19 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import * as Colors from 'material-ui/styles/colors';
-import AppBar from 'material-ui/AppBar';
+//import getMuiTheme from 'material-ui/styles/getMuiTheme';
+//import * as Colors from 'material-ui/styles/colors';
+//import AppBar from 'material-ui/AppBar';
 //import { getStyles } from 'material-ui/AppBar/AppBar';
-import IconButton from 'material-ui/IconButton';
-import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
-import {Tabs, Tab} from 'material-ui/Tabs';
+//import IconButton from 'material-ui/IconButton';
+//import FlatButton from 'material-ui/FlatButton';
+//import FontIcon from 'material-ui/FontIcon';
+//import {Tabs, Tab} from 'material-ui/Tabs';
 //import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 
-import LoginControl from './components/LoginControl'
-import SiteMenu from './components/SiteMenu'
-import bvhLogo from './images/logo_bvh.png';
+//import LoginControl from './components/LoginControl'
+//import SiteMenu from './components/SiteMenu'
+//import bvhLogo from './images/logo_bvh.png';
 
 class App extends Component {
     static propTypes = {
@@ -43,9 +43,9 @@ class App extends Component {
         location: undefined
     };
 
-    goToIndex = () => {
+    /*goToIndex = () => {
         this.props.dispatch(push('/'));
-    };
+    };*/
 
     render() {
         const homeClass = classNames({
@@ -75,6 +75,14 @@ class App extends Component {
                 className = 'app'
                 style = { this.props.muiTheme.app }
             >
+                <div>
+                    { this.props.children }
+                </div>
+            </div>
+        );
+    }
+}
+/*
                 <AppBar
                     titleStyle = { this.props.muiTheme.appBar.titleStyle }
                     iconElementLeft = {
@@ -113,15 +121,7 @@ class App extends Component {
                     iconStyleRight = { this.props.muiTheme.appBar.ElementLeft.iconStyleRight }
                 />
 
-                <div>
-                    { this.props.children }
-                </div>
-            </div>
-        );
-    }
-}
-/*
-                    style = { this.props.muiTheme.palette
+style = { this.props.muiTheme.palette
                         {
                         textColor: Colors.blue900,
                         backgroundColor: Colors.lightGreen50,

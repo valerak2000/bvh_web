@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -13,7 +13,7 @@ import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui
 //import './style.scss';
 import bvhLogo from '../../images/water-glass-and-faucet.png';
 
-class HomeView extends React.Component {
+class HomeView extends Component {
     static propTypes = {
         statusText: PropTypes.string,
         userName: PropTypes.string,
@@ -97,19 +97,7 @@ class HomeView extends React.Component {
                     margin: '0 auto'
                 }}
             >
-                <CardHeader
-                    title="Without Avatar"
-                    subtitle="Subtitle"
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                />
-                <CardMedia
-                    //overlay = {
-                    //  <CardTitle title="ООО «Брюховецкое водопроводное хозяйство»"
-                    //      subtitle = "352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196"
-                    //  />
-                    //}
-                >
+                <CardMedia>
                     <img
                         src = { bvhLogo }
                         alt = ''
