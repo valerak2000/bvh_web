@@ -5,19 +5,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
-//import getMuiTheme from 'material-ui/styles/getMuiTheme';
-//import * as Colors from 'material-ui/styles/colors';
-//import AppBar from 'material-ui/AppBar';
-//import { getStyles } from 'material-ui/AppBar/AppBar';
-//import IconButton from 'material-ui/IconButton';
-//import FlatButton from 'material-ui/FlatButton';
-//import FontIcon from 'material-ui/FontIcon';
-//import {Tabs, Tab} from 'material-ui/Tabs';
-//import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
-
-//import LoginControl from './components/LoginControl'
-//import SiteMenu from './components/SiteMenu'
-//import bvhLogo from './images/logo_bvh.png';
 
 class App extends Component {
     static propTypes = {
@@ -26,12 +13,18 @@ class App extends Component {
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.shape({
             pathname: PropTypes.string
-        })
+        }),
+        //history: PropTypes.shape().isRequired,
+    };
+
+    static defaultProps = {
+        location: undefined
     };
 
     static get contextTypes() {
         return {
-            muiTheme: React.PropTypes.object.isRequired
+            muiTheme: React.PropTypes.object.isRequired,
+            router: React.PropTypes.object
         };
     }
 
@@ -39,13 +32,9 @@ class App extends Component {
         super(props);
     }
 
-    static defaultProps = {
-        location: undefined
-    };
-
-    /*goToIndex = () => {
-        this.props.dispatch(push('/'));
-    };*/
+    componentDidMount() {
+    //    console.log('App');
+    }
 
     render() {
         const homeClass = classNames({
@@ -71,98 +60,13 @@ class App extends Component {
         });
 
         return (
-            <div
-                className = 'app'
-                style = { this.props.muiTheme.app }
-            >
-                <div>
-                    { this.props.children }
-                </div>
+            <div>
+                { this.props.children }
             </div>
         );
     }
 }
-/*
-                <AppBar
-                    titleStyle = { this.props.muiTheme.appBar.titleStyle }
-                    iconElementLeft = {
-                        <div
-                            id = 'ElementLeft'
-                            style = { this.props.muiTheme.appBar.ElementLeft }
-                        >
-                            <IconButton
-                                style = { this.props.muiTheme.appBar.ElementLeft.Logo }
-                                iconStyle = { this.props.muiTheme.appBar.ElementLeft.Logo.Pict }
-                                onClick = { this.goToIndex }
-                            >
-                                <img
-                                    src = { bvhLogo }
-                                    alt = 'Главная'
-                                />
-                            </IconButton>
-                            <SiteMenu
-                                style = { this.props.muiTheme.appBar.ElementLeft.Menu }
-                                { ...this.props }
-                            />
-                        </div>
-                    }
-                    iconStyleLeft = { this.props.muiTheme.appBar.ElementLeft.iconStyleLeft }
-                    iconElementRight = {
-                        <div
-                            id = 'ElementRight'
-                            style = { this.props.muiTheme.appBar.ElementRight }
-                        >
-                            <LoginControl
-                                isAuthenticated = { this.props.isAuthenticated }
-                                style = { this.props.muiTheme.appBar.ElementRight.Login }
-                            />
-                        </div>
-                    }
-                    iconStyleRight = { this.props.muiTheme.appBar.ElementLeft.iconStyleRight }
-                />
 
-style = { this.props.muiTheme.palette
-                        {
-                        textColor: Colors.blue900,
-                        backgroundColor: Colors.lightGreen50,
-                    }}
-
-                    <AppBar
-                    titleStyle = {{ width: 'auto' }}
-                    iconElementLeft = {
-                        <div id = "ElementLeft" style = { this.props.muiTheme.appBar.ElementLeft }>
-                            <IconButton
-                                style = { this.props.muiTheme.appBar.ElementLeft.Logo }
-                                iconStyle = { this.props.muiTheme.appBar.ElementLeft.Logo.Pict }
-                                onClick = { this.goToIndex }
-                            >
-                                <img
-                                    src = { bvhLogo }
-                                    alt = "ООО «Брюховецкое водопроводное хозяйство»"
-                                />
-                            </IconButton>
-                            <SiteMenu
-                                style = { this.props.muiTheme.appBar.ElementLeft.Menu }
-                            />
-                        </div>
-                    }
-                    iconStyleLeft = {{ width: '70rem' }}
-                    iconElementRight = {
-                        <div id = "ElementRight" style = { this.props.muiTheme.appBar.ElementRight }>
-                            <LoginControl
-                                isAuthenticated = { this.props.isAuthenticated }
-                                style = { this.props.muiTheme.appBar.ElementRight.Login }
-                            />
-                        </div>
-                    }
-                    iconStyleRight = {{ width: 'auto' }}
-                    style = {{
-                        textColor: Colors.blue900,
-                        backgroundColor: Colors.lightGreen50,
-                    }}
-                />
-
-*/
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,

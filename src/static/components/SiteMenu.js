@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tabs, Tab} from 'material-ui/Tabs';
+import { isNull } from 'util';
 
 class SiteMenu extends Component {
     static propTypes = {
@@ -30,6 +31,15 @@ class SiteMenu extends Component {
         super(props);
     }
 
+    static get contextTypes() {
+        return {
+            //router: React.PropTypes.object
+        };
+    }
+
+    componentWillMount() {
+    }
+
     componentDidMount() {
     }
 
@@ -37,14 +47,9 @@ class SiteMenu extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
-    }
-    componentWillMount() {
-        //this.props.children.history.location.pathname;
-        let currentTab = this.props.location != null && this.props.location.pathname ? 
-            this.props.location.pathname.split('/').pop() : 'default';
+        let currentTab = nextProps.location != null && nextProps.location.pathname ? 
+        nextProps.location.pathname.split('/').pop() : 'default';
         this.setState({ activeTab: currentTab });
-
         //const nextPath = windows.location.pathname
         // call onChange when path exactly matches /tabs
         //if (/^\/tabs$/.test(nextPath))
@@ -53,16 +58,17 @@ class SiteMenu extends Component {
 
     handleChange = (event, value) => {
         this.setState({ activeTab: event });
-      };
+    };
 
     handleActive = (tab) => {
+        //this.context.router.push(tab.props['data-route']);
         this.props.dispatch(push(tab.props['data-route']));
 	    //this.context.router.transitionTo(tab.props.route)
     };
 
     render() {
         const { activeTab, ...props } = this.state;
-        const { menu } = this.props.muiTheme.header.appBar.elementLeft;
+        const { menu } = this.props.muiTheme.app.header.appBar.elementLeft;
 
         return (
             <Tabs

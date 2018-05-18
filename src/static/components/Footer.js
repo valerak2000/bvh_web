@@ -36,8 +36,7 @@ class Footer extends Component {
     render() {
         return (
             <footer 
-                className = "footer"
-                style = { this.props.muiTheme.footer }
+                style = { this.props.muiTheme.app.footer }
             >
             </footer>
         );

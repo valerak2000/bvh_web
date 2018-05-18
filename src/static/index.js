@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createHistory from 'history/createBrowserHistory';
-import { syncHistoryWithStore } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -14,8 +13,6 @@ const initialState = {};
 const target = document.getElementById('root');
 const history = createHistory();
 const store = configureStore(initialState, history);
-//const store = configureStore(initialState);
-//const history = syncHistoryWithStore(browserHistory, store);
 
 const node = (
     <Root store = { store } history = { history } />

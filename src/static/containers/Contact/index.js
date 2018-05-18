@@ -18,27 +18,36 @@ class ContactView extends Component {
     static defaultProps = {
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+          expanded: true,
+        };
+    }
+
+    handleExpandChange = (expanded) => {
+        this.setState({ expanded: expanded} );
+    };
+    
     render() {
         return (
             <Card
-                style= {{
-                    margin: '0 auto'
-                }}
+                expanded = { this.state.expanded }
+                onExpandChange = { this.handleExpandChange }
+                style = { this.props.muiTheme.app.сard }
             >
                 <CardTitle
                     title = 'Контакты'
+                    titleStyle = { this.props.muiTheme.app.сard.title }
                 />
                 <CardHeader
-                    title="ООО «Брюховецкое водопроводное хозяйство»"
-                    subtitle="352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196"
-                    actAsExpander={true}
-                    showExpandableButton={true}
+                    title = "ООО «Брюховецкое водопроводное хозяйство»"
+                    subtitle = "ООО «БВХ»"
+                    actAsExpander = { true }
+                    showExpandableButton = { true }
                 >
                 </CardHeader>
-                <CardText>
-                    <CardTitle
-                        title = 'ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»'
-                    />
+                <CardText expandable = { true }>
                     <strong>Юридический адрес:</strong> 352750, Краснодарский край, ст. Брюховецкая, ул. О. Кошевого, 196
                     <p><strong>Директор:</strong> Ляшенко Александр Николаевич<br/>
                     <strong>Главный бухгалтер:</strong> Романова Ольга Григорьевна</p>
@@ -50,8 +59,8 @@ class ContactView extends Component {
                         <li><strong>Секретарь/факс&nbsp;</strong>8(86156) 31-194</li>
                     </ul>
                     <address>
-                        <strong>адрес сайта:</strong> <a href="http://www.brhvh.ru">http://www.brhvh.ru</a>
-                        <br/><strong>адрес электронной почты:</strong> <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
+                        <strong>адрес сайта:</strong> <a href = "http://www.brhvh.ru">http://www.brhvh.ru</a>
+                        <br/><strong>адрес электронной почты:</strong> <a href = "mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
                     </address>
                     <h4>Коды</h4>
                     <ul>

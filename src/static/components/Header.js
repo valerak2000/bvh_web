@@ -46,19 +46,18 @@ class Header extends Component {
 
         return (
             <header 
-                className = "header"
-                style = { this.props.muiTheme.header }
+                style = { this.props.muiTheme.app.header }
             >
                 <AppBar
-                    titleStyle = { this.props.muiTheme.header.appBar.titleStyle }
+                    titleStyle = { this.props.muiTheme.app.header.appBar.titleStyle }
                     iconElementLeft = {
                         <div
                             id = 'ElementLeft'
-                            style = { this.props.muiTheme.header.appBar.elementLeft }
+                            style = { this.props.muiTheme.app.header.appBar.elementLeft }
                         >
                             <IconButton
-                                style = { this.props.muiTheme.header.appBar.elementLeft.logo }
-                                iconStyle = { this.props.muiTheme.header.appBar.elementLeft.logo.picture }
+                                style = { this.props.muiTheme.app.header.appBar.elementLeft.logo }
+                                iconStyle = { this.props.muiTheme.app.header.appBar.elementLeft.logo.picture }
                                 onClick = { this.goToIndex }
                             >
                                 <img
@@ -67,24 +66,24 @@ class Header extends Component {
                                 />
                             </IconButton>
                             <SiteMenu
-                                style = { this.props.muiTheme.header.appBar.elementLeft.menu }
+                                style = { this.props.muiTheme.app.header.appBar.elementLeft.menu }
                                 { ...this.props }
                             />
                         </div>
                     }
-                    iconStyleLeft = { this.props.muiTheme.header.appBar.elementLeft.iconStyleLeft }
+                    iconStyleLeft = { this.props.muiTheme.app.header.appBar.elementLeft.iconStyleLeft }
                     iconElementRight = {
                         <div
                             id = 'ElementRight'
-                            style = { this.props.muiTheme.header.appBar.elementRight }
+                            style = { this.props.muiTheme.app.header.appBar.elementRight }
                         >
                             <LoginControl
                                 isAuthenticated = { this.props.isAuthenticated }
-                                style = { this.props.muiTheme.header.appBar.elementRight.login }
+                                style = { this.props.muiTheme.app.header.appBar.elementRight.login }
                             />
                         </div>
                     }
-                    iconStyleRight = { this.props.muiTheme.header.appBar.elementLeft.iconStyleRight }
+                    iconStyleRight = { this.props.muiTheme.app.header.appBar.elementLeft.iconStyleRight }
                 />
             </header>
         );

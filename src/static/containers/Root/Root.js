@@ -4,18 +4,14 @@ import { ConnectedRouter } from 'react-router-redux';
 import PropTypes from 'prop-types';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import * as Colors from 'material-ui/styles/colors';
 
+import '../../styles/main.scss';
+import * as theme from '../../styles/styles';
 import routes from '../../routes';
 import DevTools from './DevTools';
 import App from '../../app';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-
-import '../../styles/main.scss';
-import { MUI_THEME } from '../../styles';
-//import '../../styles/main.jsx';
 
 export default class Root extends Component {
     static propTypes = {
@@ -23,32 +19,63 @@ export default class Root extends Component {
         history: PropTypes.shape().isRequired
     };
 
+    componentDidMount() {
+    //    console.log('Root');
+    }
+
     render() {
         const dev = (process.env.NODE_ENV === 'production');
 
         return (
-            <MuiThemeProvider muiTheme = { MUI_THEME }>
-                <Provider store = { this.props.store }>
-                        <div>
-                            <Header
-                                { ...this.props }
-                            />
-                            <App>
-                                <ConnectedRouter history = { this.props.history }>
-                                    { routes }
-                                </ConnectedRouter>
-                            </App>
-                            <Footer
-                                { ...this.props }
-                            />
-                            { dev && <DevTools /> }
-                        </div>
-                </Provider>
-            </MuiThemeProvider>
+            <Provider store = { this.props.store }>
+                <MuiThemeProvider muiTheme = { theme.muiTheme }>
+                    <div
+                        style = { theme.muiTheme.app }
+                    >
+                        <Header
+                            { ...this.props }
+                        />
+                        <App>
+                            <ConnectedRouter history = { this.props.history }>
+                                { routes }
+                            </ConnectedRouter>
+                        </App>
+                        <Footer
+                            { ...this.props }
+                        />
+                        { dev && <DevTools /> }
+                    </div>
+                </MuiThemeProvider>
+            </Provider>
         );
     }
 }
-                            /*
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated,
+        location: state.routing.location,
+    };
+};
+
+function mapDispatchToProps (dispatch) {
+    return {
+    }
+}
+
+/*
+                        <Header
+                            { ...this.props }
+                        />
+                        <App>
+                            <ConnectedRouter history = { this.props.history }>
+                                { routes }
+                            </ConnectedRouter>
+                        </App>
+                        <Footer
+                            { ...this.props }
+                        />
+
                             <App>
                                 <ConnectedRouter history = { this.props.history }>
                                     { routes }

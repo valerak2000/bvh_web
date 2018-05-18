@@ -4,11 +4,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
-//import Paper from 'material-ui/Paper';
-//import Divider from 'material-ui/Divider';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+//import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 import UnderConstruct from '../../components/UnderConstruct';
 
@@ -23,13 +21,11 @@ class CustomersView extends Component {
     render() {
         return (
             <Card
-                style= {{
-                    margin: '0 auto'
-                }}
+                style = { this.props.muiTheme.app.сard }
             >
                 <CardTitle
                     title = 'Абонентам'
-                    subtitle = ''
+                    titleStyle = { this.props.muiTheme.app.сard.title }
                 />
                 <CardText>
                     <UnderConstruct />

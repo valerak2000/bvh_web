@@ -93,25 +93,35 @@ class HomeView extends Component {
         return (
             <Card
                 style= {{
-                    //width: '50%',
+                    width: '100%',
                     margin: '0 auto'
                 }}
             >
-                <CardMedia>
+                <CardMedia
+                    style= {{
+                        width: '50%',
+                        margin: '0 auto'
+                    }}
+                >
                     <img
                         src = { bvhLogo }
                         alt = ''
                     />
                 </CardMedia>
+                {/*
                 <CardTitle
                     title = 'ООО «Брюховецкое водопроводное хозяйство»'
                     subtitle = '352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196'
                 />
+                */}
                 <CardText>
+                    <p><strong>ООО «Брюховецкое водопроводное хозяйство» занимается водоснабжением и водоотведением ст.Брюховецой на основе договора долгосрочной аренды с 2006 года.</strong></p>
                     Предприятие было образовано 1 февраля 2006 года
                 </CardText>
                 <CardActions>
+                    {/*
                     <FlatButton label = '' ><span>Доступ к <b>личной информации</b>.</span></FlatButton>
+                    */}
                 </CardActions>
             </Card>
         );

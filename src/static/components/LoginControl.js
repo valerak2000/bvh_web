@@ -97,8 +97,8 @@ class LoginControl extends Component {
 
     render() {
         const { isAuthenticated, userName } = this.props;
-        const login = this.props.muiTheme.header.appBar.elementRight.login;
-        const badge = this.props.muiTheme.header.appBar.elementRight.login.badge;
+        const login = this.props.muiTheme.app.header.appBar.elementRight.login;
+        const badge = this.props.muiTheme.app.header.appBar.elementRight.login.badge;
 
         return (
             <Badge
