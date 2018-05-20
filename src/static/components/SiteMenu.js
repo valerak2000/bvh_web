@@ -47,8 +47,10 @@ class SiteMenu extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let currentTab = nextProps.location != null && nextProps.location.pathname ? 
-        nextProps.location.pathname.split('/').pop() : 'default';
+        let currentTab = nextProps.location != null
+            && nextProps.location.pathname
+            && nextProps.location.pathname.split('/').pop() == ''
+            ? 'default' : nextProps.location.pathname.split('/').pop();
         this.setState({ activeTab: currentTab });
         //const nextPath = windows.location.pathname
         // call onChange when path exactly matches /tabs
