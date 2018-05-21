@@ -15,6 +15,12 @@ var muiTheme = exports.muiTheme = getMuiTheme({
             title: {
                 fontSize: '30px',
             },
+            header: {
+                fontSize: '24px',
+            },
+            header1: {
+                fontSize: '20px',
+            },
             text: {
                 fontSize: '16px',
             },
