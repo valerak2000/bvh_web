@@ -9,6 +9,10 @@ import IconButton from 'material-ui/IconButton';
 //import FlatButton from 'material-ui/FlatButton';
 //import FontIcon from 'material-ui/FontIcon';
 
+import Drawer from 'material-ui/Drawer'
+import MenuItem from 'material-ui/MenuItem'
+import { Link } from 'react-router'
+
 import LoginControl from './LoginControl'
 import SiteMenu from './SiteMenu'
 import bvhLogo from '../images/logo_bvh.png';
@@ -31,6 +35,7 @@ class Header extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {open: true};
     }
 
     static defaultProps = {
@@ -40,6 +45,8 @@ class Header extends Component {
     goToIndex = () => {
         this.props.dispatch(push('/'));
     };
+
+    toggleDrawer = () => this.setState({ open: !this.state.open });
 
     render() {
         //console.log(this.props.muiTheme);
@@ -85,6 +92,20 @@ class Header extends Component {
                     }
                     iconStyleRight = { this.props.muiTheme.app.header.appBar.elementLeft.iconStyleRight }
                 />
+       <Drawer
+          docked={true}
+          onRequestChange={(open) => this.setState({open})}
+          open={this.state.open}
+        >
+          <MenuItem
+            onTouchTap={() => { this.toggleDrawer() }}
+            primaryText="Home"
+          />
+          <MenuItem
+            onTouchTap={() => { this.toggleDrawer() }}
+            primaryText="Some Component"
+          />
+        </Drawer>
             </header>
         );
     }

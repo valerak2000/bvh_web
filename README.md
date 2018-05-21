@@ -15,7 +15,7 @@ python manage.py runserver
 
 psql -h localhost -p 5433 -U djangoreactredux djangoreactredux_dev
 
-python manage.py runserver --settings=djangoreactredux.settings.dev_docker
+python manage.py runserver 0.0.0.0:8000 --settings=djangoreactredux.settings.dev_docker
 
 ubuntu
 =======
