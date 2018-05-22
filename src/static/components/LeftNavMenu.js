@@ -5,11 +5,15 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
-//import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {Tabs, Tab} from 'material-ui/Tabs';
-//import { isNull } from 'util';
+import {List, ListItem} from 'material-ui/List';
+import ContentInbox from 'material-ui/svg-icons/content/inbox';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import ContentSend from 'material-ui/svg-icons/content/send';
+import ContentDrafts from 'material-ui/svg-icons/content/drafts';
+import Divider from 'material-ui/Divider';
+import ActionInfo from 'material-ui/svg-icons/action/info'
 
-class SiteMenu extends Component {
+class LeftNavMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         //children: PropTypes.shape().isRequired,
@@ -69,50 +73,16 @@ class SiteMenu extends Component {
 
     render() {
         const { activeTab, ...props } = this.state;
-        const { menu } = this.props.muiTheme.app.header.appBar.elementLeft;
+        //const { menu } = this.props.muiTheme.app.header.appBar.elementLeft;
 
         return (
-            <Tabs
-                value = { activeTab }
-                onChange = { this.handleChange }
-                style = { menu }
-            >
-                {/*<Tab
-                    value = 'default'
-                    label = 'Главная'
-                    style = { menu.tab }
-                    data-route = '/'
-                    onActive = { this.handleActive }
-                />*/}
-                <Tab
-                    value = 'about'
-                    label = 'О компании'
-                    style = { menu.tab }
-                    data-route = '/about'
-                    onActive = { this.handleActive }
-                 />
-                <Tab
-                    value = 'customers'
-                    label = 'Абонентам'
-                    style = { menu.tab }
-                    data-route = '/customers'
-                    onActive = { this.handleActive }
-                />
-                <Tab
-                    value = 'news'
-                    label = 'Новости'
-                    style = { menu.tab }
-                    data-route = '/news'
-                    onActive = { this.handleActive }
-                />
-                <Tab
-                    value = 'contact'
-                    label = 'Контакты'
-                    style = { menu.tab }
-                    data-route = '/contact'
-                    onActive = { this.handleActive }
-                />
-            </Tabs>
+            <List>
+            <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
+            <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
+            <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
+            <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
+            <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
+            </List>
         );
     }
 }
@@ -129,9 +99,9 @@ function mapDispatchToProps (dispatch) {
     }
 }
 
-SiteMenu.muiName = 'SiteMenu';
+LeftNavMenu.muiName = 'LeftNavMenu';
 /*SiteMenu.contextTypes = {
     router: React.PropTypes.object.isRequired
 };*/
 
-export default muiThemeable()(connect(mapStateToProps, mapDispatchToProps)(SiteMenu));
+export default muiThemeable()(connect(mapStateToProps, mapDispatchToProps)(LeftNavMenu));

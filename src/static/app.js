@@ -6,6 +6,12 @@ import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
+import Paper from 'material-ui/Paper';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+import Drawer from 'material-ui/Drawer'
+import { Link } from 'react-router'
+
 class App extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
@@ -60,7 +66,9 @@ class App extends Component {
         });
 
         return (
-            <div>
+            <div
+                style = { this.props.muiTheme.app }
+            >
                 { this.props.children }
             </div>
         );
@@ -76,3 +84,13 @@ const mapStateToProps = (state, ownProps) => {
 
 export default muiThemeable()(connect(mapStateToProps)(App));
 export { App as AppNotConnected };
+
+/*
+                    docked={true}
+                    open={true}
+                    swipeAreaWidth={0}
+                    zDepth={0}
+                    disableSwipeToOpen={false}
+                    openSecondary={false}
+                    
+*/

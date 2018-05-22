@@ -12,6 +12,7 @@ import DevTools from './DevTools';
 import App from '../../app';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import LeftNavMenu from '../../components/LeftNavMenu';
 
 export default class Root extends Component {
     static propTypes = {
@@ -30,16 +31,21 @@ export default class Root extends Component {
             <Provider store = { this.props.store }>
                 <MuiThemeProvider muiTheme = { theme.muiTheme }>
                     <div
-                        style = { theme.muiTheme.app }
+                        style = { theme.muiTheme.global }
                     >
                         <Header
                             { ...this.props }
                         />
-                        <App>
-                            <ConnectedRouter history = { this.props.history }>
-                                { routes }
-                            </ConnectedRouter>
-                        </App>
+                        <div style={{ display: 'flex', width: '100%'}}>
+                            <LeftNavMenu
+                                { ...this.props }
+                            />
+                            <App>
+                                <ConnectedRouter history = { this.props.history }>
+                                    { routes }
+                                </ConnectedRouter>
+                            </App>
+                        </div>
                         <Footer
                             { ...this.props }
                         />
@@ -50,6 +56,39 @@ export default class Root extends Component {
         );
     }
 }
+/*
+    <div style={{ display: 'flex', width: '10%' }}>
+        <List>
+        <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
+        <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
+        <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
+        <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
+        <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
+        </List>
+    </div>
+    <div style={{ display: 'flex', width: '90%' }}>
+                        <App>
+                            <ConnectedRouter history = { this.props.history }>
+                                { routes }
+                            </ConnectedRouter>
+                        </App>
+    </div>
+
+//        containerStyle={{height: 'calc(100% - 94px)', top: 95}} docked={true} width={150} open={true} zDepth={1}
+                <Drawer
+                    docked={true} width={150} open={true} zDepth={1}
+                >
+                    <MenuItem
+                        onTouchTap={() => {  }}
+                        primaryText="Home"
+                    />
+                    <MenuItem
+                        onTouchTap={() => {  }}
+                        primaryText="Some Component"
+                    />
+                </Drawer>
+import {List, ListItem} from 'material-ui/List';
+*/
 
 const mapStateToProps = (state, ownProps) => {
     return {

@@ -3,13 +3,18 @@ import * as Colors from 'material-ui/styles/colors';
 
 var muiTheme = exports.muiTheme = getMuiTheme({
     fontFamily: 'pfbeausanspro-reg, sans-serif',
-    app: {
-        maxWidth: '128rem',
-        minWidth: '118rem',
+    global: {
+        maxWidth: '126rem',
+        minWidth: '126rem',
         minHeight: '58rem',
         margin: '0 auto',
         fontSize: '16px',
         fontWeight: 500,
+    },
+    app: {
+        margin: '0 auto auto',
+        height: 'auto', //по высоте меню 
+        width: '100%',
         сard: {
             margin: '0 auto',
             title: {

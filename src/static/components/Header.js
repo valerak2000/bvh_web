@@ -9,10 +9,6 @@ import IconButton from 'material-ui/IconButton';
 //import FlatButton from 'material-ui/FlatButton';
 //import FontIcon from 'material-ui/FontIcon';
 
-import Drawer from 'material-ui/Drawer'
-import MenuItem from 'material-ui/MenuItem'
-import { Link } from 'react-router'
-
 import LoginControl from './LoginControl'
 import SiteMenu from './SiteMenu'
 import bvhLogo from '../images/logo_bvh.png';
@@ -35,7 +31,6 @@ class Header extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {open: true};
     }
 
     static defaultProps = {
@@ -46,11 +41,7 @@ class Header extends Component {
         this.props.dispatch(push('/'));
     };
 
-    toggleDrawer = () => this.setState({ open: !this.state.open });
-
     render() {
-        //console.log(this.props.muiTheme);
-
         return (
             <header 
                 style = { this.props.muiTheme.app.header }
@@ -91,21 +82,8 @@ class Header extends Component {
                         </div>
                     }
                     iconStyleRight = { this.props.muiTheme.app.header.appBar.elementLeft.iconStyleRight }
+                    showMenuIconButton = {true}
                 />
-       <Drawer
-          docked={true}
-          onRequestChange={(open) => this.setState({open})}
-          open={this.state.open}
-        >
-          <MenuItem
-            onTouchTap={() => { this.toggleDrawer() }}
-            primaryText="Home"
-          />
-          <MenuItem
-            onTouchTap={() => { this.toggleDrawer() }}
-            primaryText="Some Component"
-          />
-        </Drawer>
             </header>
         );
     }
@@ -121,3 +99,38 @@ const mapStateToProps = (state, ownProps) => {
 Header.muiName = 'Header';
 
 export default muiThemeable()(connect(mapStateToProps)(Header));
+
+/*
+
+
+<Paper style = {{
+  display: 'inline-block',
+  margin: '16px 32px 16px 0',
+}}>
+      <Menu>
+        <MenuItem primaryText="Maps" />
+        <MenuItem primaryText="Books" />
+        <MenuItem primaryText="Flights" />
+        <MenuItem primaryText="Apps" />
+      </Menu>
+    </Paper>
+
+       <Drawer
+          docked={true}
+          open={true}
+          swipeAreaWidth=30
+          zDepth=0
+          disableSwipeToOpen={false}
+          openSecondary={false}
+        >
+          <MenuItem
+            onTouchTap={() => { this.toggleDrawer() }}
+            primaryText="Home"
+          />
+          <MenuItem
+            onTouchTap={() => { this.toggleDrawer() }}
+            primaryText="Some Component"
+          />
+        </Drawer>
+
+*/
