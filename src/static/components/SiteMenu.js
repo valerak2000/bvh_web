@@ -12,7 +12,6 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 class SiteMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
-        //children: PropTypes.shape().isRequired,
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.shape({
             pathname: PropTypes.string
@@ -23,12 +22,11 @@ class SiteMenu extends Component {
         location: undefined
     };
 
-    state = {
-        activeTab: 0,
-    };
-
     constructor(props) {
         super(props);
+        this.state = {
+            activeTab: 0,
+        };
     }
 
     static get contextTypes() {
@@ -130,8 +128,5 @@ function mapDispatchToProps (dispatch) {
 }
 
 SiteMenu.muiName = 'SiteMenu';
-/*SiteMenu.contextTypes = {
-    router: React.PropTypes.object.isRequired
-};*/
 
 export default muiThemeable()(connect(mapStateToProps, mapDispatchToProps)(SiteMenu));

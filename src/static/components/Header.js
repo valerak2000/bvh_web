@@ -16,7 +16,6 @@ import bvhLogo from '../images/logo_bvh.png';
 class Header extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
-        //children: PropTypes.shape().isRequired,
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.shape({
             pathname: PropTypes.string
@@ -34,7 +33,6 @@ class Header extends Component {
     }
 
     static defaultProps = {
-        //location: undefined
     };
 
     goToIndex = () => {

@@ -78,7 +78,7 @@ class ContactView extends Component {
                             lat = { this.props.main_office.lat}
                             lng = { this.props.main_office.lng}
                             zoom = { this.props.zoom }
-                            isMarkerShown 
+                            isMarkerShown = {false}
                         />
                     </CardMedia>
                     <CardMedia
@@ -125,15 +125,12 @@ class ContactView extends Component {
                     <CardMedia
                         expandable = { true }
                     >
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2781.2522789656828!2d39.00561431558006!3d45.80620571857822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40e54f6dbd4e3a7f%3A0x1911874af29bb874!2z0YPQuy4g0KHQvtCy0LXRgtGB0LrQsNGPLCA1Niwg0JHRgNGO0YXQvtCy0LXRhtC60LDRjywg0JrRgNCw0YHQvdC-0LTQsNGA0YHQutC40Lkg0LrRgNCw0LksIDM1Mjc1MA!5e0!3m2!1sru!2sru!4v1526885808506" 
-                            frameBorder="0"
-                            style= {{ border: 0 }}
-                            allowFullScreen
-                            width="600" 
-                            height="450"
-                        >
-                        </iframe>
+                        <Maps
+                            lat = { this.props.abon_office.lat}
+                            lng = { this.props.abon_office.lng}
+                            zoom = { this.props.zoom }
+                            isMarkerShown = {false}
+                        />
                     </CardMedia>
                     <CardMedia
                         style= {{
@@ -218,5 +215,15 @@ export { ContactView as ContactViewNotConnected };
                         <li><strong>к/с</strong> 301 018 105 0000 0000 516</li>
                         <li><strong>БИК</strong> 040 349 516</li>
                     </ul>
+
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2781.2522789656828!2d39.00561431558006!3d45.80620571857822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40e54f6dbd4e3a7f%3A0x1911874af29bb874!2z0YPQuy4g0KHQvtCy0LXRgtGB0LrQsNGPLCA1Niwg0JHRgNGO0YXQvtCy0LXRhtC60LDRjywg0JrRgNCw0YHQvdC-0LTQsNGA0YHQutC40Lkg0LrRgNCw0LksIDM1Mjc1MA!5e0!3m2!1sru!2sru!4v1526885808506"
+                            frameBorder="0"
+                            style= {{ border: 0 }}
+                            allowFullScreen
+                            width="600"
+                            height="450"
+                        >
+                        </iframe>
 
                     */
