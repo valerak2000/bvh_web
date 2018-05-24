@@ -104,10 +104,10 @@ class SiteMenu extends Component {
                     onActive = { this.handleActive }
                 />
                 <Tab
-                    value = 'contact'
+                    value = 'contacts'
                     label = 'Контакты'
                     style = { menu.tab }
-                    data-route = '/contact'
+                    data-route = '/contacts'
                     onActive = { this.handleActive }
                 />
             </Tabs>

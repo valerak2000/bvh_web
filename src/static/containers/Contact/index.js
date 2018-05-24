@@ -14,6 +14,7 @@ import { Maps } from "../../components/Maps";
 import bvhMainOfficeBuild from '../../images/main_office.jpg';
 import bvhAbonentsOfficeBuild from '../../images/abon_office.jpg';
 
+
 class ContactView extends Component {
     static propTypes = {
         dispatch: PropTypes.func.isRequired,
@@ -78,7 +79,7 @@ class ContactView extends Component {
                             lat = { this.props.main_office.lat}
                             lng = { this.props.main_office.lng}
                             zoom = { this.props.zoom }
-                            isMarkerShown = {false}
+                            isMarkerShown
                         />
                     </CardMedia>
                     <CardMedia
@@ -97,7 +98,7 @@ class ContactView extends Component {
                     >
                         <p><strong>Адрес:</strong></p>
                         <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ст. Брюховецкая, ул. О. Кошевого, 196<br />
-                        адрес сайта: <a href="http://www.brhvh.ru">http://www.brhvh.ru</a><br />
+                        адрес сайта: <a href = "http://www.brhvh.ru">http://www.brhvh.ru</a><br />
                         адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a></p>
                         <p><strong>Телефон:</strong></p>
                         <p style = {{ paddingLeft: '4rem', }}><strong>8 (86156) 31-194</strong> — приемная<br />
@@ -108,6 +109,7 @@ class ContactView extends Component {
                             Выходной: Суббота и Воскресенье<br />
                             <strong>Диспетчерская служба круглосуточно, без перерыва и выходных</strong>
                         </p>
+                        <a href = 'url(/static/docs/rekvisity_ooo_bvh.odt)'>Реквизиты ООО «Брюховецкое водопроводное хозяйство»</a>
                     </CardText>
                 </Card>
 
@@ -129,7 +131,7 @@ class ContactView extends Component {
                             lat = { this.props.abon_office.lat}
                             lng = { this.props.abon_office.lng}
                             zoom = { this.props.zoom }
-                            isMarkerShown = {false}
+                            isMarkerShown
                         />
                     </CardMedia>
                     <CardMedia

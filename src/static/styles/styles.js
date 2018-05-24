@@ -103,26 +103,6 @@ var muiTheme = exports.muiTheme = getMuiTheme({
                                 fontWeight: 500,
                             },
                         },
-                        /*phoneHeader: {
-                            //width: '100%',
-                            //whiteSpace: 'nowrap',
-                            //display: 'flex',
-        
-                            //margin: '0px 5px 0 0',
-                            //float: 'unset',
-                            //padding: '0 0 0 40px',
-                            fontSize: 14,
-                            fontWeight: 100,
-                            fontFamily: 'pfbeausanspro-reg, sans-serif',
-                        },
-                        phone: {
-                            fontSize: 14,
-                            fontWeight: 700,
-                            //width: 340,
-                            //margin: '0 0 10px',
-                            textDecoration: 'blink',
-                            fontFamily: 'pfbeausanspro-bold, sans-serif',
-                        },*/
                     }
                 },
                 flexWrap: 'wrap',
@@ -135,7 +115,7 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         primary1Color: Colors.teal200, //Colors.lightGreen50,
         //backgroundColor: Colors.teal200,
         //selectedTextColor: Colors.blue900,
-        //secondaryTextColor: Colors.blue900,
+        secondaryTextColor: Colors.blue900,
         //primary2Color: Colors.teal200,
         //accent1Color: Colors.teal200, 
         //primary: Colors.blue900,

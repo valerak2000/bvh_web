@@ -48,6 +48,7 @@ export function Logged(props) {
         >
             <MenuItem
                 primaryText = 'Личный кабинет'
+                secondaryText = 'Внести показания, узнать состояние баланса, заказать и оплатить услуги'
                 leftIcon = { <FontIcon className='fa fa-lock' /> }
                 onClick = { props.onClickProtected }
             />

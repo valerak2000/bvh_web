@@ -10,7 +10,7 @@ export default(
         <Route path = "/about" component = { AboutView } />
         <Route path = "/customers" component = { CustomersView } />
         <Route path = "/news" component = { NewsView } />
-        <Route path = "/contact" component = { ContactView } />
+        <Route path = "/contacts" component = { ContactView } />
         <Route path = "/login" component = { LoginView } />
         <Route path = "/protected" component = { requireAuthentication(ProtectedView) } />
         <Route component = { NotFoundView } />

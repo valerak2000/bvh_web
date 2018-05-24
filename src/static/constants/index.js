@@ -9,3 +9,9 @@ export const SIGNUP_LOGIN_USER_SUCCESS = 'SIGNUP_LOGIN_USER_SUCCESS';
 
 export const DATA_FETCH_PROTECTED_DATA_REQUEST = 'DATA_FETCH_PROTECTED_DATA_REQUEST';
 export const DATA_RECEIVE_PROTECTED_DATA = 'DATA_RECEIVE_PROTECTED_DATA';
+
+export const DEFAULT_MENU = 'default';
+export const ABOUT_MENU = 'about';
+export const CUSTOMERS_MENU = 'customers';
+export const NEWS_MENU = 'news';
+

@@ -20,7 +20,7 @@ export default function configureStore(initialState, history) {
     const middlewareWithDevTools = compose(
         middleware,
         DevTools.instrument()
-    );
+    ); 
 
     // Add the reducer to your store on the `router` key
     // Also apply our middleware for navigating
