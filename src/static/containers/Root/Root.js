@@ -25,7 +25,7 @@ export default class Root extends Component {
     }
 
     render() {
-        const dev = (process.env.NODE_ENV === 'production');
+        const dev = (process.env.NODE_ENV != 'production');
 
         return (
             <Provider store = { this.props.store }>

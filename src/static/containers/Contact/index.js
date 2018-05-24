@@ -13,7 +13,8 @@ import Divider from 'material-ui/Divider';
 import { Maps } from "../../components/Maps";
 import bvhMainOfficeBuild from '../../images/main_office.jpg';
 import bvhAbonentsOfficeBuild from '../../images/abon_office.jpg';
-
+import fixtures from '../../files/fixtures.json';
+//import rekvisity_ooo_bvh from '../../files/rekvisity_ooo_bvh.odt';
 
 class ContactView extends Component {
     static propTypes = {
@@ -109,7 +110,8 @@ class ContactView extends Component {
                             Выходной: Суббота и Воскресенье<br />
                             <strong>Диспетчерская служба круглосуточно, без перерыва и выходных</strong>
                         </p>
-                        <a href = 'url(/static/docs/rekvisity_ooo_bvh.odt)'>Реквизиты ООО «Брюховецкое водопроводное хозяйство»</a>
+                        <a href = {fixtures} >Реквизиты ООО «Брюховецкое водопроводное хозяйство»</a>
+                        <a href = '../../../media/rekvisity_ooo_bvh.odt' >Реквизиты ООО «Брюховецкое водопроводное хозяйство»</a>
                     </CardText>
                 </Card>
 
