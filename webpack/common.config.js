@@ -117,11 +117,20 @@ const common = {
             {
                 test: /\.json(\?.*)?$/,
                 loader: 'file-loader?name=/files/[name].[ext]'
+            },
+            {
+                test: /\.pdf(\?.*)?$/,
+                loader: 'file-loader?name=/files/[name].[ext]'
             }
         ]
     },
 };
-
+/*
+                test: /\.pdf$/,
+                loader: 'file?name=/files/[name].[ext]'
+                test: /\.pdf(\?.*)?$/,
+                loader: 'file-loader?name=/files/[name].[ext]'
+*/
 switch (TARGET) {
     case 'dev':
         module.exports = merge(require('./dev.config'), common);

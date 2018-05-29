@@ -10,11 +10,13 @@ import FlatButton from 'material-ui/FlatButton';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import Divider from 'material-ui/Divider';
 
+import { Document, Page } from 'react-pdf';
 import { Maps } from "../../components/Maps";
+
 import bvhMainOfficeBuild from '../../images/main_office.jpg';
 import bvhAbonentsOfficeBuild from '../../images/abon_office.jpg';
-import fixtures from '../../files/fixtures.json';
-//import rekvisity_ooo_bvh from '../../files/rekvisity_ooo_bvh.odt';
+//import fixtures from '../../files/fixtures.json';
+//import rekvisity_ooo_bvh from '../../files/rekvisity_ooo_bvh.pdf';
 
 class ContactView extends Component {
     static propTypes = {
@@ -110,8 +112,10 @@ class ContactView extends Component {
                             Выходной: Суббота и Воскресенье<br />
                             <strong>Диспетчерская служба круглосуточно, без перерыва и выходных</strong>
                         </p>
-                        <a href = {fixtures} >Реквизиты ООО «Брюховецкое водопроводное хозяйство»</a>
-                        <a href = '../../../media/rekvisity_ooo_bvh.odt' >Реквизиты ООО «Брюховецкое водопроводное хозяйство»</a>
+                        <Document
+                          file = '../../../media/rekvisity_ooo_bvh.pdf'
+                        >
+                        </Document>
                     </CardText>
                 </Card>
 
@@ -173,6 +177,8 @@ export default muiThemeable()(connect(mapStateToProps)(ContactView));
 export { ContactView as ContactViewNotConnected };
 
 /*
+                                <a href = '../../files/rekvisity_ooo_bvh.pdf' >Реквизиты ООО «Брюховецкое водопроводное хозяйство»</a>
+
             <Card
                 expanded = { this.state.expanded }
                 initiallyExpanded = { false }

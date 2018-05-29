@@ -62,6 +62,7 @@
     "react-dom": "^15.6.1",
     "react-google-maps": "^9.4.5",
     "react-mixin": "3.1.0",
+    "react-pdf": "^3.0.5",
     "react-redux": "5.0.6",
     "react-router": "4.2.0",
     "react-router-dom": "4.2.2",
