@@ -126,6 +126,7 @@ const common = {
     },
 };
 /*
+name: 'media/[name].[hash:8].[ext]',
                 test: /\.pdf$/,
                 loader: 'file?name=/files/[name].[ext]'
                 test: /\.pdf(\?.*)?$/,

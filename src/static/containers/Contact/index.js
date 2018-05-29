@@ -113,7 +113,7 @@ class ContactView extends Component {
                             <strong>Диспетчерская служба круглосуточно, без перерыва и выходных</strong>
                         </p>
                         <Document
-                          file = '../../../media/rekvisity_ooo_bvh.pdf'
+                          file = '../media/rekvisity_ooo_bvh.pdf'
                         >
                         </Document>
                     </CardText>
@@ -177,6 +177,8 @@ export default muiThemeable()(connect(mapStateToProps)(ContactView));
 export { ContactView as ContactViewNotConnected };
 
 /*
+                          file = '../../../files/media/rekvisity_ooo_bvh.pdf'
+
                                 <a href = '../../files/rekvisity_ooo_bvh.pdf' >Реквизиты ООО «Брюховецкое водопроводное хозяйство»</a>
 
             <Card
