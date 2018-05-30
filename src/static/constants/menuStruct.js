@@ -2,13 +2,13 @@ import React from 'react';
 import ActionHome from 'material-ui/svg-icons/action/home';
 
 export const MENU_TOP = [
-    {
+    /*{
         key: 'home',
         primaryText: 'Главная',
         leftIcon: (<ActionHome />),
         dataRoute: '/',
         onClick: null
-    },
+    },*/
     {
         key: 'elektronnaya_priemnaya',
         primaryText: 'Электронная приемная',
@@ -35,13 +35,13 @@ export const MENU_TOP = [
 ];
 
 export const MENU_ABOUT = [
-    {
+    /*{
         key: 'home',
         primaryText: 'Главная',
         leftIcon: (<ActionHome />),
         dataRoute: '/',
         onClick: null
-    },
+    },*/
     {
         key: 'common_info',
         primaryText: 'Общая информация',
@@ -87,13 +87,13 @@ export const MENU_ABOUT = [
 ];
 
 export const MENU_CUSTOMERS = [
-    {
+    /*{
         key: 'home',
         primaryText: 'Главная',
         leftIcon: (<ActionHome />),
         dataRoute: '/',
         onClick: null
-    },
+    },*/
     {
         key: 'common_info',
         primaryText: 'Подключение',

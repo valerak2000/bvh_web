@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-//import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
@@ -10,13 +9,11 @@ import FlatButton from 'material-ui/FlatButton';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import Divider from 'material-ui/Divider';
 
-import { Document, Page } from 'react-pdf';
 import { Maps } from "../../components/Maps";
 
 import bvhMainOfficeBuild from '../../images/main_office.jpg';
 import bvhAbonentsOfficeBuild from '../../images/abon_office.jpg';
-//import fixtures from '../../files/fixtures.json';
-//import rekvisity_ooo_bvh from '../../files/rekvisity_ooo_bvh.pdf';
+import rekvisity_ooo_bvh from '../../../files/media/rekvisity_ooo_bvh.pdf';
 
 class ContactView extends Component {
     static propTypes = {
@@ -52,6 +49,8 @@ class ContactView extends Component {
     };
     
     render() {
+        const { file, numPages } = this.state;
+
         return (
             <Card
                 style = { this.props.muiTheme.app.сard }
@@ -112,10 +111,7 @@ class ContactView extends Component {
                             Выходной: Суббота и Воскресенье<br />
                             <strong>Диспетчерская служба круглосуточно, без перерыва и выходных</strong>
                         </p>
-                        <Document
-                          file = '../media/rekvisity_ooo_bvh.pdf'
-                        >
-                        </Document>
+                        <a href = { rekvisity_ooo_bvh } >Реквизиты ООО «Брюховецкое водопроводное хозяйство»</a>
                     </CardText>
                 </Card>
 
