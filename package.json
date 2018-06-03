@@ -18,6 +18,7 @@
   "author": "Kozlitin Valeriy <valera_k2000@inbox.ru>",
   "license": "MIT",
   "dependencies": {
+    "@material-ui/core": "^1.1.0",
     "autoprefixer": "7.1.2",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",

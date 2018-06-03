@@ -19,7 +19,7 @@ function Menu(props) {
     return (
         <List>
             {
-                props.items.map(d => {
+                props.items.map((d, index) => {
                     return (
                         <ListItem
                             key = { d.key }
@@ -27,6 +27,9 @@ function Menu(props) {
                             secondaryText = { d.secondaryText }
                             secondaryTextLines = { d.secondaryTextLines }
                             leftIcon = { d.leftIcon }
+                            initiallyOpen = { index == 0 ? true: false }
+                            isKeyboardFocused = { index == 0 ? true: false }
+                            onClick = { (e) => props.onClick(d.dataRoute, e) }
                         />
                     );
                 })
@@ -56,6 +59,7 @@ class LeftNavMenu extends Component {
 
     constructor(props) {
         super(props);
+        this.handleMenuClick = this.handleMenuClick.bind(this);
     }
 
     static get contextTypes() {
@@ -90,12 +94,14 @@ class LeftNavMenu extends Component {
         //    this.onChange(nextProps.tabSelected)
     }
 
-    handleChange = (event, value) => {
+    /*handleChange = (event, value) => {
         this.setState({ activeTab: event });
-    };
+    };*/
 
-    handleActive = (tab) => {
-        this.props.dispatch(push(tab.props['dataRoute']));
+    handleMenuClick = (dataRoute, e ) => {
+        e.preventDefault();
+        console.log(dataRoute);
+        this.props.dispatch(push(dataRoute));
     };
 
     render() {
@@ -103,8 +109,18 @@ class LeftNavMenu extends Component {
 
         return (
             <div>
-                { activeMenu === DEFAULT_MENU && <Menu items = {MENU_TOP} /> }
-                { activeMenu === ABOUT_MENU && <Menu items = {MENU_ABOUT} /> }
+                { activeMenu === DEFAULT_MENU 
+                    && <Menu 
+                        items = { MENU_TOP }
+                        onClick = { this.handleMenuClick }
+                       />
+                }
+                { activeMenu === ABOUT_MENU 
+                    && <Menu 
+                        items = { MENU_ABOUT }
+                        onClick = { this.handleMenuClick }
+                       />
+                }
             </div>
         );
     }

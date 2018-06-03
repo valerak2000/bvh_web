@@ -65,9 +65,6 @@ export function Logged(props) {
 class LoginControl extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isAuthenticated: false
-        };
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleProtectedClick = this.handleProtectedClick.bind(this);
@@ -82,6 +79,10 @@ class LoginControl extends Component {
         userName: '',
     };
 
+    state = {
+        isAuthenticated: false
+    };
+
     handleLoginClick = (e) => {
         e.preventDefault();
         this.props.dispatch(push('/login'));
@@ -92,7 +93,8 @@ class LoginControl extends Component {
         this.props.dispatch(authLogoutAndRedirect());
     };
 
-    handleProtectedClick = () => {
+    handleProtectedClick = (e) => {
+        e.preventDefault();
         this.props.dispatch(push('/protected'));
     };
 
