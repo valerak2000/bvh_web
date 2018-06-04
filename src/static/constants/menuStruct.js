@@ -1,5 +1,6 @@
 import React from 'react';
 import ActionHome from 'material-ui/svg-icons/action/home';
+import CommunicationRssFeed from 'material-ui/svg-icons/communication/rss-feed';
 
 export const MENU_TOP = [
     /*{
@@ -32,15 +33,8 @@ export const MENU_TOP = [
 ];
 
 export const MENU_ABOUT = [
-    /*{
-        key: 'home',
-        primaryText: 'Главная',
-        leftIcon: (<ActionHome />),
-        dataRoute: '/',
-        onClick: null
-    },*/
     {
-        key: 'common_info',
+        key: 'about',
         primaryText: 'Общая информация',
         leftIcon: null,
         dataRoute: '/about',
@@ -55,7 +49,7 @@ export const MENU_ABOUT = [
         key: 'contacts',
         primaryText: 'Контакты',
         leftIcon: null,
-        dataRoute: '/contacts',
+        dataRoute: '/about/contacts',
     },
     {
         key: 'vacancies',
@@ -70,21 +64,14 @@ export const MENU_ABOUT = [
         dataRoute: '/about/history',
     },
     {
-        key: 'zakupki_raskrytie-informacii',
+        key: 'zakupki_raskrytie_informacii',
         primaryText: 'Закупки и раскрытие информации',
         leftIcon: null,
-        dataRoute: '/about/zakupki_raskrytie-informacii',
+        dataRoute: '/about/zakupki_raskrytie_informacii',
     },
 ];
 
 export const MENU_CUSTOMERS = [
-    /*{
-        key: 'home',
-        primaryText: 'Главная',
-        leftIcon: (<ActionHome />),
-        dataRoute: '/',
-        onClick: null
-    },*/
     {
         key: 'common_info',
         primaryText: 'Подключение',
@@ -92,45 +79,60 @@ export const MENU_CUSTOMERS = [
         dataRoute: '/customers',
     },
     {
-        key: 'leadership',
-        primaryText: 'Передача показаний счетчиков',
-        leftIcon: null,
-        dataRoute: '/about/leadership',
-    },
-    {
-        key: 'regulatory_doc',
+        key: 'fizlica',
         primaryText: 'Физические лица',
         leftIcon: null,
-        dataRoute: '/about/regulatory_doc',
+        dataRoute: '/customers/fizlica',
     },
     {
-        key: 'zakupki_raskrytie-informacii',
+        key: 'urlica',
         primaryText: 'Юридические лица',
         leftIcon: null,
-        dataRoute: '/about/zakupki_raskrytie-informacii',
+        dataRoute: '/customers/urlica',
     },
     {
         key: 'regulatory_doc',
         primaryText: 'Нормативные документы',
         leftIcon: null,
-        dataRoute: '/about/regulatory_doc',
+        dataRoute: '/customers/regulatory_doc',
     },
     {
-        key: 'history',
+        key: 'tarifs',
         primaryText: 'Тарифы',
         leftIcon: null,
-        dataRoute: '/',
+        dataRoute: '/customers/tarifs',
     },
     {
-        key: 'history',
+        key: 'services',
         primaryText: 'Услуги',
         leftIcon: null,
-        dataRoute: '/',
+        dataRoute: '/customers/services',
     },
     {
-        key: 'history',
+        key: 'debtors',
         primaryText: 'Должники',
         leftIcon: null,
-        dataRoute: '/',
+        dataRoute: '/customers/debtors',
+    },
+];
+
+export const MENU_NEWS = [
+    {
+        key: 'news',
+        primaryText: 'Новости',
+        leftIcon: (<CommunicationRssFeed />),
+        dataRoute: '/news',
+    },
+    {
+        key: 'smi_o_nashey_rabote',
+        primaryText: 'СМИ о нашей работе',
+        leftIcon: null,
+        dataRoute: '/news/smi_o_nashey_rabote',
+    },
+    {
+        key: 'contactismi',
+        primaryText: 'Контакты для СМИ',
+        leftIcon: null,
+        dataRoute: '/news/contactismi',
     },
 ];

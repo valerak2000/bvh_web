@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import '../../styles/main.scss';
 import * as theme from '../../styles/styles';
-import routes from '../../routes';
+import Routes from '../../routes';
 import DevTools from './DevTools';
 import App from '../../app';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import LeftNavMenu from '../../components/LeftNavMenu';
 
-export default class Root extends Component {
+class Root extends Component {
     static propTypes = {
         store: PropTypes.shape().isRequired,
         history: PropTypes.shape().isRequired
@@ -22,6 +23,11 @@ export default class Root extends Component {
 
     componentDidMount() {
     //    console.log('Root');
+    }
+
+    static get contextTypes() {
+        return {
+        };
     }
 
     render() {
@@ -36,13 +42,16 @@ export default class Root extends Component {
                         <Header
                             { ...this.props }
                         />
-                        <div style={{ display: 'flex', width: '100%'}}>
+                        <div 
+                            id = 'app'
+                            style = {{ display: 'flex', width: '100%'}}
+                        >
                             <LeftNavMenu
                                 { ...this.props }
                             />
                             <App>
                                 <ConnectedRouter history = { this.props.history }>
-                                    { routes }
+                                    <Routes />
                                 </ConnectedRouter>
                             </App>
                         </div>
@@ -101,6 +110,10 @@ function mapDispatchToProps (dispatch) {
     return {
     }
 }
+
+Root.muiName = 'Root';
+
+export default connect(mapStateToProps, mapDispatchToProps)(Root);
 
 /*
                         <Header

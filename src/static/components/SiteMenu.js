@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 //import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tabs, Tab} from 'material-ui/Tabs';
-//import { isNull } from 'util';
 
 class SiteMenu extends Component {
     static propTypes = {
@@ -22,25 +21,18 @@ class SiteMenu extends Component {
         location: undefined
     };
 
+    state = {
+        activeTab: 0,
+    };
+
     constructor(props) {
         super(props);
-        this.state = {
-            activeTab: 0,
-        };
     }
 
     static get contextTypes() {
         return {
+            muiTheme: React.PropTypes.object.isRequired
         };
-    }
-
-    componentWillMount() {
-    }
-
-    componentDidMount() {
-    }
-
-    componentWillUnmount() {
     }
 
     componentWillReceiveProps(nextProps) {
@@ -103,13 +95,13 @@ class SiteMenu extends Component {
                     data-route = '/news'
                     onActive = { this.handleActive }
                 />
-                <Tab
+                {/*<Tab
                     value = 'contacts'
                     label = 'Контакты'
                     style = { menu.tab }
                     data-route = '/contacts'
                     onActive = { this.handleActive }
-                />
+                />*/}
             </Tabs>
         );
     }

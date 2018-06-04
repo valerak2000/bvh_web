@@ -37,13 +37,11 @@ function Menu(props) {
         </List>
     );
 }
-/*
-*/
 
 class LeftNavMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
-        //dispatch: PropTypes.func.isRequired,
+        dispatch: PropTypes.func.isRequired,
         location: PropTypes.shape({
             pathname: PropTypes.string
         })
@@ -54,7 +52,8 @@ class LeftNavMenu extends Component {
     };
 
     state = {
-        activeMenu: DEFAULT_MENU,
+        activeMenuTop: DEFAULT_MENU,
+        activeMenuSecond: DEFAULT_MENU,
     };
 
     constructor(props) {
@@ -64,29 +63,26 @@ class LeftNavMenu extends Component {
 
     static get contextTypes() {
         return {
+            muiTheme: React.PropTypes.object.isRequired
         };
     }
 
-    componentWillMount() {
-    }
-
-    componentDidMount() {
-    }
-
-    componentWillUnmount() {
-    }
-
     componentWillReceiveProps(nextProps) {
-        let currentMenu = (nextProps.location != null
-            && nextProps.location.pathname
-            && nextProps.location.pathname.split('/').pop() == '')
-            ? DEFAULT_MENU : nextProps.location.pathname.split('/').pop();
-        /*let currentPage = (nextProps.location != null
-            && nextProps.location.pathname
-            && nextProps.location.pathname.split('/').pop() == '')
-            ? 'default' : nextProps.location.pathname.split('/').pop();
-        */
-        this.setState({ activeMenu: currentMenu });
+        let currentMenuTop = DEFAULT_MENU;
+        let currentMenuSecond = DEFAULT_MENU;
+
+        if (nextProps.location != null && nextProps.location.pathname) {
+            let urls = nextProps.location.pathname.split('/');
+            if (urls.length > 1) {
+                currentMenuTop = urls[1];
+                currentMenuSecond = urls[2];
+            }
+        }
+
+        this.setState({
+            activeMenuTop: currentMenuTop,
+            activeMenuSecond: currentMenuSecond,
+        });
 
         //const nextPath = windows.location.pathname
         // call onChange when path exactly matches /tabs
@@ -105,28 +101,42 @@ class LeftNavMenu extends Component {
     };
 
     render() {
-        const { activeMenu, ...props } = this.state;
+        const { activeMenuTop, ...props } = this.state;
 
         return (
             <div>
-                { activeMenu === DEFAULT_MENU 
+                { 
+                    activeMenuTop === DEFAULT_MENU 
                     && <Menu 
-                        items = { MENU_TOP }
-                        onClick = { this.handleMenuClick }
+                            items = { MENU_TOP }
+                            onClick = { this.handleMenuClick }
                        />
                 }
-                { activeMenu === ABOUT_MENU 
+                { 
+                    activeMenuTop === ABOUT_MENU 
                     && <Menu 
-                        items = { MENU_ABOUT }
-                        onClick = { this.handleMenuClick }
+                            items = { MENU_ABOUT }
+                            onClick = { this.handleMenuClick }
+                       />
+                }
+                { 
+                    activeMenuTop === CUSTOMERS_MENU 
+                    && <Menu 
+                            items = { MENU_CUSTOMERS }
+                            onClick = { this.handleMenuClick }
+                       />
+                }
+                { 
+                    activeMenuTop === NEWS_MENU 
+                    && <Menu 
+                            items = { MENU_NEWS }
+                            onClick = { this.handleMenuClick }
                        />
                 }
             </div>
         );
     }
 }
-/*
-*/
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -135,11 +145,8 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-function mapDispatchToProps (dispatch) {
-    return {
-    }
-}
-
 LeftNavMenu.muiName = 'LeftNavMenu';
+export default muiThemeable()(connect(mapStateToProps)(LeftNavMenu));
 
-export default muiThemeable()(connect(mapStateToProps, mapDispatchToProps)(LeftNavMenu));
+/*
+*/

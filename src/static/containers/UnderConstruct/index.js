@@ -3,7 +3,9 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+
 import muiThemeable from 'material-ui/styles/muiThemeable';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 
 class UnderConstructView extends Component {
     static propTypes = {
@@ -15,9 +17,14 @@ class UnderConstructView extends Component {
 
     render() {
         return (
-            <div>
-                <p>Страница находится в раработке</p>
-            </div>
+            <Card
+                style = { this.props.muiTheme.app.сard }
+            >
+                <CardTitle
+                    title = 'Страница находится в разработке'
+                    titleStyle = { this.props.muiTheme.app.сard.title }
+                />
+            </Card>
         );
     }
 }

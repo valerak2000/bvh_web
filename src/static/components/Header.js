@@ -6,8 +6,6 @@ import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
-//import FlatButton from 'material-ui/FlatButton';
-//import FontIcon from 'material-ui/FontIcon';
 
 import LoginControl from './LoginControl'
 import SiteMenu from './SiteMenu'
@@ -28,18 +26,19 @@ class Header extends Component {
         };
     }
 
+    static defaultProps = {
+    };
+
     constructor(props) {
         super(props);
     }
-
-    static defaultProps = {
-    };
 
     goToIndex = () => {
         this.props.dispatch(push('/'));
     };
 
     render() {
+
         return (
             <header 
                 style = { this.props.muiTheme.app.header }
@@ -94,9 +93,16 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
+/*function mapDispatchToProps (dispatch) {
+    return {
+    }
+}*/
+
 Header.muiName = 'Header';
 
 export default muiThemeable()(connect(mapStateToProps)(Header));
+//export default muiThemeable()(connect(mapStateToProps, mapDispatchToProps)(Header));
+
 
 /*
 
