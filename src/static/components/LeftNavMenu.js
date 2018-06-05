@@ -27,8 +27,8 @@ function Menu(props) {
                             secondaryText = { d.secondaryText }
                             secondaryTextLines = { d.secondaryTextLines }
                             leftIcon = { d.leftIcon }
-                            initiallyOpen = { index == 0 ? true: false }
-                            isKeyboardFocused = { index == 0 ? true: false }
+                            initiallyOpen = { props.initiallyOpen === d.key ? true: false }
+                            {/*isKeyboardFocused = { index == 0 ? true: false }*/}
                             onClick = { (e) => props.onClick(d.dataRoute, e) }
                         />
                     );
@@ -101,7 +101,7 @@ class LeftNavMenu extends Component {
     };
 
     render() {
-        const { activeMenuTop, ...props } = this.state;
+        const { activeMenuTop, activeMenuSecond, ...props } = this.state;
 
         return (
             <div>
@@ -110,6 +110,7 @@ class LeftNavMenu extends Component {
                     && <Menu 
                             items = { MENU_TOP }
                             onClick = { this.handleMenuClick }
+                            initiallyOpen = { activeMenuSecond }
                        />
                 }
                 { 
