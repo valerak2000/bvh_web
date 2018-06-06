@@ -12,10 +12,14 @@ import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 //import ActionInfo from 'material-ui/svg-icons/action/info';
 
-import { DEFAULT_MENU, ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants'
-import { MENU_TOP, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../constants/menuStruct'
+import { HOME_MENU, ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants'
+import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../constants/menuStruct'
 
 function Menu(props) {
+    let initiallyOpen = (props.initiallyOpen === undefined || props.initiallyOpen == null)
+        ? props.items[0].key 
+        : props.initiallyOpen;
+
     return (
         <List>
             {
@@ -27,8 +31,7 @@ function Menu(props) {
                             secondaryText = { d.secondaryText }
                             secondaryTextLines = { d.secondaryTextLines }
                             leftIcon = { d.leftIcon }
-                            initiallyOpen = { props.initiallyOpen === d.key ? true: false }
-                            {/*isKeyboardFocused = { index == 0 ? true: false }*/}
+                            isKeyboardFocused = { initiallyOpen == d.key ? true : false }
                             onClick = { (e) => props.onClick(d.dataRoute, e) }
                         />
                     );
@@ -37,6 +40,19 @@ function Menu(props) {
         </List>
     );
 }
+/*
+               <ListItem
+                  key={3}
+                  primaryText="Inbox"
+                  leftIcon={<ContentInbox />}
+                  open={this.state.open}
+                  onNestedListToggle={this.handleNestedListToggle}
+                  nestedItems={[
+                    <ListItem key={1} primaryText="Drafts" leftIcon={<ContentDrafts />} />,
+                  ]}
+                />,
+
+*/
 
 class LeftNavMenu extends Component {
     static propTypes = {
@@ -52,8 +68,8 @@ class LeftNavMenu extends Component {
     };
 
     state = {
-        activeMenuTop: DEFAULT_MENU,
-        activeMenuSecond: DEFAULT_MENU,
+        activeMenuTop: HOME_MENU,
+        activeMenuSecond: null,
     };
 
     constructor(props) {
@@ -68,26 +84,19 @@ class LeftNavMenu extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let currentMenuTop = DEFAULT_MENU;
-        let currentMenuSecond = DEFAULT_MENU;
+        let currentMenuTop = null;
+        let currentMenuSecond = null;
 
         if (nextProps.location != null && nextProps.location.pathname) {
             let urls = nextProps.location.pathname.split('/');
-            if (urls.length > 1) {
-                currentMenuTop = urls[1];
-                currentMenuSecond = urls[2];
-            }
+            currentMenuTop = urls[1] !== '' ? urls[1] : HOME_MENU;
+            currentMenuSecond = urls.length === 2 || urls[2] === '' ? null : urls[2];
         }
 
         this.setState({
             activeMenuTop: currentMenuTop,
             activeMenuSecond: currentMenuSecond,
         });
-
-        //const nextPath = windows.location.pathname
-        // call onChange when path exactly matches /tabs
-        //if (/^\/tabs$/.test(nextPath))
-        //    this.onChange(nextProps.tabSelected)
     }
 
     /*handleChange = (event, value) => {
@@ -106,9 +115,9 @@ class LeftNavMenu extends Component {
         return (
             <div>
                 { 
-                    activeMenuTop === DEFAULT_MENU 
+                    activeMenuTop === HOME_MENU 
                     && <Menu 
-                            items = { MENU_TOP }
+                            items = { MENU_HOME }
                             onClick = { this.handleMenuClick }
                             initiallyOpen = { activeMenuSecond }
                        />
@@ -118,6 +127,7 @@ class LeftNavMenu extends Component {
                     && <Menu 
                             items = { MENU_ABOUT }
                             onClick = { this.handleMenuClick }
+                            initiallyOpen = { activeMenuSecond }
                        />
                 }
                 { 
@@ -125,6 +135,7 @@ class LeftNavMenu extends Component {
                     && <Menu 
                             items = { MENU_CUSTOMERS }
                             onClick = { this.handleMenuClick }
+                            initiallyOpen = { activeMenuSecond }
                        />
                 }
                 { 
@@ -132,6 +143,7 @@ class LeftNavMenu extends Component {
                     && <Menu 
                             items = { MENU_NEWS }
                             onClick = { this.handleMenuClick }
+                            initiallyOpen = { activeMenuSecond }
                        />
                 }
             </div>
