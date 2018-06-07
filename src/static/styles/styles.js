@@ -17,6 +17,7 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         width: '100%',
         сard: {
             margin: '0 auto',
+            minHeight: '368px',
             title: {
                 fontSize: '30px',
             },
@@ -107,6 +108,9 @@ var muiTheme = exports.muiTheme = getMuiTheme({
                 },
                 flexWrap: 'wrap',
             },
+        },
+        leftNav: {
+            width: '28rem',
         },
     },
     palette: {

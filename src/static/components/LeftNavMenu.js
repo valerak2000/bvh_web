@@ -6,24 +6,38 @@ import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import {List, ListItem} from 'material-ui/List';
-//import ActionGrade from 'material-ui/svg-icons/action/grade';
-//import ContentSend from 'material-ui/svg-icons/content/send';
-//import ContentDrafts from 'material-ui/svg-icons/content/drafts';
-import Divider from 'material-ui/Divider';
-//import ActionInfo from 'material-ui/svg-icons/action/info';
+//import Divider from 'material-ui/Divider';
 
 import { HOME_MENU, ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants'
 import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../constants/menuStruct'
 
 function Menu(props) {
-    let initiallyOpen = (props.initiallyOpen === undefined || props.initiallyOpen == null)
+    let initiallyFocused = (props.initiallyFocused === undefined || props.initiallyFocused == null)
         ? props.items[0].key 
-        : props.initiallyOpen;
+        : props.initiallyFocused;
 
     return (
         <List>
             {
                 props.items.map((d, index) => {
+                    var nested = [];
+
+                    if (d.nestedItems !== undefined && d.nestedItems.length > 0) {
+                        d.nestedItems.map((ni, index) => {
+                            nested.push(
+                                <ListItem 
+                                    key = { ni.key } 
+                                    primaryText = { ni.primaryText }
+                                    secondaryText = { ni.secondaryText }
+                                    secondaryTextLines = { ni.secondaryTextLines }
+                                    leftIcon = { ni.leftIcon }
+                                    isKeyboardFocused = { initiallyFocused == ni.key ? true : false }
+                                    onClick = { (e) => props.onClick(ni.dataRoute, e) }
+                                />
+                            )
+                        });
+                    }
+
                     return (
                         <ListItem
                             key = { d.key }
@@ -31,8 +45,12 @@ function Menu(props) {
                             secondaryText = { d.secondaryText }
                             secondaryTextLines = { d.secondaryTextLines }
                             leftIcon = { d.leftIcon }
-                            isKeyboardFocused = { initiallyOpen == d.key ? true : false }
+                            isKeyboardFocused = { initiallyFocused == d.key ? true : false }
                             onClick = { (e) => props.onClick(d.dataRoute, e) }
+                            autoGenerateNestedIndicator = { true }
+                            primaryTogglesNestedList = { true }
+                            initiallyOpen = { initiallyFocused == d.key ? true : false }
+                            nestedItems = { nested }
                         />
                     );
                 })
@@ -41,7 +59,14 @@ function Menu(props) {
     );
 }
 /*
-               <ListItem
+{
+    (d.nestedItems.length > 0)
+    && (nestedItems = {[
+        <ListItem key={1} primaryText="Drafts" leftIcon={<ContentDrafts />} />,
+    ]})
+}
+
+<ListItem
                   key={3}
                   primaryText="Inbox"
                   leftIcon={<ContentInbox />}
@@ -113,7 +138,9 @@ class LeftNavMenu extends Component {
         const { activeMenuTop, activeMenuSecond, ...props } = this.state;
 
         return (
-            <div>
+            <div
+                style = { this.props.muiTheme.app.leftNav }
+            >
                 { 
                     activeMenuTop === HOME_MENU 
                     && <Menu 

@@ -6,8 +6,6 @@ import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-//import AppBar from 'material-ui/AppBar';
-//import { getStyles } from 'material-ui/AppBar/AppBar';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -16,7 +14,6 @@ import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import Divider from 'material-ui/Divider';
 import Badge from 'material-ui/Badge';
-//import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 import { authLogoutAndRedirect } from '../actions/auth';
 
@@ -134,13 +131,6 @@ class LoginControl extends Component {
     }
 }
 /*
-                <div style = {{ margin: '-1rem -1rem', height: '2rem', }}>
-                    <span style = { this.props.muiTheme.appBar.titleStyle.phoneHeader }>
-                        Телефон горячей линии:
-                    </span>
-                    <a href="tel:88615635117" style = { this.props.muiTheme.appBar.titleStyle.phone }>8 (86156) 35-117</a>
-                </div>
-
 */
 
 const mapStateToProps = (state, ownProps) => {

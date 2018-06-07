@@ -41,10 +41,6 @@ class SiteMenu extends Component {
             && nextProps.location.pathname.split('/').pop() == ''
             ? 'default' : nextProps.location.pathname.split('/').pop();
         this.setState({ activeTab: currentTab });
-        //const nextPath = windows.location.pathname
-        // call onChange when path exactly matches /tabs
-        //if (/^\/tabs$/.test(nextPath))
-        //    this.onChange(nextProps.tabSelected)
     }
 
     handleChange = (event, value) => {
@@ -53,8 +49,6 @@ class SiteMenu extends Component {
 
     handleActive = (tab) => {
         this.props.dispatch(push(tab.props['data-route']));
-        //this.context.router.push(tab.props['data-route']);
-	    //this.context.router.transitionTo(tab.props.route)
     };
 
     render() {
