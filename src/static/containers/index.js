@@ -2,24 +2,26 @@ export UnderConstructView from './UnderConstruct';
 export NotFoundView from './NotFound';
 export LoginView from './Login';
 export ProtectedView from './Protected';
-
-export HomeView from './Home';
-export ElektronnayaPriemnayaView from './ElektronnayaPriemnaya';
-export BlackoutsView from './Blackouts';
-export AvailableCapacityMapView from './AvailableCapacityMap';
+export MapView from './Map';
+//Корневая
+export HomeView from './Home/Home';
+export ElektronnayaPriemnayaView from './Home/ElektronnayaPriemnaya';
+export BlackoutsView from './Home/Blackouts';
+export AvailableCapacityMapView from './Home/AvailableCapacityMap';
 //О компании
-export AboutView from './About';
-export LeadershipView from './Leadership';
-export ContactView from './Contact';
-export VacanciesView from './Vacancies';
-export OurHistoryView from './OurHistory';
-export ZakupkiRaskrytieView from './ZakupkiRaskrytie';
+export CommonInfoView from './About/CommonInfo';
+export LeadershipView from './About/Leadership';
+export ContactsView from './About/Contacts';
+export VacanciesView from './About/Vacancies';
+export OurHistoryView from './About/OurHistory';
+export ZakupkiRaskrytieView from './About/ZakupkiRaskrytie';
 //Абонентам
-export CustomersView from './Customers';
-export RegulatoryDocView from './RegulatoryDoc';
-export TarifsView from './Tarifs';
-export DebtorsView from './Debtors';
+export PoluchenieTekhnicheskikhUsloviyView from './Customers/PoluchenieTekhnicheskikhUsloviy';
+export OformlenieDogovoraOPodklyucheniiView from './Customers/OformlenieDogovoraOPodklyuchenii';
+//export PoluchenieTekhnicheskikhUsloviyView from './Customers/PoluchenieTekhnicheskikhUsloviy';
+export RegulatoryDocView from './Customers/RegulatoryDoc';
+export TarifsView from './Customers/Tarifs';
+export DebtorsView from './Customers/Debtors';
 //Новости
-export NewsView from './News';
-export NewsAboutUsView from './NewsAboutUs';
-
+export NewsView from './News/News';
+export NewsAboutUsView from './News/NewsAboutUs';

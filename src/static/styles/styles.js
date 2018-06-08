@@ -8,7 +8,7 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         minWidth: '126rem',
         minHeight: '58rem',
         margin: '0 auto',
-        fontSize: '16px',
+        fontSize: 16,
         fontWeight: 500,
     },
     app: {
@@ -17,18 +17,19 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         width: '100%',
         сard: {
             margin: '0 auto',
-            minHeight: '368px',
+            minHeight: '30rem',
+            height: 'inherit', //'-webkit-fill-available', //'40rem',
             title: {
-                fontSize: '30px',
+                fontSize: 30,
             },
             header: {
-                fontSize: '24px',
+                fontSize: 24,
             },
             header1: {
-                fontSize: '20px',
+                fontSize: 20,
             },
             text: {
-                fontSize: '16px',
+                fontSize: 16,
             },
         },
         header: {
@@ -110,7 +111,21 @@ var muiTheme = exports.muiTheme = getMuiTheme({
             },
         },
         leftNav: {
-            width: '28rem',
+            maxWidth: '28rem',
+        },
+        footer: {
+            bottomNavigation: {
+                position: 'space-around',
+                display: 'table',
+                button: {
+                    minWidth: '42rem',
+                    icon: {
+                        height: 24,
+                        width: '100%',
+                        objectFit: 'contain',
+                    },
+                },
+            },
         },
     },
     palette: {
@@ -125,6 +140,7 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         //primary: Colors.blue900,
         //secondary: Colors.teal200,
         //color: Colors.teal200,
+        //canvasColor: Colors.teal200,
     },
     title: {
         cursor: 'pointer',
@@ -139,4 +155,12 @@ var muiTheme = exports.muiTheme = getMuiTheme({
             textTransform: 'none',
         },
     },
-});
+    bottomNavigation: {
+        backgroundColor: Colors.teal200,
+        unselectedColor: Colors.blue900,
+        selectedColor: Colors.blue900,
+        //height: 56,
+        unselectedFontSize: 16,
+        selectedFontSize: 16,
+    },
+  });

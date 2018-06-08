@@ -66,15 +66,6 @@ class Root extends Component {
     }
 }
 /*
-    <div style={{ display: 'flex', width: '10%' }}>
-        <List>
-        <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
-        <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
-        <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
-        <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
-        <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
-        </List>
-    </div>
     <div style={{ display: 'flex', width: '90%' }}>
                         <App>
                             <ConnectedRouter history = { this.props.history }>
@@ -114,26 +105,3 @@ function mapDispatchToProps (dispatch) {
 Root.muiName = 'Root';
 
 export default connect(mapStateToProps, mapDispatchToProps)(Root);
-
-/*
-                        <Header
-                            { ...this.props }
-                        />
-                        <App>
-                            <ConnectedRouter history = { this.props.history }>
-                                { routes }
-                            </ConnectedRouter>
-                        </App>
-                        <Footer
-                            { ...this.props }
-                        />
-
-                            <App>
-                                <ConnectedRouter history = { this.props.history }>
-                                    { routes }
-                                </ConnectedRouter>
-                            </App>
-                            <Header
-                                { ...this.props }
-                            />
-                            */

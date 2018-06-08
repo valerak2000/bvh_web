@@ -49,13 +49,13 @@ class Footer extends Component {
 
         switch(index) {
             case 0:
-                return browserHistory.push('/')
+                return this.props.dispatch(push('/'));
             case 1:
-                return browserHistory.push('/map')
+                return this.props.dispatch(push('/map'));
             case 2:
-                return browserHistory.push('/creator')
+                return this.props.dispatch(push('/creator'));
             default:
-                return browserHistory.push('/')
+                return this.props.dispatch(push('/'));
         }
     }
 
@@ -66,30 +66,38 @@ class Footer extends Component {
             >
                 <BottomNavigation 
                     selectedIndex = { this.state.selectedIndex }
-                    style = {{ position: 'space-between' }}
+                    style = { this.props.muiTheme.app.footer.bottomNavigation }
                 >
                     <BottomNavigationItem
                         label = "© 2018 ООО «Брюховецкое водопроводное хозяйство»"
                         icon = { <ActionHome /> }
                         onClick = { () => this.selectBottomNavigationItem(0) }
+                        style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
                     <BottomNavigationItem
                         label = "Карта сайта"
                         icon = { <MapsMap /> }
                         onClick = { () => this.selectBottomNavigationItem(1) }
+                        style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
                     <BottomNavigationItem
                         label = "Создание сайта — valera_k2000"
                         icon = {
-                            <AuthorSign />
+                            <img
+                                src = { AuthorSign }
+                                alt = ''
+                                style = { this.props.muiTheme.app.footer.bottomNavigation.button.icon }
+                            />
                         }
-                        onClick = { () => this.selectBottomNavigationItem(2) }
+                        style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
                 </BottomNavigation>
             </footer>
         );
     }
 };
+/*
+*/
 
 const mapStateToProps = (state, ownProps) => {
     return {

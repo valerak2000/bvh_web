@@ -113,7 +113,7 @@ export const MENU_CUSTOMERS = [
                 key: 'oformlenie_dogovora_o_podklyuchenii',
                 primaryText: 'Передача показаний счетчиков',
                 leftIcon: null,
-                dataRoute: '/customers/fizlica/oformlenie_dogovora_o_podklyuchenii',
+                dataRoute: '/customers/fizlica/peredacha_pokazaniy',
             },
             {
                 key: 'oformlenie_aktov_o_podklyuchenii',
@@ -145,7 +145,7 @@ export const MENU_CUSTOMERS = [
                 key: 'oformlenie_dogovora_o_podklyuchenii',
                 primaryText: 'Передача показаний счетчиков',
                 leftIcon: null,
-                dataRoute: '/customers/urlica/oformlenie_dogovora_o_podklyuchenii',
+                dataRoute: '/customers/urlica/peredacha_pokazaniy',
             },
         ]
     },
