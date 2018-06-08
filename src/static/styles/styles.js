@@ -14,7 +14,7 @@ var muiTheme = exports.muiTheme = getMuiTheme({
     app: {
         margin: '0 auto auto',
         height: 'auto', //по высоте меню 
-        width: '100%',
+        width: '80%',
         сard: {
             margin: '0 auto',
             minHeight: '32rem',
@@ -111,7 +111,8 @@ var muiTheme = exports.muiTheme = getMuiTheme({
             },
         },
         leftNav: {
-            maxWidth: '28rem',
+            width: '20%',
+            //maxWidth: '28rem',
         },
         footer: {
             bottomNavigation: {
