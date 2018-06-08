@@ -12,13 +12,14 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         fontWeight: 500,
     },
     app: {
-        margin: '0 auto auto',
+        //margin: '0 auto auto',
         height: 'auto', //по высоте меню 
         width: '80%',
+        flexDirection: 'unset',
         сard: {
             margin: '0 auto',
-            minHeight: '32rem',
-            height: 'inherit', //'-webkit-fill-available', //'40rem',
+            //minHeight: '32rem',
+            height: '100%', //'-webkit-fill-available', //'40rem',
             title: {
                 fontSize: 30,
             },
