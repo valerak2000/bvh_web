@@ -24,7 +24,7 @@ class PoluchenieTekhnicheskikhUsloviyView extends Component {
                 style = { this.props.muiTheme.app.сard }
             >
                 <CardTitle
-                    title = 'Абонентам'
+                    title = 'Получение технических условий'
                     titleStyle = { this.props.muiTheme.app.сard.title }
                 />
                 <CardText>

@@ -146,7 +146,7 @@ class LeftNavMenu extends Component {
                     && <Menu 
                             items = { MENU_HOME }
                             onClick = { this.handleMenuClick }
-                            initiallyOpen = { activeMenuSecond }
+                            initiallyFocused = { activeMenuSecond }
                        />
                 }
                 { 
@@ -154,7 +154,7 @@ class LeftNavMenu extends Component {
                     && <Menu 
                             items = { MENU_ABOUT }
                             onClick = { this.handleMenuClick }
-                            initiallyOpen = { activeMenuSecond }
+                            initiallyFocused = { activeMenuSecond }
                        />
                 }
                 { 
@@ -162,7 +162,7 @@ class LeftNavMenu extends Component {
                     && <Menu 
                             items = { MENU_CUSTOMERS }
                             onClick = { this.handleMenuClick }
-                            initiallyOpen = { activeMenuSecond }
+                            initiallyFocused = { activeMenuSecond }
                        />
                 }
                 { 
@@ -170,7 +170,7 @@ class LeftNavMenu extends Component {
                     && <Menu 
                             items = { MENU_NEWS }
                             onClick = { this.handleMenuClick }
-                            initiallyOpen = { activeMenuSecond }
+                            initiallyFocused = { activeMenuSecond }
                        />
                 }
             </div>

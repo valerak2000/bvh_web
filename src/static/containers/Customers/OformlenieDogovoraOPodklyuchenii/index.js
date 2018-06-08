@@ -24,7 +24,7 @@ class OformlenieDogovoraOPodklyucheniiView extends Component {
                 style = { this.props.muiTheme.app.сard }
             >
                 <CardTitle
-                    title = 'Абонентам'
+                    title = 'Оформление договора о подключении'
                     titleStyle = { this.props.muiTheme.app.сard.title }
                 />
                 <CardText>

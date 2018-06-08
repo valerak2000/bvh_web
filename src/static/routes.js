@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import { UnderConstructView, NotFoundView, LoginView, ProtectedView, MapView } from './containers';
 import { HomeView, ElektronnayaPriemnayaView, BlackoutsView, AvailableCapacityMapView } from './containers';
-import { CommonInfoView, LeadershipView, ContactView, VacanciesView, OurHistoryView, ZakupkiRaskrytieView, 
-        PoluchenieTekhnicheskikhUsloviyView, OformlenieDogovoraOPodklyucheniiView, RegulatoryDocView, TarifsView, DebtorsView,
-        NewsView, NewsAboutUsView } from './containers';
+import { CommonInfoView, LeadershipView, ContactView, VacanciesView, OurHistoryView, ZakupkiRaskrytieView } from './containers';
+import { PoluchenieTekhnicheskikhUsloviyView, OformlenieDogovoraOPodklyucheniiView, OformlenieAktovOPodklyucheniiView, 
+        RegulatoryDocView, TarifsView, DebtorsView } from './containers';
+import { NewsView, NewsAboutUsView } from './containers';
 import requireAuthentication from './utils/requireAuthentication';
 
 class Routes extends Component {

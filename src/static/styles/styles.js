@@ -17,7 +17,7 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         width: '100%',
         сard: {
             margin: '0 auto',
-            minHeight: '30rem',
+            minHeight: '32rem',
             height: 'inherit', //'-webkit-fill-available', //'40rem',
             title: {
                 fontSize: 30,

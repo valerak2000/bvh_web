@@ -18,7 +18,7 @@ export ZakupkiRaskrytieView from './About/ZakupkiRaskrytie';
 //Абонентам
 export PoluchenieTekhnicheskikhUsloviyView from './Customers/PoluchenieTekhnicheskikhUsloviy';
 export OformlenieDogovoraOPodklyucheniiView from './Customers/OformlenieDogovoraOPodklyuchenii';
-//export PoluchenieTekhnicheskikhUsloviyView from './Customers/PoluchenieTekhnicheskikhUsloviy';
+export OformlenieAktovOPodklyucheniiView from './Customers/OformlenieAktovOPodklyuchenii';
 export RegulatoryDocView from './Customers/RegulatoryDoc';
 export TarifsView from './Customers/Tarifs';
 export DebtorsView from './Customers/Debtors';
