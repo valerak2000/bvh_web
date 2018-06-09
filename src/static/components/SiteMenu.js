@@ -8,6 +8,8 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 //import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
+import { HOME_MENU, ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants'
+
 class SiteMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
@@ -36,10 +38,13 @@ class SiteMenu extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let currentTab = nextProps.location != null
-            && nextProps.location.pathname
-            && nextProps.location.pathname.split('/').pop() == ''
-            ? 'default' : nextProps.location.pathname.split('/').pop();
+        let currentTab = null;
+
+        if (nextProps.location != null && nextProps.location.pathname) {
+            let urls = nextProps.location.pathname.split('/');
+            currentTab = urls[1] !== '' ? urls[1] : HOME_MENU;
+        }
+
         this.setState({ activeTab: currentTab });
     }
 

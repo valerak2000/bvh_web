@@ -35,12 +35,14 @@ class MapView extends Component {
                         }}
                     >
                         <div>
-                            <h4>Главная</h4>
+                            <br />
+                            <br />
                             <ul>
                                 <li><a href="/">Главная</a></li>
                                 <li><a href="/home/elektronnaya_priemnaya">Электронная приемная</a></li>
                                 <li><a href="/home/blackouts">Отключения</a></li>
                                 <li><a href="/home/available_capacity_map">Карта доступной мощности</a></li>
+                                <li><a href="/home/map">Карта сайта</a></li>
                             </ul>        
                         </div>
                         <div>

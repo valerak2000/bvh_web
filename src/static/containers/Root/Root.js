@@ -44,7 +44,7 @@ class Root extends Component {
                         />
                         <div 
                             id = 'app'
-                            style = {{ display: 'flex', width: '100%'}}
+                            style = {{ display: 'flex', width: '100%' }}
                         >
                             <LeftNavMenu
                                 { ...this.props }

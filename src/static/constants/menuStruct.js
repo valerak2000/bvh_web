@@ -7,7 +7,7 @@ export const MENU_HOME = [
         key: 'home',
         primaryText: 'Главная',
         leftIcon: (<ActionHome />),
-        dataRoute: '/',
+        dataRoute: '/home',
     },
     {
         key: 'elektronnaya_priemnaya',
@@ -33,10 +33,10 @@ export const MENU_HOME = [
 
 export const MENU_ABOUT = [
     {
-        key: 'about',
+        key: 'common_info',
         primaryText: 'Общая информация',
         leftIcon: null,
-        dataRoute: '/about',
+        dataRoute: '/about/common_info',
     },
     {
         key: 'leadership',
@@ -72,7 +72,7 @@ export const MENU_ABOUT = [
 
 export const MENU_CUSTOMERS = [
     {
-        key: 'common_info',
+        key: 'connection',
         primaryText: 'Подключение',
         leftIcon: null,
         //dataRoute: '/customers/connection',
@@ -104,22 +104,22 @@ export const MENU_CUSTOMERS = [
         //dataRoute: '/customers/fizlica',
         nestedItems: [
             {
-                key: 'poluchenie_tekhnicheskikh_usloviy',
+                key: 'zaklyuchenie_dogovorov',
                 primaryText: 'Заключение договоров на холодное водоснабжение и водоотведение',
                 leftIcon: null,
-                dataRoute: '/customers/fizlica/poluchenie_tekhnicheskikh_usloviy',
+                dataRoute: '/customers/fizlica/zaklyuchenie_dogovorov',
             },
             {
-                key: 'oformlenie_dogovora_o_podklyuchenii',
+                key: 'peredacha_pokazaniy',
                 primaryText: 'Передача показаний счетчиков',
                 leftIcon: null,
                 dataRoute: '/customers/fizlica/peredacha_pokazaniy',
             },
             {
-                key: 'oformlenie_aktov_o_podklyuchenii',
+                key: 'pribory_ucheta',
                 primaryText: 'Приборы учета',
                 leftIcon: null,
-                dataRoute: '/customers/fizlica/oformlenie_aktov_o_podklyuchenii',
+                dataRoute: '/customers/fizlica/pribory_ucheta',
             },
         ]
     },
@@ -130,22 +130,22 @@ export const MENU_CUSTOMERS = [
         //dataRoute: '/customers/urlica',
         nestedItems: [
             {
-                key: 'poluchenie_tekhnicheskikh_usloviy',
+                key: 'zaklyuchenie_dogovorov',
                 primaryText: 'Заключение договоров на холодное водоснабжение и водоотведение',
                 leftIcon: null,
-                dataRoute: '/customers/urlica/poluchenie_tekhnicheskikh_usloviy',
+                dataRoute: '/customers/urlica/zaklyuchenie_dogovorov',
             },
             {
-                key: 'oformlenie_aktov_o_podklyuchenii',
-                primaryText: 'Инспекция водных ресурсов',
-                leftIcon: null,
-                dataRoute: '/customers/urlica/oformlenie_aktov_o_podklyuchenii',
-            },
-            {
-                key: 'oformlenie_dogovora_o_podklyuchenii',
+                key: 'peredacha_pokazaniy',
                 primaryText: 'Передача показаний счетчиков',
                 leftIcon: null,
                 dataRoute: '/customers/urlica/peredacha_pokazaniy',
+            },
+            {
+                key: 'inspekcia_vodnyh_resursov',
+                primaryText: 'Инспекция водных ресурсов',
+                leftIcon: null,
+                dataRoute: '/customers/urlica/inspekcia_vodnyh_resursov',
             },
         ]
     },

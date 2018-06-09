@@ -17,13 +17,20 @@ function Menu(props) {
         : props.initiallyFocused;
 
     return (
-        <List>
+        <List
+            style = { props.style }
+        >
             {
                 props.items.map((d, index) => {
                     var nested = [];
+                    let initiallyOpenFirst = initiallyFocused === d.key ? true : false;
 
                     if (d.nestedItems !== undefined && d.nestedItems.length > 0) {
                         d.nestedItems.map((ni, index) => {
+                            let initiallySelectedSecond = initiallyFocused === d.key + '_' + ni.key ? true : false;
+                            if (initiallySelectedSecond)
+                                initiallyOpenFirst = initiallySelectedSecond;
+
                             nested.push(
                                 <ListItem 
                                     key = { ni.key } 
@@ -31,7 +38,7 @@ function Menu(props) {
                                     secondaryText = { ni.secondaryText }
                                     secondaryTextLines = { ni.secondaryTextLines }
                                     leftIcon = { ni.leftIcon }
-                                    isKeyboardFocused = { initiallyFocused == ni.key ? true : false }
+                                    isKeyboardFocused = { initiallySelectedSecond }
                                     onClick = { (e) => props.onClick(ni.dataRoute, e) }
                                 />
                             )
@@ -45,11 +52,11 @@ function Menu(props) {
                             secondaryText = { d.secondaryText }
                             secondaryTextLines = { d.secondaryTextLines }
                             leftIcon = { d.leftIcon }
-                            isKeyboardFocused = { initiallyFocused == d.key ? true : false }
+                            isKeyboardFocused = { initiallyFocused === d.key ? true : false }
                             onClick = { (e) => props.onClick(d.dataRoute, e) }
                             autoGenerateNestedIndicator = { true }
                             primaryTogglesNestedList = { true }
-                            initiallyOpen = { initiallyFocused == d.key ? true : false }
+                            initiallyOpen = { initiallyOpenFirst }
                             nestedItems = { nested }
                         />
                     );
@@ -95,6 +102,7 @@ class LeftNavMenu extends Component {
     state = {
         activeMenuTop: HOME_MENU,
         activeMenuSecond: null,
+        activeMenuThird: null,
     };
 
     constructor(props) {
@@ -111,16 +119,19 @@ class LeftNavMenu extends Component {
     componentWillReceiveProps(nextProps) {
         let currentMenuTop = null;
         let currentMenuSecond = null;
+        let currentMenuThird = null;
 
         if (nextProps.location != null && nextProps.location.pathname) {
             let urls = nextProps.location.pathname.split('/');
             currentMenuTop = urls[1] !== '' ? urls[1] : HOME_MENU;
-            currentMenuSecond = urls.length === 2 || urls[2] === '' ? null : urls[2];
+            currentMenuSecond = urls.length <= 2 || urls[2] === '' ? null : urls[2];
+            currentMenuThird = urls.length <= 3 || urls[3] === '' ? null : urls[3];
         }
 
         this.setState({
             activeMenuTop: currentMenuTop,
             activeMenuSecond: currentMenuSecond,
+            activeMenuThird: currentMenuThird,
         });
     }
 
@@ -135,44 +146,63 @@ class LeftNavMenu extends Component {
     };
 
     render() {
-        const { activeMenuTop, activeMenuSecond, ...props } = this.state;
+        const { activeMenuTop, activeMenuSecond, activeMenuThird, ...props } = this.state;
+        var initiallyFocused = null;
+
+        if (activeMenuSecond != null) {
+            initiallyFocused = activeMenuSecond + (activeMenuThird != null ? '_' + activeMenuThird : '');
+        }
+
+        var leftmenu = null;
+
+        switch (activeMenuTop) {
+            case HOME_MENU:
+                leftmenu =
+                    <Menu 
+                        items = { MENU_HOME }
+                        onClick = { this.handleMenuClick }
+                        initiallyFocused = { initiallyFocused }
+                    />;
+                break;
+            case ABOUT_MENU:
+                leftmenu =
+                    <Menu 
+                        items = { MENU_ABOUT }
+                        onClick = { this.handleMenuClick }
+                        initiallyFocused = { initiallyFocused }
+                    />;
+                break;
+            case CUSTOMERS_MENU:
+                leftmenu =
+                    <Menu 
+                        items = { MENU_CUSTOMERS }
+                        onClick = { this.handleMenuClick }
+                        initiallyFocused = { initiallyFocused }
+                    />;
+                break;
+            case NEWS_MENU:
+                leftmenu =
+                    <Menu 
+                        items = { MENU_NEWS }
+                        onClick = { this.handleMenuClick }
+                        initiallyFocused = { initiallyFocused }
+                    />
+                break;
+        }
+
+        var leftNav = { ...this.props.muiTheme.app.leftNav };
+
+        if (leftmenu != null) {
+            leftNav.width = '20%';
+        } else {
+            leftNav.width = '0%';
+        }
 
         return (
-            <div
-                style = { this.props.muiTheme.app.leftNav }
+            <div 
+                style = { leftNav }
             >
-                { 
-                    activeMenuTop === HOME_MENU 
-                    && <Menu 
-                            items = { MENU_HOME }
-                            onClick = { this.handleMenuClick }
-                            initiallyFocused = { activeMenuSecond }
-                       />
-                }
-                { 
-                    activeMenuTop === ABOUT_MENU 
-                    && <Menu 
-                            items = { MENU_ABOUT }
-                            onClick = { this.handleMenuClick }
-                            initiallyFocused = { activeMenuSecond }
-                       />
-                }
-                { 
-                    activeMenuTop === CUSTOMERS_MENU 
-                    && <Menu 
-                            items = { MENU_CUSTOMERS }
-                            onClick = { this.handleMenuClick }
-                            initiallyFocused = { activeMenuSecond }
-                       />
-                }
-                { 
-                    activeMenuTop === NEWS_MENU 
-                    && <Menu 
-                            items = { MENU_NEWS }
-                            onClick = { this.handleMenuClick }
-                            initiallyFocused = { activeMenuSecond }
-                       />
-                }
+                { leftmenu }
             </div>
         );
     }

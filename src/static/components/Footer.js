@@ -89,6 +89,7 @@ class Footer extends Component {
                                 style = { this.props.muiTheme.app.footer.bottomNavigation.button.icon }
                             />
                         }
+                        onClick = { () => this.selectBottomNavigationItem(2) }
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
                 </BottomNavigation>

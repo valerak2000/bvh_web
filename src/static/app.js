@@ -52,7 +52,7 @@ class App extends Component {
         const loginClass = classNames({
             active: this.props.location && this.props.location.pathname === '/login'
         });
-        const aboutClass = classNames({
+        /*const aboutClass = classNames({
             active: this.props.location && this.props.location.pathname === '/about'
         });
         const customersClass = classNames({
@@ -63,11 +63,17 @@ class App extends Component {
         });
         const contactsClass = classNames({
             active: this.props.location && this.props.location.pathname === '/contacts'
-        });
+        });*/
+        var appStyle = { ...this.props.muiTheme.app };
+
+        if (this.props.location && this.props.location.pathname != null) {
+            let urls = this.props.location.pathname.split('/');
+            appStyle.width = urls.length <= 2 || urls[2] === '' ? '100%' : '80%';
+        }
 
         return (
             <div
-                style = { this.props.muiTheme.app }
+                style = { appStyle }
             >
                 { this.props.children }
             </div>
