@@ -70,17 +70,17 @@ class MapView extends Component {
                                 <li>
                                     Физические лица
                                     <ul>
-                                        <li><a href="/customers/fizlica/poluchenie_tekhnicheskikh_usloviy">Заключение договоров на холодное водоснабжение и водоотведение</a></li>
+                                        <li><a href="/customers/fizlica/zaklyuchenie_dogovorov">Заключение договоров на холодное водоснабжение и водоотведение</a></li>
                                         <li><a href="/customers/fizlica/peredacha_pokazaniy">Передача показаний счетчиков</a></li>
-                                        <li><a href="/customers/fizlica/oformlenie_aktov_o_podklyuchenii">Приборы учета</a></li>
+                                        <li><a href="/customers/fizlica/pribory_ucheta">Приборы учета</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     Юридические лица
                                     <ul>
-                                        <li><a href="/customers/urlica/poluchenie_tekhnicheskikh_usloviy">Заключение договоров на холодное водоснабжение и водоотведение</a></li>
-                                        <li><a href="/customers/urlica/oformlenie_aktov_o_podklyuchenii">Инспекция водных ресурсов</a></li>
+                                        <li><a href="/customers/urlica/zaklyuchenie_dogovorov">Заключение договоров на холодное водоснабжение и водоотведение</a></li>
                                         <li><a href="/customers/urlica/peredacha_pokazaniy">Передача показаний счетчиков</a></li>
+                                        <li><a href="/customers/urlica/inspekcia_vodnyh_resursov">Инспекция водных ресурсов</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="/customers/regulatory_doc">Нормативные документы</a></li>

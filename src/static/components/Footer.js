@@ -9,6 +9,7 @@ import FontIcon from 'material-ui/FontIcon';
 import Paper from 'material-ui/Paper';
 import MapsMap from 'material-ui/svg-icons/maps/map';
 import ActionHome from 'material-ui/svg-icons/action/home';
+import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
 import SvgIcon from 'material-ui/SvgIcon';
 import AuthorSign from '../images/author-sign.svg';
 
@@ -37,12 +38,27 @@ class Footer extends Component {
     }
 
     static defaultProps = {
-        location: undefined
+        location: undefined,
+        scrollStepInPx: 50,
+        delayInMs: 16.66,
     };
 
     state = {
         selectedIndex: 0,
+        intervalId: 0
     };
+    
+    scrollStep() {
+        if (window.pageYOffset === 0) {
+            clearInterval(this.state.intervalId);
+        }
+        window.scroll(0, window.pageYOffset - this.props.scrollStepInPx);
+    }
+    
+    scrollToTop() {
+        let intervalId = setInterval(this.scrollStep.bind(this), this.props.delayInMs);
+        this.setState({ intervalId: intervalId });
+    }
     
     selectBottomNavigationItem = (index) => {
         this.setState({ selectedIndex: index });
@@ -54,6 +70,8 @@ class Footer extends Component {
                 return this.props.dispatch(push('/map'));
             case 2:
                 return this.props.dispatch(push('/creator'));
+            case 3:
+                return this.scrollToTop();
             default:
                 return this.props.dispatch(push('/'));
         }
@@ -81,7 +99,7 @@ class Footer extends Component {
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
                     <BottomNavigationItem
-                        label = "Создание сайта — valera_k2000"
+                        label = "Разработка и поддержка — valera_k2000"
                         icon = {
                             <img
                                 src = { AuthorSign }
@@ -92,6 +110,17 @@ class Footer extends Component {
                         onClick = { () => this.selectBottomNavigationItem(2) }
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
+                    <BottomNavigationItem
+                        label = ""
+                        icon = { <NavigationArrowUpward /> }
+                        onClick = { () => this.selectBottomNavigationItem(3) }
+                        style = {{ 
+                            maxWidth: '7rem',
+                            position: 'absolute', 
+                            margin: 'auto 11rem auto',
+                        }}
+                    />
+                    
                 </BottomNavigation>
             </footer>
         );

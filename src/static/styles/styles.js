@@ -120,7 +120,8 @@ var muiTheme = exports.muiTheme = getMuiTheme({
                 position: 'space-around',
                 display: 'table',
                 button: {
-                    minWidth: '42rem',
+                    //minWidth: '31rem',
+                    maxWidth: 'none',
                     icon: {
                         height: 24,
                         width: '100%',
