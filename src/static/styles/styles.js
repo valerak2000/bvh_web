@@ -1,6 +1,8 @@
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import * as Colors from 'material-ui/styles/colors';
 
+import bgHeader from '../images/bg-header.png';
+
 var muiTheme = exports.muiTheme = getMuiTheme({
     fontFamily: 'pfbeausanspro-reg, sans-serif',
     global: {
@@ -16,6 +18,7 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         height: 'auto', //по высоте меню 
         width: '80%',
         flexDirection: 'unset',
+        //background: `url(${bgHeader}) no-repeat 0px 0px`,
         сard: {
             margin: '0 auto',
             //minHeight: '32rem',
@@ -34,6 +37,12 @@ var muiTheme = exports.muiTheme = getMuiTheme({
             },
         },
         header: {
+            /*background: {
+                image: `url(${ bgHeader })`,
+                repeat: 'no-repeat',
+                size: 'cover',
+                position: 'center'
+            },*/
             appBar: {
                 height: 80,
                 width: '100%',

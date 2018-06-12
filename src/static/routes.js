@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router';
 import { UnderConstructView, NotFoundView, LoginView, ProtectedView, MapView } from './containers';
 import { HomeView, ElektronnayaPriemnayaView, BlackoutsView, AvailableCapacityMapView } from './containers';
-import { CommonInfoView, LeadershipView, ContactView, VacanciesView, OurHistoryView, ZakupkiRaskrytieView } from './containers';
+import { CommonInfoView, LeadershipView, ContactsView, VacanciesView, OurHistoryView, ZakupkiRaskrytieView } from './containers';
 import { PoluchenieTekhnicheskikhUsloviyView, OformlenieDogovoraOPodklyucheniiView, OformlenieAktovOPodklyucheniiView, 
     FizlicaZaklyuchenieDogovorovView, FizlicaPeredachaPokazaniyView, FizlicaPriboryUchetaView,
     UrlicaZaklyuchenieDogovorovView, UrlicaPeredachaPokazaniyView, UrlicaInspekciaVodnyhResursovView,
@@ -25,7 +25,7 @@ class Routes extends Component {
                 <Route exact path = "/about" render={() => (<Redirect to = "/about/common_info"/>)}/>
                 <Route exact path = "/about/common_info" component = { CommonInfoView } />>
                 <Route exact path = "/about/leadership" component = { LeadershipView } />
-                <Route exact path = "/about/contacts" component = { ContactView } />
+                <Route exact path = "/about/contacts" component = { ContactsView } />
                 <Route exact path = "/about/vacancies" component = { VacanciesView } />
                 <Route exact path = "/about/history" component = { OurHistoryView } />
                 <Route exact path = "/about/zakupki_raskrytie_informacii" component = { ZakupkiRaskrytieView } />
@@ -54,10 +54,10 @@ class Routes extends Component {
                 <Route exact path = "/news" component = { NewsView } />
                 <Route exact path = "/news/smi_o_nashey_rabote" component = { NewsAboutUsView } />
 
-                <Route exact path = "/map" component = { MapView } />
-                <Route exact path = "/creator" component = { UnderConstructView } />
-                <Route exact path = "/login" component = { LoginView } />
-                <Route exact path = "/protected" component = { requireAuthentication(ProtectedView) } />
+                <Route path = "/map" component = { MapView } />
+                <Route path = "/creator" component = { UnderConstructView } />
+                <Route path = "/login" component = { LoginView } />
+                <Route path = "/protected" component = { requireAuthentication(ProtectedView) } />
                 <Route component = { NotFoundView } />
             </Switch>
         );

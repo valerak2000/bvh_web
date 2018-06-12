@@ -15,6 +15,10 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import LeftNavMenu from '../../components/LeftNavMenu';
 
+import bgHeader from '../../images/bg-header.png';
+
+const color = light;
+
 class Root extends Component {
     static propTypes = {
         store: PropTypes.shape().isRequired,
@@ -32,10 +36,10 @@ class Root extends Component {
 
     render() {
         const dev = (process.env.NODE_ENV != 'production');
-
+//"url('../../images/bg-header.png') no-repeat 0px 0px"
         return (
             <Provider store = { this.props.store }>
-                <MuiThemeProvider muiTheme = { theme.muiTheme }>
+                <MuiThemeProvider muiTheme = { appendMuiBackground(theme.muiTheme, color) }>
                     <div
                         style = { theme.muiTheme.global }
                     >
@@ -44,7 +48,10 @@ class Root extends Component {
                         />
                         <div 
                             id = 'app'
-                            style = {{ display: 'flex', width: '100%' }}
+                            style = {{ 
+                                display: 'flex', 
+                                width: '100%',
+                            }}
                         >
                             <LeftNavMenu
                                 { ...this.props }
@@ -66,7 +73,19 @@ class Root extends Component {
     }
 }
 /*
-    <div style={{ display: 'flex', width: '90%' }}>
+                            <div class="breadcrumb-bg"
+                                style = {{ 
+                                    width: '100%',
+                                    background: `url(${bgHeader}) no-repeat 0px 0px`,
+                                    padding: 0,
+                                    margin: '0 auto',
+                                    height: '300px',
+                                    backgroundSize: 'cover',
+                                    position: 'absolute'
+                                }}
+                            ></div>
+
+<div style={{ display: 'flex', width: '90%' }}>
                         <App>
                             <ConnectedRouter history = { this.props.history }>
                                 { routes }
