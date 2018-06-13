@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
-import FontIcon from 'material-ui/FontIcon';
-import Paper from 'material-ui/Paper';
+//import FontIcon from 'material-ui/FontIcon';
+//import Paper from 'material-ui/Paper';
 import MapsMap from 'material-ui/svg-icons/maps/map';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
-import SvgIcon from 'material-ui/SvgIcon';
+//import SvgIcon from 'material-ui/SvgIcon';
 import AuthorSign from '../images/author-sign.svg';
 
 //const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;

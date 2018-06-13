@@ -177,8 +177,8 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         selectedFontSize: 16,
     },
     iconPdf: {
-        width: 34,
-        height: 34,
+        width: 32,
+        height: 38,
         //display: 'block',
         //background: `url(${iconPdf}) no-repeat 0px 0px`,
         objectFit: 'contain',

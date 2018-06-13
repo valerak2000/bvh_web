@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+//import FlatButton from 'material-ui/FlatButton';
 //import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 import UnderConstruct from '../../../components/UnderConstruct';
+//import bgHeader from '../../../images/bg-header.png';
 
 class NewsView extends Component {
     static propTypes = {
