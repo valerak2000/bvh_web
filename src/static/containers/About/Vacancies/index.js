@@ -9,6 +9,7 @@ import FlatButton from 'material-ui/FlatButton';
 //import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 import UnderConstruct from '../../../components/UnderConstruct';
+import PdfLink from '../../../components/PdfLink';
 
 class VacanciesView extends Component {
     static propTypes = {
@@ -28,6 +29,7 @@ class VacanciesView extends Component {
                     titleStyle = { this.props.muiTheme.app.сard.title }
                 />
                 <CardText>
+                    <PdfLink />
                     <UnderConstruct />
                 </CardText>
             </Card>

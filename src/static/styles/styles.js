@@ -1,7 +1,8 @@
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import * as Colors from 'material-ui/styles/colors';
 
-import bgHeader from '../images/bg-header.png';
+//import bgHeader from '../images/bg-header.png';
+import iconPdf from '../images/pdf-icon.png';
 
 var muiTheme = exports.muiTheme = getMuiTheme({
     fontFamily: 'pfbeausanspro-reg, sans-serif',
@@ -174,5 +175,13 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         //height: 56,
         unselectedFontSize: 16,
         selectedFontSize: 16,
+    },
+    iconPdf: {
+        width: 34,
+        height: 34,
+        //display: 'block',
+        //background: `url(${iconPdf}) no-repeat 0px 0px`,
+        objectFit: 'contain',
+        margin: '0rem auto',
     },
   });

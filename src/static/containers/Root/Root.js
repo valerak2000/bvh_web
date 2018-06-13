@@ -17,8 +17,6 @@ import LeftNavMenu from '../../components/LeftNavMenu';
 
 import bgHeader from '../../images/bg-header.png';
 
-const color = light;
-
 class Root extends Component {
     static propTypes = {
         store: PropTypes.shape().isRequired,
@@ -39,7 +37,7 @@ class Root extends Component {
 //"url('../../images/bg-header.png') no-repeat 0px 0px"
         return (
             <Provider store = { this.props.store }>
-                <MuiThemeProvider muiTheme = { appendMuiBackground(theme.muiTheme, color) }>
+                <MuiThemeProvider muiTheme = { theme.muiTheme }>
                     <div
                         style = { theme.muiTheme.global }
                     >

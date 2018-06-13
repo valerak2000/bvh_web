@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
 class UnderConstruct extends Component {
@@ -18,5 +16,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
     };
 };
+
+UnderConstruct.muiName = 'UnderConstruct';
 
 export default muiThemeable()(connect(mapStateToProps)(UnderConstruct));
