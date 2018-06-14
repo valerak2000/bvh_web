@@ -29,7 +29,6 @@ class VacanciesView extends Component {
                     titleStyle = { this.props.muiTheme.app.сard.title }
                 />
                 <CardText>
-                    <PdfLink />
                     <UnderConstruct />
                 </CardText>
             </Card>

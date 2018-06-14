@@ -44,11 +44,11 @@ class ContactsView extends Component {
     handleExpandChange = (expanded) => {
         this.setState({ expanded: expanded} );
     };
-    
+
     handleExpandChangeAbon = (expanded) => {
         this.setState({ expandedAbon: expanded} );
     };
-    
+
     render() {
         const { file, numPages } = this.state;
 
@@ -86,7 +86,7 @@ class ContactsView extends Component {
                         />
                     </CardMedia>
                     <CardMedia
-                        style= {{
+                        style = {{
                             width: '40%',
                             margin: '0 auto'
                         }}
@@ -104,14 +104,33 @@ class ContactsView extends Component {
                         адрес сайта: <a href = "http://www.brhvh.ru">http://www.brhvh.ru</a><br />
                         адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a></p>
                         <p><strong>Телефон:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}><strong>8 (86156) 31-194</strong> — приемная<br />
-                        <strong>8 (86156) 35-200</strong> — бухгалтерия<br />
-                        <strong>8 (86156) 35-117</strong> — диспетчер</p>
-                        <p><strong>Режим работы:</strong></p>
+                        <p style = {{ paddingLeft: '4rem', }}>
+                            <strong>8(86156) 31-194</strong> — приемная<br />
+                            <strong>8(86156) 35-200</strong> — бухгалтерия<br />
+                            <strong>8(86156) 35-117</strong> — диспетчер
+                        </p>
+                        <p><strong>График работы:</strong></p>
                         <p style = {{ paddingLeft: '4rem', }}>Понедельник-пятница с 08-00 до 16-00 перерыв с 12-00 до 13-00<br />
                             Выходной: Суббота и Воскресенье<br />
                             <strong>Диспетчерская служба круглосуточно, без перерыва и выходных</strong>
                         </p>
+                        <p>
+                            Приемная директора: 8(86156) 31-194<br />
+                        <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a><br />
+                            Прием населения: каждый XXX с XX-00 до XX-00.</p>
+                        <p>
+                            Производственно-технический отдел: 8(86156) 21-809<br />
+                            Прием населения: XXX с 08-00 до 16-00.
+                        </p>
+                        <p>
+                            Вывоз жидких коммунальных стоков: 8()
+                        </p>
+                        <p>
+                            Лаборатория: 8(86156) 31-010
+                        </p>
+                        <p>Юридический отдел: 8(86156) 21-809</p>
+                        <p>Отдел кадров: 8(86156) 31-194</p>
+                        <p>Главный инженер: 8(86156) 31-194</p>
                         <PdfLink 
                             href = { rekvisity_ooo_bvh } 
                             label = "Реквизиты ООО «Брюховецкое водопроводное хозяйство»"
@@ -158,7 +177,7 @@ class ContactsView extends Component {
                         <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ул. Советская, 56, здание БТИ<br /></p>
                         <p><strong>Телефон:</strong></p>
                         <p style = {{ paddingLeft: '4rem', }}><strong>8 (86156) 22-257</strong><br /></p>
-                        <p><strong>Режим работы:</strong></p>
+                        <p><strong>График работы:</strong></p>
                         <p style = {{ paddingLeft: '4rem', }}>Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00<br />
                         Выходной: Суббота и Воскресенье</p>
                     </CardText>

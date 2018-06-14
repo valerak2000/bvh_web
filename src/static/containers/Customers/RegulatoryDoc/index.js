@@ -17,6 +17,10 @@ import pp_354 from '../../../../files/media/potrebiteliam/pp_354.pdf'
 import postanovlenie_no644_v_redakcii_ot_26_12_2016 from '../../../../files/media/potrebiteliam/postanovlenie_no644_v_redakcii_ot_26.12.2016.pdf'
 import pp_645 from '../../../../files/media/potrebiteliam/pp_645.pdf'
 import pp_776 from '../../../../files/media/potrebiteliam/pp_776.pdf'
+import poryadok_vzaimodeystviya_1027_47 from '../../../../files/media/potrebiteliam/poryadok_vzaimodeystviya_1027-47.pdf'
+import sanitarnye_pravila from '../../../../files/media/potrebiteliam/sanitarnye_pravila.pdf'
+import sp_vnutrenniy_vodoprovod_i_kanalizaciya_zdaniy from '../../../../files/media/potrebiteliam/sp_vnutrenniy_vodoprovod_i_kanalizaciya_zdaniy.pdf'
+import administrativnyy_reglament from '../../../../files/media/potrebiteliam/8_administrativnyy_reglament.pdf'
 
 class RegulatoryDocView extends Component {
     static propTypes = {
@@ -78,6 +82,35 @@ class RegulatoryDocView extends Component {
                                     label = "Постановление правительства № 776"
                                 />
                             </li>
+                            <li>
+                                <PdfLink 
+                                    href = { poryadok_vzaimodeystviya_1027_47 } 
+                                    label = "Постановление правительства № 1027/47"
+                                />
+                            </li>
+                            <li>
+                                <PdfLink 
+                                    href = { sanitarnye_pravila } 
+                                    label = "Постановление Минздрава РФ № 24"
+                                />
+                            </li>
+                            <li>
+                                <PdfLink 
+                                    href = { sp_vnutrenniy_vodoprovod_i_kanalizaciya_zdaniy } 
+                                    label = "Свод правил. Внутренний водопровод и канализация зданий."
+                                />
+                            </li>
+                            <li>
+                                <PdfLink 
+                                    href = { administrativnyy_reglament } 
+                                    label = "Административный Регламент по выдаче:"
+                                />
+                                <ul>
+                                    <li>Технических условий</li>
+                                    <li>Справок о выполнении технических условий</li>
+                                    <li>Предоставления холодного водоснабжения и водоотведения физическим и юридическим лицам</li>
+                                </ul>
+                            </li>
                         </ol>
                     </ul>
                 </CardText>
@@ -94,23 +127,6 @@ const mapStateToProps = (state) => {
 export default muiThemeable()(connect(mapStateToProps)(RegulatoryDocView));
 export { RegulatoryDocView as RegulatoryDocViewNotConnected };
 /*
-                            <li><a href="/sites/default/files/docs/potrebiteliam/poryadok_vzaimodeystviya_1027-47.pdf"><span style="font-size:16px">Постановление правительства № 1027/47</span></a></li>
-                            <li><a href="/sites/default/files/docs/potrebiteliam/sanitarnye_pravila.docx"><span style="font-size:16px">Постановление Минздрава РФ № 24</span></a></li>
-                            <li><a href="/sites/default/files/docs/potrebiteliam/sp_vnutrenniy_vodoprovod_i_kanalizaciya_zdaniy.docx"><span style="font-size:16px">Свод правил. Внутренний водопровод и канализация зданий.</span></a></li>
-                            <li>
-                                <p><span style="font-size:16px"><a href="/sites/default/files/docs/potrebiteliam/PTO/8_administrativnyy_reglament.doc">Административный Регламент</a> по выдаче:</span></p>
-                            </li>
-
-                    <ul>
-                        <li><span style="font-size:16px">Технических условий</span></li>
-                        <li><span style="font-size:16px">Справок о выполнении технических условий</span></li>
-                    </ul>
-                    <p><span style="font-size:16px">А так же предоставлении: </span></p>
-                    <ul>
-                        <li><span style="font-size:16px">Холодного водоснабжения и водоотведения физическим и юридическим лицам</span></li>
-                    </ul>
-
-                    <a href="/sites/default/files/docs/potrebiteliam/federalnyy_zakon_o_vodosnabzhenii_i_vodootvedenii.docx">Федеральный закон № 416</a></span>
 
 <a href = { rekvisity_ooo_bvh } >Реквизиты ООО «Брюховецкое водопроводное хозяйство»</a>
 */
