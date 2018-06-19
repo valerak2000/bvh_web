@@ -10,7 +10,7 @@ import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigati
 import MapsMap from 'material-ui/svg-icons/maps/map';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
-//import SvgIcon from 'material-ui/SvgIcon';
+import AvRecentActors from 'material-ui/svg-icons/av/recent-actors';
 import AuthorSign from '../images/author-sign.svg';
 
 //const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
@@ -69,8 +69,11 @@ class Footer extends Component {
             case 1:
                 return this.props.dispatch(push('/map'));
             case 2:
-                return this.props.dispatch(push('/creator'));
+                return this.props.dispatch(push('/partners'));
             case 3:
+            return this.props.dispatch(push('mailto:valera_k2000@inbox.ru'));
+//            return this.props.dispatch(push('/creator'));
+            case 4:
                 return this.scrollToTop();
             default:
                 return this.props.dispatch(push('/'));
@@ -99,7 +102,22 @@ class Footer extends Component {
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
                     <BottomNavigationItem
-                        label = "Разработка и поддержка — valera_k2000"
+                        label = "Партнеры"
+                        icon = { 
+                            <div>
+                            <AvRecentActors /> 
+                            <ul>
+                            <li><a href="http://prim-ahtarsk.ru/" target="_blank">Администрация</a></li>
+                            <li><a href="http://bruts.ru/" target="_blank">Теплосети</a></li>
+                            </ul>                    
+
+                            </div>
+                        }
+                        onClick = { () => this.selectBottomNavigationItem(2) }
+                        style = { this.props.muiTheme.app.footer.bottomNavigation.button }
+                    />
+                    <BottomNavigationItem
+                        label = "Webmaster"
                         icon = {
                             <img
                                 src = { AuthorSign }
@@ -107,13 +125,13 @@ class Footer extends Component {
                                 style = { this.props.muiTheme.app.footer.bottomNavigation.button.icon }
                             />
                         }
-                        onClick = { () => this.selectBottomNavigationItem(2) }
+                        onClick = { () => this.selectBottomNavigationItem(3) }
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
                     <BottomNavigationItem
                         label = ""
                         icon = { <NavigationArrowUpward /> }
-                        onClick = { () => this.selectBottomNavigationItem(3) }
+                        onClick = { () => this.selectBottomNavigationItem(4) }
                         style = {{ 
                             maxWidth: '7rem',
                             position: 'absolute', 
