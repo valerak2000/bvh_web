@@ -69,14 +69,16 @@ class Footer extends Component {
             case 1:
                 return this.props.dispatch(push('/map'));
             case 2:
-                return this.props.dispatch(push('/partners'));
+                return this.props.dispatch(push('http://brhts.ru/'));
+//                return this.props.dispatch(push('/partners'));
             case 3:
             return this.props.dispatch(push('mailto:valera_k2000@inbox.ru'));
 //            return this.props.dispatch(push('/creator'));
             case 4:
                 return this.scrollToTop();
             default:
-                return this.props.dispatch(push('/'));
+                return;
+//                return this.props.dispatch(push('/'));
         }
     }
 
@@ -104,14 +106,7 @@ class Footer extends Component {
                     <BottomNavigationItem
                         label = "Партнеры"
                         icon = { 
-                            <div>
                             <AvRecentActors /> 
-                            <ul>
-                            <li><a href="http://prim-ahtarsk.ru/" target="_blank">Администрация</a></li>
-                            <li><a href="http://bruts.ru/" target="_blank">Теплосети</a></li>
-                            </ul>                    
-
-                            </div>
                         }
                         onClick = { () => this.selectBottomNavigationItem(2) }
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
@@ -145,6 +140,12 @@ class Footer extends Component {
     }
 };
 /*
+                            <div>
+                            Партнеры
+                            <ul>
+                            <li><a href="http://brhts.ru/" target="_blank">Теплосети</a></li>
+                            </ul>                    
+                            </div>
 */
 
 const mapStateToProps = (state, ownProps) => {
