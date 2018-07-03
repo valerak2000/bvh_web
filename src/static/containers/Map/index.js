@@ -39,10 +39,10 @@ class MapView extends Component {
                             <br />
                             <ul>
                                 <li><a href="/">Главная</a></li>
-                                <li><a href="/home/elektronnaya_priemnaya">Электронная приемная</a></li>
-                                <li><a href="/home/blackouts">Отключения</a></li>
-                                <li><a href="/home/available_capacity_map">Карта доступной мощности</a></li>
-                                <li><a href="/home/map">Карта сайта</a></li>
+                                <li><a href="/elektronnaya_priemnaya">Электронная приемная</a></li>
+                                <li><a href="/blackouts">Отключения</a></li>
+                                <li><a href="/available_capacity_map">Карта доступной мощности</a></li>
+                                <li><a href="/map">Карта сайта</a></li>
                             </ul>        
                         </div>
                         <div>

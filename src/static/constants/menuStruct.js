@@ -7,13 +7,13 @@ export const MENU_HOME = [
         key: 'home',
         primaryText: 'Главная',
         leftIcon: (<ActionHome />),
-        dataRoute: '/home',
+        dataRoute: '/',
     },
     {
         key: 'elektronnaya_priemnaya',
         primaryText: 'Электронная приемная',
         leftIcon: null,
-        dataRoute: '/home/elektronnaya_priemnaya',
+        dataRoute: '/elektronnaya_priemnaya',
     },
     {
         key: 'blackouts',
@@ -21,13 +21,13 @@ export const MENU_HOME = [
         secondaryText: 'Информация об аварийном отключении водоснабжения',
         secondaryTextLines: 2,
         leftIcon: null,
-        dataRoute: '/home/blackouts',
+        dataRoute: '/blackouts',
     },
     {
         key: 'available_capacity_map',
         primaryText: 'Карта доступной мощности',
         leftIcon: null,
-        dataRoute: '/home/available_capacity_map',
+        dataRoute: '/available_capacity_map',
     },
 ];
 

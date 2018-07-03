@@ -17,11 +17,7 @@ class Routes extends Component {
     render() {
         return (
             <Switch>
-                <Route exact path = "/" render={() => (<Redirect to = "/home"/>)}/>
-                <Route exact path = "/home" component = { HomeView } />
-                <Route exact path = "/home/elektronnaya_priemnaya" component = { ElektronnayaPriemnayaView } />
-                <Route exact path = "/home/blackouts" component = { BlackoutsView } />
-                <Route exact path = "/home/available_capacity_map" component = { AvailableCapacityMapView } />
+                <Route exact path = "/" component = { HomeView } />
                 <Route exact path = "/about" render={() => (<Redirect to = "/about/common_info"/>)}/>
                 <Route exact path = "/about/common_info" component = { CommonInfoView } />>
                 <Route exact path = "/about/leadership" component = { LeadershipView } />
@@ -54,6 +50,9 @@ class Routes extends Component {
                 <Route exact path = "/news" component = { NewsView } />
                 <Route exact path = "/news/smi_o_nashey_rabote" component = { NewsAboutUsView } />
 
+                <Route path = "/elektronnaya_priemnaya" component = { ElektronnayaPriemnayaView } />
+                <Route path = "/blackouts" component = { BlackoutsView } />
+                <Route path = "/available_capacity_map" component = { AvailableCapacityMapView } />
                 <Route path = "/map" component = { MapView } />
                 <Route path = "/creator" component = { UnderConstructView } />
                 <Route path = "/login" component = { LoginView } />
