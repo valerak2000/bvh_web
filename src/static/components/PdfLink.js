@@ -34,6 +34,7 @@ class PdfLink extends Component {
                 href = { href } 
                 target = "_blank"
                 label = { label }
+                labelStyle = { this.props.muiTheme.labelPdf }
                 icon = {    
                     <img
                         src = { iconPdf }

@@ -5,10 +5,11 @@ import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
-import {List, ListItem} from 'material-ui/List';
+import { List, ListItem } from 'material-ui/List';
 //import Divider from 'material-ui/Divider';
 
-import { HOME_MENU, ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants'
+import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, 
+    ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants'
 import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../constants/menuStruct'
 
 function Menu(props) {
@@ -154,7 +155,6 @@ class LeftNavMenu extends Component {
         }
 
         var leftmenu = null;
-
         switch (activeMenuTop) {
             case HOME_MENU:
                 leftmenu =
@@ -162,6 +162,30 @@ class LeftNavMenu extends Component {
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
+                    />;
+                break;
+            case HOME_MENU_EP:
+                leftmenu =
+                    <Menu 
+                        items = { MENU_HOME }
+                        onClick = { this.handleMenuClick }
+                        initiallyFocused = "elektronnaya_priemnaya"
+                    />;
+                break;
+            case HOME_MENU_BO:
+                leftmenu =
+                    <Menu 
+                        items = { MENU_HOME }
+                        onClick = { this.handleMenuClick }
+                        initiallyFocused = "blackouts"
+                    />;
+                break;
+            case HOME_MENU_CM:
+                leftmenu =
+                    <Menu 
+                        items = { MENU_HOME }
+                        onClick = { this.handleMenuClick }
+                        initiallyFocused = "available_capacity_map"
                     />;
                 break;
             case ABOUT_MENU:

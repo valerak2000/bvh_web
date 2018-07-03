@@ -184,4 +184,8 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         objectFit: 'contain',
         margin: '0rem auto',
     },
+    labelPdf: {
+        fontSize: 16,
+        fontWeight: 500,
+    },
   });

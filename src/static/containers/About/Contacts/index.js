@@ -100,7 +100,7 @@ class ContactsView extends Component {
                         style = { this.props.muiTheme.app.сard.text }
                     >
                         <p><strong>Адрес:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ст. Брюховецкая, ул. О. Кошевого, 196<br />
+                        <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
                         адрес сайта: <a href = "http://www.brhvh.ru">http://www.brhvh.ru</a><br />
                         адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a></p>
                         <p><strong>График работы:</strong></p>

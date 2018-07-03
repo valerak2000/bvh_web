@@ -112,7 +112,7 @@ class Footer extends Component {
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
                     <BottomNavigationItem
-                        label = "Webmaster"
+                        label = "Разработка сайта"
                         icon = {
                             <img
                                 src = { AuthorSign }
@@ -133,7 +133,6 @@ class Footer extends Component {
                             margin: 'auto 11rem auto',
                         }}
                     />
-                    
                 </BottomNavigation>
             </footer>
         );
