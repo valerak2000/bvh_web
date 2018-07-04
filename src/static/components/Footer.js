@@ -72,7 +72,8 @@ class Footer extends Component {
                 return this.props.dispatch(push('http://brhts.ru/'));
 //                return this.props.dispatch(push('/partners'));
             case 3:
-            return this.props.dispatch(push('mailto:valera_k2000@inbox.ru'));
+                window.location = 'mailto:valera_k2000@inbox.ru';
+                return;
 //            return this.props.dispatch(push('/creator'));
             case 4:
                 return this.scrollToTop();
@@ -120,7 +121,8 @@ class Footer extends Component {
                                 style = { this.props.muiTheme.app.footer.bottomNavigation.button.icon }
                             />
                         }
-                        onClick = { () => this.selectBottomNavigationItem(3) }
+                        href = "mailto:valera_k2000@inbox.ru"
+                        target = "_top"
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
                     <BottomNavigationItem
@@ -139,6 +141,9 @@ class Footer extends Component {
     }
 };
 /*
+"https://github.com/valerak2000/bvh_web"
+                        onClick = { () => this.selectBottomNavigationItem(3) }
+
                             <div>
                             Партнеры
                             <ul>
