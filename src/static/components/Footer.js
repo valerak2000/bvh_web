@@ -121,10 +121,11 @@ class Footer extends Component {
                                 style = { this.props.muiTheme.app.footer.bottomNavigation.button.icon }
                             />
                         }
-                        href = "mailto:valera_k2000@inbox.ru"
                         target = "_top"
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
-                    />
+                    >
+                     <a href="mailto:someone@example.com" target="_top">Send Mail</a>
+                    </BottomNavigationItem>
                     <BottomNavigationItem
                         label = ""
                         icon = { <NavigationArrowUpward /> }
@@ -141,6 +142,8 @@ class Footer extends Component {
     }
 };
 /*
+                        href = "mailto:valera_k2000@inbox.ru"
+
 "https://github.com/valerak2000/bvh_web"
                         onClick = { () => this.selectBottomNavigationItem(3) }
 
