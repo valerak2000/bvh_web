@@ -69,10 +69,11 @@ class Footer extends Component {
             case 1:
                 return this.props.dispatch(push('/map'));
             case 2:
-                return this.props.dispatch(push('http://brhts.ru/'));
-//                return this.props.dispatch(push('/partners'));
+                //return this.props.dispatch(push('http://brhts.ru/'));
+                return this.props.dispatch(push('/partners'));
             case 3:
                 window.location = 'mailto:valera_k2000@inbox.ru';
+                //return this.props.dispatch(push('mailto:valera_k2000@inbox.ru'));
                 return;
 //            return this.props.dispatch(push('/creator'));
             case 4:
@@ -113,7 +114,11 @@ class Footer extends Component {
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
                     <BottomNavigationItem
-                        label = "Разработка сайта"
+                        label = {
+                            <div>
+                                <a href="mailto:valera_k2000@inbox.ru">Разработка сайта</a>
+                            </div>
+                        }
                         icon = {
                             <img
                                 src = { AuthorSign }
@@ -121,11 +126,8 @@ class Footer extends Component {
                                 style = { this.props.muiTheme.app.footer.bottomNavigation.button.icon }
                             />
                         }
-                        target = "_top"
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
-                    >
-                     <a href="mailto:someone@example.com" target="_top">Send Mail</a>
-                    </BottomNavigationItem>
+                    />
                     <BottomNavigationItem
                         label = ""
                         icon = { <NavigationArrowUpward /> }
@@ -142,7 +144,10 @@ class Footer extends Component {
     }
 };
 /*
-                        href = "mailto:valera_k2000@inbox.ru"
+                     <a href="mailto:someone@example.com" target="_top">Send Mail</a>
+
+                    href = "mailto:valera_k2000@inbox.ru"
+                    target = "_top"
 
 "https://github.com/valerak2000/bvh_web"
                         onClick = { () => this.selectBottomNavigationItem(3) }

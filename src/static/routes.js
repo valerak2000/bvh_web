@@ -49,7 +49,7 @@ class Routes extends Component {
                 <Route exact path = "/customers/services/prochie_uslugi" component = { ProchieUslugiView } />
                 <Route exact path = "/news" component = { NewsView } />
                 <Route exact path = "/news/smi_o_nashey_rabote" component = { NewsAboutUsView } />
-
+                <Route path = '/partners' component = { () => window.location = 'http://brhts.ru/' }/>
                 <Route path = "/elektronnaya_priemnaya" component = { ElektronnayaPriemnayaView } />
                 <Route path = "/blackouts" component = { BlackoutsView } />
                 <Route path = "/available_capacity_map" component = { AvailableCapacityMapView } />
@@ -64,3 +64,5 @@ class Routes extends Component {
 }
 
 export default Routes
+//<Route path = '/partners' component = { () => window.location = 'http://brhts.ru/' }/>
+//                <Redirect push={ true } to="/pathtoredirect" />
