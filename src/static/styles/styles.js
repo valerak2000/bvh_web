@@ -128,10 +128,12 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         footer: {
             bottomNavigation: {
                 position: 'space-around',
-                display: 'table',
+                height: '8rem',
+                //display: 'table',
                 button: {
                     //minWidth: '31rem',
-                    maxWidth: 'none',
+                    //maxWidth: 'none',
+                    maxWidth: '24rem',
                     icon: {
                         height: 24,
                         width: '100%',

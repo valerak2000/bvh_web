@@ -30,13 +30,12 @@ class MapView extends Component {
                 <CardText>
                     <div 
                         style = {{ 
-                            display: 'flex',
+                            display: 'block',
                             margin: '0 auto',
                         }}
                     >
                         <div>
-                            <br />
-                            <br />
+                            <h4>ООО «Брюховецкое водопроводное хозяйство»</h4>
                             <ul>
                                 <li><a href="/">Главная</a></li>
                                 <li><a href="/elektronnaya_priemnaya">Электронная приемная</a></li>

@@ -9,7 +9,8 @@ import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigati
 //import Paper from 'material-ui/Paper';
 import MapsMap from 'material-ui/svg-icons/maps/map';
 import ActionHome from 'material-ui/svg-icons/action/home';
-import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
+//import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
+//import NavigationExpandLess from 'material-ui/svg-icons/navigation/expand-less';
 import AvRecentActors from 'material-ui/svg-icons/av/recent-actors';
 import AuthorSign from '../images/author-sign.svg';
 
@@ -39,26 +40,11 @@ class Footer extends Component {
 
     static defaultProps = {
         location: undefined,
-        scrollStepInPx: 50,
-        delayInMs: 16.66,
     };
 
     state = {
         selectedIndex: 0,
-        intervalId: 0
     };
-    
-    scrollStep() {
-        if (window.pageYOffset === 0) {
-            clearInterval(this.state.intervalId);
-        }
-        window.scroll(0, window.pageYOffset - this.props.scrollStepInPx);
-    }
-    
-    scrollToTop() {
-        let intervalId = setInterval(this.scrollStep.bind(this), this.props.delayInMs);
-        this.setState({ intervalId: intervalId });
-    }
     
     selectBottomNavigationItem = (index) => {
         this.setState({ selectedIndex: index });
@@ -69,15 +55,12 @@ class Footer extends Component {
             case 1:
                 return this.props.dispatch(push('/map'));
             case 2:
-                //return this.props.dispatch(push('http://brhts.ru/'));
-                return this.props.dispatch(push('/partners'));
+                return window.open('http://brhts.ru/');
+                //this.props.dispatch(push('/partners'));
             case 3:
-                window.location = 'mailto:valera_k2000@inbox.ru';
-                //return this.props.dispatch(push('mailto:valera_k2000@inbox.ru'));
-                return;
-//            return this.props.dispatch(push('/creator'));
-            case 4:
-                return this.scrollToTop();
+                //window.location.href = "mailto:valera_k2000@inbox.ru";
+                //return window.open("mailto:valera_k2000@inbox.ru");
+                return this.props.dispatch(push('/creator'));
             default:
                 return;
 //                return this.props.dispatch(push('/'));
@@ -114,11 +97,7 @@ class Footer extends Component {
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
                     <BottomNavigationItem
-                        label = {
-                            <div>
-                                <a href="mailto:valera_k2000@inbox.ru">Разработка сайта</a>
-                            </div>
-                        }
+                        label = "Сайт создан: valera_k2000"
                         icon = {
                             <img
                                 src = { AuthorSign }
@@ -126,17 +105,8 @@ class Footer extends Component {
                                 style = { this.props.muiTheme.app.footer.bottomNavigation.button.icon }
                             />
                         }
+                        onClick = { () => this.selectBottomNavigationItem(3) }
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
-                    />
-                    <BottomNavigationItem
-                        label = ""
-                        icon = { <NavigationArrowUpward /> }
-                        onClick = { () => this.selectBottomNavigationItem(4) }
-                        style = {{ 
-                            maxWidth: '7rem',
-                            position: 'absolute', 
-                            margin: 'auto 11rem auto',
-                        }}
                     />
                 </BottomNavigation>
             </footer>
@@ -144,7 +114,22 @@ class Footer extends Component {
     }
 };
 /*
-                     <a href="mailto:someone@example.com" target="_top">Send Mail</a>
+                    <BottomNavigationItem
+                        label = ""
+                        icon = { <NavigationArrowUpward /> }
+                        onClick = { () => this.selectBottomNavigationItem(4) }
+                        style = {{ 
+                            position: 'absolute', 
+                            margin: 'auto 25rem auto',
+                            maxWidth: '7rem',
+                        }}
+                    />
+
+label = {
+                            <div>
+                                <a href="mailto:valera_k2000@inbox.ru">Разработка сайта</a>
+                            </div>
+                        }
 
                     href = "mailto:valera_k2000@inbox.ru"
                     target = "_top"

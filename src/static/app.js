@@ -11,6 +11,8 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer'
 import { Link } from 'react-router'
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
 
 class App extends Component {
     static propTypes = {
@@ -24,9 +26,16 @@ class App extends Component {
     };
 
     static defaultProps = {
-        location: undefined
+        location: undefined,
+        scrollStepInPx: 50,
+        delayInMs: 16.66,
     };
 
+    state = {
+        intervalId: 0,
+        goTopEnable: false,
+    };
+    
     static get contextTypes() {
         return {
             muiTheme: React.PropTypes.object.isRequired,
@@ -36,12 +45,36 @@ class App extends Component {
 
     constructor(props) {
         super(props);
+        this.scrollChange = this.scrollChange.bind(this);
     }
 
     componentDidMount() {
-    //    console.log('App');
+        window.addEventListener("scroll", this.scrollChange);
     }
 
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.scrollChange);
+    }
+
+    scrollChange() {
+        const notTop = window.pageYOffset === 0 ? false : true;
+        if (notTop !== this.state.goTopEnable) {
+            this.setState({ goTopEnable: notTop });
+        }
+    }
+    
+    scrollStep() {
+        if (window.pageYOffset === 0) {
+            clearInterval(this.state.intervalId);
+        }
+        window.scroll(0, window.pageYOffset - this.props.scrollStepInPx);
+    }
+    
+    scrollToTop() {
+        let intervalId = setInterval(this.scrollStep.bind(this), this.props.delayInMs);
+        this.setState({ intervalId: intervalId });
+    }
+    
     render() {
         const homeClass = classNames({
             active: this.props.location && this.props.location.pathname === '/'
@@ -75,6 +108,21 @@ class App extends Component {
             <div
                 style = { appStyle }
             >
+                <FloatingActionButton
+                    style = {{
+                        margin: 0,
+                        top: 'auto',
+                        right: 20,
+                        bottom: 20,
+                        left: 'auto',
+                        position: 'fixed',
+                    }}
+                    mini = { true }
+                    onClick = { () => this.scrollToTop() }
+                    disabled = { !this.state.goTopEnable }
+                >
+                    <NavigationArrowUpward />
+                </FloatingActionButton>
                 { this.props.children }
             </div>
         );

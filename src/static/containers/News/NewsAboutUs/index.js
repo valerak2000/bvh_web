@@ -28,7 +28,19 @@ class NewsAboutUsView extends Component {
                     titleStyle = { this.props.muiTheme.app.сard.title }
                 />
                 <CardText>
-                    <UnderConstruct />
+                    <a 
+                        href="http://kbereg.info/iz-otchetnogo-doklada-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-otkry-toj-sessii-soveta-munitsipal-nogo-obrazovaniya-bryuhovetskij-rajon/" 
+                        target = "_blank"
+                    >
+                        06.03.2017. kbereg.info - Из отчетного доклада главы Брюховецкого района Владимира Мусатова на открытой сессии Совета муниципального образования Брюховецкий район.
+                    </a>
+                    <br/>
+                    <a 
+                        href="http://kbereg.info/otvety-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-voprosy-grazhdan/" 
+                        target = "_blank"
+                    >
+                        09.07.2018. kbereg.info - Ответы главы Брюховецкого района Владимира Мусатова на вопросы граждан.
+                    </a>
                 </CardText>
             </Card>
         );
