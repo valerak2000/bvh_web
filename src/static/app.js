@@ -76,6 +76,7 @@ class App extends Component {
     }
     
     render() {
+        const { goTopEnable } = this.state;
         const homeClass = classNames({
             active: this.props.location && this.props.location.pathname === '/'
         });
@@ -108,21 +109,24 @@ class App extends Component {
             <div
                 style = { appStyle }
             >
-                <FloatingActionButton
-                    style = {{
-                        margin: 0,
-                        top: 'auto',
-                        right: 20,
-                        bottom: 20,
-                        left: 'auto',
-                        position: 'fixed',
-                    }}
-                    mini = { true }
-                    onClick = { () => this.scrollToTop() }
-                    disabled = { !this.state.goTopEnable }
-                >
-                    <NavigationArrowUpward />
-                </FloatingActionButton>
+                { 
+                    goTopEnable && 
+                    <FloatingActionButton
+                        style = {{
+                            margin: 0,
+                            top: 'auto',
+                            right: 20,
+                            bottom: 20,
+                            left: 'auto',
+                            position: 'fixed',
+                        }}
+                        mini = { true }
+                        onClick = { () => this.scrollToTop() }
+                        zDepth= { 2 }
+                    >
+                        <NavigationArrowUpward />
+                    </FloatingActionButton>
+                }
                 { this.props.children }
             </div>
         );
@@ -140,11 +144,4 @@ export default muiThemeable()(connect(mapStateToProps)(App));
 export { App as AppNotConnected };
 
 /*
-                    docked={true}
-                    open={true}
-                    swipeAreaWidth={0}
-                    zDepth={0}
-                    disableSwipeToOpen={false}
-                    openSecondary={false}
-                    
 */

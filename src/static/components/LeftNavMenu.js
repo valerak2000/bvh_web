@@ -8,7 +8,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import { List, ListItem } from 'material-ui/List';
 //import Divider from 'material-ui/Divider';
 
-import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, 
+import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ,
     ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants'
 import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../constants/menuStruct'
 
@@ -188,6 +188,14 @@ class LeftNavMenu extends Component {
                         initiallyFocused = "available_capacity_map"
                     />;
                 break;
+            case HOME_MENU_FQ:
+                leftmenu =
+                    <Menu 
+                        items = { MENU_HOME }
+                        onClick = { this.handleMenuClick }
+                        initiallyFocused = "faq"
+                    />;
+                break;
             case ABOUT_MENU:
                 leftmenu =
                     <Menu 
@@ -217,7 +225,7 @@ class LeftNavMenu extends Component {
         var leftNav = { ...this.props.muiTheme.app.leftNav };
 
         if (leftmenu != null) {
-            leftNav.width = '20%';
+            leftNav.width = '28%';
         } else {
             leftNav.width = '0%';
         }

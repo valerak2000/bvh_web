@@ -11,7 +11,8 @@ import MapsMap from 'material-ui/svg-icons/maps/map';
 import ActionHome from 'material-ui/svg-icons/action/home';
 //import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
 //import NavigationExpandLess from 'material-ui/svg-icons/navigation/expand-less';
-import AvRecentActors from 'material-ui/svg-icons/av/recent-actors';
+//import AvRecentActors from 'material-ui/svg-icons/av/recent-actors';
+import CommunicationBusiness from 'material-ui/svg-icons/communication/business';
 import AuthorSign from '../images/author-sign.svg';
 
 //const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
@@ -90,14 +91,12 @@ class Footer extends Component {
                     />
                     <BottomNavigationItem
                         label = "Партнеры"
-                        icon = { 
-                            <AvRecentActors /> 
-                        }
+                        icon = { <CommunicationBusiness /> }
                         onClick = { () => this.selectBottomNavigationItem(2) }
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
                     <BottomNavigationItem
-                        label = "Сайт создан: valera_k2000"
+                        label = "Powered by valera_k2000"
                         icon = {
                             <img
                                 src = { AuthorSign }

@@ -1,6 +1,12 @@
 import React from 'react';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import CommunicationRssFeed from 'material-ui/svg-icons/communication/rss-feed';
+import ActionAnnouncement from 'material-ui/svg-icons/action/announcement';
+import ActionQuestionAnswer from 'material-ui/svg-icons/action/question-answer';
+//import ActionSpeakerNotes from 'material-ui/svg-icons/communication/speaker-notes';
+//import Conversation from '../images/conversation.svg';
+import CommunicationContactMail from 'material-ui/svg-icons/communication/contact-mail';
+import MapsPlace from 'material-ui/svg-icons/maps/place';
 
 export const MENU_HOME = [
     {
@@ -12,7 +18,7 @@ export const MENU_HOME = [
     {
         key: 'elektronnaya_priemnaya',
         primaryText: 'Электронная приемная',
-        leftIcon: null,
+        leftIcon: (<CommunicationContactMail />),
         dataRoute: '/elektronnaya_priemnaya',
     },
     {
@@ -20,14 +26,20 @@ export const MENU_HOME = [
         primaryText: 'Отключения',
         secondaryText: 'Информация об аварийном отключении водоснабжения',
         secondaryTextLines: 2,
-        leftIcon: null,
+        leftIcon: (<ActionAnnouncement />),
         dataRoute: '/blackouts',
     },
     {
         key: 'available_capacity_map',
         primaryText: 'Карта доступной мощности',
-        leftIcon: null,
+        leftIcon: (<MapsPlace />),
         dataRoute: '/available_capacity_map',
+    },
+    {
+        key: 'faq',
+        primaryText: 'Вопрос-ответ',
+        leftIcon: (<ActionQuestionAnswer />),
+        dataRoute: '/faq',
     },
 ];
 

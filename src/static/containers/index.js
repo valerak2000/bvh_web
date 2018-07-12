@@ -8,6 +8,7 @@ export HomeView from './Home/Home';
 export ElektronnayaPriemnayaView from './Home/ElektronnayaPriemnaya';
 export BlackoutsView from './Home/Blackouts';
 export AvailableCapacityMapView from './Home/AvailableCapacityMap';
+export FaqView from './Home/Faq';
 //О компании
 export CommonInfoView from './About/CommonInfo';
 export LeadershipView from './About/Leadership';

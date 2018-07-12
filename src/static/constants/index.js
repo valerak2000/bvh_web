@@ -14,6 +14,7 @@ export const HOME_MENU = 'home';
 export const HOME_MENU_EP = 'elektronnaya_priemnaya';
 export const HOME_MENU_BO = 'blackouts';
 export const HOME_MENU_CM = 'available_capacity_map';
+export const HOME_MENU_FQ = 'faq';
 
 export const ABOUT_MENU = 'about';
 export const CUSTOMERS_MENU = 'customers';

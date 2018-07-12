@@ -122,18 +122,19 @@ var muiTheme = exports.muiTheme = getMuiTheme({
             },
         },
         leftNav: {
-            width: '20%',
+            width: '28%',
             //maxWidth: '28rem',
         },
         footer: {
             bottomNavigation: {
                 position: 'space-around',
                 height: '8rem',
-                //display: 'table',
+                //display: 'block',
                 button: {
                     //minWidth: '31rem',
                     //maxWidth: 'none',
                     maxWidth: '24rem',
+                    margin: '0 0 auto',
                     icon: {
                         height: 24,
                         width: '100%',
@@ -190,4 +191,9 @@ var muiTheme = exports.muiTheme = getMuiTheme({
         fontSize: 16,
         fontWeight: 500,
     },
-  });
+    icon: {
+        height: 24,
+        width: '100%',
+        objectFit: 'contain',
+    },
+});

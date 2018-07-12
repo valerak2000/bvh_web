@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router';
 import { UnderConstructView, NotFoundView, LoginView, ProtectedView, MapView } from './containers';
-import { HomeView, ElektronnayaPriemnayaView, BlackoutsView, AvailableCapacityMapView } from './containers';
+import { HomeView, ElektronnayaPriemnayaView, BlackoutsView, AvailableCapacityMapView, FaqView } from './containers';
 import { CommonInfoView, LeadershipView, ContactsView, VacanciesView, OurHistoryView, ZakupkiRaskrytieView } from './containers';
 import { PoluchenieTekhnicheskikhUsloviyView, OformlenieDogovoraOPodklyucheniiView, OformlenieAktovOPodklyucheniiView, 
     FizlicaZaklyuchenieDogovorovView, FizlicaPeredachaPokazaniyView, FizlicaPriboryUchetaView,
@@ -54,6 +54,7 @@ class Routes extends Component {
                 <Route path = "/available_capacity_map" component = { AvailableCapacityMapView } />
                 <Route path = "/map" component = { MapView } />
                 <Route path = "/creator" component = { UnderConstructView } />
+                <Route path = "/faq" component = { FaqView } />
                 <Route path = "/login" component = { LoginView } />
                 <Route path = "/protected" component = { requireAuthentication(ProtectedView) } />
                 <Route component = { NotFoundView } />
