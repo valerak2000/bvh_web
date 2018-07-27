@@ -19,7 +19,7 @@ raven==6.1.0
 python-dateutil==2.6.1
 
 # Logging
-django-rest-logger
-#git+https://github.com/Seedstars/django-rest-logger.git
+#django-rest-logger
+git+https://github.com/Seedstars/django-rest-logger.git
 
 django-rest-knox==3.0.3

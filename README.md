@@ -8,12 +8,16 @@ linux:
 windows:
 	py -3 -m venv py3
 
+pip install django-disposable-email-checker
 pip install -r py-requirements/dev.txt
 
 cd src
 python manage.py migrate
 python manage.py loaddata fixtures.json
 python manage.py runserver
+
+cd ..
+npm i
 
 psql -h localhost -p 5433 -U djangoreactredux djangoreactredux_dev
 
