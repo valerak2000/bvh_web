@@ -12,7 +12,7 @@ DATABASES = {
         'USER': 'djangoreactredux',
         'PASSWORD': '123',
         'HOST': 'localhost',
-        'PORT': 5432,
+        'PORT': 5433,
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite'),  # NOQA (ignore all errors on this line)
     }
