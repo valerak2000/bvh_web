@@ -10,7 +10,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'djangoreactredux_dev',
         'USER': 'djangoreactredux',
-        'PASSWORD': 'Rfvytgfldb',
+        'PASSWORD': '123',
         'HOST': 'localhost',
         'PORT': 5432,
 #        'ENGINE': 'django.db.backends.sqlite3',
