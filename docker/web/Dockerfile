@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Filipe Garcia <filipe.garcia@seedstarslabs.com>
 
 COPY ./docker/web/web-entrypoint.sh /
