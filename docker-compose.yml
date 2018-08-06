@@ -16,7 +16,7 @@ services:
             file: docker-common.yml
             service: postgres
         ports:
-            - 5433:5432
+            - 5434:5433
         volumes:
             - ./docker/postgres/init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
     backend:
