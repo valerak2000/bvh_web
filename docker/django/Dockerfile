@@ -8,7 +8,6 @@ COPY ./py-requirements /django/py-requirements
 
 WORKDIR /django
 
-RUN pip install pip==18.0
-#9.0.1
+RUN pip install pip==9.0.1
 RUN pip install django-disposable-email-checker
 RUN pip install -r py-requirements/dev.txt
