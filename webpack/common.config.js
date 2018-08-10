@@ -121,10 +121,15 @@ const common = {
             {
                 test: /\.pdf(\?.*)?$/,
                 loader: 'file-loader?name=/files/[name].[ext]'
+            },
+            {
+                test: /\.txt(\?.*)?$/,
+                loader: 'file-loader?name=/files/[name].[ext]&mimetype=text/plain'
             }
         ]
     },
 };
+
 /*
 
 name: 'media/[name].[hash:8].[ext]',
