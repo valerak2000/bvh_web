@@ -10,7 +10,6 @@ import Root from './containers/Root/Root';
 import configureStore from './store/configureStore';
 
 const initialState = {};
-const target = document.getElementById('root');
 const history = createHistory();
 const store = configureStore(initialState, history);
 
@@ -30,4 +29,4 @@ if (token !== null) {
     store.dispatch(authLoginUserSuccess(token, user));
 }
 
-ReactDOM.render(node, target);
+ReactDOM.render(node, document.getElementById('root'));

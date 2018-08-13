@@ -17,7 +17,7 @@ DATABASES = {
         'USER': 'djangoreactredux',
         'PASSWORD': '123',
         'HOST': 'localhost',
-        'PORT': 5432,
+        'PORT': 5433,
     }
 }
 

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Favicon from 'react-favicon';
 
 import '../../styles/main.scss';
 import * as theme from '../../styles/styles';
@@ -14,8 +15,7 @@ import App from '../../app';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import LeftNavMenu from '../../components/LeftNavMenu';
-
-import bgHeader from '../../images/bg-header.png';
+import vodokanalLogo from '../../images/Vodokanal_Logo.ico';
 
 class Root extends Component {
     static propTypes = {
@@ -34,39 +34,41 @@ class Root extends Component {
 
     render() {
         const dev = (process.env.NODE_ENV != 'production');
-//"url('../../images/bg-header.png') no-repeat 0px 0px"
         return (
-            <Provider store = { this.props.store }>
-                <MuiThemeProvider muiTheme = { theme.muiTheme }>
-                    <div
-                        style = { theme.muiTheme.global }
-                    >
-                        <Header
-                            { ...this.props }
-                        />
-                        <div 
-                            id = 'app'
-                            style = {{ 
-                                display: 'flex', 
-                                width: '100%',
-                            }}
+            <div>
+                <Favicon url = { vodokanalLogo } />
+                <Provider store = { this.props.store }>
+                    <MuiThemeProvider muiTheme = { theme.muiTheme }>
+                        <div
+                            style = { theme.muiTheme.global }
                         >
-                            <LeftNavMenu
+                            <Header
                                 { ...this.props }
                             />
-                            <App>
-                                <ConnectedRouter history = { this.props.history }>
-                                    <Routes />
-                                </ConnectedRouter>
-                            </App>
+                            <div 
+                                id = 'app'
+                                style = {{ 
+                                    display: 'flex', 
+                                    width: '100%',
+                                }}
+                            >
+                                <LeftNavMenu
+                                    { ...this.props }
+                                />
+                                <App>
+                                    <ConnectedRouter history = { this.props.history }>
+                                        <Routes />
+                                    </ConnectedRouter>
+                                </App>
+                            </div>
+                            <Footer
+                                { ...this.props }
+                            />
+                            { dev && <DevTools /> }
                         </div>
-                        <Footer
-                            { ...this.props }
-                        />
-                        { dev && <DevTools /> }
-                    </div>
-                </MuiThemeProvider>
-            </Provider>
+                    </MuiThemeProvider>
+                </Provider>
+            </div>
         );
     }
 }

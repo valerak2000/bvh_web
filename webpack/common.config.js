@@ -87,7 +87,7 @@ const common = {
                 exclude: /node_modules/
             },
             {
-                test: /\.jpe?g$|\.gif$|\.png$/,
+                test: /\.(svg|png|gif|jpg|ico)$/,
                 loader: 'file-loader?name=/images/[name].[ext]?[hash]'
             },
             {
@@ -122,15 +122,15 @@ const common = {
                 test: /\.pdf(\?.*)?$/,
                 loader: 'file-loader?name=/files/[name].[ext]'
             },
-            {
-                test: /\.txt(\?.*)?$/,
-                loader: 'file-loader?name=/files/[name].[ext]&mimetype=text/plain'
-            }
         ]
     },
 };
 
 /*
+            {
+                test: /\.txt(\?.*)?$/,
+                loader: 'file-loader?name=/files/[name].[ext]&mimetype=text/plain'
+            }
 
 name: 'media/[name].[hash:8].[ext]',
                 test: /\.pdf$/,
