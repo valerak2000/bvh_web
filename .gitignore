@@ -26,6 +26,7 @@ src/static_root/
 node_modules/
 yarn.lock
 npm-debug.log
+package-lock.json
 
 # Coverage 
 coverage/
