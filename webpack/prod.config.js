@@ -5,7 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     // devtool: 'source-map', // No need for dev tool in production
-
     module: {
         rules: [{
             test: /\.css$/,
