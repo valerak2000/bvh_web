@@ -5,7 +5,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'travis_ci_test',
         'USER': 'postgres',
-        'PASSWORD': 'Musicas9',
+        'PASSWORD': '123',
         'HOST': 'localhost',
         'PORT': '',
     }

@@ -9,7 +9,8 @@ const TARGET = process.env.npm_lifecycle_event;
 
 const PATHS = {
     app: path.join(__dirname, '../src/static'),
-    build: path.join(__dirname, '../src/static_dist')
+    build: path.join(__dirname, '../src/static_dist'),
+    //path.join('!', staticPath, './favicon.ico'),
 };
 
 const VENDOR = [
@@ -29,7 +30,6 @@ const VENDOR = [
 ];
 
 const basePath = path.resolve(__dirname, '../src/static/');
-
 const common = {
     context: basePath,
     entry: {

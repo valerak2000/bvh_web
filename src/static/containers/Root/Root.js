@@ -34,6 +34,7 @@ class Root extends Component {
 
     render() {
         const dev = (process.env.NODE_ENV != 'production');
+
         return (
             <div>
                 <Favicon url = { vodokanalLogo } />
@@ -64,7 +65,6 @@ class Root extends Component {
                             <Footer
                                 { ...this.props }
                             />
-                            { dev && <DevTools /> }
                         </div>
                     </MuiThemeProvider>
                 </Provider>
@@ -73,7 +73,9 @@ class Root extends Component {
     }
 }
 /*
-                            <div class="breadcrumb-bg"
+                            { dev && <DevTools /> }
+
+<div class="breadcrumb-bg"
                                 style = {{ 
                                     width: '100%',
                                     background: `url(${bgHeader}) no-repeat 0px 0px`,

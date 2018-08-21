@@ -35,11 +35,15 @@ module.exports = {
 
     plugins: [
         new ExtractTextPlugin('styles/[name].css'),
+        new webpack.optimize.OccurrenceOrderPlugin()
+    ]
+};
+/*
+        new ExtractTextPlugin('styles/[name].css'),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
-                warnings: false
+                warnings: true
             }
         })
-    ]
-};
+*/
