@@ -11,8 +11,10 @@ try:
 except NameError:
     SECRET_FILE = os.path.join(BASE_DIR, 'secret.txt')
     try:
-        With open(SECRET_FILE) as f:
-        SECRET_KEY = f.read().strip()
+        with open(SECRET_FILE) as f:
+            SECRET_KEY = f.read().strip()
+        #f = open(SECRET_FILE)
+        #SECRET_KEY = f.read().strip()
     except IOError:
         SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'ajsdgas7&*kosdsa21[]jaksdhlka-;kmcv8l$#diepsm8&ah^')
 
