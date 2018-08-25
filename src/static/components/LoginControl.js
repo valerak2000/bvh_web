@@ -44,8 +44,8 @@ export function Logged(props) {
             anchorOrigin = {{ horizontal: 'right', vertical: 'top' }}
         >
             <MenuItem
-                primaryText = 'Личный кабинет'
-                secondaryText = 'Внести показания, узнать состояние баланса, заказать и оплатить услуги'
+                primaryText = 'Личный кабинет (Внести показания, узнать состояние баланса, заказать и оплатить услуги)'
+                secondaryText = ''
                 leftIcon = { <FontIcon className='fa fa-lock' /> }
                 onClick = { props.onClickProtected }
             />

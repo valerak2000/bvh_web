@@ -1,10 +1,13 @@
-Django==2.1 #1.11.4
+Django==2.0.8 #1.11.4
 django-extensions==2.1.0 #1.8.1
 
-django-disposable-email-checker==1.2.1
+git+https://github.com/aaronbassett/DisposableEmailChecker.git
+#django-disposable-email-checker==1.2.1
 
 # PostgresSQL
-psycopg2==2.7.5 #2.7.3
+psycopg2-binary
+psycopg2>=2.7,<2.8 --no-binary psycopg2
+#psycopg2==2.7.3
 
 # serve files
 whitenoise==4.0 #3.3.0
