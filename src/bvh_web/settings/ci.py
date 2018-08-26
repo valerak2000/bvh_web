@@ -1,4 +1,4 @@
-from djangoreactredux.settings.staging import *  # NOQA (ignore all errors on this line)
+from bvh_web.settings.staging import *  # NOQA (ignore all errors on this line)
 
 DATABASES = {
     'default': {

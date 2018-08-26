@@ -1,4 +1,4 @@
-"""Django settings for djangoreactredux project."""
+"""Django settings for bvh_web project."""
 
 import os
 
@@ -67,9 +67,9 @@ TEMPLATES = [
     },
 ]
 
-ROOT_URLCONF = 'djangoreactredux.urls'
+ROOT_URLCONF = 'bvh_web.urls'
 
-WSGI_APPLICATION = 'djangoreactredux.wsgi.application'
+WSGI_APPLICATION = 'bvh_web.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 

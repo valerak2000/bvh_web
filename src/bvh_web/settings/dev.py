@@ -1,4 +1,4 @@
-from djangoreactredux.settings.base import *  # NOQA (ignore all errors on this line)
+from bvh_web.settings.base import *  # NOQA (ignore all errors on this line)
 
 
 DEBUG = True

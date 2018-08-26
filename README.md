@@ -50,3 +50,6 @@ The database can be accessed @localhost:5433
 
 https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
 YOUR_API_KEY=AIzaSyCROA6zZ20mgdxFsFf_4s47Nvwe5xRnOSE
+
+python manage.py makemigrations
+python manage.py migrate
