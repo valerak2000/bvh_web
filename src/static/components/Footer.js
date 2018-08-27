@@ -92,8 +92,8 @@ class Footer extends Component {
                     <BottomNavigationItem
                         label = "Партнеры"
                         icon = { <CommunicationBusiness /> }
-                        onClick = { () => this.selectBottomNavigationItem(2) }
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
+                        onClick = { () => this.selectBottomNavigationItem(2) }
                     />
                     <BottomNavigationItem
                         label = "Powered by valera_k2000"
@@ -113,6 +113,9 @@ class Footer extends Component {
     }
 };
 /*
+                        href = 'http://brhts.ru/'
+                        target = '_blank'
+
                     <BottomNavigationItem
                         label = ""
                         icon = { <NavigationArrowUpward /> }

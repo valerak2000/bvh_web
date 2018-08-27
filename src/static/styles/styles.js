@@ -2,7 +2,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import * as Colors from 'material-ui/styles/colors';
 
 //import bgHeader from '../images/bg-header.png';
-import iconPdf from '../images/pdf-icon.png';
+//import iconPdf from '../images/pdf-icon.png';
 
 var muiTheme = exports.muiTheme = getMuiTheme({
     fontFamily: 'pfbeausanspro-reg, sans-serif',
@@ -114,6 +114,7 @@ var muiTheme = exports.muiTheme = getMuiTheme({
                             label: {
                                 fontSize: 18,
                                 fontWeight: 500,
+                                textColor: Colors.blue50,
                             },
                         },
                     }
@@ -147,7 +148,7 @@ var muiTheme = exports.muiTheme = getMuiTheme({
     palette: {
         textColor: Colors.blue900,
         alternateTextColor: Colors.blue900,
-        primary1Color: Colors.teal200, //Colors.lightGreen50,
+        primary1Color: Colors.blue800, //teal300 lightGreen50 lightBlue900
         //backgroundColor: Colors.teal200,
         //selectedTextColor: Colors.blue900,
         secondaryTextColor: Colors.blue900,
@@ -167,14 +168,19 @@ var muiTheme = exports.muiTheme = getMuiTheme({
     tabs: {
         width: '100%',
         paddingLeft: 20,
+        selectedTextColor: Colors.blue50,
+        textColor: Colors.blue50,
         tab: {
             textTransform: 'none',
         },
     },
-    bottomNavigation: {
-        backgroundColor: Colors.teal200,
-        unselectedColor: Colors.blue900,
-        selectedColor: Colors.blue900,
+    badge: {
+        textColor: Colors.blue50,
+},
+bottomNavigation: {
+        backgroundColor: Colors.blue800, //teal200,
+        unselectedColor: Colors.blue50, //blue900,
+        selectedColor: Colors.blue50, //blue900,
         //height: 56,
         unselectedFontSize: 16,
         selectedFontSize: 16,

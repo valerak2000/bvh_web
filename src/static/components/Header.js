@@ -79,7 +79,7 @@ class Header extends Component {
                         </div>
                     }
                     iconStyleRight = { this.props.muiTheme.app.header.appBar.elementLeft.iconStyleRight }
-                    showMenuIconButton = {true}
+                    showMenuIconButton = { true }
                 />
             </header>
         );
