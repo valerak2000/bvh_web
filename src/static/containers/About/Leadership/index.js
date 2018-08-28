@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import {GridList, GridTile} from 'material-ui/GridList';
-import FlatButton from 'material-ui/FlatButton';
+import Divider from 'material-ui/Divider';
 
 import avatarMan from '../../../images/avatar.png';
 import avatarWoman from '../../../images/avatar_w.png';
@@ -31,14 +31,12 @@ class LeadershipView extends Component {
     };
     
     render() {
-//                        width: 700,
-
         return (
             <Card
                 style = { this.props.muiTheme.app.сard }
             >
                 <CardTitle
-                    title = 'Руководство компании'
+                    title = '«Брюховецкое водопроводное хозяйство», ООО'
                     titleStyle = { this.props.muiTheme.app.сard.title }
                 />
                 <GridList
@@ -53,6 +51,45 @@ class LeadershipView extends Component {
                     <GridTile
                         key = { avatarMan } 
                         title = "Ляшенко Александр Николаевич"
+                        subtitle = "Директор" 
+                        titlePosition = "bottom"
+                    >
+                        <img 
+                            src = { avatarMan } 
+                            style = { this.props.muiTheme.app.сard.title }
+                        />
+                    </GridTile>
+                    <GridTile
+                        key = { avatarWoman } 
+                        title = "Романова Ольга Григорьевна"
+                        subtitle = "Главный бухгалтер" 
+                        titlePosition = "bottom"
+                    >
+                        <img 
+                            src = { avatarWoman } 
+                        />
+                    </GridTile>
+                </GridList>
+
+                <br/>
+                <Divider />
+
+                <CardTitle
+                    title = '«Брюховецкое предприятие отвода и очистки стоков», ООО'
+                    titleStyle = { this.props.muiTheme.app.сard.title }
+                />
+                <GridList
+                    cols = { 3 }
+                    padding = { 1 }
+                    cellHeight = 'auto'
+                    style = {{
+                        overflowY: 'auto',
+                        height: 350,
+                    }}
+                >
+                    <GridTile
+                        key = { avatarMan } 
+                        title = "Дьяченко Владимир Анатольевич"
                         subtitle = "Директор" 
                         titlePosition = "bottom"
                     >

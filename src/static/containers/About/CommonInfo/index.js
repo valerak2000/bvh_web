@@ -7,8 +7,8 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 //import Paper from 'material-ui/Paper';
 //import Divider from 'material-ui/Divider';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+//import FlatButton from 'material-ui/FlatButton';
+//import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 import Divider from 'material-ui/Divider';
 //import { List, ListItem } from 'material-ui/List';
 //import NavigationCheck from 'material-ui/svg-icons/action/check-circle';
@@ -37,14 +37,13 @@ class CommonInfoView extends Component {
                     style = { this.props.muiTheme.app.сard.text }
                     className = 'content'
                 >
-                    <p><strong>ООО «Брюховецкое водопроводное хозяйство»</strong> занимается водоснабжением и водоотведением
+                    <p><strong>ООО «Брюховецкое водопроводное хозяйство»</strong> занимается водоснабжением
                     ст.Брюховецкой, ст.Переяславской, х.Сопова Балка, с.Свободное.<br/>
-                    Предприятие было образовано 1 февраля 2006 года.<br/>
+                    Предприятие было образовано 22 декабря 2005 года.<br/>
                     В настоящее время источником хозяйственно-питьевого и производственного
                     водоснабжения поселения являются подземные воды, население снабжается водой от 10 артскважин дебетом 3384 м3/ч.<br/>
                     Общая протяженность водопроводных сетей по всему сельскому поселению составляет 95.6 км.
                     </p>
-                    <Divider />
                     2016 0.119 т.м.куб
 
                     <p>В силу геологического расположения Краснодара добыча воды ведется только из подземных источников артезианских скважин глубиной от 80 до 800 метров. Все они входят в состав 11 водозаборных сооружений ООО «Краснодар Водоканал».</p>
@@ -62,6 +61,11 @@ class CommonInfoView extends Component {
                     <li>ООО «Краснодар Водоканал» получило свидетельство участника краевой целевой Программы «Качество» по виду деятельности: «Услуги по водоснабжению потребителей города», что является подтверждением высокого качества его услуг;</li>
                     <li>Спортивная команда предприятия заняла I место в Спартакиаде трудовых коллективов МО г. Краснодар.</li>
                     <li> В 2011-2012 г.г. – предприятие получало высшую оценку – Диплом I степени на Всероссийском  конкурсе Министерства регионального развития РФ на звание лучшего предприятия в отрасли за 2010 и 2011 г.г. Также в в 2011 г. «Краснодар Водоканал» вошел в число самых экономически успешных компаний по данным Всероссийского бизнес-рейтинга и получил статус «Лидер экономики России -2010».</li>
+                    <Divider />
+                    <br/>
+                    <p><strong>ООО «Брюховецкое предприятие отвода и очистки стоков»</strong> занимается водоотведением ст.Брюховецкой.<br/>
+                    Предприятие было образовано 23 декабря 2005 года.<br/>
+                    </p>
                 </CardText>
             </Card>
         );

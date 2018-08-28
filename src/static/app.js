@@ -5,12 +5,15 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
+import * as Colors from 'material-ui/styles/colors';
 
+/*
 import Paper from 'material-ui/Paper';
-import Menu from 'material-ui/Menu';
+/import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer'
 import { Link } from 'react-router'
+*/
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
 
@@ -123,6 +126,7 @@ class App extends Component {
                         mini = { true }
                         onClick = { () => this.scrollToTop() }
                         zDepth= { 2 }
+                        backgroundColor = { Colors.white }
                     >
                         <NavigationArrowUpward />
                     </FloatingActionButton>

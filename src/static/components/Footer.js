@@ -13,7 +13,9 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 //import NavigationExpandLess from 'material-ui/svg-icons/navigation/expand-less';
 //import AvRecentActors from 'material-ui/svg-icons/av/recent-actors';
 import CommunicationBusiness from 'material-ui/svg-icons/communication/business';
-import AuthorSign from '../images/author-sign.svg';
+import * as Colors from 'material-ui/styles/colors';
+
+import AuthorSign from '../images/author-sign.png';
 
 //const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
 //const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
@@ -95,8 +97,24 @@ class Footer extends Component {
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                         onClick = { () => this.selectBottomNavigationItem(2) }
                     />
+                </BottomNavigation>
+                <div
+                    style = { this.props.muiTheme.app.footer.bottomText }
+                >
+                    Разработка и поддержка <a 
+                    href="http://www.valera-k2000.ru" 
+                    target="_blank"
+                    style = { this.props.muiTheme.app.footer.bottomText.link }
+                    >
+                        <img src = { AuthorSign } alt="valera_k2000" width="16" height="16"/> valera_k2000 </a>
+                </div>
+            </footer>
+        );
+    }
+};
+/*
                     <BottomNavigationItem
-                        label = "Powered by valera_k2000"
+                        label = "Разработка и поддержка valera_k2000"
                         icon = {
                             <img
                                 src = { AuthorSign }
@@ -107,12 +125,7 @@ class Footer extends Component {
                         onClick = { () => this.selectBottomNavigationItem(3) }
                         style = { this.props.muiTheme.app.footer.bottomNavigation.button }
                     />
-                </BottomNavigation>
-            </footer>
-        );
-    }
-};
-/*
+
                         href = 'http://brhts.ru/'
                         target = '_blank'
 

@@ -112,9 +112,12 @@ var muiTheme = exports.muiTheme = getMuiTheme({
                         button: {
                             margin: '0rem 0rem 0', //'1rem 1rem 0',
                             label: {
+                                color: Colors.grey50,
                                 fontSize: 18,
                                 fontWeight: 500,
-                                textColor: Colors.blue50,
+                            },
+                            icon: {
+                                color: Colors.grey50,
                             },
                         },
                     }
@@ -127,6 +130,7 @@ var muiTheme = exports.muiTheme = getMuiTheme({
             //maxWidth: '28rem',
         },
         footer: {
+            backgroundColor: Colors.blue800, //teal200,
             bottomNavigation: {
                 position: 'space-around',
                 height: '8rem',
@@ -143,19 +147,30 @@ var muiTheme = exports.muiTheme = getMuiTheme({
                     },
                 },
             },
+            bottomText: {
+                fontSize: 14,
+                color: Colors.grey50,
+                textAlign: 'right',
+                margin: '0 1rem auto auto',
+                link: {
+                    color: Colors.cyan100,
+                },
+            }
         },
     },
     palette: {
         textColor: Colors.blue900,
         alternateTextColor: Colors.blue900,
         primary1Color: Colors.blue800, //teal300 lightGreen50 lightBlue900
+        //primary2Color: Colors.white,
+        //accent1Color: Colors.white,
+        accent2Color: Colors.white,
         //backgroundColor: Colors.teal200,
         //selectedTextColor: Colors.blue900,
         secondaryTextColor: Colors.blue900,
         //primary2Color: Colors.teal200,
-        //accent1Color: Colors.teal200, 
         //primary: Colors.blue900,
-        //secondary: Colors.teal200,
+        secondary: Colors.white,
         //color: Colors.teal200,
         //canvasColor: Colors.teal200,
     },
@@ -168,19 +183,19 @@ var muiTheme = exports.muiTheme = getMuiTheme({
     tabs: {
         width: '100%',
         paddingLeft: 20,
-        selectedTextColor: Colors.blue50,
-        textColor: Colors.blue50,
+        selectedTextColor: Colors.grey50,
+        textColor: Colors.grey50,
         tab: {
             textTransform: 'none',
         },
     },
     badge: {
-        textColor: Colors.blue50,
-},
-bottomNavigation: {
+        textColor: Colors.grey50,
+    },
+    bottomNavigation: {
         backgroundColor: Colors.blue800, //teal200,
-        unselectedColor: Colors.blue50, //blue900,
-        selectedColor: Colors.blue50, //blue900,
+        unselectedColor: Colors.grey50, //blue900,
+        selectedColor: Colors.grey50, //blue900,
         //height: 56,
         unselectedFontSize: 16,
         selectedFontSize: 16,
