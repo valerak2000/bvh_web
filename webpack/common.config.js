@@ -2,6 +2,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -72,6 +73,10 @@ const common = {
             filename: 'index.html',
             inject: 'body'
         }),
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        }),
         new webpack.DefinePlugin({
             'process.env': { NODE_ENV: TARGET === 'dev' ? '"development"' : '"production"' },
             '__DEVELOPMENT__': TARGET === 'dev'
@@ -93,10 +98,27 @@ const common = {
         rules: [
             {
                 test: /\.js$/,
+                exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader'
+                    loader: "babel-loader"
                 },
-                exclude: /node_modules/
+                query: {
+                    presets: ['@babel/react', '@babel/es2015'],
+                    plugins: ['@babel/proposal-class-properties']
+                }
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "html-loader",
+                        options: { minimize: true }
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, "css-loader"]
             },
             {
                 test: /\.(svg|png|gif|jpg|ico)$/,
