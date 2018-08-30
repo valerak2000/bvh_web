@@ -35,22 +35,35 @@ const common = {
         vendor: VENDOR,
         app: PATHS.app
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'async',
+            minSize: 30000,
+            maxSize: 0,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            automaticNameDelimiter: '~',
+            name: true,
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
+        }
+    },
     output: {
         filename: '[name].[hash].js',
         path: PATHS.build,
         publicPath: '/static'
     },
     plugins: [
-        // extract all common modules to vendor so we can load multiple apps in one page
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name: 'vendor',
-        //     filename: 'vendor.[hash].js'
-        // }),
-        new webpack.optimize.CommonsChunkPlugin({
-            children: true,
-            async: true,
-            minChunks: 2
-        }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, '../src/static/index.html'),
             hash: true,
@@ -125,6 +138,16 @@ const common = {
     },
 };
 
+switch (TARGET) {
+    case 'dev':
+        module.exports = merge(require('./dev.config'), common);
+        break;
+    case 'prod':
+        module.exports = merge(require('./prod.config'), common);
+        break;
+    default:
+        console.log('Target configuration not found. Valid targets: "dev" or "prod".');
+}
 /*
             {
                 test: /\.txt(\?.*)?$/,
@@ -137,13 +160,3 @@ name: 'media/[name].[hash:8].[ext]',
                 test: /\.pdf(\?.*)?$/,
                 loader: 'file-loader?name=/files/[name].[ext]'
 */
-switch (TARGET) {
-    case 'dev':
-        module.exports = merge(require('./dev.config'), common);
-        break;
-    case 'prod':
-        module.exports = merge(require('./prod.config'), common);
-        break;
-    default:
-        console.log('Target configuration not found. Valid targets: "dev" or "prod".');
-}
