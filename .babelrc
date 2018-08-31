@@ -1,24 +1,29 @@
 {
-  // need loose mode for IE9 https://phabricator.babeljs.io/T3041
   "presets": [
-    ["@babel/env", {
-      "targets": {
-        "browsers": "last 2 Chrome versions",
-        "node": "current"
+    "@babel/preset-env",
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "browsers": "last 2 Chrome versions",
+          "node": "current"
+        }
       }
-    }],
-    "@babel/react",
+    ],
+    "@babel/preset-react",
     "react-optimize"
   ],
-    "plugins": [
-      "@babel/transform-react-constant-elements",
-      "@babel/transform-react-inline-elements",
-      "transform-react-remove-prop-types",
-      "transform-react-pure-class-to-function",
-  
-      "@babel/transform-runtime",
-      ["babel-plugin-root-import", {
+  "plugins": [
+    "@babel/transform-react-constant-elements",
+    "@babel/transform-react-inline-elements",
+    "transform-react-remove-prop-types",
+    "transform-react-pure-class-to-function",
+    "@babel/transform-runtime",
+    [
+      "babel-plugin-root-import",
+      {
         "rootPathSuffix": "."
-      }]
+      }
+    ]
   ]
 }

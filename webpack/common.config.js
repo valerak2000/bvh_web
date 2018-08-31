@@ -101,10 +101,6 @@ const common = {
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader"
-                },
-                query: {
-                    presets: ['@babel/react', '@babel/es2015'],
-                    plugins: ['@babel/proposal-class-properties']
                 }
             },
             {
