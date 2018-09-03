@@ -1,0 +1,39 @@
+{
+  "rootDir": "../../",
+  "coverageDirectory": "<rootDir>/tests/__coverage__/",
+  "setupTestFrameworkScriptFile": "<rootDir>/configs/jest/testSetup.js",
+  "setupFiles": ["<rootDir>/configs/jest/__mocks__/shim.js"],
+  "roots": ["<rootDir>/tests/"],
+  "moduleNameMapper": {
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      "<rootDir>/configs/jest/__mocks__/fileMock.js",
+    "\\.(css|scss|less)$": "<rootDir>/configs/jest/__mocks__/styleMock.js"
+  },
+  "moduleFileExtensions": ["js", "jsx"],
+  "transformIgnorePatterns": ["/node_modules/"],
+  "testRegex": "/tests/.*\\.test\\.(js|jsx)$",
+  "moduleDirectories": ["node_modules"],
+  "transform": {
+    "^.+\\.js?$": "babel-jest",
+    "^.+\\.jsx?$": "babel-jest"
+  },
+  "globals": {
+    "NODE_ENV": "test",
+    "DEVELOPMENT": false,
+    "FAKE_SERVER": false,
+    "window": {}
+  },
+  "bail": true,
+  "verbose": true,
+  "testEnvironment": "node",
+  "reporters": [
+    "default",
+    [
+      "./node_modules/jest-html-reporter",
+      {
+        "pageTitle": "Test Report",
+        "outputPath": "./tests/__reports__/report.html"
+      }
+    ]
+  ]
+}

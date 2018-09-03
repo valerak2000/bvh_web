@@ -1,12 +1,14 @@
 const path = require('path');
-const autoprefixer = require('autoprefixer');
-const merge = require('webpack-merge');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const merge = require('webpack-merge');
+
+//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
+const devMode = process.env.NODE_ENV === 'development';
 
 const PATHS = {
     app: path.join(__dirname, '../src/static'),
@@ -26,99 +28,71 @@ const VENDOR = [
     'react-router-redux',
     'jquery',
     'bootstrap-loader',
-    'font-awesome-webpack!./styles/font-awesome.config.prod.js'
+    'font-awesome-webpack!./styles/font-awesome.config.prod.js',
+    'material-ui'
 ];
 
-const basePath = path.resolve(__dirname, '../src/static/');
 const common = {
-    context: basePath,
+    resolve: {
+        extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
+        modules: ['node_modules']
+    },
+    context: path.resolve(__dirname, '../src/static/'),
     entry: {
         vendor: VENDOR,
         app: PATHS.app
     },
-    optimization: {
-        splitChunks: {
-            chunks: 'async',
-            minSize: 30000,
-            maxSize: 0,
-            minChunks: 1,
-            maxAsyncRequests: 5,
-            maxInitialRequests: 3,
-            automaticNameDelimiter: '~',
-            name: true,
-            cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: -10
-                },
-                default: {
-                    minChunks: 2,
-                    priority: -20,
-                    reuseExistingChunk: true
-                }
-            }
-        }
-    },
-    output: {
-        filename: '[name].[hash].js',
-        path: PATHS.build,
-        publicPath: '/static'
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.join(__dirname, '../src/static/index.html'),
-            hash: true,
-            chunks: ['vendor', 'app'],
-            chunksSortMode: 'manual',
-            filename: 'index.html',
-            inject: 'body'
-        }),
-        new MiniCssExtractPlugin({
-            filename: "[name].css",
-            chunkFilename: "[id].css"
-        }),
-        new webpack.DefinePlugin({
-            'process.env': { NODE_ENV: TARGET === 'dev' ? '"development"' : '"production"' },
-            '__DEVELOPMENT__': TARGET === 'dev'
-        }),
-        new webpack.ProvidePlugin({
-            '$': 'jquery',
-            'jQuery': 'jquery',
-            'window.jQuery': 'jquery'
-        }),
-        new CleanWebpackPlugin([PATHS.build], {
-            root: process.cwd()
-        })
-    ],
-    resolve: {
-        extensions: ['.jsx', '.js', '.json', '.scss', '.css'],
-        modules: ['node_modules']
-    },
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
+                test: /\.(js|jsx)$/,
                 use: {
-                    loader: "babel-loader"
-                }
+                    loader: 'babel-loader'
+                },
+                exclude: /node_modules/
             },
             {
                 test: /\.html$/,
                 use: [
                     {
-                        loader: "html-loader",
+                        loader: 'html-loader',
                         options: { minimize: true }
                     }
                 ]
             },
             {
                 test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader"]
+                use: [
+                    devMode ? 'style-loader' : ExtractCssChunks.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1
+                        }
+                    },
+                    'postcss-loader'
+                ]
             },
             {
-                test: /\.(svg|png|gif|jpg|ico)$/,
-                loader: 'file-loader?name=/images/[name].[ext]?[hash]'
+                rules: [
+                    {
+                        test: /\.less$/,
+                        use: [
+                            devMode ? 'style-loader' : ExtractCssChunks.loader,
+                            'css-loader', // translates CSS into CommonJS
+                            'postcss-loader',
+                            'less-loader' // compiles Less to CSS
+                        ]
+                    }
+                ]
+            },
+            {
+                test: /\.(jpe?g|png|gif|ico)$/i,
+                use: ['file-loader?name=imagesimg/[name].[ext]?[hash]', 'img-loader']
+            },
+            {
+                test: /\.(svg)$/i,
+                use: ['url-loader?mimetype=images/svg+xml', 'img-loader']
             },
             {
                 test: /\.woff(\?.*)?$/,
@@ -133,7 +107,7 @@ const common = {
                 loader: 'url-loader?name=/fonts/[name].[ext]&limit=10000&mimetype=application/octet-stream'
             },
             {
-                test: /\.eot(\?.*)?$/,
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'file-loader?name=/fonts/[name].[ext]'
             },
             {
@@ -152,8 +126,63 @@ const common = {
                 test: /\.pdf(\?.*)?$/,
                 loader: 'file-loader?name=/files/[name].[ext]'
             },
+            //copy Web config file to dist folder
+            {
+                test: /web.config/,
+                loader: 'file-loader?name=[name].[ext]'
+            }
         ]
     },
+    output: {
+        filename: '[name].[hash].js',
+        path: PATHS.build,
+        publicPath: '/static'
+    },
+    plugins: [
+        new ExtractCssChunks({
+            hot: devMode
+        }),
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, '../src/static/index.html'),
+            hash: true,
+            chunks: ['vendor', 'app'],
+            chunksSortMode: 'manual',
+            filename: 'index.html',
+            favicon: 'favicon.ico',
+            inject: 'body'
+        }),
+        new webpack.ProvidePlugin({
+            React: 'react',
+            ReactDOM: 'react-dom'
+        }),
+        new webpack.DefinePlugin({
+            'process.env': { NODE_ENV: TARGET === 'dev' ? '"development"' : '"production"' },
+            '__DEVELOPMENT__': TARGET === 'dev'
+        })
+/*
+        new webpack.ProvidePlugin({
+            '$': 'jquery',
+            'jQuery': 'jquery',
+            'window.jQuery': 'jquery'
+        }),
+        new CleanWebpackPlugin([PATHS.build], {
+            root: process.cwd()
+        })
+*/
+    ],
+    externals: {
+        React: 'react',
+        ReactDOM: 'react-dom',
+        jsdom: 'window',
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': 'window',
+        'react-dom/test-utils': true,
+        'react-test-renderer/shallow': true
+    },
+    performance: {
+        hints: 'warning'
+    }
 };
 
 switch (TARGET) {
@@ -166,15 +195,3 @@ switch (TARGET) {
     default:
         console.log('Target configuration not found. Valid targets: "dev" or "prod".');
 }
-/*
-            {
-                test: /\.txt(\?.*)?$/,
-                loader: 'file-loader?name=/files/[name].[ext]&mimetype=text/plain'
-            }
-
-name: 'media/[name].[hash:8].[ext]',
-                test: /\.pdf$/,
-                loader: 'file?name=/files/[name].[ext]'
-                test: /\.pdf(\?.*)?$/,
-                loader: 'file-loader?name=/files/[name].[ext]'
-*/
