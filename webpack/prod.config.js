@@ -1,17 +1,17 @@
 const merge = require('webpack-merge');
 const { resolve } = require('path');
-const commonConfig = require('./common');
+const commonConfig = require('./common.config');
 const SizePlugin = require('size-plugin');
 
 process.env.NODE_ENV = 'production';
 
-module.exports = {
+module.exports = merge(commonConfig, {
     mode: process.env.NODE_ENV,
-    entry: ['./index.js'],
+    entry: ['./index.jsx'],
     output: {
       filename: 'bundle.js',
       chunkFilename: '[name].js',
-      path: resolve(__dirname, './dist'),
+      path: resolve(__dirname, '../src/static_dist'),
       publicPath: '/'
     },
     optimization: {
@@ -65,4 +65,4 @@ module.exports = {
         }
     },
     plugins: [new SizePlugin()]
-};
+});

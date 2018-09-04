@@ -2,7 +2,7 @@
   "name": "bvh_web",
   "version": "0.0.1",
   "description": "Django, React, Material-UI, Webpack (with Hot Module Replacement) and Babel.",
-  "main": "src/index.js",
+  "main": "src/static/index.jsx",
   "keywords": [
     "react",
     "webpack",
@@ -16,18 +16,23 @@
   "author": "Kozlitin Valeriy <valera_k2000@inbox.ru>",
   "license": "MIT",
   "scripts": {
-    "build": "npm run clean-dist && webpack -p --progress --config webpack/common.config.js --mode production",
-    "build-analysis": "npm run clean-dist && webpack -p --progress --config webpack/analyzer.config.js",
+    "prod-server": "node react-node-express/express.js",
+    "build": "npm run clean-dist && webpack -p --progress --config=webpack/prod.config.js",
+    "build-analysis": "npm run clean-dist && webpack -p --progress --config=webpack/analyzer.config.js",
+    "build-dev": "webpack-dev-server --progress --client-log-level info --config=webpack/dev.config.js --watch",
+    "dev": "webpack --progress --display-error-details --config=webpack/dev.config.js --watch",
     "clean-dist": "rimraf -f -rmdir dist",
-    "dev": "webpack-dev-server --progress --display-error-details --config webpack/common.config.js --watch --mode development",
-    "prod": "webpack --progress -p --config webpack/common.config.js --mode production",
-    "analysis": "npm run build-analysis",
-    "test-bundle": "bundlesize",
-    "test": "jest --watch --coverage --config jest/jest.json",
-    "test-ci": "jest --ci --coverage --config jest/jest.json && codecov -t 75b11d17-22d7-4b30-81b1-4c39fa2f7582",
     "lint": "npm-run-all lint-js lint-less",
     "lint-js": "jshint",
     "lint-less": "lesshint ./src/assets/less",
+    "start": "npm run dev",
+    "start-prod": "webpack --progress -p --config=webpack/prod.config.js",
+    "start-node": "npm run build-dev",
+    "start-prod-node": "npm-run-all build prod-server",
+    "start-analysis": "npm run build-analysis",
+    "test-bundle": "bundlesize",
+    "test": "jest --watch --coverage --config=jest/jest.json",
+    "test-ci": "jest --ci --coverage --config=jest/jest.json && codecov -t 75b11d17-22d7-4b30-81b1-4c39fa2f7582",
     "check": "npm-check",
     "cost": "cost-of-modules --no-install"
   },
@@ -104,8 +109,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "@material-ui/core": "^3.0.0",
-    "@material-ui/icons": "^3.0.0",
     "axios": "^0.18.0",
     "chartist": "^0.11.0",
     "classnames": "^2.2.6",
@@ -116,7 +119,7 @@
     "react": "^16.4.2",
     "react-chartist": "^0.13.1",
     "react-dom": "^16.4.2",
-    "react-google-maps": "^9.4.5",
+    "react-google-maps": "latest",
     "react-redux": "^5.0.7",
     "react-redux-thunk-store": "^0.0.7",
     "react-router-dom": "^4.3.1",
@@ -131,11 +134,9 @@
     "material-ui": "0.20.1",
     "font-awesome": "4.7.0",
     "font-awesome-webpack": "0.0.5-beta.2",
-    "material-ui": "0.20.1",
     "node-sass": "4.9.3",
     "npm": "^6.4.1",
     "react-favicon": "0.0.14",
-    "react-google-maps": "latest",
     "react-pdf": "4.0.0-beta.3"
   },
   "jest": {
@@ -144,12 +145,12 @@
   },
   "bundlesize": [
     {
-      "path": "./dist/*.*",
+      "path": "./src/static_dist/*.*",
       "compression": "gzip",
       "maxSize": "100 kB"
     },
     {
-      "path": "./dist/*.*",
+      "path": "./src/static_dist/*.*",
       "compression": "none",
       "maxSize": "300 kB"
     }

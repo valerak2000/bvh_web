@@ -120,7 +120,7 @@ const mapStateToProps = (state, ownProps) => {
 
 function mapDispatchToProps (dispatch) {
     return {
-    }
+    };
 }
 
 Root.muiName = 'Root';

@@ -2,7 +2,6 @@ const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const merge = require('webpack-merge');
 
 //const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -28,11 +27,12 @@ const VENDOR = [
     'react-router-redux',
     'jquery',
     'bootstrap-loader',
-    'font-awesome-webpack!./styles/font-awesome.config.prod.js',
+    //'font-awesome-webpack!./styles/font-awesome.config.prod.js',
     'material-ui'
 ];
 
-const common = {
+//const common = {
+module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
         modules: ['node_modules']
@@ -51,7 +51,7 @@ const common = {
                 },
                 exclude: /node_modules/
             },
-            {
+            /*{
                 test: /\.html$/,
                 use: [
                     {
@@ -59,7 +59,7 @@ const common = {
                         options: { minimize: true }
                     }
                 ]
-            },
+            },*/
             {
                 test: /\.css$/,
                 use: [
@@ -86,7 +86,7 @@ const common = {
                     }
                 ]
             },
-            {
+            /*{
                 test: /\.(jpe?g|png|gif|ico)$/i,
                 use: ['file-loader?name=imagesimg/[name].[ext]?[hash]', 'img-loader']
             },
@@ -125,7 +125,31 @@ const common = {
             {
                 test: /\.pdf(\?.*)?$/,
                 loader: 'file-loader?name=/files/[name].[ext]'
-            },
+            },*/
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        use: ['file-loader?name=img/[name].[ext]', 'img-loader']
+      },
+      {
+        test: /\.(svg)$/i,
+        use: ['url-loader?mimetype=image/svg+xml', 'img-loader']
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[ext]'
+        }
+      },
+      {
+        test: /\.(woff|woff2)$/,
+        loader: 'file-loader?name=fonts/[name].[ext]'
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?mimetype=application/octet-stream'
+      },
+
             //copy Web config file to dist folder
             {
                 test: /web.config/,
@@ -133,32 +157,36 @@ const common = {
             }
         ]
     },
-    output: {
+    /*output: {
         filename: '[name].[hash].js',
         path: PATHS.build,
         publicPath: '/static'
-    },
+    },*/
     plugins: [
         new ExtractCssChunks({
             hot: devMode
         }),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, '../src/static/index.html'),
-            hash: true,
+//            template: 'index.html.ejs',
+            favicon: 'favicon.ico',
+            template: path.join(__dirname, '../src/static/index.html.ejs'),
+/*            hash: true,
             chunks: ['vendor', 'app'],
             chunksSortMode: 'manual',
-            filename: 'index.html',
+            filename: 'index.html.ejs',
             favicon: 'favicon.ico',
-            inject: 'body'
+            inject: 'body'*/
         }),
         new webpack.ProvidePlugin({
             React: 'react',
             ReactDOM: 'react-dom'
         }),
+/*
         new webpack.DefinePlugin({
             'process.env': { NODE_ENV: TARGET === 'dev' ? '"development"' : '"production"' },
             '__DEVELOPMENT__': TARGET === 'dev'
         })
+*/
 /*
         new webpack.ProvidePlugin({
             '$': 'jquery',
@@ -185,13 +213,15 @@ const common = {
     }
 };
 
+/*console.log(TARGET);
 switch (TARGET) {
     case 'dev':
-        module.exports = merge(require('./dev.config'), common);
+        module.exports = merge(common, require('./dev.config'));
         break;
     case 'prod':
-        module.exports = merge(require('./prod.config'), common);
+        module.exports = merge(common, require('./prod.config'));
         break;
     default:
         console.log('Target configuration not found. Valid targets: "dev" or "prod".');
 }
+*/
