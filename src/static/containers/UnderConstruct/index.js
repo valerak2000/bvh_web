@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { push } from 'react-router-redux';
+//import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
+//import { bindActionCreators } from 'redux';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';

@@ -21,16 +21,16 @@ const LoginFormOptions = {
     //help: <i>Hint: a@a.com / qw</i>,
     fields: {
 	email: {
-	    label: 'E-mail или Логин',
-	    //legend: 'E-mail или Логин'
+        label: 'E-mail или Логин',
+        //legend: 'E-mail или Логин'
             attrs: {
-              autoFocus: true,
-	      placeholder: 'ivanov@mail.ru'
+                autoFocus: true,
+                placeholder: 'ivanov@mail.ru'
             }
-    	},
+        },
         password: {
-	    label: 'Пароль',
-	    //legend: 'Пароль',
+        label: 'Пароль',
+        //legend: 'Пароль',
             type: 'password'
         }
     },
@@ -140,7 +140,7 @@ class LoginView extends Component {
                             options={LoginFormOptions}
                             value={this.state.formValues}
                             onChange={this.onFormChange}
-			    context={{locale: 'ru-RU'}}
+                            context={{locale: 'ru-RU'}}
                         />
                         <button disabled={this.props.isAuthenticating}
                             type="submit"
@@ -150,7 +150,7 @@ class LoginView extends Component {
                         </button>
                         <button disabled={this.props.isAuthenticating}
                             className="btn btn-block"
-			    onClick={this.signup}
+                            onClick={this.signup}
                         >
                             Зарегистрироваться
                         </button>

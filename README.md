@@ -21,7 +21,7 @@ npm i
 
 psql -h localhost -p 5433 -U djangoreactredux djangoreactredux_dev
 
-python manage.py runserver 0.0.0.0:8000 --settings=bvh_web.settings.dev
+python manage.py runserver 0.0.0.0:8080 --settings=bvh_web.settings.dev
 
 https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
 YOUR_API_KEY=AIzaSyCROA6zZ20mgdxFsFf_4s47Nvwe5xRnOSE

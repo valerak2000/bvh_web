@@ -2,9 +2,7 @@ const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-
-//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-//const CleanWebpackPlugin = require('clean-webpack-plugin');
+//const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
 const devMode = process.env.NODE_ENV === 'development';
@@ -31,7 +29,6 @@ const VENDOR = [
     'material-ui'
 ];
 
-//const common = {
 module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
@@ -74,6 +71,26 @@ module.exports = {
                 ]
             },
             {
+                test: /\.scss$/,
+                use: [
+                    devMode ? 'style-loader' : ExtractCssChunks.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1
+                        }
+                    },
+                    'sass-loader'
+                    //'postcss-loader'
+                    /*{
+                        loader: 'sass-loader',
+                        options: {
+                            data: `@import "/${__dirname}/../src/static/styles/config/_variables.scss";`
+                        }
+                    }*/
+                ]
+            },
+            {
                 rules: [
                     {
                         test: /\.less$/,
@@ -86,25 +103,21 @@ module.exports = {
                     }
                 ]
             },
-            /*{
+            {
                 test: /\.(jpe?g|png|gif|ico)$/i,
-                use: ['file-loader?name=imagesimg/[name].[ext]?[hash]', 'img-loader']
+                use: ['file-loader?name=images/[name].[ext]?[hash]', 'img-loader']
             },
             {
                 test: /\.(svg)$/i,
                 use: ['url-loader?mimetype=images/svg+xml', 'img-loader']
             },
             {
-                test: /\.woff(\?.*)?$/,
-                loader: 'url-loader?name=/fonts/[name].[ext]&limit=10000&mimetype=application/font-woff'
+                test: /\.(woff|woff2)$/,
+                loader: 'file-loader?name=fonts/[name].[ext]'
             },
             {
-                test: /\.woff2(\?.*)?$/,
-                loader: 'url-loader?name=/fonts/[name].[ext]&limit=10000&mimetype=application/font-woff2'
-            },
-            {
-                test: /\.ttf(\?.*)?$/,
-                loader: 'url-loader?name=/fonts/[name].[ext]&limit=10000&mimetype=application/octet-stream'
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?mimetype=application/octet-stream'
             },
             {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -125,31 +138,7 @@ module.exports = {
             {
                 test: /\.pdf(\?.*)?$/,
                 loader: 'file-loader?name=/files/[name].[ext]'
-            },*/
-      {
-        test: /\.(jpe?g|png|gif)$/i,
-        use: ['file-loader?name=img/[name].[ext]', 'img-loader']
-      },
-      {
-        test: /\.(svg)$/i,
-        use: ['url-loader?mimetype=image/svg+xml', 'img-loader']
-      },
-      {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name].[ext]'
-        }
-      },
-      {
-        test: /\.(woff|woff2)$/,
-        loader: 'file-loader?name=fonts/[name].[ext]'
-      },
-      {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?mimetype=application/octet-stream'
-      },
-
+            },
             //copy Web config file to dist folder
             {
                 test: /web.config/,
@@ -157,25 +146,23 @@ module.exports = {
             }
         ]
     },
-    /*output: {
+    output: {
         filename: '[name].[hash].js',
         path: PATHS.build,
         publicPath: '/static'
-    },*/
+    },
     plugins: [
         new ExtractCssChunks({
             hot: devMode
         }),
         new HtmlWebpackPlugin({
-//            template: 'index.html.ejs',
-            favicon: 'favicon.ico',
-            template: path.join(__dirname, '../src/static/index.html.ejs'),
-/*            hash: true,
-            chunks: ['vendor', 'app'],
-            chunksSortMode: 'manual',
-            filename: 'index.html.ejs',
-            favicon: 'favicon.ico',
-            inject: 'body'*/
+            //template: path.join(__dirname, '../src/static/index.html.ejs'),
+            template: 'index.html.ejs',
+            //hash: true,
+            //chunks: ['vendor', 'app'],
+            //chunksSortMode: 'manual',
+            favicon: 'favicon.ico'
+            //inject: 'body'
         }),
         new webpack.ProvidePlugin({
             React: 'react',
@@ -212,16 +199,3 @@ module.exports = {
         hints: 'warning'
     }
 };
-
-/*console.log(TARGET);
-switch (TARGET) {
-    case 'dev':
-        module.exports = merge(common, require('./dev.config'));
-        break;
-    case 'prod':
-        module.exports = merge(common, require('./prod.config'));
-        break;
-    default:
-        console.log('Target configuration not found. Valid targets: "dev" or "prod".');
-}
-*/

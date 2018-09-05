@@ -61,6 +61,7 @@ class Root extends Component {
                                         <Routes />
                                     </ConnectedRouter>
                                 </App>
+                                (process.env.NODE_ENV === 'production' && <DevTools />)
                             </div>
                             <Footer
                                 { ...this.props }

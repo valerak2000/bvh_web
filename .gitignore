@@ -322,7 +322,8 @@ ASALocalRun/
 .mfractor/
 
 .idea/
-**/dist/
+**/static_dist/
+**/static_root/
 **/analysis/
 **/node_modules/
 **/__coverage__/
@@ -342,8 +343,6 @@ tmp/
 \#*
 
 py3/
-src/static_dist/
-src/static_root/
 
 # Python compiled byte code
 *.pyc

@@ -5,11 +5,13 @@ const SizePlugin = require('size-plugin');
 
 process.env.NODE_ENV = 'production';
 
-module.exports = merge(commonConfig, {
+module.exports = {
     mode: process.env.NODE_ENV,
-    entry: ['./index.jsx'],
+    entry: ['./src/static/index.jsx'],
+    devtool: 'source-map',
     output: {
-      filename: 'bundle.js',
+      //filename: 'bundle.js',
+      filename: 'js/bundle.[hash].min.js',
       chunkFilename: '[name].js',
       path: resolve(__dirname, '../src/static_dist'),
       publicPath: '/'
@@ -65,4 +67,28 @@ module.exports = merge(commonConfig, {
         }
     },
     plugins: [new SizePlugin()]
-});
+};
+/*    optimization: {
+        splitChunks: {
+            chunks: 'async',
+            minSize: 30000,
+            maxSize: 0,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            automaticNameDelimiter: '~',
+            name: true,
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
+        }
+    },
+*/
