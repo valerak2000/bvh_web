@@ -146,11 +146,11 @@ module.exports = {
             }
         ]
     },
-    output: {
+    /*output: {
         filename: '[name].[hash].js',
         path: PATHS.build,
         publicPath: '/static'
-    },
+    },*/
     plugins: [
         new ExtractCssChunks({
             hot: devMode

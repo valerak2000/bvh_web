@@ -33,7 +33,7 @@ class SiteMenu extends Component {
 
     static get contextTypes() {
         return {
-            muiTheme: React.PropTypes.object.isRequired
+            muiTheme: PropTypes.object.isRequired
         };
     }
 
@@ -115,7 +115,7 @@ const mapStateToProps = (state, ownProps) => {
 
 function mapDispatchToProps (dispatch) {
     return {
-    }
+    };
 }
 
 SiteMenu.muiName = 'SiteMenu';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { push } from 'react-router-redux';
-import classNames from 'classnames';
+//import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
@@ -41,8 +41,8 @@ class App extends Component {
     
     static get contextTypes() {
         return {
-            muiTheme: React.PropTypes.object.isRequired,
-            router: React.PropTypes.object
+            muiTheme: PropTypes.object.isRequired,
+            router: PropTypes.object
         };
     }
 
@@ -57,6 +57,18 @@ class App extends Component {
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.scrollChange);
+    }
+
+    /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
+    componentDidCatch(error, info) {
+
+        /* Example stack information:
+           in ComponentThatThrows (created by App)
+           in ErrorBoundary (created by App)
+           in div (created by App)
+           in App
+        */
+        console.log(info.componentStack);
     }
 
     scrollChange() {
@@ -80,7 +92,7 @@ class App extends Component {
     
     render() {
         const { goTopEnable } = this.state;
-        const homeClass = classNames({
+        /*const homeClass = classNames({
             active: this.props.location && this.props.location.pathname === '/'
         });
         const protectedClass = classNames({
@@ -89,7 +101,7 @@ class App extends Component {
         const loginClass = classNames({
             active: this.props.location && this.props.location.pathname === '/login'
         });
-        /*const aboutClass = classNames({
+        const aboutClass = classNames({
             active: this.props.location && this.props.location.pathname === '/about'
         });
         const customersClass = classNames({

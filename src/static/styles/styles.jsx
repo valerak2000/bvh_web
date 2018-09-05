@@ -1,10 +1,8 @@
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import * as Colors from 'material-ui/styles/colors';
 
-//import bgHeader from '../images/bg-header.png';
-//import iconPdf from '../images/pdf-icon.png';
-
-var muiTheme = exports.muiTheme = getMuiTheme({
+export const muiTheme = getMuiTheme({
+//var muiTheme = exports.muiTheme = getMuiTheme({
     fontFamily: 'pfbeausanspro-reg, sans-serif',
     global: {
         maxWidth: '126rem',

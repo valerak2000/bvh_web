@@ -8,7 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Favicon from 'react-favicon';
 
 import '../../styles/main.scss';
-import * as theme from '../../styles/styles';
+import { muiTheme } from '../../styles/styles';
 import Routes from '../../routes';
 import DevTools from './DevTools';
 import App from '../../app';
@@ -39,9 +39,9 @@ class Root extends Component {
             <div>
                 <Favicon url = { vodokanalLogo } />
                 <Provider store = { this.props.store }>
-                    <MuiThemeProvider muiTheme = { theme.muiTheme }>
+                    <MuiThemeProvider muiTheme = { muiTheme }>
                         <div
-                            style = { theme.muiTheme.global }
+                            style = { muiTheme.global }
                         >
                             <Header
                                 { ...this.props }
@@ -61,7 +61,7 @@ class Root extends Component {
                                         <Routes />
                                     </ConnectedRouter>
                                 </App>
-                                (process.env.NODE_ENV === 'production' && <DevTools />)
+                                { dev && <DevTools /> }
                             </div>
                             <Footer
                                 { ...this.props }
@@ -74,7 +74,6 @@ class Root extends Component {
     }
 }
 /*
-                            { dev && <DevTools /> }
 
 <div class="breadcrumb-bg"
                                 style = {{ 

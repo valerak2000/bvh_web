@@ -9,8 +9,8 @@ import { List, ListItem } from 'material-ui/List';
 //import Divider from 'material-ui/Divider';
 
 import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ,
-    ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants'
-import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../constants/menuStruct'
+    ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants';
+import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../constants/menuStruct';
 
 function Menu(props) {
     let initiallyFocused = (props.initiallyFocused === undefined || props.initiallyFocused == null)
@@ -42,7 +42,7 @@ function Menu(props) {
                                     isKeyboardFocused = { initiallySelectedSecond }
                                     onClick = { (e) => props.onClick(ni.dataRoute, e) }
                                 />
-                            )
+                            );
                         });
                     }
 
@@ -113,7 +113,7 @@ class LeftNavMenu extends Component {
 
     static get contextTypes() {
         return {
-            muiTheme: React.PropTypes.object.isRequired
+            muiTheme: PropTypes.object.isRequired
         };
     }
 
@@ -142,7 +142,7 @@ class LeftNavMenu extends Component {
 
     handleMenuClick = (dataRoute, e ) => {
         e.preventDefault();
-        console.log(dataRoute);
+        //console.log(dataRoute);
         this.props.dispatch(push(dataRoute));
     };
 
@@ -218,7 +218,7 @@ class LeftNavMenu extends Component {
                         items = { MENU_NEWS }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
-                    />
+                    />;
                 break;
         }
 

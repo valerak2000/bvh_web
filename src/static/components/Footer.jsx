@@ -33,7 +33,7 @@ class Footer extends Component {
 
     static get contextTypes() {
         return {
-            muiTheme: React.PropTypes.object.isRequired
+            muiTheme: PropTypes.object.isRequired
         };
     }
 
@@ -111,7 +111,7 @@ class Footer extends Component {
             </footer>
         );
     }
-};
+}
 /*
                     <BottomNavigationItem
                         label = "Разработка и поддержка valera_k2000"
