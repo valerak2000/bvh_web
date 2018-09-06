@@ -13,7 +13,7 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 //import NavigationExpandLess from 'material-ui/svg-icons/navigation/expand-less';
 //import AvRecentActors from 'material-ui/svg-icons/av/recent-actors';
 import CommunicationBusiness from 'material-ui/svg-icons/communication/business';
-import * as Colors from 'material-ui/styles/colors';
+//import * as Colors from 'material-ui/styles/colors';
 
 import AuthorSign from '../images/author-sign.png';
 

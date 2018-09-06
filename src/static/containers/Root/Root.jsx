@@ -23,9 +23,9 @@ class Root extends Component {
         history: PropTypes.shape().isRequired
     };
 
-    componentDidMount() {
-    //    console.log('Root');
-    }
+    /*componentDidMount() {
+        console.log('Root');
+    }*/
 
     static get contextTypes() {
         return {

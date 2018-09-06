@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
-//import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -14,6 +12,8 @@ import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import Divider from 'material-ui/Divider';
 import Badge from 'material-ui/Badge';
+import ActionInput from 'material-ui/svg-icons/action/input';
+import * as Colors from 'material-ui/styles/colors';
 
 import { authLogoutAndRedirect } from '../actions/auth';
 
@@ -23,18 +23,37 @@ export function Login(props) {
             label = 'Войти'
             labelPosition = 'before'
             labelStyle = { props.style.button.label }
-            icon = {
-                <FontIcon
-                    className = 'fa fa-sign-in'
-                    style = { props.style.button.icon }
-                />
+            icon = { 
+                <FontIcon 
+                    className = "material-icons"
+                    color = { Colors.grey50 }
+                >
+                    home
+                </FontIcon>
             }
             onClick = { props.onClick }
+            disableTouchRipple = { true }
             style = { props.style.button }
+            hoverColor = { props.style.button.hoverColor }
         />
     );
 }
 
+/*
+                <ActionInput 
+                    color = { Colors.grey50 }
+                />
+
+            icon = {
+                <IconButton
+                    style = { props.style.button.icon }
+                >
+                    <ActionInput />
+                </IconButton>
+            }
+                    iconStyle={styles.largeIcon}
+
+*/
 export function Logged(props) {
     return (
         <IconMenu
@@ -53,7 +72,8 @@ export function Logged(props) {
             <Divider />
             <MenuItem
                 primaryText = { props.userName } /*'Выйти'*/
-                rightIcon = { <FontIcon className='fa fa-sign-out' /> }
+                rightIcon = { <FontIcon className='fa fa-sign-out' />
+                }
                 onClick = { props.onClickLogout }
             />
         </IconMenu>

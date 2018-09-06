@@ -9,7 +9,8 @@ const devMode = process.env.NODE_ENV === 'development';
 
 const PATHS = {
     app: path.join(__dirname, '../src/static'),
-    build: path.join(__dirname, '../src/static_dist'),
+    //app: './src/static',
+    build: path.join(__dirname, './src/static_dist'),
 };
 
 const VENDOR = [
@@ -25,7 +26,7 @@ const VENDOR = [
     'react-router-redux',
     'jquery',
     'bootstrap-loader',
-    //'font-awesome-webpack!./styles/font-awesome.config.prod.js',
+    'font-awesome-webpack!./styles/font-awesome.config.prod.js',
     'material-ui'
 ];
 
@@ -36,8 +37,15 @@ module.exports = {
     },
     context: path.resolve(__dirname, '../src/static/'),
     entry: {
-        vendor: VENDOR,
-        app: PATHS.app
+        //vendor: VENDOR,
+        //app: PATHS.app,
+        fontAwesome: 'font-awesome-webpack!./styles/font-awesome.config.prod.js',
+        index: './index.jsx' // the entry point of our app
+    },
+    output: {
+        filename: '[name].[hash].js',
+        path: PATHS.build, //path.resolve(__dirname, '../src/static_dist/'),
+        //publicPath: '/static/'
     },
     module: {
         rules: [
@@ -146,22 +154,16 @@ module.exports = {
             }
         ]
     },
-    /*output: {
-        filename: '[name].[hash].js',
-        path: PATHS.build,
-        publicPath: '/static'
-    },*/
     plugins: [
         new ExtractCssChunks({
             hot: devMode
         }),
         new HtmlWebpackPlugin({
-            //template: path.join(__dirname, '../src/static/index.html.ejs'),
-            template: 'index.html.ejs',
-            //hash: true,
+            template: path.join(__dirname, '../src/static/index.html.ejs'),
+            hash: true,
             //chunks: ['vendor', 'app'],
             //chunksSortMode: 'manual',
-            favicon: 'favicon.ico'
+            favicon: path.join(__dirname, '../src/static/favicon.ico'),
             //inject: 'body'
         }),
         new webpack.ProvidePlugin({

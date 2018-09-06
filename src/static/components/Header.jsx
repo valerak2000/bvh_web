@@ -85,6 +85,8 @@ class Header extends Component {
         );
     }
 }
+/*
+*/
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -103,9 +105,7 @@ Header.muiName = 'Header';
 export default muiThemeable()(connect(mapStateToProps)(Header));
 //export default muiThemeable()(connect(mapStateToProps, mapDispatchToProps)(Header));
 
-
 /*
-
 
 <Paper style = {{
   display: 'inline-block',

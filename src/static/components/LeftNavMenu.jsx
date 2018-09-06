@@ -249,6 +249,3 @@ const mapStateToProps = (state, ownProps) => {
 
 LeftNavMenu.muiName = 'LeftNavMenu';
 export default muiThemeable()(connect(mapStateToProps)(LeftNavMenu));
-
-/*
-*/

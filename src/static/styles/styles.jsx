@@ -1,12 +1,12 @@
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import * as Colors from 'material-ui/styles/colors';
 
-export const muiTheme = getMuiTheme({
+export var muiTheme = getMuiTheme({
 //var muiTheme = exports.muiTheme = getMuiTheme({
     fontFamily: 'pfbeausanspro-reg, sans-serif',
     global: {
-        maxWidth: '126rem',
-        minWidth: '126rem',
+        maxWidth: '62rem',//'126rem',
+        minWidth: '62rem',
         minHeight: '58rem',
         margin: '0 auto',
         fontSize: 16,
@@ -48,11 +48,11 @@ export const muiTheme = getMuiTheme({
                 elementLeft: {
                     width: '100%',
                     height: 'inherit',
-                    margin: '0.5rem 0 -1rem 0',
+                    //margin: '0.1rem 0 -1rem 0',
                     display: 'flex',
                     iconStyleLeft: {
                         width: '75rem',
-                        margin: '1.5rem 0 0rem 0',
+                        //margin: '1.5rem 0 0rem 0',
                     },
                     logo: {
                         //2,646370023419204
@@ -63,13 +63,14 @@ export const muiTheme = getMuiTheme({
                             height: 'inherit',
                             width: 201,
                             objectFit: 'contain',
-                            margin: '-2.5rem auto auto -1rem',
+                            margin: '-0.5rem auto auto -0.5rem',
+                            //margin: '-2.5rem auto auto -1rem',
                         },
                     },
                     menu: {
                         width: '100%',
                         height: 'inherit',
-                        margin: 'auto auto auto',
+                        margin: '2rem 1rem auto',
                         tab: {
                             fontSize: 18,
                             fontWeight: 500,
@@ -83,14 +84,16 @@ export const muiTheme = getMuiTheme({
                 elementRight: {
                     width: '100%',
                     height: 'inherit',
-                    margin: '0.7rem auto',
+                    margin: '0.5rem auto',
                     iconStyleRight: {
                         width: 'auto',
+                        //margin: '1.5rem 0 0rem 0',
                         //margin: '0rem auto',
                     },
                     login: {
-                        top: '0rem',
-                        right: '3rem',
+                        //margin: '0rem 3rem 0',
+                        //top: '0rem',
+                        //right: '3rem',
                         height: 'inherit',
                         width: '28rem',
                         backgroundColor: 'inherit',
@@ -100,7 +103,7 @@ export const muiTheme = getMuiTheme({
                         //margin: 'auto',
                         badge: {
                             top: '-0.5rem',
-                            right: '3rem',
+                            right: '-7rem',
                             height: 'inherit',
                             width: '30rem',
                             backgroundColor: 'inherit',
@@ -108,7 +111,9 @@ export const muiTheme = getMuiTheme({
                             fontSize: 14,
                         },
                         button: {
-                            margin: '0rem 0rem 0', //'1rem 1rem 0',
+                            margin: '0rem -1rem 0', //'1rem 1rem 0',
+                            paddingTop: 10,
+                            height: 39,
                             label: {
                                 color: Colors.grey50,
                                 fontSize: 18,
@@ -117,6 +122,7 @@ export const muiTheme = getMuiTheme({
                             icon: {
                                 color: Colors.grey50,
                             },
+                            hoverColor: Colors.blue800
                         },
                     }
                 },
@@ -131,7 +137,7 @@ export const muiTheme = getMuiTheme({
             backgroundColor: Colors.blue800, //teal200,
             bottomNavigation: {
                 position: 'space-around',
-                height: '8rem',
+                height: '4rem',
                 //display: 'block',
                 button: {
                     //minWidth: '31rem',
