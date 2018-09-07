@@ -5,8 +5,8 @@ export var muiTheme = getMuiTheme({
 //var muiTheme = exports.muiTheme = getMuiTheme({
     fontFamily: 'pfbeausanspro-reg, sans-serif',
     global: {
-        maxWidth: '62rem',//'126rem',
-        minWidth: '62rem',
+        maxWidth: '78rem',//62 126,
+        minWidth: '78rem',
         minHeight: '58rem',
         margin: '0 auto',
         fontSize: 16,
@@ -103,9 +103,9 @@ export var muiTheme = getMuiTheme({
                         //margin: 'auto',
                         badge: {
                             top: '-0.5rem',
-                            right: '-7rem',
+                            right: '0.5rem',
                             height: 'inherit',
-                            width: '30rem',
+                            width: '19rem',
                             backgroundColor: 'inherit',
                             fontFamily: 'PFBeauSansPro-Reg, sans-serif',
                             fontSize: 14,

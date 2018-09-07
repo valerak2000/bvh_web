@@ -12,7 +12,6 @@ import Paper from 'material-ui/Paper';
 /import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer'
-import { Link } from 'react-router'
 */
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
@@ -68,7 +67,7 @@ class App extends Component {
            in div (created by App)
            in App
         */
-        console.log(info.componentStack);
+        //console.log(info.componentStack);
     }
 
     scrollChange() {

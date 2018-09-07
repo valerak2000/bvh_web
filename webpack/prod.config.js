@@ -7,13 +7,15 @@ process.env.NODE_ENV = 'production';
 
 module.exports = {
     mode: process.env.NODE_ENV,
-    //entry: ['./src/static/index.jsx'],
+    entry: {
+      'index': './index.jsx' // the entry point of our app
+    },
     devtool: 'source-map',
     output: {
       //filename: 'bundle.js',
       filename: 'js/bundle.[hash].min.js',
       chunkFilename: '[name].js',
-      path: resolve(__dirname, './src/static_dist'),
+      path: resolve(__dirname, '../src/static_dist'),
       publicPath: '/'
     },
     optimization: {

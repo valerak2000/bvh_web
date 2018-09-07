@@ -17,6 +17,28 @@ import * as Colors from 'material-ui/styles/colors';
 
 import { authLogoutAndRedirect } from '../actions/auth';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import {
+  faCoffee,
+  faCog,
+  faSpinner,
+  faQuoteLeft,
+  faSquare,
+  faSignInAlt
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+library.add(
+    fab,
+    faCoffee,
+    faCog,
+    faSpinner,
+    faQuoteLeft,
+    faSquare,
+    faSignInAlt
+);
+
 export function Login(props) {
     return (
         <FlatButton
@@ -24,12 +46,10 @@ export function Login(props) {
             labelPosition = 'before'
             labelStyle = { props.style.button.label }
             icon = { 
-                <FontIcon 
-                    className = "material-icons"
-                    color = { Colors.grey50 }
-                >
-                    home
-                </FontIcon>
+                <FontIcon
+                    className = 'fa fa-sign-in-alt'
+                    style = { props.style.button.icon }
+                />
             }
             onClick = { props.onClick }
             disableTouchRipple = { true }
@@ -40,6 +60,22 @@ export function Login(props) {
 }
 
 /*
+                <FontAwesomeIcon
+                    icon = { faSignInAlt }
+                    size = '1x'
+                />
+                <FontIcon
+                    className = 'fa fa-sign-in'
+                    style = { props.style.button.icon }
+                />
+
+                <FontIcon 
+                    className = "material-icons"
+                    color = { Colors.grey50 }
+                >
+                    home
+                </FontIcon>
+
                 <ActionInput 
                     color = { Colors.grey50 }
                 />

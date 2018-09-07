@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Favicon from 'react-favicon';
+//import Favicon from 'react-favicon';
 
 import '../../styles/main.scss';
 import { muiTheme } from '../../styles/styles';
@@ -15,7 +15,7 @@ import App from '../../app';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import LeftNavMenu from '../../components/LeftNavMenu';
-import vodokanalLogo from '../../images/Vodokanal_Logo.ico';
+//import favicon from '../../images/favicon.ico';
 
 class Root extends Component {
     static propTypes = {
@@ -31,13 +31,13 @@ class Root extends Component {
         return {
         };
     }
+//    <Favicon url = { favicon } />
 
     render() {
         const dev = (process.env.NODE_ENV != 'production');
 
         return (
             <div>
-                <Favicon url = { vodokanalLogo } />
                 <Provider store = { this.props.store }>
                     <MuiThemeProvider muiTheme = { muiTheme }>
                         <div

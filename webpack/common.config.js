@@ -39,8 +39,7 @@ module.exports = {
     entry: {
         //vendor: VENDOR,
         //app: PATHS.app,
-        fontAwesome: 'font-awesome-webpack!./styles/font-awesome.config.prod.js',
-        index: './index.jsx' // the entry point of our app
+        //fontAwesome: 'font-awesome-webpack!./styles/font-awesome.config.prod.js'
     },
     output: {
         filename: '[name].[hash].js',
@@ -116,28 +115,16 @@ module.exports = {
                 use: ['file-loader?name=images/[name].[ext]?[hash]', 'img-loader']
             },
             {
-                test: /\.(svg)$/i,
-                use: ['url-loader?mimetype=images/svg+xml', 'img-loader']
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+                loader: 'url-loader?limit=10000&mimetype=application/font-woff'
             },
             {
-                test: /\.(woff|woff2)$/,
-                loader: 'file-loader?name=fonts/[name].[ext]'
-            },
-            {
-                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url-loader?mimetype=application/octet-stream'
-            },
-            {
-                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'file-loader?name=/fonts/[name].[ext]'
+                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+                loader: 'file-loader'
             },
             {
                 test: /\.otf(\?.*)?$/,
                 loader: 'file-loader?name=/fonts/[name].[ext]&mimetype=application/font-otf'
-            },
-            {
-                test: /\.svg(\?.*)?$/,
-                loader: 'url-loader?name=/fonts/[name].[ext]&limit=10000&mimetype=image/svg+xml'
             },
             {
                 test: /\.json(\?.*)?$/,
@@ -159,12 +146,13 @@ module.exports = {
             hot: devMode
         }),
         new HtmlWebpackPlugin({
+            inject: true,
             template: path.join(__dirname, '../src/static/index.html.ejs'),
             hash: true,
             //chunks: ['vendor', 'app'],
             //chunksSortMode: 'manual',
-            favicon: path.join(__dirname, '../src/static/favicon.ico'),
-            //inject: 'body'
+            favicon: path.join(__dirname, '../src/static/images/favicon.ico'),
+            minify: true,
         }),
         new webpack.ProvidePlugin({
             React: 'react',
