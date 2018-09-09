@@ -10,6 +10,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
+import SvgIcon from 'material-ui/SvgIcon';
 import Divider from 'material-ui/Divider';
 import Badge from 'material-ui/Badge';
 import ActionInput from 'material-ui/svg-icons/action/input';
@@ -39,18 +40,20 @@ library.add(
     faSignInAlt
 );
 
+/*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
 export function Login(props) {
+    //console.log({faSignInAlt});
+    //console.log(faSignInAlt.icon[4]);
     return (
         <FlatButton
             label = 'Войти'
             labelPosition = 'before'
             labelStyle = { props.style.button.label }
             icon = { 
-                <FontIcon
-                    className = 'fa fa-sign-in-alt'
-                    style = { props.style.button.icon }
-                />
-            }
+                <SvgIcon { ...props }>
+                <path d={ faSignInAlt.icon[4] } />
+              </SvgIcon>
+             }
             onClick = { props.onClick }
             disableTouchRipple = { true }
             style = { props.style.button }
@@ -63,6 +66,8 @@ export function Login(props) {
                 <FontAwesomeIcon
                     icon = { faSignInAlt }
                     size = '1x'
+                    color = { Colors.grey50 }
+                    style = { props.style.button.icon }
                 />
                 <FontIcon
                     className = 'fa fa-sign-in'

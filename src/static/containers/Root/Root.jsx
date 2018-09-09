@@ -24,7 +24,6 @@ class Root extends Component {
     };
 
     /*componentDidMount() {
-        console.log('Root');
     }*/
 
     static get contextTypes() {

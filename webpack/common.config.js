@@ -112,15 +112,19 @@ module.exports = {
             },
             {
                 test: /\.(jpe?g|png|gif|ico)$/i,
-                use: ['file-loader?name=images/[name].[ext]?[hash]', 'img-loader']
+                use: ['file-loader?name=/images/[name].[ext]?[hash]', 'img-loader']
+            },
+            {
+                test: /\.svg(\?.*)?$/,
+                loader: 'url-loader?name=/images/[name].[ext]&limit=10000&mimetype=image/svg+xml'
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-                loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+                loader: 'url-loader?name=/fonts/[name].[ext]&limit=10000&mimetype=application/font-woff'
             },
             {
-                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-                loader: 'file-loader'
+                test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+                loader: 'file-loader?name=/fonts/[name].[ext]'
             },
             {
                 test: /\.otf(\?.*)?$/,

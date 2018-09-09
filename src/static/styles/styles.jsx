@@ -68,7 +68,7 @@ export var muiTheme = getMuiTheme({
                         },
                     },
                     menu: {
-                        width: '100%',
+                        width: '30rem',
                         height: 'inherit',
                         margin: '2rem 1rem auto',
                         tab: {
@@ -82,7 +82,7 @@ export var muiTheme = getMuiTheme({
                     width: 'auto',
                 },
                 elementRight: {
-                    width: '100%',
+                    width: '7rem',
                     height: 'inherit',
                     margin: '0.5rem auto',
                     iconStyleRight: {
@@ -95,7 +95,7 @@ export var muiTheme = getMuiTheme({
                         //top: '0rem',
                         //right: '3rem',
                         height: 'inherit',
-                        width: '28rem',
+                        width: 'inherit',
                         backgroundColor: 'inherit',
                         fontSize: 14,
                         //width: '100%',
@@ -120,7 +120,11 @@ export var muiTheme = getMuiTheme({
                                 fontWeight: 500,
                             },
                             icon: {
-                                color: Colors.grey50,
+                                height: '1.5rem',
+                                width: '1.5rem',
+                                margin: 12,
+                                left:4,
+                                top: 0,
                             },
                             hoverColor: Colors.blue800
                         },
