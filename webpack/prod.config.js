@@ -2,6 +2,7 @@ const merge = require('webpack-merge');
 const { resolve } = require('path');
 const commonConfig = require('./common.config');
 const SizePlugin = require('size-plugin');
+var BundleTracker = require('webpack-bundle-tracker');
 
 process.env.NODE_ENV = 'production';
 
@@ -68,6 +69,7 @@ module.exports = {
           }
         }
     },
+    new BundleTracker({filename: './webpack-stats-prod.json'}),
     plugins: [new SizePlugin()]
 };
 /*    optimization: {

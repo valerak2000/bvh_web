@@ -26,3 +26,4 @@ python-dateutil==2.7.3 #2.6.1
 git+https://github.com/Seedstars/django-rest-logger.git
 
 django-rest-knox==3.1.5 #3.0.3
+django-webpack-loader

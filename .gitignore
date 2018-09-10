@@ -362,3 +362,4 @@ npm-debug.log
 # not include scripts because they come from external module
 scripts/
 docs/.~lock.common struct.xlsx#
+webpack-stats.json

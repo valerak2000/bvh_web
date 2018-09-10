@@ -2,6 +2,7 @@ const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+var BundleTracker = require('webpack-bundle-tracker');
 //const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
@@ -10,7 +11,7 @@ const devMode = process.env.NODE_ENV === 'development';
 const PATHS = {
     app: path.join(__dirname, '../src/static'),
     //app: './src/static',
-    build: path.join(__dirname, './src/static_dist'),
+    build: path.join(__dirname, '../src/static_dist'),
 };
 
 const VENDOR = [
@@ -142,9 +143,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractCssChunks({
-            hot: devMode
-        }),
+        new ExtractCssChunks({ hot: devMode }),
         new HtmlWebpackPlugin({
             inject: true,
             template: path.join(__dirname, '../src/static/index.html.ejs'),
@@ -158,22 +157,8 @@ module.exports = {
             React: 'react',
             ReactDOM: 'react-dom'
         }),
-/*
-        new webpack.DefinePlugin({
-            'process.env': { NODE_ENV: TARGET === 'dev' ? '"development"' : '"production"' },
-            '__DEVELOPMENT__': TARGET === 'dev'
-        })
-*/
-/*
-        new webpack.ProvidePlugin({
-            '$': 'jquery',
-            'jQuery': 'jquery',
-            'window.jQuery': 'jquery'
-        }),
-        new CleanWebpackPlugin([PATHS.build], {
-            root: process.cwd()
-        })
-*/
+        //new webpack.NoErrorsPlugin(),
+        new BundleTracker({ filename: './webpack/webpack-stats.json' })
     ],
     externals: {
         React: 'react',
