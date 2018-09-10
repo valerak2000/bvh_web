@@ -84,7 +84,7 @@ export var muiTheme = getMuiTheme({
                 elementRight: {
                     width: '7rem',
                     height: 'inherit',
-                    margin: '0.5rem auto',
+                    margin: '0 auto',
                     iconStyleRight: {
                         width: 'auto',
                         //margin: '1.5rem 0 0rem 0',
@@ -102,8 +102,8 @@ export var muiTheme = getMuiTheme({
                         //height: 'inherit',
                         //margin: 'auto',
                         badge: {
-                            top: '-0.5rem',
-                            right: '0.5rem',
+                            top: '0rem',
+                            right: '1rem',
                             height: 'inherit',
                             width: '19rem',
                             backgroundColor: 'inherit',
@@ -120,11 +120,8 @@ export var muiTheme = getMuiTheme({
                                 fontWeight: 500,
                             },
                             icon: {
-                                height: '1.5rem',
-                                width: '1.5rem',
-                                margin: 12,
-                                left:4,
-                                top: 0,
+                                height: '1.25rem',
+                                width: '1.25rem',
                             },
                             hoverColor: Colors.blue800
                         },

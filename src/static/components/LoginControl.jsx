@@ -50,9 +50,12 @@ export function Login(props) {
             labelPosition = 'before'
             labelStyle = { props.style.button.label }
             icon = { 
-                <SvgIcon { ...props }>
-                <path d={ faSignInAlt.icon[4] } />
-              </SvgIcon>
+                <FontAwesomeIcon
+                    icon = { faSignInAlt }
+                    size = '1x'
+                    color = { Colors.grey50 }
+                    style = { props.style.button.icon }
+                />
              }
             onClick = { props.onClick }
             disableTouchRipple = { true }
@@ -63,6 +66,9 @@ export function Login(props) {
 }
 
 /*
+                <SvgIcon { ...props }>
+                <path d={ faSignInAlt.icon[4] } />
+              </SvgIcon>
                 <FontAwesomeIcon
                     icon = { faSignInAlt }
                     size = '1x'

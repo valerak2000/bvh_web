@@ -1,5 +1,6 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const commonConfig = require('./common.config');
 
 process.env.NODE_ENV = 'development';
@@ -22,6 +23,10 @@ module.exports = merge(commonConfig, {
     },
     devtool: 'cheap-module-source-map', //cheap-module-eval-source-map
     plugins: [
+        new ProgressBarPlugin({
+            format: 'Build [:bar] :percent (:elapsed seconds)',
+            clear: false,
+          }),
         new webpack.HotModuleReplacementPlugin(), // enable HMR globally
         new webpack.NamedModulesPlugin() // prints more readable module names in the browser console on HMR updates
     ],
