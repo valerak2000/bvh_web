@@ -1,0 +1,12 @@
+{
+  "name": "react-app",
+  "author": "Duy Hoang",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run node express.js"
+  },
+  "peerDependencies": {
+    "express": "^4.16.3",
+    "compression": "^1.7.2"
+  }
+}

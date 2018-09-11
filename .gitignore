@@ -322,6 +322,7 @@ ASALocalRun/
 .mfractor/
 
 .idea/
+**/bundles/
 **/static_dist/
 **/static_root/
 **/analysis/
