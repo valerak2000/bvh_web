@@ -100,7 +100,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files', 'media')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '../frontend/bundles/'),
+    #os.path.join(BASE_DIR, '../frontend/bundles/'),
+    os.path.join(BASE_DIR, '../frontend'),
 )
 
 # store static files locally and serve with whitenoise
@@ -132,11 +133,12 @@ REST_KNOX = {
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'CACHE': not DEBUG,
+        #'CACHE': not DEBUG,
         'BUNDLE_DIR_NAME': 'bundles/', # must end with slash
-        'STATS_FILE': os.path.join(BASE_DIR, '../frontend/webpack/webpack-stats.json'),
-        'POLL_INTERVAL': 0.1,
-        'TIMEOUT': None,
-        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+        #'STATS_FILE': os.path.join(BASE_DIR, '../frontend/webpack/webpack-stats.json'),
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        #'POLL_INTERVAL': 0.1,
+        #'TIMEOUT': None,
+        #'IGNORE': ['.+\.hot-update.js', '.+\.map']
     }
 }

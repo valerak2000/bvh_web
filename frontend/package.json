@@ -25,7 +25,7 @@
     "build-analysis": "npm run clean-dist && webpack -p --progress --config=webpack/analyzer.config.js",
     "build-dev": "npm run clean-dist && webpack-dev-server --progress --client-log-level info --config=webpack/dev.config.js --watch",
     "dev": "npm run clean-dist && webpack --progress --display-error-details --config=webpack/dev.config.js --watch",
-    "clean-dist": "rimraf -f -rmdir src/bvh_web/build",
+    "clean-dist": "rimraf -f -rmdir bundles",
     "lint": "npm-run-all lint-js lint-less",
     "lint-js": "jshint",
     "lint-less": "lesshint ./src/bvh_web/assets/less",

@@ -19,7 +19,8 @@ module.exports = merge(commonConfig, {
         hot: true, // enable HMR on the server
         open: true,
         port: port,
-        historyApiFallback: true
+		contentBase: '.frontend/bundles',
+        historyApiFallback: true,
     },
     devtool: 'cheap-module-source-map', //cheap-module-eval-source-map
     plugins: [

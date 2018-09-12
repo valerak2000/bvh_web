@@ -13,9 +13,9 @@ const initialState = {};
 const history = createHistory();
 const store = configureStore(initialState, history);
 
-const node = (
+/*const node = (
     <Root store = { store } history = { history } />
-);
+);*/
 
 const token = sessionStorage.getItem('token');
 let user = {};
@@ -29,4 +29,20 @@ if (token !== null) {
     store.dispatch(authLoginUserSuccess(token, user));
 }
 
-ReactDOM.render(node, document.getElementById('root'));
+const renderComponent = () => {
+    ReactDOM.render(
+        <Root
+            store = { store }
+            history = { history } 
+        />,
+        document.getElementById('root')
+    );
+};
+
+renderComponent();
+
+// Hot Module Replacement API
+if (module.hot) {
+    module.hot.accept(); //() => { renderComponent(); });
+}
+  

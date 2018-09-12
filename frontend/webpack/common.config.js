@@ -40,7 +40,6 @@ module.exports = {
     entry: {
         //vendor: VENDOR,
         //app: PATHS.app,
-        //fontAwesome: 'font-awesome-webpack!./styles/font-awesome.config.prod.js'
     },
     output: {
         filename: '[name].[hash].js',
@@ -143,7 +142,15 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractCssChunks({ hot: devMode }),
+        new ExtractCssChunks(
+            {
+                // Options similar to the same options in webpackOptions.output
+                // both options are optional
+                filename: devMode ? '[name].css' : '[name].[hash].css',
+                chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+                //hot: false // optional as the plugin cannot automatically detect if you are using HOT, not for production use
+                hot: devMode // optional as the plugin cannot automatically detect if you are using HOT, not for production use
+            }),
         new HtmlWebpackPlugin({
             inject: true,
             template: path.join(__dirname, '../src/index.html.ejs'),
@@ -157,7 +164,12 @@ module.exports = {
             React: 'react',
             ReactDOM: 'react-dom'
         }),
-        //new webpack.NoErrorsPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: `"${devMode ? 'development' : 'production'}"`,
+            },
+        }),
+        new webpack.NoEmitOnErrorsPlugin(),
         new BundleTracker({ filename: './webpack/webpack-stats.json' })
     ],
     externals: {
