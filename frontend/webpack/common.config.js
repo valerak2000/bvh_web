@@ -9,9 +9,9 @@ const TARGET = process.env.npm_lifecycle_event;
 const devMode = process.env.NODE_ENV === 'development';
 
 const PATHS = {
-    app: path.join(__dirname, '../src/bvh_web/static'),
+    app: path.join(__dirname, '../src'),
     //app: './src/bvh_web/static',
-    build: path.join(__dirname, '../src/bvh_web/build'),
+    build: path.join(__dirname, '../bundles'),
 };
 
 const VENDOR = [
@@ -36,7 +36,7 @@ module.exports = {
         extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
         modules: ['node_modules']
     },
-    context: path.resolve(__dirname, '../src/bvh_web/static/'),
+    context: path.resolve(__dirname, '../src/'),
     entry: {
         //vendor: VENDOR,
         //app: PATHS.app,
@@ -146,11 +146,11 @@ module.exports = {
         new ExtractCssChunks({ hot: devMode }),
         new HtmlWebpackPlugin({
             inject: true,
-            template: path.join(__dirname, '../src/bvh_web/static/index.html.ejs'),
+            template: path.join(__dirname, '../src/index.html.ejs'),
             hash: true,
             //chunks: ['vendor', 'app'],
             //chunksSortMode: 'manual',
-            favicon: path.join(__dirname, '../src/bvh_web/static/images/favicon.ico'),
+            favicon: path.join(__dirname, '../src/images/favicon.ico'),
             minify: true,
         }),
         new webpack.ProvidePlugin({
@@ -158,7 +158,7 @@ module.exports = {
             ReactDOM: 'react-dom'
         }),
         //new webpack.NoErrorsPlugin(),
-        //new BundleTracker({ filename: './webpack/webpack-stats.json' })
+        new BundleTracker({ filename: './webpack/webpack-stats.json' })
     ],
     externals: {
         React: 'react',

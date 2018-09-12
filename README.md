@@ -2,6 +2,7 @@ using python, react, material-ui
 ==================
 git submodule init
 
+cd backend
 linux:
 	virtualenv -p /usr/bin/python3 py3
 	source py3/bin/activate
@@ -11,7 +12,6 @@ windows:
 pip install django-disposable-email-checker
 pip install -r py-requirements/dev.txt
 
-cd src
 python manage.py migrate
 python manage.py loaddata fixtures.json
 python manage.py runserver

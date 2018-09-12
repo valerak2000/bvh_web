@@ -2,7 +2,7 @@
   "name": "bvh_web",
   "version": "0.0.1",
   "description": "Django, React 16, Material-UI, Webpack 4 (with Hot Module Replacement) and Babel 7.",
-  "main": "src/bvh_web/static/index.jsx",
+  "main": "src/index.jsx",
   "keywords": [
     "react 16",
     "webpack 4",

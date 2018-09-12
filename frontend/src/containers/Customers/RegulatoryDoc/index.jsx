@@ -9,18 +9,18 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 //import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 import PdfLink from '../../../components/PdfLink';
-//import rekvisity_ooo_bvh from '../../../../../files/media/rekvisity_ooo_bvh.pdf';
-import federalnyy_zakon_o_vodosnabzhenii_i_vodootvedenii from '../../../../../files/media/potrebiteliam/federalnyy_zakon_o_vodosnabzhenii_i_vodootvedenii.pdf';
-import pp_83 from '../../../../../files/media/potrebiteliam/pp_83.pdf';
-import pp_124 from '../../../../../files/media/potrebiteliam/pp_124.pdf';
-import pp_354 from '../../../../../files/media/potrebiteliam/pp_354.pdf';
-//import postanovlenie_no644_v_redakcii_ot_26_12_2016 from '../../../../../files/media/potrebiteliam/postanovlenie_no644_v_redakcii_ot_26.12.2016.pdf';
-import pp_645 from '../../../../../files/media/potrebiteliam/pp_645.pdf';
-import pp_776 from '../../../../../files/media/potrebiteliam/pp_776.pdf';
-import poryadok_vzaimodeystviya_1027_47 from '../../../../../files/media/potrebiteliam/poryadok_vzaimodeystviya_1027-47.pdf';
-import sanitarnye_pravila from '../../../../../files/media/potrebiteliam/sanitarnye_pravila.pdf';
-import sp_vnutrenniy_vodoprovod_i_kanalizaciya_zdaniy from '../../../../../files/media/potrebiteliam/sp_vnutrenniy_vodoprovod_i_kanalizaciya_zdaniy.pdf';
-import administrativnyy_reglament from '../../../../../files/media/potrebiteliam/8_administrativnyy_reglament.pdf';
+//import rekvisity_ooo_bvh from '../../../../../backend/files/media/rekvisity_ooo_bvh.pdf';
+import federalnyy_zakon_o_vodosnabzhenii_i_vodootvedenii from '../../../../../backend/files/media/potrebiteliam/federalnyy_zakon_o_vodosnabzhenii_i_vodootvedenii.pdf';
+import pp_83 from '../../../../../backend/files/media/potrebiteliam/pp_83.pdf';
+import pp_124 from '../../../../../backend/files/media/potrebiteliam/pp_124.pdf';
+import pp_354 from '../../../../../backend/files/media/potrebiteliam/pp_354.pdf';
+//import postanovlenie_no644_v_redakcii_ot_26_12_2016 from '../../../../../backend/files/media/potrebiteliam/postanovlenie_no644_v_redakcii_ot_26.12.2016.pdf';
+import pp_645 from '../../../../../backend/files/media/potrebiteliam/pp_645.pdf';
+import pp_776 from '../../../../../backend/files/media/potrebiteliam/pp_776.pdf';
+import poryadok_vzaimodeystviya_1027_47 from '../../../../../backend/files/media/potrebiteliam/poryadok_vzaimodeystviya_1027-47.pdf';
+import sanitarnye_pravila from '../../../../../backend/files/media/potrebiteliam/sanitarnye_pravila.pdf';
+import sp_vnutrenniy_vodoprovod_i_kanalizaciya_zdaniy from '../../../../../backend/files/media/potrebiteliam/sp_vnutrenniy_vodoprovod_i_kanalizaciya_zdaniy.pdf';
+import administrativnyy_reglament from '../../../../../backend/files/media/potrebiteliam/8_administrativnyy_reglament.pdf';
 
 class RegulatoryDocView extends Component {
     static propTypes = {

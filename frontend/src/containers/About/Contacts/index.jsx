@@ -14,7 +14,7 @@ import PdfLink from '../../../components/PdfLink';
 
 import bvhMainOfficeBuild from '../../../images/main_office.jpg';
 import bvhAbonentsOfficeBuild from '../../../images/abon_office.jpg';
-import rekvisity_ooo_bvh from '../../../../../files/media/rekvisity_ooo_bvh.pdf';
+import rekvisity_ooo_bvh from '../../../../../backend/files/media/rekvisity_ooo_bvh.pdf';
 
 class ContactsView extends Component {
     static propTypes = {

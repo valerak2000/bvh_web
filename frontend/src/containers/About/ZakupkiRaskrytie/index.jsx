@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 
-import bvh_if2_2017 from '../../../../../files/media/Баланс-и-ф-2-БВХ-2017.pdf';
-import bvh_usn_2017 from '../../../../../files/media/БВХ-УСН-2017.pdf';
+import bvh_if2_2017 from '../../../../../backend/files/media/Баланс-и-ф-2-БВХ-2017.pdf';
+import bvh_usn_2017 from '../../../../../backend/files/media/БВХ-УСН-2017.pdf';
 
 class ZakupkiRaskrytieView extends Component {
     static propTypes = {
