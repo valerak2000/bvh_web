@@ -9,7 +9,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 //import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 //import './style.scss';
-import bvhLogo from '../../../images/water-glass-and-faucet.png';
+const bvhLogo = '/static/images/water-glass-and-faucet.png';
 
 class HomeView extends Component {
     static propTypes = {

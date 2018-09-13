@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import FlatButton from 'material-ui/FlatButton';
 
-import iconPdf from '../images/pdf-icon.png';
+const iconPdf = '/static/images/pdf-icon.png';
 
 class PdfLink extends Component {
     static propTypes = {

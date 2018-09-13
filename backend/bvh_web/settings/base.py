@@ -100,8 +100,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files', 'media')
 
 STATICFILES_DIRS = (
-    #os.path.join(BASE_DIR, '../frontend/bundles/'),
-    os.path.join(BASE_DIR, '../frontend'),
+    # ...
+    '../static/',
+    ('images', os.path.join(BASE_DIR, '../static/images')),
+    ('files', os.path.join(BASE_DIR, '../static/files')),
+    ('fonts', os.path.join(BASE_DIR, '../static/fonts')),
+    #("bundles", os.path.join(BASE_DIR, '../static/bundles/')),
 )
 
 # store static files locally and serve with whitenoise
@@ -130,15 +134,14 @@ REST_KNOX = {
     'AUTH_TOKEN_CHARACTER_LENGTH': 64,
     'USER_SERIALIZER': 'knox.serializers.UserSerializer'
 }
-
+#print(BASE_DIR)
 WEBPACK_LOADER = {
     'DEFAULT': {
-        #'CACHE': not DEBUG,
+        'CACHE': not DEBUG,
         'BUNDLE_DIR_NAME': 'bundles/', # must end with slash
-        #'STATS_FILE': os.path.join(BASE_DIR, '../frontend/webpack/webpack-stats.json'),
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
-        #'POLL_INTERVAL': 0.1,
-        #'TIMEOUT': None,
-        #'IGNORE': ['.+\.hot-update.js', '.+\.map']
+        'STATS_FILE': os.path.join(BASE_DIR, '../frontend/webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': ['.+\.hot-update.js', '.+\.map']
     }
 }

@@ -18,19 +18,19 @@ import * as Colors from 'material-ui/styles/colors';
 
 import { authLogoutAndRedirect } from '../actions/auth';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
+//import { library } from '@fortawesome/fontawesome-svg-core';
+//import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
-  faCoffee,
+  /*faCoffee,
   faCog,
   faSpinner,
   faQuoteLeft,
-  faSquare,
+  faSquare,*/
   faSignInAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-library.add(
+/*library.add(
     fab,
     faCoffee,
     faCog,
@@ -38,7 +38,7 @@ library.add(
     faQuoteLeft,
     faSquare,
     faSignInAlt
-);
+);*/
 
 /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
 export function Login(props) {
@@ -105,10 +105,13 @@ export function Logged(props) {
     return (
         <IconMenu
             iconButtonElement = {
-              <IconButton><MoreVertIcon /></IconButton>
+                <IconButton>
+                    <MoreVertIcon />
+                </IconButton>
             }
-            targetOrigin = {{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin = {{ horizontal: 'right', vertical: 'top' }}
+            targetOrigin = {{ horizontal: 'left', vertical: 'top' }}
+            anchorOrigin = {{ horizontal: 'left', vertical: 'top' }}
+            style = { props.style.button }
         >
             <MenuItem
                 primaryText = 'Личный кабинет (Внести показания, узнать состояние баланса, заказать и оплатить услуги)'

@@ -15,7 +15,7 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import CommunicationBusiness from 'material-ui/svg-icons/communication/business';
 //import * as Colors from 'material-ui/styles/colors';
 
-import AuthorSign from '../images/author-sign.png';
+const AuthorSign = '/static/images/author-sign.png';
 
 //const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
 //const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;

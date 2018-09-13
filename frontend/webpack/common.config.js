@@ -3,18 +3,17 @@ const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
-//const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
 const devMode = process.env.NODE_ENV === 'development';
 
 const PATHS = {
     app: path.join(__dirname, '../src'),
-    //app: './src/bvh_web/static',
-    build: path.join(__dirname, '../bundles'),
+    build: path.join(__dirname, '../../static/bundles/'),
+    //build: path.resolve('../static/bundles/'),
 };
 
-const VENDOR = [
+/*const VENDOR = [
     'babel-polyfill',
     'history',
     'react',
@@ -29,7 +28,7 @@ const VENDOR = [
     'bootstrap-loader',
     'font-awesome-webpack!./styles/font-awesome.config.prod.js',
     'material-ui'
-];
+];*/
 
 module.exports = {
     resolve: {
@@ -37,14 +36,14 @@ module.exports = {
         modules: ['node_modules']
     },
     context: path.resolve(__dirname, '../src/'),
-    entry: {
+    /*entry: {
         //vendor: VENDOR,
         //app: PATHS.app,
-    },
+    },*/
     output: {
         filename: '[name].[hash].js',
-        path: PATHS.build, //path.resolve(__dirname, '../src/static_dist/'),
-        //publicPath: '/static'
+        path: PATHS.build,
+        publicPath: '/static/bundles/'
     },
     module: {
         rules: [
@@ -67,10 +66,15 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    devMode ? 'style-loader' : ExtractCssChunks.loader,
+					{
+						loader: devMode ? 'style-loader' : ExtractCssChunks.loader,
+					},
                     {
                         loader: 'css-loader',
                         options: {
+							modules: true,
+							camelCase: true,
+							sourceMap: true,
                             importLoaders: 1
                         }
                     },
@@ -80,7 +84,9 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    devMode ? 'style-loader' : ExtractCssChunks.loader,
+					{
+						loader: devMode ? 'style-loader' : ExtractCssChunks.loader,
+					},
                     {
                         loader: 'css-loader',
                         options: {
@@ -102,7 +108,9 @@ module.exports = {
                     {
                         test: /\.less$/,
                         use: [
-                            devMode ? 'style-loader' : ExtractCssChunks.loader,
+                            {
+                                loader: devMode ? 'style-loader' : ExtractCssChunks.loader,
+                            },
                             'css-loader', // translates CSS into CommonJS
                             'postcss-loader',
                             'less-loader' // compiles Less to CSS
@@ -114,10 +122,6 @@ module.exports = {
                 test: /\.(jpe?g|png|gif|ico|svg)$/i,
                 use: ['file-loader?name=images/[name].[ext]?[hash]', 'img-loader']
             },
-            /*{
-                test: /\.svg(\?.*)?$/,
-                loader: 'url-loader?name=images/[name].[ext]&limit=10000&mimetype=image/svg+xml'
-            },*/
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
                 loader: 'url-loader?name=fonts/[name].[ext]&limit=10000&mimetype=application/font-woff'
@@ -148,29 +152,28 @@ module.exports = {
                 // both options are optional
                 filename: devMode ? '[name].css' : '[name].[hash].css',
                 chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-                //hot: false // optional as the plugin cannot automatically detect if you are using HOT, not for production use
                 hot: devMode // optional as the plugin cannot automatically detect if you are using HOT, not for production use
-            }),
+        }),
         new HtmlWebpackPlugin({
             inject: true,
-            template: path.join(__dirname, '../src/index.html.ejs'),
+            //template: path.join(__dirname, '../src/index.html.ejs'),
             hash: true,
             //chunks: ['vendor', 'app'],
             //chunksSortMode: 'manual',
-            favicon: path.join(__dirname, '../src/images/favicon.ico'),
+            favicon: path.join(__dirname, '../../static/images/favicon.ico'),
             minify: true,
         }),
         new webpack.ProvidePlugin({
             React: 'react',
             ReactDOM: 'react-dom'
         }),
-        new webpack.DefinePlugin({
+        /*new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: `"${devMode ? 'development' : 'production'}"`,
             },
-        }),
+        }),*/
         new webpack.NoEmitOnErrorsPlugin(),
-        new BundleTracker({ filename: './webpack/webpack-stats.json' })
+        new BundleTracker({ filename: './webpack-stats.json' })
     ],
     externals: {
         React: 'react',

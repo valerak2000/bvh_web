@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { push } from 'react-router-redux';
+//import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -12,9 +12,9 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import { Maps } from '../../../components/Maps';
 import PdfLink from '../../../components/PdfLink';
 
-import bvhMainOfficeBuild from '../../../images/main_office.jpg';
-import bvhAbonentsOfficeBuild from '../../../images/abon_office.jpg';
-import rekvisity_ooo_bvh from '../../../../../backend/files/media/rekvisity_ooo_bvh.pdf';
+const bvhMainOfficeBuild = '/static/images/main_office.jpg';
+const bvhAbonentsOfficeBuild = '/static/images/abon_office.jpg';
+const rekvisity_ooo_bvh = '/static/files/media/rekvisity_ooo_bvh.pdf';
 
 class ContactsView extends Component {
     static propTypes = {

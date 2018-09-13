@@ -8,8 +8,8 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import {GridList, GridTile} from 'material-ui/GridList';
 import Divider from 'material-ui/Divider';
 
-import avatarMan from '../../../images/avatar.png';
-import avatarWoman from '../../../images/avatar_w.png';
+const avatarMan = '/static/images/avatar.png';
+const avatarWoman = '/static/images/avatar_w.png';
 
 class LeadershipView extends Component {
     static propTypes = {

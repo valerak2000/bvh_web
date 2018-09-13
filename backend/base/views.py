@@ -9,6 +9,7 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from django.template import loader
 
 class IndexView(View):
     """Render main page."""
@@ -16,8 +17,12 @@ class IndexView(View):
     def get(self, request):
         """Return html for main application page."""
 
-        abspath = open(os.path.join(settings.BASE_DIR, '../frontend/bundles/index.html'), 'r')
-        return HttpResponse(content=abspath.read())
+        template = loader.get_template('base/index.html')
+        context = {
+        }
+        return HttpResponse(template.render(context, request))
+#        abspath = open(os.path.join(settings.BASE_DIR, '../static/bundles/index.html'), 'r')
+#        return HttpResponse(content=abspath.read())
 
 
 class ProtectedDataView(GenericAPIView):

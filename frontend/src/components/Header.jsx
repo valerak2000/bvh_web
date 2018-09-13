@@ -9,7 +9,7 @@ import IconButton from 'material-ui/IconButton';
 
 import LoginControl from './LoginControl';
 import SiteMenu from './SiteMenu';
-import bvhLogo from '../images/logo_bvh.png';
+const bvhLogo = '/static/images/logo_bvh.png';
 
 class Header extends Component {
     static propTypes = {
