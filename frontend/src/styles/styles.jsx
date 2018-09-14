@@ -63,7 +63,7 @@ export var muiTheme = getMuiTheme({
                             height: 'inherit',
                             width: 201,
                             objectFit: 'contain',
-                            margin: '-0.5rem auto auto -0.5rem',
+                            margin: '-0.75rem auto auto -0.5rem',
                             //margin: '-2.5rem auto auto -1rem',
                         },
                     },
@@ -82,7 +82,7 @@ export var muiTheme = getMuiTheme({
                     width: 'auto',
                 },
                 elementRight: {
-                    width: '7rem',
+                    width: 'auto',
                     height: 'inherit',
                     margin: '0 auto',
                     iconStyleRight: {
@@ -98,6 +98,7 @@ export var muiTheme = getMuiTheme({
                         width: 'inherit',
                         backgroundColor: 'inherit',
                         fontSize: 14,
+                        color: Colors.grey50,
                         //width: '100%',
                         //height: 'inherit',
                         //margin: 'auto',
@@ -114,8 +115,9 @@ export var muiTheme = getMuiTheme({
                             margin: '0rem -1rem 0', //'1rem 1rem 0',
                             paddingTop: 10,
                             height: 39,
+                            color: Colors.grey50,
+                            hoverColor: Colors.blue800,
                             label: {
-                                color: Colors.grey50,
                                 fontSize: 18,
                                 fontWeight: 500,
                             },
@@ -123,7 +125,11 @@ export var muiTheme = getMuiTheme({
                                 height: '1.25rem',
                                 width: '1.25rem',
                             },
-                            hoverColor: Colors.blue800
+                            iconMenu: {
+                                height: '1.25rem',
+                                width: '1.25rem',
+                                color: Colors.grey50,
+                            },
                         },
                     }
                 },

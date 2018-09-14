@@ -10,24 +10,17 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
-import SvgIcon from 'material-ui/SvgIcon';
+//import SvgIcon from 'material-ui/SvgIcon';
 import Divider from 'material-ui/Divider';
 import Badge from 'material-ui/Badge';
-import ActionInput from 'material-ui/svg-icons/action/input';
-import * as Colors from 'material-ui/styles/colors';
+//import ActionInput from 'material-ui/svg-icons/action/input';
+//import { grey50 }  from 'material-ui/styles/colors';
 
 import { authLogoutAndRedirect } from '../actions/auth';
 
 //import { library } from '@fortawesome/fontawesome-svg-core';
 //import { fab } from '@fortawesome/free-brands-svg-icons';
-import {
-  /*faCoffee,
-  faCog,
-  faSpinner,
-  faQuoteLeft,
-  faSquare,*/
-  faSignInAlt
-} from '@fortawesome/free-solid-svg-icons';
+import { faSignInAlt, faSignOutAlt, faLock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /*library.add(
@@ -52,11 +45,9 @@ export function Login(props) {
             icon = { 
                 <FontAwesomeIcon
                     icon = { faSignInAlt }
-                    size = '1x'
-                    color = { Colors.grey50 }
                     style = { props.style.button.icon }
                 />
-             }
+            }
             onClick = { props.onClick }
             disableTouchRipple = { true }
             style = { props.style.button }
@@ -109,20 +100,30 @@ export function Logged(props) {
                     <MoreVertIcon />
                 </IconButton>
             }
-            targetOrigin = {{ horizontal: 'left', vertical: 'top' }}
-            anchorOrigin = {{ horizontal: 'left', vertical: 'top' }}
+            anchorOrigin = {{ horizontal: 'right', vertical: 'top' }}
+            targetOrigin = {{ horizontal: 'right', vertical: 'top' }}
             style = { props.style.button }
+            iconStyle = { props.style.button.iconMenu }
         >
             <MenuItem
                 primaryText = 'Личный кабинет (Внести показания, узнать состояние баланса, заказать и оплатить услуги)'
-                secondaryText = ''
-                leftIcon = { <FontIcon className='fa fa-lock' /> }
+                secondaryText = '123'
+                leftIcon = {
+                    <FontAwesomeIcon
+                        icon = { faLock }
+                        style = { props.style.button.icon }
+                    />
+                }
                 onClick = { props.onClickProtected }
             />
             <Divider />
             <MenuItem
                 primaryText = { props.userName } /*'Выйти'*/
-                rightIcon = { <FontIcon className='fa fa-sign-out' />
+                leftIcon = { 
+                    <FontAwesomeIcon
+                        icon = { faSignOutAlt }
+                        style = { props.style.button.icon }
+                    />
                 }
                 onClick = { props.onClickLogout }
             />

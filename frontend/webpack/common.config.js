@@ -146,13 +146,12 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractCssChunks(
-            {
-                // Options similar to the same options in webpackOptions.output
-                // both options are optional
-                filename: devMode ? '[name].css' : '[name].[hash].css',
-                chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-                hot: devMode // optional as the plugin cannot automatically detect if you are using HOT, not for production use
+        new ExtractCssChunks({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: devMode ? '[name].css' : '[name].[hash].css',
+            chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+            hot: devMode // optional as the plugin cannot automatically detect if you are using HOT, not for production use
         }),
         new HtmlWebpackPlugin({
             inject: true,

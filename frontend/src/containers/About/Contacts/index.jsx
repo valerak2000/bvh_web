@@ -15,6 +15,7 @@ import PdfLink from '../../../components/PdfLink';
 const bvhMainOfficeBuild = '/static/images/main_office.jpg';
 const bvhAbonentsOfficeBuild = '/static/images/abon_office.jpg';
 const rekvisity_ooo_bvh = '/static/files/media/rekvisity_ooo_bvh.pdf';
+const rekvisity_ooo_boos = '/static/files/media/rekvisity_ooo_boos.pdf';
 
 class ContactsView extends Component {
     static propTypes = {
@@ -64,6 +65,10 @@ class ContactsView extends Component {
                     title = "ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»"
                     titleStyle = { this.props.muiTheme.app.сard.header }
                 />
+                <CardHeader
+                    title = "ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»"
+                    titleStyle = { this.props.muiTheme.app.сard.header }
+                />
                 <Card
                     expanded = { this.state.expanded }
                     onExpandChange = { this.handleExpandChange }
@@ -101,7 +106,7 @@ class ContactsView extends Component {
                     >
                         <p><strong>Адрес:</strong></p>
                         <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
-                        адрес сайта: <a href = "http://www.brhvh.ru">http://www.brhvh.ru</a><br />
+                        адрес сайта: <a href = "http://www.bruvodokanal.ru">http://www.bruvodokanal.ru</a><br />
                         адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a></p>
                         <p><strong>График работы:</strong></p>
                         <p style = {{ paddingLeft: '4rem', }}>Понедельник-пятница с 08-00 до 16-00 перерыв с 12-00 до 13-00<br />
@@ -153,6 +158,10 @@ class ContactsView extends Component {
                         <PdfLink 
                             href = { rekvisity_ooo_bvh } 
                             label = "Реквизиты ООО «Брюховецкое водопроводное хозяйство»"
+                        />
+                        <PdfLink 
+                            href = { rekvisity_ooo_boos } 
+                            label = "Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»"
                         />
                     </CardText>
                 </Card>
