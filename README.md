@@ -9,7 +9,10 @@ linux:
 windows:
 	py -3 -m venv py3
 
-pip install django-disposable-email-checker
+pip install psycopg2-binary
+pip install --no-binary :all: psycopg2
+pip install psycopg2
+
 pip install -r py-requirements/dev.txt
 
 python manage.py migrate
