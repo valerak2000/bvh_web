@@ -1,11 +1,10 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const commonConfig = require('./common.config');
 
 process.env.NODE_ENV = 'development';
 const port = 8080;
-const url = `http://localhost:${port}`;
+//const url = `http://localhost:${port}`;
 
 module.exports = merge(commonConfig, {
     mode: process.env.NODE_ENV,
@@ -13,8 +12,9 @@ module.exports = merge(commonConfig, {
         'hot': 'react-hot-loader/patch', // activate HMR for React
         'webpack-dev': 'webpack-dev-server/client?${url}', // bundle the client for webpack-dev-server and connect to the provided endpoint
         'webpack-hot': 'webpack/hot/only-dev-server', // bundle the client for hot reloading, only- means to only hot reload for successful updates
-        'index': './index.jsx' // the entry point of our app
+        'app': './index.jsx' // the entry point of our app
     },
+    devtool: 'cheap-module-source-map', //cheap-module-eval-source-map inline-source-map
     devServer: {
         hot: true, // enable HMR on the server
         open: true,
@@ -22,12 +22,7 @@ module.exports = merge(commonConfig, {
 		contentBase: '.frontend/dist',
         historyApiFallback: true,
     },
-    devtool: 'cheap-module-source-map', //cheap-module-eval-source-map inline-source-map
     plugins: [
-        new ProgressBarPlugin({
-            format: 'Build [:bar] :percent (:elapsed seconds)',
-            clear: false,
-        }),
         new webpack.HotModuleReplacementPlugin(), // enable HMR globally
         new webpack.NamedModulesPlugin() // prints more readable module names in the browser console on HMR updates
     ],

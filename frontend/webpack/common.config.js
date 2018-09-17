@@ -1,10 +1,12 @@
 const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
 
-const TARGET = process.env.npm_lifecycle_event;
+//const TARGET = process.env.npm_lifecycle_event;
 const devMode = process.env.NODE_ENV === 'development';
 
 const PATHS = {
@@ -42,6 +44,7 @@ module.exports = {
     },*/
     output: {
         filename: '[name].[hash].js',
+        chunkFilename: '[name].[hash].js',
         path: PATHS.build,
         publicPath: '/static/bundles/'
     },
@@ -54,15 +57,6 @@ module.exports = {
                 },
                 exclude: /node_modules/
             },
-            /*{
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: 'html-loader',
-                        options: { minimize: true }
-                    }
-                ]
-            },*/
             {
                 test: /\.css$/,
                 use: [
@@ -146,6 +140,15 @@ module.exports = {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(
+            [
+                PATHS.build
+            ],
+            {
+                allowExternal: true,
+                verbose: true,
+            }
+        ),
         new ExtractCssChunks({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
@@ -165,6 +168,10 @@ module.exports = {
         new webpack.ProvidePlugin({
             React: 'react',
             ReactDOM: 'react-dom'
+        }),
+        new ProgressBarPlugin({
+            format: 'Build [:bar] :percent (:elapsed seconds)',
+            clear: false,
         }),
         /*new webpack.DefinePlugin({
             'process.env': {
