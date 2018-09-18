@@ -6,17 +6,45 @@ const merge = require('webpack-merge');
 const commonConfig = require('./common.config');
 const SizePlugin = require('size-plugin');
 
-process.env.NODE_ENV = 'production';
+const mode = 'production';
 
-module.exports = merge(commonConfig, {
-    mode: process.env.NODE_ENV,
+module.exports = merge(commonConfig(mode), {
+    mode,
     entry: {
       'app': './index.jsx' // the entry point of our app
     },
-    devtool: 'source-map',
+    devtool: 'cheap-source-map',
     optimization: {
-          minimize: true,
-          splitChunks: {
+        minimize: false,
+    /*
+        splitChunks: {
+            chunks: 'all',
+            minChunks: 1,
+            name: true,
+            // minSize: 307200, //300 kb
+            // maxSize: 512000, //500 kb
+            hidePathInfo: false,
+            automaticNameDelimiter: '-',
+            cacheGroups: {
+                css: {
+                    test: /\.(css|scss|less)$/i,
+                    name: 'style',
+                    reuseExistingChunk: true,
+                    enforce: true,
+                    priority: 101
+                },
+            moment: {
+                test: /[\\/]moment[\\/]/,
+                name: 'moment',
+                reuseExistingChunk: true,
+                //enforce: true,
+                priority: 100
+            }
+        }
+    }*/
+        /*
+        minimize: true,
+        splitChunks: {
             chunks: 'all',
             minChunks: 1,
             name: true,
@@ -40,7 +68,8 @@ module.exports = merge(commonConfig, {
                 priority: 100
               }
             }
-          }
+        }
+    */
     },
     plugins: [
       /*new CompressionWebpackPlugin({

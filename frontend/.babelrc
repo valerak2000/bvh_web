@@ -17,9 +17,36 @@
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
     "@babel/plugin-proposal-json-strings",
     "@babel/plugin-transform-async-to-generator",
-    "@babel/plugin-proposal-export-default-from",
+    "react-loadable/babel",
+    [
+      "import",
+      {
+        "libraryName": "@material-ui/core",
+        "libraryDirectory": "",
+        "camel2DashComponentName": false
+      },
+      "material-core"
+    ],
+    [
+      "import",
+      {
+        "libraryName": "@material-ui/icons",
+        "libraryDirectory": "",
+        "camel2DashComponentName": false
+      },
+      "material-icon"
+    ],
+    [
+      "transform-imports",
+      {
+        "material-ui": {
+          "transform": "@material-ui/core/${member}",
+          "preventFullImport": true
+        }
+      }
+    ],
     "babel-plugin-lodash",
-    "react-hot-loader/babel", 
+    "react-hot-loader/babel", //Enables React code to work with HMR.
     [
       "module-resolver",
       {
@@ -41,13 +68,13 @@
         ["@babel/transform-runtime"],
         ["@babel/plugin-transform-modules-commonjs", { "spec": true }]
       ]
-    },
-    "production": {
+    }
+    /*"production": {
       "presets": [
         "react-optimize"
       ],
       "plugins": ["transform-remove-console"],
       "comments": false
-    }
+    }*/
   }
 }

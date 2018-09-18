@@ -66,3 +66,6 @@ class Routes extends Component {
 export default Routes;
 //<Route path = '/partners' component = { () => window.location = 'http://brhts.ru/' }/>
 //                <Redirect push={ true } to="/pathtoredirect" />
+/*
+
+*/

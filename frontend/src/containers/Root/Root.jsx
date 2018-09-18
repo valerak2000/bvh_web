@@ -15,7 +15,7 @@ import App from '../../app';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import LeftNavMenu from '../../components/LeftNavMenu';
-//import favicon from '../../images/favicon.ico';
+//import favicon from '../../../static/images/favicon.ico';
 
 class Root extends Component {
     static propTypes = {
@@ -73,6 +73,7 @@ class Root extends Component {
     }
 }
 /*
+
 
 <div class="breadcrumb-bg"
                                 style = {{ 

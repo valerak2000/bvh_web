@@ -94,10 +94,10 @@ AUTH_USER_MODEL = 'accounts.User'
 ACCOUNT_ACTIVATION_DAYS = 7  # days
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'files', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '../static/files', 'static')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'files', 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '../static/files', 'media')
 
 STATICFILES_DIRS = (
     # ...

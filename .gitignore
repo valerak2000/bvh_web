@@ -323,8 +323,7 @@ ASALocalRun/
 
 .idea/
 **/bundles/
-**/static_dist/
-**/static_root/
+**/dist/
 **/analysis/
 **/node_modules/
 **/__coverage__/
