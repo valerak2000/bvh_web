@@ -38,7 +38,6 @@ class Header extends Component {
     };
 
     render() {
-
         return (
             <header 
                 style = { this.props.muiTheme.app.header }

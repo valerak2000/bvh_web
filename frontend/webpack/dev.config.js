@@ -19,7 +19,7 @@ module.exports = merge(commonConfig(mode), {
         hot: true, // enable HMR on the server
         open: true,
         port: port,
-		contentBase: './frontend/dist',
+		contentBase: './frontend/bundles',
         historyApiFallback: true,
     },
     plugins: [

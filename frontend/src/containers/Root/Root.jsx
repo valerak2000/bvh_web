@@ -3,19 +3,21 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //import Favicon from 'react-favicon';
 
 import '../../styles/main.scss';
+import ExceptionHandler from '../../layouts/ExceptionHandler';
 import { muiTheme } from '../../styles/styles';
-import Routes from '../../routes';
+import Routes from '../../routes/routes';
 import DevTools from './DevTools';
 import App from '../../app';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import LeftNavMenu from '../../components/LeftNavMenu';
 //import favicon from '../../../static/images/favicon.ico';
+
+const isProd = process.env.NODE_ENV === 'production';
 
 class Root extends Component {
     static propTypes = {
@@ -33,40 +35,38 @@ class Root extends Component {
 //    <Favicon url = { favicon } />
 
     render() {
-        const dev = (process.env.NODE_ENV != 'production');
-
         return (
             <div>
                 <Provider store = { this.props.store }>
-                    <MuiThemeProvider muiTheme = { muiTheme }>
-                        <div
-                            style = { muiTheme.global }
-                        >
-                            <Header
-                                { ...this.props }
-                            />
-                            <div 
-                                id = 'app'
-                                style = {{ 
-                                    display: 'flex', 
-                                    width: '100%',
-                                }}
+                    <ExceptionHandler global disabled = { !isProd }>
+                        <MuiThemeProvider muiTheme = { muiTheme }>
+                            <div
+                                style = { muiTheme.global }
                             >
-                                <LeftNavMenu
+                                <Header
                                     { ...this.props }
                                 />
-                                <App>
-                                    <ConnectedRouter history = { this.props.history }>
-                                        <Routes />
-                                    </ConnectedRouter>
-                                </App>
-                                { dev && <DevTools /> }
+                                <div 
+                                    id = 'app'
+                                    style = {{ 
+                                        display: 'flex', 
+                                        width: '100%',
+                                    }}
+                                >
+                                    <LeftNavMenu
+                                        { ...this.props }
+                                    />
+                                    <App>
+                                        <Routes history = { this.props.history }/>
+                                    </App>
+                                    { !isProd && <DevTools /> }
+                                </div>
+                                <Footer
+                                    { ...this.props }
+                                />
                             </div>
-                            <Footer
-                                { ...this.props }
-                            />
-                        </div>
-                    </MuiThemeProvider>
+                        </MuiThemeProvider>
+                    </ExceptionHandler>
                 </Provider>
             </div>
         );

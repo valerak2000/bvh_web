@@ -37,7 +37,13 @@ class SiteMenu extends Component {
         };
     }
 
+    static getDerivedStateFromProps(props, state) {
+        console.log(props);
+        return null;
+    }
+
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
         let currentTab = null;
 
         if (nextProps.location != null && nextProps.location.pathname) {

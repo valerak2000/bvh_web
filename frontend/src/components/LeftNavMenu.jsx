@@ -104,6 +104,8 @@ class LeftNavMenu extends Component {
         activeMenuTop: HOME_MENU,
         activeMenuSecond: null,
         activeMenuThird: null,
+        activeItem: null,
+        location: this.props.location
     };
 
     constructor(props) {
@@ -117,7 +119,17 @@ class LeftNavMenu extends Component {
         };
     }
 
+    static getDerivedStateFromProps(props, state) {
+        console.log(props);
+        return null;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(prevProps);
+    }
+
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
         let currentMenuTop = null;
         let currentMenuSecond = null;
         let currentMenuThird = null;
@@ -133,16 +145,14 @@ class LeftNavMenu extends Component {
             activeMenuTop: currentMenuTop,
             activeMenuSecond: currentMenuSecond,
             activeMenuThird: currentMenuThird,
+            location: nextProps.location
         });
     }
-
-    /*handleChange = (event, value) => {
-        this.setState({ activeTab: event });
-    };*/
 
     handleMenuClick = (dataRoute, e ) => {
         e.preventDefault();
         //console.log(dataRoute);
+        this.setState({ activeItem: dataRoute });
         this.props.dispatch(push(dataRoute));
     };
 

@@ -1,18 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createHistory from 'history/createBrowserHistory';
+//import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 //import { browserHistory } from 'react-router'
 //import injectTapEventPlugin from 'react-tap-event-plugin';
 //injectTapEventPlugin();
 import initReactFastclick from 'react-fastclick';
 initReactFastclick();
+import { setConfig } from 'react-hot-loader';
+setConfig({ logLevel: 'debug' });
 
+import { GetBaseUrl } from './commons/commonFuncs';
 import { authLoginUserSuccess } from './actions/auth';
 import Root from './containers/Root/Root';
 import configureStore from './store/configureStore';
 
 const initialState = {};
-const history = createHistory();
+//Update for Reserved proxy
+const base = GetBaseUrl();
+const history = createBrowserHistory({ basename: base });
+//const history = createHistory();
 const store = configureStore(initialState, history);
 
 const token = sessionStorage.getItem('token');
@@ -43,4 +50,3 @@ renderComponent();
 if (module.hot) {
     module.hot.accept(); //() => { renderComponent(); });
 }
-  
