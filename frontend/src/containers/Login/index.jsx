@@ -55,18 +55,18 @@ class LoginView extends Component {
         actions: PropTypes.shape({
             authLoginUser: PropTypes.func.isRequired
         }).isRequired,
-        location: PropTypes.shape({
-            search: PropTypes.string.isRequired
-        })
+        //location: PropTypes.shape({
+        //    search: PropTypes.string.isRequired
+        //})
     };
 
     static defaultProps = {
         statusText: '',
-        location: null
+        //location: null
     };
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
 
         const redirectRoute = this.props.location ? this.extractRedirect(this.props.location.search) || '/' : '/';
         this.state = {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Router, Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 
 import { GetBaseUrl } from '../commons/commonFuncs';
+import requireAuthentication from '../utils/requireAuthentication';
 import { UnderConstructView, NotFoundView, LoginView, ProtectedView, MapView } from '../containers';
 import { HomeView, ElektronnayaPriemnayaView, BlackoutsView, AvailableCapacityMapView, FaqView } from '../containers';
 import { CommonInfoView, LeadershipView, ContactsView, VacanciesView, OurHistoryView, ZakupkiRaskrytieView } from '../containers';
@@ -13,15 +14,14 @@ import { PoluchenieTekhnicheskikhUsloviyView, OformlenieDogovoraOPodklyucheniiVi
     PreyskurantUslugDlyaFizicheskihLicView, PreyskurantUslugDlyaYuridicheskihLicView, 
     ProchieUslugiView } from '../containers';
 import { NewsView, NewsAboutUsView } from '../containers';
-import requireAuthentication from '../utils/requireAuthentication';
 
 const base = GetBaseUrl();
 //                <ConnectedRouter history = { this.props.history }>
 //                </ConnectedRouter>
 
 class Routes extends Component {
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
     }
 
     render() {

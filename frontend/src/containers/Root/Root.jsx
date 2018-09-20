@@ -114,7 +114,7 @@ import {List, ListItem} from 'material-ui/List';
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        location: state.routing.location,
+        //location: state.routing.location,
     };
 };
 

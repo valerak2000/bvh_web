@@ -26,9 +26,9 @@ class Footer extends Component {
         isAuthenticated: PropTypes.bool.isRequired,
         //children: PropTypes.shape().isRequired,
         dispatch: PropTypes.func.isRequired,
-        location: PropTypes.shape({
-            pathname: PropTypes.string
-        })
+        //location: PropTypes.shape({
+        //    pathname: PropTypes.string
+        //})
     };
 
     static get contextTypes() {
@@ -37,12 +37,12 @@ class Footer extends Component {
         };
     }
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
     }
 
     static defaultProps = {
-        location: undefined,
+        //location: undefined,
     };
 
     state = {
@@ -163,7 +163,7 @@ label = {
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        location: state.routing.location
+        //location: state.routing.location
     };
 };
 

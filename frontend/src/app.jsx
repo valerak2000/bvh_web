@@ -21,14 +21,14 @@ class App extends Component {
         isAuthenticated: PropTypes.bool.isRequired,
         children: PropTypes.shape().isRequired,
         dispatch: PropTypes.func.isRequired,
-        location: PropTypes.shape({
-            pathname: PropTypes.string
-        }),
+        //location: PropTypes.shape({
+        //    pathname: PropTypes.string
+        //}),
         //history: PropTypes.shape().isRequired,
     };
 
     static defaultProps = {
-        location: undefined,
+        //location: undefined,
         scrollStepInPx: 50,
         delayInMs: 16.66,
     };
@@ -45,8 +45,8 @@ class App extends Component {
         };
     }
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.scrollChange = this.scrollChange.bind(this);
     }
 
@@ -151,7 +151,7 @@ class App extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        location: state.routing.location
+        //location: state.routing.location
     };
 };
 

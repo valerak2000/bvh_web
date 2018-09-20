@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import createHistory from 'history/createBrowserHistory';
 import { createBrowserHistory } from 'history';
-//import { browserHistory } from 'react-router'
 //import injectTapEventPlugin from 'react-tap-event-plugin';
 //injectTapEventPlugin();
 import initReactFastclick from 'react-fastclick';

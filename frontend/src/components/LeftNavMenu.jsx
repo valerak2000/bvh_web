@@ -91,13 +91,13 @@ class LeftNavMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
-        location: PropTypes.shape({
-            pathname: PropTypes.string
-        })
+        //location: PropTypes.shape({
+        //    pathname: PropTypes.string
+        //})
     };
 
     static defaultProps = {
-        location: undefined
+        //location: undefined
     };
 
     state = {
@@ -105,11 +105,11 @@ class LeftNavMenu extends Component {
         activeMenuSecond: null,
         activeMenuThird: null,
         activeItem: null,
-        location: this.props.location
+        //location: this.props.location
     };
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.handleMenuClick = this.handleMenuClick.bind(this);
     }
 
@@ -119,10 +119,10 @@ class LeftNavMenu extends Component {
         };
     }
 
-    static getDerivedStateFromProps(props, state) {
+    /*static getDerivedStateFromProps(props, state) {
         console.log(props);
         return null;
-    }
+    }*/
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log(prevProps);
@@ -145,7 +145,7 @@ class LeftNavMenu extends Component {
             activeMenuTop: currentMenuTop,
             activeMenuSecond: currentMenuSecond,
             activeMenuThird: currentMenuThird,
-            location: nextProps.location
+            //location: nextProps.location
         });
     }
 
@@ -253,7 +253,7 @@ class LeftNavMenu extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        location: state.routing.location,
+        //location: state.routing.location,
     };
 };
 

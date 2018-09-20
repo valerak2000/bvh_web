@@ -14,21 +14,21 @@ class SiteMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
-        location: PropTypes.shape({
-            pathname: PropTypes.string
-        })
+        // PropTypes.shape({
+        //    pathname: PropTypes.string
+        //})
     };
 
     static defaultProps = {
-        location: undefined
+        //location: undefined
     };
 
     state = {
         activeTab: 0,
     };
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
     }
 
     static get contextTypes() {
@@ -37,10 +37,10 @@ class SiteMenu extends Component {
         };
     }
 
-    static getDerivedStateFromProps(props, state) {
+    /*static getDerivedStateFromProps(props, state) {
         console.log(props);
         return null;
-    }
+    }*/
 
     componentWillReceiveProps(nextProps) {
         console.log(nextProps);
@@ -115,7 +115,7 @@ class SiteMenu extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        location: state.routing.location,
+        //location: state.routing.location,
     };
 };
 

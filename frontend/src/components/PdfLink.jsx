@@ -14,8 +14,8 @@ class PdfLink extends Component {
         label: PropTypes.string.isRequired,
     };
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
     }
 
     static defaultProps = {

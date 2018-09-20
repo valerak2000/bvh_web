@@ -132,8 +132,8 @@ export function Logged(props) {
 }
 
 class LoginControl extends Component {
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleProtectedClick = this.handleProtectedClick.bind(this);
