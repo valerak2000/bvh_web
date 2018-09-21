@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 //import classNames from 'classnames';
 import PropTypes from 'prop-types';
+//import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import { List, ListItem } from 'material-ui/List';
@@ -91,13 +93,12 @@ class LeftNavMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
-        //location: PropTypes.shape({
-        //    pathname: PropTypes.string
-        //})
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
     };
 
     static defaultProps = {
-        //location: undefined
+        location: null
     };
 
     state = {
@@ -105,7 +106,6 @@ class LeftNavMenu extends Component {
         activeMenuSecond: null,
         activeMenuThird: null,
         activeItem: null,
-        //location: this.props.location
     };
 
     constructor(props, context) {
@@ -119,36 +119,31 @@ class LeftNavMenu extends Component {
         };
     }
 
-    /*static getDerivedStateFromProps(props, state) {
-        console.log(props);
-        return null;
-    }*/
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(prevProps);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
+    static getDerivedStateFromProps(props, state) {
+        console.log(props.location);
+        console.log(location);
         let currentMenuTop = null;
         let currentMenuSecond = null;
         let currentMenuThird = null;
 
-        if (nextProps.location != null && nextProps.location.pathname) {
-            let urls = nextProps.location.pathname.split('/');
+        if (props.location != null && props.location.pathname) {
+            let urls = props.location.pathname.split('/');
             currentMenuTop = urls[1] !== '' ? urls[1] : HOME_MENU;
             currentMenuSecond = urls.length <= 2 || urls[2] === '' ? null : urls[2];
             currentMenuThird = urls.length <= 3 || urls[3] === '' ? null : urls[3];
         }
 
-        this.setState({
+        return {
             activeMenuTop: currentMenuTop,
             activeMenuSecond: currentMenuSecond,
             activeMenuThird: currentMenuThird,
-            //location: nextProps.location
-        });
+        };
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(this.props.location);
+    }
+    
     handleMenuClick = (dataRoute, e ) => {
         e.preventDefault();
         //console.log(dataRoute);
@@ -257,5 +252,15 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
+function mapDispatchToProps (dispatch) {
+    return {
+    };
+}
+
 LeftNavMenu.muiName = 'LeftNavMenu';
 export default muiThemeable()(connect(mapStateToProps)(LeftNavMenu));
+/*export default compose(
+    //withRouter,
+    muiThemeable,
+    connect(mapStateToProps, mapDispatchToProps)
+)(LeftNavMenu);*/

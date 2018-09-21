@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
+//import { ConnectedRouter } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { compose } from 'recompose';
 //import Favicon from 'react-favicon';
 
 import '../../styles/main.scss';
@@ -22,11 +23,13 @@ const isProd = process.env.NODE_ENV === 'production';
 class Root extends Component {
     static propTypes = {
         store: PropTypes.shape().isRequired,
-        history: PropTypes.shape().isRequired
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
     };
 
-    /*componentDidMount() {
-    }*/
+    static defaultProps = {
+        location: undefined
+    };
 
     static get contextTypes() {
         return {
@@ -35,6 +38,9 @@ class Root extends Component {
 //    <Favicon url = { favicon } />
 
     render() {
+        //const { match, location, history } = this.props;
+        //<div>You are now at {location.pathname}</div>
+
         return (
             <div>
                 <Provider store = { this.props.store }>
@@ -114,7 +120,7 @@ import {List, ListItem} from 'material-ui/List';
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        //location: state.routing.location,
+        location: location
     };
 };
 
@@ -125,4 +131,7 @@ function mapDispatchToProps (dispatch) {
 
 Root.muiName = 'Root';
 
-export default connect(mapStateToProps, mapDispatchToProps)(Root);
+//export default connect(mapStateToProps, mapDispatchToProps)(Root);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps)
+)(Root);

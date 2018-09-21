@@ -14,13 +14,12 @@ class SiteMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
-        // PropTypes.shape({
-        //    pathname: PropTypes.string
-        //})
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
     };
 
     static defaultProps = {
-        //location: undefined
+        location: null
     };
 
     state = {
@@ -37,21 +36,19 @@ class SiteMenu extends Component {
         };
     }
 
-    /*static getDerivedStateFromProps(props, state) {
-        console.log(props);
-        return null;
-    }*/
-
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
+    static getDerivedStateFromProps(props, state) {
+        //console.log(props.location);
+        //console.log(location);
         let currentTab = null;
 
-        if (nextProps.location != null && nextProps.location.pathname) {
-            let urls = nextProps.location.pathname.split('/');
+        if (props.location != null && props.location.pathname) {
+            let urls = props.location.pathname.split('/');
             currentTab = urls[1] !== '' ? urls[1] : HOME_MENU;
         }
 
-        this.setState({ activeTab: currentTab });
+        return {
+            activeTab: currentTab,
+        };
     }
 
     handleChange = (event, value) => {
@@ -115,7 +112,7 @@ class SiteMenu extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        //location: state.routing.location,
+        //location: location
     };
 };
 
