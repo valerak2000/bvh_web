@@ -7,6 +7,7 @@ import ActionQuestionAnswer from 'material-ui/svg-icons/action/question-answer';
 //import Conversation from '../images/conversation.svg';
 import CommunicationContactMail from 'material-ui/svg-icons/communication/contact-mail';
 import MapsPlace from 'material-ui/svg-icons/maps/place';
+import MapsMap from 'material-ui/svg-icons/maps/map';
 
 export const MENU_HOME = [
     {
@@ -40,6 +41,12 @@ export const MENU_HOME = [
         primaryText: 'Вопрос-ответ',
         leftIcon: (<ActionQuestionAnswer />),
         dataRoute: '/faq',
+    },
+    {
+        key: 'map',
+        primaryText: 'Карта сайта',
+        leftIcon: (<MapsMap />),
+        dataRoute: '/map',
     },
 ];
 

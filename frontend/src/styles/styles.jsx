@@ -112,7 +112,7 @@ export var muiTheme = getMuiTheme({
                             fontSize: 14,
                         },
                         button: {
-                            margin: '0rem -1rem 0', //'1rem 1rem 0',
+                            margin: '0.2rem -1rem 0', //'1rem 1rem 0',
                             paddingTop: 10,
                             height: 39,
                             color: Colors.grey50,
