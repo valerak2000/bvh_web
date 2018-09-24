@@ -8,11 +8,11 @@ import { compose } from 'recompose';
 //import Favicon from 'react-favicon';
 
 import '../../styles/main.scss';
-import ExceptionHandler from '../../layouts/ExceptionHandler';
+import ExceptionHandler from '../../components/ExceptionHandler';
 import { muiTheme } from '../../styles/styles';
 import Routes from '../../routes/routes';
 import DevTools from './DevTools';
-import App from '../../app';
+import AppView from '../App';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import LeftNavMenu from '../../components/LeftNavMenu';
@@ -62,9 +62,9 @@ class Root extends Component {
                                     <LeftNavMenu
                                         { ...this.props }
                                     />
-                                    <App>
+                                    <AppView>
                                         <Routes history = { this.props.history }/>
-                                    </App>
+                                    </AppView>
                                     { !isProd && <DevTools /> }
                                 </div>
                                 <Footer

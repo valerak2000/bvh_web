@@ -1,3 +1,4 @@
+export { default as AppView } from './App';
 export { default as UnderConstructView } from './UnderConstruct';
 export { default as NotFoundView } from './NotFound';
 export { default as LoginView } from './Login';
@@ -30,7 +31,6 @@ export { default as RegulatoryDocView } from './Customers/RegulatoryDoc';
 export { default as TarifsView } from './Customers/Tarifs';
 export { default as DebtorsView } from './Customers/Debtors';
 export { default as VyvozZhidkihKommunalnyhStokovView } from './Customers/VyvozZhidkihKommunalnyhStokov';
-export { default as LaboratornyyAnalizVodyView } from './Customers/LaboratornyyAnalizVody';
 export { default as PreyskurantUslugDlyaFizicheskihLicView } from './Customers/PreyskurantUslugDlyaFizicheskihLic';
 export { default as PreyskurantUslugDlyaYuridicheskihLicView } from './Customers/PreyskurantUslugDlyaYuridicheskihLic';
 export { default as ProchieUslugiView } from './Customers/ProchieUslugi';

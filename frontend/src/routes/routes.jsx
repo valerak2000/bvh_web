@@ -55,7 +55,6 @@ class Routes extends Component {
                         <Route exact path = "/customers/debtors" component = { DebtorsView } />
                         <Route exact path = "/customers/services" render={() => (<Redirect to = "/customers/services/vyvoz_zhidkih_kommunalnyh_stokov"/>)}/>
                         <Route exact path = "/customers/services/vyvoz_zhidkih_kommunalnyh_stokov" component = { VyvozZhidkihKommunalnyhStokovView } />
-                        <Route exact path = "/customers/services/laboratornyy_analiz_vody" component = { LaboratornyyAnalizVodyView } />
                         <Route exact path = "/customers/services/preyskurant_uslug_dlya_fizicheskih_lic" component = { PreyskurantUslugDlyaFizicheskihLicView } />
                         <Route exact path = "/customers/services/preyskurant_uslug_dlya_yuridicheskih_lic" component = { PreyskurantUslugDlyaYuridicheskihLicView } />
                         <Route exact path = "/customers/services/prochie_uslugi" component = { ProchieUslugiView } />

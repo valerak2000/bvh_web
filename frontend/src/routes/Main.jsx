@@ -8,119 +8,404 @@ import LocationOn from '@material-ui/icons/LocationOn';
 import Notifications from '@material-ui/icons/Notifications';
 import MessageBox from '@material-ui/icons/Message';
 import Unarchive from '@material-ui/icons/Unarchive';
-// core components/views
-//import DashboardPage from '../views/Dashboard/Dashboard.jsx';
-//import UserProfile from '../views/UserProfile/UserProfile.jsx';
-//import UserListing from '../views/UserProfile/UserListing.jsx';
-//import TableList from '../views/TableList/TableList.jsx';
-//import Typography from '../views/Typography/Typography.jsx';
-//import Icons from '../views/Icons/Icons.jsx';
-//import Maps from '../views/Maps/Maps.jsx';
-//import NotificationsPage from '../views/Notifications/Notifications.jsx';
-//import MessageBoxPage from '../views/MessageBox';
-//import UpgradeToPro from '../views/UpgradeToPro/UpgradeToPro.jsx';
 
-import Loader from '../views/loaders';
+import Loader from '../components/loaders';
+import requireAuthentication from '../utils/requireAuthentication';
 
-const DashboardPage = Loader(() =>
-  import(/* webpackChunkName: "DashboardView" */ '../views/Dashboard/Dashboard.jsx')
+const UnderConstructPage = Loader(() =>
+    import(/* webpackChunkName: "UnderConstructView" */ '../containers/UnderConstruct')
 );
-
-const UserListing = Loader(() =>
-  import(/* webpackChunkName: "UserListingView" */ '../views/UserProfile/UserListing.jsx')
+const NotFoundPage = Loader(() =>
+    import(/* webpackChunkName: "NotFoundView" */ '../containers/NotFound')
 );
-
-const TableList = Loader(() =>
-  import(/* webpackChunkName: "TableListView" */ '../views/TableList/TableList.jsx')
+const LoginPage = Loader(() =>
+    import(/* webpackChunkName: "LoginView" */ '../containers/Login')
 );
-
-const Typography = Loader(() =>
-  import(/* webpackChunkName: "TypographyView" */ '../views/Typography/Typography.jsx')
+const ProtectedPage = Loader(() =>
+    import(/* webpackChunkName: "ProtectedView" */ '../containers/Protected')
 );
-
-const Icons = Loader(() =>
-  import(/* webpackChunkName: "IconsView" */ '../views/Icons/Icons.jsx')
+const MapPage = Loader(() =>
+    import(/* webpackChunkName: "MapView" */ '../containers/Map')
 );
-
-const Maps = Loader(() =>
-  import(/* webpackChunkName: "MapsView" */ '../views/Maps/Maps.jsx')
+const HomePage = Loader(() =>
+    import(/* webpackChunkName: "HomeView" */ '../containers/Home')
 );
-
-const NotificationsPage = Loader(() =>
-  import(/* webpackChunkName: "NotificationsView" */ '../views/Notifications/Notifications.jsx')
+const ElektronnayaPriemnayaPage = Loader(() =>
+    import(/* webpackChunkName: "ElektronnayaPriemnayaView" */ '../containers/ElektronnayaPriemnaya')
 );
-
-const MessageBoxPage = Loader(() =>
-  import(/* webpackChunkName: "MessageBoxView" */ '../views/MessageBox')
+const BlackoutsPage = Loader(() =>
+    import(/* webpackChunkName: "BlackoutsView" */ '../containers/Blackouts')
 );
-
-const UpgradeToPro = Loader(() =>
-  import(/* webpackChunkName: "UpgradeToProView" */ '../views/UpgradeToPro/UpgradeToPro.jsx')
+const AvailableCapacityMapPage = Loader(() =>
+    import(/* webpackChunkName: "AvailableCapacityMapView" */ '../containers/AvailableCapacityMap')
+);
+const FaqPage = Loader(() =>
+    import(/* webpackChunkName: "FaqView" */ '../containers/Faq')
+);
+const CommonInfoPage = Loader(() =>
+    import(/* webpackChunkName: "CommonInfoView" */ '../containers/CommonInfo')
+);
+const LeadershipPage = Loader(() =>
+    import(/* webpackChunkName: "LeadershipView" */ '../containers/Leadership')
+);
+const ContactsPage = Loader(() =>
+    import(/* webpackChunkName: "ContactsView" */ '../containers/Contacts')
+);
+const VacanciesPage = Loader(() =>
+    import(/* webpackChunkName: "VacanciesView" */ '../containers/Vacancies')
+);
+const OurHistoryPage = Loader(() =>
+    import(/* webpackChunkName: "OurHistoryView" */ '../containers/OurHistory')
+);
+const ZakupkiRaskrytiePage = Loader(() =>
+    import(/* webpackChunkName: "ZakupkiRaskrytieView" */ '../containers/ZakupkiRaskrytie')
+);
+const PoluchenieTekhnicheskikhUsloviyPage = Loader(() =>
+    import(/* webpackChunkName: "PoluchenieTekhnicheskikhUsloviyView" */ '../containers/PoluchenieTekhnicheskikhUsloviy')
+);
+const OformlenieDogovoraOPodklyucheniiPage = Loader(() =>
+    import(/* webpackChunkName: "OformlenieDogovoraOPodklyucheniiView" */ '../containers/OformlenieDogovoraOPodklyuchenii')
+);
+const OformlenieAktovOPodklyucheniiPage = Loader(() =>
+    import(/* webpackChunkName: "OformlenieAktovOPodklyucheniiView" */ '../containers/OformlenieAktovOPodklyuchenii')
+);
+const FizlicaZaklyuchenieDogovorovPage = Loader(() =>
+    import(/* webpackChunkName: "FizlicaZaklyuchenieDogovorovView" */ '../containers/FizlicaZaklyuchenieDogovorov')
+);
+const FizlicaPeredachaPokazaniyPage = Loader(() =>
+    import(/* webpackChunkName: "FizlicaPeredachaPokazaniyView" */ '../containers/FizlicaPeredachaPokazaniy')
+);
+const FizlicaPriboryUchetaPage = Loader(() =>
+    import(/* webpackChunkName: "FizlicaPriboryUchetaView" */ '../containers/FizlicaPriboryUcheta')
+);
+const UrlicaZaklyuchenieDogovorovPage = Loader(() =>
+    import(/* webpackChunkName: "UrlicaZaklyuchenieDogovorovView" */ '../containers/UrlicaZaklyuchenieDogovorov')
+);
+const UrlicaPeredachaPokazaniyPage = Loader(() =>
+    import(/* webpackChunkName: "UrlicaPeredachaPokazaniyView" */ '../containers/UrlicaPeredachaPokazaniy')
+);
+const UrlicaInspekciaVodnyhResursovPage = Loader(() =>
+    import(/* webpackChunkName: "UrlicaInspekciaVodnyhResursovView" */ '../containers/UrlicaInspekciaVodnyhResursov')
+);
+const RegulatoryDocPage = Loader(() =>
+    import(/* webpackChunkName: "RegulatoryDocView" */ '../containers/RegulatoryDoc')
+);
+const TarifsPage = Loader(() =>
+    import(/* webpackChunkName: "TarifsView" */ '../containers/TarifsView')
+);
+const DebtorsPage = Loader(() =>
+    import(/* webpackChunkName: "DebtorsView" */ '../containers/Debtors')
+);
+const VyvozZhidkihKommunalnyhStokovPage = Loader(() =>
+    import(/* webpackChunkName: "VyvozZhidkihKommunalnyhStokovView" */ '../containers/VyvozZhidkihKommunalnyhStokov')
+);
+const PreyskurantUslugDlyaFizicheskihLicPage = Loader(() =>
+    import(/* webpackChunkName: "PreyskurantUslugDlyaFizicheskihLicView" */ '../containers/PreyskurantUslugDlyaFizicheskihLic')
+);
+const PreyskurantUslugDlyaYuridicheskihLicPage = Loader(() =>
+    import(/* webpackChunkName: "PreyskurantUslugDlyaYuridicheskihLicView" */ '../containers/PreyskurantUslugDlyaYuridicheskihLic')
+);
+const ProchieUslugiPage = Loader(() =>
+    import(/* webpackChunkName: "ProchieUslugiView" */ '../containers/ProchieUslugi')
+);
+const NewsPage = Loader(() =>
+    import(/* webpackChunkName: "NewsView" */ '../containers/News')
+);
+const NewsAboutUsPage = Loader(() =>
+    import(/* webpackChunkName: "NewsAboutUsView" */ '../containers/NewsAboutUs')
 );
 
 export default [
-  {
-    path: '/dashboard',
-    sidebarName: 'Dashboard',
-    navbarName: 'Material Dashboard',
-    icon: Dashboard,
-    component: DashboardPage
-  },
-  {
-    path: '/users',
-    sidebarName: 'User Listing',
-    navbarName: 'User Listing',
-    icon: Person,
-    component: UserListing
-  },
-  {
-    path: '/table',
-    sidebarName: 'Table List',
-    navbarName: 'Table List',
-    icon: ContentPaste,
-    component: TableList
-  },
-  {
-    path: '/typography',
-    sidebarName: 'Typography',
-    navbarName: 'Typography',
-    icon: LibraryBooks,
-    component: Typography
-  },
-  {
-    path: '/icons',
-    sidebarName: 'Icons',
-    navbarName: 'Icons',
-    icon: BubbleChart,
-    component: Icons
-  },
-  {
-    path: '/maps',
-    sidebarName: 'Maps',
-    navbarName: 'Map',
-    icon: LocationOn,
-    component: Maps
-  },
-  {
-    path: '/notifications',
-    sidebarName: 'Notifications',
-    navbarName: 'Notifications',
-    icon: Notifications,
-    component: NotificationsPage
-  },
-  {
-    path: '/messagebox',
-    sidebarName: 'Message Box',
-    navbarName: 'Message Box',
-    icon: MessageBox,
-    component: MessageBoxPage
-  },
-  {
-    path: '/upgrade-to-pro',
-    sidebarName: 'Upgrade To PRO',
-    navbarName: 'Upgrade To PRO',
-    icon: Unarchive,
-    component: UpgradeToPro
-  },
-  { redirect: true, path: '/', to: '/dashboard', navbarName: 'Redirect' }
+    {
+        path: '/',
+    	exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: HomePage
+    },
+    {
+        path: '/about',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: CommonInfoPage
+    },
+    {
+        redirect: true, 
+        path: '/about', 
+        to: '/about/common_info', 
+        navbarName: 'Redirect' 
+    },
+    {
+        path: '/about/leadership',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: LeadershipPage
+    },
+    {
+        path: '/about/contacts',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: ContactsPage
+    },
+    {
+        path: '/about/vacancies',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: VacanciesPage
+    },
+    {
+        path: '/about/history',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: OurHistoryPage
+    },
+    {
+        path: '/about/zakupki_raskrytie_informacii',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: ZakupkiRaskrytiePage
+    },
+    {
+        path: '/customers/connection/poluchenie_tekhnicheskikh_usloviy',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: PoluchenieTekhnicheskikhUsloviyPage
+    },
+    {
+        redirect: true, 
+	    path: '/customers', 
+	    to: '/customers/connection/poluchenie_tekhnicheskikh_usloviy', 
+	    navbarName: 'Redirect' 
+    },
+    {
+        redirect: true, 
+        path: '/customers/connection', 
+        to: '/customers/connection/poluchenie_tekhnicheskikh_usloviy', 
+        navbarName: 'Redirect' 
+    },
+    {
+        path: '/customers/connection/oformlenie_dogovora_o_podklyuchenii',
+    	exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: OformlenieDogovoraOPodklyucheniiPage
+    },
+    {
+        path: '/customers/connection/oformlenie_aktov_o_podklyuchenii',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: OformlenieAktovOPodklyucheniiPage
+    },
+    {
+        redirect: true, 
+        path: '/customers/fizlica', 
+        to: '/customers/fizlica/zaklyuchenie_dogovorov', 
+        navbarName: 'Redirect' 
+    },
+    {
+        path: '/customers/fizlica/zaklyuchenie_dogovorov',
+    	exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: FizlicaZaklyuchenieDogovorovPage
+    },
+    {
+        path: '/customers/fizlica/peredacha_pokazaniy',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: FizlicaPeredachaPokazaniyPage
+    },
+    {
+        path: '/customers/fizlica/pribory_ucheta',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: FizlicaPriboryUchetaPage
+    },
+    {
+        redirect: true, 
+        path: '/customers/urlica', 
+        to: '/customers/urlica/zaklyuchenie_dogovorov', 
+        navbarName: 'Redirect' 
+    },
+    {
+        path: '/customers/urlica/zaklyuchenie_dogovorov',
+    	exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: UrlicaZaklyuchenieDogovorovPage
+    },
+    {
+        path: '/customers/urlica/peredacha_pokazaniy',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: UrlicaPeredachaPokazaniyPage
+    },
+    {
+        path: '/customers/urlica/inspekcia_vodnyh_resursov',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: UrlicaInspekciaVodnyhResursovPage
+    },
+    {
+        path: '/customers/regulatory_doc',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: RegulatoryDocPage
+    },
+    {
+        path: '/customers/tarifs',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: TarifsPage
+    },
+    {
+        path: '/customers/debtors',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: DebtorsPage
+    },
+    {
+        redirect: true, 
+        path: '/customers/services', 
+        to: '/customers/services/vyvoz_zhidkih_kommunalnyh_stokov', 
+        navbarName: 'Redirect' 
+    },
+    {
+        path: '/customers/services/vyvoz_zhidkih_kommunalnyh_stokov',
+    	exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: VyvozZhidkihKommunalnyhStokovPage
+    },
+    {
+        path: '/customers/services/preyskurant_uslug_dlya_fizicheskih_lic',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: PreyskurantUslugDlyaFizicheskihLicPage
+    },
+    {
+        path: '/customers/services/preyskurant_uslug_dlya_yuridicheskih_lic',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: PreyskurantUslugDlyaYuridicheskihLicPage
+    },
+    {
+        path: '/customers/services/prochie_uslugi',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: ProchieUslugiPage
+    },
+    {
+        path: '/news',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: NewsPage
+    },
+    {
+        path: '/news/smi_o_nashey_rabote',
+	    exact: true,
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: NewsAboutUsPage
+    },
+    {
+        path: '/elektronnaya_priemnaya',
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: ElektronnayaPriemnayaPage
+    },
+    {
+        path: '/blackouts',
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: BlackoutsPage
+    },
+    {
+        path: '/available_capacity_map',
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: AvailableCapacityMapPage
+    },
+    {
+        path: '/map',
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: MapPage
+    },
+    {
+        path: '/faq',
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: FaqPage
+    },
+    {
+        path: '/creator',
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: UnderConstructPage
+    },
+    {
+        path: '/login',
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: LoginPage
+    },
+    {
+        path: '/protected',
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: requireAuthentication(ProtectedPage)
+    },
 ];
