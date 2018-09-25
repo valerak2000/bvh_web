@@ -14,7 +14,7 @@ class SiteMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
-        location: PropTypes.object.isRequired,
+        location: PropTypes.string,
         history: PropTypes.object.isRequired
     };
 
@@ -41,8 +41,8 @@ class SiteMenu extends Component {
         //console.log(location);
         let currentTab = null;
 
-        if (props.location != null && props.location.pathname) {
-            let urls = props.location.pathname.split('/');
+        if (props.location !== null && props.location) {
+            let urls = props.location.split('/');
             currentTab = urls[1] !== '' ? urls[1] : HOME_MENU;
         }
 
@@ -112,7 +112,7 @@ class SiteMenu extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        //location: location
+        location: location.pathname
     };
 };
 

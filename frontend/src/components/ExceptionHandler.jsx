@@ -20,7 +20,7 @@ export default class ExceptionHandler extends React.Component {
     super(props, context);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { global, disabled } = this.props;
     if (global !== true || disabled === true) return;
     window.addEventListener('error', this.globalErrorHandler);

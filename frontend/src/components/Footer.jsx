@@ -4,7 +4,7 @@ import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
-import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
+import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 //import FontIcon from 'material-ui/FontIcon';
 //import Paper from 'material-ui/Paper';
 import MapsMap from 'material-ui/svg-icons/maps/map';
@@ -26,9 +26,7 @@ class Footer extends Component {
         isAuthenticated: PropTypes.bool.isRequired,
         //children: PropTypes.shape().isRequired,
         dispatch: PropTypes.func.isRequired,
-        //location: PropTypes.shape({
-        //    pathname: PropTypes.string
-        //})
+        location: PropTypes.string
     };
 
     static get contextTypes() {
@@ -42,7 +40,7 @@ class Footer extends Component {
     }
 
     static defaultProps = {
-        //location: undefined,
+        location: null,
     };
 
     state = {
@@ -102,11 +100,11 @@ class Footer extends Component {
                     style = { this.props.muiTheme.app.footer.bottomText }
                 >
                     Разработка и поддержка <a 
-                    href="http://www.valera-k2000.ru" 
-                    target="_blank"
+                    href = "http://www.valera-k2000.ru" 
+                    target = "_blank"
                     style = { this.props.muiTheme.app.footer.bottomText.link }
                     >
-                        <img src = { AuthorSign } alt="valera_k2000" width="16" height="16"/> valera_k2000 </a>
+                        <img src = { AuthorSign } alt = "valera_k2000" width = "16" height = "16"/> valera_k2000 </a>
                 </div>
             </footer>
         );
@@ -163,7 +161,7 @@ label = {
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        //location: state.routing.location
+        location: location.pathname
     };
 };
 

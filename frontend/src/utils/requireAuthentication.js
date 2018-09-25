@@ -13,11 +13,12 @@ export default function requireAuthentication(Component) {
             dispatch: PropTypes.func.isRequired
         };
 
-        componentWillMount() {
+        componentDidMount() {
             this.checkAuth();
         }
 
-        componentWillReceiveProps(nextProps) {
+        static getDerivedStateFromProps(props, state) {
+        //componentWillReceiveProps(nextProps) {
             this.checkAuth();
         }
 

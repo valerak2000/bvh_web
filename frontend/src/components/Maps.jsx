@@ -13,10 +13,6 @@ export const Maps = compose(
       containerElement: <div style = {{ height: '400px' }} />,
       mapElement: <div style = {{ height: '100%', width: '100%' }} />
     }),
-    /*lifecycle({
-        componentWillMount() {
-        },
-    }),*/
     withScriptjs,
     withGoogleMap,
     muiThemeable(),

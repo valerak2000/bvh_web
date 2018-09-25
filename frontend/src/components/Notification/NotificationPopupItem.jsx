@@ -28,9 +28,11 @@ export default class NotificationPopupItem extends React.PureComponent {
     this.setCallbackTimeout(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setCallbackTimeout(nextProps);
-  }
+  static getDerivedStateFromProps(props, state) {
+    //componentWillReceiveProps(nextProps) {
+    //this.setCallbackTimeout(nextProps);
+    this.setCallbackTimeout(props);
+}
 
   //Handling the internal closing event and call onClose with id
   onClosing = () => {

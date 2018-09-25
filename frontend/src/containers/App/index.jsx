@@ -21,12 +21,12 @@ class App extends Component {
         isAuthenticated: PropTypes.bool.isRequired,
         children: PropTypes.shape().isRequired,
         dispatch: PropTypes.func.isRequired,
-        //location: PropTypes.object.isRequired,
+        location: PropTypes.string,
         //history: PropTypes.object.isRequired
     };
 
     static defaultProps = {
-        //location: null,
+        location: null,
         scrollStepInPx: 50,
         delayInMs: 16.66,
     };
@@ -149,7 +149,8 @@ class App extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        //location: location.pathname
+        location: location.pathname
+        //location: state.routing.location
     };
 };
 

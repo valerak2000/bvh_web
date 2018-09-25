@@ -78,7 +78,7 @@ class LoginView extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         if (this.props.isAuthenticated) {
             this.props.dispatch(push('/'));
         }

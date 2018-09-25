@@ -15,9 +15,7 @@ class Header extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
-        //location: PropTypes.shape({
-        //    pathname: PropTypes.string
-        //})
+        location: PropTypes.string
     };
 
     static get contextTypes() {
@@ -27,6 +25,7 @@ class Header extends Component {
     }
 
     static defaultProps = {
+        location: null,
     };
 
     constructor(props, context) {
@@ -90,7 +89,7 @@ class Header extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        //location: state.routing.location
+        location: location.pathname
     };
 };
 

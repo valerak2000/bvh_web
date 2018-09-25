@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import { Router, BrowserRouter } from 'react-router-dom';
 //import { ConnectedRouter } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -8,9 +9,10 @@ import { compose } from 'recompose';
 //import Favicon from 'react-favicon';
 
 import '../../styles/main.scss';
+import { GetBaseUrl } from '../../commons/commonFuncs';
 import ExceptionHandler from '../../components/ExceptionHandler';
 import { muiTheme } from '../../styles/styles';
-import Routes from '../../routes/routes';
+import routes from '../../routes/routes';
 import DevTools from './DevTools';
 import AppView from '../App';
 import Footer from '../../components/Footer';
@@ -19,16 +21,17 @@ import LeftNavMenu from '../../components/LeftNavMenu';
 //import favicon from '../../../static/images/favicon.ico';
 
 const isProd = process.env.NODE_ENV === 'production';
+const base = GetBaseUrl();
 
 class Root extends Component {
     static propTypes = {
         store: PropTypes.shape().isRequired,
-        location: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
+        history: PropTypes.object.isRequired,
+        //location: PropTypes.string,
     };
 
     static defaultProps = {
-        location: undefined
+        //location: undefined
     };
 
     static get contextTypes() {
@@ -49,6 +52,7 @@ class Root extends Component {
                             <div
                                 style = { muiTheme.global }
                             >
+                            <React.StrictMode>
                                 <Header
                                     { ...this.props }
                                 />
@@ -63,13 +67,18 @@ class Root extends Component {
                                         { ...this.props }
                                     />
                                     <AppView>
-                                        <Routes history = { this.props.history }/>
+                                        <BrowserRouter basename = { base || '/' }>
+                                            <Router history = { this.props.history }>
+                                                { routes }
+                                            </Router>
+                                        </BrowserRouter>
                                     </AppView>
                                     { !isProd && <DevTools /> }
                                 </div>
                                 <Footer
                                     { ...this.props }
                                 />
+                            </React.StrictMode>
                             </div>
                         </MuiThemeProvider>
                     </ExceptionHandler>
@@ -120,7 +129,7 @@ import {List, ListItem} from 'material-ui/List';
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        location: location
+        //location: location.pathname
     };
 };
 

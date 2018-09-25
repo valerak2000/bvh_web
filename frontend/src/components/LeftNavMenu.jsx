@@ -93,7 +93,7 @@ class LeftNavMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
-        location: PropTypes.object.isRequired,
+        location: PropTypes.string,
         history: PropTypes.object.isRequired
     };
 
@@ -119,15 +119,19 @@ class LeftNavMenu extends Component {
         };
     }
 
+    static shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextProps.location);
+    }
+
     static getDerivedStateFromProps(props, state) {
         console.log(props.location);
-        console.log(location);
+        console.log(location.pathname);
         let currentMenuTop = null;
         let currentMenuSecond = null;
         let currentMenuThird = null;
 
-        if (props.location != null && props.location.pathname) {
-            let urls = props.location.pathname.split('/');
+        if (props.location !== null && props.location) {
+            let urls = props.location.split('/');
             currentMenuTop = urls[1] !== '' ? urls[1] : HOME_MENU;
             currentMenuSecond = urls.length <= 2 || urls[2] === '' ? null : urls[2];
             currentMenuThird = urls.length <= 3 || urls[3] === '' ? null : urls[3];
@@ -138,6 +142,11 @@ class LeftNavMenu extends Component {
             activeMenuSecond: currentMenuSecond,
             activeMenuThird: currentMenuThird,
         };
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log(prevProps.location);
+        return null;
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -155,7 +164,7 @@ class LeftNavMenu extends Component {
         const { activeMenuTop, activeMenuSecond, activeMenuThird, ...props } = this.state;
         var initiallyFocused = null;
 
-        if (activeMenuSecond != null) {
+        if (activeMenuSecond !== null) {
             initiallyFocused = activeMenuSecond + (activeMenuThird != null ? '_' + activeMenuThird : '');
         }
 
@@ -229,7 +238,7 @@ class LeftNavMenu extends Component {
 
         var leftNav = { ...this.props.muiTheme.app.leftNav };
 
-        if (leftmenu != null) {
+        if (leftmenu !== null) {
             leftNav.width = '28%';
         } else {
             leftNav.width = '0%';
@@ -248,7 +257,7 @@ class LeftNavMenu extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        //location: state.routing.location,
+        location: location.pathname,
     };
 };
 
