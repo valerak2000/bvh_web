@@ -10,7 +10,6 @@ import { compose } from 'recompose';
 
 import '../../styles/main.scss';
 import { GetBaseUrl } from '../../commons/commonFuncs';
-import ExceptionHandler from '../../components/ExceptionHandler';
 import { muiTheme } from '../../styles/styles';
 import routes from '../../routes/routes';
 import DevTools from './DevTools';
@@ -41,89 +40,42 @@ class Root extends Component {
 //    <Favicon url = { favicon } />
 
     render() {
-        //const { match, location, history } = this.props;
-        //<div>You are now at {location.pathname}</div>
 
         return (
             <div>
-                <Provider store = { this.props.store }>
-                    <ExceptionHandler global disabled = { !isProd }>
-                        <MuiThemeProvider muiTheme = { muiTheme }>
-                            <div
-                                style = { muiTheme.global }
-                            >
-                            <React.StrictMode>
-                                <Header
-                                    { ...this.props }
-                                />
-                                <div 
-                                    id = 'app'
-                                    style = {{ 
-                                        display: 'flex', 
-                                        width: '100%',
-                                    }}
-                                >
-                                    <LeftNavMenu
-                                        { ...this.props }
-                                    />
-                                    <AppView>
-                                        <BrowserRouter basename = { base || '/' }>
-                                            <Router history = { this.props.history }>
-                                                { routes }
-                                            </Router>
-                                        </BrowserRouter>
-                                    </AppView>
-                                    { !isProd && <DevTools /> }
-                                </div>
-                                <Footer
-                                    { ...this.props }
-                                />
-                            </React.StrictMode>
-                            </div>
-                        </MuiThemeProvider>
-                    </ExceptionHandler>
-                </Provider>
+                <MuiThemeProvider muiTheme = { muiTheme }>
+                    <div
+                        style = { muiTheme.global }
+                    >
+                    <React.StrictMode>
+                        <Header
+                            { ...this.props }
+                        />
+                        <div 
+                            id = 'app'
+                            style = {{ 
+                                display: 'flex', 
+                                width: '100%',
+                            }}
+                        >
+                            <LeftNavMenu
+                                { ...this.props }
+                            />
+                            <AppView />
+                            { !isProd && <DevTools /> }
+                        </div>
+                        <Footer
+                            { ...this.props }
+                        />
+                    </React.StrictMode>
+                    </div>
+                </MuiThemeProvider>
             </div>
         );
     }
 }
 /*
 
-
-<div class="breadcrumb-bg"
-                                style = {{ 
-                                    width: '100%',
-                                    background: `url(${bgHeader}) no-repeat 0px 0px`,
-                                    padding: 0,
-                                    margin: '0 auto',
-                                    height: '300px',
-                                    backgroundSize: 'cover',
-                                    position: 'absolute'
-                                }}
-                            ></div>
-
-<div style={{ display: 'flex', width: '90%' }}>
-                        <App>
-                            <ConnectedRouter history = { this.props.history }>
-                                { routes }
-                            </ConnectedRouter>
-                        </App>
-    </div>
-
-//        containerStyle={{height: 'calc(100% - 94px)', top: 95}} docked={true} width={150} open={true} zDepth={1}
-                <Drawer
-                    docked={true} width={150} open={true} zDepth={1}
-                >
-                    <MenuItem
-                        onTouchTap={() => {  }}
-                        primaryText="Home"
-                    />
-                    <MenuItem
-                        onTouchTap={() => {  }}
-                        primaryText="Some Component"
-                    />
-                </Drawer>
-import {List, ListItem} from 'material-ui/List';
 */
 
 const mapStateToProps = (state, ownProps) => {

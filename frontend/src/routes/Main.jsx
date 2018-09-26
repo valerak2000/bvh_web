@@ -1,5 +1,6 @@
 // @material-ui/icons
 import Dashboard from '@material-ui/icons/Dashboard';
+/*
 import Person from '@material-ui/icons/Person';
 import ContentPaste from '@material-ui/icons/Assessment';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
@@ -8,111 +9,15 @@ import LocationOn from '@material-ui/icons/LocationOn';
 import Notifications from '@material-ui/icons/Notifications';
 import MessageBox from '@material-ui/icons/Message';
 import Unarchive from '@material-ui/icons/Unarchive';
-
+*/
 import Loader from '../components/loaders';
 import requireAuthentication from '../utils/requireAuthentication';
 
-const UnderConstructPage = Loader(() =>
-    import(/* webpackChunkName: "UnderConstructView" */ '../containers/UnderConstruct')
+const HomePage = Loader(() =>
+    import(/* webpackChunkName: "HomeView" */ '../containers/Home/Home/index.jsx')
 );
 const NotFoundPage = Loader(() =>
-    import(/* webpackChunkName: "NotFoundView" */ '../containers/NotFound')
-);
-const LoginPage = Loader(() =>
-    import(/* webpackChunkName: "LoginView" */ '../containers/Login')
-);
-const ProtectedPage = Loader(() =>
-    import(/* webpackChunkName: "ProtectedView" */ '../containers/Protected')
-);
-const MapPage = Loader(() =>
-    import(/* webpackChunkName: "MapView" */ '../containers/Map')
-);
-const HomePage = Loader(() =>
-    import(/* webpackChunkName: "HomeView" */ '../containers/Home')
-);
-const ElektronnayaPriemnayaPage = Loader(() =>
-    import(/* webpackChunkName: "ElektronnayaPriemnayaView" */ '../containers/ElektronnayaPriemnaya')
-);
-const BlackoutsPage = Loader(() =>
-    import(/* webpackChunkName: "BlackoutsView" */ '../containers/Blackouts')
-);
-const AvailableCapacityMapPage = Loader(() =>
-    import(/* webpackChunkName: "AvailableCapacityMapView" */ '../containers/AvailableCapacityMap')
-);
-const FaqPage = Loader(() =>
-    import(/* webpackChunkName: "FaqView" */ '../containers/Faq')
-);
-const CommonInfoPage = Loader(() =>
-    import(/* webpackChunkName: "CommonInfoView" */ '../containers/CommonInfo')
-);
-const LeadershipPage = Loader(() =>
-    import(/* webpackChunkName: "LeadershipView" */ '../containers/Leadership')
-);
-const ContactsPage = Loader(() =>
-    import(/* webpackChunkName: "ContactsView" */ '../containers/Contacts')
-);
-const VacanciesPage = Loader(() =>
-    import(/* webpackChunkName: "VacanciesView" */ '../containers/Vacancies')
-);
-const OurHistoryPage = Loader(() =>
-    import(/* webpackChunkName: "OurHistoryView" */ '../containers/OurHistory')
-);
-const ZakupkiRaskrytiePage = Loader(() =>
-    import(/* webpackChunkName: "ZakupkiRaskrytieView" */ '../containers/ZakupkiRaskrytie')
-);
-const PoluchenieTekhnicheskikhUsloviyPage = Loader(() =>
-    import(/* webpackChunkName: "PoluchenieTekhnicheskikhUsloviyView" */ '../containers/PoluchenieTekhnicheskikhUsloviy')
-);
-const OformlenieDogovoraOPodklyucheniiPage = Loader(() =>
-    import(/* webpackChunkName: "OformlenieDogovoraOPodklyucheniiView" */ '../containers/OformlenieDogovoraOPodklyuchenii')
-);
-const OformlenieAktovOPodklyucheniiPage = Loader(() =>
-    import(/* webpackChunkName: "OformlenieAktovOPodklyucheniiView" */ '../containers/OformlenieAktovOPodklyuchenii')
-);
-const FizlicaZaklyuchenieDogovorovPage = Loader(() =>
-    import(/* webpackChunkName: "FizlicaZaklyuchenieDogovorovView" */ '../containers/FizlicaZaklyuchenieDogovorov')
-);
-const FizlicaPeredachaPokazaniyPage = Loader(() =>
-    import(/* webpackChunkName: "FizlicaPeredachaPokazaniyView" */ '../containers/FizlicaPeredachaPokazaniy')
-);
-const FizlicaPriboryUchetaPage = Loader(() =>
-    import(/* webpackChunkName: "FizlicaPriboryUchetaView" */ '../containers/FizlicaPriboryUcheta')
-);
-const UrlicaZaklyuchenieDogovorovPage = Loader(() =>
-    import(/* webpackChunkName: "UrlicaZaklyuchenieDogovorovView" */ '../containers/UrlicaZaklyuchenieDogovorov')
-);
-const UrlicaPeredachaPokazaniyPage = Loader(() =>
-    import(/* webpackChunkName: "UrlicaPeredachaPokazaniyView" */ '../containers/UrlicaPeredachaPokazaniy')
-);
-const UrlicaInspekciaVodnyhResursovPage = Loader(() =>
-    import(/* webpackChunkName: "UrlicaInspekciaVodnyhResursovView" */ '../containers/UrlicaInspekciaVodnyhResursov')
-);
-const RegulatoryDocPage = Loader(() =>
-    import(/* webpackChunkName: "RegulatoryDocView" */ '../containers/RegulatoryDoc')
-);
-const TarifsPage = Loader(() =>
-    import(/* webpackChunkName: "TarifsView" */ '../containers/TarifsView')
-);
-const DebtorsPage = Loader(() =>
-    import(/* webpackChunkName: "DebtorsView" */ '../containers/Debtors')
-);
-const VyvozZhidkihKommunalnyhStokovPage = Loader(() =>
-    import(/* webpackChunkName: "VyvozZhidkihKommunalnyhStokovView" */ '../containers/VyvozZhidkihKommunalnyhStokov')
-);
-const PreyskurantUslugDlyaFizicheskihLicPage = Loader(() =>
-    import(/* webpackChunkName: "PreyskurantUslugDlyaFizicheskihLicView" */ '../containers/PreyskurantUslugDlyaFizicheskihLic')
-);
-const PreyskurantUslugDlyaYuridicheskihLicPage = Loader(() =>
-    import(/* webpackChunkName: "PreyskurantUslugDlyaYuridicheskihLicView" */ '../containers/PreyskurantUslugDlyaYuridicheskihLic')
-);
-const ProchieUslugiPage = Loader(() =>
-    import(/* webpackChunkName: "ProchieUslugiView" */ '../containers/ProchieUslugi')
-);
-const NewsPage = Loader(() =>
-    import(/* webpackChunkName: "NewsView" */ '../containers/News')
-);
-const NewsAboutUsPage = Loader(() =>
-    import(/* webpackChunkName: "NewsAboutUsView" */ '../containers/NewsAboutUs')
+    import(/* webpackChunkName: "NotFoundView" */ '../containers/NotFound/index.jsx')
 );
 
 export default [
@@ -124,7 +29,7 @@ export default [
         icon: Dashboard,
         component: HomePage
     },
-    {
+/*   {
         path: '/about',
 	    exact: true,
         sidebarName: '',
@@ -407,5 +312,10 @@ export default [
         navbarName: '',
         icon: Dashboard,
         component: requireAuthentication(ProtectedPage)
+    },
+*/
+    {
+        path: '*',
+        component: NotFoundPage
     },
 ];
