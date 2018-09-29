@@ -14,9 +14,20 @@ module.exports = merge(commonConfig(mode), {
       'app': './index.jsx' // the entry point of our app
     },
     devtool: 'cheap-source-map',
-    optimization: {
-        minimize: false,
-    /*
+    optimization: { 
+        splitChunks: { 
+            name: false, 
+            cacheGroups: { 
+                commons: { 
+                    name: 'vendors', 
+                    chunks: 'all', 
+                    test: /[\\/]node_modules[\\/]/, 
+                    priority: -10, 
+                }, 
+            }, 
+        }, 
+    /*optimization: {
+        minimize: true,
         splitChunks: {
             chunks: 'all',
             minChunks: 1,

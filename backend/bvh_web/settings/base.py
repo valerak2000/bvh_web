@@ -2,14 +2,17 @@
 
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))  # remove /sswmain/settings to get base folder
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+PROJECT_NAME = 'bvh_web'
 
+def base_dir_join(*args):
+    return os.path.join(BASE_DIR, *args)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 try:
     SECRET_KEY
 except NameError:
-    SECRET_FILE = os.path.join(BASE_DIR, 'secret.txt')
+    SECRET_FILE = base_dir_join('secret.txt')
     try:
         with open(SECRET_FILE) as f:
             SECRET_KEY = f.read().strip()
@@ -19,20 +22,10 @@ except NameError:
         SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'ajsdgas7&*kosdsa21[]jaksdhlka-;kmcv8l$#diepsm8&ah^')
 
 DEBUG = True
-SECURE_HSTS_SECONDS = False
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-SECURE_HSTS_PRELOAD = False
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-X_FRAME_OPTIONS = 'DENY'
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,26 +36,29 @@ INSTALLED_APPS = (
     'rest_framework',
     'knox',
     'django_extensions',
+    'django_js_reverse',
     'webpack_loader',
+    #'import_export',
     'accounts',
     'base'
 )
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates"),],
+        'DIRS': [base_dir_join("templates"),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,9 +71,25 @@ TEMPLATES = [
     },
 ]
 
-ROOT_URLCONF = 'bvh_web.urls'
+ROOT_URLCONF = PROJECT_NAME + '.urls'
+#ROOT_URLCONF = 'bvh_web.urls'
+WSGI_APPLICATION = PROJECT_NAME + '.wsgi.application'
+#WSGI_APPLICATION = 'bvh_web.wsgi.application'
 
-WSGI_APPLICATION = 'bvh_web.wsgi.application'
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
 
 LANGUAGE_CODE = 'en-us'
 
@@ -93,26 +105,15 @@ AUTH_USER_MODEL = 'accounts.User'
 
 ACCOUNT_ACTIVATION_DAYS = 7  # days
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '../static/files', 'static')
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '../static/files', 'media')
-
 STATICFILES_DIRS = (
     # ...
-    '../static/',
-    ('images', os.path.join(BASE_DIR, '../static/images')),
-    ('files', os.path.join(BASE_DIR, '../static/files')),
-    ('fonts', os.path.join(BASE_DIR, '../static/fonts')),
-    #("bundles", os.path.join(BASE_DIR, '../static/bundles/')),
+    ('bundles', base_dir_join('../static/bundles')),
+    ('images', base_dir_join('../static/images')),
+    ('files', base_dir_join('../static/files')),
+    ('fonts', base_dir_join('../static/fonts')),
 )
 
-# store static files locally and serve with whitenoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 # ############# REST FRAMEWORK ###################
-
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (),
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -139,7 +140,7 @@ WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not DEBUG,
         'BUNDLE_DIR_NAME': 'bundles/', # must end with slash
-        'STATS_FILE': os.path.join(BASE_DIR, '../frontend/webpack-stats.json'),
+        'STATS_FILE': base_dir_join('../frontend/webpack-stats.json'),
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
         'IGNORE': ['.+\.hot-update.js', '.+\.map']
