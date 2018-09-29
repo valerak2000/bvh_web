@@ -6,7 +6,7 @@ TEMPLATE_DEBUG = DEBUG
 PAGE_CACHE_SECONDS = 60
 
 # TODO: n a real production server this should have a proper url
-ALLOWED_HOSTS = ALLOWED_HOSTS.extend([])
+ALLOWED_HOSTS.extend([])
 print(ALLOWED_HOSTS)
 
 DATABASES = {
