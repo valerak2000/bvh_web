@@ -36,6 +36,10 @@ class SiteMenu extends Component {
         };
     }
 
+    static shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextProps.location);
+    }
+
     static getDerivedStateFromProps(props, state) {
         //console.log(props.location);
         //console.log(location);

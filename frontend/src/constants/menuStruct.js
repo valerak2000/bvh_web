@@ -193,12 +193,6 @@ export const MENU_CUSTOMERS = [
                 dataRoute: '/customers/services/vyvoz_zhidkih_kommunalnyh_stokov',
             },
             {
-                key: 'laboratornyy_analiz_vody',
-                primaryText: 'Лабораторный анализ воды',
-                leftIcon: null,
-                dataRoute: '/customers/services/laboratornyy_analiz_vody',
-            },
-            {
                 key: 'preyskurant_uslug_dlya_fizicheskih_lic',
                 primaryText: 'Прейскурант услуг для физических лиц',
                 leftIcon: null,

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 import * as actionCreators from '../../actions/data';
-import UnderConstruct from '../../components/UnderConstruct'
+import UnderConstruct from '../../components/UnderConstruct';
 
 class ProtectedView extends Component {
     static propTypes = {
@@ -30,20 +30,21 @@ class ProtectedView extends Component {
 
     render() {
         return (
-            <div className="protected">
-                <div className="container">
-                    <h2 className="text-center margin-bottom-medium">Личная информация</h2>
-                    {this.props.isFetching === true ?
-                        <p className="text-center">Загрузка данных...</p>
-                        :
-                        <UnderConstruct />
+            <div>
+                <div>
+                    <h2>Личная информация</h2>
+                    { 
+                        this.props.isFetching === true ?
+                            <p>Загрузка данных...</p>
+                            :
+                            <UnderConstruct />
                     }
                 </div>
             </div>
         );
     }
 }
-
+//
 const mapStateToProps = (state) => {
     return {
         data: state.data.data,

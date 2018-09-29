@@ -19,8 +19,8 @@ export const Maps = compose(
     connect()
  )(props => (
     <GoogleMap defaultZoom = { props.zoom } defaultCenter = {{ lat: props.lat, lng: props.lng }}>
-      {props.isMarkerShown && (
-        <Marker position = {{ lat: props.lat, lng: props.lng }} />
-      )}
+    { 
+        props.isMarkerShown && (<Marker position = {{ lat: props.lat, lng: props.lng }} />)
+    }
     </GoogleMap>
   ));

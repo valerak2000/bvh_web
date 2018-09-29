@@ -19,6 +19,102 @@ const HomePage = Loader(() =>
 const NotFoundPage = Loader(() =>
     import(/* webpackChunkName: "NotFoundView" */ '../containers/NotFound/index.jsx')
 );
+const UnderConstructPage = Loader(() =>
+    import(/* webpackChunkName: "UnderConstructView" */ '../containers/UnderConstruct/index.jsx')
+);
+const LoginPage = Loader(() =>
+    import(/* webpackChunkName: "LoginView" */ '../containers/Login/index.jsx')
+);
+const ProtectedPage = Loader(() =>
+    import(/* webpackChunkName: "ProtectedView" */ '../containers/Protected/index.jsx')
+);
+const MapPage = Loader(() =>
+    import(/* webpackChunkName: "MapView" */ '../containers/Map/index.jsx')
+);
+const ElektronnayaPriemnayaPage = Loader(() =>
+    import(/* webpackChunkName: "ElektronnayaPriemnayaView" */ '../containers/Home/ElektronnayaPriemnaya/index.jsx')
+);
+const BlackoutsPage = Loader(() =>
+    import(/* webpackChunkName: "BlackoutsView" */ '../containers/Home/Blackouts/index.jsx')
+);
+const AvailableCapacityMapPage = Loader(() =>
+    import(/* webpackChunkName: "AvailableCapacityMapView" */ '../containers/Home/AvailableCapacityMap/index.jsx')
+);
+const FaqPage = Loader(() =>
+    import(/* webpackChunkName: "FaqView" */ '../containers/Home/Faq/index.jsx')
+);
+const CommonInfoPage = Loader(() =>
+    import(/* webpackChunkName: "CommonInfoView" */ '../containers/About/CommonInfo/index.jsx')
+);
+const LeadershipPage = Loader(() =>
+    import(/* webpackChunkName: "LeadershipView" */ '../containers/About/Leadership/index.jsx')
+);
+const ContactsPage = Loader(() =>
+    import(/* webpackChunkName: "ContactsView" */ '../containers/About/Contacts/index.jsx')
+);
+const VacanciesPage = Loader(() =>
+    import(/* webpackChunkName: "VacanciesView" */ '../containers/About/Vacancies/index.jsx')
+);
+const OurHistoryPage = Loader(() =>
+    import(/* webpackChunkName: "OurHistoryView" */ '../containers/About/OurHistory/index.jsx')
+);
+const ZakupkiRaskrytiePage = Loader(() =>
+    import(/* webpackChunkName: "ZakupkiRaskrytieView" */ '../containers/About/ZakupkiRaskrytie/index.jsx')
+);
+const PoluchenieTekhnicheskikhUsloviyPage = Loader(() =>
+    import(/* webpackChunkName: "PoluchenieTekhnicheskikhUsloviyView" */ '../containers/Customers/PoluchenieTekhnicheskikhUsloviy/index.jsx')
+);
+const OformlenieDogovoraOPodklyucheniiPage = Loader(() =>
+    import(/* webpackChunkName: "OformlenieDogovoraOPodklyucheniiView" */ '../containers/Customers/OformlenieDogovoraOPodklyuchenii/index.jsx')
+);
+const OformlenieAktovOPodklyucheniiPage = Loader(() =>
+    import(/* webpackChunkName: "OformlenieAktovOPodklyucheniiView" */ '../containers/Customers/OformlenieAktovOPodklyuchenii/index.jsx')
+);
+const FizlicaZaklyuchenieDogovorovPage = Loader(() =>
+    import(/* webpackChunkName: "FizlicaZaklyuchenieDogovorovView" */ '../containers/Customers/FizlicaZaklyuchenieDogovorov/index.jsx')
+);
+const FizlicaPeredachaPokazaniyPage = Loader(() =>
+    import(/* webpackChunkName: "FizlicaPeredachaPokazaniyView" */ '../containers/Customers/FizlicaPeredachaPokazaniy/index.jsx')
+);
+const FizlicaPriboryUchetaPage = Loader(() =>
+    import(/* webpackChunkName: "FizlicaPriboryUchetaView" */ '../containers/Customers/FizlicaPriboryUcheta/index.jsx')
+);
+const UrlicaZaklyuchenieDogovorovPage = Loader(() =>
+    import(/* webpackChunkName: "UrlicaZaklyuchenieDogovorovView" */ '../containers/Customers/UrlicaZaklyuchenieDogovorov/index.jsx')
+);
+const UrlicaPeredachaPokazaniyPage = Loader(() =>
+    import(/* webpackChunkName: "UrlicaPeredachaPokazaniyView" */ '../containers/Customers/UrlicaPeredachaPokazaniy/index.jsx')
+);
+const UrlicaInspekciaVodnyhResursovPage = Loader(() =>
+    import(/* webpackChunkName: "UrlicaInspekciaVodnyhResursovView" */ '../containers/Customers/UrlicaInspekciaVodnyhResursov/index.jsx')
+);
+const RegulatoryDocPage = Loader(() =>
+    import(/* webpackChunkName: "RegulatoryDocView" */ '../containers/Customers/RegulatoryDoc/index.jsx')
+);
+const TarifsPage = Loader(() =>
+    import(/* webpackChunkName: "TarifsView" */ '../containers/Customers/Tarifs/index.jsx')
+);
+const DebtorsPage = Loader(() =>
+    import(/* webpackChunkName: "DebtorsView" */ '../containers/Customers/Debtors/index.jsx')
+);
+const VyvozZhidkihKommunalnyhStokovPage = Loader(() =>
+    import(/* webpackChunkName: "VyvozZhidkihKommunalnyhStokovView" */ '../containers/Customers/VyvozZhidkihKommunalnyhStokov/index.jsx')
+);
+const PreyskurantUslugDlyaFizicheskihLicPage = Loader(() =>
+    import(/* webpackChunkName: "PreyskurantUslugDlyaFizicheskihLicView" */ '../containers/Customers/PreyskurantUslugDlyaFizicheskihLic/index.jsx')
+);
+const PreyskurantUslugDlyaYuridicheskihLicPage = Loader(() =>
+    import(/* webpackChunkName: "PreyskurantUslugDlyaYuridicheskihLicView" */ '../containers/Customers/PreyskurantUslugDlyaYuridicheskihLic/index.jsx')
+);
+const ProchieUslugiPage = Loader(() =>
+    import(/* webpackChunkName: "ProchieUslugiView" */ '../containers/Customers/ProchieUslugi/index.jsx')
+);
+const NewsPage = Loader(() =>
+    import(/* webpackChunkName: "NewsView" */ '../containers/News/News/index.jsx')
+);
+const NewsAboutUsPage = Loader(() =>
+    import(/* webpackChunkName: "NewsAboutUsView" */ '../containers/News/NewsAboutUs/index.jsx')
+);
 
 export default [
     {
@@ -29,19 +125,20 @@ export default [
         icon: Dashboard,
         component: HomePage
     },
-/*   {
-        path: '/about',
+    {
+        path: '/protected',
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: requireAuthentication(ProtectedPage)
+    },
+    {
+        path: '/about/common_info',
 	    exact: true,
         sidebarName: '',
         navbarName: '',
         icon: Dashboard,
         component: CommonInfoPage
-    },
-    {
-        redirect: true, 
-        path: '/about', 
-        to: '/about/common_info', 
-        navbarName: 'Redirect' 
     },
     {
         path: '/about/leadership',
@@ -84,24 +181,18 @@ export default [
         component: ZakupkiRaskrytiePage
     },
     {
+        redirect: true, 
+        path: '/about', 
+        to: '/about/common_info', 
+        navbarName: 'Redirect' 
+    },
+    {
         path: '/customers/connection/poluchenie_tekhnicheskikh_usloviy',
 	    exact: true,
         sidebarName: '',
         navbarName: '',
         icon: Dashboard,
         component: PoluchenieTekhnicheskikhUsloviyPage
-    },
-    {
-        redirect: true, 
-	    path: '/customers', 
-	    to: '/customers/connection/poluchenie_tekhnicheskikh_usloviy', 
-	    navbarName: 'Redirect' 
-    },
-    {
-        redirect: true, 
-        path: '/customers/connection', 
-        to: '/customers/connection/poluchenie_tekhnicheskikh_usloviy', 
-        navbarName: 'Redirect' 
     },
     {
         path: '/customers/connection/oformlenie_dogovora_o_podklyuchenii',
@@ -118,12 +209,6 @@ export default [
         navbarName: '',
         icon: Dashboard,
         component: OformlenieAktovOPodklyucheniiPage
-    },
-    {
-        redirect: true, 
-        path: '/customers/fizlica', 
-        to: '/customers/fizlica/zaklyuchenie_dogovorov', 
-        navbarName: 'Redirect' 
     },
     {
         path: '/customers/fizlica/zaklyuchenie_dogovorov',
@@ -148,12 +233,6 @@ export default [
         navbarName: '',
         icon: Dashboard,
         component: FizlicaPriboryUchetaPage
-    },
-    {
-        redirect: true, 
-        path: '/customers/urlica', 
-        to: '/customers/urlica/zaklyuchenie_dogovorov', 
-        navbarName: 'Redirect' 
     },
     {
         path: '/customers/urlica/zaklyuchenie_dogovorov',
@@ -204,12 +283,6 @@ export default [
         component: DebtorsPage
     },
     {
-        redirect: true, 
-        path: '/customers/services', 
-        to: '/customers/services/vyvoz_zhidkih_kommunalnyh_stokov', 
-        navbarName: 'Redirect' 
-    },
-    {
         path: '/customers/services/vyvoz_zhidkih_kommunalnyh_stokov',
     	exact: true,
         sidebarName: '',
@@ -240,6 +313,36 @@ export default [
         navbarName: '',
         icon: Dashboard,
         component: ProchieUslugiPage
+    },
+    {
+        redirect: true, 
+	    path: '/customers', 
+	    to: '/customers/connection/poluchenie_tekhnicheskikh_usloviy', 
+	    navbarName: 'Redirect' 
+    },
+    {
+        redirect: true, 
+        path: '/customers/connection', 
+        to: '/customers/connection/poluchenie_tekhnicheskikh_usloviy', 
+        navbarName: 'Redirect' 
+    },
+    {
+        redirect: true, 
+        path: '/customers/fizlica', 
+        to: '/customers/fizlica/zaklyuchenie_dogovorov', 
+        navbarName: 'Redirect' 
+    },
+    {
+        redirect: true, 
+        path: '/customers/urlica', 
+        to: '/customers/urlica/zaklyuchenie_dogovorov', 
+        navbarName: 'Redirect' 
+    },
+    {
+        redirect: true, 
+        path: '/customers/services', 
+        to: '/customers/services/vyvoz_zhidkih_kommunalnyh_stokov', 
+        navbarName: 'Redirect' 
     },
     {
         path: '/news',
@@ -307,15 +410,9 @@ export default [
         component: LoginPage
     },
     {
-        path: '/protected',
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
-        component: requireAuthentication(ProtectedPage)
-    },
-*/
-    {
-        path: '*',
         component: NotFoundPage
     },
 ];
+
+/*
+*/

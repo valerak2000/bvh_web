@@ -1,7 +1,7 @@
 import Loader from '../components/loaders';
 
-const Main = Loader(() =>
-  import(/* webpackChunkName: "Main" */ '../layouts/Main.jsx')
+const Root = Loader(() =>
+    import(/* webpackChunkName: "Root" */ '../containers/Root/Root.jsx')
 );
 
-export default [{ path: '/', component: Main }];
+export default [{ path: '/', component: Root }];

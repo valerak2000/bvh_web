@@ -17,8 +17,7 @@ export default function requireAuthentication(Component) {
             this.checkAuth();
         }
 
-        static getDerivedStateFromProps(props, state) {
-        //componentWillReceiveProps(nextProps) {
+        componentWillReceiveProps(nextProps) {
             this.checkAuth();
         }
 
