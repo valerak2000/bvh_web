@@ -1,7 +1,9 @@
+const autoprefixer = require('autoprefixer');
 const merge = require('webpack-merge');
+const webpack = require('webpack');
 //const { resolve } = require('path');
 //const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const commonConfig = require('./common.config');
 const SizePlugin = require('size-plugin');
@@ -13,9 +15,11 @@ module.exports = merge(commonConfig(mode), {
     entry: {
       'app': './index.jsx' // the entry point of our app
     },
-    devtool: 'cheap-source-map',
-    optimization: { 
-        splitChunks: { 
+    devtool: 'nosources-source-map', //'cheap-source-map',
+    //devtool: 'cheap-source-map',
+    optimization: {
+        minimize: true,
+        /*splitChunks: { 
             name: false, 
             cacheGroups: { 
                 commons: { 
@@ -26,8 +30,6 @@ module.exports = merge(commonConfig(mode), {
                 }, 
             }, 
         }, 
-    /*optimization: {
-        minimize: true,
         splitChunks: {
             chunks: 'all',
             minChunks: 1,
@@ -52,9 +54,6 @@ module.exports = merge(commonConfig(mode), {
                 priority: 100
             }
         }
-    }*/
-        /*
-        minimize: true,
         splitChunks: {
             chunks: 'all',
             minChunks: 1,
@@ -79,17 +78,26 @@ module.exports = merge(commonConfig(mode), {
                 priority: 100
               }
             }
-        }
-    */
+        }*/
     },
     plugins: [
-      /*new CompressionWebpackPlugin({
-        asset: '[path].gz[query]',
-        algorithm: 'gzip',
-        test: new RegExp('\\.(js|css)$'),
-        threshold: 10240,
-        minRatio: 0.8,
-    }),*/
+        new MiniCssExtractPlugin({ filename: '[name]-[hash].css', disable: false, allChunks: true }),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+              context: __dirname,
+              postcss: [
+                autoprefixer,
+              ]
+            }
+          }),
+        /*new CompressionWebpackPlugin({
+            filename: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: new RegExp('\\.(js|css)$'),
+            threshold: 10240,
+            minRatio: 0.8,
+            deleteOriginalAssets: true
+        }),*/
         new SizePlugin()
     ]
 });

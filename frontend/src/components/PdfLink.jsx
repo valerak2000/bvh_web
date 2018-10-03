@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
@@ -48,11 +46,6 @@ class PdfLink extends Component {
 /*
 */
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-    };
-};
-
 PdfLink.muiName = 'PdfLink';
 
-export default muiThemeable()(connect(mapStateToProps)(PdfLink));
+export default muiThemeable()(PdfLink);

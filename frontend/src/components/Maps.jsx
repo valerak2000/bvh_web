@@ -1,7 +1,6 @@
 import React from 'react';
 //import ReactDOM from 'react-dom';
 import { compose, withProps, lifecycle } from 'recompose';
-import { connect } from 'react-redux';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
@@ -15,8 +14,7 @@ export const Maps = compose(
     }),
     withScriptjs,
     withGoogleMap,
-    muiThemeable(),
-    connect()
+    muiThemeable()
  )(props => (
     <GoogleMap defaultZoom = { props.zoom } defaultCenter = {{ lat: props.lat, lng: props.lng }}>
     { 

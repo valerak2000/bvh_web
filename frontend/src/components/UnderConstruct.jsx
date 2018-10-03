@@ -12,11 +12,6 @@ class UnderConstruct extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-    };
-};
-
 UnderConstruct.muiName = 'UnderConstruct';
 
-export default muiThemeable()(connect(mapStateToProps)(UnderConstruct));
+export default muiThemeable()(UnderConstruct);

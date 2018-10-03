@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const webpack = require('webpack');
-var BundleTracker = require('webpack-bundle-tracker');
+const BundleTracker = require('webpack-bundle-tracker');
+const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 
 const PATHS = {
     app: path.join(__dirname, '../src'),
@@ -36,14 +37,18 @@ module.exports = function (mode) {
         module: {
             rules: [
                 {
+                    test: /\.gz$/,
+                    enforce: 'pre',
+                    use: 'gzip-loader'
+                },
+                {
                     test: /\.(js|jsx|ts|tsx)$/,
-                    //exclude: /node_modules/,
                     use: [
                       {
                         loader: 'webpack-remove-block-loader',
                         options: {
                           active: !devMode
-                        }
+                        },
                       }
                     ]
                 },
@@ -52,7 +57,7 @@ module.exports = function (mode) {
                     use: {
                         loader: 'babel-loader'
                     },
-                    exclude: /node_modules/
+                    exclude: [nodeModulesDir],
                 },
                 {
                     test: /\.tsx?$/,
