@@ -180,7 +180,6 @@
     "react": "^16.5.2",
     "react-chartist": "^0.13.1",
     "react-dom": "^16.5.2",
-    "react-fastclick": "^3.0.2",
     "react-fontawesome": "^1.6.1",
     "react-google-maps": "latest",
     "react-loadable": "^5.5.0",

@@ -3,10 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, Switch, BrowserRouter } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-//import injectTapEventPlugin from 'react-tap-event-plugin';
-//injectTapEventPlugin();
-import initReactFastclick from 'react-fastclick';
-initReactFastclick();
 import { setConfig } from 'react-hot-loader';
 setConfig({ logLevel: 'debug' });
 

@@ -9,7 +9,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { white } from 'material-ui/styles/colors';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
-//import Favicon from 'react-favicon';
 // core components
 import MessageBox from '../../components/MessageBox';
 //import mainStyle from '../Main/mainStyle.jsx';
@@ -23,7 +22,6 @@ import AppView from '../App';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import LeftNavMenu from '../../components/LeftNavMenu';
-//import favicon from '../../../static/images/favicon.ico';
 
 const isProd = process.env.NODE_ENV === 'production';
 
