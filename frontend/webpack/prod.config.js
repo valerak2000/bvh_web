@@ -13,32 +13,20 @@ const mode = 'production';
 module.exports = merge(commonConfig(mode), {
     mode,
     entry: {
-      'app': './index.jsx' // the entry point of our app
+      'app': './index.jsx', // the entry point of our app
+      vendors: ['react'],
     },
-    devtool: 'nosources-source-map', //'cheap-source-map',
-    //devtool: 'cheap-source-map',
+    //devtool: 'nosources-source-map',
+    devtool: 'cheap-source-map',
     optimization: {
         minimize: true,
-        /*splitChunks: { 
-            name: false, 
-            cacheGroups: { 
-                commons: { 
-                    name: 'vendors', 
-                    chunks: 'all', 
-                    test: /[\\/]node_modules[\\/]/, 
-                    priority: -10, 
-                }, 
-            }, 
-        }, 
         splitChunks: {
+            name: false, 
             chunks: 'all',
             minChunks: 1,
-            name: true,
-            // minSize: 307200, //300 kb
-            // maxSize: 512000, //500 kb
             hidePathInfo: false,
             automaticNameDelimiter: '-',
-            cacheGroups: {
+            cacheGroups: { 
                 css: {
                     test: /\.(css|scss|less)$/i,
                     name: 'style',
@@ -46,39 +34,24 @@ module.exports = merge(commonConfig(mode), {
                     enforce: true,
                     priority: 101
                 },
-            moment: {
-                test: /[\\/]moment[\\/]/,
-                name: 'moment',
-                reuseExistingChunk: true,
-                //enforce: true,
-                priority: 100
-            }
-        }
-        splitChunks: {
-            chunks: 'all',
-            minChunks: 1,
-            name: true,
-            // minSize: 307200, //300 kb
-            // maxSize: 512000, //500 kb
-            hidePathInfo: false,
-            automaticNameDelimiter: '-',
-            cacheGroups: {
-              css: {
-                test: /\.(css|scss|less)$/i,
-                name: 'style',
-                reuseExistingChunk: true,
-                enforce: true,
-                priority: 101
-              },
-              moment: {
-                test: /[\\/]moment[\\/]/,
-                name: 'moment',
-                reuseExistingChunk: true,
-                //enforce: true,
-                priority: 100
-              }
-            }
-        }*/
+                commons: { 
+                    name: 'vendors', 
+                    chunks: 'all', 
+                    test: /[\\/]node_modules[\\/]/, 
+                    priority: -10, 
+                }, 
+                moment: {
+                    test: /[\\/]moment[\\/]/,
+                    name: 'moment',
+                    reuseExistingChunk: true,
+                    //enforce: true,
+                    priority: 100
+                }
+            },
+        },
+        //runtimeChunk: {
+        //    name: entrypoint => `runtimechunk~${entrypoint.name}`
+        //}    
     },
     plugins: [
         new MiniCssExtractPlugin({ filename: '[name]-[hash].css', disable: false, allChunks: true }),
