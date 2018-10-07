@@ -2,7 +2,7 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import * as Colors from '@material-ui/core/colors';
 
 export var muiTheme = createMuiTheme({
-    fontFamily: 'pfbeausanspro-reg, sans-serif',
+    fontFamily: '"pfbeausanspro-reg", "sans-serif"',
     global: {
         maxWidth: '78rem',//62 126,
         minWidth: '78rem',
@@ -108,7 +108,7 @@ export var muiTheme = createMuiTheme({
                             height: 'inherit',
                             width: '19rem',
                             backgroundColor: 'inherit',
-                            fontFamily: 'PFBeauSansPro-Reg, sans-serif',
+                            fontFamily: '"PFBeauSansPro-Reg", "sans-serif"',
                             fontSize: 14,
                         },
                         button: {
@@ -231,5 +231,13 @@ export var muiTheme = createMuiTheme({
         height: 24,
         width: '100%',
         objectFit: 'contain',
+    },
+    typography: {
+        fontFamily: [
+            'pfbeausanspro-reg',
+            'sans-serif',
+        ].join(','),
+        fontSize: 16,
+        fontWeight: 500,
     },
 });
