@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
-
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
+import { Link } from 'react-router-dom';
+import withTheme from '@material-ui/core/styles/withTheme';
+import AppBar from '@material-ui/core/AppBar';
+import IconButton from '@material-ui/core/IconButton';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 import LoginControl from './LoginControl';
 import SiteMenu from './SiteMenu';
@@ -15,42 +15,70 @@ class Header extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
-        location: PropTypes.string
-    };
-
-    static get contextTypes() {
-        return {
-            muiTheme: PropTypes.object.isRequired
-        };
-    }
-
-    static defaultProps = {
-        location: null,
+        location: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
         super(props, context);
     }
 
-    goToIndex = () => {
-        this.props.dispatch(push('/'));
-    };
-
     render() {
+        const { appBar } = { ...this.props.theme.app.header };
+        const { isAuthenticated } = this.props;
+
         return (
             <header 
-                style = { this.props.muiTheme.app.header }
+                style = { appBar }
             >
                 <AppBar
-                    titleStyle = { this.props.muiTheme.app.header.appBar.titleStyle }
+                    position = 'static'
+                >
+                    <Toolbar
+                        id = 'ElementLeft'
+                        style = { appBar.elementLeft }
+                    >
+                        <IconButton
+                            style = { appBar.elementLeft.logo }
+                            component = { Link } to = '/'
+                        >
+                            <img
+                                src = { bvhLogo }
+                                alt = 'Главная'
+                                style = { appBar.elementLeft.logo.picture }
+                            />
+                        </IconButton>
+                        <SiteMenu
+                            style = { appBar.elementLeft.menu }
+                            { ...this.props }
+                        />
+                        <LoginControl
+                            isAuthenticated = { isAuthenticated }
+                            style = { appBar.elementRight.login }
+                            { ...this.props }
+                        />
+                    </Toolbar>
+                </AppBar>
+            </header>
+        );
+    }
+}
+
+Header.muiName = 'Header';
+
+export default withTheme()(Header);
+
+/*
+                <AppBar
+                    titleStyle = { header.appBar.titleStyle }
                     iconElementLeft = {
                         <div
                             id = 'ElementLeft'
-                            style = { this.props.muiTheme.app.header.appBar.elementLeft }
+                            style = { header.appBar.elementLeft }
                         >
                             <IconButton
-                                style = { this.props.muiTheme.app.header.appBar.elementLeft.logo }
-                                iconStyle = { this.props.muiTheme.app.header.appBar.elementLeft.logo.picture }
+                                style = { header.appBar.elementLeft.logo }
+                                iconStyle = { header.appBar.elementLeft.logo.picture }
                                 onClick = { this.goToIndex }
                             >
                                 <img
@@ -59,80 +87,24 @@ class Header extends Component {
                                 />
                             </IconButton>
                             <SiteMenu
-                                style = { this.props.muiTheme.app.header.appBar.elementLeft.menu }
+                                style = { header.appBar.elementLeft.menu }
                                 { ...this.props }
                             />
                         </div>
                     }
-                    iconStyleLeft = { this.props.muiTheme.app.header.appBar.elementLeft.iconStyleLeft }
+                    iconStyleLeft = { header.appBar.elementLeft.iconStyleLeft }
                     iconElementRight = {
                         <div
                             id = 'ElementRight'
-                            style = { this.props.muiTheme.app.header.appBar.elementRight }
+                            style = { header.appBar.elementRight }
                         >
                             <LoginControl
-                                isAuthenticated = { this.props.isAuthenticated }
-                                style = { this.props.muiTheme.app.header.appBar.elementRight.login }
+                                isAuthenticated = { isAuthenticated }
+                                style = { header.appBar.elementRight.login }
                             />
                         </div>
                     }
-                    iconStyleRight = { this.props.muiTheme.app.header.appBar.elementLeft.iconStyleRight }
+                    iconStyleRight = { header.appBar.elementLeft.iconStyleRight }
                     showMenuIconButton = { true }
                 />
-            </header>
-        );
-    }
-}
-/*
-*/
-
-const mapStateToProps = (state, ownProps) => {
-    return {
-        isAuthenticated: state.auth.isAuthenticated,
-        location: location.pathname
-    };
-};
-
-/*function mapDispatchToProps (dispatch) {
-    return {
-    }
-}*/
-
-Header.muiName = 'Header';
-
-export default muiThemeable()(connect(mapStateToProps)(Header));
-//export default muiThemeable()(connect(mapStateToProps, mapDispatchToProps)(Header));
-
-/*
-
-<Paper style = {{
-  display: 'inline-block',
-  margin: '16px 32px 16px 0',
-}}>
-      <Menu>
-        <MenuItem primaryText="Maps" />
-        <MenuItem primaryText="Books" />
-        <MenuItem primaryText="Flights" />
-        <MenuItem primaryText="Apps" />
-      </Menu>
-    </Paper>
-
-       <Drawer
-          docked={true}
-          open={true}
-          swipeAreaWidth=30
-          zDepth=0
-          disableSwipeToOpen={false}
-          openSecondary={false}
-        >
-          <MenuItem
-            onTouchTap={() => { this.toggleDrawer() }}
-            primaryText="Home"
-          />
-          <MenuItem
-            onTouchTap={() => { this.toggleDrawer() }}
-            primaryText="Some Component"
-          />
-        </Drawer>
-
 */

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 //import { withRouter } from 'react-router-dom';
 //import { compose } from 'recompose';
 
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import withTheme from '@material-ui/core/styles/withTheme';
 import { List, ListItem } from 'material-ui/List';
 //import Divider from 'material-ui/Divider';
 
@@ -271,9 +271,9 @@ function mapDispatchToProps (dispatch) {
 }
 
 LeftNavMenu.muiName = 'LeftNavMenu';
-export default muiThemeable()(connect(mapStateToProps)(LeftNavMenu));
+export default withTheme()(connect(mapStateToProps)(LeftNavMenu));
 /*export default compose(
     //withRouter,
-    muiThemeable,
+    withTheme,
     connect(mapStateToProps, mapDispatchToProps)
 )(LeftNavMenu);*/

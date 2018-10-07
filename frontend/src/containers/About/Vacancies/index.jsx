@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import withTheme from '@material-ui/core/styles/withTheme';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 //import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
@@ -41,5 +41,5 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default muiThemeable()(connect(mapStateToProps)(VacanciesView));
+export default withTheme()(connect(mapStateToProps)(VacanciesView));
 export { VacanciesView as VacanciesViewNotConnected };

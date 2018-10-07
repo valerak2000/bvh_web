@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import withTheme from '@material-ui/core/styles/withTheme';
 import FlatButton from 'material-ui/FlatButton';
 
 const iconPdf = '/static/images/pdf-icon.png';
@@ -48,4 +48,4 @@ class PdfLink extends Component {
 
 PdfLink.muiName = 'PdfLink';
 
-export default muiThemeable()(PdfLink);
+export default withTheme()(PdfLink);

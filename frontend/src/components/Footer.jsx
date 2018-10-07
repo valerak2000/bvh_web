@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import withTheme from '@material-ui/core/styles/withTheme';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 //import FontIcon from 'material-ui/FontIcon';
 //import Paper from 'material-ui/Paper';
@@ -167,4 +167,4 @@ const mapStateToProps = (state, ownProps) => {
 
 Footer.muiName = 'Footer';
 
-export default muiThemeable()(connect(mapStateToProps)(Footer));
+export default withTheme()(connect(mapStateToProps)(Footer));

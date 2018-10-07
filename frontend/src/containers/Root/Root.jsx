@@ -125,6 +125,10 @@ class Root extends Component {
                     >
                         <MessageBox { ...messageBox } open = { messageBox.open || false } />
 
+                        <Header
+                            { ...this.props }
+                            { ...rest }
+                        />
                         <div 
                             id = 'app'
                             style = {{ 
@@ -165,10 +169,6 @@ class Root extends Component {
     }
 }
 /*
-                        <Header
-                            { ...this.props }
-                            { ...rest }
-                        />
                             <LeftNavMenu
                                 { ...this.props }
                                 { ...rest }

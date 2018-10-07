@@ -2,7 +2,7 @@ import React from 'react';
 //import ReactDOM from 'react-dom';
 import { compose, withProps, lifecycle } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import withTheme from '@material-ui/core/styles/withTheme';
 
 export const Maps = compose(
     withProps({
@@ -14,7 +14,7 @@ export const Maps = compose(
     }),
     withScriptjs,
     withGoogleMap,
-    muiThemeable()
+    withTheme()
  )(props => (
     <GoogleMap defaultZoom = { props.zoom } defaultCenter = {{ lat: props.lat, lng: props.lng }}>
     { 

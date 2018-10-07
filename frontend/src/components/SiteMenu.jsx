@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-//import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import muiThemeable from 'material-ui/styles/muiThemeable';
-//import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import withTheme from '@material-ui/core/styles/withTheme';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 import { HOME_MENU, ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants';
 
@@ -14,8 +12,9 @@ class SiteMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
-        location: PropTypes.string,
-        history: PropTypes.object.isRequired
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -30,12 +29,6 @@ class SiteMenu extends Component {
         super(props, context);
     }
 
-    static get contextTypes() {
-        return {
-            muiTheme: PropTypes.object.isRequired
-        };
-    }
-
     static shouldComponentUpdate(nextProps, nextState) {
         console.log(nextProps.location);
     }
@@ -46,8 +39,8 @@ class SiteMenu extends Component {
         let currentTab = null;
 
         if (props.location !== null && props.location) {
-            let urls = props.location.split('/');
-            currentTab = urls[1] !== '' ? urls[1] : HOME_MENU;
+            let urls = props.location.pathname.split('/');
+            currentTab = urls[1] !== '' ? urls[1] : false;
         }
 
         return {
@@ -59,13 +52,9 @@ class SiteMenu extends Component {
         this.setState({ activeTab: event });
     };
 
-    handleActive = (tab) => {
-        this.props.dispatch(push(tab.props['data-route']));
-    };
-
     render() {
         const { activeTab, ...props } = this.state;
-        const { menu } = this.props.muiTheme.app.header.appBar.elementLeft;
+        const { menu } = this.props.theme.app.header.appBar.elementLeft;
 
         return (
             <Tabs
@@ -73,58 +62,31 @@ class SiteMenu extends Component {
                 onChange = { this.handleChange }
                 style = { menu }
             >
-                {/*<Tab
-                    value = 'default'
-                    label = 'Главная'
-                    style = { menu.tab }
-                    data-route = '/'
-                    onActive = { this.handleActive }
-                />*/}
                 <Tab
                     value = 'about'
                     label = 'О компании'
                     style = { menu.tab }
-                    data-route = '/about'
-                    onActive = { this.handleActive }
+                    component = { Link } to = '/about'
                  />
                 <Tab
                     value = 'customers'
                     label = 'Абонентам'
                     style = { menu.tab }
-                    data-route = '/customers'
-                    onActive = { this.handleActive }
+                    component = { Link } to = '/customers'
                 />
                 <Tab
                     value = 'news'
                     label = 'Новости'
                     style = { menu.tab }
-                    data-route = '/news'
-                    onActive = { this.handleActive }
+                    component = { Link } to = '/news'
                 />
-                {/*<Tab
-                    value = 'contacts'
-                    label = 'Контакты'
-                    style = { menu.tab }
-                    data-route = '/contacts'
-                    onActive = { this.handleActive }
-                />*/}
             </Tabs>
         );
     }
 }
-
-const mapStateToProps = (state, ownProps) => {
-    return {
-        isAuthenticated: state.auth.isAuthenticated,
-        location: location.pathname
-    };
-};
-
-function mapDispatchToProps (dispatch) {
-    return {
-    };
-}
+/*
+*/
 
 SiteMenu.muiName = 'SiteMenu';
 
-export default muiThemeable()(connect(mapStateToProps, mapDispatchToProps)(SiteMenu));
+export default withTheme()(SiteMenu);

@@ -1,5 +1,4 @@
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-//import getMuiTheme from '@material-ui/core/styles/getMuiTheme';
 import * as Colors from '@material-ui/core/colors';
 
 export var muiTheme = createMuiTheme({
@@ -11,6 +10,7 @@ export var muiTheme = createMuiTheme({
         margin: '0 auto',
         fontSize: 16,
         fontWeight: 500,
+        fontFamily: 'pfbeausanspro-reg, sans-serif',
     },
     app: {
         //margin: '0 auto auto',
@@ -63,7 +63,7 @@ export var muiTheme = createMuiTheme({
                             height: 'inherit',
                             width: 201,
                             objectFit: 'contain',
-                            margin: '-0.75rem auto auto -0.5rem',
+                            margin: '0rem auto auto -0.5rem',
                             //margin: '-2.5rem auto auto -1rem',
                         },
                     },
@@ -117,6 +117,10 @@ export var muiTheme = createMuiTheme({
                             height: 39,
                             color: Colors.grey50,
                             hoverColor: Colors.blue800,
+                            '&:hover': {
+                                backgroundColor: '#0069d9',
+                                borderColor: '#0062cc',
+                            },
                             label: {
                                 fontSize: 18,
                                 fontWeight: 500,

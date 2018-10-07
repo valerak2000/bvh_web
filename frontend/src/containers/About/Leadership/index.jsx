@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import withTheme from '@material-ui/core/styles/withTheme';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import {GridList, GridTile} from 'material-ui/GridList';
 import Divider from 'material-ui/Divider';
@@ -125,7 +125,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default muiThemeable()(connect(mapStateToProps)(LeadershipView));
+export default withTheme()(connect(mapStateToProps)(LeadershipView));
 export { LeadershipView as LeadershipViewNotConnected };
 /*
                         titleBackground = "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"

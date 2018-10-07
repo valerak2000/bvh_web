@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import withTheme from '@material-ui/core/styles/withTheme';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 
 import PdfLink from '../../../components/PdfLink';
@@ -51,5 +51,5 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default muiThemeable()(connect(mapStateToProps)(ZakupkiRaskrytieView));
+export default withTheme()(connect(mapStateToProps)(ZakupkiRaskrytieView));
 export { ZakupkiRaskrytieView as ZakupkiRaskrytieViewNotConnected };

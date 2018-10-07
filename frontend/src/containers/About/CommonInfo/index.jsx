@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import withTheme from '@material-ui/core/styles/withTheme';
 //import Paper from 'material-ui/Paper';
 //import Divider from 'material-ui/Divider';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
@@ -77,5 +77,5 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default muiThemeable()(connect(mapStateToProps)(CommonInfoView));
+export default withTheme()(connect(mapStateToProps)(CommonInfoView));
 export { CommonInfoView as CommonInfoViewNotConnected };

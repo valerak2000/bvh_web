@@ -14,13 +14,15 @@ class UnderConstructView extends Component {
     }
 
     render() {
+        const { сard } = this.props.theme.app;
+        
         return (
             <Card
-                style = { this.props.theme.app.сard }
+                style = { сard }
             >
                 <CardHeader
                     title = 'Страница находится в разработке'
-                    titleStyle = { this.props.theme.app.сard.title }
+                    titleStyle = { сard.title }
                 />
             </Card>
         );

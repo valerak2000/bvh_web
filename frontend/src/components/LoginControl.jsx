@@ -3,18 +3,15 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import FlatButton from 'material-ui/FlatButton';
-import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
-//import SvgIcon from 'material-ui/SvgIcon';
-import Divider from 'material-ui/Divider';
-import Badge from 'material-ui/Badge';
-//import ActionInput from 'material-ui/svg-icons/action/input';
-//import { grey50 }  from 'material-ui/styles/colors';
+import withTheme from '@material-ui/core/styles/withTheme';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+//import FontIcon from 'material-ui/FontIcon';
+import Divider from '@material-ui/core/Divider';
+import Badge from '@material-ui/core/Badge';
 
 import { authLogoutAndRedirect } from '../actions/auth';
 
@@ -35,10 +32,39 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
 export function Login(props) {
-    //console.log({faSignInAlt});
-    //console.log(faSignInAlt.icon[4]);
     return (
-        <FlatButton
+        <IconButton
+        aria-label = 'Войти'
+        onClick = { props.onClick }
+        disableTouchRipple = { true }
+        style = { props.style.button }
+    >
+        Войти    
+        <FontAwesomeIcon
+            icon = { faSignInAlt }
+            style = { props.style.button.icon }
+        />
+    </IconButton>
+);
+}
+/*
+        <Button
+            label = 'Войти'
+            mini = { true }
+            onClick = { props.onClick }
+            clickable = { true }
+            disableTouchRipple = { true }
+            style = { props.style.button }
+        >
+            Войти
+            <FontAwesomeIcon
+                icon = { faSignInAlt }
+                style = { props.style.button.icon }
+            />
+        </Button>
+
+
+<Button
             label = 'Войти'
             labelPosition = 'before'
             labelStyle = { props.style.button.label }
@@ -53,47 +79,14 @@ export function Login(props) {
             style = { props.style.button }
             hoverColor = { props.style.button.hoverColor }
         />
-    );
-}
-
-/*
-                <SvgIcon { ...props }>
-                <path d={ faSignInAlt.icon[4] } />
-              </SvgIcon>
-                <FontAwesomeIcon
-                    icon = { faSignInAlt }
-                    size = '1x'
-                    color = { Colors.grey50 }
-                    style = { props.style.button.icon }
-                />
-                <FontIcon
-                    className = 'fa fa-sign-in'
-                    style = { props.style.button.icon }
-                />
-
-                <FontIcon 
-                    className = "material-icons"
-                    color = { Colors.grey50 }
-                >
-                    home
-                </FontIcon>
-
-                <ActionInput 
-                    color = { Colors.grey50 }
-                />
-
-            icon = {
-                <IconButton
-                    style = { props.style.button.icon }
-                >
-                    <ActionInput />
-                </IconButton>
-            }
-                    iconStyle={styles.largeIcon}
-
 */
+
 export function Logged(props) {
     return (
+        <div></div>
+    );
+}
+/*
         <IconMenu
             iconButtonElement = {
                 <IconButton>
@@ -118,7 +111,7 @@ export function Logged(props) {
             />
             <Divider />
             <MenuItem
-                primaryText = { props.userName } /*'Выйти'*/
+                primaryText = { props.userName }
                 leftIcon = { 
                     <FontAwesomeIcon
                         icon = { faSignOutAlt }
@@ -128,21 +121,23 @@ export function Logged(props) {
                 onClick = { props.onClickLogout }
             />
         </IconMenu>
-    );
-}
+*/
 
 class LoginControl extends Component {
+    static propTypes = {
+        isAuthenticated: PropTypes.bool.isRequired,
+        userName: PropTypes.string,
+        dispatch: PropTypes.func.isRequired,
+        location: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
+    };
+
     constructor(props, context) {
         super(props, context);
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleProtectedClick = this.handleProtectedClick.bind(this);
     }
-
-    static propTypes = {
-        userName: PropTypes.string,
-        dispatch: PropTypes.func.isRequired,
-    };
 
     static defaultProps = {
         userName: '',
@@ -169,10 +164,42 @@ class LoginControl extends Component {
 
     render() {
         const { isAuthenticated, userName } = this.props;
-        const login = this.props.muiTheme.app.header.appBar.elementRight.login;
-        const badge = this.props.muiTheme.app.header.appBar.elementRight.login.badge;
+        const login = this.props.theme.app.header.appBar.elementRight.login;
+        const badge = this.props.theme.app.header.appBar.elementRight.login.badge;
 
         return (
+            <Badge
+                id = 'LoginControl'
+                badgeContent = {
+                    <div>
+                        <span style = {{ fontWeight: 100, }}>Круглосуточный диспетчер:</span>
+                        <span style = {{ fontWeight: 700, }}> 8 (86156) 35-117</span>
+                    </div>
+                }
+                badge = { badge }
+            >
+            {
+                isAuthenticated ? (
+                    <Logged
+                        userName = { userName }
+                        onClickLogout = { this.handleLogoutClick }
+                        onClickProtected = { this.handleProtectedClick }
+                        style = { login }
+                        { ...this.props }
+                    />
+                ) : (
+                    <Login
+                        onClick = { this.handleLoginClick }
+                        style = { login }
+                        { ...this.props }
+                    />
+                )
+            }
+            </Badge>
+        );
+    }
+}
+/*
             <Badge
                 id = 'LoginControl'
                 badgeContent = {
@@ -199,10 +226,6 @@ class LoginControl extends Component {
                 )
             }
             </Badge>
-        );
-    }
-}
-/*
 */
 
 const mapStateToProps = (state, ownProps) => {
@@ -213,4 +236,4 @@ const mapStateToProps = (state, ownProps) => {
 
 LoginControl.muiName = 'Login';
 
-export default muiThemeable()(connect(mapStateToProps)(LoginControl));
+export default withTheme()(connect(mapStateToProps)(LoginControl));
