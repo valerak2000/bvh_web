@@ -169,7 +169,7 @@ module.exports = function (mode) {
                 //chunks: ['vendor', 'app'],
                 //chunksSortMode: 'manual',
                 favicon: path.join(__dirname, '../../static/images/favicon.ico'),
-                minify: true,
+                //minify: true,
             }),
             new webpack.ProvidePlugin({
                 React: 'react',

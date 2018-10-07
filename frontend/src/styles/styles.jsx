@@ -1,7 +1,8 @@
-import getMuiTheme from '@material-ui/core/styles';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+//import getMuiTheme from '@material-ui/core/styles/getMuiTheme';
 import * as Colors from '@material-ui/core/colors';
 
-export var muiTheme = getMuiTheme({
+export var muiTheme = createMuiTheme({
     fontFamily: 'pfbeausanspro-reg, sans-serif',
     global: {
         maxWidth: '78rem',//62 126,

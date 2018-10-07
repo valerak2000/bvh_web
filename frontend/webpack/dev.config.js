@@ -12,9 +12,11 @@ module.exports = merge(commonConfig(mode), {
         'hot': 'react-hot-loader/patch', // activate HMR for React
         'webpack-dev': 'webpack-dev-server/client?${url}', // bundle the client for webpack-dev-server and connect to the provided endpoint
         'webpack-hot': 'webpack/hot/only-dev-server', // bundle the client for hot reloading, only- means to only hot reload for successful updates
-        'app': './index.jsx' // the entry point of our app
+        app: './index.jsx', // the entry point of our app
+        vendors: ['react'],
     },
-    devtool: 'cheap-module-source-map', //cheap-module-eval-source-map inline-source-map
+    //devtool: 'cheap-module-source-map', //cheap-module-eval-source-map inline-source-map
+    devtool: 'source-map',
     devServer: {
         hot: true, // enable HMR on the server
         open: true,
