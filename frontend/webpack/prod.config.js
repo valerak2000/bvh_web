@@ -13,7 +13,7 @@ const mode = 'production';
 module.exports = merge(commonConfig(mode), {
     mode,
     entry: {
-      'app': './index.jsx', // the entry point of our app
+      app: './index.jsx', // the entry point of our app
       vendors: ['react'],
     },
     //devtool: 'nosources-source-map',
