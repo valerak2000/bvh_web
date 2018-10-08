@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import { compose } from 'recompose';
 //import withStyles from '@material-ui/core/styles/withStyles';
-import MuiThemeProvider from '@material-ui/core/styles';
-import { white } from '@material-ui/core/colors';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { white } from 'material-ui/styles/colors';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
 // core components
