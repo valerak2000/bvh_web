@@ -1,8 +1,34 @@
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import * as Colors from '@material-ui/core/colors';
+import white from '@material-ui/core/colors/white';
+import blue from '@material-ui/core/colors/blue800';
+import grey from '@material-ui/core/colors/grey50';
+import cyan from '@material-ui/core/colors/cyan100';
 
 export var muiTheme = createMuiTheme({
-    fontFamily: 'pfbeausanspro-reg, sans-serif',
+    palette: {
+        textColor: { main: blue[900] },
+        alternateTextColor: { main: blue[900] },
+        primary1Color: { main: blue[800] }, //teal300 lightGreen50 lightBlue900
+        //primary2Color: Colors.white,
+        //accent1Color: Colors.white,
+        accent2Color: { main: white },
+        //backgroundColor: Colors.teal200,
+        //selectedTextColor: Colors.blue900,
+        secondaryTextColor: { main: blue[900] },
+        //primary2Color: Colors.teal200,
+        //primary: Colors.blue900,
+        secondary: { main: white },
+        //color: Colors.teal200,
+        //canvasColor: Colors.teal200,
+    },
+    typography: {
+        fontFamily: [
+            'pfbeausanspro-reg',
+            'sans-serif',
+        ].join(','),
+        fontSize: 16,
+        fontWeight: 500,
+    },
     global: {
         maxWidth: '78rem',//62 126,
         minWidth: '78rem',
@@ -10,7 +36,6 @@ export var muiTheme = createMuiTheme({
         margin: '0 auto',
         fontSize: 16,
         fontWeight: 500,
-        fontFamily: 'pfbeausanspro-reg, sans-serif',
     },
     app: {
         //margin: '0 auto auto',
@@ -98,7 +123,7 @@ export var muiTheme = createMuiTheme({
                         width: 'inherit',
                         backgroundColor: 'inherit',
                         fontSize: 14,
-                        color: Colors.grey50,
+                        color: grey[50],
                         //width: '100%',
                         //height: 'inherit',
                         //margin: 'auto',
@@ -115,8 +140,8 @@ export var muiTheme = createMuiTheme({
                             margin: '0.2rem -1rem 0', //'1rem 1rem 0',
                             paddingTop: 10,
                             height: 39,
-                            color: Colors.grey50,
-                            hoverColor: Colors.blue800,
+                            color: grey[50],
+                            hoverColor: blue[800],
                             '&:hover': {
                                 backgroundColor: '#0069d9',
                                 borderColor: '#0062cc',
@@ -132,7 +157,7 @@ export var muiTheme = createMuiTheme({
                             iconMenu: {
                                 height: '1.25rem',
                                 width: '1.25rem',
-                                color: Colors.grey50,
+                                color: grey[50],
                             },
                         },
                     }
@@ -145,7 +170,7 @@ export var muiTheme = createMuiTheme({
             //maxWidth: '28rem',
         },
         footer: {
-            backgroundColor: Colors.blue800, //teal200,
+            backgroundColor: blue[800], //teal200,
             bottomNavigation: {
                 position: 'space-around',
                 height: '4rem',
@@ -164,30 +189,14 @@ export var muiTheme = createMuiTheme({
             },
             bottomText: {
                 fontSize: 14,
-                color: Colors.grey50,
+                color: grey[50],
                 textAlign: 'right',
                 margin: '0 1rem auto auto',
                 link: {
-                    color: Colors.cyan100,
+                    color: cyan[100],
                 },
             }
         },
-    },
-    palette: {
-        textColor: Colors.blue900,
-        alternateTextColor: Colors.blue900,
-        primary1Color: Colors.blue800, //teal300 lightGreen50 lightBlue900
-        //primary2Color: Colors.white,
-        //accent1Color: Colors.white,
-        accent2Color: Colors.white,
-        //backgroundColor: Colors.teal200,
-        //selectedTextColor: Colors.blue900,
-        secondaryTextColor: Colors.blue900,
-        //primary2Color: Colors.teal200,
-        //primary: Colors.blue900,
-        secondary: Colors.white,
-        //color: Colors.teal200,
-        //canvasColor: Colors.teal200,
     },
     title: {
         cursor: 'pointer',
@@ -198,19 +207,19 @@ export var muiTheme = createMuiTheme({
     tabs: {
         width: '100%',
         paddingLeft: 20,
-        selectedTextColor: Colors.grey50,
-        textColor: Colors.grey50,
+        selectedTextColor: grey[50],
+        textColor: grey[50],
         tab: {
             textTransform: 'none',
         },
     },
     badge: {
-        textColor: Colors.grey50,
+        textColor: grey[50],
     },
     bottomNavigation: {
-        backgroundColor: Colors.blue800, //teal200,
-        unselectedColor: Colors.grey50, //blue900,
-        selectedColor: Colors.grey50, //blue900,
+        backgroundColor: blue[800], //teal200,
+        unselectedColor: grey[50], //blue900,
+        selectedColor: grey[50], //blue900,
         //height: 56,
         unselectedFontSize: 16,
         selectedFontSize: 16,
@@ -231,13 +240,5 @@ export var muiTheme = createMuiTheme({
         height: 24,
         width: '100%',
         objectFit: 'contain',
-    },
-    typography: {
-        fontFamily: [
-            'pfbeausanspro-reg',
-            'sans-serif',
-        ].join(','),
-        fontSize: 16,
-        fontWeight: 500,
     },
 });

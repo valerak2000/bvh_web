@@ -6,6 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 import LoginControl from './LoginControl';
 import SiteMenu from './SiteMenu';
@@ -38,16 +39,21 @@ class Header extends Component {
                         id = 'ElementLeft'
                         style = { appBar.elementLeft }
                     >
-                        <IconButton
-                            style = { appBar.elementLeft.logo }
+                        <Button
+                            focusRipple = { false }
+                            aria-selected = { false }
+                            centerRipple = { false }
+                            disableRipple = { true }
+                            disableTouchRipple = { true }
+                            role = "tab"
                             component = { Link } to = '/'
-                        >
+                        > Button
                             <img
                                 src = { bvhLogo }
                                 alt = 'Главная'
                                 style = { appBar.elementLeft.logo.picture }
                             />
-                        </IconButton>
+                        </Button>
                         <SiteMenu
                             style = { appBar.elementLeft.menu }
                             { ...this.props }
@@ -69,7 +75,8 @@ Header.muiName = 'Header';
 export default withTheme()(Header);
 
 /*
-                <AppBar
+
+<AppBar
                     titleStyle = { header.appBar.titleStyle }
                     iconElementLeft = {
                         <div

@@ -141,8 +141,7 @@ class Root extends Component {
                                 <Button
                                     variant = 'fab'
                                     mini = { true }
-                                    action = { () => this.scrollToTop() }
-                                    clickable = { true }
+                                    onClick = { () => this.scrollToTop() }
                                     style = {{
                                         margin: 0,
                                         top: 'auto',
