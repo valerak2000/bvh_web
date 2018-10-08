@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import withTheme from '@material-ui/core/styles/withTheme';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import appRoutes from '../../routes/App.jsx';
 
@@ -41,9 +41,20 @@ class AppView extends Component {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
-        theme: PropTypes.object.isRequired,
-        router: PropTypes.object
     };
+
+    static defaultProps = {
+    };
+
+    state = {
+    };
+    
+    static get contextTypes() {
+        return {
+            muiTheme: PropTypes.object.isRequired,
+            router: PropTypes.object
+        };
+    }
 
     constructor(props, context) {
         super(props, context);
@@ -61,7 +72,7 @@ class AppView extends Component {
     }
 
     render() {
-        var appStyle = { ...this.props.theme.app };
+        var appStyle = { ...this.props.muiTheme.app };
 
         if (this.props.location && this.props.location.pathname != null) {
             let urls = this.props.location.pathname.split('/');
@@ -86,5 +97,5 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-export default withTheme()(connect(mapStateToProps)(AppView));
+export default muiThemeable()(connect(mapStateToProps)(AppView));
 export { AppView as AppViewNotConnected };

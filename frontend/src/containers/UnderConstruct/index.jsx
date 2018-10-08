@@ -1,31 +1,38 @@
 import React, { Component } from 'react';
+//import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+//import { bindActionCreators } from 'redux';
 
-import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardHeader } from '@material-ui/core';
+import muiThemeable from 'material-ui/styles/muiThemeable';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 
 class UnderConstructView extends Component {
     static propTypes = {
-        theme: PropTypes.object.isRequired,
+        dispatch: PropTypes.func.isRequired
     };
 
-    constructor(props, context) {
-        super(props, context);
-    }
+    static defaultProps = {
+    };
 
     render() {
         return (
             <Card
-                style = { this.props.theme.app.сard }
+                style = { this.props.muiTheme.app.сard }
             >
-                <CardHeader
+                <CardTitle
                     title = 'Страница находится в разработке'
-                    titleStyle = { this.props.theme.app.сard.title }
+                    titleStyle = { this.props.muiTheme.app.сard.title }
                 />
             </Card>
         );
     }
 }
 
-export default withTheme()(UnderConstructView);
+const mapStateToProps = (state) => {
+    return {
+    };
+};
+
+export default muiThemeable()(connect(mapStateToProps)(UnderConstructView));
 export { UnderConstructView as UnderConstructViewNotConnected };

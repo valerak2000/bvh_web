@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
+//import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardHeader, CardContent } from '@material-ui/core';
+import muiThemeable from 'material-ui/styles/muiThemeable';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+//import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+
+import UnderConstruct from '../../components/UnderConstruct';
 
 class MapView extends Component {
     static propTypes = {
-        theme: PropTypes.object.isRequired,
+        dispatch: PropTypes.func.isRequired
     };
 
-    constructor(props, context) {
-        super(props, context);
-    }
+    static defaultProps = {
+    };
 
     render() {
         return (
             <Card
-                style = { this.props.theme.app.сard }
+                style = { this.props.muiTheme.app.сard }
             >
-                <CardHeader
+                <CardTitle
                     title = 'Карта сайта'
-                    titleTypographyProps = { this.props.theme.app.сard.title }
+                    titleStyle = { this.props.muiTheme.app.сard.title }
                 />
-                <CardContent>
+                <CardText>
                     <div 
                         style = {{ 
                             display: 'block',
@@ -100,7 +104,7 @@ class MapView extends Component {
                             </ul>        
                         </div>
                     </div>
-                </CardContent>
+                </CardText>
             </Card>
         );
     }
@@ -109,5 +113,10 @@ class MapView extends Component {
 /*
 */
 
-export default withTheme()(MapView);
+const mapStateToProps = (state) => {
+    return {
+    };
+};
+
+export default muiThemeable()(connect(mapStateToProps)(MapView));
 export { MapView as MapViewNotConnected };

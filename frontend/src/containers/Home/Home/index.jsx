@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardMedia, CardContent } from '@material-ui/core';
 
+import muiThemeable from 'material-ui/styles/muiThemeable';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+//import FlatButton from 'material-ui/FlatButton';
+//import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+
+//import './style.scss';
 const bvhLogo = '/static/images/water-glass-and-faucet.png';
 
 class HomeView extends Component {
@@ -19,17 +23,6 @@ class HomeView extends Component {
         userName: ''
     };
 
-    /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
-    componentDidCatch(error, info) {
-        /* Example stack information:
-           in ComponentThatThrows (created by App)
-           in ErrorBoundary (created by App)
-           in div (created by App)
-           in App
-        */
-        console.log(info.componentStack);
-    }
-
     goToProtected = () => {
         this.props.dispatch(push('/protected'));
     };
@@ -43,32 +36,39 @@ class HomeView extends Component {
                 }}
             >
                 <CardMedia
-                    component = 'img'
-                    image = { bvhLogo }
                     style= {{
                         width: '50%',
                         margin: '0 auto'
                     }}
+                >
+                    <img
+                        src = { bvhLogo }
+                        alt = ''
+                    />
+                </CardMedia>
+                {/*
+                <CardTitle
+                    title = 'ООО «Брюховецкое водопроводное хозяйство»'
+                    subtitle = '352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196'
                 />
-                <CardContent>
-                </CardContent>
+                */}
+                <CardText>
+                </CardText>
+                <CardActions>
+                    {/*
+                    <FlatButton label = '' ><span>Доступ к <b>личной информации</b>.</span></FlatButton>
+                    */}
+                </CardActions>
             </Card>
         );
     }
 }
 
 /*
-                <CardTitle
-                    title = 'ООО «Брюховецкое водопроводное хозяйство»'
-                    subtitle = '352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196'
-                />
-                <CardActions>
-                    {
-                    <FlatButton label = '' ><span>Доступ к <b>личной информации</b>.</span></FlatButton>
-                    }
-                </CardActions>
+     <Card style={{width: '50%', margin: '0 auto'}}>
+      <CardMedia><img src="http://www.material-ui.com/images/get-started.svg" alt=""/></CardMedia>
+     </Card>
 */
-
 const mapStateToProps = (state) => {
     return {
         userName: state.auth.userName,
@@ -76,5 +76,5 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default withTheme()(connect(mapStateToProps)(HomeView));
+export default muiThemeable()(connect(mapStateToProps)(HomeView));
 export { HomeView as HomeViewNotConnected };

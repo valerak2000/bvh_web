@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import withTheme from '@material-ui/core/styles/withTheme';
+import { connect } from 'react-redux';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 class UnderConstruct extends Component {
     render() {
@@ -13,4 +14,4 @@ class UnderConstruct extends Component {
 
 UnderConstruct.muiName = 'UnderConstruct';
 
-export default withTheme()(UnderConstruct);
+export default muiThemeable()(UnderConstruct);
