@@ -34,18 +34,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export function Login(props) {
     return (
         <IconButton
-        aria-label = 'Войти'
-        onClick = { props.onClick }
-        disableTouchRipple = { true }
-        style = { props.style.button }
-    >
-        Войти    
-        <FontAwesomeIcon
-            icon = { faSignInAlt }
-            style = { props.style.button.icon }
-        />
-    </IconButton>
-);
+            aria-label = 'Войти'
+            onClick = { props.onClick }
+            disableTouchRipple = { true }
+            style = { props.style.button }
+        >
+            Войти    
+            <FontAwesomeIcon
+                icon = { faSignInAlt }
+                style = { props.style.button.icon }
+            />
+        </IconButton>
+    );
 }
 /*
         <Button
@@ -164,8 +164,7 @@ class LoginControl extends Component {
 
     render() {
         const { isAuthenticated, userName } = this.props;
-        const login = this.props.theme.app.header.appBar.elementRight.login;
-        const badge = this.props.theme.app.header.appBar.elementRight.login.badge;
+        const login = this.props.theme.app.header.appBar.login;
 
         return (
             <Badge
@@ -176,7 +175,7 @@ class LoginControl extends Component {
                         <span style = {{ fontWeight: 700, }}> 8 (86156) 35-117</span>
                     </div>
                 }
-                badge = { badge }
+                style = { login.badge }
             >
             {
                 isAuthenticated ? (

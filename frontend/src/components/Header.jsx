@@ -29,43 +29,41 @@ class Header extends Component {
         const { isAuthenticated } = this.props;
 
         return (
-            <header 
+            <AppBar
+                position = 'static'
                 style = { appBar }
             >
-                <AppBar
-                    position = 'static'
+                <Toolbar
+                    style = {{ 
+                        padding: '0 8px 8px 8px',
+                    }}
                 >
-                    <Toolbar
-                        id = 'ElementLeft'
-                        style = { appBar.elementLeft }
+                    <Button
+                        focusRipple = { false }
+                        aria-selected = { false }
+                        centerRipple = { false }
+                        disableRipple = { true }
+                        disableTouchRipple = { true }
+                        component = { Link } to = '/'
+                        style = { appBar.logo }
                     >
-                        <Button
-                            focusRipple = { false }
-                            aria-selected = { false }
-                            centerRipple = { false }
-                            disableRipple = { true }
-                            disableTouchRipple = { true }
-                            role = "tab"
-                            component = { Link } to = '/'
-                        > Button
-                            <img
-                                src = { bvhLogo }
-                                alt = 'Главная'
-                                style = { appBar.elementLeft.logo.picture }
-                            />
-                        </Button>
-                        <SiteMenu
-                            style = { appBar.elementLeft.menu }
-                            { ...this.props }
+                        <img
+                            src = { bvhLogo }
+                            alt = 'Главная'
+                            style = { appBar.logo.picture }
                         />
-                        <LoginControl
-                            isAuthenticated = { isAuthenticated }
-                            style = { appBar.elementRight.login }
-                            { ...this.props }
-                        />
-                    </Toolbar>
-                </AppBar>
-            </header>
+                    </Button>
+                    <SiteMenu
+                        style = { appBar.menu }
+                        { ...this.props }
+                    />
+                    <LoginControl
+                        isAuthenticated = { isAuthenticated }
+                        style = { appBar.login }
+                        { ...this.props }
+                    />
+                </Toolbar>
+            </AppBar>
         );
     }
 }

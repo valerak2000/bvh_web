@@ -54,7 +54,7 @@ class SiteMenu extends Component {
 
     render() {
         const { activeTab, ...props } = this.state;
-        const { menu } = this.props.theme.app.header.appBar.elementLeft;
+        const { menu } = this.props.theme.app.header.appBar;
 
         return (
             <Tabs
