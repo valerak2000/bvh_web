@@ -28,13 +28,13 @@ const isProd = process.env.NODE_ENV === 'production';
 
 //Connect component to Redux store.
 @connect(
-  state => ({
-    messageBox: state.messageBox || {},
-    notifications: state.notifications || []
-  }),
-  dispatch => ({
-    actions: bindActionCreators(NotificationActions, dispatch)
-  })
+    state => ({
+        messageBox: state.messageBox || {},
+        notifications: state.notifications || []
+    }),
+    dispatch => ({
+        actions: bindActionCreators(NotificationActions, dispatch)
+    })
 )
 
 class Root extends Component {
@@ -136,6 +136,10 @@ class Root extends Component {
                                 width: '100%',
                             }}
                         >
+                            <LeftNavMenu
+                                { ...this.props }
+                                { ...rest }
+                            />
                             {
                                 goTopEnable && 
                                 <Button

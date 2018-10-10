@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import withTheme from '@material-ui/core/styles/withTheme';
+import Typography from '@material-ui/core/Typography';
 
 class UnderConstruct extends Component {
     render() {
         return (
-            <div>
-                <p>Раздел находится в раработке</p>
-            </div>
+            <Typography
+                variant = "subheading"
+            >
+                Раздел находится в раработке
+            </Typography>
         );
     }
 }

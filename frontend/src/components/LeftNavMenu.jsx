@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-//import classNames from 'classnames';
 import PropTypes from 'prop-types';
-//import { withRouter } from 'react-router-dom';
-//import { compose } from 'recompose';
 
 import withTheme from '@material-ui/core/styles/withTheme';
-import { List, ListItem } from 'material-ui/List';
-//import Divider from 'material-ui/Divider';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import Collapse from '@material-ui/core/Collapse';
 
 import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ, HOME_MENU_MP,
     ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants';
@@ -21,12 +23,55 @@ function Menu(props) {
 
     return (
         <List
+            component = 'nav'
             style = { props.style }
         >
             {
                 props.items.map((d, index) => {
                     var nested = [];
                     let initiallyOpenFirst = initiallyFocused === d.key ? true : false;
+
+
+                    return (
+                        <ListItem
+                            key = { d.key }
+                            button
+                            dense
+                            disableGutters
+                            selected = { initiallyFocused === d.key ? true : false }
+                            onClick = { (e) => props.onClick(d.dataRoute, e) }
+                        >
+                            { 
+                                d.leftIcon && 
+                                <ListItemIcon>
+                                    { d.leftIcon }
+                                </ListItemIcon>
+                            }
+                            <ListItemText 
+                                inset
+                                primary = { d.primaryText } 
+                                secondary = { d.secondaryText }
+                            />
+                        </ListItem>
+                    );
+                })
+            }
+        </List>
+    );
+}
+/*
+
+                            primaryText = { d.primaryText }
+                            secondaryText = { d.secondaryText }
+                            secondaryTextLines = { d.secondaryTextLines }
+                            leftIcon = { d.leftIcon }
+                            isKeyboardFocused = { initiallyFocused === d.key ? true : false }
+                            onClick = { (e) => props.onClick(d.dataRoute, e) }
+                            autoGenerateNestedIndicator = { true }
+                            primaryTogglesNestedList = { true }
+                            initiallyOpen = { initiallyOpenFirst }
+                            nestedItems = { nested }
+
 
                     if (d.nestedItems !== undefined && d.nestedItems.length > 0) {
                         d.nestedItems.map((ni, index) => {
@@ -48,57 +93,15 @@ function Menu(props) {
                         });
                     }
 
-                    return (
-                        <ListItem
-                            key = { d.key }
-                            primaryText = { d.primaryText }
-                            secondaryText = { d.secondaryText }
-                            secondaryTextLines = { d.secondaryTextLines }
-                            leftIcon = { d.leftIcon }
-                            isKeyboardFocused = { initiallyFocused === d.key ? true : false }
-                            onClick = { (e) => props.onClick(d.dataRoute, e) }
-                            autoGenerateNestedIndicator = { true }
-                            primaryTogglesNestedList = { true }
-                            initiallyOpen = { initiallyOpenFirst }
-                            nestedItems = { nested }
-                        />
-                    );
-                })
-            }
-        </List>
-    );
-}
-/*
-{
-    (d.nestedItems.length > 0)
-    && (nestedItems = {[
-        <ListItem key={1} primaryText="Drafts" leftIcon={<ContentDrafts />} />,
-    ]})
-}
-
-<ListItem
-                  key={3}
-                  primaryText="Inbox"
-                  leftIcon={<ContentInbox />}
-                  open={this.state.open}
-                  onNestedListToggle={this.handleNestedListToggle}
-                  nestedItems={[
-                    <ListItem key={1} primaryText="Drafts" leftIcon={<ContentDrafts />} />,
-                  ]}
-                />,
-
 */
 
 class LeftNavMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
-        location: PropTypes.string,
-        history: PropTypes.object.isRequired
-    };
-
-    static defaultProps = {
-        location: null
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
     };
 
     state = {
@@ -113,12 +116,6 @@ class LeftNavMenu extends Component {
         this.handleMenuClick = this.handleMenuClick.bind(this);
     }
 
-    static get contextTypes() {
-        return {
-            muiTheme: PropTypes.object.isRequired
-        };
-    }
-
     static getDerivedStateFromProps(props, state) {
         //console.log(props.location);
         //console.log(location.pathname);
@@ -127,7 +124,7 @@ class LeftNavMenu extends Component {
         let currentMenuThird = null;
 
         if (props.location !== null && props.location) {
-            let urls = props.location.split('/');
+            let urls = props.location.pathname.split('/');
             currentMenuTop = urls[1] !== '' ? urls[1] : HOME_MENU;
             currentMenuSecond = urls.length <= 2 || urls[2] === '' ? null : urls[2];
             currentMenuThird = urls.length <= 3 || urls[3] === '' ? null : urls[3];
@@ -140,15 +137,6 @@ class LeftNavMenu extends Component {
         };
     }
 
-    /*getSnapshotBeforeUpdate(prevProps, prevState) {
-        console.log(prevProps.location);
-        return null;
-    }*/
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        //console.log(this.props.location);
-    }
-    
     handleMenuClick = (dataRoute, e ) => {
         e.preventDefault();
         //console.log(dataRoute);
@@ -240,7 +228,7 @@ class LeftNavMenu extends Component {
                 break;
         }
 
-        var leftNav = { ...this.props.muiTheme.app.leftNav };
+        var leftNav = { ...this.props.theme.app.leftNav };
 
         if (leftmenu !== null) {
             leftNav.width = '28%';
@@ -258,20 +246,8 @@ class LeftNavMenu extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        isAuthenticated: state.auth.isAuthenticated,
-        location: location.pathname,
-    };
-};
-
-function mapDispatchToProps (dispatch) {
-    return {
-    };
-}
-
 LeftNavMenu.muiName = 'LeftNavMenu';
-export default withTheme()(connect(mapStateToProps)(LeftNavMenu));
+export default withTheme()(LeftNavMenu);
 /*export default compose(
     //withRouter,
     withTheme,

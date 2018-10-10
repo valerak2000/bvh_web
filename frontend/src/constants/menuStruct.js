@@ -1,25 +1,23 @@
 import React from 'react';
-import ActionHome from 'material-ui/svg-icons/action/home';
-import CommunicationRssFeed from 'material-ui/svg-icons/communication/rss-feed';
-import ActionAnnouncement from 'material-ui/svg-icons/action/announcement';
-import ActionQuestionAnswer from 'material-ui/svg-icons/action/question-answer';
-//import ActionSpeakerNotes from 'material-ui/svg-icons/communication/speaker-notes';
-//import Conversation from '../images/conversation.svg';
-import CommunicationContactMail from 'material-ui/svg-icons/communication/contact-mail';
-import MapsPlace from 'material-ui/svg-icons/maps/place';
-import MapsMap from 'material-ui/svg-icons/maps/map';
+import Home from '@material-ui/icons/home';
+import RssFeed from '@material-ui/icons/RssFeed';
+import Announcement from '@material-ui/icons/Announcement';
+import QuestionAnswer from '@material-ui/icons/QuestionAnswer';
+import ContactMail from '@material-ui/icons/ContactMail';
+import Place from '@material-ui/icons/Place';
+import Map from '@material-ui/icons/Map';
 
 export const MENU_HOME = [
     {
         key: 'home',
         primaryText: 'Главная',
-        leftIcon: (<ActionHome />),
+        leftIcon: (<Home />),
         dataRoute: '/',
     },
     {
         key: 'elektronnaya_priemnaya',
         primaryText: 'Электронная приемная',
-        leftIcon: (<CommunicationContactMail />),
+        leftIcon: (<ContactMail />),
         dataRoute: '/elektronnaya_priemnaya',
     },
     {
@@ -27,25 +25,25 @@ export const MENU_HOME = [
         primaryText: 'Отключения',
         secondaryText: 'Информация об аварийном отключении водоснабжения',
         secondaryTextLines: 2,
-        leftIcon: (<ActionAnnouncement />),
+        leftIcon: (<Announcement />),
         dataRoute: '/blackouts',
     },
     {
         key: 'available_capacity_map',
         primaryText: 'Карта доступной мощности',
-        leftIcon: (<MapsPlace />),
+        leftIcon: (<Place />),
         dataRoute: '/available_capacity_map',
     },
     {
         key: 'faq',
         primaryText: 'Вопрос-ответ',
-        leftIcon: (<ActionQuestionAnswer />),
+        leftIcon: (<QuestionAnswer />),
         dataRoute: '/faq',
     },
     {
         key: 'map',
         primaryText: 'Карта сайта',
-        leftIcon: (<MapsMap />),
+        leftIcon: (<Map />),
         dataRoute: '/map',
     },
 ];
@@ -224,7 +222,7 @@ export const MENU_NEWS = [
     {
         key: 'news',
         primaryText: 'Новости',
-        leftIcon: (<CommunicationRssFeed />),
+        leftIcon: (<RssFeed />),
         dataRoute: '/news',
     },
     {

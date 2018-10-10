@@ -15,20 +15,8 @@ import Badge from '@material-ui/core/Badge';
 
 import { authLogoutAndRedirect } from '../actions/auth';
 
-//import { library } from '@fortawesome/fontawesome-svg-core';
-//import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faSignInAlt, faSignOutAlt, faLock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-/*library.add(
-    fab,
-    faCoffee,
-    faCog,
-    faSpinner,
-    faQuoteLeft,
-    faSquare,
-    faSignInAlt
-);*/
 
 /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
 export function Login(props) {
@@ -47,39 +35,6 @@ export function Login(props) {
         </IconButton>
     );
 }
-/*
-        <Button
-            label = 'Войти'
-            mini = { true }
-            onClick = { props.onClick }
-            clickable = { true }
-            disableTouchRipple = { true }
-            style = { props.style.button }
-        >
-            Войти
-            <FontAwesomeIcon
-                icon = { faSignInAlt }
-                style = { props.style.button.icon }
-            />
-        </Button>
-
-
-<Button
-            label = 'Войти'
-            labelPosition = 'before'
-            labelStyle = { props.style.button.label }
-            icon = { 
-                <FontAwesomeIcon
-                    icon = { faSignInAlt }
-                    style = { props.style.button.icon }
-                />
-            }
-            onClick = { props.onClick }
-            disableTouchRipple = { true }
-            style = { props.style.button }
-            hoverColor = { props.style.button.hoverColor }
-        />
-*/
 
 export function Logged(props) {
     return (
@@ -167,6 +122,45 @@ class LoginControl extends Component {
         const login = this.props.theme.app.header.appBar.login;
 
         return (
+            <span
+                style = { login }
+            >
+                <span
+                    style = { login.badge }
+                >
+                    <span
+                        style = {{ fontWeight: 100, }}
+                    >
+                        Круглосуточный диспетчер:
+                    </span>
+                    <span
+                        style = {{ fontWeight: 700, }}
+                    >
+                        8 (86156) 35-117
+                    </span>
+                </span>
+                {
+                    isAuthenticated ? (
+                        <Logged
+                            userName = { userName }
+                            onClickLogout = { this.handleLogoutClick }
+                            onClickProtected = { this.handleProtectedClick }
+                            style = { login.button }
+                            { ...this.props }
+                        />
+                    ) : (
+                        <Login
+                            onClick = { this.handleLoginClick }
+                            style = { login.button }
+                            { ...this.props }
+                        />
+                    )
+                }
+            </span>
+        );
+    }
+}
+/*
             <Badge
                 id = 'LoginControl'
                 badgeContent = {
@@ -175,6 +169,7 @@ class LoginControl extends Component {
                         <span style = {{ fontWeight: 700, }}> 8 (86156) 35-117</span>
                     </div>
                 }
+                badge = {{ fontWeight: 100, }}
                 style = { login.badge }
             >
             {
@@ -195,10 +190,7 @@ class LoginControl extends Component {
                 )
             }
             </Badge>
-        );
-    }
-}
-/*
+
             <Badge
                 id = 'LoginControl'
                 badgeContent = {

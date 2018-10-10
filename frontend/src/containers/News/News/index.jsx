@@ -26,7 +26,9 @@ class NewsView extends Component {
                     title = 'Новости'
                     titleTypographyProps = { сard.title }
                 />
-                <CardContent>
+                <CardContent
+                    style = { сard.text }
+                >
                     <UnderConstruct />
                 </CardContent>
             </Card>

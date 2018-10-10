@@ -8,14 +8,18 @@ export var muiTheme = createMuiTheme({
     palette: {
         textColor: { main: blue[900] },
         alternateTextColor: { main: blue[900] },
+        text: {
+            primary: blue[800],
+            secondary: blue[800]
+        }, //teal300 lightGreen50 lightBlue900
         primary: {
             main: blue[800],
             contrastText: common['white']
         }, //teal300 lightGreen50 lightBlue900
-        //secondary: {
-        //    main: common['white'],
+        secondary: {
+            main: blue[800],
             //contrastText: common['white']
-        //},
+        },
         secondaryTextColor: {
             main: blue[900]
         },
@@ -36,6 +40,7 @@ export var muiTheme = createMuiTheme({
         ].join(','),
         fontSize: 16,
         fontWeight: 500,
+        htmlFontSize: 16,
     },
     global: {
         maxWidth: '78rem',//62 126,
@@ -108,60 +113,45 @@ export var muiTheme = createMuiTheme({
                 titleStyle: {
                     width: 'auto',
                 },
-                /*elementRight: {
-                    width: 'auto',
+                login: {
                     height: 'inherit',
-                    margin: '0 auto',
-                    iconStyleRight: {
-                        width: 'auto',
-                        //margin: '1.5rem 0 0rem 0',
-                        //margin: '0rem auto',
-                    },*/
-                    login: {
-                        //margin: '0rem 3rem 0',
-                        //top: '0rem',
-                        //right: '3rem',
+                    width: 'inherit',
+                    backgroundColor: 'inherit',
+                    fontSize: 14,
+                    color: grey[50],
+                    display: 'flex',
+                    margin: '0.5rem 0rem 0rem 12rem',
+                    badge: {
                         height: 'inherit',
-                        width: 'inherit',
                         backgroundColor: 'inherit',
+                        fontFamily: '"PFBeauSansPro-Reg", "sans-serif"',
                         fontSize: 14,
+                        width: '19rem',
+                        margin: '0rem -6rem 0rem 0rem',
+                    },
+                    button: {
+                        margin: '2rem 0rem 0rem 0rem',
+                        paddingTop: 10,
+                        height: 39,
                         color: grey[50],
-                        //width: '100%',
-                        //height: 'inherit',
-                        //margin: 'auto',
-                        badge: {
-                            top: '0rem',
-                            right: '1rem',
-                            height: 'inherit',
-                            width: '19rem',
-                            backgroundColor: 'inherit',
-                            fontFamily: '"PFBeauSansPro-Reg", "sans-serif"',
-                            fontSize: 14,
-                        },
-                        button: {
-                            margin: '1.9rem -1rem 0', //'1rem 1rem 0',
-                            paddingTop: 10,
-                            height: 39,
-                            color: grey[50],
+                        fontSize: 18,
+                        fontWeight: 500,
+                        label: {
                             fontSize: 18,
                             fontWeight: 500,
-                            label: {
-                                fontSize: 18,
-                                fontWeight: 500,
-                            },
-                            icon: {
-                                height: '1.25rem',
-                                width: '1.25rem',
-                            },
-                            iconMenu: {
-                                height: '1.25rem',
-                                width: '1.25rem',
-                                color: grey[50],
-                            },
+                        },
+                        icon: {
+                            height: '1.25rem',
+                            width: '1.25rem',
+                            margin: 'auto auto auto 5px',
+                        },
+                        iconMenu: {
+                            height: '1.25rem',
+                            width: '1.25rem',
+                            color: grey[50],
                         },
                     },
-                /*},
-                flexWrap: 'wrap',*/
+                },
             },
         },
         leftNav: {
