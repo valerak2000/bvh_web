@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from '@material-ui/icons/home';
+import Home from '@material-ui/icons/Home';
 import RssFeed from '@material-ui/icons/RssFeed';
 import Announcement from '@material-ui/icons/Announcement';
 import QuestionAnswer from '@material-ui/icons/QuestionAnswer';

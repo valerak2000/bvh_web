@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom';
 import withTheme from '@material-ui/core/styles/withTheme';
-import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 //import FontIcon from 'material-ui/FontIcon';
 //import Paper from 'material-ui/Paper';
-import MapsMap from 'material-ui/svg-icons/maps/map';
-import ActionHome from 'material-ui/svg-icons/action/home';
+import Map from '@material-ui/icons/Map';
+import Home from '@material-ui/icons/Home';
 //import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
 //import NavigationExpandLess from 'material-ui/svg-icons/navigation/expand-less';
 //import AvRecentActors from 'material-ui/svg-icons/av/recent-actors';
-import CommunicationBusiness from 'material-ui/svg-icons/communication/business';
+import Business from '@material-ui/icons/Business';
 //import * as Colors from 'material-ui/styles/colors';
 
 const AuthorSign = '/static/images/author-sign.png';
@@ -24,30 +24,24 @@ const AuthorSign = '/static/images/author-sign.png';
 class Footer extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
-        //children: PropTypes.shape().isRequired,
         dispatch: PropTypes.func.isRequired,
-        location: PropTypes.string
+        location: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
     };
-
-    static get contextTypes() {
-        return {
-            muiTheme: PropTypes.object.isRequired
-        };
-    }
 
     constructor(props, context) {
         super(props, context);
     }
 
-    static defaultProps = {
-        location: null,
-    };
-
     state = {
         selectedIndex: 0,
     };
     
-    selectBottomNavigationItem = (index) => {
+    handleChange = (event, value) => {
+        this.setState({ value });
+    };
+    
+    /*selectBottomNavigationAction = (index) => {
         this.setState({ selectedIndex: index });
 
         switch(index) {
@@ -66,52 +60,63 @@ class Footer extends Component {
                 return;
 //                return this.props.dispatch(push('/'));
         }
-    }
+    }*/
 
     render() {
+        const { footer } = { ...this.props.theme.app };
+        const { value } = this.state;
+
         return (
             <footer 
-                style = { this.props.muiTheme.app.footer }
+                style = { footer }
             >
                 <BottomNavigation 
-                    selectedIndex = { this.state.selectedIndex }
-                    style = { this.props.muiTheme.app.footer.bottomNavigation }
+                    value = { value }
+                    onChange = { this.handleChange }
+                    showLabels
+                    style = { footer.bottomNavigation }
                 >
-                    <BottomNavigationItem
-                        label = "© 2018 ООО «Брюховецкое водопроводное хозяйство»"
-                        icon = { <ActionHome /> }
-                        onClick = { () => this.selectBottomNavigationItem(0) }
-                        style = { this.props.muiTheme.app.footer.bottomNavigation.button }
+                    <BottomNavigationAction
+                        label = '© 2018 ООО «Брюховецкое водопроводное хозяйство»'
+                        icon = { <Home /> }
+                        value = 'home'
+                        component = { Link } to = '/'
+                        style = { footer.bottomNavigation.button }
                     />
-                    <BottomNavigationItem
-                        label = "Карта сайта"
-                        icon = { <MapsMap /> }
-                        onClick = { () => this.selectBottomNavigationItem(1) }
-                        style = { this.props.muiTheme.app.footer.bottomNavigation.button }
+                    <BottomNavigationAction
+                        label = 'Карта сайта'
+                        icon = { <Map /> }
+                        value = 'map'
+                        component = { Link } to = '/map'
+                        style = { footer.bottomNavigation.button }
                     />
-                    <BottomNavigationItem
-                        label = "Партнеры"
-                        icon = { <CommunicationBusiness /> }
-                        style = { this.props.muiTheme.app.footer.bottomNavigation.button }
-                        onClick = { () => this.selectBottomNavigationItem(2) }
+                    <BottomNavigationAction
+                        label = 'Партнеры'
+                        icon = { <Business /> }
+                        value = 'business'
+                        href = "http://www.brhts.ru" 
+                        target = "_blank"
+                        style = { footer.bottomNavigation.button }
                     />
                 </BottomNavigation>
                 <div
-                    style = { this.props.muiTheme.app.footer.bottomText }
+                    style = { footer.bottomText }
                 >
                     Разработка и поддержка <a 
-                    href = "http://www.valera-k2000.ru" 
-                    target = "_blank"
-                    style = { this.props.muiTheme.app.footer.bottomText.link }
+                    href = 'http://www.valera-k2000.ru'
+                    target = '_blank'
+                    style = { footer.bottomText.link }
                     >
-                        <img src = { AuthorSign } alt = "valera_k2000" width = "16" height = "16"/> valera_k2000 </a>
+                        <img src = { AuthorSign } alt = 'valera_k2000' width = '16' height = '16'/> valera_k2000 </a>
                 </div>
             </footer>
         );
     }
 }
 /*
-                    <BottomNavigationItem
+                    selectedIndex = { this.state.selectedIndex }
+
+<BottomNavigationItem
                         label = "Разработка и поддержка valera_k2000"
                         icon = {
                             <img
@@ -158,13 +163,6 @@ label = {
                             </div>
 */
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        isAuthenticated: state.auth.isAuthenticated,
-        location: location.pathname
-    };
-};
-
 Footer.muiName = 'Footer';
 
-export default withTheme()(connect(mapStateToProps)(Footer));
+export default withTheme()(Footer);

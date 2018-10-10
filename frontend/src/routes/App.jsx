@@ -396,6 +396,19 @@ export default [
         component: FaqPage
     },
     {
+        path: '/partners',
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: UnderConstructPage
+    },
+    {
+        redirect: true, 
+        path: '/partners', 
+        to: 'http://brhts.ru/', 
+        navbarName: 'Redirect' 
+    },
+    {
         path: '/creator',
         sidebarName: '',
         navbarName: '',

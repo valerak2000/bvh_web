@@ -164,6 +164,10 @@ class Root extends Component {
                                 { ...rest }
                             />
                         </div>
+                        <Footer
+                            { ...this.props }
+                            { ...rest }
+                        />
                         { !isProd && <DevTools /> }
                     </div>
                 </MuiThemeProvider>
