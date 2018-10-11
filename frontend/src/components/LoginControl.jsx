@@ -15,8 +15,10 @@ import Badge from '@material-ui/core/Badge';
 
 import { authLogoutAndRedirect } from '../actions/auth';
 
-import { faSignInAlt, faSignOutAlt, faLock } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons/faSignInAlt';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
+import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/';
 
 /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
 export function Login(props) {

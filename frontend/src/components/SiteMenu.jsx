@@ -30,12 +30,11 @@ class SiteMenu extends Component {
     }
 
     static shouldComponentUpdate(nextProps, nextState) {
-        console.log(nextProps.location);
+        //console.log(nextProps.location);
     }
 
     static getDerivedStateFromProps(props, state) {
-        //console.log(props.location);
-        //console.log(location);
+        //console.log(props.location.pathname);
         let currentTab = null;
 
         if (props.location !== null && props.location) {
@@ -43,6 +42,7 @@ class SiteMenu extends Component {
             currentTab = urls[1] !== '' ? urls[1] : false;
         }
 
+        console.log(currentTab);
         return {
             activeTab: currentTab,
         };
