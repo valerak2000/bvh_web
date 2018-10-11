@@ -48,9 +48,9 @@ function Menu(props) {
                                 </ListItemIcon>
                             }
                             <ListItemText 
-                                inset
                                 primary = { d.primaryText } 
                                 secondary = { d.secondaryText }
+                                secondaryTypographyProps = {{ variant: 'body2'}}
                             />
                         </ListItem>
                     );

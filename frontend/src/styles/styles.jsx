@@ -6,11 +6,13 @@ import cyan from '@material-ui/core/colors/cyan';
 
 export var muiTheme = createMuiTheme({
     palette: {
-        textColor: { main: blue[900] },
-        alternateTextColor: { main: blue[900] },
+        textColor: {
+            main: blue[900]
+        },
+        //alternateTextColor: { main: blue[900] },
         text: {
-            primary: blue[800],
-            secondary: blue[800] //blue[800] common['white']
+            primary: blue[900],
+            secondary: blue[900] //blue[800] common['white']
         }, //teal300 lightGreen50 lightBlue900
         primary: {
             main: blue[800],
@@ -20,12 +22,12 @@ export var muiTheme = createMuiTheme({
             main: blue[800],
             //contrastText: common['white']
         },
-        secondaryTextColor: {
-            main: blue[900]
-        },
+        //secondaryTextColor: {
+        //    main: blue[800]
+        //},
         //primary2Color: Colors.white,
         //accent1Color: Colors.white,
-        accent2Color: { main: common['white'] },
+        //accent2Color: { main: common['white'] },
         //backgroundColor: Colors.teal200,
         //selectedTextColor: Colors.blue900,
         //primary2Color: Colors.teal200,
@@ -163,7 +165,6 @@ export var muiTheme = createMuiTheme({
                 height: '4rem',
                 backgroundColor: blue[800], //teal200,
                 button: {
-                    fontSize: 16,
                     color: grey[50],
                     maxWidth: '24rem',
                     margin: '0 0 auto',

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { compose } from 'recompose';
@@ -11,37 +10,15 @@ import Map from '@material-ui/icons/Map';
 import Home from '@material-ui/icons/Home';
 import Business from '@material-ui/icons/Business';
 
-import blue from '@material-ui/core/colors/blue';
-import grey from '@material-ui/core/colors/grey';
-import cyan from '@material-ui/core/colors/cyan';
-
 const AuthorSign = '/static/images/author-sign.png';
 
 //const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
 //const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
 //const nearbyIcon = <MapsMap />;
 const styles = {
-    root: {
-        fontSize: 16,
-        position: 'space-around',
-        height: '4rem',
-        backgroundColor: blue[800], //teal200,
-    },
-    rootButton: {
-        color: grey[50],
-        maxWidth: '24rem',
-        margin: '0 0 auto',
-        icon: {
-            height: 24,
-            width: '100%',
-            objectFit: 'contain',
-        },
-        '&$label': {
-            fontSize: 16,
-            color: grey[50],
-        },
-    },
     label: {
+        fontSize: 16,
+        textAlign: 'center'
     },
 };    
 
@@ -66,57 +43,10 @@ class Footer extends Component {
         this.setState({ value });
     };
 
-    /*selectBottomNavigationAction = (index) => {
-        this.setState({ selectedIndex: index });
-
-        switch(index) {
-            case 0:
-                return this.props.dispatch(push('/'));
-            case 1:
-                return this.props.dispatch(push('/map'));
-            case 2:
-                return window.open('http://brhts.ru/');
-                //this.props.dispatch(push('/partners'));
-            case 3:
-                //window.location.href = "mailto:valera_k2000@inbox.ru";
-                //return window.open("mailto:valera_k2000@inbox.ru");
-                return this.props.dispatch(push('/creator'));
-            default:
-                return;
-//                return this.props.dispatch(push('/'));
-        }
-    }*/
-
     render() {
         const { classes } = this.props;
-        //const { footer } = { ...this.props.theme.app };
-        const { footer } = { 
-        footer: {
-            backgroundColor: blue[800], //teal200,
-            bottomNavigation: {
-                button: {
-                    color: grey[50],
-                    maxWidth: '24rem',
-                    margin: '0 0 auto',
-                    /*icon: {
-                        height: 24,
-                        width: '100%',
-                        objectFit: 'contain',
-                    },*/
-                },
-            },
-            bottomText: {
-                fontSize: 14,
-                color: grey[50],
-                textAlign: 'right',
-                margin: '0 1rem auto auto',
-                link: {
-                    color: cyan[100],
-                },
-            }}};
-
+        const { footer } = { ...this.props.theme.app };
         const { value } = this.state;
-//        style = { footer.bottomNavigation }
 
         return (
             <footer 
@@ -126,14 +56,15 @@ class Footer extends Component {
                     value = { value }
                     onChange = { this.handleChange }
                     showLabels
-                    classes = {{ root: classes.root }}
+                    style = { footer.bottomNavigation }
                 >
                     <BottomNavigationAction
                         label = '© 2018 ООО «Брюховецкое водопроводное хозяйство»'
                         icon = { <Home /> }
                         value = 'home'
                         component = { Link } to = '/'
-                        classes = {{ root: classes.rootLabel, label: classes.label, }}
+                        style = { footer.bottomNavigation.button }
+                        classes = {{ label: classes.label, }}
                     />
                     <BottomNavigationAction
                         label = 'Карта сайта'
@@ -141,6 +72,7 @@ class Footer extends Component {
                         value = 'map'
                         component = { Link } to = '/map'
                         style = { footer.bottomNavigation.button }
+                        classes = {{ label: classes.label, }}
                     />
                     <BottomNavigationAction
                         label = 'Партнеры'
@@ -149,15 +81,16 @@ class Footer extends Component {
                         href = "http://www.brhts.ru" 
                         target = "_blank"
                         style = { footer.bottomNavigation.button }
+                        classes = {{ label: classes.label, }}
                     />
                 </BottomNavigation>
                 <div
                     style = { footer.bottomText }
                 >
                     Разработка и поддержка <a 
-                    href = 'http://www.valera-k2000.ru'
-                    target = '_blank'
-                    style = { footer.bottomText.link }
+                        href = 'http://www.valera-k2000.ru'
+                        target = '_blank'
+                        style = { footer.bottomText.link }
                     >
                         <img src = { AuthorSign } alt = 'valera_k2000' width = '16' height = '16'/> valera_k2000 </a>
                 </div>
@@ -166,60 +99,11 @@ class Footer extends Component {
     }
 }
 /*
-                    selectedIndex = { this.state.selectedIndex }
-
-<BottomNavigationItem
-                        label = "Разработка и поддержка valera_k2000"
-                        icon = {
-                            <img
-                                src = { AuthorSign }
-                                alt = ''
-                                style = { this.props.muiTheme.app.footer.bottomNavigation.button.icon }
-                            />
-                        }
-                        onClick = { () => this.selectBottomNavigationItem(3) }
-                        style = { this.props.muiTheme.app.footer.bottomNavigation.button }
-                    />
-
-                        href = 'http://brhts.ru/'
-                        target = '_blank'
-
-                    <BottomNavigationItem
-                        label = ""
-                        icon = { <NavigationArrowUpward /> }
-                        onClick = { () => this.selectBottomNavigationItem(4) }
-                        style = {{ 
-                            position: 'absolute', 
-                            margin: 'auto 25rem auto',
-                            maxWidth: '7rem',
-                        }}
-                    />
-
-label = {
-                            <div>
-                                <a href="mailto:valera_k2000@inbox.ru">Разработка сайта</a>
-                            </div>
-                        }
-
-                    href = "mailto:valera_k2000@inbox.ru"
-                    target = "_top"
-
-"https://github.com/valerak2000/bvh_web"
-                        onClick = { () => this.selectBottomNavigationItem(3) }
-
-                            <div>
-                            Партнеры
-                            <ul>
-                            <li><a href="http://brhts.ru/" target="_blank">Теплосети</a></li>
-                            </ul>                    
-                            </div>
 */
 
 Footer.muiName = 'Footer';
 //export default withTheme()(Footer);
-export default withStyles(styles)(Footer);
-/*export default compose(
+export default compose(
     withStyles(styles),
-    //withTheme()
+    withTheme()
 )(Footer);
-*/
