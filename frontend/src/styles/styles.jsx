@@ -10,7 +10,7 @@ export var muiTheme = createMuiTheme({
         alternateTextColor: { main: blue[900] },
         text: {
             primary: blue[800],
-            secondary: blue[800]
+            secondary: blue[800] //blue[800] common['white']
         }, //teal300 lightGreen50 lightBlue900
         primary: {
             main: blue[800],
@@ -47,8 +47,6 @@ export var muiTheme = createMuiTheme({
         minWidth: '78rem',
         minHeight: '58rem',
         margin: '0 auto',
-        fontSize: 16,
-        fontWeight: 500,
     },
     app: {
         //margin: '0 auto auto',
@@ -163,10 +161,10 @@ export var muiTheme = createMuiTheme({
             bottomNavigation: {
                 position: 'space-around',
                 height: '4rem',
-                //display: 'block',
+                backgroundColor: blue[800], //teal200,
                 button: {
-                    //minWidth: '31rem',
-                    //maxWidth: 'none',
+                    fontSize: 16,
+                    color: grey[50],
                     maxWidth: '24rem',
                     margin: '0 0 auto',
                     icon: {
@@ -187,7 +185,7 @@ export var muiTheme = createMuiTheme({
             }
         },
     },
-    title: {
+    /*title: {
         cursor: 'pointer',
     },
     button: {
@@ -212,7 +210,7 @@ export var muiTheme = createMuiTheme({
         //height: 56,
         unselectedFontSize: 16,
         selectedFontSize: 16,
-    },
+    },*/
     iconPdf: {
         width: 32,
         height: 38,

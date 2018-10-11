@@ -2,24 +2,48 @@ import React, { Component } from 'react';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { compose } from 'recompose';
 import withTheme from '@material-ui/core/styles/withTheme';
+import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-//import FontIcon from 'material-ui/FontIcon';
-//import Paper from 'material-ui/Paper';
 import Map from '@material-ui/icons/Map';
 import Home from '@material-ui/icons/Home';
-//import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
-//import NavigationExpandLess from 'material-ui/svg-icons/navigation/expand-less';
-//import AvRecentActors from 'material-ui/svg-icons/av/recent-actors';
 import Business from '@material-ui/icons/Business';
-//import * as Colors from 'material-ui/styles/colors';
+
+import blue from '@material-ui/core/colors/blue';
+import grey from '@material-ui/core/colors/grey';
+import cyan from '@material-ui/core/colors/cyan';
 
 const AuthorSign = '/static/images/author-sign.png';
 
 //const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
 //const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
 //const nearbyIcon = <MapsMap />;
+const styles = {
+    root: {
+        fontSize: 16,
+        position: 'space-around',
+        height: '4rem',
+        backgroundColor: blue[800], //teal200,
+    },
+    rootButton: {
+        color: grey[50],
+        maxWidth: '24rem',
+        margin: '0 0 auto',
+        icon: {
+            height: 24,
+            width: '100%',
+            objectFit: 'contain',
+        },
+        '&$label': {
+            fontSize: 16,
+            color: grey[50],
+        },
+    },
+    label: {
+    },
+};    
 
 class Footer extends Component {
     static propTypes = {
@@ -27,6 +51,7 @@ class Footer extends Component {
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -40,7 +65,7 @@ class Footer extends Component {
     handleChange = (event, value) => {
         this.setState({ value });
     };
-    
+
     /*selectBottomNavigationAction = (index) => {
         this.setState({ selectedIndex: index });
 
@@ -63,8 +88,35 @@ class Footer extends Component {
     }*/
 
     render() {
-        const { footer } = { ...this.props.theme.app };
+        const { classes } = this.props;
+        //const { footer } = { ...this.props.theme.app };
+        const { footer } = { 
+        footer: {
+            backgroundColor: blue[800], //teal200,
+            bottomNavigation: {
+                button: {
+                    color: grey[50],
+                    maxWidth: '24rem',
+                    margin: '0 0 auto',
+                    /*icon: {
+                        height: 24,
+                        width: '100%',
+                        objectFit: 'contain',
+                    },*/
+                },
+            },
+            bottomText: {
+                fontSize: 14,
+                color: grey[50],
+                textAlign: 'right',
+                margin: '0 1rem auto auto',
+                link: {
+                    color: cyan[100],
+                },
+            }}};
+
         const { value } = this.state;
+//        style = { footer.bottomNavigation }
 
         return (
             <footer 
@@ -74,14 +126,14 @@ class Footer extends Component {
                     value = { value }
                     onChange = { this.handleChange }
                     showLabels
-                    style = { footer.bottomNavigation }
+                    classes = {{ root: classes.root }}
                 >
                     <BottomNavigationAction
                         label = '© 2018 ООО «Брюховецкое водопроводное хозяйство»'
                         icon = { <Home /> }
                         value = 'home'
                         component = { Link } to = '/'
-                        style = { footer.bottomNavigation.button }
+                        classes = {{ root: classes.rootLabel, label: classes.label, }}
                     />
                     <BottomNavigationAction
                         label = 'Карта сайта'
@@ -164,5 +216,10 @@ label = {
 */
 
 Footer.muiName = 'Footer';
-
-export default withTheme()(Footer);
+//export default withTheme()(Footer);
+export default withStyles(styles)(Footer);
+/*export default compose(
+    withStyles(styles),
+    //withTheme()
+)(Footer);
+*/
