@@ -62,7 +62,6 @@ class Root extends Component {
    componentDidMount() {
         window.addEventListener('scroll', this.scrollChange);
         if (navigator.platform.indexOf('Win') <= -1) return;
-        console.log('Root');
     }
 
     componentDidUpdate(e) {
@@ -108,7 +107,7 @@ class Root extends Component {
     }
     
     scrollToTop() {
-        console.log('top');
+        //console.log('top');
         let intervalId = setInterval(this.scrollStep.bind(this), this.props.delayInMs);
         this.setState({ intervalId: intervalId });
     }

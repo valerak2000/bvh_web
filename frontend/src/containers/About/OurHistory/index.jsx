@@ -1,34 +1,31 @@
 import React, { Component } from 'react';
-import { push } from 'react-router-redux';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-//import FlatButton from 'material-ui/FlatButton';
-//import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
 
 import './style.scss';
 
 class OurHistoryView extends Component {
     static propTypes = {
-        dispatch: PropTypes.func.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
     };
 
     render() {
+        const { сard } = this.props.theme.app;
+
         return (
             <Card
-                style = { this.props.muiTheme.app.сard }
+                style = { сard }
             >
-                <CardTitle
+                <CardHeader
                     title = 'Наша история'
-                    titleStyle = { this.props.muiTheme.app.сard.title }
+                    titleTypographyProps = { сard.title }
                 />
-                <CardText
-                    style = { this.props.muiTheme.app.сard.text }
+                <CardContent
+                    style = { сard.text }
                     className = 'content'
                 >
                     <h4><strong>История брюховецкого водопроводного хозяйства</strong></h4>
@@ -38,16 +35,11 @@ class OurHistoryView extends Component {
                     <p>В 1960 году произведен ремонт имеющейся артскважины,  завершились работы по бурению и оборудованию двух дополнительных скважин, а также по строительству 25-ти метровой водонапорной башни.
                     С этого года станица Брюховецкая стараниями многих  людей, работающих в водопроводном хозяйстве, перестала ощущать острый недостаток в воде.</p>
                     <a href = "http://bru-museum.ru/stati/istoriya-2/317-istoriya-stanichnogo-vodoprovoda" target ="_blank">Источник</a>
-                </CardText>
+                </CardContent>
             </Card>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-    };
-};
-
-export default withTheme()(connect(mapStateToProps)(OurHistoryView));
+export default withTheme()(OurHistoryView);
 export { OurHistoryView as OurHistoryViewNotConnected };

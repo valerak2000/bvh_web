@@ -12,9 +12,6 @@ import Business from '@material-ui/icons/Business';
 
 const AuthorSign = '/static/images/author-sign.png';
 
-//const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
-//const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
-//const nearbyIcon = <MapsMap />;
 const styles = {
     label: {
         fontSize: 16,

@@ -22,11 +22,13 @@ class NewsAboutUsView extends Component {
             <Card
                 style = { сard }
             >
-                <CardTitle
+                <CardHeader
                     title = 'СМИ о нашей работе'
                     titleTypographyProps = { сard.title }
                 />
-                <CardText>
+                <CardContent
+                    style = { сard.text }
+                >
                     <a 
                         href="http://kbereg.info/iz-otchetnogo-doklada-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-otkry-toj-sessii-soveta-munitsipal-nogo-obrazovaniya-bryuhovetskij-rajon/" 
                         target = "_blank"
@@ -40,7 +42,7 @@ class NewsAboutUsView extends Component {
                     >
                         09.07.2018. kbereg.info - Ответы главы Брюховецкого района Владимира Мусатова на вопросы граждан.
                     </a>
-                </CardText>
+                </CardContent>
             </Card>
         );
     }

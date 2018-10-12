@@ -9,16 +9,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-//import FontIcon from 'material-ui/FontIcon';
 import Divider from '@material-ui/core/Divider';
 import Badge from '@material-ui/core/Badge';
-
-import { authLogoutAndRedirect } from '../actions/auth';
-
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons/faSignInAlt';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/';
+
+import { authLogoutAndRedirect } from '../actions/auth';
 
 /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
 export function Login(props) {

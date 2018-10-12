@@ -11,7 +11,8 @@ class HomeView extends Component {
     static propTypes = {
         statusText: PropTypes.string,
         userName: PropTypes.string,
-        dispatch: PropTypes.func.isRequired
+        dispatch: PropTypes.func.isRequired,
+        theme: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -35,6 +36,8 @@ class HomeView extends Component {
     };
 
     render() {
+        const { сard } = this.props.theme.app;
+
         return (
             <Card
                 style= {{
@@ -50,7 +53,9 @@ class HomeView extends Component {
                         margin: '0 auto'
                     }}
                 />
-                <CardContent>
+                <CardContent
+                    style = { сard.text }
+                >
                 </CardContent>
             </Card>
         );

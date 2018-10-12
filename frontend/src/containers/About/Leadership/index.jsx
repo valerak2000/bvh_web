@@ -1,29 +1,31 @@
 import React, { Component } from 'react';
-import { push } from 'react-router-redux';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import {GridList, GridTile} from 'material-ui/GridList';
-import Divider from 'material-ui/Divider';
+import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/Info';
 
 const avatarMan = '/static/images/avatar.png';
 const avatarWoman = '/static/images/avatar_w.png';
 
 class LeadershipView extends Component {
     static propTypes = {
-        dispatch: PropTypes.func.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
     };
 
+    state = {
+        expanded: false,
+    };
+
     constructor(props, context) {
         super(props, context);
-        this.state = {
-            expanded: false,
-        };
     }
 
     handleExpandChange = (expanded) => {
@@ -31,13 +33,19 @@ class LeadershipView extends Component {
     };
     
     render() {
+        const { сard } = this.props.theme.app;
+
         return (
             <Card
-                style = { this.props.muiTheme.app.сard }
+                style = { сard }
             >
-                <CardTitle
+                <CardHeader
+                    title = 'Руководство компании'
+                    titleTypographyProps = { сard.title }
+                />
+                <CardHeader
                     title = '«Брюховецкое водопроводное хозяйство», ООО'
-                    titleStyle = { this.props.muiTheme.app.сard.title }
+                    titleTypographyProps = { сard.header }
                 />
                 <GridList
                     cols = { 3 }
@@ -48,35 +56,49 @@ class LeadershipView extends Component {
                         height: 350,
                     }}
                 >
-                    <GridTile
+                    <GridListTile 
                         key = { avatarMan } 
-                        title = "Ляшенко Александр Николаевич"
-                        subtitle = "Директор" 
-                        titlePosition = "bottom"
                     >
                         <img 
                             src = { avatarMan } 
-                            style = { this.props.muiTheme.app.сard.title }
+                            style = { сard.header }
                         />
-                    </GridTile>
-                    <GridTile
+                        <GridListTileBar
+                            title = 'Ляшенко Александр Николаевич'
+                            subtitle = 'Директор'
+                            titlePosition = 'bottom'
+                            actionIcon = {
+                                <IconButton>
+                                    <InfoIcon />
+                                </IconButton>
+                            }
+                        />
+                    </GridListTile>
+                    <GridListTile 
                         key = { avatarWoman } 
-                        title = "Романова Ольга Григорьевна"
-                        subtitle = "Главный бухгалтер" 
-                        titlePosition = "bottom"
                     >
                         <img 
                             src = { avatarWoman } 
                         />
-                    </GridTile>
+                        <GridListTileBar
+                            title = 'Романова Ольга Григорьевна'
+                            subtitle = 'Главный бухгалтер'
+                            titlePosition = 'bottom'
+                            actionIcon = {
+                                <IconButton>
+                                    <InfoIcon />
+                                </IconButton>
+                            }
+                        />
+                    </GridListTile>
                 </GridList>
 
                 <br/>
                 <Divider />
 
-                <CardTitle
+                <CardHeader
                     title = '«Брюховецкое предприятие отвода и очистки стоков», ООО'
-                    titleStyle = { this.props.muiTheme.app.сard.title }
+                    titleTypographyProps = { сard.header }
                 />
                 <GridList
                     cols = { 3 }
@@ -87,79 +109,53 @@ class LeadershipView extends Component {
                         height: 350,
                     }}
                 >
-                    <GridTile
+                    <GridListTile 
                         key = { avatarMan } 
-                        title = "Дьяченко Владимир Анатольевич"
-                        subtitle = "Директор" 
-                        titlePosition = "bottom"
                     >
                         <img 
                             src = { avatarMan } 
-                            style = { this.props.muiTheme.app.сard.title }
+                            style = { сard.header }
                         />
-                    </GridTile>
-                    <GridTile
+                        <GridListTileBar
+                            title = "Дьяченко Владимир Анатольевич"
+                            subtitle = "Директор" 
+                            titlePosition = 'bottom'
+                            actionIcon = {
+                                <IconButton>
+                                    <InfoIcon />
+                                </IconButton>
+                            }
+                        />
+                    </GridListTile>
+                    <GridListTile 
                         key = { avatarWoman } 
-                        title = "Романова Ольга Григорьевна"
-                        subtitle = "Главный бухгалтер" 
-                        titlePosition = "bottom"
                     >
                         <img 
                             src = { avatarWoman } 
                         />
-                    </GridTile>
+                        <GridListTileBar
+                            title = 'Романова Ольга Григорьевна'
+                            subtitle = 'Главный бухгалтер'
+                            titlePosition = 'bottom'
+                            actionIcon = {
+                                <IconButton>
+                                    <InfoIcon />
+                                </IconButton>
+                            }
+                        />
+                    </GridListTile>
                 </GridList>
 
-                <CardText 
-                    expandable = { false }
-                    style = { this.props.muiTheme.app.сard.text }
+                <CardContent 
+                    style = { сard.text }
                 >
-                </CardText>
+                </CardContent>
             </Card>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-    };
-};
-
-export default withTheme()(connect(mapStateToProps)(LeadershipView));
+export default withTheme()(LeadershipView);
 export { LeadershipView as LeadershipViewNotConnected };
 /*
-                        titleBackground = "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-
-style = {{
-                                MaxWidth: '30%',
-                                objectFit: 'contain',
-                            }}
-
-<div class="field-item even" property="content:encoded"><p class="rtecenter"><img alt="" src="/sites/default/files/foto/01_gen_dir.jpg" style="height:558px; width:400px" width="400" height="558"></p>
-
-<p class="rtecenter"><span style="font-size:16px">Ляшенко Александр Николаевич</span></p>
-
-<p class="rtecenter"><span style="font-size:16px">Директор</span></p>
-
-<hr><p class="rtecenter"><img alt="" src="/sites/default/files/foto/02_ekon_dir.jpg" style="height:558px; width:400px" width="400" height="558"></p>
-
-<p class="rtecenter"><span style="font-size:16px">Байкова Ирина Владимировна</span></p>
-
-<p class="rtecenter"><span style="font-size:16px">Директор по экономике</span></p>
-
-<hr><p class="rtecenter"><img alt="" src="/sites/default/files/foto/03_gl_ing.jpg" style="height:558px; width:400px" width="400" height="558"></p>
-
-<p class="rtecenter"><span style="font-size:16px">Чудов Вячеслав Валерьевич</span></p>
-
-<p class="rtecenter"><span style="font-size:16px">Главный инженер</span></p>
-
-<hr><p class="rtecenter"><img alt="" src="/sites/default/files/foto/04_oot.jpg" style="height:558px; width:400px" width="400" height="558"></p>
-
-<p class="rtecenter"><span style="font-size:16px">Никитина Елена Степановна</span></p>
-
-<p class="rtecenter"><span style="font-size:16px">Председатель профсоюзного комитета ОАО "Химкинский водоканал"</span></p>
-
-<p class="rtecenter"><span style="font-size:16px">Руководитель службы охраны труда</span></p>
-</div>
-
 */

@@ -73,43 +73,4 @@ Header.muiName = 'Header';
 export default withTheme()(Header);
 
 /*
-
-<AppBar
-                    titleStyle = { header.appBar.titleStyle }
-                    iconElementLeft = {
-                        <div
-                            id = 'ElementLeft'
-                            style = { header.appBar.elementLeft }
-                        >
-                            <IconButton
-                                style = { header.appBar.elementLeft.logo }
-                                iconStyle = { header.appBar.elementLeft.logo.picture }
-                                onClick = { this.goToIndex }
-                            >
-                                <img
-                                    src = { bvhLogo }
-                                    alt = 'Главная'
-                                />
-                            </IconButton>
-                            <SiteMenu
-                                style = { header.appBar.elementLeft.menu }
-                                { ...this.props }
-                            />
-                        </div>
-                    }
-                    iconStyleLeft = { header.appBar.elementLeft.iconStyleLeft }
-                    iconElementRight = {
-                        <div
-                            id = 'ElementRight'
-                            style = { header.appBar.elementRight }
-                        >
-                            <LoginControl
-                                isAuthenticated = { isAuthenticated }
-                                style = { header.appBar.elementRight.login }
-                            />
-                        </div>
-                    }
-                    iconStyleRight = { header.appBar.elementLeft.iconStyleRight }
-                    showMenuIconButton = { true }
-                />
 */

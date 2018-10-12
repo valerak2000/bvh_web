@@ -12,7 +12,7 @@ export var muiTheme = createMuiTheme({
         //alternateTextColor: { main: blue[900] },
         text: {
             primary: blue[900],
-            secondary: blue[900] //blue[800] common['white']
+            secondary: common['black']
         }, //teal300 lightGreen50 lightBlue900
         primary: {
             main: blue[800],
@@ -108,6 +108,10 @@ export var muiTheme = createMuiTheme({
                         fontWeight: 500,
                         opacity: 1,
                         textTransform: 'none',
+                        indicator: {
+                            color: cyan[100],
+                            backgroundColor: cyan[100],
+                        }
                     }
                 },
                 titleStyle: {
@@ -215,14 +219,15 @@ export var muiTheme = createMuiTheme({
     iconPdf: {
         width: 32,
         height: 38,
-        //display: 'block',
-        //background: `url(${iconPdf}) no-repeat 0px 0px`,
         objectFit: 'contain',
         margin: '0rem auto',
     },
     labelPdf: {
         fontSize: 16,
         fontWeight: 500,
+        minHeight: 'inherit',
+        display: 'inline-flex',
+        alignItems: 'center',
     },
     icon: {
         height: 24,

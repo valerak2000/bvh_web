@@ -1,40 +1,32 @@
 import React, { Component } from 'react';
-//import { push } from 'react-router-redux';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import withTheme from '@material-ui/core/styles/withTheme';
-//import Paper from 'material-ui/Paper';
-//import Divider from 'material-ui/Divider';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-//import FlatButton from 'material-ui/FlatButton';
-//import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
-import Divider from 'material-ui/Divider';
-//import { List, ListItem } from 'material-ui/List';
-//import NavigationCheck from 'material-ui/svg-icons/action/check-circle';
-//import NavigationCheck from 'material-ui/svg-icons/navigation/check';
+import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 
 import './style.scss';
 
 class CommonInfoView extends Component {
     static propTypes = {
-        dispatch: PropTypes.func.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
     };
 
     render() {
+        const { сard } = this.props.theme.app;
+
         return (
             <Card
-                style = { this.props.muiTheme.app.сard }
+                style = { сard }
             >
-                <CardTitle
+                <CardHeader
                     title = 'О компании'
-                    titleStyle = { this.props.muiTheme.app.сard.title }
+                    titleTypographyProps = { сard.title }
                 />
-                <CardText
-                    style = { this.props.muiTheme.app.сard.text }
+                <CardContent
+                    style = { сard.text }
                     className = 'content'
                 >
                     <p><strong>ООО «Брюховецкое водопроводное хозяйство»</strong> занимается водоснабжением
@@ -66,16 +58,11 @@ class CommonInfoView extends Component {
                     <p><strong>ООО «Брюховецкое предприятие отвода и очистки стоков»</strong> занимается водоотведением ст.Брюховецкой.<br/>
                     Предприятие было образовано 23 декабря 2005 года.<br/>
                     </p>
-                </CardText>
+                </CardContent>
             </Card>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-    };
-};
-
-export default withTheme()(connect(mapStateToProps)(CommonInfoView));
+export default withTheme()(CommonInfoView);
 export { CommonInfoView as CommonInfoViewNotConnected };

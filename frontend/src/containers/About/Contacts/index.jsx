@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-//import { push } from 'react-router-redux';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-//import FlatButton from 'material-ui/FlatButton';
-//import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-//import Divider from 'material-ui/Divider';
+import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
+import Collapse from '@material-ui/core/Collapse';
 
 import { Maps } from '../../../components/Maps';
 import PdfLink from '../../../components/PdfLink';
@@ -19,7 +14,7 @@ const rekvisity_ooo_boos = '/static/files/media/rekvisity_ooo_boos.pdf';
 
 class ContactsView extends Component {
     static propTypes = {
-        dispatch: PropTypes.func.isRequired,
+        theme: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -51,45 +46,45 @@ class ContactsView extends Component {
     };
 
     render() {
+        const { сard } = this.props.theme.app;
         const { file, numPages } = this.state;
 
         return (
             <Card
-                style = { this.props.muiTheme.app.сard }
+                style = { сard }
             >
-                <CardTitle
+                <CardHeader
                     title = 'Контакты'
-                    titleStyle = { this.props.muiTheme.app.сard.title }
+                    titleTypographyProps = { сard.title }
                 />
                 <CardHeader
                     title = "ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»"
-                    titleStyle = { this.props.muiTheme.app.сard.header }
+                    titleTypographyProps = { сard.header }
                 />
                 <CardHeader
                     title = "ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»"
-                    titleStyle = { this.props.muiTheme.app.сard.header }
+                    titleTypographyProps = { сard.header }
                 />
                 <Card
-                    expanded = { this.state.expanded }
                     onExpandChange = { this.handleExpandChange }
+                    style = { сard }
                 >
                     <CardHeader
                         title = "Центральный офис"
-                        titleStyle = { this.props.muiTheme.app.сard.header1 }
+                        titleTypographyProps = { сard.header1 }
                         subtitle = "Карта"
-                        actAsExpander = { true }
-                        showExpandableButton = { true }
                     />
-                    <CardMedia
-                        expandable = { true }
-                    >
-                        <Maps 
-                            lat = { this.props.main_office.lat}
-                            lng = { this.props.main_office.lng}
-                            zoom = { this.props.zoom }
-                            isMarkerShown
-                        />
-                    </CardMedia>
+                    <Collapse in = { this.state.expanded } timeout = "auto" unmountOnExit>
+                        <CardMedia
+                        >
+                            <Maps 
+                                lat = { this.props.main_office.lat}
+                                lng = { this.props.main_office.lng}
+                                zoom = { this.props.zoom }
+                                isMarkerShown
+                            />
+                        </CardMedia>
+                    </Collapse>
                     <CardMedia
                         style = {{
                             width: '40%',
@@ -100,9 +95,8 @@ class ContactsView extends Component {
                             src = { bvhMainOfficeBuild } 
                         />
                     </CardMedia>
-                    <CardText 
-                        expandable = { false }
-                        style = { this.props.muiTheme.app.сard.text }
+                    <CardContent
+                        style = { сard.text }
                     >
                         <p><strong>Адрес:</strong></p>
                         <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
@@ -157,13 +151,13 @@ class ContactsView extends Component {
                         </p>
                         <PdfLink 
                             href = { rekvisity_ooo_bvh } 
-                            label = "Реквизиты ООО «Брюховецкое водопроводное хозяйство»"
+                            label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
                         />
                         <PdfLink 
                             href = { rekvisity_ooo_boos } 
-                            label = "Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»"
+                            label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
                         />
-                    </CardText>
+                    </CardContent>
                 </Card>
 
                 <Card
@@ -172,21 +166,20 @@ class ContactsView extends Component {
                 >
                     <CardHeader
                         title = "Абонентский отдел"
-                        titleStyle = { this.props.muiTheme.app.сard.header1 }
+                        titleStyle = { сard.header1 }
                         subtitle = "Карта"
-                        actAsExpander = { true }
-                        showExpandableButton = { true }
                     />
-                    <CardMedia
-                        expandable = { true }
-                    >
-                        <Maps
-                            lat = { this.props.abon_office.lat}
-                            lng = { this.props.abon_office.lng}
-                            zoom = { this.props.zoom }
-                            isMarkerShown
-                        />
-                    </CardMedia>
+                    <Collapse in={ this.state.expandedAbon } timeout="auto" unmountOnExit>
+                        <CardMedia
+                        >
+                            <Maps
+                                lat = { this.props.abon_office.lat}
+                                lng = { this.props.abon_office.lng}
+                                zoom = { this.props.zoom }
+                                isMarkerShown
+                            />
+                        </CardMedia>
+                    </Collapse>
                     <CardMedia
                         style= {{
                             width: '40%',
@@ -197,9 +190,8 @@ class ContactsView extends Component {
                             src = { bvhAbonentsOfficeBuild } 
                         />
                     </CardMedia>
-                    <CardText 
-                        expandable = { false }
-                        style = { this.props.muiTheme.app.сard.text }
+                    <CardContent 
+                        style = { сard.text }
                     >
                         <p><strong>Адрес:</strong></p>
                         <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ул. Советская, 56, здание БТИ<br /></p>
@@ -208,19 +200,14 @@ class ContactsView extends Component {
                         <p><strong>График работы:</strong></p>
                         <p style = {{ paddingLeft: '4rem', }}>Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00<br />
                         Выходной: Суббота и Воскресенье</p>
-                    </CardText>
+                    </CardContent>
                 </Card>
             </Card>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-    };
-};
-
-export default withTheme()(connect(mapStateToProps)(ContactsView));
+export default withTheme()(ContactsView);
 export { ContactsView as ContactsViewNotConnected };
 
 /*

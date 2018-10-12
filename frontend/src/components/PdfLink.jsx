@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import withTheme from '@material-ui/core/styles/withTheme';
-import FlatButton from 'material-ui/FlatButton';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 
-const iconPdf = '/static/images/pdf-icon.png';
+const pathIconPdf = '/static/images/pdf-icon.png';
 
 class PdfLink extends Component {
     static propTypes = {
         href: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -26,24 +28,64 @@ class PdfLink extends Component {
     
     render() {
         const { href, label } = this.props;
+        const { labelPdf } = this.props.theme;
+        const { iconPdf } = this.props.theme;
 
         return (
-            <FlatButton
-                href = { href } 
-                target = "_blank"
-                label = { label }
-                labelStyle = { this.props.muiTheme.labelPdf }
-                icon = {    
+            <div
+                style = {{ display: 'flex' }}
+            >
+                <IconButton
+                    aria-label = { label }
+                    href = { href }
+                    target = "_blank"
+                    aria-selected = { false }
+                    centerRipple = { false }
+                    disableRipple = { true }
+            >
                     <img
-                        src = { iconPdf }
-                        style = { this.props.muiTheme.iconPdf }
+                        src = { pathIconPdf }
+                        style = { iconPdf }
                     />
-                }
-            />
+                </IconButton>
+                <Typography
+                    align = 'left'
+                    color = 'textSecondary'
+                    variant = 'caption'
+                    style = { labelPdf }
+                >
+                    { label }
+                </Typography>
+            </div>
         );
     }
 }
 /*
+            <IconButton
+            aria-label = 'Войти'
+            onClick = { props.onClick }
+            disableTouchRipple = { true }
+            style = { props.style.button }
+        >
+            Войти    
+            <FontAwesomeIcon
+                icon = { faSignInAlt }
+                style = { props.style.button.icon }
+            />
+        </IconButton>
+            <IconButton
+                href = { href } 
+                target = "_blank"
+                aria-label = { label }
+                label = { label }
+                labelStyle = { labelPdf }
+                icon = {    
+                    <img
+                        src = { pathIconPdf }
+                        style = { iconPdf }
+                    />
+                }
+            />
 */
 
 PdfLink.muiName = 'PdfLink';
