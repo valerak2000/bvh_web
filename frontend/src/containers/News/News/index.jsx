@@ -20,6 +20,7 @@ class NewsView extends Component {
 
         return (
             <Card
+                square = { true }
                 style = { сard }
             >
                 <CardHeader

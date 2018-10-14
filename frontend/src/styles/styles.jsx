@@ -59,7 +59,7 @@ export var muiTheme = createMuiTheme({
         сard: {
             margin: '0 auto',
             //minHeight: '32rem',
-            height: '100%', //'-webkit-fill-available', //'40rem',
+            height: '100%',
             title: {
                 fontSize: 30,
             },

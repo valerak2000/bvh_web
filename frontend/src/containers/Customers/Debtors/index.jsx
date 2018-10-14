@@ -19,17 +19,22 @@ class DebtorsView extends Component {
     };
 
     render() {
+        const { сard } = this.props.theme.app;
+
         return (
             <Card
-                style = { this.props.muiTheme.app.сard }
+                square = { true }
+                style = { сard }
             >
-                <CardTitle
+                <CardHeader
                     title = 'Должники'
-                    titleStyle = { this.props.muiTheme.app.сard.title }
+                    titleTypographyProps = { сard.title }
                 />
-                <CardText>
+                <CardContent
+                    style = { сard.text }
+                >
                     <UnderConstruct />
-                </CardText>
+                </CardContent>
             </Card>
         );
     }

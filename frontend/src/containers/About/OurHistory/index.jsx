@@ -18,6 +18,7 @@ class OurHistoryView extends Component {
 
         return (
             <Card
+                square = { true }
                 style = { сard }
             >
                 <CardHeader
