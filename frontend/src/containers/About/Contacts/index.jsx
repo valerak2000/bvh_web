@@ -51,6 +51,7 @@ class ContactsView extends Component {
 
         return (
             <Card
+                square = { true }
                 style = { сard }
             >
                 <CardHeader

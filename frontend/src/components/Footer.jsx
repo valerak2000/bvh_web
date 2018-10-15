@@ -98,9 +98,4 @@ class Footer extends Component {
 /*
 */
 
-Footer.muiName = 'Footer';
-//export default withTheme()(Footer);
-export default compose(
-    withStyles(styles),
-    withTheme()
-)(Footer);
+export default withStyles(styles, { name: 'muiFooter', flip: false, withTheme: true })(Footer);

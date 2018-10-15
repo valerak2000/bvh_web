@@ -15,6 +15,7 @@ class ElektronnayaPriemnayaView extends Component {
 
         return (
             <Card
+                square = { true }
                 style = { сard }
             >
                 <CardHeader

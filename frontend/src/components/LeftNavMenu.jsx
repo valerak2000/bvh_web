@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { push } from 'react-router-redux';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
+import { compose } from 'recompose';
 import withTheme from '@material-ui/core/styles/withTheme';
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -16,7 +19,13 @@ import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ, HOME
     ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants';
 import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../constants/menuStruct';
 
-function Menu(props) {
+const styles = theme => ({
+    drawerPaper: {
+        position: 'relative',
+    },
+});
+  
+  function Menu(props) {
     let initiallyFocused = (props.initiallyFocused === undefined || props.initiallyFocused == null)
         ? props.items[0].key 
         : props.initiallyFocused;
@@ -102,6 +111,7 @@ class LeftNavMenu extends Component {
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     state = {
@@ -146,6 +156,7 @@ class LeftNavMenu extends Component {
 
     render() {
         const { activeMenuTop, activeMenuSecond, activeMenuThird, ...props } = this.state;
+        const { classes } = this.props;
         var initiallyFocused = null;
 
         if (activeMenuSecond !== null) {
@@ -237,19 +248,19 @@ class LeftNavMenu extends Component {
         }
 
         return (
-            <div 
+            <Drawer
+                variant = 'permanent'
+                classes = {{
+                    paper: classes.drawerPaper,
+                }}
                 style = { leftNav }
             >
                 { leftmenu }
-            </div>
+            </Drawer>
         );
     }
 }
+/*
+*/
 
-LeftNavMenu.muiName = 'LeftNavMenu';
-export default withTheme()(LeftNavMenu);
-/*export default compose(
-    //withRouter,
-    withTheme,
-    connect(mapStateToProps, mapDispatchToProps)
-)(LeftNavMenu);*/
+export default withStyles(styles, { name: 'muiLeftNavMenu', flip: false, withTheme: true })(LeftNavMenu);

@@ -40,10 +40,8 @@ class HomeView extends Component {
 
         return (
             <Card
-                style= {{
-                    width: '100%',
-                    margin: '0 auto'
-                }}
+                square = { true }
+                style = { сard }
             >
                 <CardMedia
                     component = 'img'

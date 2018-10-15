@@ -107,10 +107,4 @@ class SiteMenu extends Component {
 /*
 */
 
-SiteMenu.muiName = 'SiteMenu';
-
-//export default withTheme()(SiteMenu);
-export default compose(
-    withStyles(styles),
-    withTheme()
-)(SiteMenu);
+export default withStyles(styles, { name: 'muiSiteMenu', flip: false, withTheme: true })(SiteMenu);

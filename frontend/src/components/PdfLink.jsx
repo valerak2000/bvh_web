@@ -28,8 +28,7 @@ class PdfLink extends Component {
     
     render() {
         const { href, label } = this.props;
-        const { labelPdf } = this.props.theme;
-        const { iconPdf } = this.props.theme;
+        const { buttonLink } = this.props.theme;
 
         return (
             <div
@@ -42,17 +41,18 @@ class PdfLink extends Component {
                     aria-selected = { false }
                     centerRipple = { false }
                     disableRipple = { true }
-            >
+                    style = { buttonLink }
+                >
                     <img
                         src = { pathIconPdf }
-                        style = { iconPdf }
+                        style = { buttonLink.iconPdf }
                     />
                 </IconButton>
                 <Typography
                     align = 'left'
                     color = 'textSecondary'
                     variant = 'caption'
-                    style = { labelPdf }
+                    style = { buttonLink.labelPdf }
                 >
                     { label }
                 </Typography>

@@ -38,11 +38,12 @@ const switchRoutes = (
 
 class AppView extends Component {
     static propTypes = {
-        isAuthenticated: PropTypes.bool.isRequired,
+        //children: PropTypes.shape().isRequired,
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
-        router: PropTypes.object
+        router: PropTypes.object,
+        isAuthenticated: PropTypes.bool.isRequired,
     };
 
     constructor(props, context) {
@@ -73,6 +74,7 @@ class AppView extends Component {
                 style = { appStyle }
             >
                 { switchRoutes }
+                { this.props.children }
             </div>
         );
     }

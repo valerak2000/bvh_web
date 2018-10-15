@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import withTheme from '@material-ui/core/styles/withTheme';
 import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
 
 import UnderConstruct from '../../../components/UnderConstruct';
-//import bgHeader from '../../../images/bg-header.png';
 
 class NewsView extends Component {
     static propTypes = {

@@ -160,7 +160,6 @@ export var muiTheme = createMuiTheme({
         },
         leftNav: {
             width: '28%',
-            //maxWidth: '28rem',
         },
         footer: {
             backgroundColor: blue[800], //teal200,
@@ -216,18 +215,29 @@ export var muiTheme = createMuiTheme({
         unselectedFontSize: 16,
         selectedFontSize: 16,
     },*/
-    iconPdf: {
-        width: 32,
-        height: 38,
-        objectFit: 'contain',
-        margin: '0rem auto',
+    buttonLink: {
+        padding: '6px 6px 6px 6px',
+        iconPdf: {
+            width: 32,
+            height: 38,
+            objectFit: 'contain',
+            margin: '0rem auto',
+        },
+        labelPdf: {
+            fontSize: 16,
+            fontWeight: 500,
+            minHeight: 'inherit',
+            display: 'inline-flex',
+            alignItems: 'center',
+        },
     },
-    labelPdf: {
-        fontSize: 16,
-        fontWeight: 500,
-        minHeight: 'inherit',
-        display: 'inline-flex',
-        alignItems: 'center',
+    li: {
+        padding: '0 0 0 25px',
+        margin: '0 0 5px 0',
+        background: 'url(/static/images/check.svg) no-repeat 0px 0px',
+        backgroundSize: 16,
+        listStyleImage: 'none',
+        listStyle: 'none',
     },
     icon: {
         height: 24,

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardHeader, CardContent } from '@material-ui/core';
+import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
 
 class MapView extends Component {
     static propTypes = {
@@ -14,9 +13,12 @@ class MapView extends Component {
     }
 
     render() {
+        const { сard } = this.props.theme.app;
+
         return (
             <Card
-                style = { this.props.theme.app.сard }
+                square = { true }
+                style = { сard }
             >
                 <CardHeader
                     title = 'Карта сайта'
