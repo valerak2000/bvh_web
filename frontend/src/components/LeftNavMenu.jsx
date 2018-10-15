@@ -14,6 +14,8 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ, HOME_MENU_MP,
     ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants';
@@ -61,6 +63,7 @@ const styles = theme => ({
                                 secondary = { d.secondaryText }
                                 secondaryTypographyProps = {{ variant: 'body2'}}
                             />
+                            { (d.nestedItems !== undefined && d.nestedItems.length > 0) ? props.open ? <ExpandLess /> : <ExpandMore /> : '' }
                         </ListItem>
                     );
                 })
@@ -119,6 +122,7 @@ class LeftNavMenu extends Component {
         activeMenuSecond: null,
         activeMenuThird: null,
         activeItem: null,
+        open: true,
     };
 
     constructor(props, context) {
@@ -155,7 +159,7 @@ class LeftNavMenu extends Component {
     };
 
     render() {
-        const { activeMenuTop, activeMenuSecond, activeMenuThird, ...props } = this.state;
+        const { activeMenuTop, activeMenuSecond, activeMenuThird, open, ...props } = this.state;
         const { classes } = this.props;
         var initiallyFocused = null;
 
@@ -171,6 +175,7 @@ class LeftNavMenu extends Component {
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
+                        open = { open }
                     />;
                 break;
             case HOME_MENU_EP:
@@ -179,6 +184,7 @@ class LeftNavMenu extends Component {
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "elektronnaya_priemnaya"
+                        open = { open }
                     />;
                 break;
             case HOME_MENU_BO:
@@ -187,6 +193,7 @@ class LeftNavMenu extends Component {
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "blackouts"
+                        open = { open }
                     />;
                 break;
             case HOME_MENU_CM:
@@ -195,6 +202,7 @@ class LeftNavMenu extends Component {
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "available_capacity_map"
+                        open = { open }
                     />;
                 break;
                 case HOME_MENU_FQ:
@@ -203,6 +211,7 @@ class LeftNavMenu extends Component {
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "faq"
+                        open = { open }
                     />;
                 break;
             case HOME_MENU_MP:
@@ -211,6 +220,7 @@ class LeftNavMenu extends Component {
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "map"
+                        open = { open }
                     />;
                 break;
             case ABOUT_MENU:
@@ -219,6 +229,7 @@ class LeftNavMenu extends Component {
                         items = { MENU_ABOUT }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
+                        open = { open }
                     />;
                 break;
             case CUSTOMERS_MENU:
@@ -227,6 +238,7 @@ class LeftNavMenu extends Component {
                         items = { MENU_CUSTOMERS }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
+                        open = { open }
                     />;
                 break;
             case NEWS_MENU:
@@ -235,6 +247,7 @@ class LeftNavMenu extends Component {
                         items = { MENU_NEWS }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
+                        open = { open }
                     />;
                 break;
         }
