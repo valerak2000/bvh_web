@@ -16,6 +16,7 @@ import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import StarBorder from '@material-ui/icons/StarBorder';
 
 import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ, HOME_MENU_MP,
     ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants';
@@ -25,12 +26,16 @@ const styles = theme => ({
     drawerPaper: {
         position: 'relative',
     },
+    nested: {
+        paddingLeft: theme.spacing.unit * 4,
+    },
 });
-  
-  function Menu(props) {
+
+function Menu(props) {
     let initiallyFocused = (props.initiallyFocused === undefined || props.initiallyFocused == null)
         ? props.items[0].key 
         : props.initiallyFocused;
+    let initiallyOpenFirst = false;
 
     return (
         <List
@@ -39,39 +44,94 @@ const styles = theme => ({
         >
             {
                 props.items.map((d, index) => {
-                    var nested = [];
                     let initiallyOpenFirst = initiallyFocused === d.key ? true : false;
 
-
-                    return (
                         <ListItem
                             key = { d.key }
                             button
                             dense
                             disableGutters
-                            selected = { initiallyFocused === d.key ? true : false }
+                            selected = { initiallyOpenFirst }
                             onClick = { (e) => props.onClick(d.dataRoute, e) }
                         >
                             { 
-                                d.leftIcon && 
-                                <ListItemIcon>
+                                d.leftIcon
+                                && <ListItemIcon>
                                     { d.leftIcon }
                                 </ListItemIcon>
                             }
                             <ListItemText 
                                 primary = { d.primaryText } 
                                 secondary = { d.secondaryText }
-                                secondaryTypographyProps = {{ variant: 'body2'}}
+                                secondaryTypographyProps = {{ variant: 'body2' }}
                             />
-                            { (d.nestedItems !== undefined && d.nestedItems.length > 0) ? props.open ? <ExpandLess /> : <ExpandMore /> : '' }
+                            {
+                                d.nestedItems !== undefined && d.nestedItems.length > 0
+                                && ( props.open ? <ExpandLess /> : <ExpandMore /> )
+                            }
                         </ListItem>
-                    );
-                })
+                }
             }
         </List>
     );
 }
 /*
+                    <React.Fragment key = { index }>
+                    </React.Fragment>;  
+
+
+{ 
+                            d.nestedItems !== undefined && d.nestedItems.length > 0
+                            && (
+                                <Collapse 
+                                    in = { props.open }
+                                    timeout = "auto"
+                                    unmountOnExit
+                                >
+                                    <List disablePadding>
+                                        {
+                                            d.nestedItems.map((ni, index) => {
+                                                let initiallySelectedSecond = initiallyFocused === d.key + '_' + ni.key ? true : false;
+                                                if (initiallySelectedSecond)
+                                                    initiallyOpenFirst = initiallySelectedSecond;
+
+                                                <ListItem
+                                                    key = { d.key }
+                                                    button
+                                                    dense
+                                                    disableGutters
+                                                    selected = { initiallyFocused === d.key ? true : false }
+                                                    onClick = { (e) => props.onClick(d.dataRoute, e) }
+                                                    className = { props.classes.nested }
+                                                >
+                                                    { 
+                                                        d.leftIcon
+                                                        && <ListItemIcon>
+                                                            { d.leftIcon }
+                                                        </ListItemIcon>
+                                                    }
+                                                    <ListItemText 
+                                                        primary = { d.primaryText } 
+                                                        secondary = { d.secondaryText }
+                                                        secondaryTypographyProps = {{ variant: 'body2' }}
+                                                    />
+                                                    {
+                                                        d.nestedItems !== undefined && d.nestedItems.length > 0
+                                                        && ( props.open ? <ExpandLess /> : <ExpandMore /> )
+                                                    }
+                                                </ListItem>;
+                                            })
+                                        }
+                                    </List>
+                            </Collapse>
+                        )}
+
+
+{
+                props.items.map((d, index) => {
+                    let initiallyOpenFirst = initiallyFocused === d.key ? true : false;
+
+                    return (
 
                             primaryText = { d.primaryText }
                             secondaryText = { d.secondaryText }
@@ -154,7 +214,7 @@ class LeftNavMenu extends Component {
     handleMenuClick = (dataRoute, e ) => {
         e.preventDefault();
         //console.log(dataRoute);
-        this.setState({ activeItem: dataRoute });
+        this.setState({ activeItem: dataRoute, open: !this.state.open });
         this.props.dispatch(push(dataRoute));
     };
 
@@ -176,6 +236,7 @@ class LeftNavMenu extends Component {
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
                         open = { open }
+                        { ...this.props }
                     />;
                 break;
             case HOME_MENU_EP:
@@ -185,6 +246,7 @@ class LeftNavMenu extends Component {
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "elektronnaya_priemnaya"
                         open = { open }
+                        { ...this.props }
                     />;
                 break;
             case HOME_MENU_BO:
@@ -194,6 +256,7 @@ class LeftNavMenu extends Component {
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "blackouts"
                         open = { open }
+                        { ...this.props }
                     />;
                 break;
             case HOME_MENU_CM:
@@ -203,6 +266,7 @@ class LeftNavMenu extends Component {
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "available_capacity_map"
                         open = { open }
+                        { ...this.props }
                     />;
                 break;
                 case HOME_MENU_FQ:
@@ -212,6 +276,7 @@ class LeftNavMenu extends Component {
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "faq"
                         open = { open }
+                        { ...this.props }
                     />;
                 break;
             case HOME_MENU_MP:
@@ -221,6 +286,7 @@ class LeftNavMenu extends Component {
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "map"
                         open = { open }
+                        { ...this.props }
                     />;
                 break;
             case ABOUT_MENU:
@@ -230,6 +296,7 @@ class LeftNavMenu extends Component {
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
                         open = { open }
+                        { ...this.props }
                     />;
                 break;
             case CUSTOMERS_MENU:
@@ -239,6 +306,7 @@ class LeftNavMenu extends Component {
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
                         open = { open }
+                        { ...this.props }
                     />;
                 break;
             case NEWS_MENU:
@@ -248,6 +316,7 @@ class LeftNavMenu extends Component {
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
                         open = { open }
+                        { ...this.props }
                     />;
                 break;
         }
