@@ -31,22 +31,70 @@ const styles = theme => ({
     },
 });
 
-function Menu(props) {
+function NestedMenu(props) {
     let initiallyFocused = (props.initiallyFocused === undefined || props.initiallyFocused == null)
         ? props.items[0].key 
         : props.initiallyFocused;
     let initiallyOpenFirst = false;
+    
+    props.items.map((d, index) => {
+        let initiallyOpenFirst = initiallyFocused === d.key ? true : false;
+    });
+}
+
+function ListMenu(props) {
+    let initiallyFocused = (props.initiallyFocused === undefined || props.initiallyFocused == null)
+        ? props.items[0].key 
+        : props.initiallyFocused;
+    let initiallyOpenFirst = false;
+    
+    props.items.map((d, index) => {
+        let initiallyOpenFirst = initiallyFocused === d.key ? true : false;
+    });
 
     return (
         <List
             component = 'nav'
             style = { props.style }
         >
-            {
-                props.items.map((d, index) => {
-                    let initiallyOpenFirst = initiallyFocused === d.key ? true : false;
+        {
+            props.items.map((d, index) => 
+                <ListItem
+                    key = { d.key }
+                    button
+                    dense
+                    disableGutters
+                    selected = { initiallyOpenFirst }
+                    onClick = { (e) => props.onClick(d.dataRoute, e) }
+                >
+                    { 
+                        d.leftIcon
+                        && <ListItemIcon>
+                            { d.leftIcon }
+                        </ListItemIcon>
+                    }
+                    <ListItemText 
+                        primary = { d.primaryText } 
+                        secondary = { d.secondaryText }
+                        secondaryTypographyProps = {{ variant: 'body2' }}
+                    />
+                    {
+                        d.nestedItems !== undefined && d.nestedItems.length > 0
+                        && ( props.open ? <ExpandLess /> : <ExpandMore /> )
+                    }
+                </ListItem>
+        )}
+        </List>
+    );
+}
+/*
+    props.items.map((d, index) => {
+        let initiallyOpenFirst = initiallyFocused === d.key ? true : false;
 
-                        <ListItem
+    };
+
+
+<ListItem
                             key = { d.key }
                             button
                             dense
@@ -70,12 +118,8 @@ function Menu(props) {
                                 && ( props.open ? <ExpandLess /> : <ExpandMore /> )
                             }
                         </ListItem>
-                }
-            }
-        </List>
-    );
-}
-/*
+
+
                     <React.Fragment key = { index }>
                     </React.Fragment>;  
 
@@ -231,7 +275,7 @@ class LeftNavMenu extends Component {
         switch (activeMenuTop) {
             case HOME_MENU:
                 leftmenu =
-                    <Menu 
+                    <ListMenu 
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
@@ -241,7 +285,7 @@ class LeftNavMenu extends Component {
                 break;
             case HOME_MENU_EP:
                 leftmenu =
-                    <Menu 
+                    <ListMenu 
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "elektronnaya_priemnaya"
@@ -251,7 +295,7 @@ class LeftNavMenu extends Component {
                 break;
             case HOME_MENU_BO:
                 leftmenu =
-                    <Menu 
+                    <ListMenu 
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "blackouts"
@@ -261,7 +305,7 @@ class LeftNavMenu extends Component {
                 break;
             case HOME_MENU_CM:
                 leftmenu =
-                    <Menu 
+                    <ListMenu 
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "available_capacity_map"
@@ -271,7 +315,7 @@ class LeftNavMenu extends Component {
                 break;
                 case HOME_MENU_FQ:
                 leftmenu =
-                    <Menu 
+                    <ListMenu 
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "faq"
@@ -281,7 +325,7 @@ class LeftNavMenu extends Component {
                 break;
             case HOME_MENU_MP:
                 leftmenu =
-                    <Menu 
+                    <ListMenu 
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = "map"
@@ -291,7 +335,7 @@ class LeftNavMenu extends Component {
                 break;
             case ABOUT_MENU:
                 leftmenu =
-                    <Menu 
+                    <ListMenu 
                         items = { MENU_ABOUT }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
@@ -301,7 +345,7 @@ class LeftNavMenu extends Component {
                 break;
             case CUSTOMERS_MENU:
                 leftmenu =
-                    <Menu 
+                    <ListMenu 
                         items = { MENU_CUSTOMERS }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
@@ -311,7 +355,7 @@ class LeftNavMenu extends Component {
                 break;
             case NEWS_MENU:
                 leftmenu =
-                    <Menu 
+                    <ListMenu 
                         items = { MENU_NEWS }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
