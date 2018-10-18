@@ -47,9 +47,37 @@ function ListMenu(props) {
         ? props.items[0].key 
         : props.initiallyFocused;
     let initiallyOpenFirst = false;
+    var listItems = [];
     
     props.items.map((d, index) => {
         let initiallyOpenFirst = initiallyFocused === d.key ? true : false;
+
+        listItems.push(
+            <ListItem
+                key = { d.key }
+                button
+                dense
+                disableGutters
+                selected = { initiallyOpenFirst }
+                onClick = { (e) => props.onClick(d.dataRoute, e) }
+            >
+                { 
+                    d.leftIcon
+                    && <ListItemIcon>
+                        { d.leftIcon }
+                    </ListItemIcon>
+                }
+                <ListItemText 
+                    primary = { d.primaryText } 
+                    secondary = { d.secondaryText }
+                    secondaryTypographyProps = {{ variant: 'body2' }}
+                />
+                {
+                    d.nestedItems !== undefined && d.nestedItems.length > 0
+                    && ( props.open ? <ExpandLess /> : <ExpandMore /> )
+                }
+            </ListItem>
+        );
     });
 
     return (
@@ -57,38 +85,31 @@ function ListMenu(props) {
             component = 'nav'
             style = { props.style }
         >
-        {
-            props.items.map((d, index) => 
-                <ListItem
-                    key = { d.key }
-                    button
-                    dense
-                    disableGutters
-                    selected = { initiallyOpenFirst }
-                    onClick = { (e) => props.onClick(d.dataRoute, e) }
-                >
-                    { 
-                        d.leftIcon
-                        && <ListItemIcon>
-                            { d.leftIcon }
-                        </ListItemIcon>
-                    }
-                    <ListItemText 
-                        primary = { d.primaryText } 
-                        secondary = { d.secondaryText }
-                        secondaryTypographyProps = {{ variant: 'body2' }}
-                    />
-                    {
-                        d.nestedItems !== undefined && d.nestedItems.length > 0
-                        && ( props.open ? <ExpandLess /> : <ExpandMore /> )
-                    }
-                </ListItem>
+            listItems.map((item, index) => (
+                { item. }
+            )
         )}
         </List>
     );
 }
 /*
-    props.items.map((d, index) => {
+const Test = ({stations}) => (
+  <>
+    {stations.map(station => (
+      <div className="station" key={station.call}>{station.call}</div>
+    ))}
+  </>
+); 
+
+ <Test stations={stations} />
+
+var stations = [
+  {call:'station one',frequency:'000'},
+  {call:'station two',frequency:'001'}
+]; 
+
+
+props.items.map((d, index) => {
         let initiallyOpenFirst = initiallyFocused === d.key ? true : false;
 
     };
