@@ -46,13 +46,12 @@ function ListMenu(props) {
     let initiallyFocused = (props.initiallyFocused === undefined || props.initiallyFocused == null)
         ? props.items[0].key 
         : props.initiallyFocused;
-    let initiallyOpenFirst = false;
-    var listItems = [];
+    //let initiallyOpenFirst = false;
     
-    props.items.map((d, index) => {
+    const listItems = props.items.map((d, index) => {
         let initiallyOpenFirst = initiallyFocused === d.key ? true : false;
 
-        listItems.push(
+        return (
             <ListItem
                 key = { d.key }
                 button
@@ -85,10 +84,7 @@ function ListMenu(props) {
             component = 'nav'
             style = { props.style }
         >
-            listItems.map((item, index) => (
-                { item. }
-            )
-        )}
+            { listItems }
         </List>
     );
 }
