@@ -16,7 +16,7 @@ class CommonInfoView extends Component {
 
     render() {
         const { сard } = this.props.theme.app;
-        const { li } = this.props.theme;
+        const { ul, li } = this.props.theme;
 
         return (
             <Card

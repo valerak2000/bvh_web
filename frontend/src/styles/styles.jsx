@@ -231,6 +231,9 @@ export var muiTheme = createMuiTheme({
             alignItems: 'center',
         },
     },
+    ul: {
+        margin: 'auto',
+    },
     li: {
         padding: '0 0 0 25px',
         margin: '0 0 5px 0',

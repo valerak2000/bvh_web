@@ -27,7 +27,7 @@ class RegulatoryDocView extends Component {
 
     render() {
         const { сard } = this.props.theme.app;
-        const { li } = this.props.theme;
+        const { ul, li } = this.props.theme;
 
         return (
             <Card
@@ -82,7 +82,7 @@ class RegulatoryDocView extends Component {
                         href = { administrativnyy_reglament } 
                         label = "Административный Регламент по выдаче:"
                     />
-                    <ul>
+                    <ul style = { ul }>
                         <li style = { li }>Технических условий</li>
                         <li style = { li }>Справок о выполнении технических условий</li>
                         <li style = { li }>Предоставления холодного водоснабжения и водоотведения физическим и юридическим лицам</li>

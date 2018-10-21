@@ -302,18 +302,20 @@ class LeftNavMenu extends Component {
             activeMenuTop: currentMenuTop,
             activeMenuSecond: currentMenuSecond,
             activeMenuThird: currentMenuThird,
-            expanded: [{ key: currentMenuTop, open: true }],
+            expanded: [{ key: currentMenuSecond, open: true }],
         };
     }
 
     handleMenuClick = (key, dataRoute, e ) => {
         e.preventDefault();
         //console.log(dataRoute);
-        //var elementPos = this.state.expanded.map(function(x) {return x.key; }).indexOf(key); 
-        var indexOfmenu = this.state.expanded.findIndex(i => i.key === key);
-        //this.state.expanded.filter(menu => menu.key === key)[0].open;
-        //this.setState({ expanded: this.state.expanded.push.apply(this.state.expanded, json)})
+        const indexOfmenu = this.state.expanded.findIndex(i => i.key === key);
+        const expanded = this.state.expanded;
+        //const open = this.state.expanded[indexOfmenu].open;
+        expanded[indexOfmenu].open = !expanded[indexOfmenu].open;
+        //this.setState({ activeItem: dataRoute, expanded: expanded_tmp });
         this.setState({ activeItem: dataRoute });
+        this.forceUpdate();
         this.props.dispatch(push(dataRoute));
     };
 /*
@@ -348,7 +350,7 @@ return {data: [new obj].concat(prevState.data) };
                     <NavMenu 
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
-                        initiallyFocused = "elektronnaya_priemnaya"
+                        initiallyFocused = 'elektronnaya_priemnaya'
                         expanded = { expanded }
                         { ...this.props }
                     />;
@@ -358,7 +360,7 @@ return {data: [new obj].concat(prevState.data) };
                     <NavMenu 
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
-                        initiallyFocused = "blackouts"
+                        initiallyFocused = 'blackouts'
                         expanded = { expanded }
                         { ...this.props }
                     />;
@@ -368,7 +370,7 @@ return {data: [new obj].concat(prevState.data) };
                     <NavMenu 
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
-                        initiallyFocused = "available_capacity_map"
+                        initiallyFocused = 'available_capacity_map'
                         expanded = { expanded }
                         { ...this.props }
                     />;
@@ -378,7 +380,7 @@ return {data: [new obj].concat(prevState.data) };
                     <NavMenu 
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
-                        initiallyFocused = "faq"
+                        initiallyFocused = 'faq'
                         expanded = { expanded }
                         { ...this.props }
                     />;
@@ -388,7 +390,7 @@ return {data: [new obj].concat(prevState.data) };
                     <NavMenu 
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
-                        initiallyFocused = "map"
+                        initiallyFocused = 'map'
                         expanded = { expanded }
                         { ...this.props }
                     />;
