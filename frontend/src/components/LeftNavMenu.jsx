@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -101,10 +101,13 @@ function NavMenu(props) {
                                             }
                                             <ListItemText 
                                                 primary = { ni.primaryText } 
+                                                primaryTypographyProps = {{
+                                                    color: 'primary',
+                                                }}
                                                 secondary = { ni.secondaryText }
                                                 secondaryTypographyProps = {{
+                                                    variant: 'body2',
                                                     color: 'primary',
-                                                    variant: 'body2'
                                                 }}
                                             />
                                         </ListItem>

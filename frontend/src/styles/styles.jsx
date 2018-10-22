@@ -51,7 +51,7 @@ export var muiTheme = createMuiTheme({
             fontSize: 14,
             fontWeight: 500,
         }
-},
+    },
     global: {
         maxWidth: '78rem',//62 126,
         minWidth: '78rem',

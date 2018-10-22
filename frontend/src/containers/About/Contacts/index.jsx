@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withTheme from '@material-ui/core/styles/withTheme';
+import withStyles from '@material-ui/core/styles/withStyles';
 import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
 import Collapse from '@material-ui/core/Collapse';
 
@@ -104,7 +104,7 @@ class ContactsView extends Component {
                         адрес сайта: <a href = "http://www.bruvodokanal.ru">http://www.bruvodokanal.ru</a><br />
                         адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a></p>
                         <p><strong>График работы:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}>Понедельник-пятница с 08-00 до 16-00 перерыв с 12-00 до 13-00<br />
+                        <p style = {{ paddingLeft: '4rem', }}>Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00<br />
                             Выходной: Суббота и Воскресенье<br />
                         </p>
                         <p>
@@ -126,7 +126,10 @@ class ContactsView extends Component {
                         </p>
                         <p style = {{ paddingLeft: '4rem', }}>
                             8(86156) 21-809<br />
-                            Прием населения: XXX с 08-00 до 16-00.
+                            Прием населения:<br />
+                            <div style = {{ paddingLeft: '9rem', }}>Понедельник с 08-00 до 16-00, перерыв с 12-00 до 13-00<br />
+                                    Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00.<br />
+                            </div>
                         </p>
                         <p>
                             <strong>Вывоз жидких коммунальных стоков</strong>: 8(86156)
@@ -208,7 +211,7 @@ class ContactsView extends Component {
     }
 }
 
-export default withTheme()(ContactsView);
+export default withStyles(null, { name: 'muiContactsView', flip: false, withTheme: true })(ContactsView);
 export { ContactsView as ContactsViewNotConnected };
 
 /*
