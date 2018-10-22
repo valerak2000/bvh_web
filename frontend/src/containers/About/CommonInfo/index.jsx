@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 
 //import './style.scss';
@@ -86,5 +89,5 @@ class CommonInfoView extends Component {
     }
 }
 
-export default withTheme()(CommonInfoView);
+export default withStyles(null, { name: 'muiCommonInfoView', flip: false, withTheme: true })(CommonInfoView);
 export { CommonInfoView as CommonInfoViewNotConnected };

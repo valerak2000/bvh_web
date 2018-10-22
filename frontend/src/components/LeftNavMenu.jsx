@@ -54,6 +54,7 @@ function NavMenu(props) {
                     <ListItemText
                         primary = { item.primaryText } 
                         primaryTypographyProps = {{
+                            variant: 'body1',
                             color: 'primary',
                         }}
                         secondary = { item.secondaryText }
@@ -87,7 +88,6 @@ function NavMenu(props) {
                                         <ListItem 
                                             key = { ni.key } 
                                             button
-                                            dense
                                             disableGutters
                                             selected = { initiallySelectedSecond }
                                             onClick = { (e) => props.onClick(ni.dataRoute, ni.key, e) }
@@ -102,6 +102,7 @@ function NavMenu(props) {
                                             <ListItemText 
                                                 primary = { ni.primaryText } 
                                                 primaryTypographyProps = {{
+                                                    variant: 'body1',
                                                     color: 'primary',
                                                 }}
                                                 secondary = { ni.secondaryText }

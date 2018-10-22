@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -45,8 +48,8 @@ class LeadershipView extends Component {
                     titleTypographyProps = { сard.title }
                 />
                 <CardHeader
-                    title = '«Брюховецкое водопроводное хозяйство», ООО'
-                    titleTypographyProps = { сard.header }
+                    subheader = '«Брюховецкое водопроводное хозяйство», ООО'
+                    subheaderTypographyProps = { сard.headline }
                 />
                 <GridList
                     cols = { 3 }
@@ -98,8 +101,8 @@ class LeadershipView extends Component {
                 <Divider />
 
                 <CardHeader
-                    title = '«Брюховецкое предприятие отвода и очистки стоков», ООО'
-                    titleTypographyProps = { сard.header }
+                    subheader = '«Брюховецкое предприятие отвода и очистки стоков», ООО'
+                    subheaderTypographyProps = { сard.headline }
                 />
                 <GridList
                     cols = { 3 }
@@ -156,7 +159,7 @@ class LeadershipView extends Component {
     }
 }
 
-export default withTheme()(LeadershipView);
+export default withStyles(null, { name: 'muiLeadershipView', flip: false, withTheme: true })(LeadershipView);
 export { LeadershipView as LeadershipViewNotConnected };
 /*
 */

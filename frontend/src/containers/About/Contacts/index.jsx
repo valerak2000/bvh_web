@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
 import Collapse from '@material-ui/core/Collapse';
 
-import { Maps } from '../../../components/Maps';
+import Maps from '../../../components/Maps';
 import PdfLink from '../../../components/PdfLink';
 
 const bvhMainOfficeBuild = '/static/images/main_office.jpg';
 const bvhAbonentsOfficeBuild = '/static/images/abon_office.jpg';
 const rekvisity_ooo_bvh = '/static/files/media/rekvisity_ooo_bvh.pdf';
 const rekvisity_ooo_boos = '/static/files/media/rekvisity_ooo_boos.pdf';
+
+const styles = theme => ({
+    nested: {
+        paddingLeft: theme.spacing.unit * 4,
+    },
+});
 
 class ContactsView extends Component {
     static propTypes = {
@@ -59,22 +68,123 @@ class ContactsView extends Component {
                     titleTypographyProps = { сard.title }
                 />
                 <CardHeader
-                    title = "ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»"
-                    titleTypographyProps = { сard.header }
+                    subheader = "ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»"
+                    subheaderTypographyProps = { сard.headline }
                 />
                 <CardHeader
-                    title = "ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»"
-                    titleTypographyProps = { сard.header }
+                    subheader = "ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»"
+                    subheaderTypographyProps = { сard.headline }
                 />
                 <Card
-                    onExpandChange = { this.handleExpandChange }
+                    square = { true }
                     style = { сard }
                 >
                     <CardHeader
                         title = "Центральный офис"
-                        titleTypographyProps = { сard.header1 }
+                        titleTypographyProps = { сard.subtitle1 }
+                        subheader = "Карта"
+                        subheaderTypographyProps = { сard.subtitle2 }
+                    />
+                    <Collapse in = { this.state.expanded } timeout = "auto" unmountOnExit>
+                        <CardMedia
+                        >
+                            <Maps 
+                                lat = { this.props.main_office.lat}
+                                lng = { this.props.main_office.lng}
+                                zoom = { this.props.zoom }
+                                isMarkerShown
+                            />
+                        </CardMedia>
+                    </Collapse>
+                    <CardMedia
+                        style = {{
+                            width: '40%',
+                            margin: '0 auto'
+                        }}
+                    >
+                        <img 
+                            src = { bvhMainOfficeBuild } 
+                        />
+                    </CardMedia>
+                </Card>
+                <Card
+                    square = { true }
+                    style = { сard }
+                >
+                    <CardHeader
+                        title = "Абонентский отдел"
+                        titleTypographyProps = { сard.subtitle1 }
+                        subheader = "Карта"
+                        subheaderTypographyProps = { сard.subtitle2 }
+                    />
+                </Card>
+            </Card>
+        );
+    }
+}
+
+export default withStyles(null, { name: 'muiContactsView', flip: false, withTheme: true })(ContactsView);
+export { ContactsView as ContactsViewNotConnected };
+
+/*
+                <Card
+                    onExpandChange = { this.handleExpandChange }
+                    square = { true }
+                    style = { сard }
+                >
+                    <CardHeader
+                        title = "Центральный офис"
+                        titleTypographyProps = { сard.subtitle1 }
+                        subheader = "Карта"
+                        subheaderTypographyProps = { сard.subtitle2 }
+                    />
+                </Card>
+
+                <Card
+                    square = { true }
+                    expanded = { this.state.expandedAbon }
+                    onExpandChange = { this.handleExpandChangeAbon }
+                >
+                    <CardHeader
+                        title = "Абонентский отдел"
+                        titleStyle = { сard.header1 }
                         subtitle = "Карта"
                     />
+                </Card>
+
+                    <Collapse in={ this.state.expandedAbon } timeout="auto" unmountOnExit>
+                        <CardMedia
+                        >
+                            <Maps
+                                lat = { this.props.abon_office.lat}
+                                lng = { this.props.abon_office.lng}
+                                zoom = { this.props.zoom }
+                                isMarkerShown
+                            />
+                        </CardMedia>
+                    </Collapse>
+                    <CardMedia
+                        style= {{
+                            width: '40%',
+                            margin: '0 auto'
+                        }}
+                    >
+                        <img 
+                            src = { bvhAbonentsOfficeBuild } 
+                        />
+                    </CardMedia>
+                    <CardContent 
+                        style = { сard.text }
+                    >
+                        <p><strong>Адрес:</strong></p>
+                        <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ул. Советская, 56, здание БТИ<br /></p>
+                        <p><strong>Телефон:</strong></p>
+                        <p style = {{ paddingLeft: '4rem', }}><strong>8 (86156) 22-257</strong><br /></p>
+                        <p><strong>График работы:</strong></p>
+                        <p style = {{ paddingLeft: '4rem', }}>Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00<br />
+                        Выходной: Суббота и Воскресенье</p>
+                    </CardContent>
+
                     <Collapse in = { this.state.expanded } timeout = "auto" unmountOnExit>
                         <CardMedia
                         >
@@ -151,7 +261,7 @@ class ContactsView extends Component {
                         </p>
                         <p style = {{ paddingLeft: '4rem', }}>
                             8(86156) 31-194<br />
-                            Прием населения: XXX с 08-00 до 16-00.
+                            Прием населения: XXX с 08-00 до 10-00.
                         </p>
                         <PdfLink 
                             href = { rekvisity_ooo_bvh } 
@@ -162,57 +272,5 @@ class ContactsView extends Component {
                             label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
                         />
                     </CardContent>
-                </Card>
 
-                <Card
-                    expanded = { this.state.expandedAbon }
-                    onExpandChange = { this.handleExpandChangeAbon }
-                >
-                    <CardHeader
-                        title = "Абонентский отдел"
-                        titleStyle = { сard.header1 }
-                        subtitle = "Карта"
-                    />
-                    <Collapse in={ this.state.expandedAbon } timeout="auto" unmountOnExit>
-                        <CardMedia
-                        >
-                            <Maps
-                                lat = { this.props.abon_office.lat}
-                                lng = { this.props.abon_office.lng}
-                                zoom = { this.props.zoom }
-                                isMarkerShown
-                            />
-                        </CardMedia>
-                    </Collapse>
-                    <CardMedia
-                        style= {{
-                            width: '40%',
-                            margin: '0 auto'
-                        }}
-                    >
-                        <img 
-                            src = { bvhAbonentsOfficeBuild } 
-                        />
-                    </CardMedia>
-                    <CardContent 
-                        style = { сard.text }
-                    >
-                        <p><strong>Адрес:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ул. Советская, 56, здание БТИ<br /></p>
-                        <p><strong>Телефон:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}><strong>8 (86156) 22-257</strong><br /></p>
-                        <p><strong>График работы:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}>Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00<br />
-                        Выходной: Суббота и Воскресенье</p>
-                    </CardContent>
-                </Card>
-            </Card>
-        );
-    }
-}
-
-export default withStyles(null, { name: 'muiContactsView', flip: false, withTheme: true })(ContactsView);
-export { ContactsView as ContactsViewNotConnected };
-
-/*
 */

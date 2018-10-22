@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import withTheme from '@material-ui/core/styles/withTheme';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 
 class UnderConstruct extends Component {
@@ -8,7 +8,7 @@ class UnderConstruct extends Component {
             <Typography
                 variant = 'subheading'
             >
-                Раздел находится в раработке
+                Раздел находится в разработке
             </Typography>
         );
     }
@@ -16,4 +16,4 @@ class UnderConstruct extends Component {
 
 UnderConstruct.muiName = 'UnderConstruct';
 
-export default withTheme()(UnderConstruct);
+export default withStyles(null, { name: 'muiUnderConstruct', flip: false, withTheme: true })(UnderConstruct);

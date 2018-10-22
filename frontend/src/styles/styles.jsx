@@ -43,28 +43,40 @@ export var muiTheme = createMuiTheme({
         fontSize: 16,
         fontWeight: 500,
         htmlFontSize: 16,
+        title: {
+            fontSize: 30,
+            fontWeight: 500,
+        },
+        headline: {
+            fontSize: 26,
+            fontWeight: 500,
+        },
         subheading: {
+            fontSize: 24,
+            fontWeight: 500,
+        },
+        display1: {
+            fontSize: 20,
+            fontWeight: 500,
+        },
+        display2: {
+            fontSize: 18,
+            fontWeight: 500,
+        },
+        body1: {
             fontSize: 16,
             fontWeight: 500,
         },
         body2: {
             fontSize: 14,
             fontWeight: 500,
-        }
+        },
     },
     global: {
         maxWidth: '78rem',//62 126,
         minWidth: '78rem',
         minHeight: '58rem',
         margin: '0 auto',
-        /*subtitle1: {
-            fontSize: 14,
-            fontWeight: 500,
-        },
-        subtitle2: {
-            fontSize: 14,
-            fontWeight: 500,
-        }*/
     },
     app: {
         //margin: '0 auto auto',
@@ -77,14 +89,29 @@ export var muiTheme = createMuiTheme({
             //minHeight: '32rem',
             height: '100%',
             title: {
-                fontSize: 30,
+                variant: 'title',
+                color: 'primary',
             },
-            header: {
-                fontSize: 24,
+            headline: {
+                variant: 'headline',
+                color: 'primary',
             },
-            header1: {
+            subheader: {
+                variant: 'subheading',
+                color: 'primary',
+            },
+            subtitle1: {
+                variant: 'display1',
+                color: 'primary',
+            },
+            subtitle2: {
+                variant: 'display2',
+                color: 'primary',
+            },
+            /*header1: {
+                variant: 'subheading',
                 fontSize: 20,
-            },
+            },*/
             text: {
                 fontSize: 16,
             },
