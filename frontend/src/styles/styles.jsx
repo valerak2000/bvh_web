@@ -15,11 +15,11 @@ export var muiTheme = createMuiTheme({
             secondary: common['black']
         }, //teal300 lightGreen50 lightBlue900
         primary: {
-            main: blue[800],
+            main: blue[900],
             contrastText: common['white']
         }, //teal300 lightGreen50 lightBlue900
         secondary: {
-            main: blue[800],
+            main: blue[900],
             //contrastText: common['white']
         },
         //secondaryTextColor: {
@@ -43,12 +43,28 @@ export var muiTheme = createMuiTheme({
         fontSize: 16,
         fontWeight: 500,
         htmlFontSize: 16,
-    },
+        subheading: {
+            fontSize: 16,
+            fontWeight: 500,
+        },
+        body2: {
+            fontSize: 14,
+            fontWeight: 500,
+        }
+},
     global: {
         maxWidth: '78rem',//62 126,
         minWidth: '78rem',
         minHeight: '58rem',
         margin: '0 auto',
+        /*subtitle1: {
+            fontSize: 14,
+            fontWeight: 500,
+        },
+        subtitle2: {
+            fontSize: 14,
+            fontWeight: 500,
+        }*/
     },
     app: {
         //margin: '0 auto auto',

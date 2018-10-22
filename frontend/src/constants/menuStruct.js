@@ -24,7 +24,6 @@ export const MENU_HOME = [
         key: 'blackouts',
         primaryText: 'Отключения',
         secondaryText: 'Информация об аварийном отключении водоснабжения',
-        secondaryTextLines: 2,
         leftIcon: (<Announcement />),
         dataRoute: '/blackouts',
     },
