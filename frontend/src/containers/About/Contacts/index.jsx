@@ -22,14 +22,13 @@ const rekvisity_ooo_bvh = '/static/files/media/rekvisity_ooo_bvh.pdf';
 const rekvisity_ooo_boos = '/static/files/media/rekvisity_ooo_boos.pdf';
 
 const styles = theme => ({
-    heading: {
-      fontSize: theme.typography.pxToRem(15),
-      flexBasis: '33.33%',
-      flexShrink: 0,
-    },
-    secondaryHeading: {
-      fontSize: theme.typography.pxToRem(15),
-      color: theme.palette.text.secondary,
+    media: {
+        boxShadow: '',
+        width: '40%',
+        height: 277,
+        objectFit: 'contain',
+        margin: '0 auto',
+        backgroundSize: 'contain',
     },
 });
   
@@ -92,15 +91,6 @@ class ContactsView extends Component {
                                 subheader = 'Карта'
                                 subheaderTypographyProps = { сard.subtitle2 }
                             />
-                            <br />
-                            <CardMedia
-                                image = { bvhMainOfficeBuild }
-                                title = 'Центральный офис'
-                                style = {{
-                                    width: '40%',
-                                    margin: '0 auto'
-                                }}
-                            />
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
                             <Maps 
@@ -111,6 +101,14 @@ class ContactsView extends Component {
                             />
                         </ExpansionPanelDetails>
                     </ExpansionPanel>   
+                    <CardMedia
+                        component = 'img'
+                        image = { bvhMainOfficeBuild }
+                        title = 'Центральный офис'
+                        className = {
+                            classes.media
+                        }
+                    />
                 </Card>
                 <Card
                     square = { true }

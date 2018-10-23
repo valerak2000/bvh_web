@@ -9,7 +9,12 @@ export const Maps = compose(
     }),
     withTheme(),
  )(props => (
-    <YMaps>
+    <YMaps
+        style = {{
+            width: '100%',
+            height: '100%',
+        }}
+    >
         <Map
             state = {{
                 center: [props.lat, props.lng],
@@ -18,11 +23,12 @@ export const Maps = compose(
             }}
             modules = { ['control.ZoomControl'] }
         >
-            props.isMarkerShown 
+            { props.isMarkerShown 
             && (
                 <Placemark
                     geometry = { [props.lat, props.lng] } 
-                />)
+                />
+            )}
         </Map>
     </YMaps>
 ));

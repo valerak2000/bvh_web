@@ -48,11 +48,11 @@ export var muiTheme = createMuiTheme({
             fontWeight: 500,
         },
         headline: {
-            fontSize: 26,
+            fontSize: 24,
             fontWeight: 500,
         },
         subheading: {
-            fontSize: 24,
+            fontSize: 22,
             fontWeight: 500,
         },
         display1: {
