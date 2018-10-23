@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
-//import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
 
 import UnderConstruct from '../../../components/UnderConstruct';
 
@@ -36,5 +38,5 @@ class VacanciesView extends Component {
     }
 }
 
-export default withTheme()(VacanciesView);
+export default withStyles(null, { name: 'muiVacanciesView', flip: false, withTheme: true })(VacanciesView);
 export { VacanciesView as VacanciesViewNotConnected };

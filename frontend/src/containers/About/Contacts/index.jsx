@@ -5,9 +5,15 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import Collapse from '@material-ui/core/Collapse';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
-import Maps from '../../../components/Maps';
+import { Maps } from '../../../components/Maps';
 import PdfLink from '../../../components/PdfLink';
 
 const bvhMainOfficeBuild = '/static/images/main_office.jpg';
@@ -16,14 +22,21 @@ const rekvisity_ooo_bvh = '/static/files/media/rekvisity_ooo_bvh.pdf';
 const rekvisity_ooo_boos = '/static/files/media/rekvisity_ooo_boos.pdf';
 
 const styles = theme => ({
-    nested: {
-        paddingLeft: theme.spacing.unit * 4,
+    heading: {
+      fontSize: theme.typography.pxToRem(15),
+      flexBasis: '33.33%',
+      flexShrink: 0,
+    },
+    secondaryHeading: {
+      fontSize: theme.typography.pxToRem(15),
+      color: theme.palette.text.secondary,
     },
 });
-
+  
 class ContactsView extends Component {
     static propTypes = {
         theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -40,23 +53,15 @@ class ContactsView extends Component {
 
     constructor(props, context) {
         super(props, context);
+
         this.state = {
-            expanded: false,
-            expandedAbon: false,
         };
     }
 
-    handleExpandChange = (expanded) => {
-        this.setState({ expanded: expanded} );
-    };
-
-    handleExpandChangeAbon = (expanded) => {
-        this.setState({ expandedAbon: expanded} );
-    };
-
     render() {
+        const { classes } = this.props;
         const { сard } = this.props.theme.app;
-        const { file, numPages } = this.state;
+        //const { file, numPages } = this.state;
 
         return (
             <Card
@@ -68,53 +73,53 @@ class ContactsView extends Component {
                     titleTypographyProps = { сard.title }
                 />
                 <CardHeader
-                    subheader = "ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»"
+                    subheader = 'ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»'
                     subheaderTypographyProps = { сard.headline }
                 />
                 <CardHeader
-                    subheader = "ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»"
+                    subheader = 'ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»'
                     subheaderTypographyProps = { сard.headline }
                 />
                 <Card
                     square = { true }
                     style = { сard }
                 >
-                    <CardHeader
-                        title = "Центральный офис"
-                        titleTypographyProps = { сard.subtitle1 }
-                        subheader = "Карта"
-                        subheaderTypographyProps = { сard.subtitle2 }
-                    />
-                    <Collapse in = { this.state.expanded } timeout = "auto" unmountOnExit>
-                        <CardMedia
-                        >
+                    <ExpansionPanel>
+                        <ExpansionPanelSummary expandIcon = { <ExpandMoreIcon /> }>
+                            <CardHeader
+                                title = 'Центральный офис'
+                                titleTypographyProps = { сard.subtitle1 }
+                                subheader = 'Карта'
+                                subheaderTypographyProps = { сard.subtitle2 }
+                            />
+                            <br />
+                            <CardMedia
+                                image = { bvhMainOfficeBuild }
+                                title = 'Центральный офис'
+                                style = {{
+                                    width: '40%',
+                                    margin: '0 auto'
+                                }}
+                            />
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
                             <Maps 
                                 lat = { this.props.main_office.lat}
                                 lng = { this.props.main_office.lng}
                                 zoom = { this.props.zoom }
                                 isMarkerShown
                             />
-                        </CardMedia>
-                    </Collapse>
-                    <CardMedia
-                        style = {{
-                            width: '40%',
-                            margin: '0 auto'
-                        }}
-                    >
-                        <img 
-                            src = { bvhMainOfficeBuild } 
-                        />
-                    </CardMedia>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>   
                 </Card>
                 <Card
                     square = { true }
                     style = { сard }
                 >
                     <CardHeader
-                        title = "Абонентский отдел"
+                        title = 'Абонентский отдел'
                         titleTypographyProps = { сard.subtitle1 }
-                        subheader = "Карта"
+                        subheader = 'Карта'
                         subheaderTypographyProps = { сard.subtitle2 }
                     />
                 </Card>
@@ -123,10 +128,15 @@ class ContactsView extends Component {
     }
 }
 
-export default withStyles(null, { name: 'muiContactsView', flip: false, withTheme: true })(ContactsView);
-export { ContactsView as ContactsViewNotConnected };
+export default withStyles(styles, { name: 'muiContactsView', flip: false, withTheme: true })(ContactsView);
+//export { ContactsView as ContactsViewNotConnected };
 
 /*
+                                <img 
+                                    src = { bvhMainOfficeBuild } 
+                                />
+                            </CardMedia>
+
                 <Card
                     onExpandChange = { this.handleExpandChange }
                     square = { true }

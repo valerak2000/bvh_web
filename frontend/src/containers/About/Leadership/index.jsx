@@ -24,17 +24,12 @@ class LeadershipView extends Component {
     };
 
     state = {
-        expanded: false,
     };
 
     constructor(props, context) {
         super(props, context);
     }
 
-    handleExpandChange = (expanded) => {
-        this.setState({ expanded: expanded} );
-    };
-    
     render() {
         const { сard } = this.props.theme.app;
 
