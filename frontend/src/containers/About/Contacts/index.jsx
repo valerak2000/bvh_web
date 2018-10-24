@@ -9,9 +9,11 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import { Maps } from '../../../components/Maps';
 import PdfLink from '../../../components/PdfLink';
@@ -54,10 +56,16 @@ class ContactsView extends Component {
         super(props, context);
 
         this.state = {
+            expandedMain: false,
+            expandedAbon: false,
         };
     }
 
-    render() {
+    handleExpandMainClick = () => {
+        this.setState(state => ({ expandedMain: !state.expandedMain }));
+    };
+
+      render() {
         const { classes } = this.props;
         const { сard } = this.props.theme.app;
         //const { file, numPages } = this.state;
@@ -83,24 +91,23 @@ class ContactsView extends Component {
                     square = { true }
                     style = { сard }
                 >
-                    <ExpansionPanel>
-                        <ExpansionPanelSummary expandIcon = { <ExpandMoreIcon /> }>
-                            <CardHeader
-                                title = 'Центральный офис'
-                                titleTypographyProps = { сard.subtitle1 }
-                                subheader = 'Карта'
-                                subheaderTypographyProps = { сard.subtitle2 }
-                            />
-                        </ExpansionPanelSummary>
-                        <ExpansionPanelDetails>
+                    <CardHeader
+                        title = 'Центральный офис'
+                        titleTypographyProps = { сard.subtitle1 }
+                        subheader = 'Карта'
+                        subheaderTypographyProps = { сard.subtitle2 }
+                    />
+                    <Collapse in = { this.state.expandedMain } timeout = "auto" unmountOnExit>
+                        <CardMedia
+                        >
                             <Maps 
                                 lat = { this.props.main_office.lat}
                                 lng = { this.props.main_office.lng}
                                 zoom = { this.props.zoom }
                                 isMarkerShown
                             />
-                        </ExpansionPanelDetails>
-                    </ExpansionPanel>   
+                        </CardMedia>
+                    </Collapse>
                     <CardMedia
                         component = 'img'
                         image = { bvhMainOfficeBuild }
@@ -109,6 +116,98 @@ class ContactsView extends Component {
                             classes.media
                         }
                     />
+                    <CardContent
+                        style = { сard.text }
+                    >
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Адрес:</strong>
+                            <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                                352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
+                                адрес сайта: <a href = "http://www.bruvodokanal.ru">http://www.bruvodokanal.ru</a><br />
+                                адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
+                            </p>
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>График работы:</strong>
+                        </p>
+                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                            Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00<br />
+                            Выходной: Суббота и Воскресенье<br />
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Диспетчерская служба</strong>: 
+                        </p>
+                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                            8(86156) 35-117<br />
+                            Круглосуточно, без перерыва и выходных.
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Приемная директора</strong>: 
+                        </p>
+                        <p style = {{ paddingLeft: '4rem', }}>
+                            8(86156) 31-194<br />
+                            Прием населения: Понедельник-пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Главный инженер</strong>: 8(86156) 31-194
+                        </p>
+                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                            Прием населения: Понедельник, Пятница с 08-00 до 12-00.
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Производственно-технический отдел</strong>: 
+                        </p>
+                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                            8(86156) 21-809<br />
+                            Прием населения:
+                        </p>
+                        <div style = {{ margin: '8px auto 8px', paddingLeft: '9rem', }}>
+                            Понедельник с 08-00 до 16-00, перерыв с 12-00 до 13-00<br />
+                            Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00.<br />
+                        </div>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Вывоз жидких коммунальных стоков</strong>: 8(86156)
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Лаборатория</strong>: 8(86156) 31-010
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Юридический отдел</strong>: 8(86156) 21-809
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Бухгалтерия</strong>: 8(86156) 35-200
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Отдел кадров</strong>: 8(86156) 31-194
+                        </p>
+                        <PdfLink 
+                            href = { rekvisity_ooo_bvh } 
+                            label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
+                        />
+                        <PdfLink 
+                            href = { rekvisity_ooo_boos } 
+                            label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
+                        />
+
+                        <ExpansionPanel>
+                            <ExpansionPanelSummary expandIcon = { <ExpandMore /> }>
+                                <CardHeader
+                                    title = 'Центральный офис'
+                                    titleTypographyProps = { сard.subtitle1 }
+                                    subheader = 'Карта'
+                                    subheaderTypographyProps = { сard.subtitle2 }
+                                />
+                            </ExpansionPanelSummary>
+                            <ExpansionPanelDetails>
+                                <Maps 
+                                    lat = { this.props.main_office.lat}
+                                    lng = { this.props.main_office.lng}
+                                    zoom = { this.props.zoom }
+                                    isMarkerShown
+                                />
+                            </ExpansionPanelDetails>
+                        </ExpansionPanel>   
+                    </CardContent>
                 </Card>
                 <Card
                     square = { true }
@@ -193,7 +292,7 @@ export default withStyles(styles, { name: 'muiContactsView', flip: false, withTh
                         Выходной: Суббота и Воскресенье</p>
                     </CardContent>
 
-                    <Collapse in = { this.state.expanded } timeout = "auto" unmountOnExit>
+                    <Collapse in = { this.state.expandedMain } timeout = "auto" unmountOnExit>
                         <CardMedia
                         >
                             <Maps 
