@@ -121,11 +121,11 @@ class ContactsView extends Component {
                     >
                         <p style = {{ margin: '8px auto 8px' }}>
                             <strong>Адрес:</strong>
-                            <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
-                                352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
-                                адрес сайта: <a href = "http://www.bruvodokanal.ru">http://www.bruvodokanal.ru</a><br />
-                                адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
-                            </p>
+                        </p>
+                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                            352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
+                            адрес сайта: <a href = "http://www.bruvodokanal.ru">http://www.bruvodokanal.ru</a><br />
+                            адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
                         </p>
                         <p style = {{ margin: '8px auto 8px' }}>
                             <strong>График работы:</strong>
@@ -142,10 +142,9 @@ class ContactsView extends Component {
                             Круглосуточно, без перерыва и выходных.
                         </p>
                         <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Приемная директора</strong>: 
+                            <strong>Приемная директора</strong>: 8(86156) 31-194
                         </p>
-                        <p style = {{ paddingLeft: '4rem', }}>
-                            8(86156) 31-194<br />
+                        <p style = {{  margin: '8px auto 8px', paddingLeft: '4rem', }}>
                             Прием населения: Понедельник-пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
                         </p>
                         <p style = {{ margin: '8px auto 8px' }}>
@@ -159,10 +158,9 @@ class ContactsView extends Component {
                         </p>
                         <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
                             8(86156) 21-809<br />
-                            Прием населения:
+                            Прием населения: Понедельник с 08-00 до 16-00, перерыв с 12-00 до 13-00
                         </p>
                         <div style = {{ margin: '8px auto 8px', paddingLeft: '9rem', }}>
-                            Понедельник с 08-00 до 16-00, перерыв с 12-00 до 13-00<br />
                             Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00.<br />
                         </div>
                         <p style = {{ margin: '8px auto 8px' }}>
