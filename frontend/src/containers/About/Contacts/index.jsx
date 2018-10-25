@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+import CardActions from '@material-ui/core/CardActions';
+import CardActionArea from '@material-ui/core/CardActionArea';
+//import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+//import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+//import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+//import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
-import { Maps } from '../../../components/Maps';
+import Loader from '../../../components/loaders';
+//import { Maps } from '../../../components/Maps';
 import PdfLink from '../../../components/PdfLink';
+
+const MapsComponent = Loader(() =>
+  import(/* webpackChunkName: "Maps" */ '../../../components/Maps.jsx')
+);
 
 const bvhMainOfficeBuild = '/static/images/main_office.jpg';
 const bvhAbonentsOfficeBuild = '/static/images/abon_office.jpg';
@@ -31,6 +40,19 @@ const styles = theme => ({
         objectFit: 'contain',
         margin: '0 auto',
         backgroundSize: 'contain',
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+        marginLeft: 'auto',
+        [theme.breakpoints.up('sm')]: {
+            marginRight: -8,
+        },
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
     },
 });
   
@@ -96,7 +118,51 @@ class ContactsView extends Component {
                         titleTypographyProps = { сard.subtitle1 }
                         subheader = 'Карта'
                         subheaderTypographyProps = { сard.subtitle2 }
+                        action={
+                            <IconButton
+                                onClick = { this.handleExpandMainClick }
+                            >
+                                { this.state.expandedMain ? <ExpandLess /> : <ExpandMore /> }
+                            </IconButton>
+                        }
                     />
+                    <Collapse in = { this.state.expandedMain } timeout = "auto" unmountOnExit>
+                        <MapsComponent 
+                            lat = { this.props.main_office.lat}
+                            lng = { this.props.main_office.lng}
+                            zoom = { this.props.zoom }
+                            isMarkerShown
+                        />
+                    </Collapse>
+                    <CardActionArea
+                    >
+                    </CardActionArea>
+                </Card>
+            </Card>
+        );
+    }
+}
+
+export default withStyles(styles, { name: 'muiContactsView', flip: false, withTheme: true })(ContactsView);
+//export { ContactsView as ContactsViewNotConnected };
+
+/*
+
+
+                    <CardActions disableActionSpacing>
+                        <IconButton
+                            className = { 
+                                classnames(classes.expand, {
+                                    [classes.expandOpen]: this.state.expandedMain,
+                            })}
+                            onClick = { this.handleExpandMainClick }
+                            aria-expanded = { this.state.expandedMain }
+                            aria-label = 'Карта'
+                        >
+                            <ExpandMore />
+                        </IconButton>
+                    </CardActions>
+
                     <Collapse in = { this.state.expandedMain } timeout = "auto" unmountOnExit>
                         <CardMedia
                         >
@@ -124,7 +190,6 @@ class ContactsView extends Component {
                         </p>
                         <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
                             352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
-                            адрес сайта: <a href = "http://www.bruvodokanal.ru">http://www.bruvodokanal.ru</a><br />
                             адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
                         </p>
                         <p style = {{ margin: '8px auto 8px' }}>
@@ -132,7 +197,7 @@ class ContactsView extends Component {
                         </p>
                         <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
                             Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00<br />
-                            Выходной: Суббота и Воскресенье<br />
+                            Выходной: Суббота, Воскресенье
                         </p>
                         <p style = {{ margin: '8px auto 8px' }}>
                             <strong>Диспетчерская служба</strong>: 
@@ -142,15 +207,13 @@ class ContactsView extends Component {
                             Круглосуточно, без перерыва и выходных.
                         </p>
                         <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Приемная директора</strong>: 8(86156) 31-194
-                        </p>
-                        <p style = {{  margin: '8px auto 8px', paddingLeft: '4rem', }}>
-                            Прием населения: Понедельник-пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
+                            <strong>Приемная директора</strong>: 8(86156) 31-194<br />
                         </p>
                         <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Главный инженер</strong>: 8(86156) 31-194
+                            <strong>Главный инженер</strong>:
                         </p>
                         <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                            8(86156) 31-194<br />
                             Прием населения: Понедельник, Пятница с 08-00 до 12-00.
                         </p>
                         <p style = {{ margin: '8px auto 8px' }}>
@@ -158,13 +221,12 @@ class ContactsView extends Component {
                         </p>
                         <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
                             8(86156) 21-809<br />
-                            Прием населения: Понедельник с 08-00 до 16-00, перерыв с 12-00 до 13-00
+                            Прием населения: Понедельник, Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
                         </p>
                         <div style = {{ margin: '8px auto 8px', paddingLeft: '9rem', }}>
-                            Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00.<br />
                         </div>
                         <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Вывоз жидких коммунальных стоков</strong>: 8(86156)
+                            <strong>Вывоз жидких коммунальных стоков</strong>: 8(86156) 35-117
                         </p>
                         <p style = {{ margin: '8px auto 8px' }}>
                             <strong>Лаборатория</strong>: 8(86156) 31-010
@@ -187,7 +249,21 @@ class ContactsView extends Component {
                             label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
                         />
 
-                        <ExpansionPanel>
+                    </CardContent>
+                </Card>
+                <Card
+                    square = { true }
+                    style = { сard }
+                >
+                    <CardHeader
+                        title = 'Абонентский отдел'
+                        titleTypographyProps = { сard.subtitle1 }
+                        subheader = 'Карта'
+                        subheaderTypographyProps = { сard.subtitle2 }
+                    />
+                </Card>
+
+                    <ExpansionPanel>
                             <ExpansionPanelSummary expandIcon = { <ExpandMore /> }>
                                 <CardHeader
                                     title = 'Центральный офис'
@@ -205,32 +281,6 @@ class ContactsView extends Component {
                                 />
                             </ExpansionPanelDetails>
                         </ExpansionPanel>   
-                    </CardContent>
-                </Card>
-                <Card
-                    square = { true }
-                    style = { сard }
-                >
-                    <CardHeader
-                        title = 'Абонентский отдел'
-                        titleTypographyProps = { сard.subtitle1 }
-                        subheader = 'Карта'
-                        subheaderTypographyProps = { сard.subtitle2 }
-                    />
-                </Card>
-            </Card>
-        );
-    }
-}
-
-export default withStyles(styles, { name: 'muiContactsView', flip: false, withTheme: true })(ContactsView);
-//export { ContactsView as ContactsViewNotConnected };
-
-/*
-                                <img 
-                                    src = { bvhMainOfficeBuild } 
-                                />
-                            </CardMedia>
 
                 <Card
                     onExpandChange = { this.handleExpandChange }

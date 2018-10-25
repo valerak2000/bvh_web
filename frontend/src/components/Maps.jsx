@@ -3,8 +3,10 @@ import React from 'react';
 import { compose, withProps, lifecycle } from 'recompose';
 import withTheme from '@material-ui/core/styles/withTheme';
 import { YMaps, Map, Placemark, ZoomControl } from 'react-yandex-maps';
+import Loader from '../components/loaders';
 
-export const Maps = compose(
+const YndxMaps = compose(
+    Loader,
     withProps({
     }),
     withTheme(),
@@ -33,8 +35,12 @@ export const Maps = compose(
     </YMaps>
 ));
 
-/*
+//const Maps = Loader(YndxMaps);
 
+export default YndxMaps;
+export { YndxMaps as Maps };
+
+/*
 export const Maps = compose(
     withProps({
       googleMapURL:
