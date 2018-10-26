@@ -3,41 +3,31 @@ import { compose, withProps, lifecycle } from 'recompose';
 import withTheme from '@material-ui/core/styles/withTheme';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
-const YndxMaps = compose(
-    Loader,
-    withProps({
-    }),
+export const YndxMaps = compose(
     withTheme(),
- )(props => (
-    <YMaps
-        style = {{
-            width: '100%',
-            height: '100%',
-    >
-        <Map
-            state = {{
-                center: [props.lat, props.lng],
-                zoom: props.zoom,
-                controls: ['zoomControl'],
-            }}
-            modules = { ['control.ZoomControl'] }
-        >
-            { props.isMarkerShown 
-                <Placemark
-                    geometry = { [props.lat, props.lng] } 
-                />
-            )}
-        </Map>
-    </YMaps>
-));
+)(props => {
     const mapState = {
+        center: [props.lat, props.lng],
+        zoom: props.zoom,
+        controls: ['zoomControl', 'fullscreenControl'],
     };
 
+    return (
+        <YMaps>
+            <Map
+                state = { mapState }
+                modules= { ['control.ZoomControl', 'control.FullscreenControl'] }
             >
             { 
+                props.isMarkerShown 
+                && (<Placemark
+                        modules = { ['geoObject.addon.balloon'] }
+                        defaultGeometry = { mapState.center }
+                        properties = {{
                             hintContent: 'Главный офис',
                             balloonContent: props.balloonContent
                         }}
+                    />)
             }
             </Map>
         </YMaps>
