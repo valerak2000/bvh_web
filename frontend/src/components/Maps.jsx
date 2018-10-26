@@ -1,9 +1,7 @@
-import React from 'react';
-//import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
 import { compose, withProps, lifecycle } from 'recompose';
 import withTheme from '@material-ui/core/styles/withTheme';
-import { YMaps, Map, Placemark, ZoomControl } from 'react-yandex-maps';
-import Loader from '../components/loaders';
+import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 const YndxMaps = compose(
     Loader,
@@ -15,7 +13,6 @@ const YndxMaps = compose(
         style = {{
             width: '100%',
             height: '100%',
-        }}
     >
         <Map
             state = {{
@@ -26,7 +23,6 @@ const YndxMaps = compose(
             modules = { ['control.ZoomControl'] }
         >
             { props.isMarkerShown 
-            && (
                 <Placemark
                     geometry = { [props.lat, props.lng] } 
                 />
@@ -34,7 +30,19 @@ const YndxMaps = compose(
         </Map>
     </YMaps>
 ));
+    const mapState = {
+    };
 
+            >
+            { 
+                            hintContent: 'Главный офис',
+                            balloonContent: props.balloonContent
+                        }}
+            }
+            </Map>
+        </YMaps>
+    );
+});
 //const Maps = Loader(YndxMaps);
 
 export default YndxMaps;

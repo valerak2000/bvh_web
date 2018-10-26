@@ -87,7 +87,7 @@ class ContactsView extends Component {
         this.setState(state => ({ expandedMain: !state.expandedMain }));
     };
 
-      render() {
+    render() {
         const { classes } = this.props;
         const { сard } = this.props.theme.app;
         //const { file, numPages } = this.state;
@@ -118,7 +118,7 @@ class ContactsView extends Component {
                         titleTypographyProps = { сard.subtitle1 }
                         subheader = 'Карта'
                         subheaderTypographyProps = { сard.subtitle2 }
-                        action={
+                        action = {
                             <IconButton
                                 onClick = { this.handleExpandMainClick }
                             >
@@ -127,16 +127,14 @@ class ContactsView extends Component {
                         }
                     />
                     <Collapse in = { this.state.expandedMain } timeout = "auto" unmountOnExit>
-                        <MapsComponent 
+                        <MapsComponent
                             lat = { this.props.main_office.lat}
                             lng = { this.props.main_office.lng}
                             zoom = { this.props.zoom }
+                            balloonContent = '352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196'
                             isMarkerShown
                         />
                     </Collapse>
-                    <CardActionArea
-                    >
-                    </CardActionArea>
                 </Card>
             </Card>
         );
@@ -147,6 +145,16 @@ export default withStyles(styles, { name: 'muiContactsView', flip: false, withTh
 //export { ContactsView as ContactsViewNotConnected };
 
 /*
+                        <Maps
+                            lat = { this.props.main_office.lat}
+                            lng = { this.props.main_office.lng}
+                            zoom = { this.props.zoom }
+                            isMarkerShown
+                        />
+
+                    <CardActionArea
+                    >
+                    </CardActionArea>
 
 
                     <CardActions disableActionSpacing>
