@@ -71,7 +71,7 @@ class ContactsView extends Component {
             lat: 45.806224,
             lng: 39.007790,
         },
-        zoom: 17,
+        zoom: 16,
     };
 
     constructor(props, context) {
@@ -113,28 +113,47 @@ class ContactsView extends Component {
                     square = { true }
                     style = { сard }
                 >
-                    <CardHeader
-                        title = 'Центральный офис'
-                        titleTypographyProps = { сard.subtitle1 }
-                        subheader = 'Карта'
-                        subheaderTypographyProps = { сard.subtitle2 }
-                        action = {
-                            <IconButton
-                                onClick = { this.handleExpandMainClick }
-                            >
-                                { this.state.expandedMain ? <ExpandLess /> : <ExpandMore /> }
-                            </IconButton>
-                        }
-                    />
-                    <Collapse in = { this.state.expandedMain } timeout = "auto" unmountOnExit>
-                        <MapsComponent
-                            lat = { this.props.main_office.lat}
-                            lng = { this.props.main_office.lng}
-                            zoom = { this.props.zoom }
-                            balloonContent = '352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196'
-                            isMarkerShown
-                        />
-                    </Collapse>
+                    <CardActionArea
+                        onClick = { this.handleExpandMainClick }
+                        style = {{ width: '100%' }}
+                    >
+                        <div
+                            style = {{
+                                padding: 16,
+                                boxSizing: 'border-box',
+                                position: 'relative',
+                                whiteSpace: 'nowrap',
+                            }}
+                        >
+                            <CardHeader
+                                title = 'Центральный офис'
+                                titleTypographyProps = { сard.subtitle1 }
+                                subheader = 'Карта'
+                                subheaderTypographyProps = { сard.subtitle2 }
+                            />
+                            { this.state.expandedMain ? <ExpandLess /> : <ExpandMore /> }
+                        </div>
+                    </CardActionArea>
+
+<div style={{padding: 16, fontWeight: 500, boxSizing: 'border-box', position: 'relative',
+ whiteSpace: 'nowrap', cursor: 'pointer'}}>
+ <div style={{display: 'inline-block', verticalAlign: 'top', whiteSpace: 'normal', paddingRight: 90}}>
+    <span style={{display: 'block', fontSize: 20}}>Центральный офис</span>
+    <span style={{display: 'block', fontSize: 14}}>Карта</span>
+ </div>
+        { this.state.expandedMain ? <ExpandLess /> : <ExpandMore /> }
+</div>
+
+                        <Collapse in = { this.state.expandedMain } timeout = "auto" unmountOnExit>
+                            <MapsComponent
+                                lat = { this.props.main_office.lat}
+                                lng = { this.props.main_office.lng}
+                                zoom = { this.props.zoom }
+                                balloonContent = '352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196'
+                                isMarkerShown
+                            />
+                        </Collapse>
+
                 </Card>
             </Card>
         );
@@ -145,17 +164,30 @@ export default withStyles(styles, { name: 'muiContactsView', flip: false, withTh
 //export { ContactsView as ContactsViewNotConnected };
 
 /*
-                        <Maps
-                            lat = { this.props.main_office.lat}
-                            lng = { this.props.main_office.lng}
-                            zoom = { this.props.zoom }
-                            isMarkerShown
-                        />
+<div style={{padding: 16, fontWeight: 500, boxSizing: 'border-box', position: 'relative',
+ whiteSpace: 'nowrap', cursor: 'pointer'}}>
+ <div style={{display: 'inline-block', verticalAlign: 'top', whiteSpace: 'normal', paddingRight: 90}}>
+    <span style={{display: 'block', fontSize: 20}}>Центральный офис</span>
+    <span style={{display: 'block', fontSize: 14}}>Карта</span>
+ </div>
+<button tabindex="0" type="button" style={{border: 10, boxSizing: 'border-box', display: 'inline-block', fontFamily: 'pfbeausanspro-reg, sans-serif', cursor: 'pointer', textDecoration: 'none', margin: 'auto', padding: 12, outline: 'none', fontSize: 0, fontWeight: 'inherit', position: 'absolute', overflow: 'visible', transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
+     width: 48, height: 48, top: 0, bottom: 0, right: 4, background: 'none'}}>
+    <div>
+        { this.state.expandedMain ? <ExpandLess /> : <ExpandMore /> }
+    </div>
+</button>
+</div>
 
-                    <CardActionArea
-                    >
-                    </CardActionArea>
+<CardContent>
+                        <CardHeader
+                                title = 'Центральный офис'
+                                titleTypographyProps = { сard.subtitle1 }
+                                subheader = 'Карта'
+                                subheaderTypographyProps = { сard.subtitle2 }
+                            />
+                            { this.state.expandedMain ? <ExpandLess /> : <ExpandMore /> }
 
+                        </CardContent>
 
                     <CardActions disableActionSpacing>
                         <IconButton

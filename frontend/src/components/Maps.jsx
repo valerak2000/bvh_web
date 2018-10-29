@@ -13,10 +13,11 @@ export const YndxMaps = compose(
     };
 
     return (
-        <YMaps>
+        <YMaps >
             <Map
                 state = { mapState }
                 modules= { ['control.ZoomControl', 'control.FullscreenControl'] }
+                style = {{ height: '400px' }}
             >
             { 
                 props.isMarkerShown 
