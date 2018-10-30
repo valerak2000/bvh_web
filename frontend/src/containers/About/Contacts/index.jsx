@@ -12,7 +12,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 //import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 //import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 //import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+//import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
@@ -119,7 +120,6 @@ class ContactsView extends Component {
                     >
                         <div
                             style = {{
-                                padding: 16,
                                 boxSizing: 'border-box',
                                 position: 'relative',
                                 whiteSpace: 'nowrap',
@@ -130,30 +130,103 @@ class ContactsView extends Component {
                                 titleTypographyProps = { сard.subtitle1 }
                                 subheader = 'Карта'
                                 subheaderTypographyProps = { сard.subtitle2 }
+                                style = {{
+                                    display: 'inline-block',
+                                    verticalAlign: 'top',
+                                    whiteSpace: 'normal',
+                                    paddingTop: 0,
+                                    paddingBottom: 0,
+                                    paddingRight: 90,
+                                }}
                             />
-                            { this.state.expandedMain ? <ExpandLess /> : <ExpandMore /> }
+                            <span
+                                style = {{
+                                    position: 'absolute',
+                                    top: '0.5rem',
+                                    right: 4,
+                                    height: '100%',
+                                }}                            
+                            >
+                                { this.state.expandedMain ? <ExpandLess /> : <ExpandMore /> }
+                            </span>
                         </div>
                     </CardActionArea>
-
-<div style={{padding: 16, fontWeight: 500, boxSizing: 'border-box', position: 'relative',
- whiteSpace: 'nowrap', cursor: 'pointer'}}>
- <div style={{display: 'inline-block', verticalAlign: 'top', whiteSpace: 'normal', paddingRight: 90}}>
-    <span style={{display: 'block', fontSize: 20}}>Центральный офис</span>
-    <span style={{display: 'block', fontSize: 14}}>Карта</span>
- </div>
-        { this.state.expandedMain ? <ExpandLess /> : <ExpandMore /> }
-</div>
-
-                        <Collapse in = { this.state.expandedMain } timeout = "auto" unmountOnExit>
-                            <MapsComponent
-                                lat = { this.props.main_office.lat}
-                                lng = { this.props.main_office.lng}
-                                zoom = { this.props.zoom }
-                                balloonContent = '352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196'
-                                isMarkerShown
-                            />
-                        </Collapse>
-
+                    <Collapse in = { this.state.expandedMain } timeout = "auto" unmountOnExit>
+                        <MapsComponent
+                            lat = { this.props.main_office.lat}
+                            lng = { this.props.main_office.lng}
+                            zoom = { this.props.zoom }
+                            balloonContent = '352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196'
+                            isMarkerShown
+                        />
+                    </Collapse>
+                    <CardContent
+                        style = { сard.text }
+                    >
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Адрес:</strong>
+                        </p>
+                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                            352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
+                            адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>График работы:</strong>
+                        </p>
+                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                            Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00<br />
+                            Выходной: Суббота, Воскресенье
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Диспетчерская служба</strong>: 
+                        </p>
+                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                            8(86156) 35-117<br />
+                            Круглосуточно, без перерыва и выходных.
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Приемная директора</strong>: 8(86156) 31-194<br />
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Главный инженер</strong>:
+                        </p>
+                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                            8(86156) 31-194<br />
+                            Прием населения: Понедельник, Пятница с 08-00 до 12-00.
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Производственно-технический отдел</strong>: 
+                        </p>
+                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                            8(86156) 21-809<br />
+                            Прием населения: Понедельник, Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
+                        </p>
+                        <div style = {{ margin: '8px auto 8px', paddingLeft: '9rem', }}>
+                        </div>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Вывоз жидких коммунальных стоков</strong>: 8(86156) 35-117
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Лаборатория</strong>: 8(86156) 31-010
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Юридический отдел</strong>: 8(86156) 21-809
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Бухгалтерия</strong>: 8(86156) 35-200
+                        </p>
+                        <p style = {{ margin: '8px auto 8px' }}>
+                            <strong>Отдел кадров</strong>: 8(86156) 31-194
+                        </p>
+                        <PdfLink 
+                            href = { rekvisity_ooo_bvh } 
+                            label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
+                        />
+                        <PdfLink 
+                            href = { rekvisity_ooo_boos } 
+                            label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
+                        />
+                    </CardContent>
                 </Card>
             </Card>
         );
@@ -164,64 +237,6 @@ export default withStyles(styles, { name: 'muiContactsView', flip: false, withTh
 //export { ContactsView as ContactsViewNotConnected };
 
 /*
-<div style={{padding: 16, fontWeight: 500, boxSizing: 'border-box', position: 'relative',
- whiteSpace: 'nowrap', cursor: 'pointer'}}>
- <div style={{display: 'inline-block', verticalAlign: 'top', whiteSpace: 'normal', paddingRight: 90}}>
-    <span style={{display: 'block', fontSize: 20}}>Центральный офис</span>
-    <span style={{display: 'block', fontSize: 14}}>Карта</span>
- </div>
-<button tabindex="0" type="button" style={{border: 10, boxSizing: 'border-box', display: 'inline-block', fontFamily: 'pfbeausanspro-reg, sans-serif', cursor: 'pointer', textDecoration: 'none', margin: 'auto', padding: 12, outline: 'none', fontSize: 0, fontWeight: 'inherit', position: 'absolute', overflow: 'visible', transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-     width: 48, height: 48, top: 0, bottom: 0, right: 4, background: 'none'}}>
-    <div>
-        { this.state.expandedMain ? <ExpandLess /> : <ExpandMore /> }
-    </div>
-</button>
-</div>
-
-<CardContent>
-                        <CardHeader
-                                title = 'Центральный офис'
-                                titleTypographyProps = { сard.subtitle1 }
-                                subheader = 'Карта'
-                                subheaderTypographyProps = { сard.subtitle2 }
-                            />
-                            { this.state.expandedMain ? <ExpandLess /> : <ExpandMore /> }
-
-                        </CardContent>
-
-                    <CardActions disableActionSpacing>
-                        <IconButton
-                            className = { 
-                                classnames(classes.expand, {
-                                    [classes.expandOpen]: this.state.expandedMain,
-                            })}
-                            onClick = { this.handleExpandMainClick }
-                            aria-expanded = { this.state.expandedMain }
-                            aria-label = 'Карта'
-                        >
-                            <ExpandMore />
-                        </IconButton>
-                    </CardActions>
-
-                    <Collapse in = { this.state.expandedMain } timeout = "auto" unmountOnExit>
-                        <CardMedia
-                        >
-                            <Maps 
-                                lat = { this.props.main_office.lat}
-                                lng = { this.props.main_office.lng}
-                                zoom = { this.props.zoom }
-                                isMarkerShown
-                            />
-                        </CardMedia>
-                    </Collapse>
-                    <CardMedia
-                        component = 'img'
-                        image = { bvhMainOfficeBuild }
-                        title = 'Центральный офис'
-                        className = {
-                            classes.media
-                        }
-                    />
                     <CardContent
                         style = { сard.text }
                     >
