@@ -36,6 +36,7 @@ export var muiTheme = createMuiTheme({
         //canvasColor: Colors.teal200,
     },
     typography: {
+        useNextVariants: true,
         fontFamily: [
             'pfbeausanspro-reg',
             'sans-serif',
@@ -43,24 +44,24 @@ export var muiTheme = createMuiTheme({
         fontSize: 16,
         fontWeight: 500,
         htmlFontSize: 16,
-        title: {
-            fontSize: 30,
-            fontWeight: 500,
-        },
-        headline: {
-            fontSize: 24,
-            fontWeight: 500,
-        },
-        subheading: {
+        subtitle1: {
             fontSize: 22,
             fontWeight: 500,
         },
-        display1: {
+        h3: {
+            fontSize: 18,
+            fontWeight: 500,
+        },
+        h4: {
             fontSize: 20,
             fontWeight: 500,
         },
-        display2: {
-            fontSize: 18,
+        h5: {
+            fontSize: 24,
+            fontWeight: 500,
+        },
+        h6: {
+            fontSize: 30,
             fontWeight: 500,
         },
         body1: {
@@ -89,29 +90,25 @@ export var muiTheme = createMuiTheme({
             //minHeight: '32rem',
             height: '100%',
             title: {
-                variant: 'title',
+                variant: 'h6',
                 color: 'primary',
             },
             headline: {
-                variant: 'headline',
+                variant: 'h5',
                 color: 'primary',
             },
             subheader: {
-                variant: 'subheading',
+                variant: 'subtitle1',
                 color: 'primary',
             },
             subtitle1: {
-                variant: 'display1',
+                variant: 'h4',
                 color: 'primary',
             },
             subtitle2: {
-                variant: 'display2',
+                variant: 'h3',
                 color: 'primary',
             },
-            /*header1: {
-                variant: 'subheading',
-                fontSize: 20,
-            },*/
             text: {
                 fontSize: 16,
             },
@@ -205,11 +202,11 @@ export var muiTheme = createMuiTheme({
             width: '28%',
         },
         footer: {
-            backgroundColor: blue[800], //teal200,
+            backgroundColor: blue[900], //teal200,
             bottomNavigation: {
                 position: 'space-around',
                 height: '4rem',
-                backgroundColor: blue[800], //teal200,
+                backgroundColor: blue[900], //teal200,
                 button: {
                     color: grey[50],
                     maxWidth: '24rem',

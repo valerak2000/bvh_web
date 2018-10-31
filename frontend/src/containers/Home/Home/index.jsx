@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -15,57 +17,46 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
 
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const bvhLogo = '/static/images/water-glass-and-faucet.png';
 const bvhVodozaborMashZal = '/static/images/vodozab1_mash.jpg';
 const bvhOchstnye1 = '/static/images/ochist1.jpg';
 const bvhOchstnye2 = '/static/images/ochist2.jpg';
 const bvhOchstnyeLaba = '/static/images/ochist_lab.jpg';
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const splashSteps = [
-  {
-    label: 'Водопровод',
-    imgPath: bvhLogo,
-  },
-  {
-    label: 'Водозабор, машинный зал',
-    imgPath: bvhVodozaborMashZal,
-  },
-  {
-    label: 'Очистные, ',
-    imgPath: bvhOchstnye1,
-  },
-  {
-    label: 'Очистные, ',
-    imgPath: bvhOchstnye2,
-  },
-  {
-    label: 'Очистные, лаборатория',
-    imgPath: bvhOchstnyeLaba,
-  },
+    {
+        label: 'Водопровод',
+        imgPath: bvhLogo,
+    },
+    {
+        label: 'Водозабор, Насосный зал',
+        imgPath: bvhVodozaborMashZal,
+    },
+    {
+        label: 'Очистные, Аэротенк',
+        imgPath: bvhOchstnye1,
+    },
+    {
+        label: 'Очистные, Отстойник ',
+        imgPath: bvhOchstnye2,
+    },
+    {
+        label: 'Очистные, Лаборатория',
+        imgPath: bvhOchstnyeLaba,
+    },
 ];
 
 const styles = theme => ({
-    root: {
-      maxWidth: 400,
-      flexGrow: 1,
-    },
-    header: {
-      display: 'flex',
-      alignItems: 'center',
-      height: 50,
-      paddingLeft: theme.spacing.unit * 4,
-      backgroundColor: theme.palette.background.default,
-    },
     img: {
-      height: 255,
+      height: 350,
       display: 'block',
-      maxWidth: 400,
+      //maxWidth: 400,
       overflow: 'hidden',
       width: '100%',
+      margin: '0 auto',
+      objectFit: 'contain',
     },
 });
   
@@ -129,6 +120,10 @@ class HomeView extends Component {
                 square = { true }
                 style = { сard }
             >
+                <CardHeader
+                    title = 'Брюховецкий водоканал'
+                    titleTypographyProps = { сard.title }
+                />
                 <CardContent
                     style = { сard.text }
                 >
@@ -136,17 +131,21 @@ class HomeView extends Component {
                         axis = { theme.direction === 'rtl' ? 'x-reverse' : 'x' }
                         index = { activeStep }
                         onChangeIndex = { this.handleStepChange }
+                        interval = { 10000 }
                         enableMouseEvents
-                        style = {{
-                            margin: '0 auto'
-                        }}
                     >
                         {
                             splashSteps.map((step, index) => (
-                            <div key = { step.label }>
+                            <div
+                                key = { step.label }
+                            >
                             {
                                 Math.abs(activeStep - index) <= 2 ? (
-                                    <img className = { classes.img } src = { step.imgPath } alt = { step.label } />
+                                    <img
+                                        className = { classes.img }
+                                        src = { step.imgPath }
+                                        alt = { step.label }
+                                    />
                                 ) : null 
                             }
                             </div>
@@ -154,27 +153,25 @@ class HomeView extends Component {
                     </AutoPlaySwipeableViews>
                     <MobileStepper
                         steps = { maxSteps }
-                        position = "static"
+                        position = 'static'
                         activeStep = { activeStep }
                         className = { classes.mobileStepper }
                         nextButton = {
                             <Button
-                                size = "small"
+                                size = 'small'
                                 onClick = { this.handleNext }
                                 disabled = { activeStep === maxSteps - 1 }
                             >
-                                Next
                                 { theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight /> }
                             </Button>
                         }
                         backButton = {
                             <Button
-                                size="small"
+                                size = 'small'
                                 onClick = { this.handleBack }
                                 disabled = { activeStep === 0 }
                             >
                                 { theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft /> }
-                                Back
                             </Button>
                         }
                     />

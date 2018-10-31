@@ -54,7 +54,7 @@ class Footer extends Component {
                     style = { footer.bottomNavigation }
                 >
                     <BottomNavigationAction
-                        label = '© 2018 ООО «Брюховецкое водопроводное хозяйство»'
+                        label = '© 2018 ООО «БВХ», ООО «БООС»'
                         icon = { <Home /> }
                         value = 'home'
                         component = { Link } to = '/'
