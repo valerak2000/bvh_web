@@ -15,7 +15,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 //import Button from '@material-ui/core/Button';
 //import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+//import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -37,12 +37,15 @@ const styles = theme => ({
     media: {
         boxShadow: '',
         width: '40%',
-        height: 277,
+        //height: 277,
         objectFit: 'contain',
         margin: '0 auto',
         backgroundSize: 'contain',
     },
-    expand: {
+    text: {
+        margin: 'auto auto auto 2rem',
+    },
+    /*expand: {
         transform: 'rotate(0deg)',
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
@@ -54,7 +57,7 @@ const styles = theme => ({
     },
     expandOpen: {
         transform: 'rotate(180deg)',
-    },
+    },*/
 });
   
 class ContactsView extends Component {
@@ -88,10 +91,14 @@ class ContactsView extends Component {
         this.setState(state => ({ expandedMain: !state.expandedMain }));
     };
 
+    handleExpandAbonClick = () => {
+        this.setState(state => ({ expandedAbon: !state.expandedAbon }));
+    };
+
     render() {
         const { classes } = this.props;
         const { сard } = this.props.theme.app;
-        //const { file, numPages } = this.state;
+        const { subParagraf } = this.props.theme;
 
         return (
             <Card
@@ -110,9 +117,8 @@ class ContactsView extends Component {
                     subheader = 'ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»'
                     subheaderTypographyProps = { сard.headline }
                 />
-                <Card
-                    square = { true }
-                    style = { сard }
+                <CardContent
+                    style = { сard.text }
                 >
                     <CardActionArea
                         onClick = { this.handleExpandMainClick }
@@ -151,7 +157,7 @@ class ContactsView extends Component {
                             </span>
                         </div>
                     </CardActionArea>
-                    <Collapse in = { this.state.expandedMain } timeout = "auto" unmountOnExit>
+                    <Collapse in = { this.state.expandedMain } timeout = 'auto' unmountOnExit>
                         <MapsComponent
                             lat = { this.props.main_office.lat}
                             lng = { this.props.main_office.lng}
@@ -160,74 +166,132 @@ class ContactsView extends Component {
                             isMarkerShown
                         />
                     </Collapse>
-                    <CardContent
-                        style = { сard.text }
+                    <CardMedia
+                        component = 'img'
+                        src = { bvhMainOfficeBuild }
+                        title = 'Центральный офис'
+                        className = { classes.media }
+                    />
+                    <Typography
+                        variant = { сard.text }
+                        className = { classes.text }
                     >
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Адрес:</strong>
-                        </p>
-                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                        <p><strong>Адрес:</strong></p>
+                        <p style = { subParagraf }>
                             352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
                             адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
                         </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>График работы:</strong>
-                        </p>
-                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                        <p><strong>График работы:</strong></p>
+                        <p style = { subParagraf }>
                             Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00<br />
                             Выходной: Суббота, Воскресенье
                         </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Диспетчерская служба</strong>: 
-                        </p>
-                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                        <p><strong>Диспетчерская служба</strong>:</p>
+                        <p style = { subParagraf }>
                             8(86156) 35-117<br />
                             Круглосуточно, без перерыва и выходных.
                         </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Приемная директора</strong>: 8(86156) 31-194<br />
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Главный инженер</strong>:
-                        </p>
-                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                        <p><strong>Приемная директора</strong>: 8(86156) 31-194<br /></p>
+                        <p><strong>Главный инженер</strong>:</p>
+                        <p style = { subParagraf }>
                             8(86156) 31-194<br />
                             Прием населения: Понедельник, Пятница с 08-00 до 12-00.
                         </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Производственно-технический отдел</strong>: 
-                        </p>
-                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
+                        <p><strong>Производственно-технический отдел</strong>: </p>
+                        <p style = { subParagraf }>
                             8(86156) 21-809<br />
                             Прием населения: Понедельник, Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
                         </p>
-                        <div style = {{ margin: '8px auto 8px', paddingLeft: '9rem', }}>
+                        <p><strong>Вывоз жидких коммунальных стоков</strong>: 8(86156) 35-117</p>
+                        <p><strong>Лаборатория</strong>: 8(86156) 31-010</p>
+                        <p><strong>Юридический отдел</strong>: 8(86156) 21-809</p>
+                        <p><strong>Бухгалтерия</strong>: 8(86156) 35-200</p>
+                        <p><strong>Отдел кадров</strong>: 8(86156) 31-194</p>
+                    </Typography>
+
+                    <PdfLink 
+                        href = { rekvisity_ooo_bvh } 
+                        label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
+                    />
+                    <PdfLink 
+                        href = { rekvisity_ooo_boos } 
+                        label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
+                    />
+                </CardContent>
+                <CardContent
+                    style = { сard.text }
+                >
+                    <CardActionArea
+                        onClick = { this.handleExpandAbonClick }
+                        style = {{ width: '100%' }}
+                    >
+                        <div
+                            style = {{
+                                boxSizing: 'border-box',
+                                position: 'relative',
+                                whiteSpace: 'nowrap',
+                            }}
+                        >
+                            <CardHeader
+                                title = 'Абонентский отдел'
+                                titleTypographyProps = { сard.subtitle1 }
+                                subheader = 'Карта'
+                                subheaderTypographyProps = { сard.subtitle2 }
+                                style = {{
+                                    display: 'inline-block',
+                                    verticalAlign: 'top',
+                                    whiteSpace: 'normal',
+                                    paddingTop: 0,
+                                    paddingBottom: 0,
+                                    paddingRight: 90,
+                                }}
+                            />
+                            <span
+                                style = {{
+                                    position: 'absolute',
+                                    top: '0.5rem',
+                                    right: 4,
+                                    height: '100%',
+                                }}                            
+                            >
+                                { this.state.expandedAbon ? <ExpandLess /> : <ExpandMore /> }
+                            </span>
                         </div>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Вывоз жидких коммунальных стоков</strong>: 8(86156) 35-117
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Лаборатория</strong>: 8(86156) 31-010
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Юридический отдел</strong>: 8(86156) 21-809
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Бухгалтерия</strong>: 8(86156) 35-200
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Отдел кадров</strong>: 8(86156) 31-194
-                        </p>
-                        <PdfLink 
-                            href = { rekvisity_ooo_bvh } 
-                            label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
+                    </CardActionArea>
+                    <Collapse in = { this.state.expandedAbon } timeout = 'auto' unmountOnExit>
+                        <MapsComponent
+                            lat = { this.props.abon_office.lat }
+                            lng = { this.props.abon_office.lng }
+                            zoom = { this.props.zoom }
+                            balloonContent = '352750, Краснодарский край, ул. Советская, 56, здание БТИ'
+                            isMarkerShown
                         />
-                        <PdfLink 
-                            href = { rekvisity_ooo_boos } 
-                            label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
-                        />
-                    </CardContent>
-                </Card>
+                    </Collapse>
+                    <CardMedia
+                        component = 'img'
+                        src = { bvhAbonentsOfficeBuild }
+                        title = 'Абонентский отдел'
+                        className = { classes.media }
+                    />
+                    <Typography
+                        variant = { сard.text }
+                        className = { classes.text }
+                    >
+                        <p><strong>Адрес:</strong></p>
+                        <p style = { subParagraf }>
+                            352750, Краснодарский край, ул. Советская, 56, здание БТИ<br />
+                        </p>
+                        <p><strong>Телефон:</strong></p>
+                        <p style = { subParagraf }>
+                            <strong>8 (86156) 22-257</strong><br />
+                        </p>
+                        <p><strong>График работы:</strong></p>
+                        <p style = { subParagraf }>
+                            Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00<br />
+                            Выходной: Суббота и Воскресенье
+                        </p>
+                    </Typography>
+                </CardContent>
             </Card>
         );
     }
@@ -237,87 +301,6 @@ export default withStyles(styles, { name: 'muiContactsView', flip: false, withTh
 //export { ContactsView as ContactsViewNotConnected };
 
 /*
-                    <CardContent
-                        style = { сard.text }
-                    >
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Адрес:</strong>
-                        </p>
-                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
-                            352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
-                            адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>График работы:</strong>
-                        </p>
-                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
-                            Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00<br />
-                            Выходной: Суббота, Воскресенье
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Диспетчерская служба</strong>: 
-                        </p>
-                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
-                            8(86156) 35-117<br />
-                            Круглосуточно, без перерыва и выходных.
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Приемная директора</strong>: 8(86156) 31-194<br />
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Главный инженер</strong>:
-                        </p>
-                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
-                            8(86156) 31-194<br />
-                            Прием населения: Понедельник, Пятница с 08-00 до 12-00.
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Производственно-технический отдел</strong>: 
-                        </p>
-                        <p style = {{ margin: '8px auto 8px', paddingLeft: '4rem', }}>
-                            8(86156) 21-809<br />
-                            Прием населения: Понедельник, Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
-                        </p>
-                        <div style = {{ margin: '8px auto 8px', paddingLeft: '9rem', }}>
-                        </div>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Вывоз жидких коммунальных стоков</strong>: 8(86156) 35-117
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Лаборатория</strong>: 8(86156) 31-010
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Юридический отдел</strong>: 8(86156) 21-809
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Бухгалтерия</strong>: 8(86156) 35-200
-                        </p>
-                        <p style = {{ margin: '8px auto 8px' }}>
-                            <strong>Отдел кадров</strong>: 8(86156) 31-194
-                        </p>
-                        <PdfLink 
-                            href = { rekvisity_ooo_bvh } 
-                            label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
-                        />
-                        <PdfLink 
-                            href = { rekvisity_ooo_boos } 
-                            label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
-                        />
-
-                    </CardContent>
-                </Card>
-                <Card
-                    square = { true }
-                    style = { сard }
-                >
-                    <CardHeader
-                        title = 'Абонентский отдел'
-                        titleTypographyProps = { сard.subtitle1 }
-                        subheader = 'Карта'
-                        subheaderTypographyProps = { сard.subtitle2 }
-                    />
-                </Card>
-
                     <ExpansionPanel>
                             <ExpansionPanelSummary expandIcon = { <ExpandMore /> }>
                                 <CardHeader
@@ -336,151 +319,4 @@ export default withStyles(styles, { name: 'muiContactsView', flip: false, withTh
                                 />
                             </ExpansionPanelDetails>
                         </ExpansionPanel>   
-
-                <Card
-                    onExpandChange = { this.handleExpandChange }
-                    square = { true }
-                    style = { сard }
-                >
-                    <CardHeader
-                        title = "Центральный офис"
-                        titleTypographyProps = { сard.subtitle1 }
-                        subheader = "Карта"
-                        subheaderTypographyProps = { сard.subtitle2 }
-                    />
-                </Card>
-
-                <Card
-                    square = { true }
-                    expanded = { this.state.expandedAbon }
-                    onExpandChange = { this.handleExpandChangeAbon }
-                >
-                    <CardHeader
-                        title = "Абонентский отдел"
-                        titleStyle = { сard.header1 }
-                        subtitle = "Карта"
-                    />
-                </Card>
-
-                    <Collapse in={ this.state.expandedAbon } timeout="auto" unmountOnExit>
-                        <CardMedia
-                        >
-                            <Maps
-                                lat = { this.props.abon_office.lat}
-                                lng = { this.props.abon_office.lng}
-                                zoom = { this.props.zoom }
-                                isMarkerShown
-                            />
-                        </CardMedia>
-                    </Collapse>
-                    <CardMedia
-                        style= {{
-                            width: '40%',
-                            margin: '0 auto'
-                        }}
-                    >
-                        <img 
-                            src = { bvhAbonentsOfficeBuild } 
-                        />
-                    </CardMedia>
-                    <CardContent 
-                        style = { сard.text }
-                    >
-                        <p><strong>Адрес:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ул. Советская, 56, здание БТИ<br /></p>
-                        <p><strong>Телефон:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}><strong>8 (86156) 22-257</strong><br /></p>
-                        <p><strong>График работы:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}>Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00<br />
-                        Выходной: Суббота и Воскресенье</p>
-                    </CardContent>
-
-                    <Collapse in = { this.state.expandedMain } timeout = "auto" unmountOnExit>
-                        <CardMedia
-                        >
-                            <Maps 
-                                lat = { this.props.main_office.lat}
-                                lng = { this.props.main_office.lng}
-                                zoom = { this.props.zoom }
-                                isMarkerShown
-                            />
-                        </CardMedia>
-                    </Collapse>
-                    <CardMedia
-                        style = {{
-                            width: '40%',
-                            margin: '0 auto'
-                        }}
-                    >
-                        <img 
-                            src = { bvhMainOfficeBuild } 
-                        />
-                    </CardMedia>
-                    <CardContent
-                        style = { сard.text }
-                    >
-                        <p><strong>Адрес:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
-                        адрес сайта: <a href = "http://www.bruvodokanal.ru">http://www.bruvodokanal.ru</a><br />
-                        адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a></p>
-                        <p><strong>График работы:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}>Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00<br />
-                            Выходной: Суббота и Воскресенье<br />
-                        </p>
-                        <p>
-                            <strong>Диспетчерская служба</strong>: 
-                        </p>
-                        <p style = {{ paddingLeft: '4rem', }}>
-                            8(86156) 35-117<br />
-                            Круглосуточно, без перерыва и выходных.
-                        </p>
-                        <p>
-                            <strong>Приемная директора</strong>: 
-                        </p>
-                        <p style = {{ paddingLeft: '4rem', }}>
-                            8(86156) 31-194<br />
-                            Прием населения: каждый XXX с XX-00 до XX-00.
-                        </p>
-                        <p>
-                            <strong>Производственно-технический отдел</strong>: 
-                        </p>
-                        <p style = {{ paddingLeft: '4rem', }}>
-                            8(86156) 21-809<br />
-                            Прием населения:<br />
-                            <div style = {{ paddingLeft: '9rem', }}>Понедельник с 08-00 до 16-00, перерыв с 12-00 до 13-00<br />
-                                    Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00.<br />
-                            </div>
-                        </p>
-                        <p>
-                            <strong>Вывоз жидких коммунальных стоков</strong>: 8(86156)
-                        </p>
-                        <p>
-                            <strong>Лаборатория</strong>: 8(86156) 31-010
-                        </p>
-                        <p>
-                            <strong>Юридический отдел</strong>: 8(86156) 21-809
-                        </p>
-                        <p>
-                            <strong>Бухгалтерия</strong>: 8(86156) 35-200
-                        </p>
-                        <p>
-                            <strong>Отдел кадров</strong>: 8(86156) 31-194
-                        </p>
-                        <p>
-                            <strong>Главный инженер</strong>:
-                        </p>
-                        <p style = {{ paddingLeft: '4rem', }}>
-                            8(86156) 31-194<br />
-                            Прием населения: XXX с 08-00 до 10-00.
-                        </p>
-                        <PdfLink 
-                            href = { rekvisity_ooo_bvh } 
-                            label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
-                        />
-                        <PdfLink 
-                            href = { rekvisity_ooo_boos } 
-                            label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
-                        />
-                    </CardContent>
-
 */

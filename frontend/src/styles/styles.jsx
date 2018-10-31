@@ -74,7 +74,7 @@ export var muiTheme = createMuiTheme({
         },
     },
     global: {
-        maxWidth: '78rem',//62 126,
+        maxWidth: '78rem',
         minWidth: '78rem',
         minHeight: '58rem',
         margin: '0 auto',
@@ -106,11 +106,13 @@ export var muiTheme = createMuiTheme({
                 color: 'primary',
             },
             subtitle2: {
-                variant: 'h3',
+                variant: 'body1',
                 color: 'primary',
             },
             text: {
+                variant: 'body1',
                 fontSize: 16,
+                color: 'primary',
             },
         },
         header: {
@@ -286,5 +288,8 @@ export var muiTheme = createMuiTheme({
         height: 24,
         width: '100%',
         objectFit: 'contain',
+    },
+    subParagraf: {
+        margin: '-0.5rem auto -0.5rem 4rem',
     },
 });

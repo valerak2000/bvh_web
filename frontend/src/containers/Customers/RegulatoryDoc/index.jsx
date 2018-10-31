@@ -47,14 +47,15 @@ class RegulatoryDocView extends Component {
                     title = 'Нормативные документы'
                     titleTypographyProps = { сard.title }
                 />
-                <Typography 
-                    variant = { сard.headline }
-                >
-                    Постановления правительства РФ и федеральные законы
-                </Typography>
                 <CardContent 
                     style = { сard.text }
                 >
+                    <Typography 
+                        variant = 'h4'
+                        color = 'textSecondary'
+                    >
+                        Постановления правительства РФ и федеральные законы
+                    </Typography>
                     <PdfLink 
                         href = { federalnyy_zakon_o_vodosnabzhenii_i_vodootvedenii }
                         label = 'Федеральный закон № 416'

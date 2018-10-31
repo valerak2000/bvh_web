@@ -135,7 +135,7 @@ class LoginControl extends Component {
                     <span
                         style = {{ fontWeight: 700, }}
                     >
-                        8 (86156) 35-117
+                        &nbsp;8 (86156) 35-117
                     </span>
                 </span>
                 {
