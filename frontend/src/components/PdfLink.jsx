@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withTheme from '@material-ui/core/styles/withTheme';
-import Button from '@material-ui/core/Button';
+import withStyles from '@material-ui/core/styles/withStyles';
+//import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
 const pathIconPdf = '/static/images/pdf-icon.png';
+const styles = theme => ({
+});
 
 class PdfLink extends Component {
     static propTypes = {
         href: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -23,10 +26,8 @@ class PdfLink extends Component {
         label: 'label',
     };
 
-    state = {
-    };
-    
     render() {
+        const { classes } = this.props;
         const { href, label } = this.props;
         const { buttonLink } = this.props.theme;
 
@@ -88,6 +89,4 @@ class PdfLink extends Component {
             />
 */
 
-PdfLink.muiName = 'PdfLink';
-
-export default withTheme()(PdfLink);
+export default withStyles(styles, { name: 'muiPdfLink', flip: false, withTheme: true })(PdfLink);

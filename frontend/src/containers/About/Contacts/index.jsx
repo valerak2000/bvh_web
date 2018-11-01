@@ -15,7 +15,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 //import Button from '@material-ui/core/Button';
 //import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-//import Divider from '@material-ui/core/Divider';
+import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -208,15 +208,6 @@ class ContactsView extends Component {
                         <p><strong>Бухгалтерия</strong>: 8(86156) 35-200</p>
                         <p><strong>Отдел кадров</strong>: 8(86156) 31-194</p>
                     </Typography>
-
-                    <PdfLink 
-                        href = { rekvisity_ooo_bvh } 
-                        label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
-                    />
-                    <PdfLink 
-                        href = { rekvisity_ooo_boos } 
-                        label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
-                    />
                 </CardContent>
                 <CardContent
                     style = { сard.text }
@@ -289,8 +280,17 @@ class ContactsView extends Component {
                         <p style = { subParagraf }>
                             Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00<br />
                             Выходной: Суббота и Воскресенье
-                        </p>
+                        </p><br />
                     </Typography>
+                    <Divider />
+                    <PdfLink
+                        href = { rekvisity_ooo_bvh } 
+                        label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
+                    />
+                    <PdfLink
+                        href = { rekvisity_ooo_boos } 
+                        label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
+                    />
                 </CardContent>
             </Card>
         );

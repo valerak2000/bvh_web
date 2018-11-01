@@ -277,8 +277,8 @@ export var muiTheme = createMuiTheme({
         margin: 'auto',
     },
     li: {
-        padding: '0 0 0 25px',
-        margin: '0 0 5px 0',
+        //padding: '0 0 0 25px',
+        margin: '5px 0 5px 0',
         background: 'url(/static/images/check.svg) no-repeat 0px 0px',
         backgroundSize: 16,
         listStyleImage: 'none',
@@ -291,5 +291,10 @@ export var muiTheme = createMuiTheme({
     },
     subParagraf: {
         margin: '-0.5rem auto -0.5rem 4rem',
+    },
+    textIdent: {
+        align: 'justify',
+        textIndent: '1.5em',
+        margin: '0.25rem auto 0.25rem',
     },
 });
