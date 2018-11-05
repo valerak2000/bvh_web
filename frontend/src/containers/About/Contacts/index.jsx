@@ -45,6 +45,9 @@ const styles = theme => ({
     text: {
         margin: 'auto auto auto 2rem',
     },
+    header: {
+        paddingBottom: 0,
+    },
     /*expand: {
         transform: 'rotate(0deg)',
         transition: theme.transitions.create('transform', {
@@ -112,10 +115,22 @@ class ContactsView extends Component {
                 <CardHeader
                     subheader = 'ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»'
                     subheaderTypographyProps = { сard.headline }
+                    className = { classes.header }
+                />
+                <PdfLink
+                    href = { rekvisity_ooo_bvh } 
+                    label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
+                    style = {{ margin: 'auto auto auto 2rem', }}
                 />
                 <CardHeader
                     subheader = 'ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»'
                     subheaderTypographyProps = { сard.headline }
+                    className = { classes.header }
+                />
+                <PdfLink
+                    href = { rekvisity_ooo_boos } 
+                    label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
+                    style = {{ margin: 'auto auto auto 2rem', }}
                 />
                 <CardContent
                     style = { сard.text }
@@ -173,7 +188,8 @@ class ContactsView extends Component {
                         className = { classes.media }
                     />
                     <Typography
-                        variant = { сard.text }
+                        variant = 'body1'
+                        color = 'textSecondary'
                         className = { classes.text }
                     >
                         <p><strong>Адрес:</strong></p>
@@ -209,6 +225,7 @@ class ContactsView extends Component {
                         <p><strong>Отдел кадров</strong>: 8(86156) 31-194</p>
                     </Typography>
                 </CardContent>
+                <Divider />
                 <CardContent
                     style = { сard.text }
                 >
@@ -265,7 +282,8 @@ class ContactsView extends Component {
                         className = { classes.media }
                     />
                     <Typography
-                        variant = { сard.text }
+                        variant = 'body1'
+                        color = 'textSecondary'
                         className = { classes.text }
                     >
                         <p><strong>Адрес:</strong></p>
@@ -279,18 +297,9 @@ class ContactsView extends Component {
                         <p><strong>График работы:</strong></p>
                         <p style = { subParagraf }>
                             Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00<br />
-                            Выходной: Суббота и Воскресенье
-                        </p><br />
+                            Выходной: Суббота и Воскресенье<br />
+                        </p>
                     </Typography>
-                    <Divider />
-                    <PdfLink
-                        href = { rekvisity_ooo_bvh } 
-                        label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
-                    />
-                    <PdfLink
-                        href = { rekvisity_ooo_boos } 
-                        label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
-                    />
                 </CardContent>
             </Card>
         );

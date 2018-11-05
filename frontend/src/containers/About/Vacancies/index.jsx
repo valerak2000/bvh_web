@@ -77,6 +77,7 @@ class VacanciesView extends Component {
                             <React.Fragment key = 'vacancy_table'>
                                 <Typography
                                     variant = 'body1'
+                                    color = 'textSecondary'
                                     className = { classes.text }
                                 >
                                     Вакансии по состоянию на <Moment>{ formatedDateVacancy }</Moment>.
@@ -105,6 +106,7 @@ class VacanciesView extends Component {
                         ) : (
                                 <Typography
                                     variant = 'body1'
+                                    color = 'textSecondary'
                                     className = { classes.text }
                                 >
                                     Вакансии отсутствуют.

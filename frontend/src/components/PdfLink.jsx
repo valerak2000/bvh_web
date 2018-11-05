@@ -30,15 +30,17 @@ class PdfLink extends Component {
         const { classes } = this.props;
         const { href, label } = this.props;
         const { buttonLink } = this.props.theme;
+        var styles = typeof this.props.style === 'undefined' || this.props.style == null ? {} : this.props.style;
+        styles = Object.assign(styles, { display: 'flex' });
 
         return (
             <div
-                style = {{ display: 'flex' }}
+                style = {{ ...styles }}
             >
                 <IconButton
                     aria-label = { label }
                     href = { href }
-                    target = "_blank"
+                    target = '_blank'
                     aria-selected = { false }
                     centerRipple = { false }
                     disableRipple = { true }
@@ -52,7 +54,7 @@ class PdfLink extends Component {
                 <Typography
                     align = 'left'
                     color = 'textSecondary'
-                    variant = 'caption'
+                    variant = 'body1'
                     style = { buttonLink.labelPdf }
                 >
                     { label }
