@@ -35,11 +35,11 @@ Moment.globalLocale = 'ru';
 const dateVacancy = new Date();
 
 const rows = [
-    {
+/*    {
         id: 1,
         vacancy: 'экскаваторщик',
         requirements: 'знать мат часть',
-    },
+    },*/
 ];
 
 class VacanciesView extends Component {
@@ -72,33 +72,46 @@ class VacanciesView extends Component {
                 <CardContent
                     style = { сard.text }
                 >
+                    {
+                        rows.length > 0 ? (
+                            <React.Fragment key = 'vacancy_table'>
+                                <Typography
+                                    variant = 'body1'
+                                    className = { classes.text }
+                                >
+                                    Вакансии по состоянию на <Moment>{ formatedDateVacancy }</Moment>.
+                                </Typography>
+                                <Table className = { classes.table }>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Вакансия</TableCell>
+                                            <TableCell>Требования</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                    {
+                                        rows.map(r => (
+                                            <TableRow key = { r.id }>
+                                                <TableCell component = 'th' scope = 'row'>
+                                                    { r.vacancy }
+                                                </TableCell>
+                                                <TableCell>{ r.requirements }</TableCell>
+                                            </TableRow>
+                                        ))
+                                    }
+                                    </TableBody>
+                                </Table>
+                            </React.Fragment>
+                        ) : (
+                                <Typography
+                                    variant = 'body1'
+                                    className = { classes.text }
+                                >
+                                    Вакансии отсутствуют.
+                                </Typography>
+                            )
+                    }
                     { formatedDateVacancy }
-                    <Typography
-                        variant = 'body1'
-                        className = { classes.text }
-                    >
-                        Вакансии по состоянию на <Moment>{ formatedDateVacancy }</Moment>.
-                    </Typography>
-                    <Table className = { classes.table }>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Вакансия</TableCell>
-                                <TableCell>Требования</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                        {
-                            rows.map(r => (
-                                <TableRow key = { r.id }>
-                                    <TableCell component = 'th' scope = 'row'>
-                                        { r.vacancy }
-                                    </TableCell>
-                                    <TableCell>{ r.requirements }</TableCell>
-                                </TableRow>
-                            ))
-                        }
-                        </TableBody>
-                    </Table>
                 </CardContent>
             </Card>
         );
