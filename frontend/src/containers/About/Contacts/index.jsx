@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
+//import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
@@ -19,6 +19,7 @@ import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import Zoom from 'react-thumbnail-zoom';
 
 import Loader from '../../../components/loaders';
 //import { Maps } from '../../../components/Maps';
@@ -43,7 +44,7 @@ const styles = theme => ({
         backgroundSize: 'contain',
     },
     text: {
-        margin: 'auto auto auto 2rem',
+        margin: '0.25rem auto 0.25rem 2rem',
     },
     header: {
         paddingBottom: 0,
@@ -187,42 +188,83 @@ class ContactsView extends Component {
                         title = 'Центральный офис'
                         className = { classes.media }
                     />
+                    <Zoom>
+                        <img 
+                            src = { bvhMainOfficeBuild }
+                            style = {{
+                                boxShadow: '',
+                                width: '40%',
+                                height: 'auto',
+                                objectFit: 'contain',
+                                margin: '0 auto',
+                            }}
+                        />
+                    </Zoom>
                     <Typography
                         variant = 'body1'
                         color = 'textSecondary'
                         className = { classes.text }
                     >
-                        <p><strong>Адрес:</strong></p>
-                        <p style = { subParagraf }>
-                            352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
+                        <strong>Адрес:</strong><br />
+                        <span style = { subParagraf }>
+                            352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196
+                        </span><br />
+                        <span style = { subParagraf }>
                             адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
-                        </p>
-                        <p><strong>График работы:</strong></p>
-                        <p style = { subParagraf }>
-                            Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00<br />
+                        </span>
+                        <br />
+                        <strong>График работы:</strong><br />
+                        <span style = { subParagraf }>
+                            Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00
+                        </span><br />
+                        <span style = { subParagraf }>
                             Выходной: Суббота, Воскресенье
-                        </p>
-                        <p><strong>Диспетчерская служба</strong>:</p>
-                        <p style = { subParagraf }>
-                            8(86156) 35-117<br />
+                        </span><br />
+                        <strong>Диспетчерская служба</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 35-117
+                        </span><br />
+                        <span style = { subParagraf }>
                             Круглосуточно, без перерыва и выходных.
-                        </p>
-                        <p><strong>Приемная директора</strong>: 8(86156) 31-194<br /></p>
-                        <p><strong>Главный инженер</strong>:</p>
-                        <p style = { subParagraf }>
-                            8(86156) 31-194<br />
+                        </span><br />
+                        <strong>Приемная директора</strong>: <br />
+                        <span style = { subParagraf }>
+                            8(86156) 31-194
+                        </span><br />
+                        <strong>Главный инженер</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 31-194
+                        </span><br />
+                        <span style = { subParagraf }>
                             Прием населения: Понедельник, Пятница с 08-00 до 12-00.
-                        </p>
-                        <p><strong>Производственно-технический отдел</strong>: </p>
-                        <p style = { subParagraf }>
-                            8(86156) 21-809<br />
+                        </span><br />
+                        <strong>Производственно-технический отдел</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 21-809
+                        </span><br />
+                        <span style = { subParagraf }>
                             Прием населения: Понедельник, Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
-                        </p>
-                        <p><strong>Вывоз жидких коммунальных стоков</strong>: 8(86156) 35-117</p>
-                        <p><strong>Лаборатория</strong>: 8(86156) 31-010</p>
-                        <p><strong>Юридический отдел</strong>: 8(86156) 21-809</p>
-                        <p><strong>Бухгалтерия</strong>: 8(86156) 35-200</p>
-                        <p><strong>Отдел кадров</strong>: 8(86156) 31-194</p>
+                        </span><br />
+                        <strong>Вывоз жидких коммунальных стоков</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 35-117
+                        </span><br />
+                        <strong>Лаборатория</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 31-010
+                        </span><br />
+                        <strong>Юридический отдел</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 21-809
+                        </span><br />
+                        <strong>Бухгалтерия</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 35-200
+                        </span><br />
+                        <strong>Отдел кадров</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 31-194
+                        </span><br />
                     </Typography>
                 </CardContent>
                 <Divider />
@@ -286,19 +328,21 @@ class ContactsView extends Component {
                         color = 'textSecondary'
                         className = { classes.text }
                     >
-                        <p><strong>Адрес:</strong></p>
-                        <p style = { subParagraf }>
-                            352750, Краснодарский край, ул. Советская, 56, здание БТИ<br />
-                        </p>
-                        <p><strong>Телефон:</strong></p>
-                        <p style = { subParagraf }>
-                            <strong>8 (86156) 22-257</strong><br />
-                        </p>
-                        <p><strong>График работы:</strong></p>
-                        <p style = { subParagraf }>
-                            Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00<br />
-                            Выходной: Суббота и Воскресенье<br />
-                        </p>
+                        <strong>Адрес:</strong><br />
+                        <span style = { subParagraf }>
+                            352750, Краснодарский край, ул. Советская, 56, здание БТИ
+                        </span><br />
+                        <strong>Телефон:</strong><br />
+                        <span style = { subParagraf }>
+                            <strong>8 (86156) 22-257</strong>
+                        </span><br />
+                        <strong>График работы:</strong><br />
+                        <span style = { subParagraf }>
+                            Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00
+                        </span><br />
+                        <span style = { subParagraf }>
+                            Выходной: Суббота и Воскресенье
+                        </span><br />
                     </Typography>
                 </CardContent>
             </Card>

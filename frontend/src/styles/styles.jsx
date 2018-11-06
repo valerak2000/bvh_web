@@ -205,6 +205,10 @@ export var muiTheme = createMuiTheme({
         },
         footer: {
             backgroundColor: blue[900], //teal200,
+            fontFamily: [
+                'pfbeausanspro-reg',
+                'sans-serif',
+            ].join(','),
             bottomNavigation: {
                 position: 'space-around',
                 height: '4rem',
@@ -290,7 +294,7 @@ export var muiTheme = createMuiTheme({
         objectFit: 'contain',
     },
     subParagraf: {
-        margin: '-0.5rem auto -0.5rem 4rem',
+        margin: '0.25rem auto 0.25rem 4rem',
     },
     textIdent: {
         align: 'justify',

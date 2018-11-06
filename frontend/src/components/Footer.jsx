@@ -79,7 +79,7 @@ class Footer extends Component {
                         classes = {{ label: classes.label, }}
                     />
                 </BottomNavigation>
-                <div
+                <address
                     style = { footer.bottomText }
                 >
                     Разработка и поддержка <a 
@@ -88,7 +88,7 @@ class Footer extends Component {
                         style = { footer.bottomText.link }
                     >
                         <img src = { AuthorSign } alt = 'valera_k2000' width = '16' height = '16'/> valera_k2000 </a>
-                </div>
+                </address>
             </footer>
         );
     }
