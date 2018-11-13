@@ -35,11 +35,11 @@ Moment.globalLocale = 'ru';
 const dateVacancy = new Date();
 
 const rows = [
-/*    {
+    {
         id: 1,
         vacancy: 'экскаваторщик',
         requirements: 'знать мат часть',
-    },*/
+    },
 ];
 
 class VacanciesView extends Component {
@@ -58,7 +58,7 @@ class VacanciesView extends Component {
     render() {
         const { classes } = this.props;
         const { сard } = this.props.theme.app;
-        const formatedDateVacancy = dateVacancy.toISOString();
+        const formatedDateVacancy = dateVacancy.toLocaleDateString();
 
         return (
             <Card
@@ -80,11 +80,11 @@ class VacanciesView extends Component {
                                     color = 'textSecondary'
                                     className = { classes.text }
                                 >
-                                    Вакансии по состоянию на <Moment>{ formatedDateVacancy }</Moment>.
+                                    Вакансии по состоянию на { formatedDateVacancy }.
                                 </Typography>
                                 <Table className = { classes.table }>
                                     <TableHead>
-                                        <TableRow>
+                                        <TableRow hover = { true } >
                                             <TableCell>Вакансия</TableCell>
                                             <TableCell>Требования</TableCell>
                                         </TableRow>
@@ -113,7 +113,7 @@ class VacanciesView extends Component {
                                 </Typography>
                             )
                     }
-                    { formatedDateVacancy }
+                    <Moment>{ dateVacancy }</Moment>
                 </CardContent>
             </Card>
         );

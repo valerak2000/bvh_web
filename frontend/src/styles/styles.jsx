@@ -281,7 +281,7 @@ export var muiTheme = createMuiTheme({
         margin: 'auto',
     },
     li: {
-        //padding: '0 0 0 25px',
+        padding: '0 0 0 25px',
         margin: '5px 0 5px 0',
         background: 'url(/static/images/check.svg) no-repeat 0px 0px',
         backgroundSize: 16,
