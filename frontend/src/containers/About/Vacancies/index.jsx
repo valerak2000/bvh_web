@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Moment from 'react-moment';
-import moment from 'moment/min/moment-with-locales';
+import moment from 'moment';
+import 'moment/locale/ru';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -28,10 +28,6 @@ const styles = theme => ({
     },
 });
 
-Moment.globalMoment = moment;
-// Set the locale for every react-moment instance to French.
-Moment.globalLocale = 'ru';
-//const ruLocale = require('moment/locale/ru'); 
 const dateVacancy = new Date();
 
 const rows = [
@@ -58,7 +54,7 @@ class VacanciesView extends Component {
     render() {
         const { classes } = this.props;
         const { сard } = this.props.theme.app;
-        const formatedDateVacancy = dateVacancy.toLocaleDateString();
+        const formatedDateVacancy = moment().format('LL');
 
         return (
             <Card
@@ -80,11 +76,11 @@ class VacanciesView extends Component {
                                     color = 'textSecondary'
                                     className = { classes.text }
                                 >
-                                    Вакансии по состоянию на { formatedDateVacancy }.
+                                    По состоянию на { formatedDateVacancy }
                                 </Typography>
                                 <Table className = { classes.table }>
                                     <TableHead>
-                                        <TableRow hover = { true } >
+                                        <TableRow >
                                             <TableCell>Вакансия</TableCell>
                                             <TableCell>Требования</TableCell>
                                         </TableRow>
@@ -92,7 +88,7 @@ class VacanciesView extends Component {
                                     <TableBody>
                                     {
                                         rows.map(r => (
-                                            <TableRow key = { r.id }>
+                                            <TableRow hover = { true } key = { r.id }>
                                                 <TableCell component = 'th' scope = 'row'>
                                                     { r.vacancy }
                                                 </TableCell>
@@ -113,7 +109,6 @@ class VacanciesView extends Component {
                                 </Typography>
                             )
                     }
-                    <Moment>{ dateVacancy }</Moment>
                 </CardContent>
             </Card>
         );
