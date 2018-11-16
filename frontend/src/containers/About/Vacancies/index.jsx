@@ -13,21 +13,38 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
+import { darken, fade, lighten } from '@material-ui/core/styles/colorManipulator';
 
 const styles = theme => ({
     root: {
-        width: '100%',
-        marginTop: theme.spacing.unit * 3,
-        overflowX: 'auto',
+        borderTop: `1px solid
+        ${
+          theme.palette.type === 'light'
+            ? lighten(fade(theme.palette.divider, 1), 0.88)
+            : darken(fade(theme.palette.divider, 1), 0.68)
+        }`, 
     },
     table: {
         minWidth: 700,
     },
+    /*body: {
+        color: theme.palette.text.secondary,
+    },*/
     text: {
         margin: 'auto auto auto 2rem',
     },
 });
 
+const CustomTableCell = withStyles(theme => ({
+    head: {
+        backgroundColor: theme.palette.common.gray[50],
+        color: theme.palette.common.white,
+    },
+    body: {
+        color: theme.palette.text.secondary,
+    },
+}))(TableCell);
+  
 const dateVacancy = new Date();
 
 const rows = [
@@ -42,9 +59,6 @@ class VacanciesView extends Component {
     static propTypes = {
         theme: PropTypes.object.isRequired,
         classes: PropTypes.object.isRequired,
-    };
-
-    static defaultProps = {
     };
 
     constructor(props, context) {
@@ -77,22 +91,28 @@ class VacanciesView extends Component {
                                     className = { classes.text }
                                 >
                                     По состоянию на { formatedDateVacancy }
-                                </Typography>
-                                <Table className = { classes.table }>
+                                </Typography><br />
+                                <Table 
+                                    classes = {{
+                                        root: classes.root,
+                                        body: classes.body,
+                                    }}
+                                    className = { classes.table } 
+                                >
                                     <TableHead>
                                         <TableRow >
-                                            <TableCell>Вакансия</TableCell>
-                                            <TableCell>Требования</TableCell>
+                                            <CustomTableCell>Вакансия</CustomTableCell>
+                                            <CustomTableCell>Требования</CustomTableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
                                     {
                                         rows.map(r => (
                                             <TableRow hover = { true } key = { r.id }>
-                                                <TableCell component = 'th' scope = 'row'>
+                                                <CustomTableCell component = 'th' scope = 'row'>
                                                     { r.vacancy }
-                                                </TableCell>
-                                                <TableCell>{ r.requirements }</TableCell>
+                                                </CustomTableCell>
+                                                <CustomTableCell>{ r.requirements }</CustomTableCell>
                                             </TableRow>
                                         ))
                                     }
