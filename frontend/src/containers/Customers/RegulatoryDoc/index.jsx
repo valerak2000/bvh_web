@@ -9,7 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
 
-import PdfLink from '../../../components/PdfLink';
+import PdfLink from '../../../components/PdfLink/PdfLink';
 
 const federalnyy_zakon_o_vodosnabzhenii_i_vodootvedenii = '/static/files/media/potrebiteliam/federalnyy_zakon_o_vodosnabzhenii_i_vodootvedenii.pdf';
 const pp_83 = '/static/files/media/potrebiteliam/pp_83.pdf';

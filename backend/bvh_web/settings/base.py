@@ -111,6 +111,7 @@ STATICFILES_DIRS = (
     ('images', base_dir_join('../static/images')),
     ('files', base_dir_join('../static/files')),
     ('fonts', base_dir_join('../static/fonts')),
+    ('public', base_dir_join('../static/public')),
 )
 
 # ############# REST FRAMEWORK ###################

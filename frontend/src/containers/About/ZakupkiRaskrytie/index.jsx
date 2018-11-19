@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardActionArea from '@material-ui/core/CardActionArea';
 
-import PdfLink from '../../../components/PdfLink';
+import PdfLink from '../../../components/PdfLink/PdfLink';
 
 const styles = theme => ({
 });

@@ -3,15 +3,18 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'moment/locale/ru';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import Table from '../../../components/Table/Table.jsx';
+import GridItem from '../../../components/Grid/GridItem.jsx';
+//import Table from '@material-ui/core/Table';
+//import TableBody from '@material-ui/core/TableBody';
+//import TableCell from '@material-ui/core/TableCell';
+//import TableHead from '@material-ui/core/TableHead';
+//import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import { darken, fade, lighten } from '@material-ui/core/styles/colorManipulator';
 
@@ -35,6 +38,7 @@ const styles = theme => ({
     },
 });
 
+/*
 const CustomTableCell = withStyles(theme => ({
     head: {
         backgroundColor: theme.palette.common.gray[50],
@@ -44,7 +48,8 @@ const CustomTableCell = withStyles(theme => ({
         color: theme.palette.text.secondary,
     },
 }))(TableCell);
-  
+*/
+
 const dateVacancy = new Date();
 
 const rows = [
@@ -53,6 +58,17 @@ const rows = [
         vacancy: 'экскаваторщик',
         requirements: 'знать мат часть',
     },
+];
+
+const vacancyData = [
+    [1, 'экскаваторщик', 'знать мат часть']
+];
+
+const configActionColumns = [
+/*
+    { Icon: Add, Tooltip: 'Add', Color: 'success', Callback: onAddClick },
+    { Icon: Edit, Tooltip: 'Edit', Color: 'primary', Callback: onEditClick }
+*/
 ];
 
 class VacanciesView extends Component {
@@ -71,27 +87,57 @@ class VacanciesView extends Component {
         const formatedDateVacancy = moment().format('LL');
 
         return (
-            <Card
-                square = { true }
-                style = { сard }
-            >
-                <CardHeader
-                    title = 'Вакансии'
-                    titleTypographyProps = { сard.title }
-                />
-                <CardContent
-                    style = { сard.text }
-                >
-                    {
-                        rows.length > 0 ? (
-                            <React.Fragment key = 'vacancy_table'>
-                                <Typography
-                                    variant = 'body1'
-                                    color = 'textSecondary'
-                                    className = { classes.text }
-                                >
-                                    По состоянию на { formatedDateVacancy }
-                                </Typography><br />
+            <Grid container>
+                <GridItem xs = { 12 } sm = { 12 } md = { 12 }>
+                    <Card
+                        square = { true }
+                        style = { сard }
+                    >
+                        <CardHeader
+                            title = 'Вакансии'
+                            titleTypographyProps = { сard.title }
+                        />
+                        <CardContent
+                            style = { сard.text }
+                        >
+                            {
+                                rows.length > 0 ? (
+                                    <React.Fragment key = 'vacancy_table'>
+                                        <Typography
+                                            variant = 'body1'
+                                            color = 'textSecondary'
+                                            className = { classes.text }
+                                        >
+                                            По состоянию на { formatedDateVacancy }
+                                        </Typography>
+                                        <Table
+                                            actionColumns = { configActionColumns }
+                                            tableHeaderColor = 'primary'
+                                            tableHead = {['Вакансия', 'Требования']}
+                                            tableData = {[
+                                                ['экскаваторщик', 'знать мат часть']
+                                            ]}
+                                        />
+                                    </React.Fragment>
+                                ) : (
+                                        <Typography
+                                            variant = 'body1'
+                                            color = 'textSecondary'
+                                            className = { classes.text }
+                                        >
+                                            Вакансии отсутствуют.
+                                        </Typography>
+                                    )
+                            }
+                        </CardContent>
+                    </Card>
+                </GridItem>
+            </Grid>
+        );
+    }
+}
+/*
+<br />
                                 <Table 
                                     classes = {{
                                         root: classes.root,
@@ -118,23 +164,6 @@ class VacanciesView extends Component {
                                     }
                                     </TableBody>
                                 </Table>
-                            </React.Fragment>
-                        ) : (
-                                <Typography
-                                    variant = 'body1'
-                                    color = 'textSecondary'
-                                    className = { classes.text }
-                                >
-                                    Вакансии отсутствуют.
-                                </Typography>
-                            )
-                    }
-                </CardContent>
-            </Card>
-        );
-    }
-}
-/*
 */
 
 export default withStyles(styles, { name: 'muiVacanciesView', flip: false, withTheme: true })(VacanciesView);

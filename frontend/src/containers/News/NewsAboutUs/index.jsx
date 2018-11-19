@@ -5,7 +5,7 @@ import withTheme from '@material-ui/core/styles/withTheme';
 import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
 //import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
-import UnderConstruct from '../../../components/UnderConstruct';
+import UnderConstruct from '../../../components/UnderConstruct/UnderConstruct';
 
 class NewsAboutUsView extends Component {
     static propTypes = {

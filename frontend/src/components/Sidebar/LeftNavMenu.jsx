@@ -11,8 +11,8 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ, HOME_MENU_MP,
-    ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants';
-import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../constants/menuStruct';
+    ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../../constants';
+import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../../constants/menuStruct';
 
 const styles = theme => ({
     drawerPaper: {

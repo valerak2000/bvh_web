@@ -6,8 +6,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
-import LoginControl from './LoginControl';
-import SiteMenu from './SiteMenu';
+import LoginControl from '../../views/LoginControl';
+import SiteMenu from '../../views/SiteMenu';
 const bvhLogo = '/static/images/logo_bvh.png';
 
 class Header extends Component {

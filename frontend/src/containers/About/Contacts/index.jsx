@@ -23,10 +23,10 @@ import Zoom from 'react-thumbnail-zoom';
 
 import Loader from '../../../components/loaders';
 //import { Maps } from '../../../components/Maps';
-import PdfLink from '../../../components/PdfLink';
+import PdfLink from '../../../components/PdfLink/PdfLink';
 
 const MapsComponent = Loader(() =>
-  import(/* webpackChunkName: "Maps" */ '../../../components/Maps.jsx')
+  import(/* webpackChunkName: "Maps" */ '../../../components/Maps/Maps.jsx')
 );
 
 const bvhMainOfficeBuild = '/static/images/main_office.jpg';

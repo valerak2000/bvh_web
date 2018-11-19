@@ -26,12 +26,12 @@ STATIC_ROOT = base_dir_join('../static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = base_dir_join('../media')
 
-SERVER_EMAIL = 'foo@example.com'
+SERVER_EMAIL = 'admin@bruvodokanal.ru'
 
-EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_HOST_USER = '' #config('SENDGRID_USERNAME')
 EMAIL_HOST_PASSWORD = '' #config('SENDGRID_PASSWORD')
-EMAIL_PORT = 587
+EMAIL_PORT = 465
 EMAIL_USE_TLS = True
 
 # Security

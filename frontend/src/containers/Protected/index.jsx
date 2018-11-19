@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import withTheme from '@material-ui/core/styles/withTheme';
 
 import * as actionCreators from '../../actions/data';
-import UnderConstruct from '../../components/UnderConstruct';
+import UnderConstruct from '../../components/UnderConstruct/UnderConstruct';
 
 class ProtectedView extends Component {
     static propTypes = {
