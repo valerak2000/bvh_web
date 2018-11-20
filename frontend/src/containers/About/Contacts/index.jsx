@@ -9,18 +9,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardActionArea from '@material-ui/core/CardActionArea';
-//import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-//import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-//import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-//import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
-//import Button from '@material-ui/core/Button';
-//import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-//import Zoom from 'react-thumbnail-zoom';
 import ImageZoom from 'react-medium-image-zoom';
 
 import GridItem from '../../../components/Grid/GridItem.jsx';
@@ -185,15 +178,9 @@ class ContactsView extends Component {
                             isMarkerShown
                         />
                     </Collapse>
-                    <CardMedia
-                        component = 'img'
-                        src = { bvhMainOfficeBuild }
-                        title = 'Центральный офис'
-                        className = { classes.media }
-                    />
                     <ImageZoom
                         image = {{
-                            src: '/static/images/main_office.jpg',
+                            src: bvhMainOfficeBuild,
                             alt: 'Центральный офис',
                             title: 'Центральный офис',
                             className: 'img',
@@ -201,10 +188,14 @@ class ContactsView extends Component {
                                 width: '40%'
                             }
                         }}
-                        shouldRespectMaxDimension={true}
-                        style = {{
-                            margin: '0 auto',
-                            zIndex: 10000,
+                        shouldRespectMaxDimension = { true }
+                        defaultStyles = {{
+                            image: {
+                                margin: 'auto auto auto 15rem',
+                            },
+                            zoomContainer: {
+                                zIndex: 10000,
+                            },
                         }}
                     />
                     <Typography
@@ -324,11 +315,25 @@ class ContactsView extends Component {
                             isMarkerShown
                         />
                     </Collapse>
-                    <CardMedia
-                        component = 'img'
-                        src = { bvhAbonentsOfficeBuild }
-                        title = 'Абонентский отдел'
-                        className = { classes.media }
+                    <ImageZoom
+                        image = {{
+                            src: bvhAbonentsOfficeBuild,
+                            alt: 'Абонентский отдел',
+                            title: 'Абонентский отдел',
+                            className: 'img',
+                            style: {
+                                width: '40%'
+                            }
+                        }}
+                        shouldRespectMaxDimension = { true }
+                        defaultStyles = {{
+                            image: {
+                                margin: 'auto auto auto 15rem',
+                            },
+                            zoomContainer: {
+                                zIndex: 10000,
+                            },
+                        }}
                     />
                     <Typography
                         variant = 'body1'
@@ -365,42 +370,4 @@ export default withStyles(styles, { name: 'muiContactsView', flip: false, withTh
                 <GridItem xs={12} sm={12} md={12}>
                 </GridItem>
             </Grid>
-                    <Zoom
-                        overlay = { false }
-                        closeButton
-                        style = {{
-                            margin: '0 auto',
-                            zIndex: 10000,
-                        }}
-                    >
-                        <img
-                            src = { bvhMainOfficeBuild }
-                            style = {{
-                                boxShadow: '',
-                                width: '40%',
-                                height: 'auto',
-                                objectFit: 'contain',
-                            }}
-                        />
-                    </Zoom>
-
-
-                    <ExpansionPanel>
-                            <ExpansionPanelSummary expandIcon = { <ExpandMore /> }>
-                                <CardHeader
-                                    title = 'Центральный офис'
-                                    titleTypographyProps = { сard.subtitle1 }
-                                    subheader = 'Карта'
-                                    subheaderTypographyProps = { сard.subtitle2 }
-                                />
-                            </ExpansionPanelSummary>
-                            <ExpansionPanelDetails>
-                                <Maps 
-                                    lat = { this.props.main_office.lat}
-                                    lng = { this.props.main_office.lng}
-                                    zoom = { this.props.zoom }
-                                    isMarkerShown
-                                />
-                            </ExpansionPanelDetails>
-                        </ExpansionPanel>   
 */
