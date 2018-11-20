@@ -5,14 +5,10 @@ import {
   successBoxShadow,
   warningBoxShadow,
   dangerBoxShadow,
-  roseBoxShadow,
-  pointer
-} from "../../assets/jss/material-dashboard-react";
+  roseBoxShadow
+} from "assets/jss/material-dashboard-react.jsx";
 
 const snackbarContentStyle = {
-  pointer: {
-    ...pointer
-  },
   root: {
     ...defaultFont,
     flexWrap: "unset",
@@ -74,7 +70,8 @@ const snackbarContentStyle = {
   },
   iconButton: {
     width: "24px",
-    height: "24px"
+    height: "24px",
+    padding: "0px"
   },
   icon: {
     display: "block",

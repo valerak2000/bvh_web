@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import withTheme from '@material-ui/core/styles/withTheme';
 
 import * as actionCreators from '../../actions/data';
-import UnderConstruct from '../../components/UnderConstruct';
+import UnderConstruct from '../../components/UnderConstruct/UnderConstruct';
 
 class ProtectedView extends Component {
     static propTypes = {
+        theme: PropTypes.object.isRequired,
         isFetching: PropTypes.bool.isRequired,
         data: PropTypes.string,
         token: PropTypes.string.isRequired,
@@ -58,5 +60,5 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProtectedView);
+export default withTheme()(connect(mapStateToProps, mapDispatchToProps)(ProtectedView));
 export { ProtectedView as ProtectedViewNotConnected };

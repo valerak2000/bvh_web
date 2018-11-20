@@ -1,25 +1,69 @@
 import React, { Component } from 'react';
-//import { push } from 'react-router-redux';
-import { connect } from 'react-redux';
+//import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import ImageZoom from 'react-medium-image-zoom';
 
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-//import FlatButton from 'material-ui/FlatButton';
-//import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-//import Divider from 'material-ui/Divider';
+import GridItem from '../../../components/Grid/GridItem.jsx';
+import Loader from '../../../components/loaders';
+//import { Maps } from '../../../components/Maps';
+import PdfLink from '../../../components/PdfLink/PdfLink';
 
-import { Maps } from '../../../components/Maps';
-import PdfLink from '../../../components/PdfLink';
+const MapsComponent = Loader(() =>
+  import(/* webpackChunkName: "Maps" */ '../../../components/Maps/Maps.jsx')
+);
 
 const bvhMainOfficeBuild = '/static/images/main_office.jpg';
 const bvhAbonentsOfficeBuild = '/static/images/abon_office.jpg';
 const rekvisity_ooo_bvh = '/static/files/media/rekvisity_ooo_bvh.pdf';
 const rekvisity_ooo_boos = '/static/files/media/rekvisity_ooo_boos.pdf';
 
+const styles = theme => ({
+    media: {
+        boxShadow: '',
+        width: '40%',
+        //height: 277,
+        objectFit: 'contain',
+        margin: '0 auto',
+        backgroundSize: 'contain',
+    },
+    text: {
+        margin: '0.25rem auto 0.25rem 2rem',
+    },
+    header: {
+        paddingBottom: 0,
+    },
+    /*expand: {
+        transform: 'rotate(0deg)',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+        marginLeft: 'auto',
+        [theme.breakpoints.up('sm')]: {
+            marginRight: -8,
+        },
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
+    },*/
+});
+  
 class ContactsView extends Component {
     static propTypes = {
-        dispatch: PropTypes.func.isRequired,
+        theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -31,197 +75,299 @@ class ContactsView extends Component {
             lat: 45.806224,
             lng: 39.007790,
         },
-        zoom: 17,
+        zoom: 16,
     };
 
     constructor(props, context) {
         super(props, context);
+
         this.state = {
-            expanded: false,
+            expandedMain: false,
             expandedAbon: false,
         };
     }
 
-    handleExpandChange = (expanded) => {
-        this.setState({ expanded: expanded} );
+    handleExpandMainClick = () => {
+        this.setState(state => ({ expandedMain: !state.expandedMain }));
     };
 
-    handleExpandChangeAbon = (expanded) => {
-        this.setState({ expandedAbon: expanded} );
+    handleExpandAbonClick = () => {
+        this.setState(state => ({ expandedAbon: !state.expandedAbon }));
     };
 
     render() {
-        const { file, numPages } = this.state;
+        const { classes } = this.props;
+        const { сard } = this.props.theme.app;
+        const { subParagraf } = this.props.theme;
 
         return (
             <Card
-                style = { this.props.muiTheme.app.сard }
+                square = { true }
+                style = { сard }
             >
-                <CardTitle
+                <CardHeader
                     title = 'Контакты'
-                    titleStyle = { this.props.muiTheme.app.сard.title }
+                    titleTypographyProps = { сard.title }
                 />
                 <CardHeader
-                    title = "ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»"
-                    titleStyle = { this.props.muiTheme.app.сard.header }
+                    subheader = 'ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»'
+                    subheaderTypographyProps = { сard.headline }
+                    className = { classes.header }
+                />
+                <PdfLink
+                    href = { rekvisity_ooo_bvh } 
+                    label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
+                    style = {{ margin: 'auto auto auto 2rem', }}
                 />
                 <CardHeader
-                    title = "ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»"
-                    titleStyle = { this.props.muiTheme.app.сard.header }
+                    subheader = 'ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»'
+                    subheaderTypographyProps = { сard.headline }
+                    className = { classes.header }
                 />
-                <Card
-                    expanded = { this.state.expanded }
-                    onExpandChange = { this.handleExpandChange }
+                <PdfLink
+                    href = { rekvisity_ooo_boos } 
+                    label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
+                    style = {{ margin: 'auto auto auto 2rem', }}
+                />
+                <CardContent
+                    style = { сard.text }
                 >
-                    <CardHeader
-                        title = "Центральный офис"
-                        titleStyle = { this.props.muiTheme.app.сard.header1 }
-                        subtitle = "Карта"
-                        actAsExpander = { true }
-                        showExpandableButton = { true }
-                    />
-                    <CardMedia
-                        expandable = { true }
+                    <CardActionArea
+                        onClick = { this.handleExpandMainClick }
+                        style = {{ width: '100%' }}
                     >
-                        <Maps 
+                        <div
+                            style = {{
+                                boxSizing: 'border-box',
+                                position: 'relative',
+                                whiteSpace: 'nowrap',
+                            }}
+                        >
+                            <CardHeader
+                                title = 'Центральный офис'
+                                titleTypographyProps = { сard.subtitle1 }
+                                subheader = 'Карта'
+                                subheaderTypographyProps = { сard.subtitle2 }
+                                style = {{
+                                    display: 'inline-block',
+                                    verticalAlign: 'top',
+                                    whiteSpace: 'normal',
+                                    paddingTop: 0,
+                                    paddingBottom: 0,
+                                    paddingRight: 90,
+                                }}
+                            />
+                            <span
+                                style = {{
+                                    position: 'absolute',
+                                    top: '0.5rem',
+                                    right: 4,
+                                    height: '100%',
+                                }}                            
+                            >
+                                { this.state.expandedMain ? <ExpandLess /> : <ExpandMore /> }
+                            </span>
+                        </div>
+                    </CardActionArea>
+                    <Collapse in = { this.state.expandedMain } timeout = 'auto' unmountOnExit>
+                        <MapsComponent
                             lat = { this.props.main_office.lat}
                             lng = { this.props.main_office.lng}
                             zoom = { this.props.zoom }
+                            balloonContent = '352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196'
                             isMarkerShown
                         />
-                    </CardMedia>
-                    <CardMedia
-                        style = {{
-                            width: '40%',
-                            margin: '0 auto'
+                    </Collapse>
+                    <ImageZoom
+                        image = {{
+                            src: bvhMainOfficeBuild,
+                            alt: 'Центральный офис',
+                            title: 'Центральный офис',
+                            className: 'img',
+                            style: {
+                                width: '40%'
+                            }
                         }}
-                    >
-                        <img 
-                            src = { bvhMainOfficeBuild } 
-                        />
-                    </CardMedia>
-                    <CardText 
-                        expandable = { false }
-                        style = { this.props.muiTheme.app.сard.text }
-                    >
-                        <p><strong>Адрес:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196<br />
-                        адрес сайта: <a href = "http://www.bruvodokanal.ru">http://www.bruvodokanal.ru</a><br />
-                        адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a></p>
-                        <p><strong>График работы:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}>Понедельник-пятница с 08-00 до 16-00 перерыв с 12-00 до 13-00<br />
-                            Выходной: Суббота и Воскресенье<br />
-                        </p>
-                        <p>
-                            <strong>Диспетчерская служба</strong>: 
-                        </p>
-                        <p style = {{ paddingLeft: '4rem', }}>
-                            8(86156) 35-117<br />
-                            Круглосуточно, без перерыва и выходных.
-                        </p>
-                        <p>
-                            <strong>Приемная директора</strong>: 
-                        </p>
-                        <p style = {{ paddingLeft: '4rem', }}>
-                            8(86156) 31-194<br />
-                            Прием населения: каждый XXX с XX-00 до XX-00.
-                        </p>
-                        <p>
-                            <strong>Производственно-технический отдел</strong>: 
-                        </p>
-                        <p style = {{ paddingLeft: '4rem', }}>
-                            8(86156) 21-809<br />
-                            Прием населения: XXX с 08-00 до 16-00.
-                        </p>
-                        <p>
-                            <strong>Вывоз жидких коммунальных стоков</strong>: 8(86156)
-                        </p>
-                        <p>
-                            <strong>Лаборатория</strong>: 8(86156) 31-010
-                        </p>
-                        <p>
-                            <strong>Юридический отдел</strong>: 8(86156) 21-809
-                        </p>
-                        <p>
-                            <strong>Бухгалтерия</strong>: 8(86156) 35-200
-                        </p>
-                        <p>
-                            <strong>Отдел кадров</strong>: 8(86156) 31-194
-                        </p>
-                        <p>
-                            <strong>Главный инженер</strong>:
-                        </p>
-                        <p style = {{ paddingLeft: '4rem', }}>
-                            8(86156) 31-194<br />
-                            Прием населения: XXX с 08-00 до 16-00.
-                        </p>
-                        <PdfLink 
-                            href = { rekvisity_ooo_bvh } 
-                            label = "Реквизиты ООО «Брюховецкое водопроводное хозяйство»"
-                        />
-                        <PdfLink 
-                            href = { rekvisity_ooo_boos } 
-                            label = "Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»"
-                        />
-                    </CardText>
-                </Card>
-
-                <Card
-                    expanded = { this.state.expandedAbon }
-                    onExpandChange = { this.handleExpandChangeAbon }
-                >
-                    <CardHeader
-                        title = "Абонентский отдел"
-                        titleStyle = { this.props.muiTheme.app.сard.header1 }
-                        subtitle = "Карта"
-                        actAsExpander = { true }
-                        showExpandableButton = { true }
+                        shouldRespectMaxDimension = { true }
+                        defaultStyles = {{
+                            image: {
+                                margin: 'auto auto auto 15rem',
+                            },
+                            zoomContainer: {
+                                zIndex: 10000,
+                            },
+                        }}
                     />
-                    <CardMedia
-                        expandable = { true }
+                    <Typography
+                        variant = 'body1'
+                        color = 'textSecondary'
+                        className = { classes.text }
                     >
-                        <Maps
-                            lat = { this.props.abon_office.lat}
-                            lng = { this.props.abon_office.lng}
+                        <strong>Адрес:</strong><br />
+                        <span style = { subParagraf }>
+                            352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196
+                        </span><br />
+                        <span style = { subParagraf }>
+                            адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
+                        </span>
+                        <br />
+                        <strong>График работы:</strong><br />
+                        <span style = { subParagraf }>
+                            Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00
+                        </span><br />
+                        <span style = { subParagraf }>
+                            Выходной: Суббота, Воскресенье
+                        </span><br />
+                        <strong>Диспетчерская служба</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 35-117
+                        </span><br />
+                        <span style = { subParagraf }>
+                            Круглосуточно, без перерыва и выходных.
+                        </span><br />
+                        <strong>Приемная директора</strong>: <br />
+                        <span style = { subParagraf }>
+                            8(86156) 31-194
+                        </span><br />
+                        <strong>Главный инженер</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 31-194
+                        </span><br />
+                        <span style = { subParagraf }>
+                            Прием населения: Понедельник, Пятница с 08-00 до 12-00.
+                        </span><br />
+                        <strong>Производственно-технический отдел</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 21-809
+                        </span><br />
+                        <span style = { subParagraf }>
+                            Прием населения: Понедельник, Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
+                        </span><br />
+                        <strong>Вывоз жидких коммунальных стоков</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 35-117
+                        </span><br />
+                        <strong>Лаборатория</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 31-010
+                        </span><br />
+                        <strong>Юридический отдел</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 21-809
+                        </span><br />
+                        <strong>Бухгалтерия</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 35-200
+                        </span><br />
+                        <strong>Отдел кадров</strong>:<br />
+                        <span style = { subParagraf }>
+                            8(86156) 31-194
+                        </span><br />
+                    </Typography>
+                </CardContent>
+                <Divider />
+                <CardContent
+                    style = { сard.text }
+                >
+                    <CardActionArea
+                        onClick = { this.handleExpandAbonClick }
+                        style = {{ width: '100%' }}
+                    >
+                        <div
+                            style = {{
+                                boxSizing: 'border-box',
+                                position: 'relative',
+                                whiteSpace: 'nowrap',
+                            }}
+                        >
+                            <CardHeader
+                                title = 'Абонентский отдел'
+                                titleTypographyProps = { сard.subtitle1 }
+                                subheader = 'Карта'
+                                subheaderTypographyProps = { сard.subtitle2 }
+                                style = {{
+                                    display: 'inline-block',
+                                    verticalAlign: 'top',
+                                    whiteSpace: 'normal',
+                                    paddingTop: 0,
+                                    paddingBottom: 0,
+                                    paddingRight: 90,
+                                }}
+                            />
+                            <span
+                                style = {{
+                                    position: 'absolute',
+                                    top: '0.5rem',
+                                    right: 4,
+                                    height: '100%',
+                                }}                            
+                            >
+                                { this.state.expandedAbon ? <ExpandLess /> : <ExpandMore /> }
+                            </span>
+                        </div>
+                    </CardActionArea>
+                    <Collapse in = { this.state.expandedAbon } timeout = 'auto' unmountOnExit>
+                        <MapsComponent
+                            lat = { this.props.abon_office.lat }
+                            lng = { this.props.abon_office.lng }
                             zoom = { this.props.zoom }
+                            balloonContent = '352750, Краснодарский край, ул. Советская, 56, здание БТИ'
                             isMarkerShown
                         />
-                    </CardMedia>
-                    <CardMedia
-                        style= {{
-                            width: '40%',
-                            margin: '0 auto'
+                    </Collapse>
+                    <ImageZoom
+                        image = {{
+                            src: bvhAbonentsOfficeBuild,
+                            alt: 'Абонентский отдел',
+                            title: 'Абонентский отдел',
+                            className: 'img',
+                            style: {
+                                width: '40%'
+                            }
                         }}
+                        shouldRespectMaxDimension = { true }
+                        defaultStyles = {{
+                            image: {
+                                margin: 'auto auto auto 15rem',
+                            },
+                            zoomContainer: {
+                                zIndex: 10000,
+                            },
+                        }}
+                    />
+                    <Typography
+                        variant = 'body1'
+                        color = 'textSecondary'
+                        className = { classes.text }
                     >
-                        <img 
-                            src = { bvhAbonentsOfficeBuild } 
-                        />
-                    </CardMedia>
-                    <CardText 
-                        expandable = { false }
-                        style = { this.props.muiTheme.app.сard.text }
-                    >
-                        <p><strong>Адрес:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}>352750, Краснодарский край, ул. Советская, 56, здание БТИ<br /></p>
-                        <p><strong>Телефон:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}><strong>8 (86156) 22-257</strong><br /></p>
-                        <p><strong>График работы:</strong></p>
-                        <p style = {{ paddingLeft: '4rem', }}>Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00<br />
-                        Выходной: Суббота и Воскресенье</p>
-                    </CardText>
-                </Card>
+                        <strong>Адрес:</strong><br />
+                        <span style = { subParagraf }>
+                            352750, Краснодарский край, ул. Советская, 56, здание БТИ
+                        </span><br />
+                        <strong>Телефон:</strong><br />
+                        <span style = { subParagraf }>
+                            <strong>8 (86156) 22-257</strong>
+                        </span><br />
+                        <strong>График работы:</strong><br />
+                        <span style = { subParagraf }>
+                            Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00
+                        </span><br />
+                        <span style = { subParagraf }>
+                            Выходной: Суббота и Воскресенье
+                        </span><br />
+                    </Typography>
+                </CardContent>
             </Card>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-    };
-};
-
-export default muiThemeable()(connect(mapStateToProps)(ContactsView));
-export { ContactsView as ContactsViewNotConnected };
+export default withStyles(styles, { name: 'muiContactsView', flip: false, withTheme: true })(ContactsView);
+//export { ContactsView as ContactsViewNotConnected };
 
 /*
+            <Grid container>
+                <GridItem xs={12} sm={12} md={12}>
+                </GridItem>
+            </Grid>
 */

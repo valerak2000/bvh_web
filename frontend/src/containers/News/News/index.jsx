@@ -1,45 +1,39 @@
 import React, { Component } from 'react';
-import { push } from 'react-router-redux';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import withTheme from '@material-ui/core/styles/withTheme';
+import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
 
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-//import FlatButton from 'material-ui/FlatButton';
-//import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-
-import UnderConstruct from '../../../components/UnderConstruct';
-//import bgHeader from '../../../images/bg-header.png';
+import UnderConstruct from '../../../components/UnderConstruct/UnderConstruct';
 
 class NewsView extends Component {
     static propTypes = {
-        dispatch: PropTypes.func.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
     };
 
     render() {
+        const { сard } = this.props.theme.app;
+
         return (
             <Card
-                style = { this.props.muiTheme.app.сard }
+                square = { true }
+                style = { сard }
             >
-                <CardTitle
+                <CardHeader
                     title = 'Новости'
-                    titleStyle = { this.props.muiTheme.app.сard.title }
+                    titleTypographyProps = { сard.title }
                 />
-                <CardText>
+                <CardContent
+                    style = { сard.text }
+                >
                     <UnderConstruct />
-                </CardText>
+                </CardContent>
             </Card>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-    };
-};
-
-export default muiThemeable()(connect(mapStateToProps)(NewsView));
+export default withTheme()(NewsView);
 export { NewsView as NewsViewNotConnected };

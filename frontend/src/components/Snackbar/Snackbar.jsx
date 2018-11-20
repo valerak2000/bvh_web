@@ -8,25 +8,14 @@ import IconButton from "@material-ui/core/IconButton";
 // @material-ui/icons
 import Close from "@material-ui/icons/Close";
 // core components
-import snackbarContentStyle from "./snackbarContentStyle";
+import snackbarContentStyle from "assets/jss/material-dashboard-react/components/snackbarContentStyle.jsx";
 
-function getMessage() {}
-function Snackbar({
-  classes,
-  message,
-  color,
-  close,
-  place,
-  open,
-  onClose,
-  onClick,
-  ...others
-}) {
-  let action = [];
+function Snackbar({ ...props }) {
+  const { classes, message, color, close, icon, place, open } = props;
+  var action = [];
   const messageClasses = classNames({
-    [classes.iconMessage]: others.icon !== undefined
+    [classes.iconMessage]: icon !== undefined
   });
-
   if (close !== undefined) {
     action = [
       <IconButton
@@ -34,13 +23,12 @@ function Snackbar({
         key="close"
         aria-label="Close"
         color="inherit"
-        onClick={onClose}
+        onClick={() => props.closeNotification()}
       >
         <Close className={classes.close} />
       </IconButton>
     ];
   }
-
   return (
     <Snack
       anchorOrigin={{
@@ -48,20 +36,12 @@ function Snackbar({
         horizontal:
           place.indexOf("l") !== -1
             ? "left"
-            : place.indexOf("c") !== -1
-              ? "center"
-              : "right"
+            : place.indexOf("c") !== -1 ? "center" : "right"
       }}
       open={open}
       message={
-        <div onClick={onClick} className={onClick ? classes.pointer : ""}>
-          {others.icon !== undefined ? (
-            typeof others.icon === "function" ? (
-              <others.icon className={classes.icon} />
-            ) : (
-              <div className={classes.icon}>{others.icon}</div>
-            )
-          ) : null}
+        <div>
+          {icon !== undefined ? <props.icon className={classes.icon} /> : null}
           <span className={messageClasses}>{message}</span>
         </div>
       }
@@ -79,16 +59,11 @@ function Snackbar({
 Snackbar.propTypes = {
   classes: PropTypes.object.isRequired,
   message: PropTypes.node.isRequired,
-  //The color of the Snackbar
   color: PropTypes.oneOf(["info", "success", "warning", "danger", "primary"]),
-  //Show/Hide close button
   close: PropTypes.bool,
-  icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  //The position the Snackbar:top-left, top-right, top-center, buttom-right, buttom-left,buttom-center.
+  icon: PropTypes.func,
   place: PropTypes.oneOf(["tl", "tr", "tc", "br", "bl", "bc"]),
-  open: PropTypes.bool,
-  onClose: PropTypes.func,
-  onClick: PropTypes.func
+  open: PropTypes.bool
 };
 
 export default withStyles(snackbarContentStyle)(Snackbar);

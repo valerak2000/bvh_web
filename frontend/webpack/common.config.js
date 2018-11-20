@@ -168,8 +168,8 @@ module.exports = function (mode) {
                 hash: true,
                 //chunks: ['vendor', 'app'],
                 //chunksSortMode: 'manual',
-                favicon: path.join(__dirname, '../../static/images/favicon.ico'),
-                minify: true,
+                //favicon: path.join(__dirname, '../../static/public/favicon.ico'),
+                //minify: true,
             }),
             new webpack.ProvidePlugin({
                 React: 'react',

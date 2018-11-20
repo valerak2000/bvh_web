@@ -1,16 +1,83 @@
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import * as Colors from 'material-ui/styles/colors';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import common from '@material-ui/core/colors/common';
+import blue from '@material-ui/core/colors/blue';
+import grey from '@material-ui/core/colors/grey';
+import cyan from '@material-ui/core/colors/cyan';
 
-export var muiTheme = getMuiTheme({
-//var muiTheme = exports.muiTheme = getMuiTheme({
-    fontFamily: 'pfbeausanspro-reg, sans-serif',
+export var muiTheme = createMuiTheme({
+    palette: {
+        textColor: {
+            main: blue[900]
+        },
+        //alternateTextColor: { main: blue[900] },
+        text: {
+            primary: blue[900],
+            secondary: common['black']
+        }, //teal300 lightGreen50 lightBlue900
+        primary: {
+            main: blue[900],
+            contrastText: common['white']
+        }, //teal300 lightGreen50 lightBlue900
+        secondary: {
+            main: blue[900],
+            //contrastText: common['white']
+        },
+        //secondaryTextColor: {
+        //    main: blue[800]
+        //},
+        //primary2Color: Colors.white,
+        //accent1Color: Colors.white,
+        //accent2Color: { main: common['white'] },
+        //backgroundColor: Colors.teal200,
+        //selectedTextColor: Colors.blue900,
+        //primary2Color: Colors.teal200,
+        //primary: Colors.blue900,
+        //color: Colors.teal200,
+        //canvasColor: Colors.teal200,
+    },
+    typography: {
+        useNextVariants: true,
+        fontFamily: [
+            'pfbeausanspro-reg',
+            'sans-serif',
+        ].join(','),
+        fontSize: 16,
+        fontWeight: 500,
+        htmlFontSize: 16,
+        subtitle1: {
+            fontSize: 22,
+            fontWeight: 500,
+        },
+        h3: {
+            fontSize: 18,
+            fontWeight: 500,
+        },
+        h4: {
+            fontSize: 20,
+            fontWeight: 500,
+        },
+        h5: {
+            fontSize: 24,
+            fontWeight: 500,
+        },
+        h6: {
+            fontSize: 30,
+            fontWeight: 500,
+        },
+        body1: {
+            fontSize: 16,
+            fontWeight: 500,
+        },
+        body2: {
+            fontSize: 14,
+            fontWeight: 500,
+        },
+    },
     global: {
-        maxWidth: '78rem',//62 126,
+        maxWidth: '78rem',
         minWidth: '78rem',
         minHeight: '58rem',
         margin: '0 auto',
-        fontSize: 16,
-        fontWeight: 500,
     },
     app: {
         //margin: '0 auto auto',
@@ -21,18 +88,31 @@ export var muiTheme = getMuiTheme({
         сard: {
             margin: '0 auto',
             //minHeight: '32rem',
-            height: '100%', //'-webkit-fill-available', //'40rem',
+            height: '100%',
             title: {
-                fontSize: 30,
+                variant: 'h6',
+                color: 'primary',
             },
-            header: {
-                fontSize: 24,
+            headline: {
+                variant: 'h5',
+                color: 'primary',
             },
-            header1: {
-                fontSize: 20,
+            subheader: {
+                variant: 'subtitle1',
+                color: 'primary',
+            },
+            subtitle1: {
+                variant: 'h4',
+                color: 'primary',
+            },
+            subtitle2: {
+                variant: 'body1',
+                color: 'primary',
             },
             text: {
+                variant: 'body1',
                 fontSize: 16,
+                color: 'primary',
             },
         },
         header: {
@@ -43,112 +123,98 @@ export var muiTheme = getMuiTheme({
                 position: 'center'
             },*/
             appBar: {
-                height: 80,
+                height: '5.4rem',
                 width: '100%',
-                elementLeft: {
-                    width: '100%',
-                    height: 'inherit',
-                    //margin: '0.1rem 0 -1rem 0',
-                    display: 'flex',
-                    iconStyleLeft: {
-                        width: '75rem',
-                        //margin: '1.5rem 0 0rem 0',
-                    },
-                    logo: {
-                        //2,646370023419204
-                        width: 220,
-                        height: 76,
-                        cursor: 'pointer',
-                        picture: {
-                            height: 'inherit',
-                            width: 201,
-                            objectFit: 'contain',
-                            margin: '-0.75rem auto auto -0.5rem',
-                            //margin: '-2.5rem auto auto -1rem',
-                        },
-                    },
-                    menu: {
-                        width: '30rem',
+                iconStyleLeft: {
+                    width: '75rem',
+                    //margin: '1.5rem 0 0rem 0',
+                },
+                logo: {
+                    //2,646370023419204
+                    width: 230,
+                    height: 76,
+                    cursor: 'pointer',
+                    margin: '0.4rem 0 auto -0.5rem',
+                    picture: {
                         height: 'inherit',
-                        margin: '2rem 1rem auto',
-                        tab: {
-                            fontSize: 18,
-                            fontWeight: 500,
-                            textTransform: 'none',
-                        }
+                        width: 201,
+                        objectFit: 'contain',
                     },
+                },
+                menu: {
+                    width: '30rem',
+                    height: 'inherit',
+                    margin: '2rem 1rem -8px',
+                    tab: {
+                        fontSize: 18,
+                        fontWeight: 500,
+                        opacity: 1,
+                        textTransform: 'none',
+                        indicator: {
+                            color: cyan[100],
+                            backgroundColor: cyan[100],
+                        }
+                    }
                 },
                 titleStyle: {
                     width: 'auto',
                 },
-                elementRight: {
-                    width: 'auto',
+                login: {
                     height: 'inherit',
-                    margin: '0 auto',
-                    iconStyleRight: {
-                        width: 'auto',
-                        //margin: '1.5rem 0 0rem 0',
-                        //margin: '0rem auto',
-                    },
-                    login: {
-                        //margin: '0rem 3rem 0',
-                        //top: '0rem',
-                        //right: '3rem',
+                    width: 'inherit',
+                    backgroundColor: 'inherit',
+                    fontSize: 14,
+                    color: grey[50],
+                    display: 'flex',
+                    margin: '0.5rem 0rem 0rem 12rem',
+                    badge: {
                         height: 'inherit',
-                        width: 'inherit',
                         backgroundColor: 'inherit',
+                        fontFamily: '"PFBeauSansPro-Reg", "sans-serif"',
                         fontSize: 14,
-                        color: Colors.grey50,
-                        //width: '100%',
-                        //height: 'inherit',
-                        //margin: 'auto',
-                        badge: {
-                            top: '0rem',
-                            right: '1rem',
-                            height: 'inherit',
-                            width: '19rem',
-                            backgroundColor: 'inherit',
-                            fontFamily: 'PFBeauSansPro-Reg, sans-serif',
-                            fontSize: 14,
+                        width: '19rem',
+                        margin: '0rem -6rem 0rem 0rem',
+                    },
+                    button: {
+                        margin: '2rem 0rem 0rem 0rem',
+                        paddingTop: 10,
+                        height: 39,
+                        color: grey[50],
+                        fontSize: 18,
+                        fontWeight: 500,
+                        label: {
+                            fontSize: 18,
+                            fontWeight: 500,
                         },
-                        button: {
-                            margin: '0.2rem -1rem 0', //'1rem 1rem 0',
-                            paddingTop: 10,
-                            height: 39,
-                            color: Colors.grey50,
-                            hoverColor: Colors.blue800,
-                            label: {
-                                fontSize: 18,
-                                fontWeight: 500,
-                            },
-                            icon: {
-                                height: '1.25rem',
-                                width: '1.25rem',
-                            },
-                            iconMenu: {
-                                height: '1.25rem',
-                                width: '1.25rem',
-                                color: Colors.grey50,
-                            },
+                        icon: {
+                            height: '1.25rem',
+                            width: '1.25rem',
+                            margin: 'auto auto auto 5px',
                         },
-                    }
+                        iconMenu: {
+                            height: '1.25rem',
+                            width: '1.25rem',
+                            color: grey[50],
+                        },
+                    },
                 },
-                flexWrap: 'wrap',
             },
         },
         leftNav: {
             width: '28%',
-            //maxWidth: '28rem',
         },
         footer: {
-            backgroundColor: Colors.blue800, //teal200,
+            backgroundColor: blue[900], //teal200,
+            fontFamily: [
+                'pfbeausanspro-reg',
+                'sans-serif',
+            ].join(','),
             bottomNavigation: {
                 position: 'space-around',
                 height: '4rem',
-                //display: 'block',
+                backgroundColor: blue[900], //teal200,
                 button: {
-                    //minWidth: '31rem',
-                    //maxWidth: 'none',
+                    color: grey[50],
                     maxWidth: '24rem',
                     margin: '0 0 auto',
                     icon: {
@@ -160,32 +226,16 @@ export var muiTheme = getMuiTheme({
             },
             bottomText: {
                 fontSize: 14,
-                color: Colors.grey50,
+                color: grey[50],
                 textAlign: 'right',
                 margin: '0 1rem auto auto',
                 link: {
-                    color: Colors.cyan100,
+                    color: cyan[100],
                 },
             }
         },
     },
-    palette: {
-        textColor: Colors.blue900,
-        alternateTextColor: Colors.blue900,
-        primary1Color: Colors.blue800, //teal300 lightGreen50 lightBlue900
-        //primary2Color: Colors.white,
-        //accent1Color: Colors.white,
-        accent2Color: Colors.white,
-        //backgroundColor: Colors.teal200,
-        //selectedTextColor: Colors.blue900,
-        secondaryTextColor: Colors.blue900,
-        //primary2Color: Colors.teal200,
-        //primary: Colors.blue900,
-        secondary: Colors.white,
-        //color: Colors.teal200,
-        //canvasColor: Colors.teal200,
-    },
-    title: {
+    /*title: {
         cursor: 'pointer',
     },
     button: {
@@ -194,38 +244,61 @@ export var muiTheme = getMuiTheme({
     tabs: {
         width: '100%',
         paddingLeft: 20,
-        selectedTextColor: Colors.grey50,
-        textColor: Colors.grey50,
+        selectedTextColor: grey[50],
+        textColor: grey[50],
         tab: {
             textTransform: 'none',
         },
     },
     badge: {
-        textColor: Colors.grey50,
+        textColor: grey[50],
     },
     bottomNavigation: {
-        backgroundColor: Colors.blue800, //teal200,
-        unselectedColor: Colors.grey50, //blue900,
-        selectedColor: Colors.grey50, //blue900,
+        backgroundColor: blue[800], //teal200,
+        unselectedColor: grey[50], //blue900,
+        selectedColor: grey[50], //blue900,
         //height: 56,
         unselectedFontSize: 16,
         selectedFontSize: 16,
+    },*/
+    buttonLink: {
+        padding: '6px 6px 6px 6px',
+        iconPdf: {
+            width: 32,
+            height: 38,
+            objectFit: 'contain',
+            margin: '0rem auto',
+        },
+        labelPdf: {
+            fontSize: 16,
+            fontWeight: 500,
+            minHeight: 'inherit',
+            display: 'inline-flex',
+            alignItems: 'center',
+        },
     },
-    iconPdf: {
-        width: 32,
-        height: 38,
-        //display: 'block',
-        //background: `url(${iconPdf}) no-repeat 0px 0px`,
-        objectFit: 'contain',
-        margin: '0rem auto',
+    ul: {
+        margin: 'auto',
     },
-    labelPdf: {
-        fontSize: 16,
-        fontWeight: 500,
+    li: {
+        padding: '0 0 0 25px',
+        margin: '5px 0 5px 0',
+        background: 'url(/static/images/check.svg) no-repeat 0px 0px',
+        backgroundSize: 16,
+        listStyleImage: 'none',
+        listStyle: 'none',
     },
     icon: {
         height: 24,
         width: '100%',
         objectFit: 'contain',
+    },
+    subParagraf: {
+        margin: '0.25rem auto 0.25rem 4rem',
+    },
+    textIdent: {
+        align: 'justify',
+        textIndent: '1.5em',
+        margin: '0.25rem auto 0.25rem',
     },
 });

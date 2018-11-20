@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
-//import { push } from 'react-router-redux';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-//import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-
-import UnderConstruct from '../../components/UnderConstruct';
+import withTheme from '@material-ui/core/styles/withTheme';
+import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
 
 class MapView extends Component {
     static propTypes = {
-        dispatch: PropTypes.func.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
-    static defaultProps = {
-    };
+    constructor(props, context) {
+        super(props, context);
+    }
 
     render() {
+        const { сard } = this.props.theme.app;
+
         return (
             <Card
-                style = { this.props.muiTheme.app.сard }
+                square = { true }
+                style = { сard }
             >
-                <CardTitle
+                <CardHeader
                     title = 'Карта сайта'
-                    titleStyle = { this.props.muiTheme.app.сard.title }
+                    titleTypographyProps = { this.props.theme.app.сard.title }
                 />
-                <CardText>
+                <CardContent>
                     <div 
                         style = {{ 
                             display: 'block',
@@ -104,7 +102,7 @@ class MapView extends Component {
                             </ul>        
                         </div>
                     </div>
-                </CardText>
+                </CardContent>
             </Card>
         );
     }
@@ -113,10 +111,5 @@ class MapView extends Component {
 /*
 */
 
-const mapStateToProps = (state) => {
-    return {
-    };
-};
-
-export default muiThemeable()(connect(mapStateToProps)(MapView));
+export default withTheme()(MapView);
 export { MapView as MapViewNotConnected };

@@ -2,7 +2,7 @@ import {
   primaryColor,
   primaryBoxShadow,
   defaultFont
-} from "../material-dashboard-react.jsx";
+} from "assets/jss/material-dashboard-react.jsx";
 
 const dropdownStyle = theme => ({
   buttonLink: {
@@ -44,6 +44,34 @@ const dropdownStyle = theme => ({
       WebkitBoxShadow: "none",
       boxShadow: "none",
       color: "black"
+    }
+  },
+  pooperNav: {
+    [theme.breakpoints.down("sm")]: {
+      position: "static !important",
+      left: "unset !important",
+      top: "unset !important",
+      transform: "none !important",
+      willChange: "none !important",
+      "& > div": {
+        boxShadow: "none !important",
+        marginLeft: "0rem",
+        marginRight: "0rem",
+        transition: "none !important",
+        marginTop: "0px !important",
+        marginBottom: "0px !important",
+        padding: "0px !important",
+        backgroundColor: "transparent !important",
+        "& ul li": {
+          color: "#FFF !important",
+          margin: "10px 15px 0!important",
+          padding: "10px 15px !important",
+          "&:hover": {
+            backgroundColor: "hsla(0,0%,78%,.2)",
+            boxShadow: "none"
+          }
+        }
+      }
     }
   },
   dropdown: {
