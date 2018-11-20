@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -19,8 +20,10 @@ import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import Zoom from 'react-thumbnail-zoom';
+//import Zoom from 'react-thumbnail-zoom';
+import ImageZoom from 'react-medium-image-zoom';
 
+import GridItem from '../../../components/Grid/GridItem.jsx';
 import Loader from '../../../components/loaders';
 //import { Maps } from '../../../components/Maps';
 import PdfLink from '../../../components/PdfLink/PdfLink';
@@ -188,18 +191,22 @@ class ContactsView extends Component {
                         title = 'Центральный офис'
                         className = { classes.media }
                     />
-                    <Zoom>
-                        <img 
-                            src = { bvhMainOfficeBuild }
-                            style = {{
-                                boxShadow: '',
-                                width: '40%',
-                                height: 'auto',
-                                objectFit: 'contain',
-                                margin: '0 auto',
-                            }}
-                        />
-                    </Zoom>
+                    <ImageZoom
+                        image = {{
+                            src: '/static/images/main_office.jpg',
+                            alt: 'Центральный офис',
+                            title: 'Центральный офис',
+                            className: 'img',
+                            style: {
+                                width: '40%'
+                            }
+                        }}
+                        shouldRespectMaxDimension={true}
+                        style = {{
+                            margin: '0 auto',
+                            zIndex: 10000,
+                        }}
+                    />
                     <Typography
                         variant = 'body1'
                         color = 'textSecondary'
@@ -354,6 +361,30 @@ export default withStyles(styles, { name: 'muiContactsView', flip: false, withTh
 //export { ContactsView as ContactsViewNotConnected };
 
 /*
+            <Grid container>
+                <GridItem xs={12} sm={12} md={12}>
+                </GridItem>
+            </Grid>
+                    <Zoom
+                        overlay = { false }
+                        closeButton
+                        style = {{
+                            margin: '0 auto',
+                            zIndex: 10000,
+                        }}
+                    >
+                        <img
+                            src = { bvhMainOfficeBuild }
+                            style = {{
+                                boxShadow: '',
+                                width: '40%',
+                                height: 'auto',
+                                objectFit: 'contain',
+                            }}
+                        />
+                    </Zoom>
+
+
                     <ExpansionPanel>
                             <ExpansionPanelSummary expandIcon = { <ExpandMore /> }>
                                 <CardHeader
