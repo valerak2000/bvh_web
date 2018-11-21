@@ -1,3 +1,4 @@
+import { darken, fade, lighten } from '@material-ui/core/styles/colorManipulator';
 import {
   warningColor,
   primaryColor,
@@ -7,14 +8,17 @@ import {
   roseColor,
   grayColor,
   defaultFont
-} from "assets/jss/material-dashboard-react.jsx";
+} from "../../assets/jss/material-dashboard-react.jsx";
 
 const tableStyle = theme => ({
   warningTableHeader: {
     color: warningColor
   },
   primaryTableHeader: {
-    color: primaryColor
+    color: theme.palette.text.primary //primaryColor
+  },
+  secondaryTableHeader: {
+    color: theme.palette.text.secondary
   },
   dangerTableHeader: {
     color: dangerColor
@@ -37,7 +41,13 @@ const tableStyle = theme => ({
     maxWidth: "100%",
     backgroundColor: "transparent",
     borderSpacing: "0",
-    borderCollapse: "collapse"
+    borderCollapse: "collapse",
+    borderTop: `1px solid
+    ${
+      theme.palette.type === 'light'
+        ? lighten(fade(theme.palette.divider, 1), 0.88)
+        : darken(fade(theme.palette.divider, 1), 0.68)
+    }`, 
   },
   tableHeadCell: {
     color: "inherit",
@@ -48,7 +58,11 @@ const tableStyle = theme => ({
     ...defaultFont,
     lineHeight: "1.42857143",
     padding: "12px 8px",
-    verticalAlign: "middle"
+    verticalAlign: "middle",
+    color: "inherit",
+    body: {
+        color: theme.palette.text.secondary,
+    },
   },
   tableResponsive: {
     width: "100%",

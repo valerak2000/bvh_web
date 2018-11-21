@@ -8,7 +8,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 // core components
-import tableStyle from "assets/jss/material-dashboard-react/components/tableStyle.jsx";
+import tableStyle from "./tableStyle.jsx";
 
 function CustomTable({ ...props }) {
   const { classes, tableHead, tableData, tableHeaderColor } = props;
@@ -60,6 +60,7 @@ CustomTable.propTypes = {
   tableHeaderColor: PropTypes.oneOf([
     "warning",
     "primary",
+    "secondary",
     "danger",
     "success",
     "info",
