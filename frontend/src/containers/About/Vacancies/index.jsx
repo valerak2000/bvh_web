@@ -17,7 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import { darken, fade, lighten } from '@material-ui/core/styles/colorManipulator';
 
 const styles = theme => ({
-    root: {
+    /*root: {
         borderTop: `1px solid
         ${
           theme.palette.type === 'light'
@@ -27,7 +27,7 @@ const styles = theme => ({
     },
     table: {
         minWidth: 700,
-    },
+    },*/
     /*body: {
         color: theme.palette.text.secondary,
     },*/
@@ -50,16 +50,8 @@ const CustomTableCell = withStyles(theme => ({
 
 const dateVacancy = new Date();
 
-const rows = [
-    {
-        id: 1,
-        vacancy: 'экскаваторщик',
-        requirements: 'знать мат часть',
-    },
-];
-
-const vacancyData = [
-    [1, 'экскаваторщик', 'знать мат часть']
+const vacancys = [
+    //['1', 'экскаваторщик', 'знать мат часть']
 ];
 
 const configActionColumns = [
@@ -97,7 +89,7 @@ class VacanciesView extends Component {
                     style = { сard.text }
                 >
                     {
-                        rows.length > 0 ? (
+                        vacancys.length > 0 ? (
                             <React.Fragment key = 'vacancy_table'>
                                 <Typography
                                     variant = 'body1'
@@ -109,10 +101,8 @@ class VacanciesView extends Component {
                                 <Table
                                     actionColumns = { configActionColumns }
                                     tableHeaderColor = 'primary'
-                                    tableHead = {['Вакансия', 'Требования']}
-                                    tableData = {[
-                                        ['экскаваторщик', 'знать мат часть']
-                                    ]}
+                                    tableHead = {['№', 'Вакансия', 'Требования']}
+                                    tableData = { vacancys }
                                 />
                             </React.Fragment>
                         ) : (
@@ -158,6 +148,13 @@ class VacanciesView extends Component {
                                     }
                                     </TableBody>
                                 </Table>
+const rows = [
+    {
+        id: 1,
+        vacancy: 'экскаваторщик',
+        requirements: 'знать мат часть',
+    },
+];
 */
 
 export default withStyles(styles, { name: 'muiVacanciesView', flip: false, withTheme: true })(VacanciesView);
