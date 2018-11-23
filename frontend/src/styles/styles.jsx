@@ -90,6 +90,9 @@ export var muiTheme = createMuiTheme({
             //minHeight: '32rem',
             height: '100%',
             title: {
+                paddingBottom: 0
+            },
+            titleTypography: {
                 variant: 'h6',
                 color: 'primary',
             },
@@ -281,9 +284,9 @@ export var muiTheme = createMuiTheme({
         margin: 'auto',
     },
     li: {
-        //padding: 'auto',
+        padding: '0 0 0 25px',
         margin: '5px 0 5px 0',
-        background: 'url(/static/images/check.svg) no-repeat 0px 5px',
+        background: 'url(/static/images/check.svg) no-repeat 0px 2px',
         backgroundSize: 16,
         listStyleImage: 'none',
         listStyle: 'none',

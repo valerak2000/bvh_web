@@ -35,9 +35,6 @@ class ZakupkiRaskrytieView extends Component {
         classes: PropTypes.object.isRequired,
     };
 
-    static defaultProps = {
-    };
-
     constructor(props, context) {
         super(props, context);
     }
@@ -53,7 +50,8 @@ class ZakupkiRaskrytieView extends Component {
             >
                 <CardHeader
                     title = 'Закупки и раскрытие информации'
-                    titleTypographyProps = { сard.title }
+                    titleTypographyProps = { сard.titleTypography }
+                    style = { сard.title }
                 />
                 <CardContent
                     style = { сard.text }
@@ -75,7 +73,7 @@ class ZakupkiRaskrytieView extends Component {
                     <br />
                     {
                         rows.map((r, index) => (
-                            <PdfLink 
+                            <PdfLink
                                 key = { r.id } 
                                 href = { r.file } 
                                 label = { r.title }

@@ -7,46 +7,14 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import Table from '../../../components/Table/Table.jsx';
-//import Table from '@material-ui/core/Table';
-//import TableBody from '@material-ui/core/TableBody';
-//import TableCell from '@material-ui/core/TableCell';
-//import TableHead from '@material-ui/core/TableHead';
-//import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
-import { darken, fade, lighten } from '@material-ui/core/styles/colorManipulator';
+import Table from '../../../components/Table/Table.jsx';
 
 const styles = theme => ({
-    /*root: {
-        borderTop: `1px solid
-        ${
-          theme.palette.type === 'light'
-            ? lighten(fade(theme.palette.divider, 1), 0.88)
-            : darken(fade(theme.palette.divider, 1), 0.68)
-        }`, 
-    },
-    table: {
-        minWidth: 700,
-    },*/
-    /*body: {
-        color: theme.palette.text.secondary,
-    },*/
     text: {
         margin: 'auto auto auto 2rem',
     },
 });
-
-/*
-const CustomTableCell = withStyles(theme => ({
-    head: {
-        backgroundColor: theme.palette.common.gray[50],
-        color: theme.palette.common.white,
-    },
-    body: {
-        color: theme.palette.text.secondary,
-    },
-}))(TableCell);
-*/
 
 const dateVacancy = new Date();
 
@@ -83,7 +51,8 @@ class VacanciesView extends Component {
             >
                 <CardHeader
                     title = 'Вакансии'
-                    titleTypographyProps = { сard.title }
+                    titleTypographyProps = { сard.titleTypography }
+                    style = { сard.title }
                 />
                 <CardContent
                     style = { сard.text }

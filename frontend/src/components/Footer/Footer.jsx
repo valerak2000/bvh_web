@@ -73,7 +73,7 @@ class Footer extends Component {
                         label = 'Партнеры'
                         icon = { <Business /> }
                         value = 'business'
-                        href = "http://www.brhts.ru" 
+                        href = "http://www.brhts.ru"
                         target = "_blank"
                         style = { footer.bottomNavigation.button }
                         classes = {{ label: classes.label, }}

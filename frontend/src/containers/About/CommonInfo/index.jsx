@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
+import CardHeader from '../../../components/Card/CardHeader.jsx';
 
 const styles = theme => ({
     text: {
@@ -42,7 +42,6 @@ class CommonInfoView extends Component {
             >
                 <CardHeader
                     title = 'О компании'
-                    titleTypographyProps = { сard.title }
                 />
                 <CardContent
                     style = { сard.text }
@@ -90,18 +89,18 @@ class CommonInfoView extends Component {
                         className = { classes.text }
                     >
                         Фактическая структура абонентов по водопотреблению за 2012 год составляет:
-                        <ul style = { ul }>
-                            <li style = { li }>
-                                население <strong>86,8%</strong>
-                            </li>
-                            <li style = { li }>
-                                бюджетные организации <strong>3,1%</strong>
-                            </li>
-                            <li style = { li }>
-                                прочие организации <strong>10.1%</strong>
-                            </li>
-                        </ul>
                     </Typography>
+                    <ul style = { ul }>
+                        <li style = { li }>
+                            население <strong>86,8%</strong>
+                        </li>
+                        <li style = { li }>
+                            бюджетные организации <strong>3,1%</strong>
+                        </li>
+                        <li style = { li }>
+                            прочие организации <strong>10.1%</strong>
+                        </li>
+                    </ul>
                     <Typography
                         variant = 'body1'
                         color = 'textSecondary'
