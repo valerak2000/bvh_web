@@ -1,27 +1,39 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import CardMedia from '@material-ui/core/CardMedia';
+import withTheme from '@material-ui/core/styles/withTheme';
+import CardHeader from '@material-ui/core/CardHeader';
+
+function CardHeaderDef(WrappedComponent) {
+    return class extends React.Component {
+      componentWillReceiveProps(nextProps) {
+        console.log('Current props: ', this.props);
+        console.log('Next props: ', nextProps);
+      }
+      render() {
+        // Wraps the input component in a container, without mutating it. Good!
+        return <WrappedComponent {...this.props} />;
+      }
+    }
+  }
 
 function CardHeader({ ...props }) {
-    const { classes, title, ...rest } = props;
+    const { title } = props;
     const { сard } = props.theme.app;
 
     return (
-        <CardHeader
+        <MUCardHeader
             title = { title }
             titleTypographyProps = { сard.titleTypography }
             style = { сard.title }
-            { ...rest }
         />
     );
 }
 
 CardHeader.propTypes = {
-    classes: PropTypes.object.isRequired,
-    className: PropTypes.string,
+    //classes: PropTypes.object.isRequired,
+    //className: PropTypes.string,
     title: PropTypes.string,
 };
   
-export default withStyles(null, { withTheme: true })(CardHeader);
+export default withTheme()(CardHeaderDef);
+export { CardHeaderDef as CardHeader };

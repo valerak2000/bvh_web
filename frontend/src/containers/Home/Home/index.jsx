@@ -122,7 +122,8 @@ class HomeView extends Component {
             >
                 <CardHeader
                     title = 'Брюховецкий водоканал'
-                    titleTypographyProps = { сard.title }
+                    titleTypographyProps = { сard.titleTypography }
+                    style = { сard.title }
                 />
                 <CardContent
                     style = { сard.text }

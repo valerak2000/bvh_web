@@ -45,6 +45,8 @@ class CommonInfoView extends Component {
                 />
                 <CardContent
                     style = { сard.text }
+                    titleTypographyProps = { сard.titleTypography }
+                    style = { сard.title }
                 >
                     <Typography
                         variant = 'body1'

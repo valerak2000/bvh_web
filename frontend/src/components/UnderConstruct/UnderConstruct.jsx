@@ -6,7 +6,7 @@ class UnderConstruct extends Component {
     render() {
         return (
             <Typography
-                variant = 'subtitle1'
+                variant = 'subtitle2'
             >
                 Раздел находится в разработке
             </Typography>

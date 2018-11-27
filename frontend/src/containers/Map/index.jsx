@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+
+import CardHeader from '../../components/Card/CardHeader.jsx';
 
 class MapView extends Component {
     static propTypes = {
@@ -22,7 +26,6 @@ class MapView extends Component {
             >
                 <CardHeader
                     title = 'Карта сайта'
-                    titleTypographyProps = { this.props.theme.app.сard.title }
                 />
                 <CardContent>
                     <div 
@@ -108,8 +111,5 @@ class MapView extends Component {
     }
 }
 
-/*
-*/
-
-export default withTheme()(MapView);
-export { MapView as MapViewNotConnected };
+export default withStyles(null, { name: 'muiMapView', flip: false, withTheme: true })(MapView);
+//export { MapView as MapViewNotConnected };
