@@ -31,20 +31,20 @@ class LeadershipView extends Component {
     }
 
     render() {
-        const { сard } = this.props.theme.app;
+        const { card } = this.props.theme.app;
 
         return (
             <Card
                 square = { true }
-                style = { сard }
+                style = { card }
             >
                 <CardHeader
                     title = 'Руководство компании'
-                    titleTypographyProps = { сard.title }
+                    titleTypographyProps = { card.title }
                 />
                 <CardHeader
                     subheader = '«Брюховецкое водопроводное хозяйство», ООО'
-                    subheaderTypographyProps = { сard.headline }
+                    subheaderTypographyProps = { card.headline }
                 />
                 <GridList
                     cols = { 3 }
@@ -60,7 +60,7 @@ class LeadershipView extends Component {
                     >
                         <img 
                             src = { avatarMan } 
-                            style = { сard.header }
+                            style = { card.header }
                         />
                         <GridListTileBar
                             title = 'Ляшенко Александр Николаевич'
@@ -97,7 +97,7 @@ class LeadershipView extends Component {
 
                 <CardHeader
                     subheader = '«Брюховецкое предприятие отвода и очистки стоков», ООО'
-                    subheaderTypographyProps = { сard.headline }
+                    subheaderTypographyProps = { card.headline }
                 />
                 <GridList
                     cols = { 3 }
@@ -113,7 +113,7 @@ class LeadershipView extends Component {
                     >
                         <img 
                             src = { avatarMan } 
-                            style = { сard.header }
+                            style = { card.header }
                         />
                         <GridListTileBar
                             title = "Дьяченко Владимир Анатольевич"
@@ -146,7 +146,7 @@ class LeadershipView extends Component {
                 </GridList>
 
                 <CardContent 
-                    style = { сard.text }
+                    style = { card.text }
                 >
                 </CardContent>
             </Card>

@@ -110,7 +110,7 @@ class HomeView extends Component {
     };
         
     render() {
-        const { сard } = this.props.theme.app;
+        const { card } = this.props.theme.app;
         const { classes, theme } = this.props;
         const { activeStep } = this.state;
         const maxSteps = splashSteps.length;
@@ -118,15 +118,15 @@ class HomeView extends Component {
         return (
             <Card
                 square = { true }
-                style = { сard }
+                style = { card }
             >
                 <CardHeader
                     title = 'Брюховецкий водоканал'
-                    titleTypographyProps = { сard.titleTypography }
-                    style = { сard.title }
+                    titleTypographyProps = { card.titleTypography }
+                    style = { card.title }
                 />
                 <CardContent
-                    style = { сard.text }
+                    style = { card.text }
                 >
                     <AutoPlaySwipeableViews
                         axis = { theme.direction === 'rtl' ? 'x-reverse' : 'x' }

@@ -6,7 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 //import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 
-import CardHeader from '../../../components/Card/CardHeader.jsx';
+import { CardHeaderDef as CardHeader } from '../../../components/Card/CardHeader.jsx';
 import UnderConstruct from '../../../components/UnderConstruct/UnderConstruct';
 
 class FaqView extends Component {
@@ -16,19 +16,19 @@ class FaqView extends Component {
     };
 
     render() {
-        const { сard } = this.props.theme.app;
+        const { card } = this.props.theme.app;
 
         return (
             <Card
                 square = { true }
-                style = { сard }
+                style = { card }
             >
                 <CardHeader
                     title = 'Вопрос-ответ'
                     { ...this.props }
                 />
                 <CardContent
-                    style = { сard.text }
+                    style = { card.text }
                 >
                     <UnderConstruct />
                 </CardContent>

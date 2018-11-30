@@ -41,21 +41,21 @@ class VacanciesView extends Component {
 
     render() {
         const { classes } = this.props;
-        const { сard } = this.props.theme.app;
+        const { card } = this.props.theme.app;
         const formatedDateVacancy = moment().format('LL');
 
         return (
             <Card
                 square = { true }
-                style = { сard }
+                style = { card }
             >
                 <CardHeader
                     title = 'Вакансии'
-                    titleTypographyProps = { сard.titleTypography }
-                    style = { сard.title }
+                    titleTypographyProps = { card.titleTypography }
+                    style = { card.title }
                 />
                 <CardContent
-                    style = { сard.text }
+                    style = { card.text }
                 >
                     {
                         vacancys.length > 0 ? (

@@ -34,20 +34,20 @@ class TarifsView extends Component {
 
     render() {
         const { classes } = this.props;
-        const { сard } = this.props.theme.app;
+        const { card } = this.props.theme.app;
 
         return (
             <Card
                 square = { true }
-                style = { сard }
+                style = { card }
             >
                 <CardHeader
                     title = 'Тарифы'
-                    titleTypographyProps = { сard.titleTypography }
-                    style = { сard.title }
+                    titleTypographyProps = { card.titleTypography }
+                    style = { card.title }
                 />
                 <CardContent
-                    style = { сard.text }
+                    style = { card.text }
                 >
                     <Table
                         actionColumns = { configActionColumns }

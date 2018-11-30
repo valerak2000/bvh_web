@@ -16,18 +16,18 @@ class NewsAboutUsView extends Component {
     };
 
     render() {
-        const { сard } = this.props.theme.app;
+        const { card } = this.props.theme.app;
 
         return (
             <Card
-                style = { сard }
+                style = { card }
             >
                 <CardHeader
                     title = 'СМИ о нашей работе'
-                    titleTypographyProps = { сard.title }
+                    titleTypographyProps = { card.title }
                 />
                 <CardContent
-                    style = { сard.text }
+                    style = { card.text }
                 >
                     <a 
                         href="http://kbereg.info/iz-otchetnogo-doklada-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-otkry-toj-sessii-soveta-munitsipal-nogo-obrazovaniya-bryuhovetskij-rajon/" 

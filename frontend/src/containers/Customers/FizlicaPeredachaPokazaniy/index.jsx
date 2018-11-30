@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
+import { card, cardHeader, cardMedia, cardContent } from '@material-ui/core';
 
 import UnderConstruct from '../../../components/UnderConstruct/UnderConstruct';
 
@@ -14,23 +14,23 @@ class FizlicaPeredachaPokazaniyView extends Component {
     };
 
     render() {
-        const { сard } = this.props.theme.app;
+        const { card } = this.props.theme.app;
 
         return (
-            <Card
+            <card
                 square = { true }
-                style = { сard }
+                style = { card }
             >
-                <CardHeader
+                <cardHeader
                     title = 'Передача показаний счетчиков'
-                    titleTypographyProps = { сard.title }
+                    titleTypographyProps = { card.title }
                 />
-                <CardContent
-                    style = { сard.text }
+                <cardContent
+                    style = { card.text }
                 >
                     <UnderConstruct />
-                </CardContent>
-            </Card>
+                </cardContent>
+            </card>
         );
     }
 }

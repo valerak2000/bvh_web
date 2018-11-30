@@ -31,22 +31,22 @@ class CommonInfoView extends Component {
 
     render() {
         const { classes } = this.props;
-        const { сard } = this.props.theme.app;
+        const { card } = this.props.theme.app;
         const { ul, li, RedLine } = this.props.theme;
         //const { subParagraf } = this.props.theme;
 
         return (
             <Card
                 square = { true }
-                style = { сard }
+                style = { card }
             >
                 <CardHeader
                     title = 'О компании'
                 />
                 <CardContent
-                    style = { сard.text }
-                    titleTypographyProps = { сard.titleTypography }
-                    style = { сard.title }
+                    style = { card.text }
+                    titleTypographyProps = { card.titleTypography }
+                    style = { card.title }
                 >
                     <Typography
                         variant = 'body1'

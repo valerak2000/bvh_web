@@ -15,19 +15,19 @@ class AvailableCapacityMapView extends Component {
     };
 
     render() {
-        const { сard } = this.props.theme.app;
+        const { card } = this.props.theme.app;
 
         return (
             <Card
                 square = { true }
-                style = { сard }
+                style = { card }
             >
                 <CardHeader
                     title = 'Карта доступной мощности'
-                    titleTypographyProps = { сard.title }
+                    titleTypographyProps = { card.title }
                 />
                 <CardContent
-                    style = { сard.text }
+                    style = { card.text }
                 >
                     <UnderConstruct />
                 </CardContent>

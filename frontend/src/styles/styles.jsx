@@ -85,7 +85,7 @@ export var muiTheme = createMuiTheme({
         width: '80%',
         flexDirection: 'unset',
         //background: `url(${bgHeader}) no-repeat 0px 0px`,
-        сard: {
+        card: {
             margin: '0 auto',
             //minHeight: '32rem',
             height: '100%',

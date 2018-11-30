@@ -41,18 +41,18 @@ class ZakupkiRaskrytieView extends Component {
 
     render() {
         const { classes } = this.props;
-        const { сard } = this.props.theme.app;
+        const { card } = this.props.theme.app;
 
         return (
             <Card
                 square = { true }
-                style = { сard }
+                style = { card }
             >
                 <CardHeader
                     title = 'Закупки и раскрытие информации'
                 />
                 <CardContent
-                    style = { сard.text }
+                    style = { card.text }
                 >
                     <Typography
                         variant = 'body1'
