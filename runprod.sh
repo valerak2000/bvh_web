@@ -1,4 +1,5 @@
 #!/bin/bash
+screen -X quit
 #cd /var/www/bvh_web/frontend
 #screen -dmS webfg npm run start-prod
 cd ./backend
