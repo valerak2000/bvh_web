@@ -6,14 +6,13 @@ class UnderConstruct extends Component {
     render() {
         return (
             <Typography
-                variant = 'subtitle2'
+                variant = 'h3'
+                color = 'textSecondary'
             >
                 Раздел находится в разработке
             </Typography>
         );
     }
 }
-
-UnderConstruct.muiName = 'UnderConstruct';
 
 export default withStyles(null, { name: 'muiUnderConstruct', flip: false, withTheme: true })(UnderConstruct);

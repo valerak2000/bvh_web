@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -16,6 +15,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ImageZoom from 'react-medium-image-zoom';
 
+import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 import GridItem from '../../../components/Grid/GridItem.jsx';
 import Loader from '../../../components/loaders';
 //import { Maps } from '../../../components/Maps';
@@ -59,7 +59,7 @@ const styles = theme => ({
         transform: 'rotate(180deg)',
     },*/
 });
-  
+
 class ContactsView extends Component {
     static propTypes = {
         theme: PropTypes.object.isRequired,
@@ -97,21 +97,20 @@ class ContactsView extends Component {
 
     render() {
         const { classes } = this.props;
-        const { сard } = this.props.theme.app;
+        const { card } = this.props.theme.app;
         const { subParagraf } = this.props.theme;
 
         return (
             <Card
                 square = { true }
-                style = { сard }
+                style = { card }
             >
                 <CardHeader
                     title = 'Контакты'
-                    titleTypographyProps = { сard.title }
+                    { ...this.props }
                 />
                 <CardHeader
                     subheader = 'ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»'
-                    subheaderTypographyProps = { сard.headline }
                     className = { classes.header }
                 />
                 <PdfLink
@@ -121,8 +120,8 @@ class ContactsView extends Component {
                 />
                 <CardHeader
                     subheader = 'ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»'
-                    subheaderTypographyProps = { сard.headline }
                     className = { classes.header }
+                    { ...this.props }
                 />
                 <PdfLink
                     href = { rekvisity_ooo_boos } 
@@ -130,7 +129,7 @@ class ContactsView extends Component {
                     style = {{ margin: 'auto auto auto 2rem', }}
                 />
                 <CardContent
-                    style = { сard.text }
+                    style = { card.text }
                 >
                     <CardActionArea
                         onClick = { this.handleExpandMainClick }
@@ -145,9 +144,9 @@ class ContactsView extends Component {
                         >
                             <CardHeader
                                 title = 'Центральный офис'
-                                titleTypographyProps = { сard.subtitle1 }
+                                titleTypographyProps = { card.subtitle1 }
                                 subheader = 'Карта'
-                                subheaderTypographyProps = { сard.subtitle2 }
+                                subheaderTypographyProps = { card.subtitle2 }
                                 style = {{
                                     display: 'inline-block',
                                     verticalAlign: 'top',
@@ -156,6 +155,7 @@ class ContactsView extends Component {
                                     paddingBottom: 0,
                                     paddingRight: 90,
                                 }}
+                                { ...this.props }
                             />
                             <span
                                 style = {{
@@ -267,7 +267,7 @@ class ContactsView extends Component {
                 </CardContent>
                 <Divider />
                 <CardContent
-                    style = { сard.text }
+                    style = { card.text }
                 >
                     <CardActionArea
                         onClick = { this.handleExpandAbonClick }
@@ -282,9 +282,9 @@ class ContactsView extends Component {
                         >
                             <CardHeader
                                 title = 'Абонентский отдел'
-                                titleTypographyProps = { сard.subtitle1 }
+                                titleTypographyProps = { card.subtitle1 }
                                 subheader = 'Карта'
-                                subheaderTypographyProps = { сard.subtitle2 }
+                                subheaderTypographyProps = { card.subtitle2 }
                                 style = {{
                                     display: 'inline-block',
                                     verticalAlign: 'top',
@@ -293,6 +293,7 @@ class ContactsView extends Component {
                                     paddingBottom: 0,
                                     paddingRight: 90,
                                 }}
+                                { ...this.props }
                             />
                             <span
                                 style = {{

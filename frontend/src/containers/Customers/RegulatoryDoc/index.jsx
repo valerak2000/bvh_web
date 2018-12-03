@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
 
+import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 import PdfLink from '../../../components/PdfLink/PdfLink';
 
 const federalnyy_zakon_o_vodosnabzhenii_i_vodootvedenii = '/static/files/media/potrebiteliam/federalnyy_zakon_o_vodosnabzhenii_i_vodootvedenii.pdf';
@@ -45,7 +45,7 @@ class RegulatoryDocView extends Component {
             >
                 <CardHeader
                     title = 'Нормативные документы'
-                    titleTypographyProps = { card.title }
+                    { ...this.props }
                 />
                 <CardContent 
                     style = { card.text }

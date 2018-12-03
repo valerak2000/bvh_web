@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Card from '@material-ui/core/Card';
+//import CardMedia from '@material-ui/core/CardMedia';
+//import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
 
+import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 import UnderConstruct from '../../../components/UnderConstruct/UnderConstruct';
 
 class ProchieUslugiView extends Component {
     static propTypes = {
         theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
     };
 
     render() {
+        const { classes } = this.props;
         const { card } = this.props.theme.app;
 
         return (
@@ -23,7 +29,7 @@ class ProchieUslugiView extends Component {
             >
                 <CardHeader
                     title = 'Прочие услуги'
-                    titleTypographyProps = { card.title }
+                    { ...this.props }
                 />
                 <CardContent
                     style = { card.text }
@@ -35,5 +41,5 @@ class ProchieUslugiView extends Component {
     }
 }
 
-export default withTheme()(ProchieUslugiView);
-export { ProchieUslugiView as ProchieUslugiViewNotConnected };
+export default withStyles(null, { name: 'muiProchieUslugiView', flip: false, withTheme: true })(ProchieUslugiView);
+//export { ProchieUslugiView as ProchieUslugiViewNotConnected };

@@ -5,12 +5,13 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 
-import CardHeader from '../../../components/Card/CardHeader.jsx';
+import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 import UnderConstruct from '../../../components/UnderConstruct/UnderConstruct';
 
 class ElektronnayaPriemnayaView extends Component {
     static propTypes = {
         theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     render() {
@@ -23,6 +24,7 @@ class ElektronnayaPriemnayaView extends Component {
             >
                 <CardHeader
                     title = 'Электронная приемная'
+                    { ...this.props }
                 />
                 <CardContent
                     style = { card.text }

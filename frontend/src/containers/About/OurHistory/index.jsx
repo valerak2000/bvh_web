@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
+//import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+
+import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
 const styles = theme => ({
     text: {
@@ -21,9 +22,6 @@ class OurHistoryView extends Component {
         classes: PropTypes.object.isRequired,
     };
 
-    static defaultProps = {
-    };
-
     render() {
         const { classes } = this.props;
         const { card } = this.props.theme.app;
@@ -35,7 +33,7 @@ class OurHistoryView extends Component {
             >
                 <CardHeader
                     title = 'Наша история'
-                    titleTypographyProps = { card.title }
+                    { ...this.props }
                 />
                 <CardContent
                     style = { card.text }

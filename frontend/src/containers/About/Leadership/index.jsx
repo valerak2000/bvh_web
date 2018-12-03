@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
+//import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -12,18 +11,25 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 
+import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
+
 const avatarMan = '/static/images/avatar.png';
 const avatarWoman = '/static/images/avatar_w.png';
+const styles = theme => ({
+    title: {
+        color: theme.palette.primary,
+        whiteSpace: 'normal',
+    },
+    titleBar: {
+        background:
+            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    },
+});
 
 class LeadershipView extends Component {
     static propTypes = {
         theme: PropTypes.object.isRequired,
-    };
-
-    static defaultProps = {
-    };
-
-    state = {
+        classes: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -31,6 +37,7 @@ class LeadershipView extends Component {
     }
 
     render() {
+        const { classes } = this.props;
         const { card } = this.props.theme.app;
 
         return (
@@ -40,11 +47,11 @@ class LeadershipView extends Component {
             >
                 <CardHeader
                     title = 'Руководство компании'
-                    titleTypographyProps = { card.title }
+                    { ...this.props }
                 />
                 <CardHeader
                     subheader = '«Брюховецкое водопроводное хозяйство», ООО'
-                    subheaderTypographyProps = { card.headline }
+                    { ...this.props }
                 />
                 <GridList
                     cols = { 3 }
@@ -52,7 +59,7 @@ class LeadershipView extends Component {
                     cellHeight = 'auto'
                     style = {{
                         overflowY: 'auto',
-                        height: 350,
+                        height: 250,
                     }}
                 >
                     <GridListTile 
@@ -71,6 +78,10 @@ class LeadershipView extends Component {
                                     <InfoIcon />
                                 </IconButton>
                             }
+                            classes = {{
+                                root: classes.titleBar,
+                                title: classes.title,
+                            }}
                         />
                     </GridListTile>
                     <GridListTile 
@@ -78,6 +89,7 @@ class LeadershipView extends Component {
                     >
                         <img 
                             src = { avatarWoman } 
+                            style = { card.header }
                         />
                         <GridListTileBar
                             title = 'Романова Ольга Григорьевна'
@@ -88,6 +100,10 @@ class LeadershipView extends Component {
                                     <InfoIcon />
                                 </IconButton>
                             }
+                            classes = {{
+                                root: classes.titleBar,
+                                title: classes.title,
+                            }}
                         />
                     </GridListTile>
                 </GridList>
@@ -97,7 +113,7 @@ class LeadershipView extends Component {
 
                 <CardHeader
                     subheader = '«Брюховецкое предприятие отвода и очистки стоков», ООО'
-                    subheaderTypographyProps = { card.headline }
+                    { ...this.props }
                 />
                 <GridList
                     cols = { 3 }
@@ -105,7 +121,7 @@ class LeadershipView extends Component {
                     cellHeight = 'auto'
                     style = {{
                         overflowY: 'auto',
-                        height: 350,
+                        height: 250,
                     }}
                 >
                     <GridListTile 
@@ -124,6 +140,10 @@ class LeadershipView extends Component {
                                     <InfoIcon />
                                 </IconButton>
                             }
+                            classes = {{
+                                root: classes.titleBar,
+                                title: classes.title,
+                            }}
                         />
                     </GridListTile>
                     <GridListTile 
@@ -131,6 +151,7 @@ class LeadershipView extends Component {
                     >
                         <img 
                             src = { avatarWoman } 
+                            style = { card.header }
                         />
                         <GridListTileBar
                             title = 'Романова Ольга Григорьевна'
@@ -141,6 +162,10 @@ class LeadershipView extends Component {
                                     <InfoIcon />
                                 </IconButton>
                             }
+                            classes = {{
+                                root: classes.titleBar,
+                                title: classes.title,
+                            }}
                         />
                     </GridListTile>
                 </GridList>
@@ -154,7 +179,7 @@ class LeadershipView extends Component {
     }
 }
 
-export default withStyles(null, { name: 'muiLeadershipView', flip: false, withTheme: true })(LeadershipView);
-export { LeadershipView as LeadershipViewNotConnected };
+export default withStyles(styles, { name: 'muiLeadershipView', flip: false, withTheme: true })(LeadershipView);
+//export { LeadershipView as LeadershipViewNotConnected };
 /*
 */

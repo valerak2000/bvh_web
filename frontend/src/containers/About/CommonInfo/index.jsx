@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
+//import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import CardHeader from '../../../components/Card/CardHeader.jsx';
+
+import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
 const styles = theme => ({
     text: {
@@ -34,6 +35,15 @@ class CommonInfoView extends Component {
         const { card } = this.props.theme.app;
         const { ul, li, RedLine } = this.props.theme;
         //const { subParagraf } = this.props.theme;
+        //                    titleTypographyProps = { card.titleTypography }
+        /*
+        titleTypographyProps = {{ 
+            variant: 'h6',
+            color: 'textPrimary',
+        }}
+                    style = { card.text }
+                    titleTypographyProps = {{ align: 'center' }}
+        */
 
         return (
             <Card
@@ -42,10 +52,9 @@ class CommonInfoView extends Component {
             >
                 <CardHeader
                     title = 'О компании'
+                    { ...this.props }
                 />
                 <CardContent
-                    style = { card.text }
-                    titleTypographyProps = { card.titleTypography }
                     style = { card.title }
                 >
                     <Typography
@@ -128,7 +137,12 @@ class CommonInfoView extends Component {
                         className = { classes.text }
                     >
                         <strong>ООО «Брюховецкое предприятие отвода и очистки стоков» (ООО «БООС»)</strong> зарегистрировано 23 декабря 2005 года.<br/>
-                        Предприятие оказывает услуги по водоотведению на территории ст. Брюховецкая<br />
+                    </Typography>
+                    <Typography
+                        variant = 'body1'
+                        color = 'textSecondary'
+                        className = { classes.text }
+                    >
                         За 2017 год произведена очистка <strong>571 тыс.кубометров</strong> сточных вод.
                     </Typography>
                 </CardContent>

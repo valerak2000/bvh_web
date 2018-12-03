@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Table from '../../../components/Table/Table.jsx';
+
+import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
 const styles = theme => ({
     text: {
@@ -43,8 +44,7 @@ class TarifsView extends Component {
             >
                 <CardHeader
                     title = 'Тарифы'
-                    titleTypographyProps = { card.titleTypography }
-                    style = { card.title }
+                    { ...this.props }
                 />
                 <CardContent
                     style = { card.text }

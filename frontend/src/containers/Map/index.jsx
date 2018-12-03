@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 
-import CardHeader from '../../components/Card/CardHeader.jsx';
+import CardHeader from '../../components/Card/CardHeaderImpl.jsx';
 
 class MapView extends Component {
     static propTypes = {
         theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -17,6 +17,7 @@ class MapView extends Component {
     }
 
     render() {
+        const { classes } = this.props;
         const { card } = this.props.theme.app;
 
         return (
@@ -26,6 +27,7 @@ class MapView extends Component {
             >
                 <CardHeader
                     title = 'Карта сайта'
+                    { ...this.props }
                 />
                 <CardContent>
                     <div 

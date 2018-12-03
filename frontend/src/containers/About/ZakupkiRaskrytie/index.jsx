@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-import CardHeader from '../../../components/Card/CardHeader.jsx';
+import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 import PdfLink from '../../../components/PdfLink/PdfLink';
 
 const styles = theme => ({
@@ -50,6 +50,7 @@ class ZakupkiRaskrytieView extends Component {
             >
                 <CardHeader
                     title = 'Закупки и раскрытие информации'
+                    { ...this.props }
                 />
                 <CardContent
                     style = { card.text }

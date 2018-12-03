@@ -89,16 +89,25 @@ export var muiTheme = createMuiTheme({
             margin: '0 auto',
             //minHeight: '32rem',
             height: '100%',
+            header: {
+                objectFit: 'contain',
+                height: 240,
+                //size: 'cover',
+            },
             title: {
                 paddingBottom: 0
             },
             titleTypography: {
                 variant: 'h6',
-                color: 'primary',
+                color: 'textPrimary',
+            },
+            subheaderTypography: {
+                variant: 'h5',
+                color: 'textPrimary',
             },
             headline: {
                 variant: 'h5',
-                color: 'primary',
+                color: 'textPrimary',
             },
             subheader: {
                 variant: 'subtitle1',

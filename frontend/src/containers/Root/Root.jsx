@@ -4,15 +4,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import { compose } from 'recompose';
-//import withStyles from '@material-ui/core/styles/withStyles';
 import { MuiThemeProvider } from '@material-ui/core/styles/';
 import { white } from '@material-ui/core/colors';
+import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
 //import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 // core components
 import MessageBox from '../../components/MessageBox';
-//import mainStyle from '../Main/mainStyle.jsx';
 //Actions
 import NotificationActions from '../../actions/Notifications';
 
@@ -105,13 +104,13 @@ class Root extends Component {
         }
         window.scroll(0, window.pageYOffset - this.props.scrollStepInPx);
     }
-    
+
     scrollToTop() {
         //console.log('top');
         let intervalId = setInterval(this.scrollStep.bind(this), this.props.delayInMs);
         this.setState({ intervalId: intervalId });
     }
-    
+
     render() {
         const { notifications, messageBox, ...rest } = this.props;
         const { goTopEnable } = this.state;
@@ -140,10 +139,10 @@ class Root extends Component {
                                 { ...rest }
                             />
                             {
-                                goTopEnable && 
-                                <Button
-                                    variant = 'fab'
-                                    mini = { true }
+                                goTopEnable &&
+                                <Fab
+                                    aria-label = 'Top'
+                                    size = 'small'
                                     onClick = { () => this.scrollToTop() }
                                     style = {{
                                         margin: 0,
@@ -156,7 +155,7 @@ class Root extends Component {
                                     }}
                                 >
                                     <ArrowUpward />
-                                </Button>
+                                </Fab>
                             }
                             <AppView 
                                 { ...this.props }
@@ -175,51 +174,6 @@ class Root extends Component {
     }
 }
 /*
-                            <LeftNavMenu
-                                { ...this.props }
-                                { ...rest }
-                            />
-                            {
-                                goTopEnable && 
-                                <Button
-                                    variant="fab"
-                                    mini = { true }
-                                    action = { () => this.scrollToTop() }
-                                    zDepth= { 2 }
-                                    backgroundColor = { white }
-                                    style = {{
-                                        margin: 0,
-                                        top: 'auto',
-                                        right: 20,
-                                        bottom: 20,
-                                        left: 'auto',
-                                        position: 'fixed',
-                                    }}
-                                >
-                                    <ArrowUpward />
-                                </Button>
-                            }
-                            <FloatingActionButton
-                                    style = {{
-                                        margin: 0,
-                                        top: 'auto',
-                                        right: 20,
-                                        bottom: 20,
-                                        left: 'auto',
-                                        position: 'fixed',
-                                    }}
-                                    mini = { true }
-                                    onClick = { () => this.scrollToTop() }
-                                    zDepth= { 2 }
-                                    backgroundColor = { white }
-                                >
-                                    <NavigationArrowUpward />
-                                </FloatingActionButton>
-                        </div>
-                        <Footer
-                            { ...this.props }
-                            { ...rest }
-                        />
 */
 
 const mapStateToProps = (state, ownProps) => {
@@ -228,10 +182,7 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-Root.muiName = 'Root';
-
-//export default connect(mapStateToProps, mapDispatchToProps)(Root);
 export default compose(
-    //withStyles(mainStyle),
+//    withStyles(styles, { name: 'muiRootView', flip: false, withTheme: false }),
     connect(mapStateToProps)
 )(Root);
