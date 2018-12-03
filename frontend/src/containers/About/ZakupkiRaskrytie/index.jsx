@@ -4,6 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 import PdfLink from '../../../components/PdfLink/PdfLink';
@@ -16,7 +17,7 @@ const styles = theme => ({
     },
 });
 
-const rows = [
+const rowsBvh = [
     {
         id: 1,
         file: '/static/files/media/Баланс-и-ф-2-БВХ-2017.pdf',
@@ -26,6 +27,19 @@ const rows = [
         id: 2,
         file: '/static/files/media/БВХ-УСН-2017.pdf',
         title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2017 год ООО «Брюховецкое водопроводное хозяйство»'
+    },
+];
+
+const rowsBoos = [
+    {
+        id: 1,
+        file: '/static/files/media/Баланс-и-ф-2-БООС-2017.pdf',
+        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2017 год ООО «Брюховецкое предприятие отвода и очистки стоков»'
+    },
+    {
+        id: 2,
+        file: '/static/files/media/БООС-УСН-2017.pdf',
+        title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2017 год ООО «Брюховецкое предприятие отвода и очистки стоков»'
     },
 ];
 
@@ -49,29 +63,51 @@ class ZakupkiRaskrytieView extends Component {
                 style = { card }
             >
                 <CardHeader
-                    title = 'Закупки и раскрытие информации'
+                    title = 'Раскрытие информации'
                     { ...this.props }
                 />
                 <CardContent
                     style = { card.text }
                 >
+                    <CardHeader
+                        subheader = '«Брюховецкое предприятие отвода и очистки стоков», ООО'
+                        { ...this.props }
+                    />
                     <Typography
                         variant = 'body1'
                         color = 'textSecondary'
                         className = { classes.text }
                     >
-                        Информация об условиях, на которых осуществляется поставка товаров (оказание услуг), включая сведения об публичных договоров поставок регулируемых товаров (оказание регулируемых услуг), а также сведения о договорах, заключенных по свободной цене, в соотвествии с частями 2.1 и 2.2 статьи 8 Федерального закона «О теплоснабжении»(на основании пункта 24 ПП РФ №570 от 05.07.2013г. (изм. внесены 31.08.2016г. ПП РФ №867).<br />
-                    </Typography>
-                    <Typography
-                        variant = 'body1'
-                        color = 'textSecondary'
-                        className = { classes.text }
-                    >
-                        <strong>Договора, заключенные обществом с ограниченой ответственностью&nbsp;«Брюховецкое водопроводное хозяйство» по свободным ценам, отсутствуют.</strong><br />
+                        <strong>Договора, заключенные ООО&nbsp;«Брюховецкое водопроводное хозяйство» по свободным ценам, отсутствуют.</strong><br />
                     </Typography>
                     <br />
                     {
-                        rows.map((r, index) => (
+                        rowsBvh.map((r, index) => (
+                            <PdfLink
+                                key = { r.id } 
+                                href = { r.file } 
+                                label = { r.title }
+                            />
+                        ))
+                    }
+
+                    <br/>
+                    <Divider />
+
+                    <CardHeader
+                        subheader = '«Брюховецкое предприятие отвода и очистки стоков», ООО'
+                        { ...this.props }
+                    />
+                    <Typography
+                        variant = 'body1'
+                        color = 'textSecondary'
+                        className = { classes.text }
+                    >
+                        <strong>Договора, заключенные ООО&nbsp;«Брюховецкое предприятие отвода и очистки стоков» по свободным ценам, отсутствуют.</strong><br />
+                    </Typography>
+                    <br />
+                    {
+                        rowsBoos.map((r, index) => (
                             <PdfLink
                                 key = { r.id } 
                                 href = { r.file } 

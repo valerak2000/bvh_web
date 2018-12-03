@@ -237,7 +237,7 @@ export var muiTheme = createMuiTheme({
                 },
             },
             bottomText: {
-                fontSize: 14,
+                fontSize: 10,
                 color: grey[50],
                 textAlign: 'right',
                 margin: '0 1rem auto auto',

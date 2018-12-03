@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import withTheme from '@material-ui/core/styles/withTheme';
+import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -16,6 +16,7 @@ class Header extends Component {
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -23,6 +24,7 @@ class Header extends Component {
     }
 
     render() {
+        const { classes } = this.props;
         const { appBar } = { ...this.props.theme.app.header };
         const { isAuthenticated } = this.props;
 
@@ -66,9 +68,7 @@ class Header extends Component {
     }
 }
 
-Header.muiName = 'Header';
-
-export default withTheme()(Header);
+export default withStyles(null, { name: 'muiHeader', flip: false, withTheme: true })(Header);
 
 /*
 */

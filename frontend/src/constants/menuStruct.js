@@ -80,7 +80,7 @@ export const MENU_ABOUT = [
     },
     {
         key: 'zakupki_raskrytie_informacii',
-        primaryText: 'Закупки и раскрытие информации',
+        primaryText: 'Раскрытие информации',
         leftIcon: null,
         dataRoute: '/about/zakupki_raskrytie_informacii',
     },
