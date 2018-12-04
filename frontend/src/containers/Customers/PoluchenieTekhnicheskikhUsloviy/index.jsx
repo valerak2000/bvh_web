@@ -5,9 +5,18 @@ import Card from '@material-ui/core/Card';
 //import CardMedia from '@material-ui/core/CardMedia';
 //import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
-import UnderConstruct from '../../../components/UnderConstruct/UnderConstruct';
+
+const styles = theme => ({
+    text: {
+        margin: 'auto auto auto 0.5rem',
+        textAlign: 'justify',
+        textIndent: '1.5em',
+    },
+});
 
 class PoluchenieTekhnicheskikhUsloviyView extends Component {
     static propTypes = {
@@ -18,6 +27,7 @@ class PoluchenieTekhnicheskikhUsloviyView extends Component {
     render() {
         const { classes } = this.props;
         const { card } = this.props.theme.app;
+        const { ul, li } = this.props.theme;
 
         return (
             <Card
@@ -26,12 +36,34 @@ class PoluchenieTekhnicheskikhUsloviyView extends Component {
             >
                 <CardHeader
                     title = 'Получение технических условий'
+                    subheader = 'на замену или установку прибора учета'
                     { ...this.props }
                 />
                 <CardContent
                     style = { card.text }
                 >
-                    <UnderConstruct />
+                    <Typography
+                        variant = 'body1'
+                        color = 'textSecondary'
+                        className = { classes.text }
+                    >
+                        Ксерокопии:
+                    </Typography>
+                    <ul style = { ul }>
+                        <li style = { li }>
+                            Паспорт гражданина Российской Федерации (страницы с фотографией и пропиской)
+                        </li>
+                        <li style = { li }>
+                            Правоустанавливающие документы на домовладение
+                        </li>
+                        <li style = { li }>
+                            Правоустанавливающие документы на земельный участок
+                        </li>
+                        <li style = { li }>
+                            Акт контрольного съема (при повторной замене прибора учета)
+                        </li>
+                    </ul>
+
                 </CardContent>
             </Card>
         );
