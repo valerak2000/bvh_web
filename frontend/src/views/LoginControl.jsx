@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
-import withTheme from '@material-ui/core/styles/withTheme';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import withStyles from '@material-ui/core/styles/withStyles';
+//import Menu from '@material-ui/core/Menu';
+//import MenuItem from '@material-ui/core/MenuItem';
+//import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import Divider from '@material-ui/core/Divider';
-import Badge from '@material-ui/core/Badge';
+//import IconButton from '@material-ui/core/IconButton';
+//import Divider from '@material-ui/core/Divider';
+//import Badge from '@material-ui/core/Badge';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons/faSignInAlt';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
-import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
+//import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
+//import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/';
 
 import { authLogoutAndRedirect } from '../actions/auth';
@@ -20,10 +21,14 @@ import { authLogoutAndRedirect } from '../actions/auth';
 /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
 export function Login(props) {
     return (
-        <IconButton
+        <Button
+            focusRipple = { false }
             aria-label = 'Войти'
-            onClick = { props.onClick }
+            aria-selected = { false }
+            centerRipple = { false }
+            disableRipple = { true }
             disableTouchRipple = { true }
+            component = { Link } to = { props.link }
             style = { props.style.button }
         >
             Войти    
@@ -31,7 +36,7 @@ export function Login(props) {
                 icon = { faSignInAlt }
                 style = { props.style.button.icon }
             />
-        </IconButton>
+        </Button>
     );
 }
 
@@ -88,7 +93,6 @@ class LoginControl extends Component {
 
     constructor(props, context) {
         super(props, context);
-        this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleProtectedClick = this.handleProtectedClick.bind(this);
     }
@@ -99,11 +103,6 @@ class LoginControl extends Component {
 
     state = {
         isAuthenticated: false
-    };
-
-    handleLoginClick = (e) => {
-        e.preventDefault();
-        this.props.dispatch(push('/login'));
     };
 
     handleLogoutClick = (e) => {
@@ -149,7 +148,7 @@ class LoginControl extends Component {
                         />
                     ) : (
                         <Login
-                            onClick = { this.handleLoginClick }
+                            link = ''
                             style = { login.button }
                             { ...this.props }
                         />
@@ -160,6 +159,7 @@ class LoginControl extends Component {
     }
 }
 /*
+                            link = '/login'
             <Badge
                 id = 'LoginControl'
                 badgeContent = {
@@ -226,4 +226,4 @@ const mapStateToProps = (state, ownProps) => {
 
 LoginControl.muiName = 'Login';
 
-export default withTheme()(connect(mapStateToProps)(LoginControl));
+export default withStyles(null, { name: 'LoginControl', flip: false, withTheme: true })(connect(mapStateToProps)(LoginControl));

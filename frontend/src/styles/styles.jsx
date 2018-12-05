@@ -188,12 +188,13 @@ export var muiTheme = createMuiTheme({
                         margin: '0rem -6rem 0rem 0rem',
                     },
                     button: {
-                        margin: '2rem 0rem 0rem 0rem',
+                        margin: '1.5rem 0rem 0rem 0rem',
                         paddingTop: 10,
                         height: 39,
                         color: grey[50],
                         fontSize: 18,
                         fontWeight: 500,
+                        textTransform: 'none',
                         label: {
                             fontSize: 18,
                             fontWeight: 500,
