@@ -24,7 +24,6 @@ class IndexView(View):
 #        abspath = open(os.path.join(settings.BASE_DIR, '../static/bundles/index.html'), 'r')
 #        return HttpResponse(content=abspath.read())
 
-
 class ProtectedDataView(GenericAPIView):
     """Return protected data main page."""
 
@@ -37,5 +36,4 @@ class ProtectedDataView(GenericAPIView):
         data = {
             'data': 'THIS IS THE PROTECTED STRING FROM SERVER',
         }
-
         return Response(data, status=status.HTTP_200_OK)
