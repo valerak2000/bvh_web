@@ -1,6 +1,0 @@
-sitemap: "http://valera-k2000.ru/sitemap.xml",
-host: "http://valera-k2000.ru"
-
-UserAgent: *
-allow: /
-crawlDelay: 2

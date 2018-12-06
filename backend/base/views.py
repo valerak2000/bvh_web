@@ -8,7 +8,6 @@ from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
 from django.template import loader
 
 class IndexView(View):
@@ -24,7 +23,6 @@ class IndexView(View):
 #        abspath = open(os.path.join(settings.BASE_DIR, '../static/bundles/index.html'), 'r')
 #        return HttpResponse(content=abspath.read())
 
-
 class ProtectedDataView(GenericAPIView):
     """Return protected data main page."""
 
@@ -37,5 +35,4 @@ class ProtectedDataView(GenericAPIView):
         data = {
             'data': 'THIS IS THE PROTECTED STRING FROM SERVER',
         }
-
-        return Response(data, status=status.HTTP_200_OK)
+        return Response(data, status = status.HTTP_200_OK)

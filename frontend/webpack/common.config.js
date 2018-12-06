@@ -10,7 +10,6 @@ const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 const PATHS = {
     app: path.join(__dirname, '../src'),
     build: path.join(__dirname, '../../static/bundles/'),
-    //build: path.resolve('../static/bundles/'),
 };
 console.log(PATHS.build);
 
