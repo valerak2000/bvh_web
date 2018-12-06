@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django_js_reverse',
     'webpack_loader',
     #'import_export',
-    'django2_url_robots',
+    #'django2_url_robots',
     'accounts',
     'base'
 )
