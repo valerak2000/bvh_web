@@ -1,6 +1,0 @@
-sitemap: "http://bruvodokanal.ru/sitemap.xml",
-host: "http://bruvodokanal.ru"
-
-UserAgent: *
-allow: /
-crawlDelay: 2

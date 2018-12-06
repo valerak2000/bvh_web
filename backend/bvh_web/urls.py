@@ -18,6 +18,7 @@ urlpatterns += [
 
     #re_path(r'^profile', include('django2_url_robots.tests.urls_profile')),
     re_path(r'^robots\.txt$', TemplateView.as_view(template_name = 'base/robots.txt', content_type = 'text/plain')),
+    re_path(r'^sitemap\.xml$', TemplateView.as_view(template_name = 'base/sitemap.xml', content_type = 'text/plain')),
     # catch all others because of how history is handled by react router - cache this page because it will never change
     re_path(r'', cache_page(settings.PAGE_CACHE_SECONDS)(base_views.IndexView.as_view()), name = 'index'),
 ]
