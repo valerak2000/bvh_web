@@ -9,6 +9,7 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
+import PdfLink from '../../../components/PdfLink/PdfLink';
 
 const styles = theme => ({
     text: {
@@ -47,7 +48,7 @@ class PoluchenieTekhnicheskikhUsloviyView extends Component {
                         color = 'textSecondary'
                         className = { classes.text }
                     >
-                        Ксерокопии:
+                        Необходимый пакет документов (ксерокопии):
                     </Typography>
                     <ul style = { ul }>
                         <li style = { li }>
@@ -63,7 +64,18 @@ class PoluchenieTekhnicheskikhUsloviyView extends Component {
                             Акт контрольного съема (при повторной замене прибора учета)
                         </li>
                     </ul>
+                    Выдача готовых документов через 10 рабочих дней.
 
+                    <PdfLink
+                        key = 'zayavvtu'
+                        href = '/static/files/media/potrebiteliam/Заявление на выдачу техусловий.pdf'
+                        label = 'Заявление на выдачу техусловий'
+                    />
+                    <PdfLink
+                        key = 'zayavvvodpo'
+                        href = '/static/files/media/potrebiteliam/Заявка на ввод в эксплуатацию прибора учета.pdf'
+                        label = 'Заявка на ввод в эксплуатацию прибора учета'
+                    />
                 </CardContent>
             </Card>
         );
