@@ -7,7 +7,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
-import UnderConstruct from '../../../components/UnderConstruct/UnderConstruct';
 
 class NewsAboutUsView extends Component {
     static propTypes = {

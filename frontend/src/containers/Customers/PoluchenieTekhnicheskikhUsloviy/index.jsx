@@ -48,7 +48,7 @@ class PoluchenieTekhnicheskikhUsloviyView extends Component {
                         color = 'textSecondary'
                         className = { classes.text }
                     >
-                        Необходимый пакет документов (ксерокопии):
+                        <strong>Необходимый пакет документов (ксерокопии):</strong>
                     </Typography>
                     <ul style = { ul }>
                         <li style = { li }>
@@ -64,12 +64,13 @@ class PoluchenieTekhnicheskikhUsloviyView extends Component {
                             Акт контрольного съема (при повторной замене прибора учета)
                         </li>
                     </ul>
-                    Выдача готовых документов через 10 рабочих дней.
+                    <br />
+                    Выдача технических условий через 10 рабочих дней
 
                     <PdfLink
                         key = 'zayavvtu'
-                        href = '/static/files/media/potrebiteliam/Заявление на выдачу техусловий.pdf'
-                        label = 'Заявление на выдачу техусловий'
+                        href = '/static/files/media/potrebiteliam/Заявление на выдачу технических условий.pdf'
+                        label = 'Заявление на выдачу технических условий'
                     />
                     <PdfLink
                         key = 'zayavvvodpo'
