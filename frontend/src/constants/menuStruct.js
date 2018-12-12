@@ -144,6 +144,7 @@ export const MENU_CUSTOMERS = [
         primaryText: 'Юридические лица',
         leftIcon: null,
         //dataRoute: '/customers/urlica',
+        disabled: true,
         nestedItems: [
             {
                 key: 'zaklyuchenie_dogovorov',
@@ -181,6 +182,7 @@ export const MENU_CUSTOMERS = [
         key: 'services',
         primaryText: 'Услуги',
         leftIcon: null,
+        disabled: true,
         //dataRoute: '/customers/services',
         nestedItems: [
             {

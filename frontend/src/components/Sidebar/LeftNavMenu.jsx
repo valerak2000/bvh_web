@@ -44,6 +44,7 @@ function NavMenu(props) {
                         disableGutters
                         selected = { initiallyOpenFirst }
                         onClick = { (e) => props.onClick(item.dataRoute, item.key, e) }
+                        disabled = { item.disabled }
                     >
                         { 
                             item.leftIcon
@@ -92,6 +93,7 @@ function NavMenu(props) {
                                                 selected = { initiallySelectedSecond }
                                                 onClick = { (e) => props.onClick(ni.dataRoute, ni.key, e) }
                                                 className = { props.classes.nested }
+                                                disabled = { ni.disabled }
                                             >
                                                 { 
                                                     ni.leftIcon

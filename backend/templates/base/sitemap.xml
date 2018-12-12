@@ -3,7 +3,52 @@
         <url>
             <loc>http://www.bruvodokanal.ru/</loc>
             <lastmod>2018-12-07</lastmod>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/news</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/about/common_info</loc>
+            <changefreq>monthly</changefreq>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/about/vacancies</loc>
+            <changefreq>weekly</changefreq>
+            <priority>0.5</priority>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/about/history</loc>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/about/zakupki_raskrytie_informacii</loc>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/about/leadership</loc>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/about/contacts</loc>
+            <changefreq>monthly</changefreq>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/map</loc>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/blackouts</loc>
+            <changefreq>weekly</changefreq>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/faq</loc>
+            <changefreq>monthly</changefreq>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/customers/regulatory_doc</loc>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/customers/tarifs</loc>
+            <changefreq>monthly</changefreq>
         </url>
     </urlset>

@@ -72,11 +72,6 @@ class PoluchenieTekhnicheskikhUsloviyView extends Component {
                         href = '/static/files/media/potrebiteliam/Заявление на выдачу технических условий.pdf'
                         label = 'Заявление на выдачу технических условий'
                     />
-                    <PdfLink
-                        key = 'zayavvvodpo'
-                        href = '/static/files/media/potrebiteliam/Заявка на ввод в эксплуатацию прибора учета.pdf'
-                        label = 'Заявка на ввод в эксплуатацию прибора учета'
-                    />
                 </CardContent>
             </Card>
         );
@@ -85,3 +80,10 @@ class PoluchenieTekhnicheskikhUsloviyView extends Component {
 
 export default withStyles(null, { name: 'muiPoluchenieTekhnicheskikhUsloviyView', flip: false, withTheme: true })(PoluchenieTekhnicheskikhUsloviyView);
 //export { PoluchenieTekhnicheskikhUsloviyView as PoluchenieTekhnicheskikhUsloviyViewNotConnected };
+/*
+                    <PdfLink
+                        key = 'zayavvvodpo'
+                        href = '/static/files/media/potrebiteliam/Заявка на ввод в эксплуатацию прибора учета.pdf'
+                        label = 'Заявка на ввод в эксплуатацию прибора учета'
+                    />
+*/
