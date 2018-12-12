@@ -2,25 +2,28 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="theme-color" content="#000000">
-  <meta name="google-site-verification" content="khorPTuMpntMVPX7isIDARPH-h6bgClMjtp72H5QOuA" />
-  <meta name="yandex-verification" content="314e262bd55080ef" />
-  <meta name='wmail-verification' content='7995df043d45b76b064f3c039bdad4ee' />
-  <meta name="Description" content="Брюховецкое водопроводное хозяйство, предприятие отвода и очистки стоков" />
-  <title>Брюховецкое водопроводное хозяйство, предприятие отвода и очистки стоков</title>
-  <base href="/" />
-  <link rel="shortcut icon" href="/static/public/favicon.ico">
-  <link href="https://static.fontawesome.com/css/fontawesome-app.css" rel="stylesheet">
-  {% render_bundle 'app' 'css' %}
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="google-site-verification" content="khorPTuMpntMVPX7isIDARPH-h6bgClMjtp72H5QOuA" />
+    <meta name="yandex-verification" content="314e262bd55080ef" />
+    <meta name='wmail-verification' content='7995df043d45b76b064f3c039bdad4ee' />
+    <meta name="Description" content="Брюховецкое водопроводное хозяйство, предприятие отвода и очистки стоков" />
+    <title>Брюховецкое водопроводное хозяйство, предприятие отвода и очистки стоков</title>
+    <base href="/" />
+    <link rel="shortcut icon" href="/static/public/favicon.ico">
+    <link href="https://static.fontawesome.com/css/fontawesome-app.css" rel="stylesheet">
+    {% render_bundle 'app' 'css' %}
 </head>
 <body>
     <noscript>
         You need to enable JavaScript to run this app.
     </noscript>
+    <div id="root" />
+    {% render_bundle 'vendors' %} 
+    {% render_bundle 'app' %}
     <!-- Rating@Mail.ru counter -->
     <script type="text/javascript">
         var _tmr = window._tmr || (window._tmr = []);
@@ -33,6 +36,11 @@
         if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
         })(document, window, "topmailru-code");
     </script>
+    <noscript>
+        <div style="position:absolute;left:-10000px;">
+            <img src="//top-fwz1.mail.ru/counter?id=3069687;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
+        </div>
+    </noscript>
     <!-- //Rating@Mail.ru counter -->
     <script type="text/javascript">
         window.onerror = function (message, url, lineNo, colNo, error) {
@@ -61,8 +69,5 @@
             document.body.appendChild(container);
         };    
     </script>
-    <div id="root" />
-    {% render_bundle 'vendors' %} 
-    {% render_bundle 'app' %}
 </body>
 </html>
