@@ -4,16 +4,17 @@ import { push } from 'react-router-redux';
 import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-//import Menu from '@material-ui/core/Menu';
-//import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 //import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 //import IconButton from '@material-ui/core/IconButton';
-//import Divider from '@material-ui/core/Divider';
+import Divider from '@material-ui/core/Divider';
 //import Badge from '@material-ui/core/Badge';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons/faSignInAlt';
-//import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
-//import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
+import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/';
 
 import { authLogoutAndRedirect } from '../actions/auth';
@@ -41,15 +42,67 @@ export function Login(props) {
 }
 
 export function Logged(props) {
+    const { anchorEl } = props;
+    const isMenuOpen = Boolean(anchorEl);
+
+    const renderMenu = (
+        <Menu
+            anchorEl = { anchorEl }
+            anchorOrigin = {{ vertical: 'top', horizontal: 'right' }}
+            transformOrigin = {{ vertical: 'top', horizontal: 'right' }}
+            open = { isMenuOpen }
+            onClose = { props.onClose }
+        >
+            <MenuItem
+                primaryText = 'Личный кабинет (Внести показания, узнать состояние баланса, заказать и оплатить услуги)'
+                secondaryText = '123'
+                leftIcon = {
+                    <FontAwesomeIcon
+                        icon = { faLock }
+                        style = { props.style.button.icon }
+                    />
+                }
+                onClick = { props.onClickProtected }
+            />
+            <Divider />
+            <MenuItem
+                primaryText = { props.userName }
+                leftIcon = { 
+                    <FontAwesomeIcon
+                        icon = { faSignOutAlt }
+                        style = { props.style.button.icon }
+                    />
+                }
+                onClick = { props.onClickLogout }
+            />
+        </Menu>
+    );
+
     return (
-        <div></div>
+        <React.Fragment key = 'Profile'>
+            <Button
+                focusRipple = { false }
+                aria-owns= { props.isMenuOpen ? 'material-appbar' : undefined }
+                aria-haspopup = 'true'
+                aria-label = 'Profile'
+                aria-selected = { false }
+                centerRipple = { false }
+                disableRipple = { true }
+                disableTouchRipple = { true }
+                onClick = { props.onClick }
+                style = { props.style.button }
+            >
+                <AccountCircle />
+            </Button>
+            { renderMenu }
+        </React.Fragment>
     );
 }
 /*
         <IconMenu
             iconButtonElement = {
                 <IconButton>
-                    <MoreVertIcon />
+                    <AccountCircle />
                 </IconButton>
             }
             anchorOrigin = {{ horizontal: 'right', vertical: 'top' }}
@@ -93,6 +146,8 @@ class LoginControl extends Component {
 
     constructor(props, context) {
         super(props, context);
+        this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
+        this.handleMenuClose = this.handleMenuClose.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleProtectedClick = this.handleProtectedClick.bind(this);
     }
@@ -102,9 +157,18 @@ class LoginControl extends Component {
     };
 
     state = {
+        anchorEl: null,
         isAuthenticated: false
     };
 
+    handleProfileMenuOpen = (e) => {
+        this.setState({ anchorEl: e.currentTarget });
+    };
+
+    handleMenuClose = () => {
+        this.setState({ anchorEl: null });
+    };
+    
     handleLogoutClick = (e) => {
         e.preventDefault();
         this.props.dispatch(authLogoutAndRedirect());
@@ -117,8 +181,9 @@ class LoginControl extends Component {
 
     render() {
         const { isAuthenticated, userName } = this.props;
+        const { anchorEl } = this.state;
         const login = this.props.theme.app.header.appBar.login;
-
+    
         return (
             <span
                 style = { login }
@@ -141,14 +206,16 @@ class LoginControl extends Component {
                     isAuthenticated ? (
                         <Logged
                             userName = { userName }
+                            onClick = { this.handleProfileMenuOpen }
                             onClickLogout = { this.handleLogoutClick }
                             onClickProtected = { this.handleProtectedClick }
                             style = { login.button }
                             { ...this.props }
+                            { ...this.state }
                         />
                     ) : (
                         <Login
-                            link = ''
+                            link = '/login'
                             style = { login.button }
                             { ...this.props }
                         />
