@@ -14,6 +14,8 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ImageZoom from 'react-medium-image-zoom';
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 import GridItem from '../../../components/Grid/GridItem.jsx';
@@ -220,48 +222,93 @@ class ContactsView extends Component {
                         </span><br />
                         <strong>Диспетчерская служба</strong>:<br />
                         <span style = { subParagraf }>
-                            8(86156) 35-117
+                            <FontAwesomeIcon
+                                icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;8 (86156) 35-117
                         </span><br />
                         <span style = { subParagraf }>
                             Круглосуточно, без перерыва и выходных.
                         </span><br />
                         <strong>Приемная директора</strong>: <br />
                         <span style = { subParagraf }>
-                            8(86156) 31-194
+                            <FontAwesomeIcon
+                                icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;8 (86156) 31-194
                         </span><br />
                         <strong>Главный инженер</strong>:<br />
                         <span style = { subParagraf }>
-                            8(86156) 31-194
+                            <FontAwesomeIcon
+                                icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;8 (86156) 31-194
                         </span><br />
                         <span style = { subParagraf }>
                             Прием населения: Понедельник, Пятница с 08-00 до 12-00.
                         </span><br />
                         <strong>Производственно-технический отдел</strong>:<br />
                         <span style = { subParagraf }>
-                            8(86156) 21-809
+                            <FontAwesomeIcon
+                                icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;8 (86156) 21-809
                         </span><br />
                         <span style = { subParagraf }>
                             Прием населения: Понедельник, Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
                         </span><br />
                         <strong>Вывоз жидких коммунальных стоков</strong>:<br />
                         <span style = { subParagraf }>
-                            8(86156) 35-117
+                            <FontAwesomeIcon
+                                icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;8 (86156) 35-117
                         </span><br />
                         <strong>Лаборатория</strong>:<br />
                         <span style = { subParagraf }>
-                            8(86156) 31-010
+                            <FontAwesomeIcon
+                                icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;8 (86156) 31-010
                         </span><br />
                         <strong>Юридический отдел</strong>:<br />
                         <span style = { subParagraf }>
-                            8(86156) 21-809
+                            <FontAwesomeIcon
+                                icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;8 (86156) 21-809
                         </span><br />
                         <strong>Бухгалтерия</strong>:<br />
                         <span style = { subParagraf }>
-                            8(86156) 35-200
+                            <FontAwesomeIcon
+                                icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;8 (86156) 35-200
                         </span><br />
                         <strong>Отдел кадров</strong>:<br />
                         <span style = { subParagraf }>
-                            8(86156) 31-194
+                            <FontAwesomeIcon
+                                icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;8 (86156) 31-194
                         </span><br />
                     </Typography>
                 </CardContent>
@@ -347,7 +394,12 @@ class ContactsView extends Component {
                         </span><br />
                         <strong>Телефон:</strong><br />
                         <span style = { subParagraf }>
-                            <strong>8 (86156) 22-257</strong>
+                            <FontAwesomeIcon
+                                icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;8 (86156) 22-257
                         </span><br />
                         <strong>График работы:</strong><br />
                         <span style = { subParagraf }>

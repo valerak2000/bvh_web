@@ -15,9 +15,13 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons/faSignInAlt';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/';
 
 import { authLogoutAndRedirect } from '../actions/auth';
+
+const styles = theme => ({
+});
 
 /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
 export function Login(props) {
@@ -142,6 +146,7 @@ class LoginControl extends Component {
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -180,6 +185,7 @@ class LoginControl extends Component {
     };
 
     render() {
+        const { classes } = this.props;
         const { isAuthenticated, userName } = this.props;
         const { anchorEl } = this.state;
         const login = this.props.theme.app.header.appBar.login;
@@ -194,8 +200,13 @@ class LoginControl extends Component {
                     <span
                         style = {{ fontWeight: 100, }}
                     >
-                        Круглосуточный диспетчер:
+                        Круглосуточный диспетчер:&nbsp;
                     </span>
+                    <FontAwesomeIcon
+                        icon = { faPhone }
+                        flip = 'horizontal'
+                        style = {{ fontSize: 12, }}
+                    />
                     <span
                         style = {{ fontWeight: 700, }}
                     >
@@ -291,6 +302,4 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-LoginControl.muiName = 'Login';
-
-export default withStyles(null, { name: 'LoginControl', flip: false, withTheme: true })(connect(mapStateToProps)(LoginControl));
+export default withStyles(styles, { name: 'LoginControl', flip: false, withTheme: true })(connect(mapStateToProps)(LoginControl));

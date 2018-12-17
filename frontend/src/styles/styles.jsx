@@ -184,7 +184,7 @@ export var muiTheme = createMuiTheme({
                         backgroundColor: 'inherit',
                         fontFamily: '"PFBeauSansPro-Reg", "sans-serif"',
                         fontSize: 14,
-                        width: '19rem',
+                        width: '20rem',
                         margin: '0rem -6.4rem 0rem 0rem',
                     },
                     button: {

@@ -194,8 +194,8 @@ class LeftNavMenu extends Component {
     };
 
     render() {
-        const { activeMenuTop, activeMenuSecond, activeMenuThird, expanded, ...props } = this.state;
         const { classes } = this.props;
+        const { activeMenuTop, activeMenuSecond, activeMenuThird, expanded, ...props } = this.state;
         var initiallyFocused = null;
 
         if (activeMenuSecond !== null) {
