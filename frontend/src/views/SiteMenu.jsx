@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
-import { compose } from 'recompose';
-import withTheme from '@material-ui/core/styles/withTheme';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import pink from '@material-ui/core/colors/pink';
 
+import LoginControl from './LoginControl';
 //import { HOME_MENU, ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants';
 
 const styles = {
@@ -54,7 +53,6 @@ class SiteMenu extends Component {
             case 'available_capacity_map':
             case 'faq':
             case 'map':
-            case 'blackouts':
                 currentTab = false;
                 break;
             default:
@@ -73,7 +71,7 @@ class SiteMenu extends Component {
     render() {
         const { classes } = this.props;
         const { activeTab, ...props } = this.state;
-        const { menu } = this.props.theme.app.header.appBar;
+        const { menu, login } = this.props.theme.app.header.appBar;
 
         return (
             <Tabs
