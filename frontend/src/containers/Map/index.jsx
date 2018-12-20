@@ -90,7 +90,6 @@ class MapView extends Component {
                                     Услуги
                                     <ul>
                                         <li><a href="/customers/services/vyvoz_zhidkih_kommunalnyh_stokov">Вывоз жидких коммунальных стоков</a></li>
-                                        <li><a href="/customers/services/laboratornyy_analiz_vody">Лабораторный анализ воды</a></li>
                                         <li><a href="/customers/services/preyskurant_uslug_dlya_fizicheskih_lic">Прейскурант услуг для физических лиц</a></li>
                                         <li><a href="/customers/services/preyskurant_uslug_dlya_yuridicheskih_lic">Прейскурант услуг для юридических лиц</a></li>
                                         <li><a href="/customers/services/prochie_uslugi">Прочие услуги</a></li>

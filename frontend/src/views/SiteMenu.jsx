@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import pink from '@material-ui/core/colors/pink';
 
-import LoginControl from './LoginControl';
 //import { HOME_MENU, ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants';
 
 const styles = {
@@ -71,34 +70,36 @@ class SiteMenu extends Component {
     render() {
         const { classes } = this.props;
         const { activeTab, ...props } = this.state;
-        const { menu, login } = this.props.theme.app.header.appBar;
+        const { menu } = this.props.theme.app.header.appBar;
 
         return (
-            <Tabs
-                value = { activeTab }
-                onChange = { this.handleChange }
-                style = { menu }
-                classes = {{ indicator: classes.indicator, }}
-            >
-                <Tab
-                    value = 'about'
-                    label = 'О компании'
-                    component = { Link } to = '/about'
-                    style = { menu.tab }
-                 />
-                <Tab
-                    value = 'customers'
-                    label = 'Абонентам'
-                    component = { Link } to = '/customers'
-                    style = { menu.tab }
-                />
-                <Tab
-                    value = 'news'
-                    label = 'Новости'
-                    component = { Link } to = '/news'
-                    style = { menu.tab }
-                />
-            </Tabs>
+            <div>
+                <Tabs
+                    value = { activeTab }
+                    onChange = { this.handleChange }
+                    style = { menu }
+                    classes = {{ indicator: classes.indicator, }}
+                >
+                    <Tab
+                        value = 'about'
+                        label = 'О компании'
+                        component = { Link } to = '/about'
+                        style = { menu.tab }
+                    />
+                    <Tab
+                        value = 'customers'
+                        label = 'Абонентам'
+                        component = { Link } to = '/customers'
+                        style = { menu.tab }
+                    />
+                    <Tab
+                        value = 'news'
+                        label = 'Новости'
+                        component = { Link } to = '/news'
+                        style = { menu.tab }
+                    />
+                </Tabs>
+            </div>
         );
     }
 }

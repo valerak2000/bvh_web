@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+//import { push } from 'react-router-redux';
 import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -33,7 +33,7 @@ export function Login(props) {
             centerRipple = { false }
             disableRipple = { true }
             disableTouchRipple = { true }
-            onClick = { props.onClick }
+            component = { Link } to = '/login'
             style = { props.style.button }
         >
             Войти    
@@ -44,6 +44,7 @@ export function Login(props) {
         </Button>
     );
 }
+//            onClick = { props.onClick }
 
 export function Logged(props) {
     const { anchorEl } = props;
@@ -119,7 +120,7 @@ class LoginControl extends Component {
         this.handleMenuClose = this.handleMenuClose.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleLoginClick = this.handleLoginClick.bind(this);
-        this.handleProtectedClick = this.handleProtectedClick.bind(this);
+        //this.handleProtectedClick = this.handleProtectedClick.bind(this);
     }
 
     static defaultProps = {
@@ -150,10 +151,10 @@ class LoginControl extends Component {
         this.props.history.push('/login');
     };
 
-    handleProtectedClick = (e) => {
+    /*handleProtectedClick = (e) => {
         e.preventDefault();
         this.props.history.push('/protected');
-    };
+    };*/
 
     render() {
         const { classes } = this.props;
@@ -197,49 +198,47 @@ class LoginControl extends Component {
         );
         
         return (
-            <React.Fragment key = 'Profile'>
+            <span
+                style = { login }
+            >
                 <span
-                    style = { login }
+                    style = { isAuthenticated ? ( login.badgeLogon ) : ( login.badge ) }
                 >
                     <span
-                        style = { isAuthenticated ? ( login.badgeLogon ) : ( login.badge ) }
+                        style = {{ fontWeight: 100, }}
                     >
-                        <span
-                            style = {{ fontWeight: 100, }}
-                        >
-                            Круглосуточный диспетчер:&nbsp;
-                        </span>
-                        <FontAwesomeIcon
-                            icon = { faPhone }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
-                        />
-                        <span
-                            style = {{ fontWeight: 700, }}
-                        >
-                            &nbsp;8 (86156) 35-117
-                        </span>
+                        Круглосуточный диспетчер:&nbsp;
                     </span>
-                    {
-                        isAuthenticated ? (
-                            <Logged
-                                userName = { userName }
-                                onClick = { this.handleProfileMenuOpen }
-                                style = { login.button }
-                                { ...this.props }
-                                { ...this.state }
-                            />
-                        ) : (
-                            <Login
-                                onClick = { this.handleLoginClick }
-                                style = { login.button }
-                                { ...this.props }
-                            />
-                        )
-                    }
+                    <FontAwesomeIcon
+                        icon = { faPhone }
+                        flip = 'horizontal'
+                        style = {{ fontSize: 12, }}
+                    />
+                    <span
+                        style = {{ fontWeight: 700, }}
+                    >
+                        &nbsp;8 (86156) 35-117
+                    </span>
                 </span>
+                {
+                    isAuthenticated ? (
+                        <Logged
+                            userName = { userName }
+                            onClick = { this.handleProfileMenuOpen }
+                            style = { login.button }
+                            { ...this.props }
+                            { ...this.state }
+                        />
+                    ) : (
+                        <Login
+                            onClick = { this.handleLoginClick }
+                            style = { login.button }
+                            { ...this.props }
+                        />
+                    )
+                }
                 { renderMenu }
-            </React.Fragment>
+            </span>
         );
     }
 }

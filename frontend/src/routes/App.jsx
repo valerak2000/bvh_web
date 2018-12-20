@@ -126,13 +126,6 @@ export default [
         component: HomePage
     },
     {
-        path: '/protected',
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
-        component: requireAuthentication(ProtectedPage)
-    },
-    {
         path: '/about/common_info',
 	    exact: true,
         sidebarName: '',
@@ -396,6 +389,20 @@ export default [
         component: FaqPage
     },
     {
+        path: '/login',
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: LoginPage
+    },
+    {
+        path: '/protected',
+        sidebarName: '',
+        navbarName: '',
+        icon: Dashboard,
+        component: requireAuthentication(ProtectedPage)
+    },
+    {
         path: '/partners',
         sidebarName: '',
         navbarName: '',
@@ -414,13 +421,6 @@ export default [
         navbarName: '',
         icon: Dashboard,
         component: UnderConstructPage
-    },
-    {
-        path: '/login',
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
-        component: LoginPage
     },
     {
         component: NotFoundPage

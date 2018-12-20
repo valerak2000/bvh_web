@@ -178,7 +178,8 @@ export var muiTheme = createMuiTheme({
                     fontSize: 14,
                     color: grey[50],
                     display: 'flex',
-                    margin: '0.5rem 0rem 0rem 12rem',
+                    paddingTop: 5,
+                    margin: '0rem 0rem 0rem 12rem',
                     badge: {
                         height: 'inherit',
                         backgroundColor: 'inherit',
@@ -196,9 +197,9 @@ export var muiTheme = createMuiTheme({
                         margin: '0rem -4.4rem 0rem 0rem',
                     },
                     button: {
-                        margin: '2rem 1rem 0rem 0rem',
+                        margin: '1.8rem 1rem 0rem 0rem',
                         //margin: '2rem 0rem 0rem 0rem',
-                        paddingTop: 10,
+                        paddingTop: 8,
                         paddingRight: 0,
                         height: 39,
                         color: grey[50],
