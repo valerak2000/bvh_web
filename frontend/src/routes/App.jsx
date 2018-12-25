@@ -120,57 +120,39 @@ export default [
     {
         path: '/',
     	exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
+        //sidebarName: '',
+        //navbarName: '',
+        //icon: Dashboard,
         component: HomePage
     },
     {
         path: '/about/common_info',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: CommonInfoPage
     },
     {
         path: '/about/leadership',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: LeadershipPage
     },
     {
         path: '/about/contacts',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: ContactsPage
     },
     {
         path: '/about/vacancies',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: VacanciesPage
     },
     {
         path: '/about/history',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: OurHistoryPage
     },
     {
         path: '/about/zakupki_raskrytie_informacii',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: ZakupkiRaskrytiePage
     },
     {
@@ -182,129 +164,81 @@ export default [
     {
         path: '/customers/connection/poluchenie_tekhnicheskikh_usloviy',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: PoluchenieTekhnicheskikhUsloviyPage
     },
     {
         path: '/customers/connection/oformlenie_dogovora_o_podklyuchenii',
     	exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: OformlenieDogovoraOPodklyucheniiPage
     },
     {
         path: '/customers/connection/oformlenie_aktov_o_podklyuchenii',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: OformlenieAktovOPodklyucheniiPage
     },
     {
         path: '/customers/fizlica/zaklyuchenie_dogovorov',
     	exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: FizlicaZaklyuchenieDogovorovPage
     },
     {
         path: '/customers/fizlica/peredacha_pokazaniy',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: FizlicaPeredachaPokazaniyPage
     },
     {
         path: '/customers/fizlica/pribory_ucheta',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: FizlicaPriboryUchetaPage
     },
     {
         path: '/customers/urlica/zaklyuchenie_dogovorov',
     	exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: UrlicaZaklyuchenieDogovorovPage
     },
     {
         path: '/customers/urlica/peredacha_pokazaniy',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: UrlicaPeredachaPokazaniyPage
     },
     {
         path: '/customers/urlica/inspekcia_vodnyh_resursov',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: UrlicaInspekciaVodnyhResursovPage
     },
     {
         path: '/customers/regulatory_doc',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: RegulatoryDocPage
     },
     {
         path: '/customers/tarifs',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: TarifsPage
     },
     {
         path: '/customers/debtors',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: DebtorsPage
     },
     {
         path: '/customers/services/vyvoz_zhidkih_kommunalnyh_stokov',
     	exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: VyvozZhidkihKommunalnyhStokovPage
     },
     {
         path: '/customers/services/preyskurant_uslug_dlya_fizicheskih_lic',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: PreyskurantUslugDlyaFizicheskihLicPage
     },
     {
         path: '/customers/services/preyskurant_uslug_dlya_yuridicheskih_lic',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: PreyskurantUslugDlyaYuridicheskihLicPage
     },
     {
         path: '/customers/services/prochie_uslugi',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: ProchieUslugiPage
     },
     {
@@ -340,73 +274,43 @@ export default [
     {
         path: '/news',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: NewsPage
     },
     {
         path: '/news/smi_o_nashey_rabote',
 	    exact: true,
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: NewsAboutUsPage
     },
     {
         path: '/elektronnaya_priemnaya',
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: ElektronnayaPriemnayaPage
     },
     {
         path: '/blackouts',
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: BlackoutsPage
     },
     {
         path: '/available_capacity_map',
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: AvailableCapacityMapPage
     },
     {
         path: '/map',
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: MapPage
     },
     {
         path: '/faq',
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: FaqPage
     },
     {
         path: '/login',
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: LoginPage
     },
     {
         path: '/protected',
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: requireAuthentication(ProtectedPage)
     },
     {
         path: '/partners',
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: UnderConstructPage
     },
     {
@@ -417,9 +321,6 @@ export default [
     },
     {
         path: '/creator',
-        sidebarName: '',
-        navbarName: '',
-        icon: Dashboard,
         component: UnderConstructPage
     },
     {

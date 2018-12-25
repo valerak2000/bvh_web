@@ -33,7 +33,7 @@ export function Login(props) {
             centerRipple = { false }
             disableRipple = { true }
             disableTouchRipple = { true }
-            component = { Link } to = '/login'
+            component = { Link } to = '/'
             style = { props.style.button }
         >
             Войти    
@@ -120,7 +120,7 @@ class LoginControl extends Component {
         this.handleMenuClose = this.handleMenuClose.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleLoginClick = this.handleLoginClick.bind(this);
-        //this.handleProtectedClick = this.handleProtectedClick.bind(this);
+        this.handleProtectedClick = this.handleProtectedClick.bind(this);
     }
 
     static defaultProps = {
@@ -148,13 +148,14 @@ class LoginControl extends Component {
 
     handleLoginClick = (e) => {
         e.preventDefault();
-        this.props.history.push('/login');
+        this.props.history.push('/');
+        //this.props.history.push('/login');
     };
 
-    /*handleProtectedClick = (e) => {
+    handleProtectedClick = (e) => {
         e.preventDefault();
         this.props.history.push('/protected');
-    };*/
+    };
 
     render() {
         const { classes } = this.props;
@@ -162,7 +163,7 @@ class LoginControl extends Component {
         const { anchorEl } = this.state;
         const login = this.props.theme.app.header.appBar.login;
         const isMenuOpen = Boolean(anchorEl);
-        const renderMenu = (
+        const renderMenuLogon = (
             <Menu
                 anchorEl = { anchorEl }
                 anchorOrigin = {{ vertical: 'top', horizontal: 'right' }}
@@ -237,7 +238,7 @@ class LoginControl extends Component {
                         />
                     )
                 }
-                { renderMenu }
+                { renderMenuLogon }
             </span>
         );
     }
