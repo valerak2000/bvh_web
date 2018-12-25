@@ -20,7 +20,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-const bvhLogo = '/static/images/water-glass-and-faucet.png';
+const watherItsLive = '/static/images/water-glass-and-faucet.png';
 const bvhVodozaborMashZal = '/static/images/vodozab1_mash.jpg';
 const bvhOchstnye1 = '/static/images/ochist1.jpg';
 const bvhOchstnye2 = '/static/images/ochist2.jpg';
@@ -28,23 +28,23 @@ const bvhOchstnyeLaba = '/static/images/ochist_lab.jpg';
 
 const splashSteps = [
     {
-        label: 'Водопровод',
-        imgPath: bvhLogo,
+        label: 'Природа дарит воду – мы доставляем её Вам',
+        imgPath: watherItsLive,
     },
     {
-        label: 'Водозабор, Насосный зал',
+        label: 'Водозабор - Насосный зал',
         imgPath: bvhVodozaborMashZal,
     },
     {
-        label: 'Очистные, Аэротенк',
+        label: 'Очистные - Аэротенк',
         imgPath: bvhOchstnye1,
     },
     {
-        label: 'Очистные, Отстойник ',
+        label: 'Очистные - Отстойник ',
         imgPath: bvhOchstnye2,
     },
     {
-        label: 'Очистные, Лаборатория',
+        label: 'Очистные - Лаборатория',
         imgPath: bvhOchstnyeLaba,
     },
 ];
@@ -129,6 +129,9 @@ class HomeView extends Component {
                 <CardContent
                     style = { card.text }
                 >
+                    <Paper square elevation = { 0 } className = { classes.header }>
+                        <Typography>{ splashSteps[activeStep].label }</Typography>
+                    </Paper>
                     <AutoPlaySwipeableViews
                         axis = { theme.direction === 'rtl' ? 'x-reverse' : 'x' }
                         index = { activeStep }

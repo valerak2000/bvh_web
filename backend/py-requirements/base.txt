@@ -32,4 +32,3 @@ django-js-reverse==0.8.2
 django-import-export==1.0.1
 django-log-request-id
 django-naomi==0.8
-django2-url-robots

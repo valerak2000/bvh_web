@@ -7,7 +7,7 @@ import { compose } from 'recompose';
 import { MuiThemeProvider } from '@material-ui/core/styles/';
 import { white } from '@material-ui/core/colors';
 import Fab from '@material-ui/core/Fab';
-import Button from '@material-ui/core/Button';
+//import Button from '@material-ui/core/Button';
 //import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 // core components
@@ -173,8 +173,6 @@ class Root extends Component {
         );
     }
 }
-/*
-*/
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -186,3 +184,6 @@ export default compose(
 //    withStyles(styles, { name: 'muiRootView', flip: false, withTheme: false }),
     connect(mapStateToProps)
 )(Root);
+
+/*
+*/

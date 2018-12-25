@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
-import { compose } from 'recompose';
-import withTheme from '@material-ui/core/styles/withTheme';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import pink from '@material-ui/core/colors/pink';
@@ -54,7 +52,6 @@ class SiteMenu extends Component {
             case 'available_capacity_map':
             case 'faq':
             case 'map':
-            case 'blackouts':
                 currentTab = false;
                 break;
             default:
@@ -76,31 +73,33 @@ class SiteMenu extends Component {
         const { menu } = this.props.theme.app.header.appBar;
 
         return (
-            <Tabs
-                value = { activeTab }
-                onChange = { this.handleChange }
-                style = { menu }
-                classes = {{ indicator: classes.indicator, }}
-            >
-                <Tab
-                    value = 'about'
-                    label = 'О компании'
-                    component = { Link } to = '/about'
-                    style = { menu.tab }
-                 />
-                <Tab
-                    value = 'customers'
-                    label = 'Абонентам'
-                    component = { Link } to = '/customers'
-                    style = { menu.tab }
-                />
-                <Tab
-                    value = 'news'
-                    label = 'Новости'
-                    component = { Link } to = '/news'
-                    style = { menu.tab }
-                />
-            </Tabs>
+            <div>
+                <Tabs
+                    value = { activeTab }
+                    onChange = { this.handleChange }
+                    style = { menu }
+                    classes = {{ indicator: classes.indicator, }}
+                >
+                    <Tab
+                        value = 'about'
+                        label = 'О компании'
+                        component = { Link } to = '/about'
+                        style = { menu.tab }
+                    />
+                    <Tab
+                        value = 'customers'
+                        label = 'Абонентам'
+                        component = { Link } to = '/customers'
+                        style = { menu.tab }
+                    />
+                    <Tab
+                        value = 'news'
+                        label = 'Новости'
+                        component = { Link } to = '/news'
+                        style = { menu.tab }
+                    />
+                </Tabs>
+            </div>
         );
     }
 }

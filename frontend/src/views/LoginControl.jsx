@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+//import { push } from 'react-router-redux';
 import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-//import Menu from '@material-ui/core/Menu';
-//import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 //import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
-//import IconButton from '@material-ui/core/IconButton';
-//import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import Divider from '@material-ui/core/Divider';
 //import Badge from '@material-ui/core/Badge';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons/faSignInAlt';
-//import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
-//import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
+import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/';
 
 import { authLogoutAndRedirect } from '../actions/auth';
+
+const styles = theme => ({
+});
 
 /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
 export function Login(props) {
@@ -28,7 +33,7 @@ export function Login(props) {
             centerRipple = { false }
             disableRipple = { true }
             disableTouchRipple = { true }
-            component = { Link } to = { props.link }
+            component = { Link } to = '/'
             style = { props.style.button }
         >
             Войти    
@@ -39,17 +44,34 @@ export function Login(props) {
         </Button>
     );
 }
+//            onClick = { props.onClick }
 
 export function Logged(props) {
+    const { anchorEl } = props;
+    const isMenuOpen = Boolean(anchorEl);
+
     return (
-        <div></div>
+        <Button
+            focusRipple = { false }
+            aria-owns= { isMenuOpen ? 'material-appbar' : undefined }
+            aria-haspopup = 'true'
+            aria-label = 'Profile'
+            aria-selected = { false }
+            centerRipple = { false }
+            disableRipple = { true }
+            disableTouchRipple = { true }
+            onClick = { props.onClick }
+            style = { props.style.button }
+        >
+            <AccountCircle />
+        </Button>
     );
 }
 /*
         <IconMenu
             iconButtonElement = {
                 <IconButton>
-                    <MoreVertIcon />
+                    <AccountCircle />
                 </IconButton>
             }
             anchorOrigin = {{ horizontal: 'right', vertical: 'top' }}
@@ -89,11 +111,15 @@ class LoginControl extends Component {
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
         super(props, context);
+        this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
+        this.handleMenuClose = this.handleMenuClose.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
+        this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleProtectedClick = this.handleProtectedClick.bind(this);
     }
 
@@ -102,35 +128,93 @@ class LoginControl extends Component {
     };
 
     state = {
+        anchorEl: null,
         isAuthenticated: false
     };
 
+    handleProfileMenuOpen = (e) => {
+        this.setState({ anchorEl: e.currentTarget });
+    };
+
+    handleMenuClose = () => {
+        this.setState({ anchorEl: null });
+    };
+    
     handleLogoutClick = (e) => {
         e.preventDefault();
+        this.handleMenuClose();
         this.props.dispatch(authLogoutAndRedirect());
+    };
+
+    handleLoginClick = (e) => {
+        e.preventDefault();
+        this.props.history.push('/');
+        //this.props.history.push('/login');
     };
 
     handleProtectedClick = (e) => {
         e.preventDefault();
-        this.props.dispatch(push('/protected'));
+        this.props.history.push('/protected');
     };
 
     render() {
+        const { classes } = this.props;
         const { isAuthenticated, userName } = this.props;
+        const { anchorEl } = this.state;
         const login = this.props.theme.app.header.appBar.login;
-
+        const isMenuOpen = Boolean(anchorEl);
+        const renderMenuLogon = (
+            <Menu
+                anchorEl = { anchorEl }
+                anchorOrigin = {{ vertical: 'top', horizontal: 'right' }}
+                transformOrigin = {{ vertical: 'top', horizontal: 'right' }}
+                open = { isMenuOpen }
+                onClose = { this.handleMenuClose }
+            >
+                <MenuItem
+                    component = { Link } to = '/protected'
+                    onClick = { this.handleProtectedClick }
+                >
+                    <IconButton color = 'inherit'>
+                        <FontAwesomeIcon
+                            icon = { faLock }
+                            style = { login.button.icon }
+                        />
+                    </IconButton>
+                    Личный кабинет (Внести показания, узнать состояние баланса, заказать и оплатить услуги)
+                </MenuItem>
+                <Divider />
+                <MenuItem
+                    onClick = { this.handleLogoutClick }
+                >
+                    <IconButton color = 'inherit'>
+                        <FontAwesomeIcon
+                            icon = { faSignOutAlt }
+                            style = { login.button.icon }
+                        />
+                    </IconButton>
+                    { userName }
+                </MenuItem>
+            </Menu>
+        );
+        
         return (
             <span
                 style = { login }
             >
                 <span
-                    style = { login.badge }
+                    style = { isAuthenticated ? ( login.badgeLogon ) : ( login.badge ) }
                 >
                     <span
                         style = {{ fontWeight: 100, }}
                     >
-                        Круглосуточный диспетчер:
+                        Круглосуточный диспетчер:&nbsp;
                     </span>
+                    <FontAwesomeIcon
+                        icon = { faPhone }
+                        flip = 'horizontal'
+                        style = {{ fontSize: 12, }}
+                    />
                     <span
                         style = {{ fontWeight: 700, }}
                     >
@@ -141,19 +225,20 @@ class LoginControl extends Component {
                     isAuthenticated ? (
                         <Logged
                             userName = { userName }
-                            onClickLogout = { this.handleLogoutClick }
-                            onClickProtected = { this.handleProtectedClick }
+                            onClick = { this.handleProfileMenuOpen }
                             style = { login.button }
                             { ...this.props }
+                            { ...this.state }
                         />
                     ) : (
                         <Login
-                            link = ''
+                            onClick = { this.handleLoginClick }
                             style = { login.button }
                             { ...this.props }
                         />
                     )
                 }
+                { renderMenuLogon }
             </span>
         );
     }
@@ -224,6 +309,4 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-LoginControl.muiName = 'Login';
-
-export default withStyles(null, { name: 'LoginControl', flip: false, withTheme: true })(connect(mapStateToProps)(LoginControl));
+export default withStyles(styles, { name: 'LoginControl', flip: false, withTheme: true })(connect(mapStateToProps)(LoginControl));

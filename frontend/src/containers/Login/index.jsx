@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { push } from 'react-router-redux';
-import t from 'tcomb-form';
 import PropTypes from 'prop-types';
+import t from 'tcomb-form';
+import withStyles from '@material-ui/core/styles/withStyles';
 //import i18n from '../../../lib/i18n/ru.json';
 
 import * as actionCreators from '../../actions/auth';
@@ -14,6 +14,9 @@ const Form = t.form.Form;
 const Login = t.struct({
     email: t.String,
     password: t.String
+});
+
+const styles = theme => ({
 });
 
 const LoginFormOptions = {
@@ -55,9 +58,8 @@ class LoginView extends Component {
         actions: PropTypes.shape({
             authLoginUser: PropTypes.func.isRequired
         }).isRequired,
-        //location: PropTypes.shape({
-        //    search: PropTypes.string.isRequired
-        //})
+        theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -80,7 +82,7 @@ class LoginView extends Component {
 
     componentDidMount() {
         if (this.props.isAuthenticated) {
-            this.props.dispatch(push('/'));
+            this.props.history.push('/');
         }
     }
 
@@ -110,6 +112,7 @@ class LoginView extends Component {
     };
 
     render() {
+        const { classes } = this.props;
         let statusText = null;
         if (this.props.statusText) {
             const statusTextClassNames = classNames({
@@ -119,10 +122,10 @@ class LoginView extends Component {
             });
 
             statusText = (
-                <div className="row">
-                    <div className="col-sm-12">
-                        <div className={statusTextClassNames}>
-                            {this.props.statusText}
+                <div className = "row">
+                    <div className = "col-sm-12">
+                        <div className = { statusTextClassNames }>
+                            { this.props.statusText }
                         </div>
                     </div>
                 </div>
@@ -130,27 +133,27 @@ class LoginView extends Component {
         }
 
         return (
-            <div className="container login">
-                <h1 className="text-center">Вход в личный кабинет</h1>
-                <div className="login-container margin-top-medium">
-                    {statusText}
-                    <form onSubmit={this.login}>
-                        <Form ref={(ref) => { this.loginForm = ref; }}
-                            type={Login}
-                            options={LoginFormOptions}
-                            value={this.state.formValues}
-                            onChange={this.onFormChange}
-                            context={{locale: 'ru-RU'}}
+            <div className = "container login">
+                <h1 className = "text-center">Вход в личный кабинет</h1>
+                <div className = "login-container margin-top-medium">
+                    { statusText }
+                    <form onSubmit = { this.login }>
+                        <Form ref = { (ref) => { this.loginForm = ref; } }
+                            type = { Login }
+                            options = { LoginFormOptions }
+                            value = { this.state.formValues }
+                            onChange = {this.onFormChange }
+                            context = {{ locale: 'ru-RU' }}
                         />
-                        <button disabled={this.props.isAuthenticating}
-                            type="submit"
-                            className="btn btn-default btn-primary btn-block"
+                        <button disabled = { this.props.isAuthenticating }
+                            type = "submit"
+                            className = "btn btn-default btn-primary btn-block"
                         >
                             Войти
                         </button>
-                        <button disabled={this.props.isAuthenticating}
-                            className="btn btn-block"
-                            onClick={this.signup}
+                        <button disabled = { this.props.isAuthenticating }
+                            className = "btn btn-block"
+                            onClick = { this.signup }
                         >
                             Зарегистрироваться
                         </button>
@@ -176,5 +179,5 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginView);
-export { LoginView as LoginViewNotConnected };
+export default withStyles(styles, { name: 'muiLoginView', flip: false, withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(LoginView));
+//export { LoginView as LoginViewNotConnected };

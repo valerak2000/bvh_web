@@ -89,4 +89,4 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export default withTheme()(connect(mapStateToProps)(AppView));
-export { AppView as AppViewNotConnected };
+//export { AppView as AppViewNotConnected };
