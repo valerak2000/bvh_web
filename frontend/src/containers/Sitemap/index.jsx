@@ -3,8 +3,18 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 
 import CardHeader from '../../components/Card/CardHeaderImpl.jsx';
+
+const styles = theme => ({
+    text: {
+        margin: 'auto auto auto 0.5rem',
+        textAlign: 'justify',
+        textIndent: '1.5em',
+    },
+});
 
 class MapView extends Component {
     static propTypes = {
@@ -19,6 +29,7 @@ class MapView extends Component {
     render() {
         const { classes } = this.props;
         const { card } = this.props.theme.app;
+        const { ul, li, RedLine } = this.props.theme;
 
         return (
             <Card
@@ -30,6 +41,13 @@ class MapView extends Component {
                     { ...this.props }
                 />
                 <CardContent>
+                    <Typography
+                        variant = 'body1'
+                        color = 'textSecondary'
+                        className = { classes.text }
+                    >
+                        <strong>ООО «Брюховецкое водопроводное хозяйство» (ООО «БВХ»)</strong><br />
+                    </Typography>
                     <div 
                         style = {{ 
                             display: 'block',
@@ -37,17 +55,22 @@ class MapView extends Component {
                         }}
                     >
                         <div>
-                            <h4>ООО «Брюховецкое водопроводное хозяйство»</h4>
-                            <ul>
-                                <li><a href="/">Главная</a></li>
-                                <li><a href="/elektronnaya_priemnaya">Электронная приемная</a></li>
-                                <li><a href="/blackouts">Отключения</a></li>
-                                <li><a href="/available_capacity_map">Карта доступной мощности</a></li>
-                                <li><a href="/map">Карта сайта</a></li>
+                            <ul style = { ul }>
+                                <li style = { li }><a href="/">Главная</a></li>
+                                <li style = { li }><a href="/elektronnaya_priemnaya">Электронная приемная</a></li>
+                                <li style = { li }><a href="/blackouts">Отключения</a></li>
+                                <li style = { li }><a href="/available_capacity_map">Карта доступной мощности</a></li>
+                                <li style = { li }><a href="/map">Карта сайта</a></li>
                             </ul>        
                         </div>
                         <div>
-                            <h4>О компании</h4>
+                        <Typography
+                            variant = 'body1'
+                            color = 'textSecondary'
+                            className = { classes.text }
+                        >
+                            <strong>О компании</strong><br />
+                        </Typography>
                             <ul>
                                 <li><a href="/about">Общая информация</a></li>
                                 <li><a href="/about/leadership">Руководство компании</a></li>
@@ -58,7 +81,13 @@ class MapView extends Component {
                             </ul>        
                         </div>
                         <div>
-                            <h4>Абонентам</h4>
+                        <Typography
+                            variant = 'body1'
+                            color = 'textSecondary'
+                            className = { classes.text }
+                        >
+                            <strong>Абонентам</strong><br />
+                        </Typography>
                             <ul>
                                 <li>
                                     Подключение
@@ -99,7 +128,13 @@ class MapView extends Component {
                             </ul>        
                         </div>
                         <div>
-                            <h4>Новости</h4>
+                        <Typography
+                            variant = 'body1'
+                            color = 'textSecondary'
+                            className = { classes.text }
+                        >
+                            <strong>Новости</strong><br />
+                        </Typography>
                             <ul>
                                 <li><a href="/news">Новости</a></li>
                                 <li><a href="/news/smi_o_nashey_rabote">СМИ о нашей работе</a></li>
@@ -112,5 +147,5 @@ class MapView extends Component {
     }
 }
 
-export default withStyles(null, { name: 'muiMapView', flip: false, withTheme: true })(MapView);
+export default withStyles(styles, { name: 'muiMapView', flip: false, withTheme: true })(MapView);
 //export { MapView as MapViewNotConnected };

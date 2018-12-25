@@ -1,15 +1,6 @@
 // @material-ui/icons
 import Dashboard from '@material-ui/icons/Dashboard';
-/*
-import Person from '@material-ui/icons/Person';
-import ContentPaste from '@material-ui/icons/Assessment';
-import LibraryBooks from '@material-ui/icons/LibraryBooks';
-import BubbleChart from '@material-ui/icons/BubbleChart';
-import LocationOn from '@material-ui/icons/LocationOn';
-import Notifications from '@material-ui/icons/Notifications';
-import MessageBox from '@material-ui/icons/Message';
-import Unarchive from '@material-ui/icons/Unarchive';
-*/
+
 import Loader from '../components/loaders';
 import requireAuthentication from '../utils/requireAuthentication';
 
@@ -29,7 +20,7 @@ const ProtectedPage = Loader(() =>
     import(/* webpackChunkName: "ProtectedView" */ '../containers/Protected/index.jsx')
 );
 const MapPage = Loader(() =>
-    import(/* webpackChunkName: "MapView" */ '../containers/Map/index.jsx')
+    import(/* webpackChunkName: "MapView" */ '../containers/Sitemap/index.jsx')
 );
 const ElektronnayaPriemnayaPage = Loader(() =>
     import(/* webpackChunkName: "ElektronnayaPriemnayaView" */ '../containers/Home/ElektronnayaPriemnaya/index.jsx')

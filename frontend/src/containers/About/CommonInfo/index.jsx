@@ -23,9 +23,6 @@ class CommonInfoView extends Component {
         classes: PropTypes.object.isRequired,
     };
 
-    static defaultProps = {
-    };
-
     constructor(props, context) {
         super(props, context);
     }
