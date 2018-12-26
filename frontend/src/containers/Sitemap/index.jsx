@@ -56,11 +56,11 @@ class MapView extends Component {
                     >
                         <div>
                             <ul style = { ul }>
-                                <li style = { li }><a href="/">Главная</a></li>
-                                <li style = { li }><a href="/elektronnaya_priemnaya">Электронная приемная</a></li>
-                                <li style = { li }><a href="/blackouts">Отключения</a></li>
-                                <li style = { li }><a href="/available_capacity_map">Карта доступной мощности</a></li>
-                                <li style = { li }><a href="/map">Карта сайта</a></li>
+                                <li><a href="/">Главная</a></li>
+                                <li><a href="/elektronnaya_priemnaya">Электронная приемная</a></li>
+                                <li><a href="/blackouts">Отключения</a></li>
+                                <li><a href="/available_capacity_map">Карта доступной мощности</a></li>
+                                <li><a href="/map">Карта сайта</a></li>
                             </ul>        
                         </div>
                         <div>
@@ -71,7 +71,7 @@ class MapView extends Component {
                         >
                             <strong>О компании</strong><br />
                         </Typography>
-                            <ul>
+                            <ul style = { ul }>
                                 <li><a href="/about">Общая информация</a></li>
                                 <li><a href="/about/leadership">Руководство компании</a></li>
                                 <li><a href="/about/contacts">Контакты</a></li>
@@ -88,10 +88,10 @@ class MapView extends Component {
                         >
                             <strong>Абонентам</strong><br />
                         </Typography>
-                            <ul>
+                            <ul style = { ul }>
                                 <li>
                                     Подключение
-                                    <ul>
+                                    <ul style = { ul }>
                                         <li><a href="/customers/connection/poluchenie_tekhnicheskikh_usloviy">Получение технических условий</a></li>
                                         <li><a href="/customers/connection/oformlenie_dogovora_o_podklyuchenii">Оформление договора о подключении</a></li>
                                         <li><a href="/customers/connection/oformlenie_aktov_o_podklyuchenii">Оформление актов технической приемки</a></li>
@@ -99,7 +99,7 @@ class MapView extends Component {
                                 </li>
                                 <li>
                                     Физические лица
-                                    <ul>
+                                    <ul style = { ul }>
                                         <li><a href="/customers/fizlica/zaklyuchenie_dogovorov">Заключение договоров на холодное водоснабжение и водоотведение</a></li>
                                         <li><a href="/customers/fizlica/peredacha_pokazaniy">Передача показаний счетчиков</a></li>
                                         <li><a href="/customers/fizlica/pribory_ucheta">Приборы учета</a></li>
@@ -107,7 +107,7 @@ class MapView extends Component {
                                 </li>
                                 <li>
                                     Юридические лица
-                                    <ul>
+                                    <ul style = { ul }>
                                         <li><a href="/customers/urlica/zaklyuchenie_dogovorov">Заключение договоров на холодное водоснабжение и водоотведение</a></li>
                                         <li><a href="/customers/urlica/peredacha_pokazaniy">Передача показаний счетчиков</a></li>
                                         <li><a href="/customers/urlica/inspekcia_vodnyh_resursov">Инспекция водных ресурсов</a></li>
@@ -117,7 +117,7 @@ class MapView extends Component {
                                 <li><a href="/customers/tarifs">Тарифы</a></li>
                                 <li>
                                     Услуги
-                                    <ul>
+                                    <ul style = { ul }>
                                         <li><a href="/customers/services/vyvoz_zhidkih_kommunalnyh_stokov">Вывоз жидких коммунальных стоков</a></li>
                                         <li><a href="/customers/services/preyskurant_uslug_dlya_fizicheskih_lic">Прейскурант услуг для физических лиц</a></li>
                                         <li><a href="/customers/services/preyskurant_uslug_dlya_yuridicheskih_lic">Прейскурант услуг для юридических лиц</a></li>
@@ -135,7 +135,7 @@ class MapView extends Component {
                         >
                             <strong>Новости</strong><br />
                         </Typography>
-                            <ul>
+                            <ul style = { ul }>
                                 <li><a href="/news">Новости</a></li>
                                 <li><a href="/news/smi_o_nashey_rabote">СМИ о нашей работе</a></li>
                             </ul>        
