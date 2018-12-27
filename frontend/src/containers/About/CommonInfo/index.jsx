@@ -23,9 +23,6 @@ class CommonInfoView extends Component {
         classes: PropTypes.object.isRequired,
     };
 
-    static defaultProps = {
-    };
-
     constructor(props, context) {
         super(props, context);
     }
@@ -55,7 +52,7 @@ class CommonInfoView extends Component {
                     { ...this.props }
                 />
                 <CardContent
-                    style = { card.title }
+                    style = { card.text }
                 >
                     <Typography
                         variant = 'body1'
