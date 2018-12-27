@@ -52,26 +52,40 @@ const OurHistoryPage = Loader(() =>
 const ZakupkiRaskrytiePage = Loader(() =>
     import(/* webpackChunkName: "ZakupkiRaskrytieView" */ '../containers/About/ZakupkiRaskrytie/index.jsx')
 );
-const PoluchenieTekhnicheskikhUsloviyPage = Loader(() =>
-    import(/* webpackChunkName: "PoluchenieTekhnicheskikhUsloviyView" */ '../containers/Customers/PoluchenieTekhnicheskikhUsloviy/index.jsx')
+const ConnectionHolodnoeVodosnabjeniePage = Loader(() =>
+    import(/* webpackChunkName: "ConnectionHolodnoeVodosnabjenieView" */ '../containers/Customers/ConnectionHolodnoeVodosnabjenie/index.jsx')
 );
-const OformlenieDogovoraOPodklyucheniiPage = Loader(() =>
-    import(/* webpackChunkName: "OformlenieDogovoraOPodklyucheniiView" */ '../containers/Customers/OformlenieDogovoraOPodklyuchenii/index.jsx')
+const ConnectionVodootvedPage = Loader(() =>
+    import(/* webpackChunkName: "ConnectionVodootvedView" */ '../containers/Customers/ConnectionVodootved/index.jsx')
 );
-const OformlenieAktovOPodklyucheniiPage = Loader(() =>
-    import(/* webpackChunkName: "OformlenieAktovOPodklyucheniiView" */ '../containers/Customers/OformlenieAktovOPodklyuchenii/index.jsx')
+
+//const PoluchenieTekhnicheskikhUsloviyPage = Loader(() =>
+//    import(/* webpackChunkName: "PoluchenieTekhnicheskikhUsloviyView" */ '../containers/Customers/PoluchenieTekhnicheskikhUsloviy/index.jsx')
+//);
+//const OformlenieDogovoraOPodklyucheniiPage = Loader(() =>
+//    import(/* webpackChunkName: "OformlenieDogovoraOPodklyucheniiView" */ '../containers/Customers/OformlenieDogovoraOPodklyuchenii/index.jsx')
+//);
+//const OformlenieAktovOPodklyucheniiPage = Loader(() =>
+//    import(/* webpackChunkName: "OformlenieAktovOPodklyucheniiView" */ '../containers/Customers/OformlenieAktovOPodklyuchenii/index.jsx')
+//);
+const FizlicaZaklyuchenieDogovorovHolvodPage = Loader(() =>
+    import(/* webpackChunkName: "FizlicaZaklyuchenieDogovorovHolvodView" */ '../containers/Customers/FizlicaZaklyuchenieDogovorovHolvod/index.jsx')
 );
-const FizlicaZaklyuchenieDogovorovPage = Loader(() =>
-    import(/* webpackChunkName: "FizlicaZaklyuchenieDogovorovView" */ '../containers/Customers/FizlicaZaklyuchenieDogovorov/index.jsx')
+const FizlicaZaklyuchenieDogovorovVodootvedPage = Loader(() =>
+    import(/* webpackChunkName: "FizlicaZaklyuchenieDogovorovVodootvedView" */ '../containers/Customers/FizlicaZaklyuchenieDogovorovVodootved/index.jsx')
 );
+
 const FizlicaPeredachaPokazaniyPage = Loader(() =>
     import(/* webpackChunkName: "FizlicaPeredachaPokazaniyView" */ '../containers/Customers/FizlicaPeredachaPokazaniy/index.jsx')
 );
 const FizlicaPriboryUchetaPage = Loader(() =>
     import(/* webpackChunkName: "FizlicaPriboryUchetaView" */ '../containers/Customers/FizlicaPriboryUcheta/index.jsx')
 );
-const UrlicaZaklyuchenieDogovorovPage = Loader(() =>
-    import(/* webpackChunkName: "UrlicaZaklyuchenieDogovorovView" */ '../containers/Customers/UrlicaZaklyuchenieDogovorov/index.jsx')
+const UrlicaZaklyuchenieDogovorovHolvodPage = Loader(() =>
+    import(/* webpackChunkName: "UrlicaZaklyuchenieDogovorovHolvodView" */ '../containers/Customers/UrlicaZaklyuchenieDogovorovHolvod/index.jsx')
+);
+const UrlicaZaklyuchenieDogovorovVodootvedPage = Loader(() =>
+    import(/* webpackChunkName: "UrlicaZaklyuchenieDogovorovVodootvedView" */ '../containers/Customers/UrlicaZaklyuchenieDogovorovVodootved/index.jsx')
 );
 const UrlicaPeredachaPokazaniyPage = Loader(() =>
     import(/* webpackChunkName: "UrlicaPeredachaPokazaniyView" */ '../containers/Customers/UrlicaPeredachaPokazaniy/index.jsx')
@@ -153,6 +167,17 @@ export default [
         navbarName: 'Redirect' 
     },
     {
+        path: '/customers/connection/connection_holvodosnabjenie',
+	    exact: true,
+        component: ConnectionHolodnoeVodosnabjeniePage
+    },
+    {
+        path: '/customers/connection/connection_vodootvedenie',
+	    exact: true,
+        component: ConnectionVodootvedPage
+    },
+/*
+    {
         path: '/customers/connection/poluchenie_tekhnicheskikh_usloviy',
 	    exact: true,
         component: PoluchenieTekhnicheskikhUsloviyPage
@@ -167,13 +192,19 @@ export default [
 	    exact: true,
         component: OformlenieAktovOPodklyucheniiPage
     },
+*/
     {
-        path: '/customers/fizlica/zaklyuchenie_dogovorov',
+        path: '/customers/fizlica/zaklyuchenie_dogovorov_holvod_fizlica',
     	exact: true,
-        component: FizlicaZaklyuchenieDogovorovPage
+        component: FizlicaZaklyuchenieDogovorovHolvodPage
     },
     {
-        path: '/customers/fizlica/peredacha_pokazaniy',
+        path: '/customers/fizlica/zaklyuchenie_dogovorov_vodootved_fizlica',
+    	exact: true,
+        component: FizlicaZaklyuchenieDogovorovVodootvedPage
+    },
+    {
+        path: '/customers/fizlica/peredacha_pokazaniy_fizlica',
 	    exact: true,
         component: FizlicaPeredachaPokazaniyPage
     },
@@ -183,12 +214,17 @@ export default [
         component: FizlicaPriboryUchetaPage
     },
     {
-        path: '/customers/urlica/zaklyuchenie_dogovorov',
+        path: '/customers/urlica/zaklyuchenie_dogovorov_holvod_urlica',
     	exact: true,
-        component: UrlicaZaklyuchenieDogovorovPage
+        component: UrlicaZaklyuchenieDogovorovHolvodPage
     },
     {
-        path: '/customers/urlica/peredacha_pokazaniy',
+        path: '/customers/urlica/zaklyuchenie_dogovorov_vodootved_urlica',
+    	exact: true,
+        component: UrlicaZaklyuchenieDogovorovVodootvedPage
+    },
+    {
+        path: '/customers/urlica/peredacha_pokazaniy_urlica',
 	    exact: true,
         component: UrlicaPeredachaPokazaniyPage
     },
@@ -235,21 +271,23 @@ export default [
     {
         redirect: true, 
 	    path: '/customers', 
-	    to: '/customers/connection/poluchenie_tekhnicheskikh_usloviy', 
+	    to: '/customers/connection/connection_holvodosnabjenie', 
 	    navbarName: 'Redirect' 
     },
     {
         redirect: true, 
         path: '/customers/connection', 
-        to: '/customers/connection/poluchenie_tekhnicheskikh_usloviy', 
+        to: '/customers/connection/connection_holvodosnabjenie', 
         navbarName: 'Redirect' 
     },
+/*
     {
         redirect: true, 
         path: '/customers/fizlica', 
         to: '/customers/fizlica/zaklyuchenie_dogovorov', 
         navbarName: 'Redirect' 
     },
+*/
     {
         redirect: true, 
         path: '/customers/urlica', 

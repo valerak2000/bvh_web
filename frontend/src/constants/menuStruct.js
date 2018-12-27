@@ -94,6 +94,19 @@ export const MENU_CUSTOMERS = [
         //dataRoute: '/customers/connection',
         nestedItems: [
             {
+                key: 'connection_holvodosnabjenie',
+                primaryText: 'Холодное водоснабжение',
+                leftIcon: null,
+                dataRoute: '/customers/connection/connection_holvodosnabjenie',
+            },
+            {
+                key: 'connection_vodootvedenie',
+                primaryText: 'Водоотведение',
+                leftIcon: null,
+                dataRoute: '/customers/connection/connection_vodootvedenie',
+            },
+/*
+            {
                 key: 'poluchenie_tekhnicheskikh_usloviy',
                 primaryText: 'Получение технических условий',
                 leftIcon: null,
@@ -111,6 +124,7 @@ export const MENU_CUSTOMERS = [
                 leftIcon: null,
                 dataRoute: '/customers/connection/oformlenie_aktov_o_podklyuchenii',
             },
+*/            
         ]
     },
     {
@@ -120,16 +134,22 @@ export const MENU_CUSTOMERS = [
         //dataRoute: '/customers/fizlica',
         nestedItems: [
             {
-                key: 'zaklyuchenie_dogovorov',
-                primaryText: 'Заключение договоров на холодное водоснабжение и водоотведение',
+                key: 'zaklyuchenie_dogovorov_holvod_fizlica',
+                primaryText: 'Заключение договоров на холодное водоснабжение',
                 leftIcon: null,
-                dataRoute: '/customers/fizlica/zaklyuchenie_dogovorov',
+                dataRoute: '/customers/fizlica/zaklyuchenie_dogovorov_holvod_fizlica',
             },
             {
-                key: 'peredacha_pokazaniy',
+                key: 'zaklyuchenie_dogovorov_vodootved_fizlica',
+                primaryText: 'Заключение договоров на водоотведение',
+                leftIcon: null,
+                dataRoute: '/customers/fizlica/zaklyuchenie_dogovorov_vodootved_fizlica',
+            },
+            {
+                key: 'peredacha_pokazaniy_fizlica',
                 primaryText: 'Передача показаний счетчиков',
                 leftIcon: null,
-                dataRoute: '/customers/fizlica/peredacha_pokazaniy',
+                dataRoute: '/customers/fizlica/peredacha_pokazaniy_fizlica',
             },
             {
                 key: 'pribory_ucheta',
@@ -144,26 +164,34 @@ export const MENU_CUSTOMERS = [
         primaryText: 'Юридические лица',
         leftIcon: null,
         //dataRoute: '/customers/urlica',
-        disabled: true,
+        disabled: false,
         nestedItems: [
             {
-                key: 'zaklyuchenie_dogovorov',
-                primaryText: 'Заключение договоров на холодное водоснабжение и водоотведение',
+                key: 'zaklyuchenie_dogovorov_holvod_urlica',
+                primaryText: 'Заключение договоров на холодное водоснабжение',
                 leftIcon: null,
-                dataRoute: '/customers/urlica/zaklyuchenie_dogovorov',
+                dataRoute: '/customers/urlica/zaklyuchenie_dogovorov_holvod_urlica',
             },
             {
-                key: 'peredacha_pokazaniy',
+                key: 'zaklyuchenie_dogovorov_vodootved_urlica',
+                primaryText: 'Заключение договоров на водоотведение',
+                leftIcon: null,
+                dataRoute: '/customers/urlica/zaklyuchenie_dogovorov_vodootved_urlica',
+            },
+            {
+                key: 'peredacha_pokazaniy_urlica',
                 primaryText: 'Передача показаний счетчиков',
                 leftIcon: null,
-                dataRoute: '/customers/urlica/peredacha_pokazaniy',
+                dataRoute: '/customers/urlica/peredacha_pokazaniy_urlica',
             },
+/*
             {
                 key: 'inspekcia_vodnyh_resursov',
                 primaryText: 'Инспекция водных ресурсов',
                 leftIcon: null,
                 dataRoute: '/customers/urlica/inspekcia_vodnyh_resursov',
             },
+*/
         ]
     },
     {

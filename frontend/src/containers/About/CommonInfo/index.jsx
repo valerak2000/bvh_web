@@ -52,7 +52,7 @@ class CommonInfoView extends Component {
                     { ...this.props }
                 />
                 <CardContent
-                    style = { card.title }
+                    style = { card.text }
                 >
                     <Typography
                         variant = 'body1'
