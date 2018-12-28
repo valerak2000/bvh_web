@@ -4,11 +4,11 @@ import moment from 'moment';
 import 'moment/locale/ru';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+
 import Table from '../../../components/Table/Table.jsx';
+import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
 const styles = theme => ({
     text: {
@@ -51,8 +51,7 @@ class VacanciesView extends Component {
             >
                 <CardHeader
                     title = 'Вакансии'
-                    titleTypographyProps = { card.titleTypography }
-                    style = { card.title }
+                    { ...this.props }
                 />
                 <CardContent
                     style = { card.text }
