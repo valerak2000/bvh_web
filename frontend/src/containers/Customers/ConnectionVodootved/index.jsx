@@ -128,12 +128,12 @@ class ConnectionVodootvedView extends Component {
                     <Divider />
                     <FileLink
                         key = 'zayavpodklbvh'
-                        href = '/static/files/media/potrebiteliam/Заявление на подключение - водоотведение.pdf'
+                        href = '/static/files/media/potrebiteliam/Заявление на подключение - водоотведение.docx'
                         label = 'Заявление на подключение'
                     />
                     <FileLink
                         key = 'dogovorpodklbvh'
-                        href = '/static/files/media/potrebiteliam/Договор о подключении - водоснабжение.pdf'
+                        href = '/static/files/media/potrebiteliam/Договор о подключении - водоснабжение.docx'
                         label = 'Договор о подключении'
                     />
                 </CardContent>

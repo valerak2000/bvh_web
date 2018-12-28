@@ -40,7 +40,7 @@ class FizlicaZaklyuchenieDogovorovVodootvedView extends Component {
                 >
                     <FileLink
                         key = 'dogovorpodklbvh'
-                        href = '/static/files/media/potrebiteliam/Договор водоотведения с физлицами.pdf'
+                        href = '/static/files/media/potrebiteliam/Договор водоотведения с физлицами.docx'
                         label = 'Договор на водоотведение с физическими лицами'
                     />
                 </CardContent>

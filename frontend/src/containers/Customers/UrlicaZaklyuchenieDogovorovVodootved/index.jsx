@@ -42,7 +42,7 @@ class UrlicaZaklyuchenieDogovorovVodootvedView extends Component {
                 >
                     <FileLink
                         key = 'dogovorpodklbvh'
-                        href = '/static/files/media/potrebiteliam/Договор водоотведения с юллицами.pdf'
+                        href = '/static/files/media/potrebiteliam/Договор водоотведения с юллицами.docx'
                         label = 'Договор на водоотведение с юридическими лицами'
                     />
                 </CardContent>

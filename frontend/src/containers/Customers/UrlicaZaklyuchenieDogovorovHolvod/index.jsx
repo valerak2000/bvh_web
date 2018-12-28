@@ -40,7 +40,7 @@ class UrlicaZaklyuchenieDogovorovHolvodView extends Component {
                 >
                     <FileLink
                         key = 'dogovorpodklbvh'
-                        href = '/static/files/media/potrebiteliam/Договор водоснабжения с юрлицами.pdf'
+                        href = '/static/files/media/potrebiteliam/Договор водоснабжения с юрлицами.docx'
                         label = 'Договор холодного водоснабжения с юридическими лицами'
                     />
                 </CardContent>
