@@ -82,7 +82,7 @@ class RegulatoryDocView extends Component {
                     />
                     <FileLink 
                         href = { sanitarnye_pravila } 
-                        label = 'Постановление Министерства здравоохранения РФ № 24 от 26 сентября 2001г. "О введении в дейсвие санитарных правил."'
+                        label = 'Постановление Министерства здравоохранения РФ № 24 от 26 сентября 2001г. "О введении в действие санитарных правил."'
                     />
                     <FileLink 
                         href = { sp_vnutrenniy_vodoprovod_i_kanalizaciya_zdaniy } 
@@ -98,9 +98,5 @@ export default withStyles(styles, { name: 'muiRegulatoryDocView', flip: false, w
 //export { RegulatoryDocView as RegulatoryDocViewNotConnected };
 
 /*
-                    <FileLink 
-                        href = { sp_vnutrenniy_vodoprovod_i_kanalizaciya_zdaniy } 
-                        label = 'Административный Регламент по выдаче'
-                    />
 */
 

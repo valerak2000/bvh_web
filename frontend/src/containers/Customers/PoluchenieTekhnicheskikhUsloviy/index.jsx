@@ -69,7 +69,7 @@ class PoluchenieTekhnicheskikhUsloviyView extends Component {
 
                     <FileLink
                         key = 'zayavvtu'
-                        href = '/static/files/media/potrebiteliam/Заявление на выдачу технических условий.pdf'
+                        href = '/static/files/media/potrebiteliam/Заявление на выдачу технических условий.docx'
                         label = 'Заявление на выдачу технических условий'
                     />
                 </CardContent>
@@ -83,7 +83,7 @@ export default withStyles(null, { name: 'muiPoluchenieTekhnicheskikhUsloviyView'
 /*
                     <FileLink
                         key = 'zayavvvodpo'
-                        href = '/static/files/media/potrebiteliam/Заявка на ввод в эксплуатацию прибора учета.pdf'
+                        href = '/static/files/media/potrebiteliam/Заявка на ввод в эксплуатацию прибора учета.docx'
                         label = 'Заявка на ввод в эксплуатацию прибора учета'
                     />
 */
