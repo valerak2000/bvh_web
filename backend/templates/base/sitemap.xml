@@ -51,4 +51,28 @@
             <loc>http://www.bruvodokanal.ru/customers/tarifs</loc>
             <changefreq>monthly</changefreq>
         </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/customers/connection</loc>
+            <changefreq>monthly</changefreq>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/customers/connection/connection_vodootvedenie</loc>
+            <changefreq>monthly</changefreq>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/customers/fizlica/zaklyuchenie_dogovorov_holvod_fizlica</loc>
+            <changefreq>monthly</changefreq>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/customers/fizlica/zaklyuchenie_dogovorov_vodootved_fizlica</loc>
+            <changefreq>monthly</changefreq>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/customers/urlica/zaklyuchenie_dogovorov_holvod_urlica</loc>
+            <changefreq>monthly</changefreq>
+        </url>
+        <url>
+            <loc>http://www.bruvodokanal.ru/customers/urlica/zaklyuchenie_dogovorov_vodootved_urlica</loc>
+            <changefreq>monthly</changefreq>
+        </url>
     </urlset>

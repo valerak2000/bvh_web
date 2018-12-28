@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
-import PdfLink from '../../../components/PdfLink/PdfLink';
+import FileLink from '../../../components/FileLink';
 
 const styles = theme => ({
     text: {
@@ -38,7 +38,7 @@ class FizlicaZaklyuchenieDogovorovVodootvedView extends Component {
                 <CardContent
                     style = { card.text }
                 >
-                    <PdfLink
+                    <FileLink
                         key = 'dogovorpodklbvh'
                         href = '/static/files/media/potrebiteliam/Договор водоотведения с физлицами.pdf'
                         label = 'Договор на водоотведение с физическими лицами'

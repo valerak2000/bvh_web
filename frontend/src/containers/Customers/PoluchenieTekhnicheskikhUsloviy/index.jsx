@@ -9,7 +9,7 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
-import PdfLink from '../../../components/PdfLink/PdfLink';
+import FileLink from '../../../components/FileLink';
 
 const styles = theme => ({
     text: {
@@ -67,7 +67,7 @@ class PoluchenieTekhnicheskikhUsloviyView extends Component {
                     <br />
                     Выдача технических условий через 10 рабочих дней
 
-                    <PdfLink
+                    <FileLink
                         key = 'zayavvtu'
                         href = '/static/files/media/potrebiteliam/Заявление на выдачу технических условий.pdf'
                         label = 'Заявление на выдачу технических условий'
@@ -81,7 +81,7 @@ class PoluchenieTekhnicheskikhUsloviyView extends Component {
 export default withStyles(null, { name: 'muiPoluchenieTekhnicheskikhUsloviyView', flip: false, withTheme: true })(PoluchenieTekhnicheskikhUsloviyView);
 //export { PoluchenieTekhnicheskikhUsloviyView as PoluchenieTekhnicheskikhUsloviyViewNotConnected };
 /*
-                    <PdfLink
+                    <FileLink
                         key = 'zayavvvodpo'
                         href = '/static/files/media/potrebiteliam/Заявка на ввод в эксплуатацию прибора учета.pdf'
                         label = 'Заявка на ввод в эксплуатацию прибора учета'

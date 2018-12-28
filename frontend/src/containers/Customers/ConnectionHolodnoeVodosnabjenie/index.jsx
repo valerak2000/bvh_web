@@ -7,7 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
-import PdfLink from '../../../components/PdfLink/PdfLink';
+import FileLink from '../../../components/FileLink';
 
 const styles = theme => ({
     text: {
@@ -123,12 +123,12 @@ class ConnectionHolodnoeVodosnabjenieView extends Component {
                         <strong>Примечание:</strong> Настоящий порядок разработан в соответствии с №416-ФЗ «О водоснабжении и водоотведении» от 07.12.2011 года, Правилами холодного водоснабжения и водоотведения, утвержденными Постановлением Правительства РФ от 29.07.2013 года, № 644.
                     </Typography>
                     <Divider />
-                    <PdfLink
+                    <FileLink
                         key = 'zayavpodklbvh'
                         href = '/static/files/media/potrebiteliam/Заявление на подключение - водоснабжение.pdf'
                         label = 'Заявление на подключение'
                     />
-                    <PdfLink
+                    <FileLink
                         key = 'dogovorpodklbvh'
                         href = '/static/files/media/potrebiteliam/Договор о подключении - водоснабжение.pdf'
                         label = 'Договор о подключении'

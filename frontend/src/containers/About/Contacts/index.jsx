@@ -21,7 +21,7 @@ import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 import GridItem from '../../../components/Grid/GridItem.jsx';
 import Loader from '../../../components/loaders';
 //import { Maps } from '../../../components/Maps';
-import PdfLink from '../../../components/PdfLink/PdfLink';
+import FileLink from '../../../components/FileLink';
 
 const MapsComponent = Loader(() =>
   import(/* webpackChunkName: "Maps" */ '../../../components/Maps/Maps.jsx')
@@ -115,7 +115,7 @@ class ContactsView extends Component {
                     subheader = 'ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»'
                     className = { classes.header }
                 />
-                <PdfLink
+                <FileLink
                     href = { rekvisity_ooo_bvh } 
                     label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
                     style = {{ margin: 'auto auto auto 2rem', }}
@@ -125,7 +125,7 @@ class ContactsView extends Component {
                     className = { classes.header }
                     { ...this.props }
                 />
-                <PdfLink
+                <FileLink
                     href = { rekvisity_ooo_boos } 
                     label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
                     style = {{ margin: 'auto auto auto 2rem', }}
