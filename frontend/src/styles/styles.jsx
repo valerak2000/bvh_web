@@ -288,13 +288,13 @@ export var muiTheme = createMuiTheme({
     },*/
     buttonLink: {
         padding: '6px 6px 6px 6px',
-        iconPdf: {
+        iconFile: {
             width: 32,
             height: 38,
             objectFit: 'contain',
             margin: '0rem auto',
         },
-        labelPdf: {
+        labelFile: {
             fontSize: 16,
             fontWeight: 500,
             minHeight: 'inherit',

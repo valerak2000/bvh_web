@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
-import PdfLink from '../../../components/PdfLink/PdfLink';
+import FileLink from '../../../components/FileLink';
 
 const styles = theme => ({
     text: {
@@ -75,7 +75,7 @@ class ZakupkiRaskrytieView extends Component {
                     />
                     {
                         rowsBvh.map((r, index) => (
-                            <PdfLink
+                            <FileLink
                                 key = { r.id } 
                                 href = { r.file } 
                                 label = { r.title }
@@ -92,7 +92,7 @@ class ZakupkiRaskrytieView extends Component {
                     />
                     {
                         rowsBoos.map((r, index) => (
-                            <PdfLink
+                            <FileLink
                                 key = { r.id } 
                                 href = { r.file } 
                                 label = { r.title }
