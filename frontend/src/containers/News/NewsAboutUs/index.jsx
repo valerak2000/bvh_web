@@ -17,8 +17,43 @@ const styles = theme => ({
     text: {
         margin: 'auto auto auto 2rem',
     },
+    listItemText: {
+        fontSize: 12,
+    },
 });
 
+const news = [
+    {
+        id: '1',
+        date: '06.03.2017', 
+        source: 'kbereg.info', 
+        title: 'Из отчетного доклада главы Брюховецкого района Владимира Мусатова на открытой сессии Совета муниципального образования Брюховецкий район.',
+        url: 'http://kbereg.info/iz-otchetnogo-doklada-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-otkry-toj-sessii-soveta-munitsipal-nogo-obrazovaniya-bryuhovetskij-rajon/'
+    },
+    {
+        id: '2',
+        date: '21.03.2018', 
+        source: 'brupress.ru', 
+        title: 'Свободненский участок «Брюховецкого водопроводного хозяйства» в нашем районе признан лучшим. Об этом говорят его дела.',
+        url: 'http://brupress.ru/2018/03/21/svobodnenskij-uchastok-bryuhovetskogo-vodoprovodnogo-hozyajstva-v-nashem-rajone-priznan-luchshim-ob-etom-govoryat-ego-dela/'
+    },
+    {
+        id: '3',
+        date: '02.07.2018', 
+        source: 'brupress.ru', 
+        title: 'С 1 июля выросли тарифы ЖКХ и увеличится стоимость сотовой связи. Сколько теперь платить брюховчанам?',
+        url: 'http://brupress.ru/2018/07/02/s-1-iyulya-vyrosli-tarify-zhkh-i-uvelichitsya-stoimost-sotovoj-svyazi-skolko-teper-platit-bryuhovchanam/'
+    },
+    {
+        id: '4',
+        date: '09.07.2018', 
+        source: 'kbereg.info', 
+        title: 'Ответы главы Брюховецкого района Владимира Мусатова на вопросы граждан.',
+        url: 'http://kbereg.info/otvety-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-voprosy-grazhdan/'
+    },
+];
+
+/*
 const news = [
     [
         '06.03.2017', 'kbereg.info', 'Из отчетного доклада главы Брюховецкого района Владимира Мусатова на открытой сессии Совета муниципального образования Брюховецкий район.',
@@ -37,7 +72,7 @@ const news = [
     ],
     //['', '', '', ''],
 ];
-
+*/
 const configActionColumns = [
 /*
         <a 
@@ -80,13 +115,12 @@ class NewsAboutUsView extends Component {
                                 { news.map(record => (
                                     <ListItem
                                         button
-                                        to = {`/customers/${record.id}`}
-                                        component = { Link }
-                                        key={record.id}
+                                        component = { Link } to = { record.url }
+                                        key = { record.id }
                                     >
                                         <ListItemText
-                                            primary={`${record.first_name} ${record.last_name}`}
-                                            className={classes.listItemText}
+                                            primary = { `${ record.title }` }
+                                            className = { classes.listItemText }
                                         />
                                     </ListItem>
                                 ))}
