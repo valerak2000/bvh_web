@@ -18,7 +18,7 @@ const styles = theme => ({
     drawerPaper: {
         position: 'relative',
     },
-    nested: {
+    children: {
         paddingLeft: theme.spacing.unit * 4,
     },
 });
@@ -31,7 +31,7 @@ function NavMenu(props) {
         const listItems = props.items.map((item, index) => {
             let initiallyOpenFirst = initiallyFocused === item.key ? true : false;
 
-            if (item.nestedItems !== undefined && item.nestedItems.length > 0) {
+            if (item.children !== undefined && item.children.length > 0) {
                 if (!props.expanded.some(menu => menu.key === item.key))
                     props.expanded.push({ key: item.key, open: initiallyOpenFirst });
             }
@@ -65,12 +65,12 @@ function NavMenu(props) {
                             }}
                         />
                         {
-                            item.nestedItems !== undefined && item.nestedItems.length > 0
+                            item.children !== undefined && item.children.length > 0
                             && ( props.open ? <ExpandLess /> : <ExpandMore /> )
                         }
                     </ListItem>
                     { 
-                        item.nestedItems !== undefined && item.nestedItems.length > 0
+                        item.children !== undefined && item.children.length > 0
                         && (
                             <Collapse 
                                 in = { props.expanded.filter(menu => menu.key === item.key)[0].open }
@@ -79,7 +79,7 @@ function NavMenu(props) {
                             >
                                 <List disablePadding>
                                 {
-                                    item.nestedItems.map((ni, index) => {
+                                    item.children.map((ni, index) => {
                                         let initiallySelectedSecond = initiallyFocused === item.key + '_' + ni.key ? true : false;
 
                                         if (initiallySelectedSecond)
@@ -92,7 +92,7 @@ function NavMenu(props) {
                                                 disableGutters
                                                 selected = { initiallySelectedSecond }
                                                 onClick = { (e) => props.onClick(ni.dataRoute, ni.key, e) }
-                                                className = { props.classes.nested }
+                                                className = { props.classes.children }
                                                 disabled = { ni.disabled }
                                             >
                                                 { 

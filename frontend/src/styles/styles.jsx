@@ -186,7 +186,7 @@ export var muiTheme = createMuiTheme({
                         fontFamily: '"PFBeauSansPro-Reg", "sans-serif"',
                         fontSize: 14,
                         width: '20rem',
-                        margin: '0rem -6.4rem 0rem 0rem',
+                        margin: '0.5rem -6rem 0rem 0rem',
                     },
                     badgeLogon: {
                         height: 'inherit',
@@ -197,11 +197,11 @@ export var muiTheme = createMuiTheme({
                         margin: '0rem -4.4rem 0rem 0rem',
                     },
                     button: {
-                        margin: '1.8rem 1rem 0rem 0rem',
+                        margin: '2.4rem 1rem 0rem 0rem',
                         //margin: '2rem 0rem 0rem 0rem',
                         paddingTop: 8,
                         paddingRight: 0,
-                        height: 39,
+                        height: 36,
                         color: grey[50],
                         fontSize: 18,
                         fontWeight: 500,
@@ -312,6 +312,14 @@ export var muiTheme = createMuiTheme({
         backgroundSize: 16,
         listStyleImage: 'none',
         listStyle: 'none',
+    },
+    siteMap: {
+        ul: { 
+            paddingLeft: '5rem', margin: 'auto' 
+        },
+        li: {
+            padding: 'auto auto 0.2rem auto',
+        },
     },
     icon: {
         height: 24,

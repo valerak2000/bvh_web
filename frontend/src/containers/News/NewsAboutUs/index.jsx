@@ -1,32 +1,31 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'react-router-dom/Link';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
 
-//import Table from '../../../components/Table/Table.jsx';
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
 const styles = theme => ({
     text: {
         margin: 'auto auto auto 2rem',
     },
-    listItemText: {
-        fontSize: 12,
-    },
 });
 
+const brupress = '/static/images/brupress_ru.png';
+const kbereg = '/static/images/kbereg_info.ico';
 const news = [
     {
         id: '1',
-        date: '06.03.2017', 
+        date: '06.03.2017',
         source: 'kbereg.info', 
+        icon: kbereg, 
         title: 'Из отчетного доклада главы Брюховецкого района Владимира Мусатова на открытой сессии Совета муниципального образования Брюховецкий район.',
         url: 'http://kbereg.info/iz-otchetnogo-doklada-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-otkry-toj-sessii-soveta-munitsipal-nogo-obrazovaniya-bryuhovetskij-rajon/'
     },
@@ -34,6 +33,7 @@ const news = [
         id: '2',
         date: '21.03.2018', 
         source: 'brupress.ru', 
+        icon: brupress, 
         title: 'Свободненский участок «Брюховецкого водопроводного хозяйства» в нашем районе признан лучшим. Об этом говорят его дела.',
         url: 'http://brupress.ru/2018/03/21/svobodnenskij-uchastok-bryuhovetskogo-vodoprovodnogo-hozyajstva-v-nashem-rajone-priznan-luchshim-ob-etom-govoryat-ego-dela/'
     },
@@ -41,6 +41,7 @@ const news = [
         id: '3',
         date: '02.07.2018', 
         source: 'brupress.ru', 
+        icon: brupress, 
         title: 'С 1 июля выросли тарифы ЖКХ и увеличится стоимость сотовой связи. Сколько теперь платить брюховчанам?',
         url: 'http://brupress.ru/2018/07/02/s-1-iyulya-vyrosli-tarify-zhkh-i-uvelichitsya-stoimost-sotovoj-svyazi-skolko-teper-platit-bryuhovchanam/'
     },
@@ -48,43 +49,10 @@ const news = [
         id: '4',
         date: '09.07.2018', 
         source: 'kbereg.info', 
+        icon: kbereg, 
         title: 'Ответы главы Брюховецкого района Владимира Мусатова на вопросы граждан.',
         url: 'http://kbereg.info/otvety-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-voprosy-grazhdan/'
     },
-];
-
-/*
-const news = [
-    [
-        '06.03.2017', 'kbereg.info', 'Из отчетного доклада главы Брюховецкого района Владимира Мусатова на открытой сессии Совета муниципального образования Брюховецкий район.',
-        'http://kbereg.info/iz-otchetnogo-doklada-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-otkry-toj-sessii-soveta-munitsipal-nogo-obrazovaniya-bryuhovetskij-rajon/'
-    ],
-    [
-        '21.03.2018', 'brupress.ru', 'Свободненский участок «Брюховецкого водопроводного хозяйства» в нашем районе признан лучшим. Об этом говорят его дела.',
-        'http://brupress.ru/2018/03/21/svobodnenskij-uchastok-bryuhovetskogo-vodoprovodnogo-hozyajstva-v-nashem-rajone-priznan-luchshim-ob-etom-govoryat-ego-dela/'
-    ],
-    [
-        '02.07.2018', 'brupress.ru', 'С 1 июля выросли тарифы ЖКХ и увеличится стоимость сотовой связи. Сколько теперь платить брюховчанам?',
-        'http://brupress.ru/2018/07/02/s-1-iyulya-vyrosli-tarify-zhkh-i-uvelichitsya-stoimost-sotovoj-svyazi-skolko-teper-platit-bryuhovchanam/'],
-    [
-        '09.07.2018', 'kbereg.info', 'Ответы главы Брюховецкого района Владимира Мусатова на вопросы граждан.',
-        'http://kbereg.info/otvety-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-voprosy-grazhdan/'
-    ],
-    //['', '', '', ''],
-];
-*/
-const configActionColumns = [
-/*
-        <a 
-            href = "http://kbereg.info/otvety-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-voprosy-grazhdan/" 
-            target = "_blank"
-        >
-            Ответы главы Брюховецкого района Владимира Мусатова на вопросы граждан.
-        </a>
-
-    { Icon: Add, Tooltip: 'Add', Color: 'success', Callback: onAddClick },
-    { Icon: Edit, Tooltip: 'Edit', Color: 'primary', Callback: onEditClick }
-*/
 ];
 
 class NewsAboutUsView extends Component {
@@ -110,17 +78,25 @@ class NewsAboutUsView extends Component {
                 >
                     {
                         news.length > 0 ? (
-                            <List
-                            >
-                                { news.map(record => (
+                            <List>
+                                { news.map(r => (
                                     <ListItem
                                         button
-                                        component = { Link } to = { record.url }
-                                        key = { record.id }
+                                        key = { r.id }
+                                        component = 'a'
+                                        href = { r.url }
+                                        target = '_blank'
                                     >
+                                        <ListItemAvatar>
+                                            <Avatar alt = 'Источник новости' src = { r.icon } />
+                                        </ListItemAvatar>
                                         <ListItemText
-                                            primary = { `${ record.title }` }
-                                            className = { classes.listItemText }
+                                            primary = { `${ r.date } ${ r.title }` }
+                                            primaryTypographyProps = {{
+                                                variant: 'body1',
+                                                color: 'textSecondary'
+                                            }}
+                                            secondary = { r.source }
                                         />
                                     </ListItem>
                                 ))}
@@ -152,33 +128,5 @@ export default withStyles(styles, { name: 'muiNewsAboutUsView', flip: false, wit
                                     tableData = { news }
                                 />
                             </React.Fragment>
-
-<a 
-                        href = 'http://kbereg.info/iz-otchetnogo-doklada-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-otkry-toj-sessii-soveta-munitsipal-nogo-obrazovaniya-bryuhovetskij-rajon/'
-                        target = "_blank"
-                    >
-                        06.03.2017. kbereg.info - Из отчетного доклада главы Брюховецкого района Владимира Мусатова на открытой сессии Совета муниципального образования Брюховецкий район.
-                    </a>
-                    <br/>
-                    <a 
-                        href = "http://brupress.ru/2018/03/21/svobodnenskij-uchastok-bryuhovetskogo-vodoprovodnogo-hozyajstva-v-nashem-rajone-priznan-luchshim-ob-etom-govoryat-ego-dela/" 
-                        target = "_blank"
-                    >
-                        21.03.2018. brupress.ru - Свободненский участок «Брюховецкого водопроводного хозяйства» в нашем районе признан лучшим. Об этом говорят его дела.
-                    </a>
-                    <br/>
-                    <a 
-                        href = "http://brupress.ru/2018/07/02/s-1-iyulya-vyrosli-tarify-zhkh-i-uvelichitsya-stoimost-sotovoj-svyazi-skolko-teper-platit-bryuhovchanam/" 
-                        target = "_blank"
-                    >
-                        02.07.2018. brupress.ru - С 1 июля выросли тарифы ЖКХ и увеличится стоимость сотовой связи. Сколько теперь платить брюховчанам?
-                    </a>
-                    <br/>
-                    <a 
-                        href = "http://kbereg.info/otvety-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-voprosy-grazhdan/" 
-                        target = "_blank"
-                    >
-                        09.07.2018. kbereg.info - Ответы главы Брюховецкого района Владимира Мусатова на вопросы граждан.
-                    </a>
 
 */
