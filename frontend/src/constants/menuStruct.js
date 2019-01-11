@@ -263,11 +263,10 @@ export const MENU_NEWS = [
     },
 ];
 
-
 export const MENU = [
     {
         key: 'homeRoot',
-        primaryText: 'Главная',
+        primaryText: 'Основной раздел',
         children: [
             {
                 key: 'home',

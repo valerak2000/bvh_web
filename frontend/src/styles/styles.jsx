@@ -313,7 +313,7 @@ export var muiTheme = createMuiTheme({
         listStyleImage: 'none',
         listStyle: 'none',
     },
-    siteMap: {
+    siteMaps: {
         ul: { 
             paddingLeft: '5rem', margin: 'auto' 
         },

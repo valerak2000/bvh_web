@@ -55,6 +55,53 @@ const news = [
     },
 ];
 
+function ListNewsAboutUs(props) {
+    const { classes } = props;
+    const listItems = props.items.map((item, index) => {
+        return (
+            <React.Fragment key = { index }>
+                <ListItem
+                    button
+                    key = { item.id }
+                    component = 'a'
+                    href = { item.url }
+                    target = '_blank'
+                >
+                    <ListItemAvatar>
+                        <Avatar alt = 'Источник новости' src = { item.icon } />
+                    </ListItemAvatar>
+                    <ListItemText
+                        primary = { `${ item.date } ${ item.title }` }
+                        primaryTypographyProps = {{
+                            variant: 'body1',
+                            color: 'textSecondary'
+                        }}
+                        secondary = { item.source }
+                    />
+                </ListItem>
+            </React.Fragment>
+        );
+    });
+
+    return (
+        <React.Fragment key = 'NewsAboutUs'>
+            { props.items.length > 0 ? (
+                <List>
+                    { listItems }
+                </List>
+            ) : (
+                <Typography
+                    variant = 'body1'
+                    color = 'textSecondary'
+                    className = { classes.text }
+                >
+                    Новостей о нас нет.
+                </Typography>
+            )}
+        </React.Fragment>
+    );
+}
+
 class NewsAboutUsView extends Component {
     static propTypes = {
         theme: PropTypes.object.isRequired,
@@ -62,7 +109,6 @@ class NewsAboutUsView extends Component {
     };
 
     render() {
-        const { classes } = this.props;
         const { card } = this.props.theme.app;
 
         return (
@@ -76,27 +122,40 @@ class NewsAboutUsView extends Component {
                 <CardContent
                     style = { card.text }
                 >
+                    <ListNewsAboutUs 
+                        items = { news }
+                        { ...this.props }
+                    />
+                </CardContent>
+            </Card>
+        );
+    }
+}
+
+export default withStyles(styles, { name: 'muiNewsAboutUsView', flip: false, withTheme: true })(NewsAboutUsView);
+//export { NewsAboutUsView as NewsAboutUsViewNotConnected };
+/*
                     {
                         news.length > 0 ? (
                             <List>
-                                { news.map(r => (
+                                { news.map((item, index) => (
                                     <ListItem
                                         button
-                                        key = { r.id }
+                                        key = { item.id }
                                         component = 'a'
-                                        href = { r.url }
+                                        href = { item.url }
                                         target = '_blank'
                                     >
                                         <ListItemAvatar>
-                                            <Avatar alt = 'Источник новости' src = { r.icon } />
+                                            <Avatar alt = 'Источник новости' src = { item.icon } />
                                         </ListItemAvatar>
                                         <ListItemText
-                                            primary = { `${ r.date } ${ r.title }` }
+                                            primary = { `${ item.date } ${ item.title }` }
                                             primaryTypographyProps = {{
                                                 variant: 'body1',
                                                 color: 'textSecondary'
                                             }}
-                                            secondary = { r.source }
+                                            secondary = { item.source }
                                         />
                                     </ListItem>
                                 ))}
@@ -111,15 +170,8 @@ class NewsAboutUsView extends Component {
                                 </Typography>
                             )
                     }
-                </CardContent>
-            </Card>
-        );
-    }
-}
 
-export default withStyles(styles, { name: 'muiNewsAboutUsView', flip: false, withTheme: true })(NewsAboutUsView);
-//export { NewsAboutUsView as NewsAboutUsViewNotConnected };
-/*
+
                             <React.Fragment key = 'news_about_us'>
                                 <Table
                                     actionColumns = { configActionColumns }
