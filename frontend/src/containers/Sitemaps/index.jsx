@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Link from 'react-router-dom/Link';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -67,24 +68,50 @@ function ListSiteMaps(props) {
                         >
                             <List disablePadding>
                             { item.children.map((ni, index) => {
+                                var itemMap = '';
+                                if ((ni.dataRoute === undefined || ni.dataRoute === null))
+                                    itemMap = <ListItem 
+                                            key = { ni.key } 
+                                            disableGutters
+                                            className = { props.classes.mapItem }
+                                        >
+                                            { ni.leftIcon
+                                                && <ListItemIcon className = { classes.icon }>
+                                                    { ni.leftIcon }
+                                                </ListItemIcon> }
+                                            <ListItemText 
+                                                primary = { ni.primaryText } 
+                                                primaryTypographyProps = {{
+                                                    variant: 'body1',
+                                                    color: 'textSecondary',
+                                                }}
+                                            />
+                                        </ListItem>;
+                                else
+                                    itemMap = <ListItem 
+                                            key = { ni.key } 
+                                            button
+                                            disableGutters
+                                            className = { props.classes.mapItem }
+                                            onClick = { (e) => props.onClick(ni.dataRoute, e) }
+                                        >
+                                            { ni.leftIcon
+                                                && <ListItemIcon className = { classes.icon }>
+                                                    { ni.leftIcon }
+                                                </ListItemIcon> }
+                                            <ListItemText 
+                                                primary = { ni.primaryText } 
+                                                primaryTypographyProps = {{
+                                                    variant: 'body1',
+                                                    color: 'textSecondary',
+                                                }}
+                                            />
+                                        </ListItem>;
+
                                 return (
-                                    <ListItem 
-                                        key = { ni.key } 
-                                        disableGutters
-                                        className = { props.classes.mapItem }
-                                    >
-                                        { ni.leftIcon
-                                            && <ListItemIcon className = { classes.icon }>
-                                                { ni.leftIcon }
-                                            </ListItemIcon> }
-                                        <ListItemText 
-                                            primary = { ni.primaryText } 
-                                            primaryTypographyProps = {{
-                                                variant: 'body1',
-                                                color: 'textSecondary',
-                                            }}
-                                        />
-                                    </ListItem>
+                                    <React.Fragment key = { `sub_${ ni.key }` }>
+                                        { itemMap }
+                                    </React.Fragment>
                                 );
                             }) }
                             </List>
@@ -150,7 +177,12 @@ class MapsView extends Component {
 
     constructor(props, context) {
         super(props, context);
+        this.handleClick = this.handleClick.bind(this);
     }
+
+    handleClick = (dataRoute, e ) => {
+        this.props.history.push(dataRoute);
+    };
 
     render() {
         const { classes } = this.props;
@@ -177,6 +209,7 @@ class MapsView extends Component {
                     >
                         <ListSiteMaps 
                             items = { MENU }
+                            onClick = { this.handleClick }
                             { ...this.props }
                         />
                         <div
