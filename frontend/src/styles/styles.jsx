@@ -325,6 +325,7 @@ export var muiTheme = createMuiTheme({
         height: 24,
         width: '100%',
         objectFit: 'contain',
+        color: 'primary',
     },
     subParagraf: {
         margin: '0.25rem auto 0.25rem 4rem',

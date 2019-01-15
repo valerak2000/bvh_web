@@ -4,9 +4,27 @@ import RssFeed from '@material-ui/icons/RssFeed';
 import Announcement from '@material-ui/icons/Announcement';
 import QuestionAnswer from '@material-ui/icons/QuestionAnswer';
 import ContactMail from '@material-ui/icons/ContactMail';
+import Contacts from '@material-ui/icons/Contacts';
 import Place from '@material-ui/icons/Place';
 import Map from '@material-ui/icons/Map';
 import Info from '@material-ui/icons/Info';
+
+export function LeaderShip(props) {
+    const leaderShip = '/static/images/leadership.ico';
+
+    return (
+        <img
+            src = { leaderShip }
+            alt = 'Руководство'
+            style = {{
+                height: 24,
+                width: 24,
+                objectFit: 'contain',
+            }}
+            { ...props }
+        />
+    )
+}
 
 export const MENU_HOME = [
     {
@@ -58,13 +76,13 @@ export const MENU_ABOUT = [
     {
         key: 'leadership',
         primaryText: 'Руководство компании',
-        leftIcon: null,
+        leftIcon: (<LeaderShip />),
         dataRoute: '/about/leadership',
     },
     {
         key: 'contacts',
         primaryText: 'Контакты',
-        leftIcon: null,
+        leftIcon: (<Contacts />),
         dataRoute: '/about/contacts',
     },
     {
@@ -320,13 +338,13 @@ export const MENU = [
             {
                 key: 'leadership',
                 primaryText: 'Руководство компании',
-                leftIcon: null,
+                leftIcon: (<LeaderShip />),
                 dataRoute: '/about/leadership',
             },
             {
                 key: 'contacts',
                 primaryText: 'Контакты',
-                leftIcon: null,
+                leftIcon: (<Contacts />),
                 dataRoute: '/about/contacts',
             },
             {
