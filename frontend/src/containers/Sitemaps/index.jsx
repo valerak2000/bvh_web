@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'react-router-dom/Link';
+import Home from '@material-ui/icons/Home';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -23,6 +23,7 @@ const styles = theme => ({
     },
     icon: {
         marginRight: 0,
+        color: theme.palette.text.secondary,
     },
     children: {
         //paddingTop: 0,
@@ -310,6 +311,7 @@ class MapsView extends Component {
                             </ul>        
                         </div>
                     </div>
+                    <Home />
                 </CardContent>
             </Card>
         );

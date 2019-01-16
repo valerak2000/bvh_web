@@ -20,10 +20,11 @@ const styles = theme => ({
     },
     icon: {
         marginRight: 0,
+        color: theme.palette.text.secondary,
     },
-    children: {
-        paddingLeft: theme.spacing.unit * 4,
-    },
+    //children: {
+    //    paddingLeft: theme.spacing.unit * 4,
+    //},
 });
 
 function NavMenu(props) {
