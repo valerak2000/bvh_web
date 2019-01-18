@@ -11,6 +11,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 import CardHeader from '../../components/Card/CardHeaderImpl.jsx';
 import { MENU } from '../../constants/menuStruct';
@@ -23,7 +24,7 @@ const styles = theme => ({
     },
     icon: {
         marginRight: 0,
-        color: theme.palette.text.secondary,
+        color: fade(theme.palette.text.secondary, 0.74),
     },
     children: {
         //paddingTop: 0,

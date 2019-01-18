@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ, HOME_MENU_MP,
     ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../../constants';
@@ -20,11 +21,8 @@ const styles = theme => ({
     },
     icon: {
         marginRight: 0,
-        color: theme.palette.text.secondary,
+        color: fade(theme.palette.text.secondary, 0.74),
     },
-    //children: {
-    //    paddingLeft: theme.spacing.unit * 4,
-    //},
 });
 
 function NavMenu(props) {
