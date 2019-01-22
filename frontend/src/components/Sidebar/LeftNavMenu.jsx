@@ -21,7 +21,10 @@ const styles = theme => ({
     },
     icon: {
         marginRight: 0,
-        color: fade(theme.palette.text.secondary, 0.74),
+        color: fade(theme.palette.text.secondary, 0.64),
+    },
+    children: {
+        paddingLeft: theme.spacing.unit * 4,
     },
 });
 

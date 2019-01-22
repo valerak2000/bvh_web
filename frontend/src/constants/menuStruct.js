@@ -20,6 +20,7 @@ export function LeaderShip(props) {
                 height: 24,
                 width: 24,
                 objectFit: 'contain',
+                opacity: 0.64,
             }}
             { ...props }
         />
