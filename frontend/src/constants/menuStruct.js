@@ -515,3 +515,5 @@ export const MENU = [
         ],
     }
 ];
+
+export const menu_all = [...MENU_HOME, ...MENU_ABOUT, ...MENU_CUSTOMERS, ...MENU_NEWS];
