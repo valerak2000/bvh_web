@@ -24,7 +24,44 @@ export function LeaderShip(props) {
             }}
             { ...props }
         />
-    )
+    );
+}
+
+export function ColdWather(props) {
+    const leaderShip = '/static/images/tap-water.ico';
+
+    return (
+        <img
+            src = { leaderShip }
+            alt = 'Подключение к холодому водоснабжению'
+            style = {{
+                height: 24,
+                width: 24,
+                objectFit: 'contain',
+                opacity: 0.64,
+            }}
+            { ...props }
+        />
+    );
+}
+
+export function WasteWather(props) {
+    const leaderShip = '/static/images/wastewater-stormw-streetlight.ico';
+    //const leaderShip = '/static/images/wastewater-separative-sewer-water-sewage.ico';
+
+    return (
+        <img
+            src = { leaderShip }
+            alt = 'Подключение к водоотведению'
+            style = {{
+                height: 24,
+                width: 24,
+                objectFit: 'contain',
+                opacity: 0.64,
+            }}
+            { ...props }
+        />
+    );
 }
 
 export const MENU_HOME = [
@@ -116,13 +153,13 @@ export const MENU_CUSTOMERS = [
             {
                 key: 'connection_holvodosnabjenie',
                 primaryText: 'Холодное водоснабжение',
-                leftIcon: null,
+                leftIcon: (<ColdWather />),
                 dataRoute: '/customers/connection/connection_holvodosnabjenie',
             },
             {
                 key: 'connection_vodootvedenie',
                 primaryText: 'Водоотведение',
-                leftIcon: null,
+                leftIcon: (<WasteWather />),
                 dataRoute: '/customers/connection/connection_vodootvedenie',
             },
 /*
@@ -282,6 +319,7 @@ export const MENU_NEWS = [
     },
 ];
 
+/*
 export const MENU = [
     {
         key: 'homeRoot',
@@ -515,5 +553,27 @@ export const MENU = [
         ],
     }
 ];
+*/
 
-export const menu_all = [...MENU_HOME, ...MENU_ABOUT, ...MENU_CUSTOMERS, ...MENU_NEWS];
+export const MENU = [
+    {
+        key: 'homeRoot',
+        primaryText: 'Основной раздел',
+        children: [...MENU_HOME,],
+    },
+    {
+        key: 'about',
+        primaryText: 'О компании',
+        children: [...MENU_ABOUT,],
+    },
+    {
+        key: 'customers',
+        primaryText: 'Абонентам',
+        children: [...MENU_CUSTOMERS,],
+    },
+    {
+        key: 'news',
+        primaryText: 'Новости',
+        children: [...MENU_NEWS,],
+    }
+];
