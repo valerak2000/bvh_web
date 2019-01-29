@@ -188,8 +188,6 @@ export const MENU_CUSTOMERS = [
     {
         key: 'fizlica',
         primaryText: 'Физические лица',
-        leftIcon: null,
-        //dataRoute: '/customers/fizlica',
         children: [
             {
                 key: 'zaklyuchenie_dogovorov_holvod_fizlica',
@@ -220,8 +218,6 @@ export const MENU_CUSTOMERS = [
     {
         key: 'urlica',
         primaryText: 'Юридические лица',
-        leftIcon: null,
-        //dataRoute: '/customers/urlica',
         disabled: false,
         children: [
             {
@@ -267,9 +263,7 @@ export const MENU_CUSTOMERS = [
     {
         key: 'services',
         primaryText: 'Услуги',
-        leftIcon: null,
         disabled: true,
-        //dataRoute: '/customers/services',
         cildren: [
             {
                 key: 'vyvoz_zhidkih_kommunalnyh_stokov',
@@ -319,139 +313,6 @@ export const MENU_NEWS = [
         dataRoute: '/news/smi_o_nashey_rabote',
     },
 ];
-
-/*
-export const MENU = [
-    {
-        key: 'customers',
-        primaryText: 'Абонентам',
-        children: [
-            {
-                key: 'connection',
-                primaryText: 'Подключение',
-                children: [
-                    {
-                        key: 'connection_holvodosnabjenie',
-                        primaryText: 'Холодное водоснабжение',
-                        leftIcon: null,
-                        dataRoute: '/customers/connection/connection_holvodosnabjenie',
-                    },
-                    {
-                        key: 'connection_vodootvedenie',
-                        primaryText: 'Водоотведение',
-                        leftIcon: null,
-                        dataRoute: '/customers/connection/connection_vodootvedenie',
-                    },
-                ]
-            },
-            {
-                key: 'fizlica',
-                primaryText: 'Физические лица',
-                children: [
-                    {
-                        key: 'zaklyuchenie_dogovorov_holvod_fizlica',
-                        primaryText: 'Заключение договоров на холодное водоснабжение',
-                        leftIcon: null,
-                        dataRoute: '/customers/fizlica/zaklyuchenie_dogovorov_holvod_fizlica',
-                    },
-                    {
-                        key: 'zaklyuchenie_dogovorov_vodootved_fizlica',
-                        primaryText: 'Заключение договоров на водоотведение',
-                        leftIcon: null,
-                        dataRoute: '/customers/fizlica/zaklyuchenie_dogovorov_vodootved_fizlica',
-                    },
-                    {
-                        key: 'peredacha_pokazaniy_fizlica',
-                        primaryText: 'Передача показаний счетчиков',
-                        leftIcon: null,
-                        dataRoute: '/customers/fizlica/peredacha_pokazaniy_fizlica',
-                    },
-                    {
-                        key: 'pribory_ucheta',
-                        primaryText: 'Приборы учета',
-                        leftIcon: null,
-                        dataRoute: '/customers/fizlica/pribory_ucheta',
-                    },
-                ]
-            },
-            {
-                key: 'urlica',
-                primaryText: 'Юридические лица',
-                disabled: false,
-                children: [
-                    {
-                        key: 'zaklyuchenie_dogovorov_holvod_urlica',
-                        primaryText: 'Заключение договоров на холодное водоснабжение',
-                        leftIcon: null,
-                        dataRoute: '/customers/urlica/zaklyuchenie_dogovorov_holvod_urlica',
-                    },
-                    {
-                        key: 'zaklyuchenie_dogovorov_vodootved_urlica',
-                        primaryText: 'Заключение договоров на водоотведение',
-                        leftIcon: null,
-                        dataRoute: '/customers/urlica/zaklyuchenie_dogovorov_vodootved_urlica',
-                    },
-                    {
-                        key: 'peredacha_pokazaniy_urlica',
-                        primaryText: 'Передача показаний счетчиков',
-                        leftIcon: null,
-                        dataRoute: '/customers/urlica/peredacha_pokazaniy_urlica',
-                    },
-                ]
-            },
-            {
-                key: 'regulatory_doc',
-                primaryText: 'Нормативные документы',
-                leftIcon: null,
-                dataRoute: '/customers/regulatory_doc',
-            },
-            {
-                key: 'tarifs',
-                primaryText: 'Тарифы',
-                leftIcon: null,
-                dataRoute: '/customers/tarifs',
-            },
-            {
-                key: 'services',
-                primaryText: 'Услуги',
-                disabled: true,
-                cildren: [
-                    {
-                        key: 'vyvoz_zhidkih_kommunalnyh_stokov',
-                        primaryText: 'Вывоз жидких коммунальных стоков',
-                        leftIcon: null,
-                        dataRoute: '/customers/services/vyvoz_zhidkih_kommunalnyh_stokov',
-                    },
-                    {
-                        key: 'preyskurant_uslug_dlya_fizicheskih_lic',
-                        primaryText: 'Прейскурант услуг для физических лиц',
-                        leftIcon: null,
-                        dataRoute: '/customers/services/preyskurant_uslug_dlya_fizicheskih_lic',
-                    },
-                    {
-                        key: 'preyskurant_uslug_dlya_yuridicheskih_lic',
-                        primaryText: 'Прейскурант услуг для юридических лиц',
-                        leftIcon: null,
-                        dataRoute: '/customers/services/preyskurant_uslug_dlya_yuridicheskih_lic',
-                    },
-                    {
-                        key: 'prochie_uslugi',
-                        primaryText: 'Прочие услуги',
-                        leftIcon: null,
-                        dataRoute: '/customers/services/prochie_uslugi',
-                    },
-                ]
-            },
-            {
-                key: 'debtors',
-                primaryText: 'Должники',
-                leftIcon: null,
-                dataRoute: '/customers/debtors',
-            },
-        ],
-    },
-];
-*/
 
 export const MENU = [
     {
