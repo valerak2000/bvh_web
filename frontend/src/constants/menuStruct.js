@@ -4,8 +4,66 @@ import RssFeed from '@material-ui/icons/RssFeed';
 import Announcement from '@material-ui/icons/Announcement';
 import QuestionAnswer from '@material-ui/icons/QuestionAnswer';
 import ContactMail from '@material-ui/icons/ContactMail';
+import Contacts from '@material-ui/icons/Contacts';
 import Place from '@material-ui/icons/Place';
 import Map from '@material-ui/icons/Map';
+import Info from '@material-ui/icons/Info';
+
+export function LeaderShip(props) {
+    const leaderShip = '/static/images/leadership.ico';
+
+    return (
+        <img
+            src = { leaderShip }
+            alt = 'Руководство'
+            style = {{
+                height: 24,
+                width: 24,
+                objectFit: 'contain',
+                opacity: 0.64,
+            }}
+            { ...props }
+        />
+    );
+}
+
+export function ColdWather(props) {
+    const leaderShip = '/static/images/tap-water.ico';
+
+    return (
+        <img
+            src = { leaderShip }
+            alt = 'Подключение к холодому водоснабжению'
+            style = {{
+                height: 24,
+                width: 24,
+                objectFit: 'contain',
+                opacity: 0.64,
+            }}
+            { ...props }
+        />
+    );
+}
+
+export function WasteWather(props) {
+    //const leaderShip = '/static/images/wastewater-stormw-streetlight.ico';
+    const leaderShip = '/static/images/wastewater.ico';
+    //const leaderShip = '/static/images/wastewater-separative-sewer-water-sewage.ico';
+
+    return (
+        <img
+            src = { leaderShip }
+            alt = 'Подключение к водоотведению'
+            style = {{
+                height: 24,
+                width: 24,
+                objectFit: 'contain',
+                opacity: 0.64,
+            }}
+            { ...props }
+        />
+    );
+}
 
 export const MENU_HOME = [
     {
@@ -51,19 +109,19 @@ export const MENU_ABOUT = [
     {
         key: 'common_info',
         primaryText: 'Общая информация',
-        leftIcon: null,
+        leftIcon: (<Info />),
         dataRoute: '/about/common_info',
     },
     {
         key: 'leadership',
         primaryText: 'Руководство компании',
-        leftIcon: null,
+        leftIcon: (<LeaderShip />),
         dataRoute: '/about/leadership',
     },
     {
         key: 'contacts',
         primaryText: 'Контакты',
-        leftIcon: null,
+        leftIcon: (<Contacts />),
         dataRoute: '/about/contacts',
     },
     {
@@ -92,17 +150,17 @@ export const MENU_CUSTOMERS = [
         primaryText: 'Подключение',
         leftIcon: null,
         //dataRoute: '/customers/connection',
-        nestedItems: [
+        children: [
             {
                 key: 'connection_holvodosnabjenie',
                 primaryText: 'Холодное водоснабжение',
-                leftIcon: null,
+                leftIcon: (<ColdWather />),
                 dataRoute: '/customers/connection/connection_holvodosnabjenie',
             },
             {
                 key: 'connection_vodootvedenie',
                 primaryText: 'Водоотведение',
-                leftIcon: null,
+                leftIcon: (<WasteWather />),
                 dataRoute: '/customers/connection/connection_vodootvedenie',
             },
 /*
@@ -130,9 +188,7 @@ export const MENU_CUSTOMERS = [
     {
         key: 'fizlica',
         primaryText: 'Физические лица',
-        leftIcon: null,
-        //dataRoute: '/customers/fizlica',
-        nestedItems: [
+        children: [
             {
                 key: 'zaklyuchenie_dogovorov_holvod_fizlica',
                 primaryText: 'Заключение договоров на холодное водоснабжение',
@@ -162,10 +218,8 @@ export const MENU_CUSTOMERS = [
     {
         key: 'urlica',
         primaryText: 'Юридические лица',
-        leftIcon: null,
-        //dataRoute: '/customers/urlica',
         disabled: false,
-        nestedItems: [
+        children: [
             {
                 key: 'zaklyuchenie_dogovorov_holvod_urlica',
                 primaryText: 'Заключение договоров на холодное водоснабжение',
@@ -209,10 +263,8 @@ export const MENU_CUSTOMERS = [
     {
         key: 'services',
         primaryText: 'Услуги',
-        leftIcon: null,
         disabled: true,
-        //dataRoute: '/customers/services',
-        nestedItems: [
+        cildren: [
             {
                 key: 'vyvoz_zhidkih_kommunalnyh_stokov',
                 primaryText: 'Вывоз жидких коммунальных стоков',
@@ -260,4 +312,27 @@ export const MENU_NEWS = [
         leftIcon: null,
         dataRoute: '/news/smi_o_nashey_rabote',
     },
+];
+
+export const MENU = [
+    {
+        key: 'homeRoot',
+        primaryText: 'Основной раздел',
+        children: [...MENU_HOME,],
+    },
+    {
+        key: 'about',
+        primaryText: 'О компании',
+        children: [...MENU_ABOUT,],
+    },
+    {
+        key: 'customers',
+        primaryText: 'Абонентам',
+        children: [...MENU_CUSTOMERS,],
+    },
+    {
+        key: 'news',
+        primaryText: 'Новости',
+        children: [...MENU_NEWS,],
+    }
 ];

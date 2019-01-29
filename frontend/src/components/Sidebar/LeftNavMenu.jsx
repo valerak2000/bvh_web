@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ, HOME_MENU_MP,
     ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../../constants';
@@ -18,7 +19,11 @@ const styles = theme => ({
     drawerPaper: {
         position: 'relative',
     },
-    nested: {
+    icon: {
+        marginRight: 0,
+        color: fade(theme.palette.text.secondary, 0.64),
+    },
+    children: {
         paddingLeft: theme.spacing.unit * 4,
     },
 });
@@ -31,7 +36,7 @@ function NavMenu(props) {
         const listItems = props.items.map((item, index) => {
             let initiallyOpenFirst = initiallyFocused === item.key ? true : false;
 
-            if (item.nestedItems !== undefined && item.nestedItems.length > 0) {
+            if (item.children !== undefined && item.children.length > 0) {
                 if (!props.expanded.some(menu => menu.key === item.key))
                     props.expanded.push({ key: item.key, open: initiallyOpenFirst });
             }
@@ -46,12 +51,10 @@ function NavMenu(props) {
                         onClick = { (e) => props.onClick(item.dataRoute, item.key, e) }
                         disabled = { item.disabled }
                     >
-                        { 
-                            item.leftIcon
-                            && <ListItemIcon>
+                        { item.leftIcon
+                          && <ListItemIcon className = { props.classes.icon }>
                                 { item.leftIcon }
-                            </ListItemIcon>
-                        }
+                            </ListItemIcon> }
                         <ListItemText
                             primary = { item.primaryText } 
                             primaryTypographyProps = {{
@@ -64,62 +67,54 @@ function NavMenu(props) {
                                 color: 'primary',
                             }}
                         />
-                        {
-                            item.nestedItems !== undefined && item.nestedItems.length > 0
-                            && ( props.open ? <ExpandLess /> : <ExpandMore /> )
-                        }
+                        { item.children !== undefined && item.children.length > 0
+                          && ( props.open ? <ExpandLess /> : <ExpandMore /> ) }
                     </ListItem>
-                    { 
-                        item.nestedItems !== undefined && item.nestedItems.length > 0
-                        && (
-                            <Collapse 
-                                in = { props.expanded.filter(menu => menu.key === item.key)[0].open }
-                                timeout = 'auto'
-                                unmountOnExit
+                    { item.children !== undefined && item.children.length > 0
+                      && ( <Collapse 
+                               in = { props.expanded.filter(menu => menu.key === item.key)[0].open }
+                               timeout = 'auto'
+                               unmountOnExit
                             >
                                 <List disablePadding>
-                                {
-                                    item.nestedItems.map((ni, index) => {
-                                        let initiallySelectedSecond = initiallyFocused === item.key + '_' + ni.key ? true : false;
+                                { item.children.map((ni, index) => {
+                                    let initiallySelectedSecond = initiallyFocused === item.key + '_' + ni.key ? true : false;
 
-                                        if (initiallySelectedSecond)
-                                            initiallyOpenFirst = initiallySelectedSecond;
+                                    if (initiallySelectedSecond)
+                                        initiallyOpenFirst = initiallySelectedSecond;
 
-                                        return (
-                                            <ListItem 
-                                                key = { ni.key } 
-                                                button
-                                                disableGutters
-                                                selected = { initiallySelectedSecond }
-                                                onClick = { (e) => props.onClick(ni.dataRoute, ni.key, e) }
-                                                className = { props.classes.nested }
-                                                disabled = { ni.disabled }
-                                            >
-                                                { 
-                                                    ni.leftIcon
-                                                    && <ListItemIcon>
-                                                        { ni.leftIcon }
-                                                    </ListItemIcon>
-                                                }
-                                                <ListItemText 
-                                                    primary = { ni.primaryText } 
-                                                    primaryTypographyProps = {{
-                                                        variant: 'body1',
-                                                        color: 'primary',
-                                                    }}
-                                                    secondary = { ni.secondaryText }
-                                                    secondaryTypographyProps = {{
-                                                        variant: 'body2',
-                                                        color: 'primary',
-                                                    }}
-                                                />
-                                            </ListItem>
-                                        );
-                                    })
-                                }
+                                    return (
+                                        <ListItem 
+                                            key = { ni.key } 
+                                            button
+                                            disableGutters
+                                            selected = { initiallySelectedSecond }
+                                            onClick = { (e) => props.onClick(ni.dataRoute, ni.key, e) }
+                                            className = { props.classes.children }
+                                            disabled = { ni.disabled }
+                                        >
+                                            { ni.leftIcon
+                                              && <ListItemIcon className = { props.classes.icon }>
+                                                    { ni.leftIcon }
+                                                </ListItemIcon> }
+                                            <ListItemText 
+                                                primary = { ni.primaryText } 
+                                                primaryTypographyProps = {{
+                                                    variant: 'body1',
+                                                    color: 'primary',
+                                                }}
+                                                secondary = { ni.secondaryText }
+                                                secondaryTypographyProps = {{
+                                                    variant: 'body2',
+                                                    color: 'primary',
+                                                }}
+                                            />
+                                        </ListItem>
+                                    );
+                                }) }
                                 </List>
                             </Collapse>
-                    )}
+                    ) }
                 </React.Fragment>
             );
     });
@@ -317,7 +312,5 @@ class LeftNavMenu extends Component {
         );
     }
 }
-/*
-*/
 
 export default withStyles(styles, { name: 'muiLeftNavMenu', flip: false, withTheme: true })(LeftNavMenu);

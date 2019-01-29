@@ -20,7 +20,7 @@ const ProtectedPage = Loader(() =>
     import(/* webpackChunkName: "ProtectedView" */ '../containers/Protected/index.jsx')
 );
 const MapPage = Loader(() =>
-    import(/* webpackChunkName: "MapView" */ '../containers/Sitemap/index.jsx')
+    import(/* webpackChunkName: "MapView" */ '../containers/Sitemaps/index.jsx')
 );
 const ElektronnayaPriemnayaPage = Loader(() =>
     import(/* webpackChunkName: "ElektronnayaPriemnayaView" */ '../containers/Home/ElektronnayaPriemnaya/index.jsx')

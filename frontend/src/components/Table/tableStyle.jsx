@@ -58,7 +58,7 @@ const tableStyle = theme => ({
     ...defaultFont,
     lineHeight: "1.42857143",
     padding: "12px 8px",
-    verticalAlign: "middle",
+    verticalAlign: 'initial',
     color: "inherit",
     body: {
         color: theme.palette.text.secondary,

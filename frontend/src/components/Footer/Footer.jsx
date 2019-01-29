@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'react-router-dom/Link';
 import withStyles from '@material-ui/core/styles/withStyles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -73,8 +73,8 @@ class Footer extends Component {
                         label = 'Партнеры'
                         icon = { <Business /> }
                         value = 'business'
-                        href = "http://www.brhts.ru"
-                        target = "_blank"
+                        href = 'http://www.brhts.ru'
+                        target = '_blank'
                         style = { footer.bottomNavigation.button }
                         classes = {{ label: classes.label, }}
                     />
