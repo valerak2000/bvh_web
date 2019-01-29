@@ -46,7 +46,8 @@ export function ColdWather(props) {
 }
 
 export function WasteWather(props) {
-    const leaderShip = '/static/images/wastewater-stormw-streetlight.ico';
+    //const leaderShip = '/static/images/wastewater-stormw-streetlight.ico';
+    const leaderShip = '/static/images/wastewater.ico';
     //const leaderShip = '/static/images/wastewater-separative-sewer-water-sewage.ico';
 
     return (
@@ -322,91 +323,6 @@ export const MENU_NEWS = [
 /*
 export const MENU = [
     {
-        key: 'homeRoot',
-        primaryText: 'Основной раздел',
-        children: [
-            {
-                key: 'home',
-                primaryText: 'Главная',
-                leftIcon: (<Home />),
-                dataRoute: '/',
-            },
-            {
-                key: 'elektronnaya_priemnaya',
-                primaryText: 'Электронная приемная',
-                leftIcon: (<ContactMail />),
-                dataRoute: '/elektronnaya_priemnaya',
-            },
-            {
-                key: 'blackouts',
-                primaryText: 'Отключения',
-                secondaryText: 'Информация об аварийном отключении водоснабжения',
-                leftIcon: (<Announcement />),
-                dataRoute: '/blackouts',
-            },
-            {
-                key: 'available_capacity_map',
-                primaryText: 'Карта доступной мощности',
-                leftIcon: (<Place />),
-                dataRoute: '/available_capacity_map',
-            },
-            {
-                key: 'faq',
-                primaryText: 'Вопрос-ответ',
-                leftIcon: (<QuestionAnswer />),
-                dataRoute: '/faq',
-            },
-            {
-                key: 'map',
-                primaryText: 'Карта сайта',
-                leftIcon: (<Map />),
-                dataRoute: '/map',
-            },
-        ],
-    },
-    {
-        key: 'about',
-        primaryText: 'О компании',
-        children: [
-            {
-                key: 'common_info',
-                primaryText: 'Общая информация',
-                leftIcon: (<Info />),
-                dataRoute: '/about/common_info',
-            },
-            {
-                key: 'leadership',
-                primaryText: 'Руководство компании',
-                leftIcon: (<LeaderShip />),
-                dataRoute: '/about/leadership',
-            },
-            {
-                key: 'contacts',
-                primaryText: 'Контакты',
-                leftIcon: (<Contacts />),
-                dataRoute: '/about/contacts',
-            },
-            {
-                key: 'vacancies',
-                primaryText: 'Вакансии',
-                leftIcon: null,
-                dataRoute: '/about/vacancies',
-            },
-            {
-                key: 'history',
-                primaryText: 'Наша история',
-                leftIcon: null,
-                dataRoute: '/about/history',
-            },
-            {
-                key: 'zakupki_raskrytie_informacii',
-                primaryText: 'Раскрытие информации',
-                leftIcon: null,
-                dataRoute: '/about/zakupki_raskrytie_informacii',
-            },
-        ],
-    },
-    {
         key: 'customers',
         primaryText: 'Абонентам',
         children: [
@@ -534,24 +450,6 @@ export const MENU = [
             },
         ],
     },
-    {
-        key: 'news',
-        primaryText: 'Новости',
-        children: [
-            {
-                key: 'news',
-                primaryText: 'Новости',
-                leftIcon: (<RssFeed />),
-                dataRoute: '/news',
-            },
-            {
-                key: 'smi_o_nashey_rabote',
-                primaryText: 'СМИ о нашей работе',
-                leftIcon: null,
-                dataRoute: '/news/smi_o_nashey_rabote',
-            },
-        ],
-    }
 ];
 */
 
