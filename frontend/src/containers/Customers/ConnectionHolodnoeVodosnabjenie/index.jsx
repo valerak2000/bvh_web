@@ -133,6 +133,21 @@ class ConnectionHolodnoeVodosnabjenieView extends Component {
                         href = '/static/files/media/potrebiteliam/Договор о подключении - водоснабжение.docx'
                         label = 'Договор о подключении'
                     />
+                    <FileLink
+                        key = 'zayavtehuslbvh'
+                        href = '/static/files/media/potrebiteliam/Заявление на выдачу технических условий на замену узла учета холодной воды.pdf'
+                        label = 'Заявление на выдачу технических условий на замену узла учета холодной воды'
+                    />
+                    <FileLink
+                        key = 'zayavvrezkabvh'
+                        href = '/static/files/media/potrebiteliam/Заявление на врезку к центральной линии водопровода.pdf'
+                        label = 'Заявление на врезку к центральной линии водопровода'
+                    />
+                    <FileLink
+                        key = 'zayavvvdopubvh'
+                        href = '/static/files/media/potrebiteliam/Заявка на ввод в эксплуатацию прибора учета.pdf'
+                        label = 'Заявка на ввод в эксплуатацию прибора учета'
+                    />
                 </CardContent>
             </Card>
         );

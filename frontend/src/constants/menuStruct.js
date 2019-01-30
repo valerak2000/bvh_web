@@ -201,6 +201,13 @@ export const MENU_CUSTOMERS = [
                 leftIcon: null,
                 dataRoute: '/customers/fizlica/zaklyuchenie_dogovorov_vodootved_fizlica',
             },
+            /*{
+                key: 'perezaklyuchenie_dogovorov_vodootved_fizlica',
+                primaryText: 'Перезаключение договора на нового собственника домовладения',
+                secondaryText: 'для физических лиц- собственников индивидуальных жилых домов',
+                leftIcon: null,
+                dataRoute: '/customers/fizlica/perezaklyuchenie_dogovorov_vodootved_fizlica',
+            },*/
             {
                 key: 'peredacha_pokazaniy_fizlica',
                 primaryText: 'Передача показаний счетчиков',
