@@ -208,6 +208,12 @@ export const MENU_CUSTOMERS = [
                 leftIcon: null,
                 dataRoute: '/customers/fizlica/perezaklyuchenie_dogovorov_vodootved_fizlica',
             },*/
+            /*{
+                key: 'zamena_vodomera_fizlica',
+                primaryText: 'Замена счетчика (водомера)',
+                leftIcon: null,
+                dataRoute: '/customers/fizlica/zamena_vodomera_fizlica',
+            },*/
             {
                 key: 'peredacha_pokazaniy_fizlica',
                 primaryText: 'Передача показаний счетчиков',
