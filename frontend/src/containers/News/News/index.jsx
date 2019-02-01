@@ -11,6 +11,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import ListSubheader from '@material-ui/core/ListSubheader';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
@@ -36,6 +39,35 @@ function ListNews(props) {
     const listItems = props.items.map((item, index) => {
         return (
             <React.Fragment key = { index }>
+            </React.Fragment>
+        );
+    });
+
+    return (
+        <React.Fragment key = 'News'>
+            { props.items.length > 0 ? (
+                <GridList cellHeight={180} className={classes.gridList}>
+                    <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+                        <ListSubheader component="div">December</ListSubheader>
+                    </GridListTile>
+                </GridList>
+            ) : (
+                <Typography
+                    variant = 'body1'
+                    color = 'textSecondary'
+                    className = { classes.text }
+                >
+                    Новостей нет.
+                </Typography>
+            )}
+        </React.Fragment>
+    );
+}
+/*
+                <List>
+                    { listItems }
+                </List>
+
                 <ListItem
                     button
                     key = { item.id }
@@ -62,28 +94,7 @@ function ListNews(props) {
                     unmountOnExit
                 >
                 </Collapse>
-            </React.Fragment>
-        );
-    });
-
-    return (
-        <React.Fragment key = 'News'>
-            { props.items.length > 0 ? (
-                <List>
-                    { listItems }
-                </List>
-            ) : (
-                <Typography
-                    variant = 'body1'
-                    color = 'textSecondary'
-                    className = { classes.text }
-                >
-                    Новостей нет.
-                </Typography>
-            )}
-        </React.Fragment>
-    );
-}
+*/
 
 class NewsView extends Component {
     static propTypes = {
