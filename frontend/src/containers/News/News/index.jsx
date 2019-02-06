@@ -46,9 +46,9 @@ function ListNews(props) {
     return (
         <React.Fragment key = 'News'>
             { props.items.length > 0 ? (
-                <GridList cellHeight={180} className={classes.gridList}>
-                    <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                        <ListSubheader component="div">December</ListSubheader>
+                <GridList cellHeight = { 180 } className = { classes.gridList }>
+                    <GridListTile key = "Subheader" cols = { 2 } style = {{ height: 'auto' }}>
+                        <ListSubheader component = "div">December</ListSubheader>
                     </GridListTile>
                 </GridList>
             ) : (
