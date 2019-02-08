@@ -27,7 +27,9 @@ const MapsComponent = Loader(() =>
   import(/* webpackChunkName: "Maps" */ '../../../components/Maps/Maps.jsx')
 );
 
+const bvhMainOfficeBuildWP = '/static/images/main_office.webp';
 const bvhMainOfficeBuild = '/static/images/main_office.jpg';
+const bvhAbonentsOfficeBuildWP = '/static/images/abon_office.webp';
 const bvhAbonentsOfficeBuild = '/static/images/abon_office.jpg';
 const rekvisity_ooo_bvh = '/static/files/media/rekvisity_ooo_bvh.pdf';
 const rekvisity_ooo_boos = '/static/files/media/rekvisity_ooo_boos.pdf';
@@ -182,13 +184,17 @@ class ContactsView extends Component {
                     </Collapse>
                     <ImageZoom
                         image = {{
-                            src: bvhMainOfficeBuild,
+                            src: bvhMainOfficeBuildWP,
                             alt: 'Центральный офис',
                             title: 'Центральный офис',
                             className: 'img',
                             style: {
                                 width: '40%'
                             }
+                        }}
+                        zoomImage = {{
+                            src: bvhMainOfficeBuild,
+                            alt: 'Центральный офис',
                         }}
                         shouldRespectMaxDimension = { true }
                         defaultStyles = {{
@@ -365,13 +371,17 @@ class ContactsView extends Component {
                     </Collapse>
                     <ImageZoom
                         image = {{
-                            src: bvhAbonentsOfficeBuild,
+                            src: bvhAbonentsOfficeBuildWP,
                             alt: 'Абонентский отдел',
                             title: 'Абонентский отдел',
                             className: 'img',
                             style: {
                                 width: '40%'
                             }
+                        }}
+                        zoomImage = {{
+                            src: bvhAbonentsOfficeBuild,
+                            alt: 'Абонентский отдел',
                         }}
                         shouldRespectMaxDimension = { true }
                         defaultStyles = {{
