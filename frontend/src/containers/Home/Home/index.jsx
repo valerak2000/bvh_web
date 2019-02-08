@@ -21,30 +21,40 @@ import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const watherItsLive = '/static/images/water-glass-and-faucet.png';
+const watherItsLiveWP = '/static/images/water-glass-and-faucet.webp';
 const bvhVodozaborMashZal = '/static/images/vodozab1_mash.jpg';
+const bvhVodozaborMashZalWP = '/static/images/vodozab1_mash.jpg';
 const bvhOchstnye1 = '/static/images/ochist1.jpg';
+const bvhOchstnye1WP = '/static/images/ochist1.jpg';
 const bvhOchstnye2 = '/static/images/ochist2.jpg';
+const bvhOchstnye2WP = '/static/images/ochist2.jpg';
 const bvhOchstnyeLaba = '/static/images/ochist_lab.jpg';
+const bvhOchstnyeLabaWP = '/static/images/ochist_lab.webp';
 
 const splashSteps = [
     {
         label: 'Природа дарит воду – мы доставляем её Вам',
+        webpPath: watherItsLiveWP,
         imgPath: watherItsLive,
     },
     {
         label: 'Водозабор - Насосный зал',
+        webpPath: bvhVodozaborMashZalWP,
         imgPath: bvhVodozaborMashZal,
     },
     {
         label: 'Очистные - Аэротенк',
+        webpPath: bvhOchstnye1WP,
         imgPath: bvhOchstnye1,
     },
     {
         label: 'Очистные - Отстойник ',
+        webpPath: bvhOchstnye2WP,
         imgPath: bvhOchstnye2,
     },
     {
         label: 'Очистные - Лаборатория',
+        webpPath: bvhOchstnyeLabaWP,
         imgPath: bvhOchstnyeLaba,
     },
 ];
@@ -109,7 +119,21 @@ class HomeView extends Component {
     handleStepChange = activeStep => {
         this.setState({ activeStep });
     };
-        
+/*
+<picture>
+<source
+    srcSet = { step.webpPath }
+    media = '(min-width: 865px)'
+    className = { classes.img }
+/>
+<img
+    src = { step.webpPath }
+    alt = { step.label }
+    className = { classes.img }
+/>
+</picture>
+*/
+
     render() {
         const { card } = this.props.theme.app;
         const { classes, theme } = this.props;
@@ -147,9 +171,9 @@ class HomeView extends Component {
                             {
                                 Math.abs(activeStep - index) <= 2 ? (
                                     <img
-                                        className = { classes.img }
-                                        src = { step.imgPath }
+                                        src = { step.webpPath }
                                         alt = { step.label }
+                                        className = { classes.img }
                                     />
                                 ) : null 
                             }

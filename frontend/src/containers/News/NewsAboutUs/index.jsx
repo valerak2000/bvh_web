@@ -109,6 +109,7 @@ class NewsAboutUsView extends Component {
     };
 
     render() {
+        const { classes } = this.props;
         const { card } = this.props.theme.app;
 
         return (

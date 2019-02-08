@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import Table from '../../../components/Table/Table.jsx';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
