@@ -23,11 +23,11 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const watherItsLive = '/static/images/water-glass-and-faucet.png';
 const watherItsLiveWP = '/static/images/water-glass-and-faucet.webp';
 const bvhVodozaborMashZal = '/static/images/vodozab1_mash.jpg';
-const bvhVodozaborMashZalWP = '/static/images/vodozab1_mash.jpg';
+const bvhVodozaborMashZalWP = '/static/images/vodozab1_mash.webp';
 const bvhOchstnye1 = '/static/images/ochist1.jpg';
-const bvhOchstnye1WP = '/static/images/ochist1.jpg';
+const bvhOchstnye1WP = '/static/images/ochist1.webp';
 const bvhOchstnye2 = '/static/images/ochist2.jpg';
-const bvhOchstnye2WP = '/static/images/ochist2.jpg';
+const bvhOchstnye2WP = '/static/images/ochist2.webp';
 const bvhOchstnyeLaba = '/static/images/ochist_lab.jpg';
 const bvhOchstnyeLabaWP = '/static/images/ochist_lab.webp';
 
@@ -63,7 +63,7 @@ const styles = theme => ({
     img: {
       height: 350,
       display: 'block',
-      //maxWidth: 400,
+      maxWidth: 400,
       overflow: 'hidden',
       width: '100%',
       margin: '0 auto',
@@ -132,30 +132,6 @@ class HomeView extends Component {
     className = { classes.img }
 />
 </picture>
-*/
-
-    render() {
-        const { card } = this.props.theme.app;
-        const { classes, theme } = this.props;
-        const { activeStep } = this.state;
-        const maxSteps = splashSteps.length;
-    
-        return (
-            <Card
-                square = { true }
-                style = { card }
-            >
-                <CardHeader
-                    title = 'Брюховецкий водоканал'
-                    titleTypographyProps = { card.titleTypography }
-                    style = { card.title }
-                />
-                <CardContent
-                    style = { card.text }
-                >
-                    <Paper square elevation = { 0 } className = { classes.header }>
-                        <Typography>{ splashSteps[activeStep].label }</Typography>
-                    </Paper>
                     <AutoPlaySwipeableViews
                         axis = { theme.direction === 'rtl' ? 'x-reverse' : 'x' }
                         index = { activeStep }
@@ -204,6 +180,31 @@ class HomeView extends Component {
                             </Button>
                         }
                     />
+
+*/
+
+    render() {
+        const { card } = this.props.theme.app;
+        const { classes, theme } = this.props;
+        const { activeStep } = this.state;
+        const maxSteps = splashSteps.length;
+    
+        return (
+            <Card
+                square = { true }
+                style = { card }
+            >
+                <CardHeader
+                    title = 'Брюховецкий водоканал'
+                    titleTypographyProps = { card.titleTypography }
+                    style = { card.title }
+                />
+                <CardContent
+                    style = { card.text }
+                >
+                    <Paper square elevation = { 0 } className = { classes.header }>
+                        <Typography>{ splashSteps[activeStep].label }</Typography>
+                    </Paper>
                 </CardContent>
             </Card>
         );

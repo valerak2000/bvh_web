@@ -7,8 +7,6 @@ import { compose } from 'recompose';
 import { MuiThemeProvider } from '@material-ui/core/styles/';
 import { white } from '@material-ui/core/colors';
 import Fab from '@material-ui/core/Fab';
-//import Button from '@material-ui/core/Button';
-//import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 // core components
 import MessageBox from '../../components/MessageBox';
@@ -127,7 +125,7 @@ class Root extends Component {
                             { ...this.props }
                             { ...rest }
                         />
-                        <div 
+                        <div
                             id = 'app'
                             style = {{ 
                                 display: 'flex', 

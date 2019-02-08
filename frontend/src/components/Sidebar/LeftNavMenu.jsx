@@ -294,7 +294,7 @@ class LeftNavMenu extends Component {
         var leftNav = { ...this.props.theme.app.leftNav };
 
         if (leftmenu !== null) {
-            leftNav.width = '28%';
+            leftNav.width = '20%';
         } else {
             leftNav.width = '0%';
         }
