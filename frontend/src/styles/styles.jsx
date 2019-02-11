@@ -160,6 +160,7 @@ export var muiTheme = createMuiTheme({
                 menu: {
                     width: '30rem',
                     height: 'inherit',
+                    margin: '2rem 3rem 0px',
                     tab: {
                         fontSize: 18,
                         fontWeight: 500,

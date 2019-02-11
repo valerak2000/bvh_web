@@ -38,7 +38,7 @@ function ListSiteMaps(props) {
     const listItems = props.items.map((item, index) => {
         var itemMap = '';
 
-        if ((item.dataRoute === undefined || item.dataRoute === null))
+        if ((item.dataRoute === undefined || item.dataRoute === null || item.disabled === true))
             itemMap = <ListItem 
                     key = { item.key } 
                     disableGutters
@@ -88,7 +88,7 @@ function ListSiteMaps(props) {
         return (
             <React.Fragment key = { index }>
                 { itemMap }
-                { item.children !== undefined && item.children.length > 0
+                { item.children !== undefined && item.children.length > 0 && item.disabled !== true
                     && ( <Collapse 
                             in = { true }
                             timeout = 'auto'

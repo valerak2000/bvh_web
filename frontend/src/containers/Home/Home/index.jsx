@@ -132,6 +132,30 @@ class HomeView extends Component {
     className = { classes.img }
 />
 </picture>
+*/
+
+    render() {
+        const { card } = this.props.theme.app;
+        const { classes, theme } = this.props;
+        const { activeStep } = this.state;
+        const maxSteps = splashSteps.length;
+    
+        return (
+            <Card
+                square = { true }
+                style = { card }
+            >
+                <CardHeader
+                    title = 'Брюховецкий водоканал'
+                    titleTypographyProps = { card.titleTypography }
+                    style = { card.title }
+                />
+                <CardContent
+                    style = { card.text }
+                >
+                    <Paper square elevation = { 0 } className = { classes.header }>
+                        <Typography>{ splashSteps[activeStep].label }</Typography>
+                    </Paper>
                     <AutoPlaySwipeableViews
                         axis = { theme.direction === 'rtl' ? 'x-reverse' : 'x' }
                         index = { activeStep }
@@ -180,31 +204,6 @@ class HomeView extends Component {
                             </Button>
                         }
                     />
-
-*/
-
-    render() {
-        const { card } = this.props.theme.app;
-        const { classes, theme } = this.props;
-        const { activeStep } = this.state;
-        const maxSteps = splashSteps.length;
-    
-        return (
-            <Card
-                square = { true }
-                style = { card }
-            >
-                <CardHeader
-                    title = 'Брюховецкий водоканал'
-                    titleTypographyProps = { card.titleTypography }
-                    style = { card.title }
-                />
-                <CardContent
-                    style = { card.text }
-                >
-                    <Paper square elevation = { 0 } className = { classes.header }>
-                        <Typography>{ splashSteps[activeStep].label }</Typography>
-                    </Paper>
                 </CardContent>
             </Card>
         );
