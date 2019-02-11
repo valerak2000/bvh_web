@@ -49,19 +49,12 @@ const styles = theme => ({
     header: {
         paddingBottom: 0,
     },
-    /*expand: {
-        transform: 'rotate(0deg)',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
+    imageZoom: {
+        display: 'block',
         marginLeft: 'auto',
-        [theme.breakpoints.up('sm')]: {
-            marginRight: -8,
-        },
+        marginRight: 'auto',
+        width: '40%',
     },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },*/
 });
 
 class ContactsView extends Component {
@@ -187,10 +180,7 @@ class ContactsView extends Component {
                             src: bvhMainOfficeBuildWP,
                             alt: 'Центральный офис',
                             title: 'Центральный офис',
-                            className: 'img',
-                            style: {
-                                width: '40%'
-                            }
+                            className: classes.imageZoom,
                         }}
                         zoomImage = {{
                             src: bvhMainOfficeBuild,
@@ -198,9 +188,6 @@ class ContactsView extends Component {
                         }}
                         shouldRespectMaxDimension = { true }
                         defaultStyles = {{
-                            image: {
-                                margin: 'auto auto auto 15rem',
-                            },
                             zoomContainer: {
                                 zIndex: 10000,
                             },
@@ -374,10 +361,7 @@ class ContactsView extends Component {
                             src: bvhAbonentsOfficeBuildWP,
                             alt: 'Абонентский отдел',
                             title: 'Абонентский отдел',
-                            className: 'img',
-                            style: {
-                                width: '40%'
-                            }
+                            className: classes.imageZoom,
                         }}
                         zoomImage = {{
                             src: bvhAbonentsOfficeBuild,
@@ -385,9 +369,6 @@ class ContactsView extends Component {
                         }}
                         shouldRespectMaxDimension = { true }
                         defaultStyles = {{
-                            image: {
-                                margin: 'auto auto auto 15rem',
-                            },
                             zoomContainer: {
                                 zIndex: 10000,
                             },
