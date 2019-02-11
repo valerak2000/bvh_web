@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import ImageZoom from 'react-medium-image-zoom';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
@@ -60,7 +61,13 @@ const splashSteps = [
 ];
 
 const styles = theme => ({
-    img: {
+    imageZoom: {
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        width: '70%',
+    },
+    imageZoomed: {
       height: 350,
       display: 'block',
       maxWidth: 400,
@@ -170,10 +177,23 @@ class HomeView extends Component {
                             >
                             {
                                 Math.abs(activeStep - index) <= 2 ? (
-                                    <img
-                                        src = { step.webpPath }
-                                        alt = { step.label }
-                                        className = { classes.img }
+                                    <ImageZoom
+                                        image = {{
+                                            src: step.webpPath,
+                                            alt: step.label,
+                                            title: step.label,
+                                            className: classes.imageZoom,
+                                        }}
+                                        zoomImage = {{
+                                            src: step.imgPath,
+                                            alt: step.label,
+                                        }}
+                                        shouldRespectMaxDimension = { true }
+                                        defaultStyles = {{
+                                            zoomContainer: {
+                                                zIndex: 10000,
+                                            },
+                                        }}
                                     />
                                 ) : null 
                             }
@@ -211,6 +231,48 @@ class HomeView extends Component {
 }
 
 /*
+
+                                            image: {
+                                                height: 350,
+                                                display: 'block',
+                                                maxWidth: 400,
+                                                overflow: 'hidden',
+                                                width: '100%',
+                                                margin: '0 auto',
+                                                objectFit: 'contain',
+                                            },
+
+
+cursor: zoom-out;
+    position: absolute;
+    transition: transform 300ms ease 0s;
+    transform: translate3d(-133.517px, 20.1px, 0px) scale(1.56331);
+    transform-origin: center center 0px;
+    will-change: transform, top, left;
+    top: 93.4px;
+    left: 563.517px;
+    width: 387px;
+    height: 350px;
+
+}
+cursor: zoom-out;
+    position: absolute;
+    transition: transform 300ms ease 0s;
+    transform: translate3d(-133.3px, 20.1px, 0px) scale(1.88408);
+    transform-origin: center center 0px;
+    will-change: transform, top, left;
+    top: 93.4px;
+    left: 556.8px;
+    width: 400px;
+    height: 350px;
+
+}
+                                    <img
+                                        src = { step.webpPath }
+                                        alt = { step.label }
+                                        className = { classes.img }
+                                    />
+
                 <CardMedia
                     component = 'img'
                     image = { bvhLogo }
