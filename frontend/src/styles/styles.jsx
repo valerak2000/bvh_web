@@ -128,25 +128,29 @@ export var muiTheme = createMuiTheme({
             },
         },
         header: {
-            /*background: {
+            /*
+            background: {
                 image: `url(${ bgHeader })`,
                 repeat: 'no-repeat',
                 size: 'cover',
                 position: 'center'
-            },*/
+            },
+            */
             appBar: {
                 height: '5.4rem',
                 width: '100%',
+                /*
                 iconStyleLeft: {
                     width: '75rem',
                     //margin: '1.5rem 0 0rem 0',
                 },
+                */
                 logo: {
                     //2,646370023419204
                     width: 230,
                     height: 76,
                     cursor: 'pointer',
-                    margin: '0.4rem 0 auto -0.5rem',
+                    margin: '0.4rem auto auto -0.5rem',
                     picture: {
                         height: 'inherit',
                         width: 201,
@@ -156,7 +160,7 @@ export var muiTheme = createMuiTheme({
                 menu: {
                     width: '30rem',
                     height: 'inherit',
-                    margin: '2rem 1rem -8px',
+                    margin: '2rem 3rem 0px',
                     tab: {
                         fontSize: 18,
                         fontWeight: 500,
@@ -179,14 +183,14 @@ export var muiTheme = createMuiTheme({
                     color: grey[50],
                     display: 'flex',
                     paddingTop: 5,
-                    margin: '0rem 0rem 0rem 12rem',
+                    margin: '0rem 0rem 0rem 7rem',
                     badge: {
                         height: 'inherit',
                         backgroundColor: 'inherit',
                         fontFamily: '"PFBeauSansPro-Reg", "sans-serif"',
                         fontSize: 14,
                         width: '20rem',
-                        margin: '0.5rem -6rem 0rem 0rem',
+                        margin: '0rem -6rem 0rem 0rem',
                     },
                     badgeLogon: {
                         height: 'inherit',
@@ -197,8 +201,7 @@ export var muiTheme = createMuiTheme({
                         margin: '0rem -4.4rem 0rem 0rem',
                     },
                     button: {
-                        margin: '2.4rem 1rem 0rem 0rem',
-                        //margin: '2rem 0rem 0rem 0rem',
+                        margin: '1.7rem 1rem 0rem 0.5rem',
                         paddingTop: 8,
                         paddingRight: 0,
                         height: 36,
@@ -226,7 +229,7 @@ export var muiTheme = createMuiTheme({
             },
         },
         leftNav: {
-            width: '28%',
+            width: '20%',
         },
         footer: {
             backgroundColor: blue[900], //teal200,
