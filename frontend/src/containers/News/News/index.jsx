@@ -23,12 +23,11 @@ const styles = theme => ({
     },
 });
 
-const watherItsLive = '/static/images/water-glass-and-faucet.png';
 const news = [
     {
         id: '1',
         date: '31.12.2099',
-        picture: watherItsLive,
+        picture: '/static/images/water-glass-and-faucet.png',
         title: 'Тестовая новость',
         text: 'Содержание тестовой новости',
     },
