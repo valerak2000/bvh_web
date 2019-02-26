@@ -8,12 +8,14 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import Avatar from '@material-ui/core/Avatar';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
@@ -28,8 +30,29 @@ const news = [
         id: '1',
         date: '31.12.2099',
         picture: '/static/images/water-glass-and-faucet.png',
-        title: 'Тестовая новость',
-        text: 'Содержание тестовой новости',
+        title: 'Тестовая новость1',
+        text: 'Содержание тестовой новости1',
+    },
+    {
+        id: '2',
+        date: '31.12.2099',
+        picture: '/static/images/water-glass-and-faucet.png',
+        title: 'Тестовая новость2',
+        text: 'Содержание тестовой новости2',
+    },
+    {
+        id: '3',
+        date: '31.12.2099',
+        picture: '/static/images/water-glass-and-faucet.png',
+        title: 'Тестовая новость3',
+        text: 'Содержание тестовой новости3',
+    },
+    {
+        id: '4',
+        date: '31.12.2099',
+        picture: '/static/images/water-glass-and-faucet.png',
+        title: 'Тестовая новость4',
+        text: 'Содержание тестовой новости4',
     },
 ];
 
@@ -37,8 +60,29 @@ function ListNews(props) {
     const { classes } = props;
     const listItems = props.items.map((item, index) => {
         return (
-            <React.Fragment key = { index }>
-            </React.Fragment>
+            <GridListTile key = { index }>
+                <ListItem
+                    button
+                    key = { item.id }
+                    component = 'a'
+                    href = { item.url }
+                    target = '_blank'
+                    onClick = { (e) => props.onClick(item.id, e) }
+                >
+                    <ListItemAvatar>
+                        <Avatar alt = 'Источник новости' src = { item.icon } />
+                    </ListItemAvatar>
+                    <ListItemText
+                        primary = { `${ item.date } ${ item.title }` }
+                        primaryTypographyProps = {{
+                            variant: 'body1',
+                            color: 'textSecondary'
+                        }}
+                        secondary = { item.source }
+                    />
+                    { props.open ? <ExpandLess /> : <ExpandMore /> }
+                </ListItem>
+            </GridListTile>
         );
     });
 
@@ -49,6 +93,7 @@ function ListNews(props) {
                     <GridListTile key = "Subheader" cols = { 2 } style = {{ height: 'auto' }}>
                         <ListSubheader component = "div">December</ListSubheader>
                     </GridListTile>
+                    { listItems }
                 </GridList>
             ) : (
                 <Typography
@@ -63,6 +108,7 @@ function ListNews(props) {
     );
 }
 /*
+
                 <List>
                     { listItems }
                 </List>
@@ -114,8 +160,8 @@ class NewsView extends Component {
         let expanded = null;
 
         if (state.expanded === null) {
-            //expanded = [{ key: currentMenuSecond, open: true }];
-            expanded = null;
+            expanded = [{ key: '0', open: true }];
+            //expanded = null;
         } else {
             expanded = state.expanded;
         }
@@ -125,14 +171,14 @@ class NewsView extends Component {
         };
     }
 
-    handleNewsClick = (dataRoute, key, e ) => {
-        const indexOfmenu = this.state.expanded.findIndex(i => i.key === key);
+    handleNewsClick = (id, e ) => {
+        const indexOfmenu = this.state.expanded.findIndex(i => i.id === id);
         if (indexOfmenu > 0) {
             const expanded = this.state.expanded;
             expanded[indexOfmenu].open = !expanded[indexOfmenu].open;
         }
-        this.setState({ activeItem: dataRoute });
-        this.props.history.push(dataRoute);
+        this.setState({ activeItem: id });
+        //this.props.history.push(id);
     };
 
     render() {

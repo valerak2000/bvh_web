@@ -56,7 +56,7 @@ function NavMenu(props) {
                                 { item.leftIcon }
                             </ListItemIcon> }
                         <ListItemText
-                            primary = { item.primaryText } 
+                            primary = { item.primaryText }
                             primaryTypographyProps = {{
                                 variant: 'body1',
                                 color: 'primary',
