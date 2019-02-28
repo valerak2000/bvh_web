@@ -154,7 +154,7 @@
     "webpack-bundle-tracker": "latest",
     "webpack-cli": "latest",
     "webpack-dev-middleware": "latest",
-    "webpack-dev-server": "latest",
+    "webpack-dev-server": "3.2.1",
     "webpack-hot-middleware": "latest",
     "webpack-merge": "latest",
     "webpack-remove-block-loader": "latest"

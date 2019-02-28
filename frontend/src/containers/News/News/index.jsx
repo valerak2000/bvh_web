@@ -184,6 +184,7 @@ class NewsView extends Component {
     render() {
         const { classes } = this.props;
         const { card } = this.props.theme.app;
+        const { expanded, ...props } = this.state;
 
         return (
             <Card
@@ -200,6 +201,7 @@ class NewsView extends Component {
                     <ListNews
                         items = { news }
                         onClick = { this.handleNewsClick }
+                        expanded = { expanded }
                         { ...this.props }
                     />
                 </CardContent>
