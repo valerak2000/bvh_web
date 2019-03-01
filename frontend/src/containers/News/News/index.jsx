@@ -16,6 +16,11 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Avatar from '@material-ui/core/Avatar';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Typography from '@material-ui/core/Typography';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
@@ -23,7 +28,14 @@ const styles = theme => ({
     text: {
         margin: 'auto auto auto 2rem',
     },
+    heading: {
+        fontSize: theme.typography.pxToRem(14),
+        flexBasis: '100%',
+        flexShrink: 0,
+    },
 });
+
+const brupress = '/static/images/brupress_ru.png';
 
 const news = [
     {
@@ -36,21 +48,21 @@ const news = [
     {
         key: '2',
         date: '31.12.2099',
-        picture: '/static/images/water-glass-and-faucet.png',
+        picture: '/static/images/main_office1.webp',
         title: 'Тестовая новость2',
         text: 'Содержание тестовой новости2',
     },
     {
         key: '3',
         date: '31.12.2099',
-        picture: '/static/images/water-glass-and-faucet.png',
+        picture: '/static/images/brupress_ru.png',
         title: 'Тестовая новость3',
         text: 'Содержание тестовой новости3',
     },
     {
         key: '4',
         date: '31.12.2099',
-        picture: '/static/images/water-glass-and-faucet.png',
+        picture: brupress,
         title: 'Тестовая новость4',
         text: 'Содержание тестовой новости4',
     },
@@ -67,27 +79,30 @@ function ListNews(props) {
 
         return (
             <GridListTile key = { index }>
-                <ListItem
-                    button
-                    key = { item.key }
-                    component = 'a'
-                    href = { item.url }
-                    target = '_blank'
-                    onClick = { (e) => props.onClick(item.key, e) }
+                <ExpansionPanel 
+                    expanded = { open }
+                    onChange = { (e) => props.onClick(item.key, e) }
                 >
-                    <ListItemAvatar>
-                        <Avatar alt = 'Источник новости' src = { item.icon } />
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary = { `${ item.date } ${ item.title }` }
-                        primaryTypographyProps = {{
-                            variant: 'body1',
-                            color: 'textSecondary'
-                        }}
-                        secondary = { item.source }
-                    />
-                    { open ? <ExpandLess /> : <ExpandMore /> }
-                </ListItem>
+                    <ExpansionPanelSummary expandIcon = { <ExpandMoreIcon /> }>
+                        <Avatar alt = 'Источник новости' src = { item.picture } />
+                        <Typography 
+                            variant = 'body1'
+                            color = 'textSecondary'
+                            className = { classes.heading }
+                        >
+                            { item.date } { item.title }
+                        </Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <Typography
+                            variant = 'body2'
+                            color = 'textSecondary'
+                            className = { classes.text }
+                        >
+                            { item.text }
+                        </Typography>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
             </GridListTile>
         );
     });
@@ -96,9 +111,6 @@ function ListNews(props) {
         <React.Fragment key = 'News'>
             { props.items.length > 0 ? (
                 <GridList cellHeight = { 180 } className = { classes.gridList }>
-                    <GridListTile key = "Subheader" cols = { 2 } style = {{ height: 'auto' }}>
-                        <ListSubheader component = "div">December</ListSubheader>
-                    </GridListTile>
                     { listItems }
                 </GridList>
             ) : (
@@ -182,8 +194,8 @@ class NewsView extends Component {
         if (indexOfmenu > -1) {
             const expanded = this.state.expanded;
             expanded[indexOfmenu].open = !expanded[indexOfmenu].open;
+            this.setState({ expanded: expanded });
         }
-        //this.setState({ activeItem: id });
         //this.props.history.push(id);
     };
 
@@ -216,5 +228,5 @@ class NewsView extends Component {
     }
 }
 
-export default withStyles(null, { name: 'muiNewsView', flip: false, withTheme: true })(NewsView);
+export default withStyles(styles, { name: 'muiNewsView', flip: false, withTheme: true })(NewsView);
 //export { NewsView as NewsViewNotConnected };
