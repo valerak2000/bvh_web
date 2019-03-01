@@ -27,28 +27,28 @@ const styles = theme => ({
 
 const news = [
     {
-        id: '1',
+        key: '1',
         date: '31.12.2099',
         picture: '/static/images/water-glass-and-faucet.png',
         title: 'Тестовая новость1',
         text: 'Содержание тестовой новости1',
     },
     {
-        id: '2',
+        key: '2',
         date: '31.12.2099',
         picture: '/static/images/water-glass-and-faucet.png',
         title: 'Тестовая новость2',
         text: 'Содержание тестовой новости2',
     },
     {
-        id: '3',
+        key: '3',
         date: '31.12.2099',
         picture: '/static/images/water-glass-and-faucet.png',
         title: 'Тестовая новость3',
         text: 'Содержание тестовой новости3',
     },
     {
-        id: '4',
+        key: '4',
         date: '31.12.2099',
         picture: '/static/images/water-glass-and-faucet.png',
         title: 'Тестовая новость4',
@@ -59,15 +59,21 @@ const news = [
 function ListNews(props) {
     const { classes } = props;
     const listItems = props.items.map((item, index) => {
+        if (!props.expanded.some(menu => menu.key === item.key))
+            props.expanded.push({ key: item.key, open: false });
+
+        let selectedItem = props.expanded.filter(menu => menu.key === item.key)[0];
+        let open = selectedItem !== undefined && selectedItem.open !== undefined ? selectedItem.open : false;
+
         return (
             <GridListTile key = { index }>
                 <ListItem
                     button
-                    key = { item.id }
+                    key = { item.key }
                     component = 'a'
                     href = { item.url }
                     target = '_blank'
-                    onClick = { (e) => props.onClick(item.id, e) }
+                    onClick = { (e) => props.onClick(item.key, e) }
                 >
                     <ListItemAvatar>
                         <Avatar alt = 'Источник новости' src = { item.icon } />
@@ -80,7 +86,7 @@ function ListNews(props) {
                         }}
                         secondary = { item.source }
                     />
-                    { props.open ? <ExpandLess /> : <ExpandMore /> }
+                    { open ? <ExpandLess /> : <ExpandMore /> }
                 </ListItem>
             </GridListTile>
         );
@@ -160,7 +166,7 @@ class NewsView extends Component {
         let expanded = null;
 
         if (state.expanded === null) {
-            expanded = [{ key: '0', open: true }];
+            expanded = [{ key: news[0].key, open: false }];
             //expanded = null;
         } else {
             expanded = state.expanded;
@@ -171,13 +177,13 @@ class NewsView extends Component {
         };
     }
 
-    handleNewsClick = (id, e ) => {
-        const indexOfmenu = this.state.expanded.findIndex(i => i.id === id);
-        if (indexOfmenu > 0) {
+    handleNewsClick = (key, e ) => {
+        const indexOfmenu = this.state.expanded.findIndex(i => i.key === key);
+        if (indexOfmenu > -1) {
             const expanded = this.state.expanded;
             expanded[indexOfmenu].open = !expanded[indexOfmenu].open;
         }
-        this.setState({ activeItem: id });
+        //this.setState({ activeItem: id });
         //this.props.history.push(id);
     };
 
