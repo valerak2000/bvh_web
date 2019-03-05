@@ -14,6 +14,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Avatar from '@material-ui/core/Avatar';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -21,6 +22,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/Info';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
@@ -30,8 +33,29 @@ const styles = theme => ({
     },
     heading: {
         fontSize: theme.typography.pxToRem(14),
-        flexBasis: '100%',
-        flexShrink: 0,
+        //flexBasis: '100%',
+        //flexShrink: 0,
+    },
+    icon: {
+//        color: 'rgba(255, 255, 255, 0.54)',
+        color: 'white',
+    },
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+    },
+    gridList: {
+        width: 950,
+        //height: 450,
+        transform: 'translateZ(0)',
+    },
+    titleBar: {
+        background:
+            'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+            'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     },
 });
 
@@ -55,12 +79,26 @@ const news = [
     {
         key: '3',
         date: '31.12.2099',
+        picture: '/static/images/main_office1.webp',
+        title: 'Длинная Тестовая новость2',
+        text: 'Содержание длинной тестовой новости2<br />\
+        Последствия разгрома группы боевиков "Ансар-аль-Тавад" в Северной Хаме.\
+        Боевики в рамках спорадических боевых действий идущих по периметру Эль-Латаминского выступа попытались прощупать оборону сирийских войск.\
+        По заявлениям боевиков, группа "Ансар-аль-Тавад" напала на один из блокпостов САА, в результате чего сирийцы потеряли от 18 до 40 убитыми и ранеными.\
+        Сирийцы заявляют, что боевики преувеличивают их потери - пока что опубликовано 8 фотографий погибших сирийских военных и список из 16 погибших. Также показано 8 трупов убитых боевиков, которые были неплохо упакованы.\
+        По итогам утреннего замеса, сирийская 122-152мм ствольная артиллерия усиленно долбила опорные пункты боевиков на Эль-Латаминском выступе. Потери противника в ходе ударов возмездия неизвестны.\
+        Впрочем, существенных оперативных изменений по-прежнему нет.',
+        cols: 2,
+    },
+    {
+        key: '4',
+        date: '31.12.2099',
         picture: '/static/images/brupress_ru.png',
         title: 'Тестовая новость3',
         text: 'Содержание тестовой новости3',
     },
     {
-        key: '4',
+        key: '5',
         date: '31.12.2099',
         picture: brupress,
         title: 'Тестовая новость4',
@@ -78,7 +116,45 @@ function ListNews(props) {
         let open = selectedItem !== undefined && selectedItem.open !== undefined ? selectedItem.open : false;
 
         return (
-            <GridListTile key = { index }>
+            <GridListTile key = { index } cols = { item.cols || 1 }>
+                <img src = { item.picture } alt = { item.title } />
+                <GridListTileBar
+                    title = { `${ item.date } ${ item.title }` }
+                    actionIcon = {
+                        <IconButton className = { classes.icon }>
+                            <InfoIcon />
+                        </IconButton>
+                    }
+                />
+            </GridListTile>
+        );
+    });
+
+    return (
+        <React.Fragment key = 'News'>
+            { props.items.length > 0 ? (
+                <div className = { classes.root }>
+                    <GridList
+                        cols = { 2 }
+                        cellHeight = { 280 }
+                        className = { classes.gridList }
+                    >
+                        { listItems }
+                    </GridList>
+                </div>
+            ) : (
+                <Typography
+                    variant = 'body1'
+                    color = 'textSecondary'
+                    className = { classes.text }
+                >
+                    Новостей нет.
+                </Typography>
+            )}
+        </React.Fragment>
+    );
+}
+/*
                 <ExpansionPanel 
                     expanded = { open }
                     onChange = { (e) => props.onClick(item.key, e) }
@@ -103,29 +179,6 @@ function ListNews(props) {
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
-            </GridListTile>
-        );
-    });
-
-    return (
-        <React.Fragment key = 'News'>
-            { props.items.length > 0 ? (
-                <GridList cellHeight = { 180 } className = { classes.gridList }>
-                    { listItems }
-                </GridList>
-            ) : (
-                <Typography
-                    variant = 'body1'
-                    color = 'textSecondary'
-                    className = { classes.text }
-                >
-                    Новостей нет.
-                </Typography>
-            )}
-        </React.Fragment>
-    );
-}
-/*
 
                 <List>
                     { listItems }
