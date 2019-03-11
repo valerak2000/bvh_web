@@ -64,21 +64,14 @@ const brupress = '/static/images/brupress_ru.png';
 const news = [
     {
         key: '1',
-        date: '31.12.2099',
+        date: '31.12.2089',
         picture: '/static/images/water-glass-and-faucet.png',
         title: 'Тестовая новость1',
         text: 'Содержание тестовой новости1',
     },
     {
         key: '2',
-        date: '31.12.2099',
-        picture: '/static/images/main_office1.webp',
-        title: 'Тестовая новость2',
-        text: 'Содержание тестовой новости2',
-    },
-    {
-        key: '3',
-        date: '31.12.2099',
+        date: '31.12.2091',
         picture: '/static/images/main_office1.webp',
         title: 'Длинная Тестовая новость2',
         text: 'Содержание длинной тестовой новости2<br />\
@@ -91,15 +84,22 @@ const news = [
         cols: 2,
     },
     {
+        key: '3',
+        date: '31.12.2090',
+        picture: '/static/images/main_office1.webp',
+        title: 'Тестовая новость2',
+        text: 'Содержание тестовой новости2',
+    },
+    {
         key: '4',
-        date: '31.12.2099',
+        date: '31.12.2092',
         picture: '/static/images/brupress_ru.png',
         title: 'Тестовая новость3',
         text: 'Содержание тестовой новости3',
     },
     {
         key: '5',
-        date: '31.12.2099',
+        date: '31.12.2093',
         picture: brupress,
         title: 'Тестовая новость4',
         text: 'Содержание тестовой новости4',
@@ -135,8 +135,8 @@ function ListNews(props) {
             { props.items.length > 0 ? (
                 <div className = { classes.root }>
                     <GridList
-                        cols = { 2 }
-                        cellHeight = { 280 }
+                        cols = { 3 }
+                        cellHeight = { 180 }
                         className = { classes.gridList }
                     >
                         { listItems }
