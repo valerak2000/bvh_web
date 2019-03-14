@@ -54,12 +54,9 @@ const styles = theme => ({
     },
     titleBar: {
         background:
-            'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-            'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+            'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     },
 });
-
-const brupress = '/static/images/brupress_ru.png';
 
 const news = [
     {
@@ -100,7 +97,7 @@ const news = [
     {
         key: '5',
         date: '31.12.2093',
-        picture: brupress,
+        picture: '/static/images/brupress_ru.png',
         title: 'Тестовая новость4',
         text: 'Содержание тестовой новости4',
     },
@@ -119,12 +116,16 @@ function ListNews(props) {
             <GridListTile key = { index } cols = { item.cols || 1 }>
                 <img src = { item.picture } alt = { item.title } />
                 <GridListTileBar
-                    title = { `${ item.date } ${ item.title }` }
+                    title = { `${ item.title }` }
+                    titlePosition = 'bottom'
+                    subtitle = { `${ item.date }` }
                     actionIcon = {
                         <IconButton className = { classes.icon }>
                             <InfoIcon />
                         </IconButton>
                     }
+                    actionPosition = 'left'
+                    onClick = { (e) => props.onClick(item.key, e) }
                 />
             </GridListTile>
         );
@@ -243,12 +244,13 @@ class NewsView extends Component {
     }
 
     handleNewsClick = (key, e ) => {
-        const indexOfmenu = this.state.expanded.findIndex(i => i.key === key);
+        console.log(key);
+        /*const indexOfmenu = this.state.expanded.findIndex(i => i.key === key);
         if (indexOfmenu > -1) {
             const expanded = this.state.expanded;
             expanded[indexOfmenu].open = !expanded[indexOfmenu].open;
             this.setState({ expanded: expanded });
-        }
+        }*/
         //this.props.history.push(id);
     };
 
