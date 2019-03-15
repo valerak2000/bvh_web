@@ -4,26 +4,25 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 //import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import List from '@material-ui/core/List';
+/*import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+import ExpandMore from '@material-ui/icons/ExpandMore';*/
+import MoreIcon from '@material-ui/icons/More';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
+/*import ListSubheader from '@material-ui/core/ListSubheader';
 import Avatar from '@material-ui/core/Avatar';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';*/
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
@@ -50,11 +49,13 @@ const styles = theme => ({
     gridList: {
         width: 950,
         //height: 450,
+        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
         transform: 'translateZ(0)',
     },
     titleBar: {
+        height: '3rem',
         background:
-            'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+            'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0) 100%)',
     },
 });
 
@@ -118,14 +119,15 @@ function ListNews(props) {
                 <GridListTileBar
                     title = { `${ item.title }` }
                     titlePosition = 'bottom'
-                    subtitle = { `${ item.date }` }
+                    subtitle = { <span>{ item.date }</span> }
                     actionIcon = {
                         <IconButton className = { classes.icon }>
-                            <InfoIcon />
+                            <MoreIcon />
                         </IconButton>
                     }
-                    actionPosition = 'left'
+                    actionPosition = 'right'
                     onClick = { (e) => props.onClick(item.key, e) }
+                    className = { classes.titleBar }
                 />
             </GridListTile>
         );
