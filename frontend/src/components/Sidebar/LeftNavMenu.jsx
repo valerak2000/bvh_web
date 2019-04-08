@@ -41,6 +41,9 @@ function NavMenu(props) {
                     props.expanded.push({ key: item.key, open: initiallyOpenFirst });
             }
 
+            let selectedItem = props.expanded.filter(menu => menu.key === item.key)[0];
+            let open = selectedItem !== undefined && selectedItem.open !== undefined ? selectedItem.open : false;
+
             return (
                 <React.Fragment key = { index }>
                     <ListItem
@@ -56,7 +59,7 @@ function NavMenu(props) {
                                 { item.leftIcon }
                             </ListItemIcon> }
                         <ListItemText
-                            primary = { item.primaryText } 
+                            primary = { item.primaryText }
                             primaryTypographyProps = {{
                                 variant: 'body1',
                                 color: 'primary',
@@ -68,11 +71,11 @@ function NavMenu(props) {
                             }}
                         />
                         { item.children !== undefined && item.children.length > 0
-                          && ( props.open ? <ExpandLess /> : <ExpandMore /> ) }
+                          && ( open ? <ExpandLess /> : <ExpandMore /> ) }
                     </ListItem>
                     { item.children !== undefined && item.children.length > 0
                       && ( <Collapse 
-                               in = { props.expanded.filter(menu => menu.key === item.key)[0].open }
+                               in = { open }
                                timeout = 'auto'
                                unmountOnExit
                             >
@@ -180,7 +183,7 @@ class LeftNavMenu extends Component {
 
     handleMenuClick = (dataRoute, key, e ) => {
         const indexOfmenu = this.state.expanded.findIndex(i => i.key === key);
-        if (indexOfmenu > 0) {
+        if (indexOfmenu > -1) {
             const expanded = this.state.expanded;
             expanded[indexOfmenu].open = !expanded[indexOfmenu].open;
         }

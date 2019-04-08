@@ -75,8 +75,8 @@ export var muiTheme = createMuiTheme({
     },
     global: {
         maxWidth: '78rem',
-        minWidth: '78rem',
-        minHeight: '58rem',
+        minWidth: '63rem',
+        minHeight: '38rem',
         margin: '0 auto',
     },
     app: {

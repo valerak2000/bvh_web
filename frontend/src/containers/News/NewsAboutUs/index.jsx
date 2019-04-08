@@ -22,7 +22,7 @@ const brupress = '/static/images/brupress_ru.png';
 const kbereg = '/static/images/kbereg_info.ico';
 const news = [
     {
-        id: '1',
+        key: '1',
         date: '06.03.2017',
         source: 'kbereg.info', 
         icon: kbereg, 
@@ -30,7 +30,7 @@ const news = [
         url: 'http://kbereg.info/iz-otchetnogo-doklada-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-otkry-toj-sessii-soveta-munitsipal-nogo-obrazovaniya-bryuhovetskij-rajon/'
     },
     {
-        id: '2',
+        key: '2',
         date: '21.03.2018', 
         source: 'brupress.ru', 
         icon: brupress, 
@@ -38,7 +38,7 @@ const news = [
         url: 'http://brupress.ru/2018/03/21/svobodnenskij-uchastok-bryuhovetskogo-vodoprovodnogo-hozyajstva-v-nashem-rajone-priznan-luchshim-ob-etom-govoryat-ego-dela/'
     },
     {
-        id: '3',
+        key: '3',
         date: '02.07.2018', 
         source: 'brupress.ru', 
         icon: brupress, 
@@ -46,7 +46,7 @@ const news = [
         url: 'http://brupress.ru/2018/07/02/s-1-iyulya-vyrosli-tarify-zhkh-i-uvelichitsya-stoimost-sotovoj-svyazi-skolko-teper-platit-bryuhovchanam/'
     },
     {
-        id: '4',
+        key: '4',
         date: '09.07.2018', 
         source: 'kbereg.info', 
         icon: kbereg, 
@@ -62,7 +62,7 @@ function ListNewsAboutUs(props) {
             <React.Fragment key = { index }>
                 <ListItem
                     button
-                    key = { item.id }
+                    key = { item.key }
                     component = 'a'
                     href = { item.url }
                     target = '_blank'
