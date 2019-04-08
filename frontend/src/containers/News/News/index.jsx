@@ -60,7 +60,7 @@ const styles = theme => ({
 });
 
 const news = [
-    {
+    /*{
         key: '1',
         date: '31.12.2089',
         picture: '/static/images/water-glass-and-faucet.png',
@@ -101,7 +101,7 @@ const news = [
         picture: '/static/images/brupress_ru.png',
         title: 'Тестовая новость4',
         text: 'Содержание тестовой новости4',
-    },
+    },*/
 ];
 
 function ListNews(props) {
