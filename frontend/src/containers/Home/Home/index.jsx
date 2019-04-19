@@ -6,11 +6,12 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
+//import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import MobileStepper from '@material-ui/core/MobileStepper';
+//import CardActions from '@material-ui/core/CardActions';
+//import CardActionArea from '@material-ui/core/CardActionArea';
+import Slider from "react-slick";
+//import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -65,7 +66,7 @@ const styles = theme => ({
         display: 'block',
         marginLeft: 'auto',
         marginRight: 'auto',
-        width: '70%',
+        width: '50%',
     },
     imageZoomed: {
       height: 350,
@@ -146,7 +147,20 @@ class HomeView extends Component {
         const { classes, theme } = this.props;
         const { activeStep } = this.state;
         const maxSteps = splashSteps.length;
-    
+        const settings = {
+            dots: true,
+            lazyLoad: true,
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            //autoplay: true,
+            //speed: 2000,
+            autoplaySpeed: 3000,
+            centerMode: true,
+            cssEase: 'linear',
+            beforeChange: (current, next) => this.setState({ activeStep: next }),
+        };
+            
         return (
             <Card
                 square = { true }
@@ -163,6 +177,44 @@ class HomeView extends Component {
                     <Paper square elevation = { 0 } className = { classes.header }>
                         <Typography>{ splashSteps[activeStep].label }</Typography>
                     </Paper>
+                    <Slider {...settings}>
+                        {
+                            splashSteps.map((step, index) => (
+                            <div
+                                key = { step.label }
+                            >
+                            {
+                                Math.abs(activeStep - index) <= 2 ? (
+                                    <ImageZoom
+                                        image = {{
+                                            src: step.webpPath,
+                                            alt: step.label,
+                                            title: step.label,
+                                            className: classes.imageZoom,
+                                        }}
+                                        zoomImage = {{
+                                            src: step.imgPath,
+                                            alt: step.label,
+                                        }}
+                                        shouldRespectMaxDimension = { true }
+                                        defaultStyles = {{
+                                            zoomContainer: {
+                                                zIndex: 10000,
+                                            },
+                                        }}
+                                    />
+                                ) : null 
+                            }
+                            </div>
+                        ))}
+                    </Slider>
+                </CardContent>
+            </Card>
+        );
+    }
+}
+
+/*
                     <AutoPlaySwipeableViews
                         axis = { theme.direction === 'rtl' ? 'x-reverse' : 'x' }
                         index = { activeStep }
@@ -224,13 +276,7 @@ class HomeView extends Component {
                             </Button>
                         }
                     />
-                </CardContent>
-            </Card>
-        );
-    }
-}
 
-/*
 
                                             image: {
                                                 height: 350,
