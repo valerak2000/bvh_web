@@ -89,6 +89,7 @@ export var muiTheme = createMuiTheme({
             margin: '0 auto',
             //minHeight: '32rem',
             height: '100%',
+            //width: '80%',
             header: {
                 objectFit: 'contain',
                 height: 240,
