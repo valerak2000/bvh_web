@@ -153,10 +153,12 @@ class HomeView extends Component {
             infinite: true,
             slidesToShow: 1,
             slidesToScroll: 1,
-            //autoplay: true,
-            //speed: 2000,
+            autoplay: true,
+            speed: 2000,
             autoplaySpeed: 3000,
+            className: "center",
             centerMode: true,
+            centerPadding: "60px",
             cssEase: 'linear',
             beforeChange: (current, next) => this.setState({ activeStep: next }),
         };
@@ -178,33 +180,18 @@ class HomeView extends Component {
                         <Typography>{ splashSteps[activeStep].label }</Typography>
                     </Paper>
                     <Slider {...settings}>
-                        {
-                            splashSteps.map((step, index) => (
+                        { splashSteps.map((step, index) => (
                             <div
                                 key = { step.label }
                             >
-                            {
-                                Math.abs(activeStep - index) <= 2 ? (
-                                    <ImageZoom
-                                        image = {{
-                                            src: step.webpPath,
-                                            alt: step.label,
-                                            title: step.label,
-                                            className: classes.imageZoom,
-                                        }}
-                                        zoomImage = {{
-                                            src: step.imgPath,
-                                            alt: step.label,
-                                        }}
-                                        shouldRespectMaxDimension = { true }
-                                        defaultStyles = {{
-                                            zoomContainer: {
-                                                zIndex: 10000,
-                                            },
-                                        }}
+                                { Math.abs(activeStep - index) <= 2 ? (
+                                    <img
+                                        src = { step.webpPath }
+                                        alt = { step.label }
+                                        title = { step.label }
+                                        className = { classes.imageZoom }
                                     />
-                                ) : null 
-                            }
+                                ) : null }
                             </div>
                         ))}
                     </Slider>
@@ -225,7 +212,7 @@ class HomeView extends Component {
                         {
                             splashSteps.map((step, index) => (
                             <div
-                                key = { step.label }
+                               key = { step.label }
                             >
                             {
                                 Math.abs(activeStep - index) <= 2 ? (

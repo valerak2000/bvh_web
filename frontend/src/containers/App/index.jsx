@@ -64,10 +64,10 @@ class AppView extends Component {
     render() {
         var appStyle = { ...this.props.theme.app };
 
-        if (this.props.location && this.props.location.pathname != null) {
+        /*if (this.props.location && this.props.location.pathname != null) {
             let urls = this.props.location.pathname.split('/');
             appStyle.width = urls.length <= 2 || urls[2] === '' ? '100%' : '80%';
-        }
+        }*/
 
         return (
             <div
