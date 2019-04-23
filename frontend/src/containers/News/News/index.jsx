@@ -234,8 +234,7 @@ class NewsView extends Component {
         let expanded = null;
 
         if (state.expanded === null) {
-            expanded = [{ key: news[0].key, open: false }];
-            //expanded = null;
+            expanded = [{ key: news.length > 0 ? news[0].key : '', open: false }];
         } else {
             expanded = state.expanded;
         }
