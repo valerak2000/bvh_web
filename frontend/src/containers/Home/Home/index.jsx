@@ -160,6 +160,7 @@ class HomeView extends Component {
             centerMode: true,
             centerPadding: "60px",
             cssEase: 'linear',
+            swipe: true,
             beforeChange: (current, next) => this.setState({ activeStep: next }),
         };
             
