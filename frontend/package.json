@@ -191,8 +191,6 @@
     "react-router-dom": "^5.0.0",
     "react-router-redux": "^4.0.8",
     "react-slick": "^0.24.0",
-    "react-swipeable-views": "^0.13.1",
-    "react-swipeable-views-utils": "^0.13.1",
     "react-table": "^6.9.2",
     "react-yandex-maps": "^3.0.2",
     "redux": "^4.0.1",

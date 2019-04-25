@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 //import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 //import CardActions from '@material-ui/core/CardActions';
 //import CardActionArea from '@material-ui/core/CardActionArea';
-import Slider from "react-slick";
+import Slider from 'react-slick';
 //import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -21,7 +19,6 @@ import ImageZoom from 'react-medium-image-zoom';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const watherItsLive = '/static/images/water-glass-and-faucet.png';
 const watherItsLiveWP = '/static/images/water-glass-and-faucet.webp';
 const bvhVodozaborMashZal = '/static/images/vodozab1_mash.jpg';
@@ -154,11 +151,11 @@ class HomeView extends Component {
             slidesToShow: 1,
             slidesToScroll: 1,
             autoplay: true,
-            speed: 2000,
+            //speed: 2000,
             autoplaySpeed: 3000,
-            className: "center",
+            className: 'center',
             centerMode: true,
-            centerPadding: "60px",
+            centerPadding: '60px',
             cssEase: 'linear',
             swipe: true,
             beforeChange: (current, next) => this.setState({ activeStep: next }),
