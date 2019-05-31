@@ -99,7 +99,7 @@
     "babel-plugin-module-resolver": "latest",
     "babel-plugin-transform-imports": "latest",
     "bundlesize": "^0.17.2",
-    "clean-webpack-plugin": "^2.0.2",
+    "clean-webpack-plugin": "^1.0.1",
     "compression": "^1.7.4",
     "copy-webpack-plugin": "latest",
     "css-loader": "latest",
