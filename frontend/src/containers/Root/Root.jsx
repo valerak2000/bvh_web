@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import { compose } from 'recompose';
 import { MuiThemeProvider } from '@material-ui/core/styles/';
-import { white } from '@material-ui/core/colors';
+import { white } from '@material-ui/core/colors/common';
 import Fab from '@material-ui/core/Fab';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 // core components

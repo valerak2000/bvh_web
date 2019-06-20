@@ -215,6 +215,12 @@ export const MENU_CUSTOMERS = [
                 dataRoute: '/customers/fizlica/zamena_vodomera_fizlica',
             },*/
             {
+                key: 'payments_fizlica',
+                primaryText: 'Способы оплаты',
+                leftIcon: null,
+                dataRoute: '/customers/fizlica/payments_fizlica',
+            },
+            {
                 key: 'peredacha_pokazaniy_fizlica',
                 primaryText: 'Передача показаний счетчиков',
                 leftIcon: null,

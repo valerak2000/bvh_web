@@ -160,7 +160,7 @@ class HomeView extends Component {
             swipe: true,
             beforeChange: (current, next) => this.setState({ activeStep: next }),
         };
-            
+
         return (
             <Card
                 square = { true }
