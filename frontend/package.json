@@ -155,7 +155,7 @@
     "webpack-cli": "latest",
     "webpack-dev-middleware": "latest",
     "webpack-dev-server": "3.4.1",
-    "webpack-hot-middleware": "latest",
+    "webpack-hot-middleware": "2.24.3",
     "webpack-merge": "latest",
     "webpack-remove-block-loader": "latest"
   },
