@@ -25,7 +25,7 @@ const styles = theme => ({
         color: fade(theme.palette.text.secondary, 0.64),
     },
     children: {
-        paddingLeft: theme.spacing.unit * 8,
+        paddingLeft: theme.spacing(8),
     },
     mapItem: {
         paddingTop: 0,
