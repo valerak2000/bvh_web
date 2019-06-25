@@ -29,5 +29,6 @@ class UnderConstructView extends Component {
     }
 }
 
-export default withTheme(UnderConstructView);
+export default withTheme()(UnderConstructView);
+//export default withTheme(UnderConstructView);
 //export { UnderConstructView as UnderConstructViewNotConnected };
