@@ -5,9 +5,7 @@ import Card from '@material-ui/core/Card';
 //import CardMedia from '@material-ui/core/CardMedia';
 //import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
-import UnderConstruct from '../../../components/UnderConstruct/UnderConstruct';
 
 class FizlicaPaymentsView extends Component {
     static propTypes = {
@@ -31,7 +29,6 @@ class FizlicaPaymentsView extends Component {
                 <CardContent
                     style = { card.text }
                 >
-                    <UnderConstruct />
                 </CardContent>
             </Card>
         );
@@ -58,4 +55,5 @@ http://www.sberbank.ru/ru/person/paymentsandremittances/payments/zhkh#blok
 
 Для подключения услуги Автоплатеж перейдите по этой ссылке.
 http://www.sberbank.ru/ru/person/paymentsandremittances/payments/zhkh
+instruktsiya_avtoplatezh.jpg
 */

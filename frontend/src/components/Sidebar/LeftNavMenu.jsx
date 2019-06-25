@@ -24,7 +24,8 @@ const styles = theme => ({
         color: fade(theme.palette.text.secondary, 0.64),
     },
     children: {
-        paddingLeft: theme.spacing(4),
+        paddingLeft: theme.spacing.unit * 4,
+//        paddingLeft: theme.spacing(4),
     },
 });
 
