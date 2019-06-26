@@ -29,6 +29,10 @@ const bvhOchstnye2 = '/static/images/ochist2.jpg';
 const bvhOchstnye2WP = '/static/images/ochist2.webp';
 const bvhOchstnyeLaba = '/static/images/ochist_lab.jpg';
 const bvhOchstnyeLabaWP = '/static/images/ochist_lab.webp';
+const sberPayOnline = '/static/images/myTarget_600x600.jpg';
+const avtoplatezh = '/static/images/avtoplatezh.gif';
+const instruktsiyaAvtoplatezh = '/static/images/instruktsiya_avtoplatezh.jpg';
+const instruktsiyaAvtoplatezhWP = '/static/images/instruktsiya_avtoplatezh.webp';
 
 const splashSteps = [
     {
@@ -56,6 +60,11 @@ const splashSteps = [
         webpPath: bvhOchstnyeLabaWP,
         imgPath: bvhOchstnyeLaba,
     },
+    {
+        label: 'Акция «Плати онлайн»',
+        webpPath: sberPayOnline,
+        imgPath: sberPayOnline,
+    },
 ];
 
 const styles = theme => ({
@@ -73,6 +82,12 @@ const styles = theme => ({
       width: '100%',
       margin: '0 auto',
       objectFit: 'contain',
+    },
+    bannerSber: {
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        //width: '50%',
     },
 });
   
@@ -142,6 +157,7 @@ class HomeView extends Component {
     render() {
         const { card } = this.props.theme.app;
         const { classes, theme } = this.props;
+        const { subParagraf } = this.props.theme;
         const { activeStep } = this.state;
         const maxSteps = splashSteps.length;
         const settings = {
@@ -193,6 +209,49 @@ class HomeView extends Component {
                             </div>
                         ))}
                     </Slider>
+                    <br />
+                    <br />
+                    <Button
+                        focusRipple = { false }
+                        aria-selected = { false }
+                        centerRipple = { false }
+                        disableRipple = { true }
+                        disableTouchRipple = { true }
+                        href = 'http://www.sberbank.ru/ru/person/paymentsandremittances/payments/zhkh#blok'
+                        target = '_blank'
+                    >
+                        <img
+                            src = { avtoplatezh }
+                            alt = 'Автоплатеж Сбербанк'
+                            title = 'Автоплатеж Сбербанк'
+                            className = { classes.bannerSber }
+                        />
+                    </Button>
+                    <Typography
+                        variant = 'body1'
+                        color = 'textSecondary'
+                        className = { classes.text }
+                    >
+                        Для подключения услуги Автоплатеж перейдите по этой <a href = 'http://www.sberbank.ru/ru/person/paymentsandremittances/payments/zhkh' target = '_blank'>ссылке</a>.
+                        <ImageZoom
+                            image = {{
+                                src: instruktsiyaAvtoplatezhWP,
+                                alt: 'Инструкция для подключения услуги Автоплатеж Сбербанк',
+                                title: 'Инструкция для подключения услуги Автоплатеж Сбербанк',
+                                className: classes.imageZoom,
+                            }}
+                            zoomImage = {{
+                                src: instruktsiyaAvtoplatezh,
+                                alt: 'Инструкция для подключения услуги Автоплатеж Сбербанк',
+                            }}
+                            shouldRespectMaxDimension = { true }
+                            defaultStyles = {{
+                                zoomContainer: {
+                                    zIndex: 10000,
+                                },
+                            }}
+                        />
+                    </Typography>
                 </CardContent>
             </Card>
         );
