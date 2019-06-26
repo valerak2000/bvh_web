@@ -61,4 +61,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default withTheme()(connect(mapStateToProps, mapDispatchToProps)(ProtectedView));
-export { ProtectedView as ProtectedViewNotConnected };
+//export default withTheme(connect(mapStateToProps, mapDispatchToProps)(ProtectedView));
+//export { ProtectedView as ProtectedViewNotConnected };

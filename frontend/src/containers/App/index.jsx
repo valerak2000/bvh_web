@@ -89,3 +89,4 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export default withTheme()(connect(mapStateToProps)(AppView));
+//export default withTheme(connect(mapStateToProps)(AppView));

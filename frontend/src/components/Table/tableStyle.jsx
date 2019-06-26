@@ -8,7 +8,7 @@ import {
   roseColor,
   grayColor,
   defaultFont
-} from "../../assets/jss/material-dashboard-react.jsx";
+} from '../../assets/jss/material-dashboard-react.jsx';
 
 const tableStyle = theme => ({
   warningTableHeader: {
@@ -36,12 +36,12 @@ const tableStyle = theme => ({
     color: grayColor
   },
   table: {
-    marginBottom: "0",
-    width: "100%",
-    maxWidth: "100%",
-    backgroundColor: "transparent",
-    borderSpacing: "0",
-    borderCollapse: "collapse",
+    marginBottom: '0',
+    width: '100%',
+    maxWidth: '100%',
+    backgroundColor: 'transparent',
+    borderSpacing: '0',
+    borderCollapse: 'collapse',
     borderTop: `1px solid
     ${
       theme.palette.type === 'light'
@@ -50,24 +50,25 @@ const tableStyle = theme => ({
     }`, 
   },
   tableHeadCell: {
-    color: "inherit",
+    color: 'inherit',
     ...defaultFont,
-    fontSize: "1em"
+    fontSize: '1em'
   },
   tableCell: {
     ...defaultFont,
-    lineHeight: "1.42857143",
-    padding: "12px 8px",
+    lineHeight: '1.42857143',
+    padding: '12px 8px',
     verticalAlign: 'initial',
-    color: "inherit",
+    color: 'inherit',
     body: {
         color: theme.palette.text.secondary,
     },
   },
   tableResponsive: {
-    width: "100%",
+    width: '100%',
     marginTop: theme.spacing.unit * 3,
-    overflowX: "auto"
+//    marginTop: theme.spacing(3),
+    overflowX: 'auto'
   }
 });
 

@@ -26,6 +26,7 @@ const styles = theme => ({
     },
     children: {
         paddingLeft: theme.spacing.unit * 8,
+//        paddingLeft: theme.spacing(8),
     },
     mapItem: {
         paddingTop: 0,

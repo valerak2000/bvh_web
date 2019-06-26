@@ -1,5 +1,5 @@
 // @material-ui/icons
-import Dashboard from '@material-ui/icons/Dashboard';
+//import Dashboard from '@material-ui/icons/Dashboard';
 
 import Loader from '../components/loaders';
 import requireAuthentication from '../utils/requireAuthentication';
@@ -74,7 +74,9 @@ const FizlicaZaklyuchenieDogovorovHolvodPage = Loader(() =>
 const FizlicaZaklyuchenieDogovorovVodootvedPage = Loader(() =>
     import(/* webpackChunkName: "FizlicaZaklyuchenieDogovorovVodootvedView" */ '../containers/Customers/FizlicaZaklyuchenieDogovorovVodootved/index.jsx')
 );
-
+const FizlicaPaymentsPage = Loader(() =>
+    import(/* webpackChunkName: "FizlicaPaymentsView" */ '../containers/Customers/FizlicaPayments/index.jsx')
+);
 const FizlicaPeredachaPokazaniyPage = Loader(() =>
     import(/* webpackChunkName: "FizlicaPeredachaPokazaniyView" */ '../containers/Customers/FizlicaPeredachaPokazaniy/index.jsx')
 );
@@ -202,6 +204,11 @@ export default [
         path: '/customers/fizlica/zaklyuchenie_dogovorov_vodootved_fizlica',
     	exact: true,
         component: FizlicaZaklyuchenieDogovorovVodootvedPage
+    },
+    {
+        path: '/customers/fizlica/payments_fizlica',
+	    exact: true,
+        component: FizlicaPaymentsPage
     },
     {
         path: '/customers/fizlica/peredacha_pokazaniy_fizlica',
