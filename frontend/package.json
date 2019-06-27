@@ -192,6 +192,7 @@
     "react-router-dom": "^5.0.0",
     "react-router-redux": "^4.0.8",
     "react-slick": "^0.24.0",
+    "react-slick-beyli-fork": "^0.30.0",
     "react-table": "^6.10.0",
     "react-yandex-maps": "^3.0.2",
     "redux": "^4.0.1",

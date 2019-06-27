@@ -8,13 +8,13 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 //import CardActions from '@material-ui/core/CardActions';
 //import CardActionArea from '@material-ui/core/CardActionArea';
-import Slider from 'react-slick';
+import Slider from 'react-slick-beyli-fork'; //'react-slick';
 //import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+//import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+//import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import ImageZoom from 'react-medium-image-zoom';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
@@ -91,6 +91,28 @@ const styles = theme => ({
     },
 });
   
+function NextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className = { className }
+        style = {{ ...style, display: 'block', color: 'before:black'/*, background: "red"*/ }}
+        onClick = { onClick }
+      />
+    );
+  }
+  
+  function PrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className = { className }
+        style = {{ ...style, display: 'block'/*, background: "green"*/ }}
+        onClick = { onClick }
+      />
+    );
+  }
+  
 class HomeView extends Component {
     static propTypes = {
         statusText: PropTypes.string,
@@ -124,7 +146,7 @@ class HomeView extends Component {
         this.props.dispatch(push('/protected'));
     };
 
-    handleNext = () => {
+    /*handleNext = () => {
         this.setState(prevState => ({
             activeStep: prevState.activeStep + 1,
         }));
@@ -138,7 +160,7 @@ class HomeView extends Component {
     
     handleStepChange = activeStep => {
         this.setState({ activeStep });
-    };
+    };*/
 /*
 <picture>
 <source
@@ -169,12 +191,16 @@ class HomeView extends Component {
             autoplay: true,
             //speed: 2000,
             autoplaySpeed: 3000,
-            className: 'center',
+            //className: 'center',
             centerMode: true,
             centerPadding: '60px',
-            cssEase: 'linear',
             swipe: true,
+            arrows: true,
+            className: '',
+            adaptiveHeight: true,
             beforeChange: (current, next) => this.setState({ activeStep: next }),
+            nextArrow: <NextArrow />,
+            prevArrow: <PrevArrow />
         };
 
         return (
@@ -296,72 +322,6 @@ class HomeView extends Component {
                             </div>
                         ))}
                     </AutoPlaySwipeableViews>
-                    <MobileStepper
-                        steps = { maxSteps }
-                        position = 'static'
-                        activeStep = { activeStep }
-                        className = { classes.mobileStepper }
-                        nextButton = {
-                            <Button
-                                size = 'small'
-                                onClick = { this.handleNext }
-                                disabled = { activeStep === maxSteps - 1 }
-                            >
-                                { theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight /> }
-                            </Button>
-                        }
-                        backButton = {
-                            <Button
-                                size = 'small'
-                                onClick = { this.handleBack }
-                                disabled = { activeStep === 0 }
-                            >
-                                { theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft /> }
-                            </Button>
-                        }
-                    />
-
-
-                                            image: {
-                                                height: 350,
-                                                display: 'block',
-                                                maxWidth: 400,
-                                                overflow: 'hidden',
-                                                width: '100%',
-                                                margin: '0 auto',
-                                                objectFit: 'contain',
-                                            },
-
-
-cursor: zoom-out;
-    position: absolute;
-    transition: transform 300ms ease 0s;
-    transform: translate3d(-133.517px, 20.1px, 0px) scale(1.56331);
-    transform-origin: center center 0px;
-    will-change: transform, top, left;
-    top: 93.4px;
-    left: 563.517px;
-    width: 387px;
-    height: 350px;
-
-}
-cursor: zoom-out;
-    position: absolute;
-    transition: transform 300ms ease 0s;
-    transform: translate3d(-133.3px, 20.1px, 0px) scale(1.88408);
-    transform-origin: center center 0px;
-    will-change: transform, top, left;
-    top: 93.4px;
-    left: 556.8px;
-    width: 400px;
-    height: 350px;
-
-}
-                                    <img
-                                        src = { step.webpPath }
-                                        alt = { step.label }
-                                        className = { classes.img }
-                                    />
 
                 <CardMedia
                     component = 'img'
