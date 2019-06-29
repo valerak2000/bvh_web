@@ -20,6 +20,7 @@ python manage.py loaddata fixtures.json
 python manage.py runserver
 
 cd ..
+
 npm i
 
 test connection to database:
