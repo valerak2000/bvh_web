@@ -1,11 +1,13 @@
 const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
+const envinfo = require('@webpack-cli/info').default;
+envinfo();
 
 const PATHS = {
     app: path.join(__dirname, '../src'),
@@ -70,7 +72,8 @@ module.exports = function (mode) {
                             loader: 'css-loader',
                             options: {
                                 modules: true,
-                                camelCase: true,
+                                localsConvention: 'camelCase',
+                                //camelCase: true,
                                 sourceMap: true,
                                 importLoaders: 1
                             }
@@ -145,15 +148,14 @@ module.exports = function (mode) {
             ]
         },
         plugins: [
-            new CleanWebpackPlugin(
-                [
-                    PATHS.build
-                ],
-                {
-                    allowExternal: true,
+            new webpack.ProgressPlugin(),
+            new CleanWebpackPlugin({
+                    dangerouslyAllowCleanPatternsOutsideProject: true,
+                    cleanOnceBeforeBuildPatterns: ['**/*', PATHS.build],
+                    //cleanAfterEveryBuildPatterns: ['static*.*', '!static1.js'],
+                    dry: false,
                     verbose: true,
-                }
-            ),
+            }),
             new ExtractCssChunks({
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional
