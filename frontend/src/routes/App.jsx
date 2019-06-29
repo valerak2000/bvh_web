@@ -1,5 +1,4 @@
 // @material-ui/icons
-//import Dashboard from '@material-ui/icons/Dashboard';
 
 import Loader from '../components/loaders';
 import requireAuthentication from '../utils/requireAuthentication';
@@ -126,7 +125,7 @@ const NewsAboutUsPage = Loader(() =>
 export default [
     {
         path: '/',
-    	exact: true,
+        exact: true,
         //sidebarName: '',
         //navbarName: '',
         //icon: Dashboard,
@@ -363,6 +362,3 @@ export default [
         component: NotFoundPage
     },
 ];
-
-/*
-*/
