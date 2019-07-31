@@ -244,7 +244,7 @@ class ContactsView extends Component {
                             &nbsp;8 (86156) 31-194
                         </span><br />
                         <span style = { subParagraf }>
-                            Прием населения: Понедельник, Пятница с 08-00 до 12-00.
+                            Прием населения: Понедельник, Пятница с 08-00 до 10-00.
                         </span><br />
                         <strong>Производственно-технический отдел</strong>:<br />
                         <span style = { subParagraf }>
@@ -352,7 +352,7 @@ class ContactsView extends Component {
                             lat = { this.props.abon_office.lat }
                             lng = { this.props.abon_office.lng }
                             zoom = { this.props.zoom }
-                            balloonContent = '352750, Краснодарский край, ул. Советская, 56, здание БТИ'
+                            balloonContent = '352750, Краснодарский край, ст.Брюховецкая, ул. Советская, 56, здание БТИ'
                             isMarkerShown
                         />
                     </Collapse>
