@@ -381,7 +381,7 @@ class ContactsView extends Component {
                     >
                         <strong>Адрес:</strong><br />
                         <span style = { subParagraf }>
-                            352750, Краснодарский край, ул. Советская, 56, здание БТИ
+                            352750, Краснодарский край, ст. Брюховецкая, ул. Советская, 56, здание БТИ
                         </span><br />
                         <strong>Телефон:</strong><br />
                         <span style = { subParagraf }>
