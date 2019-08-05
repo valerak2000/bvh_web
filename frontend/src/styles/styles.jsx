@@ -36,7 +36,7 @@ export var muiTheme = createMuiTheme({
         //canvasColor: Colors.teal200,
     },
     typography: {
-        useNextVariants: true,
+        //useNextVariants: true,
         fontFamily: [
             'pfbeausanspro-reg',
             'sans-serif',
