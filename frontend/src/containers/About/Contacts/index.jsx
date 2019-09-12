@@ -14,11 +14,13 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ImageZoom from 'react-medium-image-zoom';
-import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/';
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons/faMapMarkedAlt';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
-import GridItem from '../../../components/Grid/GridItem.jsx';
+//import GridItem from '../../../components/Grid/GridItem.jsx';
 import Loader from '../../../components/loaders';
 //import { Maps } from '../../../components/Maps';
 import FileLink from '../../../components/FileLink';
@@ -200,10 +202,20 @@ class ContactsView extends Component {
                     >
                         <strong>Адрес:</strong><br />
                         <span style = { subParagraf }>
-                            352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196
+                            <FontAwesomeIcon
+                                icon = { faMapMarkedAlt }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196
                         </span><br />
                         <span style = { subParagraf }>
-                            адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
+                            <FontAwesomeIcon
+                                icon = { faEnvelope }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;<a href="mailto:secretar@bruvodokanal.ru">secretar@bruvodokanal.ru</a>
                         </span>
                         <br />
                         <strong>График работы:</strong><br />
@@ -381,7 +393,12 @@ class ContactsView extends Component {
                     >
                         <strong>Адрес:</strong><br />
                         <span style = { subParagraf }>
-                            352750, Краснодарский край, ст. Брюховецкая, ул. Советская, 56, здание БТИ
+                            <FontAwesomeIcon
+                                icon = { faMapMarkedAlt }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;352750, Краснодарский край, ст. Брюховецкая, ул. Советская, 56, здание БТИ
                         </span><br />
                         <strong>Телефон:</strong><br />
                         <span style = { subParagraf }>
