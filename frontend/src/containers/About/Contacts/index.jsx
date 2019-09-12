@@ -203,7 +203,7 @@ class ContactsView extends Component {
                             352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196
                         </span><br />
                         <span style = { subParagraf }>
-                            адрес электронной почты: <a href="mailto:br_teploseti@mail.ru">br_teploseti@mail.ru</a>
+                            адрес электронной почты: <a href="mailto:secretar@bruvodokanal.ru">secretar@bruvodokanal.ru</a>
                         </span>
                         <br />
                         <strong>График работы:</strong><br />
