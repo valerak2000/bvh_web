@@ -18,7 +18,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons/faMapMarkedAlt';
+import { faAsterisk } from '@fortawesome/free-solid-svg-icons/faAsterisk';
 import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
+import red from '@material-ui/core/colors/red';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 //import GridItem from '../../../components/Grid/GridItem.jsx';
@@ -224,12 +226,17 @@ class ContactsView extends Component {
                             <FontAwesomeIcon
                                 icon = { faClock }
                                 flip = 'horizontal'
-                                style = {{ fontSize: 12, }}
+                                style = {{ fontSize: 12, color: red[0], }}
                             />
                             &nbsp;Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00
                         </span><br />
                         <span style = { subParagraf }>
-                            Выходной: Суббота, Воскресенье
+                            <FontAwesomeIcon
+                                icon = { faAsterisk }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;Выходной: Суббота, Воскресенье
                         </span><br />
                         <strong>Диспетчерская служба</strong>:<br />
                         <span style = { subParagraf }>
