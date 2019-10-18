@@ -8,7 +8,9 @@ pip install psycopg2-binary pip install --no-binary :all: psycopg2 pip install p
 
 pip install -r py-requirements/dev.txt
 
-python manage.py migrate python manage.py loaddata fixtures.json python manage.py runserver
+python manage.py migrate 
+python manage.py loaddata fixtures.json 
+python manage.py runserver
 
 cd ..
 
