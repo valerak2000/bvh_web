@@ -3,7 +3,7 @@ using python, react, material-ui
 git submodule init
 
 cd backend 
-linux: virtualenv -p /usr/bin/python3 py37
+linux: virtualenv -p /usr/bin/python3.7 py37
        source py37/bin/activate 
 windows: py -3.7 -m venv py37
 
