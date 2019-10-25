@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /var/www/bvh_web/backend
-source py3/bin/activate
+source py37/bin/activate
 screen -dmS webbg python manage.py runserver 0.0.0.0:8080 --settings=bvh_web.settings.dev
 cd ../frontend
 screen -dmS webfg npm run dev
