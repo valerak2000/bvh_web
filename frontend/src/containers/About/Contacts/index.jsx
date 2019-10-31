@@ -18,6 +18,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons/faMapMarkedAlt';
+import { faAsterisk } from '@fortawesome/free-solid-svg-icons/faAsterisk';
+import { faClock } from '@fortawesome/free-solid-svg-icons/faClock';
+import red from '@material-ui/core/colors/red';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 //import GridItem from '../../../components/Grid/GridItem.jsx';
@@ -220,10 +223,20 @@ class ContactsView extends Component {
                         <br />
                         <strong>График работы:</strong><br />
                         <span style = { subParagraf }>
-                            Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00
+                            <FontAwesomeIcon
+                                icon = { faClock }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, color: red[0], }}
+                            />
+                            &nbsp;Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00
                         </span><br />
                         <span style = { subParagraf }>
-                            Выходной: Суббота, Воскресенье
+                            <FontAwesomeIcon
+                                icon = { faAsterisk }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;Выходной: Суббота, Воскресенье
                         </span><br />
                         <strong>Диспетчерская служба</strong>:<br />
                         <span style = { subParagraf }>
@@ -256,7 +269,12 @@ class ContactsView extends Component {
                             &nbsp;8 (86156) 31-194
                         </span><br />
                         <span style = { subParagraf }>
-                            Прием населения: Понедельник, Пятница с 08-00 до 10-00.
+                            <FontAwesomeIcon
+                                icon = { faClock }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;Прием населения: Понедельник, Пятница с 08-00 до 10-00.
                         </span><br />
                         <strong>Производственно-технический отдел</strong>:<br />
                         <span style = { subParagraf }>
@@ -268,7 +286,12 @@ class ContactsView extends Component {
                             &nbsp;8 (86156) 21-809
                         </span><br />
                         <span style = { subParagraf }>
-                            Прием населения: Понедельник, Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
+                            <FontAwesomeIcon
+                                icon = { faClock }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;Прием населения: Понедельник, Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
                         </span><br />
                         <strong>Вывоз жидких коммунальных стоков</strong>:<br />
                         <span style = { subParagraf }>
@@ -411,7 +434,12 @@ class ContactsView extends Component {
                         </span><br />
                         <strong>График работы:</strong><br />
                         <span style = { subParagraf }>
-                            Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00
+                            <FontAwesomeIcon
+                                icon = { faClock }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00
                         </span><br />
                         <span style = { subParagraf }>
                             Выходной: Суббота и Воскресенье
