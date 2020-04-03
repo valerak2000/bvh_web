@@ -89,8 +89,16 @@ const styles = theme => ({
         marginRight: 'auto',
         //width: '50%',
     },
+    text: {
+        margin: 'auto auto auto 0.5rem',
+        textAlign: 'justify',
+        textIndent: '1.5em',
+    },
+    children: {
+        paddingLeft: theme.spacing.unit * 8,
+    },
 });
-  
+
 function NextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -113,6 +121,126 @@ function NextArrow(props) {
     );
   }
   
+  function SberActions(props) {
+    const { classes } = props;
+
+    return (
+        <React.Fragment key = 'sber_actions'>
+            <Button
+                focusRipple = { false }
+                aria-selected = { false }
+                centerRipple = { false }
+                disableRipple = { true }
+                disableTouchRipple = { true }
+                href = 'http://www.sberbank.ru/ru/person/paymentsandremittances/payments/zhkh#blok'
+                target = '_blank'
+            >
+                <img
+                    src = { avtoplatezh }
+                    alt = 'Автоплатеж Сбербанк'
+                    title = 'Автоплатеж Сбербанк'
+                    className = { classes.bannerSber }
+                />
+            </Button>
+            <Typography
+                variant = 'body1'
+                color = 'textSecondary'
+                className = { classes.text }
+            >
+                Для подключения услуги Автоплатеж перейдите по этой <a href = 'http://www.sberbank.ru/ru/person/paymentsandremittances/payments/zhkh' target = '_blank'>ссылке</a>.
+                <ImageZoom
+                    image = {{
+                        src: instruktsiyaAvtoplatezhWP,
+                        alt: 'Инструкция для подключения услуги Автоплатеж Сбербанк',
+                        title: 'Инструкция для подключения услуги Автоплатеж Сбербанк',
+                        className: classes.imageZoom,
+                    }}
+                    zoomImage = {{
+                        src: instruktsiyaAvtoplatezh,
+                        alt: 'Инструкция для подключения услуги Автоплатеж Сбербанк',
+                    }}
+                    shouldRespectMaxDimension = { true }
+                    defaultStyles = {{
+                        zoomContainer: {
+                            zIndex: 10000,
+                        },
+                    }}
+                />
+            </Typography>
+        </React.Fragment>
+    );
+}
+
+function Covid19Actions(props) {
+    const { classes } = props;
+    const { ul, li, RedLine } = props.theme;
+
+    return (
+        <React.Fragment key = 'covid19_actions'>
+            <CardHeader
+                title = 'УВАЖАЕМЫЕ КЛИЕНТЫ!!!'
+                { ...props }
+            />
+            <Typography
+                variant = 'body1'
+                color = 'textSecondary'
+                className = { classes.text }
+            >
+                В целях недопущения распространения заболеваний, вызванных новым типом коронавируса 2019-nCoV, и сохранения здоровья жителей Кубани с 30 марта офисы обслуживания клиентов
+            </Typography>
+            <Typography
+                variant = 'body1'
+                color = 'textSecondary'
+                className = { classes.text }
+            >
+                ООО «Брюховецкое водопроводное хозяйство»
+            </Typography>
+            <Typography
+                variant = 'body1'
+                color = 'textSecondary'
+                className = { classes.text }
+            >
+                ООО «Брюховецкое предприятие отвода и очистки стоков»
+            </Typography>
+            <Typography
+                variant = 'body1'
+                color = 'textSecondary'
+                className = { classes.text }
+            >
+                ООО «Брюховецкие тепловые сети»<br/>
+                переводятся на дистанционную работу с клиентами и временно не осуществляют очный приём абонентов.
+            </Typography>
+            <Typography
+                variant = 'body1'
+                color = 'textSecondary'
+                className = { classes.text }
+            >
+                Для оплаты услуг, передачи показаний, направления заявок на оформление договоров, дистанционного взаимодействия с сотрудниками организаций обслуживающих абонентов и по иным вопросам, рекомендуем воспользоваться сервисами онлайн-платежей за коммунальные услуги и нижеследующими контактными данными:
+            </Typography>
+            <Typography
+                variant = 'body1'
+                color = 'textSecondary'
+                className = { classes.children }
+            >
+                - 35-1-17 диспетчерская (аварийная служба)(прием звонков диспетчерской круглосуточно),<br/>
+                - 3-11-94 приемная,<br/>
+                - 2-22-57 абонентский отдел,<br/>
+                - 3-52-00 бухгалтерия,<br/>
+                - 2-18-09 производственно-технический отдел.<br/>
+                (прием звонков с 08:00 до 12:00 и с 13.00 до 16:00 часов ежедневно);<br/>
+                • электронная почта secretar@bruvodokanal.ru
+            </Typography>
+            <Typography
+                variant = 'body1'
+                color = 'textSecondary'
+                className = { classes.text }
+            >
+                Желаем абонентам крепкого здоровья и благодарим клиентов за понимание и ответственное отношение к вынужденным мерам.
+            </Typography>
+        </React.Fragment>
+    );
+}
+
 class HomeView extends Component {
     static propTypes = {
         statusText: PropTypes.string,
@@ -237,47 +365,13 @@ class HomeView extends Component {
                     </Slider>
                     <br />
                     <br />
-                    <Button
-                        focusRipple = { false }
-                        aria-selected = { false }
-                        centerRipple = { false }
-                        disableRipple = { true }
-                        disableTouchRipple = { true }
-                        href = 'http://www.sberbank.ru/ru/person/paymentsandremittances/payments/zhkh#blok'
-                        target = '_blank'
-                    >
-                        <img
-                            src = { avtoplatezh }
-                            alt = 'Автоплатеж Сбербанк'
-                            title = 'Автоплатеж Сбербанк'
-                            className = { classes.bannerSber }
-                        />
-                    </Button>
-                    <Typography
-                        variant = 'body1'
-                        color = 'textSecondary'
-                        className = { classes.text }
-                    >
-                        Для подключения услуги Автоплатеж перейдите по этой <a href = 'http://www.sberbank.ru/ru/person/paymentsandremittances/payments/zhkh' target = '_blank'>ссылке</a>.
-                        <ImageZoom
-                            image = {{
-                                src: instruktsiyaAvtoplatezhWP,
-                                alt: 'Инструкция для подключения услуги Автоплатеж Сбербанк',
-                                title: 'Инструкция для подключения услуги Автоплатеж Сбербанк',
-                                className: classes.imageZoom,
-                            }}
-                            zoomImage = {{
-                                src: instruktsiyaAvtoplatezh,
-                                alt: 'Инструкция для подключения услуги Автоплатеж Сбербанк',
-                            }}
-                            shouldRespectMaxDimension = { true }
-                            defaultStyles = {{
-                                zoomContainer: {
-                                    zIndex: 10000,
-                                },
-                            }}
-                        />
-                    </Typography>
+                    <Covid19Actions   
+                        { ...this.props }
+                    />
+                    <br />
+                    <SberActions
+                        { ...this.props }
+                    />
                 </CardContent>
             </Card>
         );
