@@ -171,7 +171,7 @@ function NextArrow(props) {
     );
 }
 
-function Covid19Actions(props) {
+/*function Covid19Actions(props) {
     const { classes } = props;
     const { ul, li, RedLine } = props.theme;
 
@@ -239,7 +239,7 @@ function Covid19Actions(props) {
             </Typography>
         </React.Fragment>
     );
-}
+}*/
 
 class HomeView extends Component {
     static propTypes = {
@@ -365,10 +365,6 @@ class HomeView extends Component {
                     </Slider>
                     <br />
                     <br />
-                    <Covid19Actions   
-                        { ...this.props }
-                    />
-                    <br />
                     <SberActions
                         { ...this.props }
                     />
@@ -379,7 +375,12 @@ class HomeView extends Component {
 }
 
 /*
-                    <AutoPlaySwipeableViews
+                    <Covid19Actions   
+                        { ...this.props }
+                    />
+                    <br />
+
+<AutoPlaySwipeableViews
                         axis = { theme.direction === 'rtl' ? 'x-reverse' : 'x' }
                         index = { activeStep }
                         onChangeIndex = { this.handleStepChange }
