@@ -258,6 +258,7 @@ class ContactsView extends Component {
                                 flip = 'horizontal'
                                 style = {{ fontSize: 12, }}
                             />
+                            &nbsp;
                             <FontAwesomeIcon
                                 icon = { faFax }
                                 flip = 'horizontal'
@@ -269,6 +270,12 @@ class ContactsView extends Component {
                         <span style = { subParagraf }>
                             <FontAwesomeIcon
                                 icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;
+                            <FontAwesomeIcon
+                                icon = { faFax }
                                 flip = 'horizontal'
                                 style = {{ fontSize: 12, }}
                             />
@@ -339,6 +346,12 @@ class ContactsView extends Component {
                         <span style = { subParagraf }>
                             <FontAwesomeIcon
                                 icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;
+                            <FontAwesomeIcon
+                                icon = { faFax }
                                 flip = 'horizontal'
                                 style = {{ fontSize: 12, }}
                             />
