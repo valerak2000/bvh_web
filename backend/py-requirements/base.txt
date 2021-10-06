@@ -1,5 +1,5 @@
-Django==2.2.6 #2.0.13
-django-extensions==2.2.3 #2.1.0
+Django==2.2.24
+django-extensions==2.2.3
 
 git+https://github.com/aaronbassett/DisposableEmailChecker.git
 #django-disposable-email-checker==1.2.1
@@ -10,9 +10,9 @@ git+https://github.com/aaronbassett/DisposableEmailChecker.git
 #psycopg2>=2.8.3 --no-binary
 
 # serve files
-whitenoise==4.1.4 #4.1.2
+whitenoise==4.1.4
 # Rest Framework
-djangorestframework==3.10.3 #3.9.1
+djangorestframework>=3.11.2
 # Sentry
 raven==6.10.0
 # for date processing
@@ -22,10 +22,10 @@ python-dateutil==2.8.0
 #django-rest-logger
 git+https://github.com/Seedstars/django-rest-logger.git
 
-django-rest-knox==4.1.0 #3.6.0
+django-rest-knox==4.1.0
 django-webpack-loader
 
-django-js-reverse==0.9.1 #0.8.2
+django-js-reverse==0.9.1
 django-import-export==1.2.0
 django-log-request-id
 django-naomi==0.8
