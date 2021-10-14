@@ -141,6 +141,14 @@ export const MENU_ABOUT = [
         primaryText: 'Раскрытие информации',
         leftIcon: null,
         dataRoute: '/about/zakupki_raskrytie_informacii',
+        children: [
+            {
+                key: 'fz223',
+                primaryText: '223-ФЗ',
+                leftIcon: null,
+                dataRoute: '/about/zakupki_raskrytie_informacii/fz223',
+            },
+        ]
     },
 ];
 
