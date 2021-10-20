@@ -6,8 +6,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
-import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
-import FileLink from '../../../components/FileLink';
+import CardHeader from '../../../../components/Card/CardHeaderImpl.jsx';
+import FileLink from '../../../../components/FileLink';
 
 const styles = theme => ({
     text: {
@@ -20,41 +20,21 @@ const styles = theme => ({
 const rowsBvh = [
     {
         id: 1,
-        file: '/static/files/media/Баланс-и-ф-2-БВХ-2017.pdf',
-        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2017 год'
-    },
-    {
-        id: 2,
         file: '/static/files/media/БВХ-УСН-2017.pdf',
         title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2017 год'
     },
     {
-        id: 3,
-        file: '/static/files/media/Баланс-и-ф-2-БВХ-2018.pdf',
-        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2018 год'
-    },
-    {
-        id: 4,
+        id: 2,
         file: '/static/files/media/БВХ-УСН-2018.pdf',
         title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2018 год'
     },
     {
-        id: 5,
-        file: '/static/files/media/Баланс-и-ф-2-БВХ-2019.pdf',
-        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2019 год'
-    },
-    {
-        id: 6,
+        id: 3,
         file: '/static/files/media/БВХ-УСН-2019.pdf',
         title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2019 год'
     },
     {
-        id: 7,
-        file: '/static/files/media/Баланс-и-ф-2-БВХ-2020.pdf',
-        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2020 год'
-    },
-    {
-        id: 8,
+        id: 4,
         file: '/static/files/media/БВХ-УСН-2020.pdf',
         title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2020 год'
     },
@@ -63,47 +43,27 @@ const rowsBvh = [
 const rowsBoos = [
     {
         id: 1,
-        file: '/static/files/media/Баланс-и-ф-2-БООС-2017.pdf',
-        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2017 год'
-    },
-    {
-        id: 2,
         file: '/static/files/media/БООС-УСН-2017.pdf',
         title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2017 год'
     },
     {
-        id: 3,
-        file: '/static/files/media/Баланс-и-ф-2-БООС-2018.pdf',
-        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2018 год'
-    },
-    {
-        id: 4,
+        id: 2,
         file: '/static/files/media/БООС-УСН-2018.pdf',
         title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2018 год'
     },
     {
-        id: 5,
-        file: '/static/files/media/Баланс-и-ф-2-БООС-2019.pdf',
-        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2019 год'
-    },
-    {
-        id: 6,
+        id: 3,
         file: '/static/files/media/БООС-УСН-2019.pdf',
         title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2019 год'
     },
     {
-        id: 7,
-        file: '/static/files/media/Баланс-и-ф-2-БООС-2020.pdf',
-        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2020 год'
-    },
-    {
-        id: 8,
+        id: 4,
         file: '/static/files/media/БООС-УСН-2020.pdf',
         title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2020 год'
     },
 ];
 
-class ZakupkiRaskrytieView extends Component {
+class ZakupkiRaskrytieNalView extends Component {
     static propTypes = {
         theme: PropTypes.object.isRequired,
         classes: PropTypes.object.isRequired,
@@ -123,7 +83,7 @@ class ZakupkiRaskrytieView extends Component {
                 style = { card }
             >
                 <CardHeader
-                    title = 'Раскрытие информации'
+                    title = 'Налоговая отчетность'
                     { ...this.props }
                 />
                 <CardContent
@@ -165,5 +125,5 @@ class ZakupkiRaskrytieView extends Component {
     }
 }
 
-export default withStyles(styles, { name: 'muiZakupkiRaskrytieView', flip: false, withTheme: true })(ZakupkiRaskrytieView);
-//export { ZakupkiRaskrytieView as ZakupkiRaskrytieViewNotConnected };
+export default withStyles(styles, { name: 'muiZakupkiRaskrytieNalView', flip: false, withTheme: true })(ZakupkiRaskrytieNalView);
+//export { ZakupkiRaskrytieNalView as ZakupkiRaskrytieNalViewNotConnected };
