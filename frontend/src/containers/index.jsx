@@ -16,7 +16,9 @@ export { default as LeadershipView } from './About/Leadership';
 export { default as ContactsView } from './About/Contacts';
 export { default as VacanciesView } from './About/Vacancies';
 export { default as OurHistoryView } from './About/OurHistory';
-export { default as ZakupkiRaskrytieView } from './About/ZakupkiRaskrytie';
+export { default as ZakupkiRaskrytieFinView } from './About/ZakupkiRaskrytie/FinanceReports';
+export { default as ZakupkiRaskrytieNalView } from './About/ZakupkiRaskrytie/NalogReports';
+export { default as ZakupkiRaskrytieFz223View } from './About/ZakupkiRaskrytie/Fz223';
 //Абонентам
 export { default as PoluchenieTekhnicheskikhUsloviyView } from './Customers/PoluchenieTekhnicheskikhUsloviy';
 export { default as OformlenieDogovoraOPodklyucheniiView } from './Customers/OformlenieDogovoraOPodklyuchenii';

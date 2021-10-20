@@ -48,8 +48,14 @@ const VacanciesPage = Loader(() =>
 const OurHistoryPage = Loader(() =>
     import(/* webpackChunkName: "OurHistoryView" */ '../containers/About/OurHistory/index.jsx')
 );
-const ZakupkiRaskrytiePage = Loader(() =>
-    import(/* webpackChunkName: "ZakupkiRaskrytieView" */ '../containers/About/ZakupkiRaskrytie/index.jsx')
+const ZakupkiRaskrytieFinPage = Loader(() =>
+    import(/* webpackChunkName: "ZakupkiRaskrytieFinView" */ '../containers/About/ZakupkiRaskrytie/FinanceReports/index.jsx')
+);
+const ZakupkiRaskrytieNalPage = Loader(() =>
+    import(/* webpackChunkName: "ZakupkiRaskrytieNalView" */ '../containers/About/ZakupkiRaskrytie/NalogReports/index.jsx')
+);
+const ZakupkiRaskrytieFz223Page = Loader(() =>
+    import(/* webpackChunkName: "ZakupkiRaskrytieFz223View" */ '../containers/About/ZakupkiRaskrytie/Fz223/index.jsx')
 );
 const ConnectionHolodnoeVodosnabjeniePage = Loader(() =>
     import(/* webpackChunkName: "ConnectionHolodnoeVodosnabjenieView" */ '../containers/Customers/ConnectionHolodnoeVodosnabjenie/index.jsx')
@@ -157,9 +163,19 @@ export default [
         component: OurHistoryPage
     },
     {
-        path: '/about/zakupki_raskrytie_informacii',
+        path: '/about/zakupki_raskrytie_informacii/fin_reports',
 	    exact: true,
-        component: ZakupkiRaskrytiePage
+        component: ZakupkiRaskrytieFinPage
+    },
+    {
+        path: '/about/zakupki_raskrytie_informacii/nal_reports',
+	    exact: true,
+        component: ZakupkiRaskrytieNalPage
+    },
+    {
+        path: '/about/zakupki_raskrytie_informacii/Fz223',
+	    exact: true,
+        component: ZakupkiRaskrytieFz223Page
     },
     {
         redirect: true, 
