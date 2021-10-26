@@ -5,9 +5,12 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
 
-import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
-import FileLink from '../../../components/FileLink';
+import CardHeader from '../../../../components/Card/CardHeaderImpl.jsx';
+import FileLink from '../../../../components/FileLink';
+import CustomTabs from '../../../components/CustomTabs/CustomTabs.jsx';
+import GridItem from '../../../components/Grid/GridItem.jsx';
 
 const styles = theme => ({
     text: {
@@ -25,38 +28,18 @@ const rowsBvh = [
     },
     {
         id: 2,
-        file: '/static/files/media/БВХ-УСН-2017.pdf',
-        title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2017 год'
-    },
-    {
-        id: 3,
         file: '/static/files/media/Баланс-и-ф-2-БВХ-2018.pdf',
         title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2018 год'
     },
     {
-        id: 4,
-        file: '/static/files/media/БВХ-УСН-2018.pdf',
-        title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2018 год'
-    },
-    {
-        id: 5,
+        id: 3,
         file: '/static/files/media/Баланс-и-ф-2-БВХ-2019.pdf',
         title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2019 год'
     },
     {
-        id: 6,
-        file: '/static/files/media/БВХ-УСН-2019.pdf',
-        title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2019 год'
-    },
-    {
-        id: 7,
+        id: 4,
         file: '/static/files/media/Баланс-и-ф-2-БВХ-2020.pdf',
         title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2020 год'
-    },
-    {
-        id: 8,
-        file: '/static/files/media/БВХ-УСН-2020.pdf',
-        title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2020 год'
     },
 ];
 
@@ -68,42 +51,22 @@ const rowsBoos = [
     },
     {
         id: 2,
-        file: '/static/files/media/БООС-УСН-2017.pdf',
-        title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2017 год'
-    },
-    {
-        id: 3,
         file: '/static/files/media/Баланс-и-ф-2-БООС-2018.pdf',
         title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2018 год'
     },
     {
-        id: 4,
-        file: '/static/files/media/БООС-УСН-2018.pdf',
-        title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2018 год'
-    },
-    {
-        id: 5,
+        id: 3,
         file: '/static/files/media/Баланс-и-ф-2-БООС-2019.pdf',
         title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2019 год'
     },
     {
-        id: 6,
-        file: '/static/files/media/БООС-УСН-2019.pdf',
-        title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2019 год'
-    },
-    {
-        id: 7,
+        id: 4,
         file: '/static/files/media/Баланс-и-ф-2-БООС-2020.pdf',
         title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2020 год'
     },
-    {
-        id: 8,
-        file: '/static/files/media/БООС-УСН-2020.pdf',
-        title: 'Декларация по налогу, уплачиваемому в связи с применением УСНО за 2020 год'
-    },
 ];
 
-class ZakupkiRaskrytieView extends Component {
+class ZakupkiRaskrytieFinView extends Component {
     static propTypes = {
         theme: PropTypes.object.isRequired,
         classes: PropTypes.object.isRequired,
@@ -123,7 +86,7 @@ class ZakupkiRaskrytieView extends Component {
                 style = { card }
             >
                 <CardHeader
-                    title = 'Раскрытие информации'
+                    title = 'Финансовая отчетность'
                     { ...this.props }
                 />
                 <CardContent
@@ -159,11 +122,83 @@ class ZakupkiRaskrytieView extends Component {
                             />
                         ))
                     }
+        <Grid container>
+          <GridItem xs={12} sm={12} md={6}>
+            <CustomTabs
+              title="Tasks:"
+              headerColor="primary"
+              loading={loading}
+              tabs={[
+                {
+                  tabName: 'Bugs',
+                  tabIcon: BugReport,
+                  tabContent: bugs ? (
+                    <Tasks
+                      checkedIndexes={[0, 3]}
+                      tasksIndexes={[0, 1, 2, 3]}
+                      tasks={bugs}
+                    />
+                  ) : (
+                    <p>No data</p>
+                  )
+                },
+                {
+                  tabName: 'Website',
+                  tabIcon: Code,
+                  tabContent: website ? (
+                    <Tasks
+                      checkedIndexes={[0]}
+                      tasksIndexes={[0, 1]}
+                      tasks={website}
+                    />
+                  ) : (
+                    <p>No data</p>
+                  )
+                },
+                {
+                  tabName: 'Server',
+                  tabIcon: Cloud,
+                  tabContent: server ? (
+                    <Tasks
+                      checkedIndexes={[1]}
+                      tasksIndexes={[0, 1, 2]}
+                      tasks={server}
+                    />
+                  ) : (
+                    <p>No data</p>
+                  )
+                }
+              ]}
+            />
+          </GridItem>
+          <GridItem xs={12} sm={12} md={6}>
+            <Card>
+              <CardHeader color="warning">
+                <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
+                <p className={classes.cardCategoryWhite}>
+                  New employees on 15th September, 2016
+                </p>
+              </CardHeader>
+              <CardBody>
+                <Table
+                  tableHeaderColor="warning"
+                  tableHead={['ID', 'Name', 'Salary', 'Country']}
+                  tableData={[
+                    ['1', 'Dakota Rice', '$36,738', 'Niger'],
+                    ['2', 'Minerva Hooper', '$23,789', 'Curaçao'],
+                    ['3', 'Sage Rodriguez', '$56,142', 'Netherlands'],
+                    ['4', 'Philip Chaney', '$38,735', 'Korea, South']
+                  ]}
+                />
+              </CardBody>
+            </Card>
+          </GridItem>
+        </Grid>
                 </CardContent>
             </Card>
         );
     }
 }
 
-export default withStyles(styles, { name: 'muiZakupkiRaskrytieView', flip: false, withTheme: true })(ZakupkiRaskrytieView);
+export default withStyles(styles, { name: 'muiZakupkiRaskrytieFinView', flip: false, withTheme: true })(ZakupkiRaskrytieFinView);
 //export { ZakupkiRaskrytieView as ZakupkiRaskrytieViewNotConnected };
