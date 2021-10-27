@@ -9,8 +9,8 @@ import Grid from '@material-ui/core/Grid';
 
 import CardHeader from '../../../../components/Card/CardHeaderImpl.jsx';
 import FileLink from '../../../../components/FileLink';
-import CustomTabs from '../../../components/CustomTabs/CustomTabs.jsx';
-import GridItem from '../../../components/Grid/GridItem.jsx';
+import CustomTabs from '../../../../components/CustomTabs/CustomTabs.jsx';
+import GridItem from '../../../../components/Grid/GridItem.jsx';
 
 const styles = theme => ({
     text: {
