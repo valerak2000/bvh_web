@@ -3,12 +3,12 @@ const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const ProgressBarPlugin = require('webpack-simple-progress-plugin');
 const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 const envinfo = require('@webpack-cli/info').default;
-envinfo();
+/*envinfo();*/
 
 const PATHS = {
     app: path.join(__dirname, '../src'),
