@@ -19,6 +19,7 @@ module.exports = merge(commonConfig(mode), {
     //devtool: 'nosources-source-map',
     devtool: 'cheap-source-map',
     optimization: {
+        moduleIds: 'named',
         minimize: true,
         splitChunks: {
             name: false, 
