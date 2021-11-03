@@ -1,7 +1,8 @@
 /*eslint no-console: ["off", { allow: ["warn", "error"] }] */
 
 import linq from 'linq';
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
+//import uuidv4 from 'uuid/v4';
 import Default from './constants.js';
 //correct URL for Reserved proxy
 //Get the millisecond of current time.
