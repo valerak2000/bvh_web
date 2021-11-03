@@ -1,5 +1,5 @@
 const autoprefixer = require('autoprefixer');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const webpack = require('webpack');
 //const { resolve } = require('path');
 //const UglifyJsPlugin = require('uglifyjs-webpack-plugin');

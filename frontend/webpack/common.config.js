@@ -63,7 +63,9 @@ module.exports = function (mode) {
                 },
                 {
                     test: /\.tsx?$/,
-                    loader: 'awesome-typescript-loader'
+                    use: {
+                        loader: 'awesome-typescript-loader'
+                    },
                 },
                 {
                     test: /\.css$/,
@@ -115,37 +117,55 @@ module.exports = function (mode) {
                 },
                 {
                     test: /\.(jpe?g|png|gif|ico)$/i,
-                    use: ['file-loader?name=images/[name].[ext]?[hash]', 'img-loader']
+                    use: [
+                        {
+                          loader: 'img-loader',
+                          options: {
+                            name: '[path][name].[ext]?[hash]',
+                          },
+                        }
+                    ]
+                    //use: ['file-loader?name=images/[name].[ext]?[hash]', 'img-loader']
                 },
                 {
-                    test: /\.(svg)$/i,
-                    use: ['url-loader?mimetype=image/svg+xml', 'img-loader']
-                },
-                {
-                    test: /\.(woff|woff2)$/,
-                    loader: 'file-loader?name=fonts/[name].[ext]'
-                },
-                /*{
-                    test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-                    loader: 'url-loader?name=fonts/[name].[ext]&limit=10000&mimetype=application/font-woff'
-                },*/
-                {
-                    test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-                    loader: 'file-loader?name=fonts/[name].[ext]'
-                },
-                {
-                    test: /\.otf(\?.*)?$/,
-                    loader: 'file-loader?name=fonts/[name].[ext]&mimetype=application/font-otf'
+                    //test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+                    //loader: 'file-loader?name=fonts/[name].[ext]'
+                    test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=\d+\.\d+\.\d+)?$/,
+                    use: [
+                      {
+                        loader: 'file-loader',
+                        options: {
+                          name: '[name].[ext]',
+                          outputPath: 'fonts/'
+                        },
+                      }
+                    ]
                 },
                 {
                     test: /\.(json|pdf)(\?.*)?$/,
-                    loader: 'file-loader?name=files/[name].[ext]'
-                },
+                    //loader: 'file-loader?name=files/[name].[ext]'
+                    use: [
+                        {
+                          loader: 'file-loader',
+                          options: {
+                            name: '[name].[ext]',
+                            outputPath: 'files/'
+                          },
+                        }
+                      ]
+                  },
                 //copy Web config file to dist folder
                 {
                     test: /web.config/,
-                    loader: 'file-loader?name=[name].[ext]'
-                }
+                    use: [
+                        {
+                          loader: 'file-loader',
+                          options: {
+                            name: '[name].[ext]',
+                          },
+                        }
+                      ]
+                  }
             ]
         },
         plugins: [
