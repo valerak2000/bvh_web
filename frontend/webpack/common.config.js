@@ -138,10 +138,10 @@ module.exports = function (mode) {
                     test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=\d+\.\d+\.\d+)?$/,
                     use: [
                       {
-                        loader: 'file-loader',
+                        loader: 'url-loader',
                         options: {
                           name: '[name].[ext]',
-                          //outputPath: '../fonts/'
+                          outputPath: 'fonts/'
                         },
                       }
                     ]
@@ -154,7 +154,7 @@ module.exports = function (mode) {
                           loader: 'file-loader',
                           options: {
                             name: '[name].[ext]',
-                            //outputPath: 'files/'
+                            outputPath: 'files/'
                           },
                         }
                       ]
