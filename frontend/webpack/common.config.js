@@ -1,5 +1,6 @@
 
 const path = require('path');
+const ROOT_PATH = path.resolve(__dirname);
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -7,15 +8,15 @@ const ProgressBarPlugin = require('webpack-simple-progress-plugin');
 const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
-const envinfo = require('@webpack-cli/info').default;
-/*envinfo();*/
+//const { envinfo } = require('@webpack-cli/info').default;
+//envinfo();
 
 const PATHS = {
     app: path.join(__dirname, '../src'),
     build: path.join(__dirname, '../../static/bundles/'),
 };
-console.log(PATHS.build);
-
+console.log('Build path: ' + PATHS.build);
+//path.resolve(__dirname, './node_modules')
 module.exports = function (mode) {
     const devMode = mode === 'development';
     console.error(`Dev Mode:${devMode} config: ${mode}`);
@@ -127,6 +128,10 @@ module.exports = function (mode) {
                     ]
                     //use: ['file-loader?name=images/[name].[ext]?[hash]', 'img-loader']
                 },
+               /*{
+                    test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+                    loader: 'url-loader?name=fonts/[name].[ext]&limit=10000&mimetype=application/font-woff'
+                },*/
                 {
                     //test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
                     //loader: 'file-loader?name=fonts/[name].[ext]'
@@ -136,7 +141,7 @@ module.exports = function (mode) {
                         loader: 'file-loader',
                         options: {
                           name: '[name].[ext]',
-                          outputPath: 'fonts/'
+                          //outputPath: '../fonts/'
                         },
                       }
                     ]
@@ -149,7 +154,7 @@ module.exports = function (mode) {
                           loader: 'file-loader',
                           options: {
                             name: '[name].[ext]',
-                            outputPath: 'files/'
+                            //outputPath: 'files/'
                           },
                         }
                       ]
