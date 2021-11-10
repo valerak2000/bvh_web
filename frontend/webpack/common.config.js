@@ -8,14 +8,55 @@ const ProgressBarPlugin = require('webpack-simple-progress-plugin');
 const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
-//const { envinfo } = require('@webpack-cli/info').default;
-//envinfo();
+const envinfo = require('envinfo');
+console.log(
+    envinfo.run({
+        System: ["OS", "CPU"],
+        Binaries: ["Node", "Yarn", "npm"],
+        Browsers: ["Chrome", "Firefox", "Safari"],
+        npmPackages: "*webpack*",
+        npmGlobalPackages: ["webpack", "webpack-cli"]
+    })
+);
+envinfo
+  .run(
+    {
+      npmPackages: `{${[
+        '@mui/*',
+        // Peer dependencies
+        'react',
+        'react-dom',
+        // optional peer deps
+        '@emotion/react',
+        '@emotion/styled',
+        'styled-components',
+        '@types/react',
+        // auxiliary libraries
+        'typescript',
+      ]}}`,
+      Binaries: ['Node', 'Yarn', 'npm'],
+      System: ['OS'],
+      Browsers: ['Chrome', 'Firefox', 'Safari', 'Edge'],
+    },
+    {
+      // `markdown: true` uses level 2 headings. It doesn't necessarily fit our issue template
+      json,
+      duplicates: true,
+      // include transitive dependencies and important packages that are transitive dependencies (e.g. `jsdom` is usually a transitive dependency inside jest)
+      fullTree: true,
+      showNotFound: true,
+    },
+  )
+  .then((output) => {
+    // eslint-disable-next-line no-console
+    console.log(output);
+  });
 
 const PATHS = {
     app: path.join(__dirname, '../src'),
     build: path.join(__dirname, '../../static/bundles/'),
 };
-console.log('Build path: ' + PATHS.build);
+console.log('__dirname: ' + __dirname + ' Build path: ' + PATHS.build);
 //path.resolve(__dirname, './node_modules')
 module.exports = function (mode) {
     const devMode = mode === 'development';
@@ -138,7 +179,7 @@ module.exports = function (mode) {
                     test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=\d+\.\d+\.\d+)?$/,
                     use: [
                       {
-                        loader: 'url-loader',
+                        loader: 'file-loader',
                         options: {
                           name: '[name].[ext]',
                           outputPath: 'fonts/'

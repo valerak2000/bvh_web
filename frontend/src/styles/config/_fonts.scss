@@ -2,14 +2,15 @@
   font-family: 'pfbeausanspro-reg';
   font-style: normal;
   font-weight: normal;
-  src: local('pfbeausanspro-reg'), url('./assets/fonts/pfbeausanspro-reg.ttf') format('truetype');
+//  src: local('pfbeausanspro-reg'), url('./assets/fonts/pfbeausanspro-reg.ttf') format('truetype');
+  src: url('../assets/fonts/pfbeausanspro-reg.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'pfbeausanspro-bold';
   font-style: normal;
   font-weight: bold;
-  src: local('pfbeausanspro-bold'), url('./assets/fonts/pfbeausanspro-bold.ttf') format('truetype');
+  src: local('pfbeausanspro-bold'), url('../assets/fonts/pfbeausanspro-bold.ttf') format('truetype');
 }
 /* cyrillic */
 /*@font-face {
@@ -26,5 +27,5 @@
   font-weight: 400;
   src: local('Material Icons'),
        local('MaterialIcons-Regular'),
-       url('./assets/fonts/MaterialIcons-Regular.ttf') format('truetype');
+       url('../assets/fonts/MaterialIcons-Regular.ttf') format('truetype');
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import 'perfect-scrollbar/css/perfect-scrollbar.css';
+//import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import { compose } from 'recompose';
 import { MuiThemeProvider } from '@material-ui/core/styles/';
 import { white } from '@material-ui/core/colors/common';
