@@ -18,6 +18,7 @@ console.log(
         npmGlobalPackages: ["webpack", "webpack-cli"]
     })
 );
+const json = process.argv.indexOf('--json') !== -1;
 envinfo
   .run(
     {
