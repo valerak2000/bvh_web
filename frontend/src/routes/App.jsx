@@ -1,10 +1,9 @@
-// @material-ui/icons
-
+import React from 'react';
 import Loader from '../components/loaders';
 import requireAuthentication from '../utils/requireAuthentication';
 
-const HomePage = Loader(() =>
-    import(/* webpackChunkName: "HomeView" */ '../containers/Home/Home/index.jsx')
+const HomePage = Loader(() => React.lazy(() =>
+    import(/* webpackChunkName: "HomeView" */ '../containers/Home/Home/index.jsx'))
 );
 const NotFoundPage = Loader(() =>
     import(/* webpackChunkName: "NotFoundView" */ '../containers/NotFound/index.jsx')
