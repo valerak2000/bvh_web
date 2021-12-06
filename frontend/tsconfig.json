@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "module": "es2015",
-    "target": "es5",
-    "lib": ["es6", "esnext", "dom"],
+    "module": "es2015" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
+    "target": "ES5"  /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */,, 
+    "lib": ["es2017", "dom"],
     //"sourceMap": true,
     "allowJs": true,
     "jsx": "react",
@@ -24,6 +24,7 @@
     "noUnusedLocals": true,
     "experimentalDecorators": true,
     //"declaration": true,
+    "esModuleInterop": true,
     "strict": true
   },
   "include": ["./src/**/*.tsx", "./src/**/*.ts", "tests/*.ts"],
