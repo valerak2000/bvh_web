@@ -365,3 +365,5 @@ npm-debug.log
 scripts/
 docs/.~lock.common struct.xlsx#
 webpack-stats.json
+frontend/size-plugin.json
+frontend/size-plugin.json

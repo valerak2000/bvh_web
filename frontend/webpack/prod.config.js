@@ -47,18 +47,16 @@ module.exports = merge(commonConfig(mode), {
                     reuseExistingChunk: true,
                     //enforce: true,
                     priority: 100
-                }
+                },
+		shared: false,
             },
         },
-        //runtimeChunk: {
-        //    name: entrypoint => `runtimechunk~${entrypoint.name}`
-        //}    
     },
     plugins: [
         new MiniCssExtractPlugin({
             filename: '[name]-[hash].css',
-            runtime: false,
-            //allChunks: true 
+            runtime: true,
+	    //allChunks: true 
         }),
         new webpack.LoaderOptionsPlugin({
             options: {
