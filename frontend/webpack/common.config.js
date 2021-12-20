@@ -107,7 +107,7 @@ module.exports = function (mode) {
                 {
                     test: /\.tsx?$/,
                     use: {
-                        loader: 'awesome-typescript-loader'
+                        loader: 'ts-loader'
                     },
                 },
                 {

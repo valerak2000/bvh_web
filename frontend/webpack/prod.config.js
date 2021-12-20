@@ -55,7 +55,11 @@ module.exports = merge(commonConfig(mode), {
         //}    
     },
     plugins: [
-        new MiniCssExtractPlugin({ filename: '[name]-[hash].css', disable: false, allChunks: true }),
+        new MiniCssExtractPlugin({
+            filename: '[name]-[hash].css',
+            runtime: false,
+            //allChunks: true 
+        }),
         new webpack.LoaderOptionsPlugin({
             options: {
               context: __dirname,

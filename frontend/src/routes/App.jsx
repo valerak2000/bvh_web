@@ -1,5 +1,5 @@
 import React from 'react';
-import Loader from '../components/loaders';
+import Loader from '../components/loaders/ComponentLoader';
 import requireAuthentication from '../utils/requireAuthentication';
 
 const HomePage = Loader(() => React.lazy(() =>

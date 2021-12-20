@@ -25,7 +25,7 @@ import red from '@material-ui/core/colors/red';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 //import GridItem from '../../../components/Grid/GridItem.jsx';
-import Loader from '../../../components/loaders';
+import Loader from '../../../components/loaders/ComponentLoader';
 //import { Maps } from '../../../components/Maps';
 import FileLink from '../../../components/FileLink';
 
