@@ -1,12 +1,13 @@
 const autoprefixer = require('autoprefixer');
-const { merge } = require('webpack-merge');
 const webpack = require('webpack');
+const { merge } = require('webpack-merge');
 //const { resolve } = require('path');
 //const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const commonConfig = require('./common.config');
 const SizePlugin = require('size-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const mode = 'production';
 
@@ -19,7 +20,25 @@ module.exports = merge(commonConfig(mode), {
     //devtool: 'nosources-source-map',
     devtool: 'cheap-source-map',
     optimization: {
-        moduleIds: 'named',
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                //minify: TerserPlugin.uglifyJsMinify,
+                //test: /\.js(\?.*)?$/i,
+                //cache: false,
+                parallel: true,
+                terserOptions: {
+                    mangle: false,
+                    sourceMap: true,
+                    format: {
+                        comments: false,
+                    },
+                },
+                extractComments: false,
+                //compress: true,
+            }),
+        ],
+        /*moduleIds: 'named',
         minimize: true,
         splitChunks: {
             name: false, 
@@ -50,13 +69,13 @@ module.exports = merge(commonConfig(mode), {
                 },
 		shared: false,
             },
-        },
+        },*/
     },
     plugins: [
         new MiniCssExtractPlugin({
             filename: '[name]-[hash].css',
             runtime: true,
-	    //allChunks: true 
+	        //allChunks: true 
         }),
         new webpack.LoaderOptionsPlugin({
             options: {
