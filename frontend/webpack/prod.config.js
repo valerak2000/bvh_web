@@ -5,9 +5,10 @@ const { merge } = require('webpack-merge');
 //const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //const CompressionWebpackPlugin = require('compression-webpack-plugin');
-const commonConfig = require('./common.config');
 const SizePlugin = require('size-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const commonConfig = require('./common.config');
 
 const mode = 'production';
 
@@ -22,21 +23,24 @@ module.exports = merge(commonConfig(mode), {
     optimization: {
         minimize: true,
         minimizer: [
-            new TerserPlugin({
+            new TerserJSPlugin({
                 //minify: TerserPlugin.uglifyJsMinify,
                 //test: /\.js(\?.*)?$/i,
                 //cache: false,
                 parallel: true,
+                extractComments: false,
+                //compress: true,
                 terserOptions: {
-                    mangle: false,
-                    sourceMap: true,
+                    sourceMap: {
+                        filename: "out.js",
+                        url: "out.js.map"
+                    },
                     format: {
                         comments: false,
                     },
                 },
-                extractComments: false,
-                //compress: true,
             }),
+            new OptimizeCSSAssetsPlugin({verbose: true}),
         ],
         /*moduleIds: 'named',
         minimize: true,
@@ -71,11 +75,14 @@ module.exports = merge(commonConfig(mode), {
             },
         },*/
     },
+    performance: {
+        hints: 'warning',
+    },
     plugins: [
         new MiniCssExtractPlugin({
             filename: '[name]-[hash].css',
+            chunkFilename: '[id].[hash].css',
             runtime: true,
-	        //allChunks: true 
         }),
         new webpack.LoaderOptionsPlugin({
             options: {
