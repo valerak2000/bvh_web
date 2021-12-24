@@ -20,16 +20,56 @@ const styles = theme => ({
 const rowsBvh = [
     {
         id: 1,
-        file: '/static/files/media/Баланс-и-ф-2-БВХ-2017.pdf',
-        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2017 год'
+        file: '/static/files/media/Blank.pdf',
+        title: 'Положение о закупках'
+    },
+    {
+        id: 2,
+        file: '/static/files/media/Blank.pdf',
+        title: 'Планы закупок'
+    },
+    {
+        id: 3,
+        file: '/static/files/media/Blank.pdf',
+        title: 'Отчетность по договорам'
+    },
+    {
+        id: 4,
+        file: '/static/files/media/Blank.pdf',
+        title: 'Годовые отчеты о закупке товаров,работ,услуг у субъектов малого и среднего предпринимательства'
+    },
+    {
+        id: 5,
+        file: '/static/files/media/Blank.pdf',
+        title: 'Годовые отчеты о закупке инновационной продукции,высокотехнологичной продукции'
     },
 ];
 
 const rowsBoos = [
     {
         id: 1,
-        file: '/static/files/media/Баланс-и-ф-2-БООС-2017.pdf',
-        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2017 год'
+        file: '/static/files/media/Blank.pdf',
+        title: 'Положение о закупках'
+    },
+    {
+        id: 2,
+        file: '/static/files/media/Blank.pdf',
+        title: 'Планы закупок'
+    },
+    {
+        id: 3,
+        file: '/static/files/media/Blank.pdf',
+        title: 'Отчетность по договорам'
+    },
+    {
+        id: 4,
+        file: '/static/files/media/Blank.pdf',
+        title: 'Годовые отчеты о закупке товаров,работ,услуг у субъектов малого и среднего предпринимательства'
+    },
+    {
+        id: 5,
+        file: '/static/files/media/Blank.pdf',
+        title: 'Годовые отчеты о закупке инновационной продукции,высокотехнологичной продукции'
     },
 ];
 

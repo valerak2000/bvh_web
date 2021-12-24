@@ -122,7 +122,16 @@ class ZakupkiRaskrytieFinView extends Component {
                             />
                         ))
                     }
-        <Grid container>
+                </CardContent>
+            </Card>
+        );
+    }
+}
+
+export default withStyles(styles, { name: 'muiZakupkiRaskrytieFinView', flip: false, withTheme: true })(ZakupkiRaskrytieFinView);
+//export { ZakupkiRaskrytieView as ZakupkiRaskrytieViewNotConnected };
+/*
+<Grid container>
           <GridItem xs={12} sm={12} md={6}>
             <CustomTabs
               title="Tasks:"
@@ -196,9 +205,4 @@ class ZakupkiRaskrytieFinView extends Component {
         </Grid>
                 </CardContent>
             </Card>
-        );
-    }
-}
-
-export default withStyles(styles, { name: 'muiZakupkiRaskrytieFinView', flip: false, withTheme: true })(ZakupkiRaskrytieFinView);
-//export { ZakupkiRaskrytieView as ZakupkiRaskrytieViewNotConnected };
+*/
