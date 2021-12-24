@@ -140,7 +140,27 @@ export const MENU_ABOUT = [
         key: 'zakupki_raskrytie_informacii',
         primaryText: 'Раскрытие информации',
         leftIcon: null,
-        dataRoute: '/about/zakupki_raskrytie_informacii',
+        //dataRoute: '/about/zakupki_raskrytie_informacii',
+        children: [
+            {
+                key: 'fin_reports',
+                primaryText: 'Финансовая отчетность',
+                leftIcon: null,
+                dataRoute: '/about/zakupki_raskrytie_informacii/fin_reports',
+            },
+            {
+                key: 'nal_reports',
+                primaryText: 'Налоговая отчетность',
+                leftIcon: null,
+                dataRoute: '/about/zakupki_raskrytie_informacii/nal_reports',
+            },
+            {
+                key: 'fz223',
+                primaryText: '223-ФЗ',
+                leftIcon: null,
+                dataRoute: '/about/zakupki_raskrytie_informacii/fz223',
+            },
+        ]
     },
 ];
 

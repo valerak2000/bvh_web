@@ -15,6 +15,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ImageZoom from 'react-medium-image-zoom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/';
+import { faFax } from '@fortawesome/free-solid-svg-icons/faFax';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons/faMapMarkedAlt';
@@ -257,12 +258,24 @@ class ContactsView extends Component {
                                 flip = 'horizontal'
                                 style = {{ fontSize: 12, }}
                             />
+                            &nbsp;
+                            <FontAwesomeIcon
+                                icon = { faFax }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
                             &nbsp;8 (86156) 31-194
                         </span><br />
                         <strong>Главный инженер</strong>:<br />
                         <span style = { subParagraf }>
                             <FontAwesomeIcon
                                 icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;
+                            <FontAwesomeIcon
+                                icon = { faFax }
                                 flip = 'horizontal'
                                 style = {{ fontSize: 12, }}
                             />
@@ -333,6 +346,12 @@ class ContactsView extends Component {
                         <span style = { subParagraf }>
                             <FontAwesomeIcon
                                 icon = { faPhone }
+                                flip = 'horizontal'
+                                style = {{ fontSize: 12, }}
+                            />
+                            &nbsp;
+                            <FontAwesomeIcon
+                                icon = { faFax }
                                 flip = 'horizontal'
                                 style = {{ fontSize: 12, }}
                             />

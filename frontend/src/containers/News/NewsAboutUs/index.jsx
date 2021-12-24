@@ -53,6 +53,15 @@ const news = [
         title: 'Ответы главы Брюховецкого района Владимира Мусатова на вопросы граждан.',
         url: 'http://kbereg.info/otvety-glavy-bryuhovetskogo-rajona-vladimira-musatova-na-voprosy-grazhdan/'
     },
+    {
+        key: '5',
+        date: '08.07.2020', 
+        source: 'kbereg.info', 
+        icon: kbereg, 
+        title: 'Если в кране нет воды…',
+        url: 'http://kbereg.info/esli-v-krane-net-vody-2/'
+    },
+
 ];
 
 function ListNewsAboutUs(props) {
