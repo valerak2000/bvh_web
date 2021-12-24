@@ -20,27 +20,27 @@ const styles = theme => ({
 const rowsBvh = [
     {
         id: 1,
-        file: '/static/files/media/Blank.pdf',
+        file: '/static/files/media/blank.pdf',
         title: 'Положение о закупках'
     },
     {
         id: 2,
-        file: '/static/files/media/Blank.pdf',
+        file: '/static/files/media/blank.pdf',
         title: 'Планы закупок'
     },
     {
         id: 3,
-        file: '/static/files/media/Blank.pdf',
+        file: '/static/files/media/blank.pdf',
         title: 'Отчетность по договорам'
     },
     {
         id: 4,
-        file: '/static/files/media/Blank.pdf',
+        file: '/static/files/media/blank.pdf',
         title: 'Годовые отчеты о закупке товаров,работ,услуг у субъектов малого и среднего предпринимательства'
     },
     {
         id: 5,
-        file: '/static/files/media/Blank.pdf',
+        file: '/static/files/media/blank.pdf',
         title: 'Годовые отчеты о закупке инновационной продукции,высокотехнологичной продукции'
     },
 ];
@@ -48,27 +48,27 @@ const rowsBvh = [
 const rowsBoos = [
     {
         id: 1,
-        file: '/static/files/media/Blank.pdf',
+        file: '/static/files/media/blank.pdf',
         title: 'Положение о закупках'
     },
     {
         id: 2,
-        file: '/static/files/media/Blank.pdf',
+        file: '/static/files/media/blank.pdf',
         title: 'Планы закупок'
     },
     {
         id: 3,
-        file: '/static/files/media/Blank.pdf',
+        file: '/static/files/media/blank.pdf',
         title: 'Отчетность по договорам'
     },
     {
         id: 4,
-        file: '/static/files/media/Blank.pdf',
+        file: '/static/files/media/blank.pdf',
         title: 'Годовые отчеты о закупке товаров,работ,услуг у субъектов малого и среднего предпринимательства'
     },
     {
         id: 5,
-        file: '/static/files/media/Blank.pdf',
+        file: '/static/files/media/blank.pdf',
         title: 'Годовые отчеты о закупке инновационной продукции,высокотехнологичной продукции'
     },
 ];
