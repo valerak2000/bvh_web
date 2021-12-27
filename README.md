@@ -14,9 +14,9 @@ pip3 install psycopg2-binary==2.8.3
 pip3 install psycopg2 --no-binary :all:
 pip3 install -r py-requirements/dev.txt
 
-python manage.py migrate --settings=bvh_web.settings.dev
-python manage.py loaddata fixtures.json --settings=bvh_web.settings.dev
-python manage.py runserver --settings=bvh_web.settings.dev
+python3 manage.py migrate --settings=bvh_web.settings.dev
+python3 manage.py loaddata fixtures.json --settings=bvh_web.settings.dev
+python3 manage.py runserver --settings=bvh_web.settings.dev
 
 cd ..
 npm i
