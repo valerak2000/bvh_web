@@ -1,4 +1,4 @@
-Django==2.2.24
+Django==2.2.25
 django-extensions==2.2.3
 
 git+https://github.com/aaronbassett/DisposableEmailChecker.git
