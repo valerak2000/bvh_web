@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import { compose } from 'recompose';
 import { MuiThemeProvider } from '@material-ui/core/styles/';
-import { white } from '@material-ui/core/colors/common';
+import common from '@material-ui/core/colors/common';
 import Fab from '@material-ui/core/Fab';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 // core components
@@ -149,7 +149,7 @@ class Root extends Component {
                                         bottom: 20,
                                         left: 'auto',
                                         position: 'fixed',
-                                        backgroundColor: { white }
+                                        backgroundColor: common['white']
                                     }}
                                 >
                                     <ArrowUpward />

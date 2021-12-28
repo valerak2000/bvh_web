@@ -54,6 +54,7 @@ const defaultFont = {
 };
 
 const primaryColor = "#9c27b0";
+const secondaryColor = "#0d47a1";
 const warningColor = "#ff9800";
 const dangerColor = "#f44336";
 const successColor = "#4caf50";
@@ -103,7 +104,7 @@ const infoCardHeader = {
   ...infoBoxShadow
 };
 const primaryCardHeader = {
-  background: "linear-gradient(60deg, #ab47bc, #8e24aa)",
+  background: "linear-gradient(60deg, #0d47a1, #fff)",
   ...primaryBoxShadow
 };
 const roseCardHeader = {
@@ -181,6 +182,7 @@ export {
   card,
   defaultFont,
   primaryColor,
+  secondaryColor,
   warningColor,
   dangerColor,
   successColor,

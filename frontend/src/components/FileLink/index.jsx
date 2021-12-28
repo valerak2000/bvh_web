@@ -69,6 +69,9 @@ class FileLink extends Component {
             case 'RAR':
                 iconExt = fileIconRar;
                 break;
+            case '7Z':
+                iconExt = fileIconZip;
+                break;
             case 'CSV':
                 iconExt = fileIconCsv;
                 break;
