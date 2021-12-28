@@ -11,6 +11,21 @@ import CardHeader from '../../../../components/Card/CardHeaderImpl.jsx';
 import FileLink from '../../../../components/FileLink';
 import CustomTabs from '../../../../components/CustomTabs/CustomTabs.jsx';
 import GridItem from '../../../../components/Grid/GridItem.jsx';
+import Table from '../../../../components/Table/Table.jsx';
+// @material-ui/icons
+import ContentCopy from '@material-ui/icons/FileCopy';
+import Store from '@material-ui/icons/Store';
+import InfoOutline from '@material-ui/icons/InfoOutlined';
+import Warning from '@material-ui/icons/Warning';
+import DateRange from '@material-ui/icons/DateRange';
+import LocalOffer from '@material-ui/icons/LocalOffer';
+import Update from '@material-ui/icons/Update';
+import ArrowUpward from '@material-ui/icons/ArrowUpward';
+import AccessTime from '@material-ui/icons/AccessTime';
+import Accessibility from '@material-ui/icons/Accessibility';
+import BugReport from '@material-ui/icons/BugReport';
+import Code from '@material-ui/icons/Code';
+import Cloud from '@material-ui/icons/Cloud';
 
 const styles = theme => ({
     text: {
@@ -79,6 +94,7 @@ class ZakupkiRaskrytieFinView extends Component {
     render() {
         const { classes } = this.props;
         const { card } = this.props.theme.app;
+        const { loading } = true;
 
         return (
             <Card
@@ -92,6 +108,33 @@ class ZakupkiRaskrytieFinView extends Component {
                 <CardContent
                     style = { card.text }
                 >
+                    <CustomTabs
+                        title = "«Брюховецкое водопроводное хозяйство», ООО"
+                        headerColor = "primary"
+                        plainTabs = { true }
+                        loading = { loading }
+                        tabs = {[
+                            {
+                                tabName: '2019',
+                                tabContent: (
+                                    <p>No data</p>
+                                )
+                            },
+                            {
+                                tabName: '2020',
+                                tabContent: (
+                                    <p>No data</p>
+                                )
+                            },
+                            {
+                                tabName: '2021',
+                                tabContent: (
+                                    <p>No data</p>
+                                )
+                            }
+                        ]}
+                    />
+
                     <CardHeader
                         subheader = '«Брюховецкое водопроводное хозяйство», ООО'
                         { ...this.props }
@@ -122,6 +165,64 @@ class ZakupkiRaskrytieFinView extends Component {
                             />
                         ))
                     }
+
+                <Grid container>
+                    <GridItem xs={12} sm={12} md={6}>
+                        <CustomTabs
+                            title = ""
+                            headerColor = "primary"
+                            loading = { loading }
+                            tabs = {[
+                                {
+                                    tabName: '2019',
+                                    tabIcon: BugReport,
+                                    tabContent: (
+                                        <p>No data</p>
+                                    )
+                                },
+                                {
+                                    tabName: '2020',
+                                    tabIcon: Code,
+                                    tabContent: (
+                                        <p>No data</p>
+                                    )
+                                },
+                                {
+                                    tabName: '2021',
+                                    tabIcon: Cloud,
+                                    tabContent: (
+                                        <p>No data</p>
+                                    )
+                                }
+                            ]}
+                        />
+                    </GridItem>
+
+                    <GridItem xs={12} sm={12} md={6}>
+                        <Card>
+                            <CardHeader color="warning">
+                                <h4>Employees Stats</h4>
+                                <p>
+                                Header
+                                </p>
+                            </CardHeader>
+                                <p>
+                                Body
+                                </p>
+                                <Table
+                                    tableHeaderColor="warning"
+                                    tableHead={['ID', 'Name', 'Salary', 'Country']}
+                                    tableData={[
+                                        ['1', 'Dakota Rice', '$36,738', 'Niger'],
+                                        ['2', 'Minerva Hooper', '$23,789', 'Curaçao'],
+                                        ['3', 'Sage Rodriguez', '$56,142', 'Netherlands'],
+                                        ['4', 'Philip Chaney', '$38,735', 'Korea, South']
+                                    ]}
+                                />
+                        </Card>
+                    </GridItem>
+                </Grid>
+
                 </CardContent>
             </Card>
         );
@@ -131,7 +232,6 @@ class ZakupkiRaskrytieFinView extends Component {
 export default withStyles(styles, { name: 'muiZakupkiRaskrytieFinView', flip: false, withTheme: true })(ZakupkiRaskrytieFinView);
 //export { ZakupkiRaskrytieView as ZakupkiRaskrytieViewNotConnected };
 /*
-<Grid container>
           <GridItem xs={12} sm={12} md={6}>
             <CustomTabs
               title="Tasks:"
@@ -202,7 +302,4 @@ export default withStyles(styles, { name: 'muiZakupkiRaskrytieFinView', flip: fa
               </CardBody>
             </Card>
           </GridItem>
-        </Grid>
-                </CardContent>
-            </Card>
 */

@@ -20,7 +20,7 @@ const styles = theme => ({
 const rowsBvh = [
     {
         id: 1,
-        file: '/static/files/media/blank.pdf',
+        file: '/static/files/media/Положение о закупках БВХ 2020.pdf',
         title: 'Положение о закупках'
     },
     {
@@ -48,7 +48,7 @@ const rowsBvh = [
 const rowsBoos = [
     {
         id: 1,
-        file: '/static/files/media/blank.pdf',
+        file: '/static/files/media/Положение о закупках БООС 2020.pdf',
         title: 'Положение о закупках'
     },
     {
