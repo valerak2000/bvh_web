@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+//import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 import CardHeader from '../../../../components/Card/CardHeaderImpl.jsx';
@@ -38,6 +38,11 @@ const rowsBvh = [
         file: '/static/files/media/Баланс-и-ф-2-БВХ-2020.pdf',
         title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2020 год'
     },
+    {
+        id: 5,
+        file: '/static/files/media/Баланс-и-ф-2-БВХ-2021.pdf',
+        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2021 год'
+    },
 ];
 
 const rowsBoos = [
@@ -60,6 +65,11 @@ const rowsBoos = [
         id: 4,
         file: '/static/files/media/Баланс-и-ф-2-БООС-2020.pdf',
         title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2020 год'
+    },
+    {
+        id: 5,
+        file: '/static/files/media/Баланс-и-ф-2-БООС-2021.pdf',
+        title: 'Годовой бухгалтерский баланс и форма №2 «Отчет о прибылях и убытках» за 2021 год'
     },
 ];
 
