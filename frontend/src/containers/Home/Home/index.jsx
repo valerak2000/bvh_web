@@ -224,7 +224,7 @@ function KKActions(props) {
                 centerRipple = { false }
                 disableRipple = { true }
                 disableTouchRipple = { true }
-                href = 'https://ref.kubankredit.ru/2?h=92AB88ADEDFC7C860509D76F99100479&params=hh'
+                href = 'https://ref.kubankredit.ru/2?h=7F29F8BB0D761524929E9EBD2C9D7B53&params=hh'
                 target = '_blank'
             >
                 ООО "БРЮХОВЕЦКОЕ ПРЕДПРИЯТИЕ ОТВОДА И ОЧИСТКИ СТОКОВ"
