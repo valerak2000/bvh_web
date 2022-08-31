@@ -33,6 +33,7 @@ const sberPayOnline = '/static/images/myTarget_600x600.jpg';
 const avtoplatezh = '/static/images/avtoplatezh.gif';
 const instruktsiyaAvtoplatezh = '/static/images/instruktsiya_avtoplatezh.jpg';
 const instruktsiyaAvtoplatezhWP = '/static/images/instruktsiya_avtoplatezh.webp';
+const platezhKK = '/static/images/kubankredit.png';
 
 const splashSteps = [
     {
@@ -142,6 +143,27 @@ function NextArrow(props) {
                     className = { classes.bannerSber }
                 />
             </Button>
+        </React.Fragment>
+    );
+}
+/*
+            <Button
+                focusRipple = { false }
+                aria-selected = { false }
+                centerRipple = { false }
+                disableRipple = { true }
+                disableTouchRipple = { true }
+                href = 'http://www.sberbank.ru/ru/person/paymentsandremittances/payments/zhkh#blok'
+                target = '_blank'
+            >
+                <img
+                    src = { avtoplatezh }
+                    alt = 'Автоплатеж Сбербанк'
+                    title = 'Автоплатеж Сбербанк'
+                    className = { classes.bannerSber }
+                />
+            </Button>
+
             <Typography
                 variant = 'body1'
                 color = 'textSecondary'
@@ -167,6 +189,57 @@ function NextArrow(props) {
                     }}
                 />
             </Typography>
+
+*/
+
+function KKActions(props) {
+    const { classes } = props;
+
+    return (
+        <React.Fragment key = 'kk_actions'>
+            <Typography
+                variant = 'body1'
+                color = 'textSecondary'
+                className = { classes.text }
+            >
+                <ImageZoom
+                    image = {{
+                        src: platezhKK,
+                        alt: 'КБ Кубань Кредит ООО',
+                        title: 'КБ Кубань Кредит ООО',
+                        className: classes.imageZoom,
+                    }}
+                    shouldRespectMaxDimension = { true }
+                    defaultStyles = {{
+                        zoomContainer: {
+                            zIndex: 10000,
+                        },
+                    }}
+                /> Прием платежей по карте любого банка через КБ Кубань Кредит ООО
+                может быть осуществлён через приложение банка Кубань Кредит, расположенное по ссылке:
+            </Typography>
+            <Button
+                focusRipple = { false }
+                aria-selected = { false }
+                centerRipple = { false }
+                disableRipple = { true }
+                disableTouchRipple = { true }
+                href = 'https://ref.kubankredit.ru/2?h=92AB88ADEDFC7C860509D76F99100479&params=hh'
+                target = '_blank'
+            >
+                ООО "БРЮХОВЕЦКОЕ ПРЕДПРИЯТИЕ ОТВОДА И ОЧИСТКИ СТОКОВ"
+            </Button>
+            <Button
+                focusRipple = { false }
+                aria-selected = { false }
+                centerRipple = { false }
+                disableRipple = { true }
+                disableTouchRipple = { true }
+                href = 'https://ref.kubankredit.ru/2?h=C9D494F7B0A8BEDEC2442EC1169DC5E3&params=hh'
+                target = '_blank'
+            >
+                ООО "БРЮХОВЕЦКОЕ ВОДОПРОВОДНОЕ ХОЗЯЙСТВО"
+            </Button>
         </React.Fragment>
     );
 }
@@ -363,6 +436,11 @@ class HomeView extends Component {
                             </div>
                         ))}
                     </Slider>
+                    <br />
+                    <br />
+                    <KKActions
+                        { ...this.props }
+                    />
                     <br />
                     <br />
                     <SberActions
