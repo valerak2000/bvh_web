@@ -148,6 +148,11 @@ class ConnectionHolodnoeVodosnabjenieView extends Component {
                         href = '/static/files/media/potrebiteliam/Заявка на ввод в эксплуатацию прибора учета.pdf'
                         label = 'Заявка на ввод в эксплуатацию прибора учета'
                     />
+                    <FileLink
+                        key = 'zayavotklbvh'
+                        href = '/static/files/media/potrebiteliam/Прошу Вас отключить меня от централизованного водоснабжения.docx'
+                        label = 'Прошу Вас отключить меня от централизованного водоснабжения'
+                    />
                 </CardContent>
             </Card>
         );
