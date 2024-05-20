@@ -23,11 +23,11 @@ const rowsBvh = [
         file: '/static/files/media/Положение о закупках БВХ 2020.pdf',
         title: 'Положение о закупках'
     },
-    {
+ /*   {
         id: 2,
         file: '/static/files/media/План  закупок  2019  БВХ.xls',
         title: 'Планы закупок 2019'
-    },
+    },*/
     {
         id: 3,
         file: '/static/files/media/План  закупок  2020  БВХ.xls',
