@@ -155,12 +155,12 @@ const rowsBoos = [
         id: 5,
         file: '/static/files/media/План  закупок с изменениями  2021  БООС.xls',
         title: 'План закупок с изменениями 2021'
-    },
+    },*/
     {
         id: 6,
         file: '/static/files/media/План  закупок  2022  БООС.xls',
         title: 'Планы закупок 2022'
-    },*/
+    },
     {
         id: 7,
         file: '/static/files/media/План  закупок  2023  БООС.xls',
