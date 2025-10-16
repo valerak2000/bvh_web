@@ -146,51 +146,28 @@ function NextArrow(props) {
         </React.Fragment>
     );
 }
-/*
-            <Button
-                focusRipple = { false }
-                aria-selected = { false }
-                centerRipple = { false }
-                disableRipple = { true }
-                disableTouchRipple = { true }
-                href = 'http://www.sberbank.ru/ru/person/paymentsandremittances/payments/zhkh#blok'
-                target = '_blank'
-            >
-                <img
-                    src = { avtoplatezh }
-                    alt = 'Автоплатеж Сбербанк'
-                    title = 'Автоплатеж Сбербанк'
-                    className = { classes.bannerSber }
-                />
-            </Button>
 
+function BoosActions(props) {
+    const { classes } = props;
+
+    return (
+        <React.Fragment key = 'boos_actions'>
             <Typography
                 variant = 'body1'
                 color = 'textSecondary'
                 className = { classes.text }
             >
-                Для подключения услуги Автоплатеж перейдите по этой <a href = 'http://www.sberbank.ru/ru/person/paymentsandremittances/payments/zhkh' target = '_blank'>ссылке</a>.
-                <ImageZoom
-                    image = {{
-                        src: instruktsiyaAvtoplatezhWP,
-                        alt: 'Инструкция для подключения услуги Автоплатеж Сбербанк',
-                        title: 'Инструкция для подключения услуги Автоплатеж Сбербанк',
-                        className: classes.imageZoom,
-                    }}
-                    zoomImage = {{
-                        src: instruktsiyaAvtoplatezh,
-                        alt: 'Инструкция для подключения услуги Автоплатеж Сбербанк',
-                    }}
-                    shouldRespectMaxDimension = { true }
-                    defaultStyles = {{
-                        zoomContainer: {
-                            zIndex: 10000,
-                        },
-                    }}
-                />
-            </Typography>
+                Уважаемые абоненты ООО «Брюховецкое предприятия отвода и очистки стоков !
 
-*/
+      В связи с расторжением договора № 2/7 «О передаче в аренду недвижимого имущества, являющегося муниципальной собственностью Брюховецкого сельского поселения» от 01.12.2007 года, заключенного между Брюховецким сельским поселением и ООО «Брюховецкое предприятие отвода и очистки стоков» и, соответственно, передачей объектов водоотведения Брюховецкому сельскому поселению, ООО «Брюховецкое предприятие отвода и очистки стоков» настоящим уведомляет, что с 21 ноября 2025 года (дата расторжения вышеуказанного договора аренды) прекращает свою хозяйственную деятельность по водоотведению в ст. Брюховецкой Краснодарского края.
+   Прекращение деятельности по водоотведению является основанием для расторжения договоров водоотведения, поскольку исполнение договоров становится невозможным.  
+     Договоры водоотведения будут считаться расторгнутыми с 21 ноября 2025 года.
+
+     Администрация ООО «БООС»
+            </Typography>
+        </React.Fragment>
+    );
+}
 
 function KKActions(props) {
     const { classes } = props;
@@ -436,6 +413,11 @@ class HomeView extends Component {
                             </div>
                         ))}
                     </Slider>
+                    <br />
+                    <br />
+                    <BoosActions
+                        { ...this.props }
+                    />
                     <br />
                     <br />
                     <KKActions
