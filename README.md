@@ -4,14 +4,14 @@ git submodule init
 
 cd backend 
 
-linux: virtualenv -p /usr/bin/python3.7 py37
-       source py37/bin/activate 
-windows: py -3.7 -m venv py37
+linux: virtualenv -p /usr/bin/python3.12 py3
+       source py3/bin/activate
+windows: py -3.12 -m venv py3
 
 
 pip3 install virtualenv
-pip3 install psycopg2-binary==2.8.3
-pip3 install psycopg2 --no-binary :all:
+#pip3 install psycopg2-binary==2.8.3
+#pip3 install psycopg2 --no-binary :all:
 pip3 install -r py-requirements/dev.txt
 
 python3 manage.py migrate --settings=bvh_web.settings.dev
