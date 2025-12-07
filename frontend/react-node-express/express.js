@@ -8,8 +8,8 @@ const path = require('path');
 const compression = require('compression');
 
 const app = express();
-const port = process.env.PORT || 8080;
-const portSsl = process.env.PORT_SSL || 8081;
+const port = process.env.PORT || 3000;
+const portSsl = process.env.PORT_SSL || 8443;
 const distFolder = 'src/static_dist';
 
 app.use(compression());

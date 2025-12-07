@@ -343,8 +343,6 @@ tmp/
 \#*
 
 py3/
-py36/
-py37/
 
 # Python compiled byte code
 *.pyc

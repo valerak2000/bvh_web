@@ -13,16 +13,16 @@ try:
     SECRET_KEY
 except NameError:
     SECRET_FILE = base_dir_join('secret.txt')
+    print(SECRET_FILE)
     try:
         with open(SECRET_FILE) as f:
             SECRET_KEY = f.read().strip()
-        #f = open(SECRET_FILE)
-        #SECRET_KEY = f.read().strip()
     except IOError:
-        SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'ajsdgas7&*kosdsa21[]jaksdhlka-;kmcv8l$#diepsm8&ah^')
+        SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '6627fe4efb8447f9661b04c33532b4bb0287dfeab2a18e9030c3036c4a27896f36a9672852b41d7cf124610b384c03d5731d')
 
 DEBUG = True
 
+#ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition

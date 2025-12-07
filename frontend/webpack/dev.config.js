@@ -2,7 +2,7 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 const commonConfig = require('./common.config');
 
-const port = 8080;
+const port = 3000;
 const url = `http://localhost:${port}`;
 const mode = 'development';
 
