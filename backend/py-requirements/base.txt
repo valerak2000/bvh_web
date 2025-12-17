@@ -15,7 +15,7 @@ djangorestframework==3.13.1
 # Sentry
 raven==6.10.0
 # for date processing
-python-dateutil==2.9.0.post0
+python-dateutil
 
 # Logging
 django-rest-logger

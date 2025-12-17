@@ -15,7 +15,6 @@ pip3 install virtualenv
 pip3 install -r py-requirements/dev.txt
 pip3 install --upgrade -r py-requirements/dev.txt
 pip install setuptools
-
 python3 manage.py migrate --settings=bvh_web.settings.dev
 python3 manage.py loaddata fixtures.json --settings=bvh_web.settings.dev
 python3 manage.py runserver --settings=bvh_web.settings.dev
