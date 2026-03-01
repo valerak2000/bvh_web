@@ -1,20 +1,28 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "@components/*": ["./components/*"],
+      "@containers/*": ["./containers/*"],
+      "@actions/*": ["./actions/*"],
+      "@reducers/*": ["./reducers/*"],
+      "@utils/*": ["./utils/*"],
+      "@styles/*": ["./styles/*"]
+    },
     "module": "es2015",
     "target": "es5",
     "lib": ["es6", "esnext", "dom"],
-    //"sourceMap": true,
+    "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": "src",
-    //"noEmit": true,
+    "outDir": "../static/bundles",
     "pretty": true,
     "skipLibCheck": true,
     "removeComments": false,
     "forceConsistentCasingInFileNames": true,
-    //"emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -22,10 +30,15 @@
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "experimentalDecorators": true,
-    //"declaration": true,
-    "strict": true
+    "strict": true,
+    "esModuleInterop": true
   },
-  "include": ["./src/**/*.tsx", "./src/**/*.ts", "tests/*.ts"],
+  "include": [
+    "./src/**/*.tsx", 
+    "./src/**/*.ts", 
+    "./src/**/*.jsx", 
+    "./src/**/*.js"
+  ],
   "exclude": [
     "node_modules",
     "build",

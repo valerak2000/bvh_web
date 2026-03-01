@@ -20,7 +20,7 @@ python3 manage.py loaddata fixtures.json --settings=bvh_web.settings.dev
 python3 manage.py runserver --settings=bvh_web.settings.dev
 
 cd ..
-npm i
+npm24 i
 
 test connection to database: psql -h localhost -p 5433 -U djangoreactredux djangoreactredux_dev
 run in dev mode: ./rundev.sh

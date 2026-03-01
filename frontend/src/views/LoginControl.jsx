@@ -1,27 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { push } from 'react-router-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-//import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import Divider from '@material-ui/core/Divider';
-//import Badge from '@material-ui/core/Badge';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import { useTheme } from '@mui/material/styles';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Divider from '@mui/material/Divider';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons/faSignInAlt';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 import { faLock } from '@fortawesome/free-solid-svg-icons/faLock';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { authLogoutAndRedirect } from '../actions/auth';
-
-const styles = theme => ({
-});
 
 /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
 export function Login(props) {
@@ -34,17 +28,16 @@ export function Login(props) {
             disableRipple = { true }
             disableTouchRipple = { true }
             component = { Link } to = '/'
-            style = { props.style.button }
+            sx = { props.style.button }
         >
-            Войти    
+            Войти
             <FontAwesomeIcon
                 icon = { faSignInAlt }
-                style = { props.style.button.icon }
+                sx = { props.style.button.icon }
             />
         </Button>
     );
 }
-//            onClick = { props.onClick }
 
 export function Logged(props) {
     const { anchorEl } = props;
@@ -61,48 +54,12 @@ export function Logged(props) {
             disableRipple = { true }
             disableTouchRipple = { true }
             onClick = { props.onClick }
-            style = { props.style.button }
+            sx = { props.style.button }
         >
             <AccountCircle />
         </Button>
     );
 }
-/*
-        <IconMenu
-            iconButtonElement = {
-                <IconButton>
-                    <AccountCircle />
-                </IconButton>
-            }
-            anchorOrigin = {{ horizontal: 'right', vertical: 'top' }}
-            targetOrigin = {{ horizontal: 'right', vertical: 'top' }}
-            style = { props.style.button }
-            iconStyle = { props.style.button.iconMenu }
-        >
-            <MenuItem
-                primaryText = 'Личный кабинет (Внести показания, узнать состояние баланса, заказать и оплатить услуги)'
-                secondaryText = '123'
-                leftIcon = {
-                    <FontAwesomeIcon
-                        icon = { faLock }
-                        style = { props.style.button.icon }
-                    />
-                }
-                onClick = { props.onClickProtected }
-            />
-            <Divider />
-            <MenuItem
-                primaryText = { props.userName }
-                leftIcon = { 
-                    <FontAwesomeIcon
-                        icon = { faSignOutAlt }
-                        style = { props.style.button.icon }
-                    />
-                }
-                onClick = { props.onClickLogout }
-            />
-        </IconMenu>
-*/
 
 class LoginControl extends Component {
     static propTypes = {
@@ -110,8 +67,6 @@ class LoginControl extends Component {
         userName: PropTypes.string,
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
-        theme: PropTypes.object.isRequired,
-        classes: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -139,7 +94,7 @@ class LoginControl extends Component {
     handleMenuClose = () => {
         this.setState({ anchorEl: null });
     };
-    
+
     handleLogoutClick = (e) => {
         e.preventDefault();
         this.handleMenuClose();
@@ -149,7 +104,6 @@ class LoginControl extends Component {
     handleLoginClick = (e) => {
         e.preventDefault();
         this.props.history.push('/');
-        //this.props.history.push('/login');
     };
 
     handleProtectedClick = (e) => {
@@ -158,7 +112,6 @@ class LoginControl extends Component {
     };
 
     render() {
-        const { classes } = this.props;
         const { isAuthenticated, userName } = this.props;
         const { anchorEl } = this.state;
         const login = this.props.theme.app.header.appBar.login;
@@ -175,10 +128,10 @@ class LoginControl extends Component {
                     component = { Link } to = '/protected'
                     onClick = { this.handleProtectedClick }
                 >
-                    <IconButton color = 'inherit'>
+                    <IconButton color = 'inherit' size="large">
                         <FontAwesomeIcon
                             icon = { faLock }
-                            style = { login.button.icon }
+                            sx = { login.button.icon }
                         />
                     </IconButton>
                     Личный кабинет (Внести показания, узнать состояние баланса, заказать и оплатить услуги)
@@ -187,17 +140,17 @@ class LoginControl extends Component {
                 <MenuItem
                     onClick = { this.handleLogoutClick }
                 >
-                    <IconButton color = 'inherit'>
+                    <IconButton color = 'inherit' size="large">
                         <FontAwesomeIcon
                             icon = { faSignOutAlt }
-                            style = { login.button.icon }
+                            sx = { login.button.icon }
                         />
                     </IconButton>
                     { userName }
                 </MenuItem>
             </Menu>
         );
-        
+
         return (
             <span
                 style = { login }
@@ -243,65 +196,6 @@ class LoginControl extends Component {
         );
     }
 }
-/*
-                            link = '/login'
-            <Badge
-                id = 'LoginControl'
-                badgeContent = {
-                    <div>
-                        <span style = {{ fontWeight: 100, }}>Круглосуточный диспетчер:</span>
-                        <span style = {{ fontWeight: 700, }}> 8 (86156) 35-117</span>
-                    </div>
-                }
-                badge = {{ fontWeight: 100, }}
-                style = { login.badge }
-            >
-            {
-                isAuthenticated ? (
-                    <Logged
-                        userName = { userName }
-                        onClickLogout = { this.handleLogoutClick }
-                        onClickProtected = { this.handleProtectedClick }
-                        style = { login }
-                        { ...this.props }
-                    />
-                ) : (
-                    <Login
-                        onClick = { this.handleLoginClick }
-                        style = { login }
-                        { ...this.props }
-                    />
-                )
-            }
-            </Badge>
-
-            <Badge
-                id = 'LoginControl'
-                badgeContent = {
-                    <div>
-                        <span style = {{ fontWeight: 100, }}>Круглосуточный диспетчер:</span>
-                        <span style = {{ fontWeight: 700, }}> 8 (86156) 35-117</span>
-                    </div>
-                }
-                badgeStyle = { badge }
-            >
-            {
-                isAuthenticated ? (
-                    <Logged
-                        userName = { userName }
-                        onClickLogout = { this.handleLogoutClick }
-                        onClickProtected = { this.handleProtectedClick }
-                        style = { login }
-                    />
-                ) : (
-                    <Login
-                        onClick = { this.handleLoginClick }
-                        style = { login }
-                    />
-                )
-            }
-            </Badge>
-*/
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -309,4 +203,9 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-export default withStyles(styles, { name: 'LoginControl', flip: false, withTheme: true })(connect(mapStateToProps)(LoginControl));
+const LoginControlWithTheme = (props) => {
+    const theme = useTheme();
+    return <LoginControl {...props} theme={theme} />;
+};
+
+export default connect(mapStateToProps)(LoginControlWithTheme);

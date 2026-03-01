@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography';
+import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 class UnderConstruct extends Component {
     render() {
@@ -15,4 +15,9 @@ class UnderConstruct extends Component {
     }
 }
 
-export default withStyles(null, { name: 'muiUnderConstruct', flip: false, withTheme: true })(UnderConstruct);
+const UnderConstructWithTheme = (props) => {
+    const theme = useTheme();
+    return <UnderConstruct {...props} theme={theme} />;
+};
+
+export default UnderConstructWithTheme;

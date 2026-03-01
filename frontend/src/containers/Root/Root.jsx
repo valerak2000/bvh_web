@@ -3,23 +3,23 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
-import { compose } from 'recompose';
-import { MuiThemeProvider } from '@material-ui/core/styles/';
-import common from '@material-ui/core/colors/common';
-import Fab from '@material-ui/core/Fab';
-import ArrowUpward from '@material-ui/icons/ArrowUpward';
+//import { compose } from 'recompose';
+import { MuiThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import Fab from '@mui/material/Fab';
+import ArrowUpward from '@mui/icons-material/ArrowUpward';
 // core components
 import MessageBox from '../../components/MessageBox';
 //Actions
 import NotificationActions from '../../actions/Notifications';
-
 import '../../styles/main.scss';
+
 import { muiTheme } from '../../styles/styles';
 import DevTools from './DevTools';
 import AppView from '../App';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import LeftNavMenu from '../../components/Sidebar/LeftNavMenu';
+import { common } from '@mui/material/colors';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -115,58 +115,60 @@ class Root extends Component {
 
         return (
             <div>
-                <MuiThemeProvider theme = { muiTheme }>
-                    <div
-                        style = { muiTheme.global }
-                    >
-                        <MessageBox { ...messageBox } open = { messageBox.open || false } />
-
-                        <Header
-                            { ...this.props }
-                            { ...rest }
-                        />
+                <StyledEngineProvider injectFirst>
+                    <MuiThemeProvider theme = { muiTheme }>
                         <div
-                            id = 'app'
-                            style = {{ 
-                                display: 'flex', 
-                                width: '100%',
-                            }}
+                            style = { muiTheme.global }
                         >
-                            <LeftNavMenu
+                            <MessageBox { ...messageBox } open = { messageBox.open || false } />
+
+                            <Header
                                 { ...this.props }
                                 { ...rest }
                             />
-                            {
-                                goTopEnable &&
-                                <Fab
-                                    aria-label = 'Top'
-                                    size = 'small'
-                                    onClick = { () => this.scrollToTop() }
-                                    style = {{
-                                        margin: 0,
-                                        top: 'auto',
-                                        right: 20,
-                                        bottom: 20,
-                                        left: 'auto',
-                                        position: 'fixed',
-                                        backgroundColor: common['white']
-                                    }}
-                                >
-                                    <ArrowUpward />
-                                </Fab>
-                            }
-                            <AppView 
+                            <div
+                                id = 'app'
+                                style = {{ 
+                                    display: 'flex', 
+                                    width: '100%',
+                                }}
+                            >
+                                <LeftNavMenu
+                                    { ...this.props }
+                                    { ...rest }
+                                />
+                                {
+                                    goTopEnable &&
+                                    <Fab
+                                        aria-label = 'Top'
+                                        size = 'small'
+                                        onClick = { () => this.scrollToTop() }
+                                        style = {{
+                                            margin: 0,
+                                            top: 'auto',
+                                            right: 20,
+                                            bottom: 20,
+                                            left: 'auto',
+                                            position: 'fixed',
+                                            backgroundColor: common['white']
+                                        }}
+                                    >
+                                        <ArrowUpward />
+                                    </Fab>
+                                }
+                                <AppView 
+                                    { ...this.props }
+                                    { ...rest }
+                                />
+                            </div>
+                            <Footer
                                 { ...this.props }
                                 { ...rest }
                             />
+                            { !isProd && <DevTools /> }
                         </div>
-                        <Footer
-                            { ...this.props }
-                            { ...rest }
-                        />
-                        { !isProd && <DevTools /> }
-                    </div>
-                </MuiThemeProvider>
+                    </MuiThemeProvider>
+                </StyledEngineProvider>
             </div>
         );
     }
@@ -178,10 +180,10 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-export default compose(
+//export default compose(
 //    withStyles(styles, { name: 'muiRootView', flip: false, withTheme: false }),
-    connect(mapStateToProps)
-)(Root);
+//    connect(mapStateToProps)
+//)(Root);
 
 /*
 */

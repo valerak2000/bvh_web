@@ -1,34 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Card, CardHeader } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
-import withTheme from '@material-ui/core/styles/withTheme';
-import { Card, CardHeader } from '@material-ui/core';
+function UnderConstructView() {
+    const theme = useTheme();
+    const { card } = theme.app;
 
-class UnderConstructView extends Component {
-    static propTypes = {
-        theme: PropTypes.object.isRequired,
-    };
-
-    constructor(props, context) {
-        super(props, context);
-    }
-
-    render() {
-        const { card } = this.props.theme.app;
-        
-        return (
-            <Card
-                style = { card }
-            >
-                <CardHeader
-                    title = 'Страница находится в разработке'
-                    titleStyle = { card.title }
-                />
-            </Card>
-        );
-    }
+    return (
+        <Card
+            sx = { card }
+        >
+            <CardHeader
+                title = 'Страница находится в разработке'
+                sx = { card.title }
+            />
+        </Card>
+    );
 }
 
-export default withTheme()(UnderConstructView);
-//export default withTheme(UnderConstructView);
-//export { UnderConstructView as UnderConstructViewNotConnected };
+export default UnderConstructView;

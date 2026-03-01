@@ -1,10 +1,7 @@
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import common from '@material-ui/core/colors/common';
-import blue from '@material-ui/core/colors/blue';
-import grey from '@material-ui/core/colors/grey';
-import cyan from '@material-ui/core/colors/cyan';
+import { adaptV4Theme, createTheme } from '@mui/material/styles';
+import { common, blue, grey, cyan } from '@mui/material/colors';
 
-export var muiTheme = createMuiTheme({
+export var muiTheme = createTheme(adaptV4Theme({
     palette: {
         textColor: {
             main: blue[900]
@@ -36,7 +33,6 @@ export var muiTheme = createMuiTheme({
         //canvasColor: Colors.teal200,
     },
     typography: {
-        useNextVariants: true,
         fontFamily: [
             'pfbeausanspro-reg',
             'sans-serif',
@@ -339,4 +335,4 @@ export var muiTheme = createMuiTheme({
         textIndent: '1.5em',
         margin: '0.25rem auto 0.25rem',
     },
-});
+}));

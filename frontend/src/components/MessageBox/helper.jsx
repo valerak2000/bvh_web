@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import MessageBoxType from "./MessageBoxType";
-import SvgIcon from "@material-ui/core/SvgIcon";
+import SvgIcon from "@mui/material/SvgIcon";
 
 export function getTitleClasses(type, classes) {
   switch (type) {

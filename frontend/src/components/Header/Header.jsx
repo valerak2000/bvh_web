@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import withStyles from '@material-ui/core/styles/withStyles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
+import { useTheme } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
 
 import LoginControl from '../../views/LoginControl';
 import SiteMenu from '../../views/SiteMenu';
@@ -15,8 +15,6 @@ class Header extends Component {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
-        theme: PropTypes.object.isRequired,
-        classes: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -24,17 +22,16 @@ class Header extends Component {
     }
 
     render() {
-        const { classes } = this.props;
         const { appBar } = { ...this.props.theme.app.header };
         const { isAuthenticated } = this.props;
 
         return (
             <AppBar
                 position = 'static'
-                style = { appBar }
+                sx = { appBar }
             >
                 <Toolbar
-                    style = {{ 
+                    sx = {{
                         padding: '0 8px 8px 8px',
                     }}
                 >
@@ -45,12 +42,12 @@ class Header extends Component {
                         disableRipple = { true }
                         disableTouchRipple = { true }
                         component = { Link } to = '/'
-                        style = { appBar.logo }
+                        sx = { appBar.logo }
                     >
                         <img
                             src = { bvhLogo }
                             alt = 'Главная'
-                            style = { appBar.logo.picture }
+                            sx = { appBar.logo.picture }
                         />
                     </Button>
                     <SiteMenu
@@ -68,7 +65,9 @@ class Header extends Component {
     }
 }
 
-export default withStyles(null, { name: 'muiHeader', flip: false, withTheme: true })(Header);
+const HeaderWithTheme = (props) => {
+    const theme = useTheme();
+    return <Header {...props} theme={theme} />;
+};
 
-/*
-*/
+export default HeaderWithTheme;

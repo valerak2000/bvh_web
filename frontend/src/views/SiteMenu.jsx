@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import pink from '@material-ui/core/colors/pink';
-
-//import { HOME_MENU, ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants';
-
-const styles = {
-    indicator: {
-        backgroundColor: pink['A200'], //rgb(255, 64, 129)
-    },
-};
+import { useTheme } from '@mui/material/styles';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import { pink } from '@mui/material/colors';
 
 class SiteMenu extends Component {
     static propTypes = {
@@ -20,8 +12,6 @@ class SiteMenu extends Component {
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
-        theme: PropTypes.object.isRequired,
-        classes: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -37,7 +27,6 @@ class SiteMenu extends Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        //console.log(props.location.pathname);
         let currentTab = false;
 
         if (props.location !== null && props.location) {
@@ -57,7 +46,6 @@ class SiteMenu extends Component {
             default:
                 break;
         }
-        //console.log(currentTab);
         return {
             activeTab: currentTab,
         };
@@ -68,7 +56,6 @@ class SiteMenu extends Component {
     };
 
     render() {
-        const { classes } = this.props;
         const { activeTab, ...props } = this.state;
         const { menu } = this.props.theme.app.header.appBar;
 
@@ -77,33 +64,40 @@ class SiteMenu extends Component {
                 <Tabs
                     value = { activeTab }
                     onChange = { this.handleChange }
-                    style = { menu }
-                    classes = {{ indicator: classes.indicator, }}
+                    sx = { menu }
+                    TabIndicatorProps={{
+                        sx: {
+                            backgroundColor: pink['A200'],
+                        }
+                    }}
                 >
                     <Tab
                         value = 'about'
                         label = 'О компании'
                         component = { Link } to = '/about'
-                        style = { menu.tab }
+                        sx = { menu.tab }
                     />
                     <Tab
                         value = 'customers'
                         label = 'Абонентам'
                         component = { Link } to = '/customers'
-                        style = { menu.tab }
+                        sx = { menu.tab }
                     />
                     <Tab
                         value = 'news'
                         label = 'Новости'
                         component = { Link } to = '/news'
-                        style = { menu.tab }
+                        sx = { menu.tab }
                     />
                 </Tabs>
             </div>
         );
     }
 }
-/*
-*/
 
-export default withStyles(styles, { name: 'muiSiteMenu', flip: false, withTheme: true })(SiteMenu);
+const SiteMenuWithTheme = (props) => {
+    const theme = useTheme();
+    return <SiteMenu {...props} theme={theme} />;
+};
+
+export default SiteMenuWithTheme;

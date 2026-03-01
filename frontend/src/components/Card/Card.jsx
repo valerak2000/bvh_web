@@ -1,45 +1,63 @@
 import React from "react";
-// nodejs library that concatenates classes
 import classNames from "classnames";
-// nodejs library to set properties for components
 import PropTypes from "prop-types";
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-// @material-ui/icons
+import { styled } from '@mui/material/styles';
 
-// core components
-import cardStyle from "assets/jss/material-dashboard-react/components/cardStyle.jsx";
+const StyledCard = styled('div')(({ theme, ownerstate }) => {
+  const { plain, profile, chart, className } = ownerstate;
 
-function Card({ ...props }) {
-  const {
-    classes,
-    className,
-    children,
-    plain,
-    profile,
-    chart,
-    ...rest
-  } = props;
+  return {
+    border: "0",
+    marginBottom: "30px",
+    marginTop: "30px",
+    borderRadius: "6px",
+    color: "rgba(0, 0, 0, 0.87)",
+    background: "#fff",
+    width: "100%",
+    boxShadow: "0 1px 4px 0 rgba(0, 0, 0, 0.14)",
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    minWidth: "0",
+    wordWrap: "break-word",
+    fontSize: ".875rem",
+    ...(plain && {
+      background: "transparent",
+      boxShadow: "none"
+    }),
+    ...(profile && {
+      marginTop: "30px",
+      textAlign: "center"
+    }),
+    ...(chart && {
+      "& p": {
+        marginTop: "0px",
+        paddingTop: "0px"
+      }
+    })
+  };
+});
+
+function Card({ children, plain, profile, chart, className, ...rest }) {
+  const ownerState = { plain, profile, chart, className };
+  
   const cardClasses = classNames({
-    [classes.card]: true,
-    [classes.cardPlain]: plain,
-    [classes.cardProfile]: profile,
-    [classes.cardChart]: chart,
     [className]: className !== undefined
   });
+  
   return (
-    <div className={cardClasses} {...rest}>
+    <StyledCard className={cardClasses} ownerState={ownerState} {...rest}>
       {children}
-    </div>
+    </StyledCard>
   );
 }
 
 Card.propTypes = {
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
+  children: PropTypes.node,
   plain: PropTypes.bool,
   profile: PropTypes.bool,
   chart: PropTypes.bool
 };
 
-export default withStyles(cardStyle)(Card);
+export default Card;

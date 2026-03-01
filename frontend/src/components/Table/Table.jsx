@@ -1,27 +1,88 @@
 import React from "react";
 import PropTypes from "prop-types";
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-import Table from "@material-ui/core/Table";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-// core components
-import tableStyle from "./tableStyle.jsx";
+import { useTheme, styled } from '@mui/material/styles';
+import MuiTable from "@mui/material/Table";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
 
-function CustomTable({ ...props }) {
-  const { classes, tableHead, tableData, tableHeaderColor } = props;
+const StyledTable = styled(MuiTable)(({ theme, ownerstate }) => {
+  const { tableHeaderColor } = ownerstate;
+  
+  const warningColor = "#ff9800";
+  const primaryColor = "#9c27b0";
+  const dangerColor = "#f44336";
+  const successColor = "#4caf50";
+  const infoColor = "#00acc1";
+  const roseColor = "#e91e63";
+  const grayColor = "#999999";
+
+  const defaultFont = {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontWeight: "300",
+    lineHeight: "1.5em"
+  };
+
+  const colorStyles = {
+    warningTableHeader: { color: warningColor },
+    primaryTableHeader: { color: theme.palette.text.primary },
+    secondaryTableHeader: { color: theme.palette.text.secondary },
+    dangerTableHeader: { color: dangerColor },
+    successTableHeader: { color: successColor },
+    infoTableHeader: { color: infoColor },
+    roseTableHeader: { color: roseColor },
+    grayTableHeader: { color: grayColor }
+  };
+
+  return {
+    marginBottom: "0",
+    width: "100%",
+    maxWidth: "100%",
+    backgroundColor: "transparent",
+    borderSpacing: "0",
+    borderCollapse: "collapse",
+    borderTop: `1px solid ${theme.palette.divider}`,
+    '& .tableHeadCell': {
+      color: 'inherit',
+      ...defaultFont,
+      fontSize: '1em'
+    },
+    '& .tableCell': {
+      ...defaultFont,
+      lineHeight: '1.42857143',
+      padding: '12px 8px',
+      verticalAlign: 'initial',
+      color: 'inherit',
+      '& body': {
+        color: theme.palette.text.secondary,
+      },
+    },
+    ...(tableHeaderColor && colorStyles[`${tableHeaderColor}TableHeader`] && {
+      '& thead': colorStyles[`${tableHeaderColor}TableHeader`]
+    })
+  };
+});
+
+const StyledTableResponsive = styled('div')(({ theme }) => ({
+  width: '100%',
+  marginTop: theme.spacing(3),
+  overflowX: 'auto'
+}));
+
+function CustomTable({ tableHead, tableData, tableHeaderColor }) {
+  const ownerState = { tableHeaderColor };
+  
   return (
-    <div className={classes.tableResponsive}>
-      <Table className={classes.table}>
+    <StyledTableResponsive>
+      <StyledTable ownerState={ownerState}>
         {tableHead !== undefined ? (
-          <TableHead className={classes[tableHeaderColor + "TableHeader"]}>
+          <TableHead>
             <TableRow>
               {tableHead.map((prop, key) => {
                 return (
                   <TableCell
-                    className={classes.tableCell + " " + classes.tableHeadCell}
+                    className="tableCell tableHeadCell"
                     key={key}
                   >
                     {prop}
@@ -37,7 +98,7 @@ function CustomTable({ ...props }) {
               <TableRow key={key}>
                 {prop.map((prop, key) => {
                   return (
-                    <TableCell className={classes.tableCell} key={key}>
+                    <TableCell className="tableCell" key={key}>
                       {prop}
                     </TableCell>
                   );
@@ -46,8 +107,8 @@ function CustomTable({ ...props }) {
             );
           })}
         </TableBody>
-      </Table>
-    </div>
+      </StyledTable>
+    </StyledTableResponsive>
   );
 }
 
@@ -56,7 +117,6 @@ CustomTable.defaultProps = {
 };
 
 CustomTable.propTypes = {
-  classes: PropTypes.object.isRequired,
   tableHeaderColor: PropTypes.oneOf([
     "warning",
     "primary",
@@ -71,4 +131,9 @@ CustomTable.propTypes = {
   tableData: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string))
 };
 
-export default withStyles(tableStyle)(CustomTable);
+const TableWithTheme = (props) => {
+  const theme = useTheme();
+  return <CustomTable {...props} theme={theme} />;
+};
+
+export default TableWithTheme;

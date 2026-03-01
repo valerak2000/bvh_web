@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+import { useTheme } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 
 import CardHeader from '../../../../components/Card/CardHeaderImpl.jsx';
 import FileLink from '../../../../components/FileLink';
-
-const styles = theme => ({
-    text: {
-        margin: 'auto auto auto 0.5rem',
-        textAlign: 'justify',
-        textIndent: '1.5em',
-    },
-});
 
 const rowsBvh = [
     {
@@ -253,67 +245,59 @@ const rowsBoos = [
     },
 ];
 
-class ZakupkiRaskrytieFz223View extends Component {
-    static propTypes = {
-        theme: PropTypes.object.isRequired,
-        classes: PropTypes.object.isRequired,
-    };
+function ZakupkiRaskrytieFz223View(props) {
+    const theme = useTheme();
+    const { card } = theme.app;
 
-    constructor(props, context) {
-        super(props, context);
-    }
-
-    render() {
-        const { classes } = this.props;
-        const { card } = this.props.theme.app;
-
-        return (
-            <Card
-                square = { true }
-                style = { card }
+    return (
+        <Card
+            square = { true }
+            sx = { card }
+        >
+            <CardHeader
+                title = '223-ФЗ'
+                { ...props }
+            />
+            <CardContent
+                sx = { card.text }
             >
                 <CardHeader
-                    title = '223-ФЗ'
-                    { ...this.props }
+                    subheader = '«Брюховецкое водопроводное хозяйство», ООО'
+                    { ...props }
                 />
-                <CardContent
-                    style = { card.text }
-                >
-                    <CardHeader
-                        subheader = '«Брюховецкое водопроводное хозяйство», ООО'
-                        { ...this.props }
-                    />
-                    {
-                        rowsBvh.map((r, index) => (
-                            <FileLink
-                                key = { r.id } 
-                                href = { r.file } 
-                                label = { r.title }
-                            />
-                        ))
-                    }
+                {
+                    rowsBvh.map((r, index) => (
+                        <FileLink
+                            key = { r.id }
+                            href = { r.file }
+                            label = { r.title }
+                        />
+                    ))
+                }
 
-                    <br/>
-                    <Divider />
+                <br/>
+                <Divider />
 
-                    <CardHeader
-                        subheader = '«Брюховецкое предприятие отвода и очистки стоков», ООО'
-                        { ...this.props }
-                    />
-                    {
-                        rowsBoos.map((r, index) => (
-                            <FileLink
-                                key = { r.id } 
-                                href = { r.file } 
-                                label = { r.title }
-                            />
-                        ))
-                    }
-                </CardContent>
-            </Card>
-        );
-    }
+                <CardHeader
+                    subheader = '«Брюховецкое предприятие отвода и очистки стоков», ООО'
+                    { ...props }
+                />
+                {
+                    rowsBoos.map((r, index) => (
+                        <FileLink
+                            key = { r.id }
+                            href = { r.file }
+                            label = { r.title }
+                        />
+                    ))
+                }
+            </CardContent>
+        </Card>
+    );
 }
 
-export default withStyles(styles, { name: 'muiZakupkiRaskrytieFz223View', flip: false, withTheme: true })(ZakupkiRaskrytieFz223View);
-//export { ZakupkiRaskrytieFz223View as ZakupkiRaskrytieFz223ViewNotConnected };
+ZakupkiRaskrytieFz223View.propTypes = {
+    theme: PropTypes.object.isRequired,
+};
+
+export default ZakupkiRaskrytieFz223View;

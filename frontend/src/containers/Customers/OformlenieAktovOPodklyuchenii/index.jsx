@@ -1,42 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Card from '@material-ui/core/Card';
-//import CardMedia from '@material-ui/core/CardMedia';
-//import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
+import { useTheme } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 import UnderConstruct from '../../../components/UnderConstruct/UnderConstruct';
 
-class OformlenieAktovOPodklyucheniiView extends Component {
-    static propTypes = {
-        theme: PropTypes.object.isRequired,
-        classes: PropTypes.object.isRequired,
-    };
+function OformlenieAktovOPodklyucheniiView(props) {
+    const theme = useTheme();
+    const { card } = theme.app;
 
-    render() {
-        const { classes } = this.props;
-        const { card } = this.props.theme.app;
-
-        return (
-            <Card
-                square = { true }
-                style = { card }
+    return (
+        <Card
+            square = { true }
+            sx = { card }
+        >
+            <CardHeader
+                title = 'Оформление актов технической приемки'
+                { ...props }
+            />
+            <CardContent
+                sx = { card.text }
             >
-                <CardHeader
-                    title = 'Оформление актов технической приемки'
-                    { ...this.props }
-                />
-                <CardContent
-                    style = { card.text }
-                >
-                    <UnderConstruct />
-                </CardContent>
-            </Card>
-        );
-    }
+                <UnderConstruct />
+            </CardContent>
+        </Card>
+    );
 }
 
-export default withStyles(null, { name: 'muiOformlenieAktovOPodklyucheniiView', flip: false, withTheme: true })(OformlenieAktovOPodklyucheniiView);
-//export { OformlenieAktovOPodklyucheniiView as OformlenieAktovOPodklyucheniiViewNotConnected };
+OformlenieAktovOPodklyucheniiView.propTypes = {
+    theme: PropTypes.object.isRequired,
+};
+
+export default OformlenieAktovOPodklyucheniiView;

@@ -1,76 +1,80 @@
-const autoprefixer = require('autoprefixer');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const webpack = require('webpack');
-//const { resolve } = require('path');
-//const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-//const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const commonConfig = require('./common.config');
 const SizePlugin = require('size-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
-const mode = 'production';
-
-module.exports = merge(commonConfig(mode), {
-    mode,
-    entry: {
-      app: './index.jsx', // the entry point of our app
-      vendors: ['react'],
-    },
-    //devtool: 'nosources-source-map',
-    devtool: 'cheap-source-map',
+module.exports = merge(commonConfig('production'), {
+    devtool: 'source-map',
+    
     optimization: {
         minimize: true,
-        splitChunks: {
-            name: false, 
-            chunks: 'all',
-            minChunks: 1,
-            hidePathInfo: false,
-            automaticNameDelimiter: '-',
-            cacheGroups: { 
-                css: {
-                    test: /\.(css|scss|less)$/i,
-                    name: 'style',
-                    reuseExistingChunk: true,
-                    enforce: true,
-                    priority: 101
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    compress: {
+                        drop_console: true,
+                        drop_debugger: true,
+                        pure_funcs: ['console.log', 'console.info', 'console.debug']
+                    },
+                    format: {
+                        comments: false,
+                    },
                 },
-                commons: { 
-                    name: 'vendors', 
-                    chunks: 'all', 
-                    test: /[\\/]node_modules[\\/]/, 
-                    priority: -10, 
-                }, 
-                moment: {
-                    test: /[\\/]moment[\\/]/,
-                    name: 'moment',
+                extractComments: false,
+            })
+        ],
+        
+        splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                defaultVendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                    priority: -10,
                     reuseExistingChunk: true,
-                    //enforce: true,
-                    priority: 100
-                }
+                },
+                react: {
+                    test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                    name: 'react',
+                    priority: 21,
+                    reuseExistingChunk: true,
+                },
+                mui: {
+                    test: /[\\/]node_modules[\\/](@mui)/,
+                    name: 'mui',
+                    chunks: 'all',
+                    priority: 20,
+                },
+                moment: {
+                    test: /[\\/]node_modules[\\/]moment[\\/]/,
+                    name: 'moment',
+                    priority: 19,
+                    reuseExistingChunk: true,
+                },
             },
         },
-        //runtimeChunk: {
-        //    name: entrypoint => `runtimechunk~${entrypoint.name}`
-        //}    
+        
+        runtimeChunk: {
+            name: 'runtime'
+        }
     },
+    
     plugins: [
-        new MiniCssExtractPlugin({ filename: '[name]-[hash].css', disable: false, allChunks: true }),
-        new webpack.LoaderOptionsPlugin({
-            options: {
-              context: __dirname,
-              postcss: [
-                autoprefixer,
-              ]
-            }
-          }),
-        /*new CompressionWebpackPlugin({
-            filename: '[path].gz[query]',
-            algorithm: 'gzip',
-            test: new RegExp('\\.(js|css)$'),
-            threshold: 10240,
-            minRatio: 0.8,
-            deleteOriginalAssets: true
-        }),*/
-        new SizePlugin()
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash].css',
+            chunkFilename: '[name].[contenthash].chunk.css'
+        }),
+        
+        new SizePlugin({
+            writeFile: true
+        }),
+        
+        // Определения для продакшена
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production')
+        })
     ]
 });

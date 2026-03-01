@@ -9,106 +9,132 @@ import {
   ListItemText,
   Divider,
   IconButton,
-  Tooltip
-} from '@material-ui/core';
-import withStyles from '@material-ui/core/styles/withStyles';
-import CloseIcon from '@material-ui/icons/Close';
+  Tooltip,
+  styled
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import CloseIcon from '@mui/icons-material/Close';
 import classnames from 'classnames';
 
-import NotificationGroupStyle from './NotificationGroupStyle';
 import NotificationItem from './NotificationItem';
 import NotificationItemPropTypes from './NotificationItemPropTypes';
-//helper
 import { getUnreadItems } from './helper';
 
-@withStyles(NotificationGroupStyle)
-export default class NotificationGroup extends React.PureComponent {
-  constructor(props, context) {
-    super(props, context);
+const StyledListItem = styled(ListItem)(({ theme, ownerstate }) => {
+  const { open } = ownerstate;
 
-    this.state = { open: props.open };
-  }
+  return {
+    ...(open && {
+      backgroundColor: theme.palette.primary.main
+    }),
+    '& .avatar': {
+      // Base avatar styles
+    },
+    '& .avatarNew': {
+      backgroundColor: theme.palette.warning.main
+    },
+    '& .avatarHighlight': {
+      backgroundColor: theme.palette.primary.main
+    },
+    '& .title': {
+      fontSize: theme.typography.pxToRem(14),
+      fontWeight: 500
+    },
+    '& .iconButton': {
+      width: '24px',
+      height: '24px'
+    },
+    '& .close': {
+      width: '11px',
+      height: '11px'
+    },
+    '& .tooltip': {
+      background: theme.palette.common.white,
+      color: theme.palette.text.primary,
+      boxShadow: theme.shadows[1],
+      fontSize: 11
+    },
+    '& .details': {
+      padding: 0
+    }
+  };
+});
 
-  onClick = () => this.setState(p => ({ open: !p.open }));
+function NotificationGroup(props) {
+  const { title, items, onClose, open: initialOpen } = props;
+  const [open, setOpen] = React.useState(initialOpen);
+  const unReadItems = getUnreadItems(items);
 
-  onItemClose = item => {
-    const { onClose } = this.props;
+  const onClick = () => setOpen(p => !p.open);
+
+  const onItemClose = item => {
     if (onClose) onClose([item]);
   };
 
-  onClose = () => {
-    const { onClose, items } = this.props;
+  const onCloseAll = () => {
     if (onClose) onClose(items);
   };
 
-  render() {
-    const { title, items, classes } = this.props;
-    const unReadItems = getUnreadItems(items);
+  const ownerState = { open };
 
-    return (
-      <React.Fragment>
-        <ListItem
-          className={classnames(
-            classes.root,
-            this.state.open ? classes.blue : ''
-          )}
-          button
-          onClick={this.onClick}
-        >
-          <ListItemAvatar>
-            <Avatar
-              className={classnames(
-                classes.avatar,
-                unReadItems.length > 0
-                  ? classes.avatarNew
-                  : this.state.open
-                    ? classes.avatarHighlight
-                    : ''
-              )}
-            >
-              {unReadItems.length > 0 ? unReadItems.length : items.length}
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primaryTypographyProps={{ className: classes.title }}
-            primary={title}
-          />
-          {this.state.open && (
-            <Tooltip
-              classes={{ tooltip: classes.tooltip }}
-              title="clear"
-              placement="top"
-            >
-              <IconButton className={classes.iconButton} onClick={this.onClose}>
-                <CloseIcon className={classes.close} />
-              </IconButton>
-            </Tooltip>
-          )}
-        </ListItem>
-        <Divider />
-        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-          <List className={classes.details} component="div" disablePadding>
-            {items.map((n, i) => (
-              <React.Fragment key={i}>
-                <NotificationItem
-                  {...n}
-                  onClose={e => {
-                    this.onItemClose(n);
-                    //stop event bubbling on click
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return false;
-                  }}
-                />
-                <Divider />
-              </React.Fragment>
-            ))}
-          </List>
-        </Collapse>
-        <Divider />
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <StyledListItem
+        ownerState={ownerState}
+        button
+        onClick={onClick}
+      >
+        <ListItemAvatar>
+          <Avatar
+            className={classnames(
+              'avatar',
+              unReadItems.length > 0
+                ? 'avatarNew'
+                : open
+                  ? 'avatarHighlight'
+                  : ''
+            )}
+          >
+            {unReadItems.length > 0 ? unReadItems.length : items.length}
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText
+          primaryTypographyProps={{ className: 'title' }}
+          primary={title}
+        />
+        {open && (
+          <Tooltip
+            title="clear"
+            placement="top"
+          >
+            <IconButton className="iconButton" onClick={onCloseAll} size="large">
+              <CloseIcon className="close" />
+            </IconButton>
+          </Tooltip>
+        )}
+      </StyledListItem>
+      <Divider />
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List className="details" component="div" disablePadding>
+          {items.map((n, i) => (
+            <React.Fragment key={i}>
+              <NotificationItem
+                {...n}
+                onClose={e => {
+                  onItemClose(n);
+                  e.preventDefault();
+                  e.stopPropagation();
+                  return false;
+                }}
+              />
+              <Divider />
+            </React.Fragment>
+          ))}
+        </List>
+      </Collapse>
+      <Divider />
+    </React.Fragment>
+  );
 }
 
 NotificationGroup.defaultProps = {
@@ -117,11 +143,9 @@ NotificationGroup.defaultProps = {
 };
 
 NotificationGroup.propTypes = {
-  //the title of notification
   title: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.shape(NotificationItemPropTypes))
     .isRequired,
-  //Close handler.
   onClose: PropTypes.func,
   open: PropTypes.bool,
   badgeColor: PropTypes.oneOf([
@@ -132,3 +156,10 @@ NotificationGroup.propTypes = {
     'error'
   ])
 };
+
+const NotificationGroupWithTheme = (props) => {
+  const theme = useTheme();
+  return <NotificationGroup {...props} theme={theme} />;
+};
+
+export default NotificationGroupWithTheme;

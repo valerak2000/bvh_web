@@ -1,21 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-// core components
-import typographyStyle from "assets/jss/material-dashboard-react/components/typographyStyle.jsx";
+import { styled } from '@mui/material/styles';
 
-function Warning({ ...props }) {
-  const { classes, children } = props;
+const warningColor = "#ff9800";
+
+const StyledWarning = styled('div')({
+  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontWeight: "300",
+  lineHeight: "1.5em",
+  fontSize: "14px",
+  color: warningColor
+});
+
+function Warning({ children }) {
   return (
-    <div className={classes.defaultFontStyle + " " + classes.warningText}>
+    <StyledWarning>
       {children}
-    </div>
+    </StyledWarning>
   );
 }
 
 Warning.propTypes = {
-  classes: PropTypes.object.isRequired
+  children: PropTypes.node
 };
 
-export default withStyles(typographyStyle)(Warning);
+export default Warning;

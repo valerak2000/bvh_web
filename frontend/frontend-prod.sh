@@ -1,2 +1,2 @@
 #!/bin/bash
-npm run start-prod
+npm24 run start-prod

@@ -1,126 +1,119 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { alpha, useTheme } from '@mui/material/styles';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Collapse from '@mui/material/Collapse';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 
 import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ, HOME_MENU_MP,
     ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../../constants';
 import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../../constants/menuStruct';
 
-const styles = theme => ({
-    drawerPaper: {
-        position: 'relative',
-    },
-    icon: {
-        marginRight: 0,
-        color: fade(theme.palette.text.secondary, 0.64),
-    },
-    children: {
-        paddingLeft: theme.spacing.unit * 4,
-//        paddingLeft: theme.spacing(4),
-    },
-});
-
 function NavMenu(props) {
     let initiallyFocused = (props.initiallyFocused === undefined || props.initiallyFocused == null)
-        ? props.items[0].key 
+        ? props.items[0].key
         : props.initiallyFocused;
-    
-        const listItems = props.items.map((item, index) => {
-            let initiallyOpenFirst = initiallyFocused === item.key ? true : false;
 
-            if (item.children !== undefined && item.children.length > 0) {
-                if (!props.expanded.some(menu => menu.key === item.key))
-                    props.expanded.push({ key: item.key, open: initiallyOpenFirst });
-            }
+    const listItems = props.items.map((item, index) => {
+        let initiallyOpenFirst = initiallyFocused === item.key ? true : false;
 
-            let selectedItem = props.expanded.filter(menu => menu.key === item.key)[0];
-            let open = selectedItem !== undefined && selectedItem.open !== undefined ? selectedItem.open : false;
+        if (item.children !== undefined && item.children.length > 0) {
+            if (!props.expanded.some(menu => menu.key === item.key))
+                props.expanded.push({ key: item.key, open: initiallyOpenFirst });
+        }
 
-            return (
-                <React.Fragment key = { index }>
-                    <ListItem
-                        key = { item.key }
-                        button
-                        disableGutters
-                        selected = { initiallyOpenFirst }
-                        onClick = { (e) => props.onClick(item.dataRoute, item.key, e) }
-                        disabled = { item.disabled }
-                    >
-                        { item.leftIcon
-                          && <ListItemIcon className = { props.classes.icon }>
-                                { item.leftIcon }
-                            </ListItemIcon> }
-                        <ListItemText
-                            primary = { item.primaryText }
-                            primaryTypographyProps = {{
-                                variant: 'body1',
-                                color: 'primary',
-                            }}
-                            secondary = { item.secondaryText }
-                            secondaryTypographyProps = {{
-                                variant: 'body2',
-                                color: 'primary',
-                            }}
-                        />
-                        { item.children !== undefined && item.children.length > 0
-                          && ( open ? <ExpandLess /> : <ExpandMore /> ) }
-                    </ListItem>
+        let selectedItem = props.expanded.filter(menu => menu.key === item.key)[0];
+        let open = selectedItem !== undefined && selectedItem.open !== undefined ? selectedItem.open : false;
+
+        return (
+            <React.Fragment key = { index }>
+                <ListItem
+                    key = { item.key }
+                    button
+                    disableGutters
+                    selected = { initiallyOpenFirst }
+                    onClick = { (e) => props.onClick(item.dataRoute, item.key, e) }
+                    disabled = { item.disabled }
+                >
+                    { item.leftIcon
+                      && <ListItemIcon sx={{
+                            marginRight: 0,
+                            color: alpha(props.theme.palette.text.secondary, 0.64),
+                        }}>
+                            { item.leftIcon }
+                        </ListItemIcon> }
+                    <ListItemText
+                        primary = { item.primaryText }
+                        primaryTypographyProps = {{
+                            variant: 'body1',
+                            color: 'primary',
+                        }}
+                        secondary = { item.secondaryText }
+                        secondaryTypographyProps = {{
+                            variant: 'body2',
+                            color: 'primary',
+                        }}
+                    />
                     { item.children !== undefined && item.children.length > 0
-                      && ( <Collapse 
-                               in = { open }
-                               timeout = 'auto'
-                               unmountOnExit
-                            >
-                                <List disablePadding>
-                                { item.children.map((ni, index) => {
-                                    let initiallySelectedSecond = initiallyFocused === item.key + '_' + ni.key ? true : false;
+                      && ( open ? <ExpandLess /> : <ExpandMore /> ) }
+                </ListItem>
+                { item.children !== undefined && item.children.length > 0
+                  && ( <Collapse
+                           in = { open }
+                           timeout = 'auto'
+                           unmountOnExit
+                        >
+                            <List disablePadding>
+                            { item.children.map((ni, index) => {
+                                let initiallySelectedSecond = initiallyFocused === item.key + '_' + ni.key ? true : false;
 
-                                    if (initiallySelectedSecond)
-                                        initiallyOpenFirst = initiallySelectedSecond;
+                                if (initiallySelectedSecond)
+                                    initiallyOpenFirst = initiallySelectedSecond;
 
-                                    return (
-                                        <ListItem 
-                                            key = { ni.key } 
-                                            button
-                                            disableGutters
-                                            selected = { initiallySelectedSecond }
-                                            onClick = { (e) => props.onClick(ni.dataRoute, ni.key, e) }
-                                            className = { props.classes.children }
-                                            disabled = { ni.disabled }
-                                        >
-                                            { ni.leftIcon
-                                              && <ListItemIcon className = { props.classes.icon }>
-                                                    { ni.leftIcon }
-                                                </ListItemIcon> }
-                                            <ListItemText 
-                                                primary = { ni.primaryText } 
-                                                primaryTypographyProps = {{
-                                                    variant: 'body1',
-                                                    color: 'primary',
-                                                }}
-                                                secondary = { ni.secondaryText }
-                                                secondaryTypographyProps = {{
-                                                    variant: 'body2',
-                                                    color: 'primary',
-                                                }}
-                                            />
-                                        </ListItem>
-                                    );
-                                }) }
-                                </List>
-                            </Collapse>
-                    ) }
-                </React.Fragment>
-            );
+                                return (
+                                    <ListItem
+                                        key = { ni.key }
+                                        button
+                                        disableGutters
+                                        selected = { initiallySelectedSecond }
+                                        onClick = { (e) => props.onClick(ni.dataRoute, ni.key, e) }
+                                        sx={{
+                                            paddingLeft: props.theme.spacing(4),
+                                        }}
+                                        disabled = { ni.disabled }
+                                    >
+                                        { ni.leftIcon
+                                          && <ListItemIcon sx={{
+                                                marginRight: 0,
+                                                color: alpha(props.theme.palette.text.secondary, 0.64),
+                                            }}>
+                                                { ni.leftIcon }
+                                            </ListItemIcon> }
+                                        <ListItemText
+                                            primary = { ni.primaryText }
+                                            primaryTypographyProps = {{
+                                                variant: 'body1',
+                                                color: 'primary',
+                                            }}
+                                            secondary = { ni.secondaryText }
+                                            secondaryTypographyProps = {{
+                                                variant: 'body2',
+                                                color: 'primary',
+                                            }}
+                                        />
+                                    </ListItem>
+                                );
+                            }) }
+                            </List>
+                        </Collapse>
+                ) }
+            </React.Fragment>
+        );
     });
 
     return (
@@ -139,8 +132,6 @@ class LeftNavMenu extends Component {
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
-        theme: PropTypes.object.isRequired,
-        classes: PropTypes.object.isRequired,
     };
 
     state = {
@@ -193,7 +184,6 @@ class LeftNavMenu extends Component {
     };
 
     render() {
-        const { classes } = this.props;
         const { activeMenuTop, activeMenuSecond, activeMenuThird, expanded, ...props } = this.state;
         var initiallyFocused = null;
 
@@ -205,7 +195,7 @@ class LeftNavMenu extends Component {
         switch (activeMenuTop) {
             case HOME_MENU:
                 leftmenu =
-                    <NavMenu 
+                    <NavMenu
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
@@ -215,7 +205,7 @@ class LeftNavMenu extends Component {
                 break;
             case HOME_MENU_EP:
                 leftmenu =
-                    <NavMenu 
+                    <NavMenu
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = 'elektronnaya_priemnaya'
@@ -225,7 +215,7 @@ class LeftNavMenu extends Component {
                 break;
             case HOME_MENU_BO:
                 leftmenu =
-                    <NavMenu 
+                    <NavMenu
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = 'blackouts'
@@ -235,7 +225,7 @@ class LeftNavMenu extends Component {
                 break;
             case HOME_MENU_CM:
                 leftmenu =
-                    <NavMenu 
+                    <NavMenu
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = 'available_capacity_map'
@@ -245,7 +235,7 @@ class LeftNavMenu extends Component {
                 break;
             case HOME_MENU_FQ:
                 leftmenu =
-                    <NavMenu 
+                    <NavMenu
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = 'faq'
@@ -255,7 +245,7 @@ class LeftNavMenu extends Component {
                 break;
             case HOME_MENU_MP:
                 leftmenu =
-                    <NavMenu 
+                    <NavMenu
                         items = { MENU_HOME }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = 'map'
@@ -265,7 +255,7 @@ class LeftNavMenu extends Component {
                 break;
             case ABOUT_MENU:
                 leftmenu =
-                    <NavMenu 
+                    <NavMenu
                         items = { MENU_ABOUT }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
@@ -275,7 +265,7 @@ class LeftNavMenu extends Component {
                 break;
             case CUSTOMERS_MENU:
                 leftmenu =
-                    <NavMenu 
+                    <NavMenu
                         items = { MENU_CUSTOMERS }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
@@ -285,7 +275,7 @@ class LeftNavMenu extends Component {
                 break;
             case NEWS_MENU:
                 leftmenu =
-                    <NavMenu 
+                    <NavMenu
                         items = { MENU_NEWS }
                         onClick = { this.handleMenuClick }
                         initiallyFocused = { initiallyFocused }
@@ -306,8 +296,11 @@ class LeftNavMenu extends Component {
         return (
             <Drawer
                 variant = 'permanent'
-                classes = {{
-                    paper: classes.drawerPaper,
+                sx = {{
+                    position: 'relative',
+                    '& .MuiDrawer-paper': {
+                        position: 'relative',
+                    }
                 }}
                 style = { leftNav }
             >
@@ -317,4 +310,9 @@ class LeftNavMenu extends Component {
     }
 }
 
-export default withStyles(styles, { name: 'muiLeftNavMenu', flip: false, withTheme: true })(LeftNavMenu);
+const LeftNavMenuWithTheme = (props) => {
+    const theme = useTheme();
+    return <LeftNavMenu {...props} theme={theme} />;
+};
+
+export default LeftNavMenuWithTheme;

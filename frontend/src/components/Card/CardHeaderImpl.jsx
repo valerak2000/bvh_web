@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withTheme';
-import CardHeader from '@material-ui/core/CardHeader';
+import { useTheme } from '@mui/material/styles';
+import CardHeader from '@mui/material/CardHeader';
 
 function CardHeaderImpl(props) {
     const {
@@ -28,7 +28,7 @@ function CardHeaderImpl(props) {
     if (style === undefined || style === null) {
         style = card.title;
     }
-    
+
     return (
         <CardHeader
             title = { title }
@@ -36,6 +36,7 @@ function CardHeaderImpl(props) {
             subheader = { subheader }
             subheaderTypographyProps = { subheaderTypographyProps }
             style = { style }
+            {...other}
         />
     );
 }
@@ -44,8 +45,10 @@ CardHeaderImpl.propTypes = {
     //title: PropTypes.string.isRequired,
 };
 
-export default withStyles(null, { name: 'muiCardHeaderImpl', flip: false, withTheme: true })(CardHeaderImpl);
-export { CardHeaderImpl as CardHeader };
+const CardHeaderImplWithTheme = (props) => {
+    const theme = useTheme();
+    return <CardHeaderImpl {...props} theme={theme} />;
+};
 
-/*
-*/
+export default CardHeaderImplWithTheme;
+export { CardHeaderImpl as CardHeader };

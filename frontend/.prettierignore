@@ -1,0 +1,8 @@
+node_modules
+dist
+build
+coverage
+static
+*.min.js
+*.min.css
+analysis

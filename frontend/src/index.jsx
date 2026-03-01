@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, Switch, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import { setConfig } from 'react-hot-loader';
-setConfig({ logLevel: 'debug' });
 
 import { GetBaseUrl } from './commons/commonFuncs';
 import { authLoginUserSuccess } from './actions/auth';
@@ -13,7 +11,6 @@ import configureStore from './store/configureStore';
 import indexRoutes from 'routes/index.jsx';
 
 const initialState = {};
-//Update for Reserved proxy
 const base = GetBaseUrl();
 const history = createBrowserHistory({ basename: base });
 const store = configureStore(initialState, history);
@@ -33,31 +30,25 @@ if (token !== null) {
 
 const createRouter = () => {
     return (
-        <BrowserRouter basename = { base || '/' }>
-            <Router history = { history }>
-                <Switch>
-                {
-                    indexRoutes.map((prop, key) => {
-                        return (
-                            <Route
-                                path = { prop.path }
-                                component = { prop.component }
-                                key = { key }
-                            />
-                        );
-                    })
-                }
-                </Switch>
-            </Router>
+        <BrowserRouter basename={base || '/'} history={history}>
+            <Switch>
+                {indexRoutes.map((prop, key) => (
+                    <Route
+                        path={prop.path}
+                        component={prop.component}
+                        key={key}
+                    />
+                ))}
+            </Switch>
         </BrowserRouter>
     );
 };
   
 const renderComponent = () => {
     ReactDOM.render(
-        <Provider store = { store }>
-            <ExceptionHandler global disabled = { !isProd }>
-                { createRouter() }
+        <Provider store={store}>
+            <ExceptionHandler global disabled={!isProd}>
+                {createRouter()}
             </ExceptionHandler>
         </Provider>,
         document.getElementById('root')
@@ -66,11 +57,8 @@ const renderComponent = () => {
 
 renderComponent();
 
-/* devblock:start */
-// Hot Module Replacement API
 if (module.hot) {
     module.hot.accept('./containers/Root/Root', () => {
         renderComponent();
     });
 }
-/* devblock:end */

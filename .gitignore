@@ -19,11 +19,6 @@ bld/
 [Oo]bj/
 [Ll]og/
 
-# Visual Studio 2015/2017 cache/options directory
-.vs/
-# Visual Studio 2017 auto generated files
-Generated\ Files/
-
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
@@ -282,6 +277,14 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# Visual Studio cache/options directory
+.vs/
+# Visual Studio auto generated files
+Generated\ Files/
+
+#Gigacode
+.gigaide/
 
 # CodeRush
 .cr/

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import { useTheme } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 
 const fileIconPdf = '/static/images/pdf-icon.png';
 const fileIconExcel = '/static/images/excel-xls-icon.png';
@@ -15,15 +15,10 @@ const fileIconAvi = '/static/images/avi-icon.png';
 const fileIconJpg = '/static/images/jpg-icon.png';
 const fileIconPng = '/static/images/png-icon.png';
 
-const styles = theme => ({
-});
-
 class FileLink extends Component {
     static propTypes = {
         href: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
-        theme: PropTypes.object.isRequired,
-        classes: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -36,7 +31,6 @@ class FileLink extends Component {
     };
 
     render() {
-        const { classes } = this.props;
         const { href, label } = this.props;
         const { buttonLink } = this.props.theme;
         var styles = typeof this.props.style === 'undefined' || this.props.style == null ? {} : this.props.style;
@@ -96,18 +90,18 @@ class FileLink extends Component {
                     aria-selected = { false }
                     centerRipple = { false }
                     disableRipple = { true }
-                    style = { buttonLink }
-                >
+                    sx = { buttonLink }
+                    size="large">
                     <img
                         src = { iconExt }
-                        style = { buttonLink.iconFile }
+                        sx = { buttonLink.iconFile }
                     />
                 </IconButton>
                 <Typography
                     align = 'left'
                     color = 'textSecondary'
                     variant = 'body1'
-                    style = { buttonLink.labelFile }
+                    sx = { buttonLink.labelFile }
                 >
                     { label }
                 </Typography>
@@ -115,7 +109,10 @@ class FileLink extends Component {
         );
     }
 }
-/*
-*/
 
-export default withStyles(styles, { name: 'muiFileLink', flip: false, withTheme: true })(FileLink);
+const FileLinkWithTheme = (props) => {
+    const theme = useTheme();
+    return <FileLink {...props} theme={theme} />;
+};
+
+export default FileLinkWithTheme;

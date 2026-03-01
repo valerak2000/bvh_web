@@ -1,29 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import withStyles from '@material-ui/core/styles/withStyles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import Map from '@material-ui/icons/Map';
-import Home from '@material-ui/icons/Home';
-import Business from '@material-ui/icons/Business';
+import { useTheme } from '@mui/material/styles';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Map from '@mui/icons-material/Map';
+import Home from '@mui/icons-material/Home';
+import Business from '@mui/icons-material/Business';
 
 const AuthorSign = '/static/images/author-sign.png';
-
-const styles = {
-    label: {
-        fontSize: 16,
-        textAlign: 'center'
-    },
-};    
 
 class Footer extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
-        theme: PropTypes.object.isRequired,
-        classes: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
@@ -33,21 +24,20 @@ class Footer extends Component {
     state = {
         selectedIndex: 0,
     };
-    
+
     handleChange = (event, value) => {
         this.setState({ value });
     };
 
     render() {
-        const { classes } = this.props;
         const { footer } = { ...this.props.theme.app };
         const { value } = this.state;
 
         return (
-            <footer 
+            <footer
                 style = { footer }
             >
-                <BottomNavigation 
+                <BottomNavigation
                     value = { value }
                     onChange = { this.handleChange }
                     showLabels
@@ -59,7 +49,12 @@ class Footer extends Component {
                         value = 'home'
                         component = { Link } to = '/'
                         style = { footer.bottomNavigation.button }
-                        classes = {{ label: classes.label, }}
+                        sx = {{
+                            '& .MuiBottomNavigationAction-label': {
+                                fontSize: 16,
+                                textAlign: 'center'
+                            }
+                        }}
                     />
                     <BottomNavigationAction
                         label = 'Карта сайта'
@@ -67,7 +62,12 @@ class Footer extends Component {
                         value = 'map'
                         component = { Link } to = '/map'
                         style = { footer.bottomNavigation.button }
-                        classes = {{ label: classes.label, }}
+                        sx = {{
+                            '& .MuiBottomNavigationAction-label': {
+                                fontSize: 16,
+                                textAlign: 'center'
+                            }
+                        }}
                     />
                     <BottomNavigationAction
                         label = 'Партнеры'
@@ -76,13 +76,18 @@ class Footer extends Component {
                         href = 'http://www.brhts.ru'
                         target = '_blank'
                         style = { footer.bottomNavigation.button }
-                        classes = {{ label: classes.label, }}
+                        sx = {{
+                            '& .MuiBottomNavigationAction-label': {
+                                fontSize: 16,
+                                textAlign: 'center'
+                            }
+                        }}
                     />
                 </BottomNavigation>
                 <address
                     style = { footer.bottomText }
                 >
-                    Разработка и поддержка <a 
+                    Разработка и поддержка <a
                         href = 'http://www.valera-k2000.ru'
                         target = '_blank'
                         style = { footer.bottomText.link }
@@ -93,7 +98,10 @@ class Footer extends Component {
         );
     }
 }
-/*
-*/
 
-export default withStyles(styles, { name: 'muiFooter', flip: false, withTheme: true })(Footer);
+const FooterWithTheme = (props) => {
+    const theme = useTheme();
+    return <Footer {...props} theme={theme} />;
+};
+
+export default FooterWithTheme;

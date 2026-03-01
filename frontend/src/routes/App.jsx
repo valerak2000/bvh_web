@@ -1,4 +1,4 @@
-// @material-ui/icons
+// @mui/icons-material
 
 import Loader from '../components/loaders';
 import requireAuthentication from '../utils/requireAuthentication';

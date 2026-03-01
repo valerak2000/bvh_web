@@ -6,23 +6,40 @@ module.exports = {
     es6: true,
     jest: true
   },
-  extends: 'eslint:recommended',
-  parser: 'babel-eslint',
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'prettier'
+  ],
+  parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
-    legacyDecotators: true,
+    requireConfigFile: false,
+    babelOptions: {
+      plugins: [
+        ['@babel/plugin-proposal-decorators', { legacy: true }],
+        '@babel/plugin-proposal-class-properties'
+      ]
+    },
     ecmaFeatures: {
       jsx: true
     }
   },
-  plugins: ['react'],
+  plugins: ['react', 'prettier'],
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   rules: {
-    indent: 'off',
+    'prettier/prettier': 'error',
     'linebreak-style': ['warn', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
-    'no-unused-vars': 'off',
-    experimentalDecorators: 1
+    'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    'react/prop-types': 'off',
+    'react/react-in-jsx-scope': 'off'
   }
 };

@@ -1,10 +1,9 @@
-import Loadable from 'react-loadable';
-import loading from './ComponentLoader';
+import loadable from '@loadable/component';
+import Loading from './ComponentLoader';
 
 const Loader = (loader: any) =>
-  Loadable({
-    loader,
-    loading,
+  loadable(loader, {
+    fallback: <Loading />,
     timeout: 10000,
     /* devblock:start */
     delay: 1000

@@ -1,36 +1,130 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-import Snack from "@material-ui/core/Snackbar";
-import IconButton from "@material-ui/core/IconButton";
-// @material-ui/icons
-import Close from "@material-ui/icons/Close";
-// core components
-import snackbarContentStyle from "assets/jss/material-dashboard-react/components/snackbarContentStyle.jsx";
+import { styled } from '@mui/material/styles';
+import Snack from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import Close from "@mui/icons-material/Close";
 
-function Snackbar({ ...props }) {
-  const { classes, message, color, close, icon, place, open } = props;
+const StyledSnackbar = styled(Snack)(({ theme, ownerstate }) => {
+  const { color, icon } = ownerstate;
+
+  const defaultFont = {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontWeight: "300",
+    lineHeight: "1.5em"
+  };
+
+  const primaryBoxShadow = {
+    boxShadow: "0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2)"
+  };
+  const infoBoxShadow = {
+    boxShadow: "0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2)"
+  };
+  const successBoxShadow = {
+    boxShadow: "0 12px 20px -10px rgba(76, 175, 80, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(76, 175, 80, 0.2)"
+  };
+  const warningBoxShadow = {
+    boxShadow: "0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2)"
+  };
+  const dangerBoxShadow = {
+    boxShadow: "0 12px 20px -10px rgba(244, 67, 54, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(244, 67, 54, 0.2)"
+  };
+
+  const colorStyles = {
+    info: {
+      backgroundColor: "#00d3ee",
+      color: "#ffffff",
+      ...infoBoxShadow
+    },
+    success: {
+      backgroundColor: "#5cb860",
+      color: "#ffffff",
+      ...successBoxShadow
+    },
+    warning: {
+      backgroundColor: "#ffa21a",
+      color: "#ffffff",
+      ...warningBoxShadow
+    },
+    danger: {
+      backgroundColor: "#f55a4e",
+      color: "#ffffff",
+      ...dangerBoxShadow
+    },
+    primary: {
+      backgroundColor: "#af2cc5",
+      color: "#ffffff",
+      ...primaryBoxShadow
+    }
+  };
+
+  return {
+    '& .MuiSnackbarContent-root': {
+      ...defaultFont,
+      flexWrap: "unset",
+      position: "relative",
+      padding: "20px 15px",
+      lineHeight: "20px",
+      marginBottom: "20px",
+      fontSize: "14px",
+      backgroundColor: "white",
+      color: "#555555",
+      borderRadius: "3px",
+      boxShadow: "0 12px 20px -10px rgba(255, 255, 255, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 255, 255, 0.2)",
+      ...(color && colorStyles[color]),
+      '& .message': {
+        padding: "0",
+        display: "block",
+        maxWidth: "89%",
+        ...(icon !== undefined && {
+          paddingLeft: "50px",
+          display: "block"
+        })
+      },
+      '& .iconButton': {
+        width: "24px",
+        height: "24px",
+        padding: "0px"
+      },
+      '& .close': {
+        width: "11px",
+        height: "11px"
+      },
+      '& .icon': {
+        display: "block",
+        left: "15px",
+        position: "absolute",
+        top: "50%",
+        marginTop: "-15px",
+        width: "30px",
+        height: "30px"
+      }
+    }
+  };
+});
+
+function Snackbar({ message, color, close, icon, place, open, closeNotification, ...props }) {
   var action = [];
-  const messageClasses = classNames({
-    [classes.iconMessage]: icon !== undefined
-  });
+  const ownerState = { color, icon };
+  
   if (close !== undefined) {
     action = [
       <IconButton
-        className={classes.iconButton}
+        className="iconButton"
         key="close"
         aria-label="Close"
         color="inherit"
-        onClick={() => props.closeNotification()}
-      >
-        <Close className={classes.close} />
+        onClick={() => closeNotification()}
+        size="large">
+        <Close className="close" />
       </IconButton>
     ];
   }
+  
   return (
-    <Snack
+    <StyledSnackbar
+      ownerState={ownerState}
       anchorOrigin={{
         vertical: place.indexOf("t") === -1 ? "bottom" : "top",
         horizontal:
@@ -41,29 +135,23 @@ function Snackbar({ ...props }) {
       open={open}
       message={
         <div>
-          {icon !== undefined ? <props.icon className={classes.icon} /> : null}
-          <span className={messageClasses}>{message}</span>
+          {icon !== undefined ? <props.icon className="icon" /> : null}
+          <span className="message">{message}</span>
         </div>
       }
       action={action}
-      ContentProps={{
-        classes: {
-          root: classes.root + " " + classes[color],
-          message: classes.message
-        }
-      }}
     />
   );
 }
 
 Snackbar.propTypes = {
-  classes: PropTypes.object.isRequired,
   message: PropTypes.node.isRequired,
   color: PropTypes.oneOf(["info", "success", "warning", "danger", "primary"]),
   close: PropTypes.bool,
   icon: PropTypes.func,
   place: PropTypes.oneOf(["tl", "tr", "tc", "br", "bl", "bc"]),
-  open: PropTypes.bool
+  open: PropTypes.bool,
+  closeNotification: PropTypes.func
 };
 
-export default withStyles(snackbarContentStyle)(Snackbar);
+export default Snackbar;

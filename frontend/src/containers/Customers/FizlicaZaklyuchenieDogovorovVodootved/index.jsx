@@ -1,52 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import { useTheme } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 import FileLink from '../../../components/FileLink';
 
-const styles = theme => ({
-    text: {
-        margin: 'auto auto auto 0.5rem',
-        textAlign: 'justify',
-        textIndent: '1.5em',
-    },
-});
+function FizlicaZaklyuchenieDogovorovVodootvedView(props) {
+    const theme = useTheme();
+    const { card } = theme.app;
 
-class FizlicaZaklyuchenieDogovorovVodootvedView extends Component {
-    static propTypes = {
-        theme: PropTypes.object.isRequired,
-        classes: PropTypes.object.isRequired,
-    };
-
-    render() {
-        const { classes } = this.props;
-        const { card } = this.props.theme.app;
-
-        return (
-            <Card
-                square = { true }
-                style = { card }
+    return (
+        <Card
+            square = { true }
+            sx = { card }
+        >
+            <CardHeader
+                title = 'Заключение договоров на водоотведение'
+                subheader = 'ООО «Брюховецкое предприятие отвода и очистки стоков»'
+                { ...props }
+            />
+            <CardContent
+                sx = { card.text }
             >
-                <CardHeader
-                    title = 'Заключение договоров на водоотведение'
-                    subheader = 'ООО «Брюховецкое предприятие отвода и очистки стоков»'
-                    { ...this.props }
+                <FileLink
+                    key = 'dogovorpodklbvh'
+                    href = '/static/files/media/potrebiteliam/Договор водоотведения с физлицами.docx'
+                    label = 'Договор на водоотведение с физическими лицами'
                 />
-                <CardContent
-                    style = { card.text }
-                >
-                    <FileLink
-                        key = 'dogovorpodklbvh'
-                        href = '/static/files/media/potrebiteliam/Договор водоотведения с физлицами.docx'
-                        label = 'Договор на водоотведение с физическими лицами'
-                    />
-                </CardContent>
-            </Card>
-        );
-    }
+            </CardContent>
+        </Card>
+    );
 }
 
-export default withStyles(styles, { name: 'muiFizlicaZaklyuchenieDogovorovVodootvedView', flip: false, withTheme: true })(FizlicaZaklyuchenieDogovorovVodootvedView);
+FizlicaZaklyuchenieDogovorovVodootvedView.propTypes = {
+    theme: PropTypes.object.isRequired,
+};
+
+export default FizlicaZaklyuchenieDogovorovVodootvedView;

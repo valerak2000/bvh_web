@@ -1,4 +1,4 @@
-import { darken, fade, lighten } from '@material-ui/core/styles/colorManipulator';
+import { darken, alpha, lighten } from '@mui/material/styles';
 import {
   warningColor,
   primaryColor,
@@ -44,9 +44,9 @@ const tableStyle = theme => ({
     borderCollapse: 'collapse',
     borderTop: `1px solid
     ${
-      theme.palette.type === 'light'
-        ? lighten(fade(theme.palette.divider, 1), 0.88)
-        : darken(fade(theme.palette.divider, 1), 0.68)
+      theme.palette.mode === 'light'
+        ? lighten(alpha(theme.palette.divider, 1), 0.88)
+        : darken(alpha(theme.palette.divider, 1), 0.68)
     }`, 
   },
   tableHeadCell: {
@@ -66,7 +66,7 @@ const tableStyle = theme => ({
   },
   tableResponsive: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
 //    marginTop: theme.spacing(3),
     overflowX: 'auto'
   }
