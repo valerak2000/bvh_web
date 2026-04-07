@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ImageZoom from 'react-medium-image-zoom';
-import Slider from 'react-slick-beyli-fork';
+import Slider from 'react-slick';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 import { navigateTo } from '../../../utils/navigate';
