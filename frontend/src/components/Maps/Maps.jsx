@@ -1,13 +1,8 @@
-import React, { Component } from 'react';
-import { compose, withProps, lifecycle } from 'recompose';
+import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
-export const YndxMaps = compose(
-    withProps((props) => ({
-        theme: props.theme
-    })),
-)(props => {
+const YndxMaps = (props) => {
     const mapState = {
         center: [props.lat, props.lng],
         zoom: props.zoom,
@@ -35,7 +30,7 @@ export const YndxMaps = compose(
             </Map>
         </YMaps>
     );
-});
+};
 
 const MapsWithTheme = (props) => {
     const theme = useTheme();

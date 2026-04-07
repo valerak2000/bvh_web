@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 //import { compose } from 'recompose';
-import { MuiThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import Fab from '@mui/material/Fab';
 import ArrowUpward from '@mui/icons-material/ArrowUpward';
 // core components
@@ -116,7 +116,7 @@ class Root extends Component {
         return (
             <div>
                 <StyledEngineProvider injectFirst>
-                    <MuiThemeProvider theme = { muiTheme }>
+                    <ThemeProvider theme = { muiTheme }>
                         <div
                             style = { muiTheme.global }
                         >
@@ -128,8 +128,8 @@ class Root extends Component {
                             />
                             <div
                                 id = 'app'
-                                style = {{ 
-                                    display: 'flex', 
+                                style = {{
+                                    display: 'flex',
                                     width: '100%',
                                 }}
                             >
@@ -156,7 +156,7 @@ class Root extends Component {
                                         <ArrowUpward />
                                     </Fab>
                                 }
-                                <AppView 
+                                <AppView
                                     { ...this.props }
                                     { ...rest }
                                 />
@@ -167,7 +167,7 @@ class Root extends Component {
                             />
                             { !isProd && <DevTools /> }
                         </div>
-                    </MuiThemeProvider>
+                    </ThemeProvider>
                 </StyledEngineProvider>
             </div>
         );

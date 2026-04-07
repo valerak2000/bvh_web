@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import { push } from 'react-router-redux';
+import { navigateTo } from '../utils/navigate';
 
 import { SERVER_URL } from '../utils/config';
 import { checkHttpStatus, parseJSON } from '../utils';
@@ -42,7 +42,7 @@ export function dataFetchProtectedData(token) {
                     // Invalid authentication credentials
                     return error.response.json().then((data) => {
                         dispatch(authLoginUserFailure(401, data.non_field_errors[0]));
-                        dispatch(push('/login'));
+                        navigateTo('/login');
                     });
                 } else if (error && typeof error.response !== 'undefined' && error.response.status >= 500) {
                     // Server side error
@@ -52,7 +52,7 @@ export function dataFetchProtectedData(token) {
                     dispatch(authLoginUserFailure('Connection Error', 'An error occurred while sending your data!'));
                 }
 
-                dispatch(push('/login'));
+                navigateTo('/login');
                 return Promise.resolve(); // TODO: we need a promise here because of the tests, find a better way
             });
     };

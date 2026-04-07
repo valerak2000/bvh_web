@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import { push } from 'react-router-redux';
+import { navigateTo } from '../utils/navigate';
 import { SERVER_URL } from '../utils/config';
 import { checkHttpStatus, parseJSON } from '../utils';
 import {
@@ -53,7 +53,7 @@ export function authLogout() {
 export function authLogoutAndRedirect() {
     return (dispatch, state) => {
         dispatch(authLogout());
-        dispatch(push('/login'));
+        navigateTo('/login');
         return Promise.resolve(); // TODO: we need a promise here because of the tests, find a better way
     };
 }
@@ -74,7 +74,7 @@ export function authLoginUser(email, password, redirect = '/') {
             .then(parseJSON)
             .then((response) => {
                 dispatch(authLoginUserSuccess(response.token, response.user));
-                dispatch(push(redirect));
+                navigateTo(redirect);
             })
             .catch((error) => {
                 if (error && typeof error.response !== 'undefined' && error.response.status === 401) {
@@ -140,7 +140,7 @@ export function signupLoginUser(email, password, redirect = '/') {
             .then(parseJSON)
             .then((response) => {
                 dispatch(signupLoginUserSuccess(response.token, response.user));
-                dispatch(push(redirect));
+                navigateTo(redirect);
             })
             .catch((error) => {
                 if (error && typeof error.response !== 'undefined' && error.response.status === 401) {

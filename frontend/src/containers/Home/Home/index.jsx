@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
@@ -12,6 +11,7 @@ import ImageZoom from 'react-medium-image-zoom';
 import Slider from 'react-slick-beyli-fork';
 
 import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
+import { navigateTo } from '../../../utils/navigate';
 
 const watherItsLive = '/static/images/water-glass-and-faucet.png';
 const watherItsLiveWP = '/static/images/water-glass-and-faucet.webp';
@@ -195,7 +195,7 @@ function HomeView(props) {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const goToProtected = () => {
-        dispatch(push('/protected'));
+        navigateTo('/protected');
     };
 
     const maxSteps = splashSteps.length;

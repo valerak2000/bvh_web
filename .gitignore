@@ -286,6 +286,9 @@ Generated\ Files/
 #Gigacode
 .gigaide/
 
+#codeassistant
+.codeassistant
+
 # CodeRush
 .cr/
 

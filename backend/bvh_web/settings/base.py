@@ -22,7 +22,6 @@ except NameError:
 
 DEBUG = True
 
-#ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
@@ -134,7 +133,7 @@ REST_FRAMEWORK = {
 
 # ############ REST KNOX ########################
 REST_KNOX = {
-    'SECURE_HASH_ALGORITHM': 'cryptography.hazmat.primitives.hashes.SHA512',
+    'SECURE_HASH_ALGORITHM': 'hashlib.sha512',
     'AUTH_TOKEN_CHARACTER_LENGTH': 64,
     'USER_SERIALIZER': 'knox.serializers.UserSerializer'
 }

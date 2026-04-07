@@ -177,36 +177,40 @@ module.exports = function (mode) {
                 filename: isDev ? '[name].css' : '[name].[contenthash].css',
                 chunkFilename: isDev ? '[id].css' : '[id].[contenthash].css',
             }),
-            
-            new HtmlWebpackPlugin({
-                template: path.join(PATHS.src, 'index.html.ejs'),
-                inject: true,
-                minify: !isDev
-            }),
-            
+
+            // HtmlWebpackPlugin используется только в production режиме
+            // В dev режиме webpack-dev-server сам генерирует HTML с подключенными скриптами
+            ...(isDev ? [] : [
+                new HtmlWebpackPlugin({
+                    template: path.join(PATHS.src, 'index.html.ejs'),
+                    inject: true,
+                    minify: true
+                })
+            ]),
+
             // new webpack.ProvidePlugin({
             //     React: 'react',
             //     ReactDOM: 'react-dom'
             // }),
-            
-            // new ProgressBarPlugin({
-            //     format: 'Build [:bar] :percent (:elapsed seconds)',
-            //     clear: false,
-            // }),
-            
+
+            new ProgressBarPlugin({
+                 format: 'Build [:bar] :percent (:elapsed seconds)',
+                 clear: false,
+            }),
+
             //new webpack.NoEmitOnErrorsPlugin(),
-            
+
             new BundleTracker({
                 filename: 'webpack-stats.json',
                 path: path.resolve(__dirname, '..')
             })
         ],
-        
-        externals: {
+
+        externals: isDev ? {} : {
             React: 'react',
             ReactDOM: 'react-dom'
         },
-        
+
         performance: {
             hints: isDev ? false : 'warning'
         }

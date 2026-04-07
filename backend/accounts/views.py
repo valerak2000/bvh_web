@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
-from django_rest_logger import log
+import logging
+log = logging.getLogger(__name__)
 from knox.auth import TokenAuthentication
 from knox.models import AuthToken
 from rest_framework import status

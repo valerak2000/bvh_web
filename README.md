@@ -4,9 +4,9 @@ git submodule init
 
 cd backend 
 
-linux: virtualenv -p /usr/bin/python3.12 py3
+linux: virtualenv -p /usr/bin/python3.13 py3
        source py3/bin/activate
-windows: py -3.12 -m venv py3
+windows: py -3.13 -m venv py3
 
 
 pip3 install virtualenv

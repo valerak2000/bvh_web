@@ -2,7 +2,7 @@
 
 import linq from 'linq';
 import { v4 as uuidv4 } from 'uuid';
-import Default from './constants.js';
+import Default from './constants';
 //correct URL for Reserved proxy
 //Get the millisecond of current time.
 
