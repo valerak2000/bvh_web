@@ -1,5 +1,5 @@
-from bvh_web.settings.staging import *  # NOQA (ignore all errors on this line)
-from bvh_web.settings.base import DATABASES
+from django.core.exceptions import ImproperlyConfigured
+from bvh_web.settings.base import SECRETS
 
 db = SECRETS.get('database_test', {})
 required_db_keys = ['name', 'user', 'password', 'host', 'port']

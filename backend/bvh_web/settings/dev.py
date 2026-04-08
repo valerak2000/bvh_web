@@ -1,4 +1,8 @@
-from bvh_web.settings.base import DATABASES
+from django.core.exceptions import ImproperlyConfigured
+from bvh_web.settings.base import (
+    MIDDLEWARE, SECRETS, BASE_DIR, base_dir_join,
+    INSTALLED_APPS, REST_FRAMEWORK, TEMPLATES,
+)
 
 DEBUG = True
 PAGE_CACHE_SECONDS = 1

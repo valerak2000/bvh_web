@@ -32,7 +32,12 @@ class BaseTests(APITestCase):
         self.assertEqual(response.data['data'], 'THIS IS THE PROTECTED STRING FROM SERVER')
 
     def test_get_main_page(self):
-
+        """Test that main page returns HTML with correct template."""
         response = self.client.get(reverse('index'))
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response['Content-Type'], 'text/html; charset=utf-8')
+        # Check that the correct template is used
+        self.assertTemplateUsed(response, 'base/index.html')
+        # Ensure response contains HTML
+        self.assertIn(b'<html', response.content)

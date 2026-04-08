@@ -1,5 +1,4 @@
 """Django settings for bvh_web project."""
-
 import json
 import os
 

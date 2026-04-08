@@ -1,6 +1,8 @@
 Django==5.2.12
 django-extensions==4.1
 django-disposable-email-checker
+# Rest Framework
+djangorestframework==3.17.1
 
 # PostgresSQL
 #psycopg2-binary==2.8.3
@@ -10,8 +12,6 @@ psycopg2
 
 # serve files
 whitenoise==6.11.0
-# Rest Framework
-djangorestframework==3.17.1
 # Sentry
 raven==6.10.0
 # for date processing
