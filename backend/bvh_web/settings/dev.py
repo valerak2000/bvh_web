@@ -2,10 +2,14 @@ from django.core.exceptions import ImproperlyConfigured
 from bvh_web.settings.base import (
     MIDDLEWARE, SECRETS, BASE_DIR, base_dir_join,
     INSTALLED_APPS, REST_FRAMEWORK, TEMPLATES,
+    ROOT_URLCONF, WSGI_APPLICATION, AUTH_USER_MODEL,
+    AUTH_PASSWORD_VALIDATORS, STATICFILES_DIRS, WEBPACK_LOADER,
+    REST_KNOX, ACCOUNT_ACTIVATION_DAYS, SECRET_KEY, DEBUG,
+    ALLOWED_HOSTS, LANGUAGE_CODE, TIME_ZONE, USE_I18N, USE_L10N, USE_TZ,
 )
 
 DEBUG = True
-PAGE_CACHE_SECONDS = 1
+PAGE_CACHE_SECONDS = 60  # Added for caching index page
 
 MIDDLEWARE.remove('django.middleware.cache.UpdateCacheMiddleware')
 MIDDLEWARE.remove('django.middleware.cache.FetchFromCacheMiddleware')
