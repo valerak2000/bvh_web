@@ -7,16 +7,15 @@ PAGE_CACHE_SECONDS = 1
 MIDDLEWARE.remove('django.middleware.cache.UpdateCacheMiddleware')
 MIDDLEWARE.remove('django.middleware.cache.FetchFromCacheMiddleware')
 
+db = SECRETS.get('database', {})
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangoreactredux_dev',
-        'USER': 'djangoreactredux',
-        'PASSWORD': SECRETS.get('database', {}).get('password', ''),
-        'HOST': 'localhost',
-        'PORT': 5433,
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite'),  # NOQA (ignore all errors on this line)
+        'NAME': db.get('name'),
+        'USER': db.get('user'),
+        'PASSWORD': db.get('password'),
+        'HOST': db.get('host'),
+        'PORT': db.get('port'),
     }
 }
 

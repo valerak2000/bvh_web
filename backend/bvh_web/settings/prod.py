@@ -9,14 +9,15 @@ PAGE_CACHE_SECONDS = 60
 ALLOWED_HOSTS.extend([])
 print(ALLOWED_HOSTS)
 
+db = SECRETS.get('database', {})
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangoreactredux_dev',
-        'USER': 'djangoreactredux',
-        'PASSWORD': SECRETS.get('database', {}).get('password', ''),
-        'HOST': 'localhost',
-        'PORT': 5433,
+        'NAME': db.get('name'),
+        'USER': db.get('user'),
+        'PASSWORD': db.get('password'),
+        'HOST': db.get('host'),
+        'PORT': db.get('port'),
     }
 }
 

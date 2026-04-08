@@ -15,8 +15,11 @@ def base_dir_join(*args):
 SECRETS_FILE = base_dir_join('secrets.json')
 SECRETS = {}
 if os.path.exists(SECRETS_FILE):
-    with open(SECRETS_FILE, 'r') as f:
-        SECRETS = json.load(f)
+    try:
+        with open(SECRETS_FILE, 'r', encoding='utf-8') as f:
+            SECRETS = json.load(f)
+    except (json.JSONDecodeError, OSError) as e:
+        raise ImproperlyConfigured(f'Failed to parse secrets.json: {e}')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = SECRETS.get('secret_key', os.environ.get('DJANGO_SECRET_KEY', ''))
