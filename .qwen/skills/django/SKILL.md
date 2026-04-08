@@ -13,8 +13,10 @@
 - Тестирование с pytest-django
 
 ## Usage
+Нужно использовать виртуальное окружение
+source py3/bin/activate
+python3
 
-```bash
 skill: "django"
 ```
 

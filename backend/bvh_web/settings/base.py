@@ -44,16 +44,12 @@ INSTALLED_APPS = (
     'django_extensions',
     'django_js_reverse',
     'webpack_loader',
-    #'import_export',
-    #'django2_url_robots',
     'accounts',
     'base'
 )
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    #'django.middleware.gzip.GZipMiddleware',
-    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -80,9 +76,7 @@ TEMPLATES = [
 ]
 
 ROOT_URLCONF = PROJECT_NAME + '.urls'
-#ROOT_URLCONF = 'bvh_web.urls'
 WSGI_APPLICATION = PROJECT_NAME + '.wsgi.application'
-#WSGI_APPLICATION = 'bvh_web.wsgi.application'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
