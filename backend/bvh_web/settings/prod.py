@@ -1,18 +1,20 @@
-from bvh_web.settings.base import *  # NOQA (ignore all errors on this line)
+from bvh_web.settings.base import DATABASES
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 PAGE_CACHE_SECONDS = 60
 
-# TODO: n a real production server this should have a proper url
-ALLOWED_HOSTS.extend([])
-print(ALLOWED_HOSTS)
-
-db = SECRETS.get('database', {})
+db = SECRETS.get('database_prod', {})
+required_db_keys = ['name', 'user', 'password', 'host', 'port']
+missing_keys = [k for k in required_db_keys if not db.get(k)]
+if missing_keys:
+    raise ImproperlyConfigured(
+        f'Missing required database keys in secrets.json: {", ".join(missing_keys)}'
+    )
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': db.get('name'),
         'USER': db.get('user'),
         'PASSWORD': db.get('password'),
@@ -20,6 +22,9 @@ DATABASES = {
         'PORT': db.get('port'),
     }
 }
+
+ALLOWED_HOSTS.extend([])
+print(ALLOWED_HOSTS)
 
 STATIC_URL = '/static/'
 STATIC_ROOT = base_dir_join('../static')
