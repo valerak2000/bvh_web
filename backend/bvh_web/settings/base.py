@@ -1,6 +1,9 @@
 """Django settings for bvh_web project."""
 
+import json
 import os
+
+from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PROJECT_NAME = 'bvh_web'
@@ -8,17 +11,19 @@ PROJECT_NAME = 'bvh_web'
 def base_dir_join(*args):
     return os.path.join(BASE_DIR, *args)
 
+# Load secrets from secrets.json file
+SECRETS_FILE = base_dir_join('secrets.json')
+SECRETS = {}
+if os.path.exists(SECRETS_FILE):
+    with open(SECRETS_FILE, 'r') as f:
+        SECRETS = json.load(f)
+
 # SECURITY WARNING: keep the secret key used in production secret!
-try:
-    SECRET_KEY
-except NameError:
-    SECRET_FILE = base_dir_join('secret.txt')
-    print(SECRET_FILE)
-    try:
-        with open(SECRET_FILE) as f:
-            SECRET_KEY = f.read().strip()
-    except IOError:
-        SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '6627fe4efb8447f9661b04c33532b4bb0287dfeab2a18e9030c3036c4a27896f36a9672852b41d7cf124610b384c03d5731d')
+SECRET_KEY = SECRETS.get('secret_key', os.environ.get('DJANGO_SECRET_KEY', ''))
+if not SECRET_KEY:
+    raise ImproperlyConfigured(
+        'Set SECRET_KEY in secrets.json or DJANGO_SECRET_KEY environment variable'
+    )
 
 DEBUG = True
 

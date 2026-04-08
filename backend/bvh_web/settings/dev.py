@@ -12,7 +12,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'djangoreactredux_dev',
         'USER': 'djangoreactredux',
-        'PASSWORD': '123',
+        'PASSWORD': SECRETS.get('database', {}).get('password', ''),
         'HOST': 'localhost',
         'PORT': 5433,
 #        'ENGINE': 'django.db.backends.sqlite3',

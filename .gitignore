@@ -353,6 +353,7 @@ py3/
 # Python compiled byte code
 *.pyc
 secret.txt
+secrets.json
 
 # SQLite3 database
 *.sqlite
