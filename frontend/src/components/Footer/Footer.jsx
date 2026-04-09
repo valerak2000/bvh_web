@@ -44,7 +44,7 @@ class Footer extends Component {
                     style = { footer.bottomNavigation }
                 >
                     <BottomNavigationAction
-                        label = '© 2018 ООО «БВХ», ООО «БООС»'
+                        label = '© 2018 ООО «БВХ»'
                         icon = { <Home /> }
                         value = 'home'
                         component = { Link } to = '/'

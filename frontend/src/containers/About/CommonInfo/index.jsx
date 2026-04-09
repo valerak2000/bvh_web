@@ -128,31 +128,6 @@ function CommonInfoView(props) {
                     На период паводков и чрезвычайных ситуаций должен устанавливаться усиленный режим контроля питьевой воды в соответствии с рабочей программой по согласованию с центром «Госсанэпиднадзора».
                     Производственный контроль качества питьевой воды в соответствии с рабочей программой осуществляется лабораторией ФГУЗ «Центр гигиены и эпидемиологии в Краснодарском крае».<br />
                 </Typography>
-                <br />
-                <Divider />
-                <br />
-                <Typography
-                    variant = 'body1'
-                    color = 'textSecondary'
-                    sx = {{
-                        margin: 'auto auto auto 0.5rem',
-                        textAlign: 'justify',
-                        textIndent: '1.5em',
-                    }}
-                >
-                    <strong>ООО «Брюховецкое предприятие отвода и очистки стоков» (ООО «БООС»)</strong> зарегистрировано 23 декабря 2005 года.<br/>
-                </Typography>
-                <Typography
-                    variant = 'body1'
-                    color = 'textSecondary'
-                    sx = {{
-                        margin: 'auto auto auto 0.5rem',
-                        textAlign: 'justify',
-                        textIndent: '1.5em',
-                    }}
-                >
-                    За 2017 год произведена очистка <strong>571 тыс.кубометров</strong> сточных вод.
-                </Typography>
             </CardContent>
         </Card>
     );
