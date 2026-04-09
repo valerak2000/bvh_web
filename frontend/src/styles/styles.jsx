@@ -1,36 +1,22 @@
-import { adaptV4Theme, createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import { common, blue, grey, cyan } from '@mui/material/colors';
 
-export var muiTheme = createTheme(adaptV4Theme({
+export var muiTheme = createTheme({
     palette: {
         textColor: {
             main: blue[900]
         },
-        //alternateTextColor: { main: blue[900] },
         text: {
             primary: blue[900],
             secondary: common['black']
-        }, //teal300 lightGreen50 lightBlue900
+        },
         primary: {
             main: blue[900],
             contrastText: common['white']
-        }, //teal300 lightGreen50 lightBlue900
+        },
         secondary: {
             main: blue[900],
-            //contrastText: common['white']
         },
-        //secondaryTextColor: {
-        //    main: blue[800]
-        //},
-        //primary2Color: Colors.white,
-        //accent1Color: Colors.white,
-        //accent2Color: { main: common['white'] },
-        //backgroundColor: Colors.teal200,
-        //selectedTextColor: Colors.blue900,
-        //primary2Color: Colors.teal200,
-        //primary: Colors.blue900,
-        //color: Colors.teal200,
-        //canvasColor: Colors.teal200,
     },
     typography: {
         fontFamily: [
@@ -335,4 +321,4 @@ export var muiTheme = createTheme(adaptV4Theme({
         textIndent: '1.5em',
         margin: '0.25rem auto 0.25rem',
     },
-}));
+});

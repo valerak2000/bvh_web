@@ -45,25 +45,6 @@ export function ColdWather(props) {
     );
 }
 
-export function WasteWather(props) {
-    //const leaderShip = '/static/images/wastewater-stormw-streetlight.ico';
-    const leaderShip = '/static/images/wastewater.ico';
-    //const leaderShip = '/static/images/wastewater-separative-sewer-water-sewage.ico';
-
-    return (
-        <img
-            src = { leaderShip }
-            alt = 'Подключение к водоотведению'
-            style = {{
-                height: 24,
-                width: 24,
-                objectFit: 'contain',
-                opacity: 0.64,
-            }}
-            { ...props }
-        />
-    );
-}
 
 export const MENU_HOME = [
     {
@@ -177,12 +158,6 @@ export const MENU_CUSTOMERS = [
                 leftIcon: (<ColdWather />),
                 dataRoute: '/customers/connection/connection_holvodosnabjenie',
             },
-            {
-                key: 'connection_vodootvedenie',
-                primaryText: 'Водоотведение',
-                leftIcon: (<WasteWather />),
-                dataRoute: '/customers/connection/connection_vodootvedenie',
-            },
 /*
             {
                 key: 'poluchenie_tekhnicheskikh_usloviy',
@@ -215,19 +190,6 @@ export const MENU_CUSTOMERS = [
                 leftIcon: null,
                 dataRoute: '/customers/fizlica/zaklyuchenie_dogovorov_holvod_fizlica',
             },
-            {
-                key: 'zaklyuchenie_dogovorov_vodootved_fizlica',
-                primaryText: 'Заключение договоров на водоотведение',
-                leftIcon: null,
-                dataRoute: '/customers/fizlica/zaklyuchenie_dogovorov_vodootved_fizlica',
-            },
-            /*{
-                key: 'perezaklyuchenie_dogovorov_vodootved_fizlica',
-                primaryText: 'Перезаключение договора на нового собственника домовладения',
-                secondaryText: 'для физических лиц- собственников индивидуальных жилых домов',
-                leftIcon: null,
-                dataRoute: '/customers/fizlica/perezaklyuchenie_dogovorov_vodootved_fizlica',
-            },*/
             /*{
                 key: 'zamena_vodomera_fizlica',
                 primaryText: 'Замена счетчика (водомера)',
@@ -264,12 +226,6 @@ export const MENU_CUSTOMERS = [
                 primaryText: 'Заключение договоров на холодное водоснабжение',
                 leftIcon: null,
                 dataRoute: '/customers/urlica/zaklyuchenie_dogovorov_holvod_urlica',
-            },
-            {
-                key: 'zaklyuchenie_dogovorov_vodootved_urlica',
-                primaryText: 'Заключение договоров на водоотведение',
-                leftIcon: null,
-                dataRoute: '/customers/urlica/zaklyuchenie_dogovorov_vodootved_urlica',
             },
             {
                 key: 'peredacha_pokazaniy_urlica',

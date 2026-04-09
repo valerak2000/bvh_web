@@ -61,8 +61,10 @@ class Root extends Component {
         if (navigator.platform.indexOf('Win') <= -1) return;
     }
 
-    componentDidUpdate(e) {
-        if (e.history.location.pathname === e.location.pathname) return;
+    componentDidUpdate(prevProps) {
+        // In React Router v6, history prop is not passed the same way
+        // Use window.location instead
+        // if (prevProps.history.location.pathname === window.location.pathname) return;
         //this.refs.mainPanel.scrollTop = 0;
     }
 
@@ -180,10 +182,4 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-//export default compose(
-//    withStyles(styles, { name: 'muiRootView', flip: false, withTheme: false }),
-//    connect(mapStateToProps)
-//)(Root);
-
-/*
-*/
+export default connect(mapStateToProps)(Root);

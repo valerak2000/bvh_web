@@ -17,12 +17,6 @@ const watherItsLive = '/static/images/water-glass-and-faucet.png';
 const watherItsLiveWP = '/static/images/water-glass-and-faucet.webp';
 const bvhVodozaborMashZal = '/static/images/vodozab1_mash.jpg';
 const bvhVodozaborMashZalWP = '/static/images/vodozab1_mash.webp';
-const bvhOchstnye1 = '/static/images/ochist1.jpg';
-const bvhOchstnye1WP = '/static/images/ochist1.webp';
-const bvhOchstnye2 = '/static/images/ochist2.jpg';
-const bvhOchstnye2WP = '/static/images/ochist2.webp';
-const bvhOchstnyeLaba = '/static/images/ochist_lab.jpg';
-const bvhOchstnyeLabaWP = '/static/images/ochist_lab.webp';
 const sberPayOnline = '/static/images/myTarget_600x600.jpg';
 const avtoplatezh = '/static/images/avtoplatezh.gif';
 const instruktsiyaAvtoplatezh = '/static/images/instruktsiya_avtoplatezh.jpg';
@@ -39,21 +33,6 @@ const splashSteps = [
         label: 'Водозабор - Насосный зал',
         webpPath: bvhVodozaborMashZalWP,
         imgPath: bvhVodozaborMashZal,
-    },
-    {
-        label: 'Очистные - Аэротенк',
-        webpPath: bvhOchstnye1WP,
-        imgPath: bvhOchstnye1,
-    },
-    {
-        label: 'Очистные - Отстойник ',
-        webpPath: bvhOchstnye2WP,
-        imgPath: bvhOchstnye2,
-    },
-    {
-        label: 'Очистные - Лаборатория',
-        webpPath: bvhOchstnyeLabaWP,
-        imgPath: bvhOchstnyeLaba,
     },
     {
         label: 'Акция «Плати онлайн»',
@@ -111,33 +90,12 @@ function SberActions(props) {
     );
 }
 
-function BoosActions(props) {
-    return (
-        <React.Fragment key = 'boos_actions'>
-            <Typography
-                variant = 'body1'
-                color = 'textSecondary'
-                sx = {{
-                    margin: 'auto auto auto 0.5rem',
-                    textAlign: 'justify',
-                    textIndent: '1.5em',
-                }}
-            >
-                Уважаемые абоненты ООО «Брюховецкое предприятия отвода и очистки стоков!
-      В связи с расторжением договора № 2/7 «О передаче в аренду недвижимого имущества, являющегося муниципальной собственностью Брюховецкого сельского поселения» от 01.12.2007 года, заключенного между Брюховецким сельским поселением и ООО «Брюховецкое предприятие отвода и очистки стоков» и, соответственно, передачей объектов водоотведения Брюховецкому сельскому поселению, ООО «Брюховецкое предприятие отвода и очистки стоков» настоящим уведомляет, что с 21 ноября 2025 года (дата расторжения вышеуказанного договора аренды) прекращает свою хозяйственную деятельность по водоотведению в ст. Брюховецкой Краснодарского края.
-   Прекращение деятельности по водоотведению является основанием для расторжения договоров водоотведения, поскольку исполнение договоров становится невозможным.
-     Договоры водоотведения будут считаться расторгнутыми с <b>21 ноября 2025 года</b>.
-
-     Администрация ООО «БООС»
-            </Typography>
-        </React.Fragment>
-    );
-}
 
 function KKActions(props) {
     return (
         <React.Fragment key = 'kk_actions'>
             <Typography
+                component = 'div'
                 variant = 'body1'
                 color = 'textSecondary'
                 sx = {{
@@ -168,17 +126,6 @@ function KKActions(props) {
                 centerRipple = { false }
                 disableRipple = { true }
                 disableTouchRipple = { true }
-                href = 'https://ref.kubankredit.ru/2?h=7F29F8BB0D761524929E9EBD2C9D7B53&params=hh'
-                target = '_blank'
-            >
-                ООО "БРЮХОВЕЦКОЕ ПРЕДПРИЯТИЕ ОТВОДА И ОЧИСТКИ СТОКОВ"
-            </Button>
-            <Button
-                focusRipple = { false }
-                aria-selected = { false }
-                centerRipple = { false }
-                disableRipple = { true }
-                disableTouchRipple = { true }
                 href = 'https://ref.kubankredit.ru/2?h=C9D494F7B0A8BEDEC2442EC1169DC5E3&params=hh'
                 target = '_blank'
             >
@@ -190,7 +137,8 @@ function KKActions(props) {
 
 function HomeView(props) {
     const theme = useTheme();
-    const { card, subParagraf } = theme;
+    const { app } = theme;
+    const { card, subParagraf } = app;
     const { dispatch } = props;
     const [activeStep, setActiveStep] = React.useState(0);
 
@@ -223,7 +171,12 @@ function HomeView(props) {
             square = { true }
             sx = { card }
         >
-            <CardHeader
+ 
+        </Card>
+    );
+}
+/*
+           <CardHeader
                 title = 'Брюховецкий водоканал'
                 titleTypographyProps = { card.titleTypography }
                 sx = { card.title }
@@ -261,18 +214,12 @@ function HomeView(props) {
                 </Slider>
                 <br />
                 <br />
-                <BoosActions />
-                <br />
-                <br />
                 <KKActions />
                 <br />
                 <br />
                 <SberActions />
             </CardContent>
-        </Card>
-    );
-}
-
+*/
 HomeView.propTypes = {
     statusText: PropTypes.string,
     userName: PropTypes.string,

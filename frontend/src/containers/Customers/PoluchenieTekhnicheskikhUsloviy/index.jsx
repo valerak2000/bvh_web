@@ -11,7 +11,8 @@ import FileLink from '../../../components/FileLink';
 
 function PoluchenieTekhnicheskikhUsloviyView(props) {
     const theme = useTheme();
-    const { card, ul, li } = theme;
+    const { app } = theme;
+    const { card, ul, li } = app;
 
     return (
         <Card

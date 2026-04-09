@@ -36,7 +36,8 @@ const rekvisity_ooo_boos = '/static/files/media/rekvisity_ooo_boos.pdf';
 
 function ContactsView(props) {
     const theme = useTheme();
-    const { card, subParagraf } = theme;
+    const { app } = theme;
+    const { card, subParagraf } = app;
     const [expandedMain, setExpandedMain] = React.useState(false);
     const [expandedAbon, setExpandedAbon] = React.useState(false);
 

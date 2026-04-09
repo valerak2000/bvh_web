@@ -1,35 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 
 import appRoutes from '../../routes/App.jsx';
 
 const switchRoutes = (
-    <Switch>
+    <Routes>
     {
         appRoutes.map((prop, key) =>
             prop.redirect ? (
-                <Redirect
-                    from = { prop.path }
-                    to = { prop.to }
-                    key = { key }
+                <Route
+                    path={prop.path}
+                    element={<Navigate to={prop.to} replace />}
+                    key={key}
                 />
             ) : (
                 prop.path ? (
-                    <Route exact path = { prop.path } key = { key } >
-                        < prop.component />
-                    </Route>
+                    <Route
+                        path={prop.path}
+                        element={<prop.component />}
+                        key={key}
+                        end={prop.exact}
+                    />
                 ) : (
-                    <Route key = { key } >
-                        < prop.component />
-                    </Route>
+                    <Route
+                        path="*"
+                        element={<prop.component />}
+                        key={key}
+                    />
                 )
             )
         )
     }
-    </Switch>
+    </Routes>
 );
 
 function AppView(props) {

@@ -16,8 +16,9 @@ const successColor = "#4caf50";
 const warningColor = "#ff9800";
 const dangerColor = "#f44336";
 
-const StyledDialog = styled(Dialog)(({ theme, ownerstate }) => {
-  const { type } = ownerstate;
+const StyledDialog = styled(Dialog, {
+  shouldForwardProp: (prop) => prop !== 'type',
+})(({ type }) => {
   
   const titleType = {
     paddingTop: "12px",
@@ -96,19 +97,17 @@ function MessageBox({
   let finalIcon = icon;
   if (icon === true) finalIcon = helper.getIcon(type);
 
-  const ownerState = { type };
-
   return (
     <StyledDialog
       {...other}
-      ownerState={ownerState}
+      type={type}
       maxWidth={false}
       fullScreen={false}
       open={open || false}
       aria-labelledby={`message-box-title-${type}`}
     >
       <Typography
-        variant="title"
+        variant="h6"
         className={`title ${type}`}
         id={`message-box-title-${type}`}
       >
@@ -167,7 +166,8 @@ MessageBox.propTypes = {
 
 const MessageBoxWithTheme = (props) => {
   const theme = useTheme();
-  return <MessageBox {...props} theme={theme} />;
+  const { theme: _, ...restProps } = props; // Don't pass theme to MessageBox
+  return <MessageBox {...restProps} />;
 };
 
 export default MessageBoxWithTheme;

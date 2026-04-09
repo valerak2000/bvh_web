@@ -16,7 +16,8 @@ const instruktsiyaAvtoplatezhWP = '/static/images/instruktsiya_avtoplatezh.webp'
 
 function FizlicaPaymentsView(props) {
     const theme = useTheme();
-    const { card, subParagraf } = theme;
+    const { app } = theme;
+    const { card, subParagraf } = app;
 
     return (
         <Card

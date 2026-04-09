@@ -10,7 +10,8 @@ import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 
 function CommonInfoView(props) {
     const theme = useTheme();
-    const { card, ul, li, RedLine } = theme;
+    const { app } = theme;
+    const { card, ul, li, RedLine } = app;
 
     return (
         <Card

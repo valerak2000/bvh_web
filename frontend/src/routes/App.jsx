@@ -60,9 +60,6 @@ const ZakupkiRaskrytieFz223Page = Loader(() =>
 const ConnectionHolodnoeVodosnabjeniePage = Loader(() =>
     import(/* webpackChunkName: "ConnectionHolodnoeVodosnabjenieView" */ '../containers/Customers/ConnectionHolodnoeVodosnabjenie/index.jsx')
 );
-const ConnectionVodootvedPage = Loader(() =>
-    import(/* webpackChunkName: "ConnectionVodootvedView" */ '../containers/Customers/ConnectionVodootved/index.jsx')
-);
 
 //const PoluchenieTekhnicheskikhUsloviyPage = Loader(() =>
 //    import(/* webpackChunkName: "PoluchenieTekhnicheskikhUsloviyView" */ '../containers/Customers/PoluchenieTekhnicheskikhUsloviy/index.jsx')
@@ -76,9 +73,6 @@ const ConnectionVodootvedPage = Loader(() =>
 const FizlicaZaklyuchenieDogovorovHolvodPage = Loader(() =>
     import(/* webpackChunkName: "FizlicaZaklyuchenieDogovorovHolvodView" */ '../containers/Customers/FizlicaZaklyuchenieDogovorovHolvod/index.jsx')
 );
-const FizlicaZaklyuchenieDogovorovVodootvedPage = Loader(() =>
-    import(/* webpackChunkName: "FizlicaZaklyuchenieDogovorovVodootvedView" */ '../containers/Customers/FizlicaZaklyuchenieDogovorovVodootved/index.jsx')
-);
 const FizlicaPaymentsPage = Loader(() =>
     import(/* webpackChunkName: "FizlicaPaymentsView" */ '../containers/Customers/FizlicaPayments/index.jsx')
 );
@@ -90,9 +84,6 @@ const FizlicaPriboryUchetaPage = Loader(() =>
 );
 const UrlicaZaklyuchenieDogovorovHolvodPage = Loader(() =>
     import(/* webpackChunkName: "UrlicaZaklyuchenieDogovorovHolvodView" */ '../containers/Customers/UrlicaZaklyuchenieDogovorovHolvod/index.jsx')
-);
-const UrlicaZaklyuchenieDogovorovVodootvedPage = Loader(() =>
-    import(/* webpackChunkName: "UrlicaZaklyuchenieDogovorovVodootvedView" */ '../containers/Customers/UrlicaZaklyuchenieDogovorovVodootved/index.jsx')
 );
 const UrlicaPeredachaPokazaniyPage = Loader(() =>
     import(/* webpackChunkName: "UrlicaPeredachaPokazaniyView" */ '../containers/Customers/UrlicaPeredachaPokazaniy/index.jsx')
@@ -188,11 +179,6 @@ export default [
 	    exact: true,
         component: ConnectionHolodnoeVodosnabjeniePage
     },
-    {
-        path: '/customers/connection/connection_vodootvedenie',
-	    exact: true,
-        component: ConnectionVodootvedPage
-    },
 /*
     {
         path: '/customers/connection/poluchenie_tekhnicheskikh_usloviy',
@@ -216,11 +202,6 @@ export default [
         component: FizlicaZaklyuchenieDogovorovHolvodPage
     },
     {
-        path: '/customers/fizlica/zaklyuchenie_dogovorov_vodootved_fizlica',
-    	exact: true,
-        component: FizlicaZaklyuchenieDogovorovVodootvedPage
-    },
-    {
         path: '/customers/fizlica/payments_fizlica',
 	    exact: true,
         component: FizlicaPaymentsPage
@@ -239,11 +220,6 @@ export default [
         path: '/customers/urlica/zaklyuchenie_dogovorov_holvod_urlica',
     	exact: true,
         component: UrlicaZaklyuchenieDogovorovHolvodPage
-    },
-    {
-        path: '/customers/urlica/zaklyuchenie_dogovorov_vodootved_urlica',
-    	exact: true,
-        component: UrlicaZaklyuchenieDogovorovVodootvedPage
     },
     {
         path: '/customers/urlica/peredacha_pokazaniy_urlica',
