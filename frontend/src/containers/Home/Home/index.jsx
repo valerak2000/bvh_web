@@ -41,6 +41,38 @@ const splashSteps = [
     },
 ];
 
+const styles = theme => ({
+    imageZoom: {
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        width: '50%',
+    },
+    imageZoomed: {
+      height: 350,
+      display: 'block',
+      maxWidth: 400,
+      overflow: 'hidden',
+      width: '100%',
+      margin: '0 auto',
+      objectFit: 'contain',
+    },
+    bannerSber: {
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        //width: '50%',
+    },
+    text: {
+        margin: 'auto auto auto 0.5rem',
+        textAlign: 'justify',
+        textIndent: '1.5em',
+    },
+    children: {
+        paddingLeft: theme.spacing.unit * 8,
+    },
+});
+
 function NextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -64,6 +96,8 @@ function PrevArrow(props) {
 }
 
 function SberActions(props) {
+    const { classes } = props;
+
     return (
         <React.Fragment key = 'sber_actions'>
             <Button
@@ -79,6 +113,7 @@ function SberActions(props) {
                     src = { avtoplatezh }
                     alt = 'Автоплатеж Сбербанк'
                     title = 'Автоплатеж Сбербанк'
+                    className = { classes.bannerSber }
                     sx = {{
                         display: 'block',
                         marginLeft: 'auto',
@@ -90,14 +125,16 @@ function SberActions(props) {
     );
 }
 
-
 function KKActions(props) {
+    const { classes } = props;
+
     return (
         <React.Fragment key = 'kk_actions'>
             <Typography
                 component = 'div'
                 variant = 'body1'
                 color = 'textSecondary'
+                className = { classes.text }
                 sx = {{
                     margin: 'auto auto auto 0.5rem',
                     textAlign: 'justify',
@@ -109,7 +146,7 @@ function KKActions(props) {
                         src: platezhKK,
                         alt: 'КБ Кубань Кредит ООО',
                         title: 'КБ Кубань Кредит ООО',
-                        className: '',
+                        className: classes.imageZoom,
                     }}
                     shouldRespectMaxDimension = { true }
                     defaultStyles = {{
@@ -136,6 +173,10 @@ function KKActions(props) {
 }
 
 function HomeView(props) {
+/*         const { card } = this.props.theme.app;
+        const { classes, theme } = this.props;
+        const { subParagraf } = this.props.theme;
+        const { activeStep } = this.state;*/
     const theme = useTheme();
     const { app } = theme;
     const { card, subParagraf } = app;
@@ -169,6 +210,7 @@ function HomeView(props) {
     return (
         <Card
             square = { true }
+            style = { card }
             sx = { card }
         >
  
@@ -179,12 +221,14 @@ function HomeView(props) {
            <CardHeader
                 title = 'Брюховецкий водоканал'
                 titleTypographyProps = { card.titleTypography }
+                style = { card.title }
                 sx = { card.title }
             />
             <CardContent
+                style = { card.text }
                 sx = { card.text }
             >
-                <Paper square elevation = { 0 } sx = {{
+                <Paper square elevation = { 0 } className = { classes.header } sx = {{
                     '& .MuiPaper-root': {
                         paddingBottom: 0,
                     },
@@ -201,6 +245,7 @@ function HomeView(props) {
                                     src = { step.webpPath }
                                     alt = { step.label }
                                     title = { step.label }
+                                    className = { classes.imageZoom }
                                     sx = {{
                                         display: 'block',
                                         marginLeft: 'auto',
