@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { withTheme } from '@mui/styles'; // withTheme is deprecated
 import { useTheme } from '@mui/material/styles';
 
 import appRoutes from '../../routes/App.jsx';

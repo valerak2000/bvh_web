@@ -7,6 +7,7 @@ import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import Fab from '@mui/material/Fab';
 import ArrowUpward from '@mui/icons-material/ArrowUpward';
+import { common } from '@mui/material/colors';
 // core components
 import MessageBox from '../../components/MessageBox';
 //Actions
@@ -19,7 +20,6 @@ import AppView from '../App';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import LeftNavMenu from '../../components/Sidebar/LeftNavMenu';
-import { common } from '@mui/material/colors';
 
 const isProd = process.env.NODE_ENV === 'production';
 
