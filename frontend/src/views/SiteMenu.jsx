@@ -6,12 +6,20 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { pink } from '@mui/material/colors';
 
+const styles = {
+    indicator: {
+        backgroundColor: pink['A200'], //rgb(255, 64, 129)
+    },
+};
+
 class SiteMenu extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -56,6 +64,7 @@ class SiteMenu extends Component {
     };
 
     render() {
+        const { classes } = this.props;
         const { activeTab, ...props } = this.state;
         const { menu } = this.props.theme.app.header.appBar;
 
@@ -64,7 +73,9 @@ class SiteMenu extends Component {
                 <Tabs
                     value = { activeTab }
                     onChange = { this.handleChange }
-                    sx = { menu }
+                    style = { menu }
+                    classes = {{ indicator: classes.indicator, }}
+                    //sx = { menu }
                     TabIndicatorProps={{
                         sx: {
                             backgroundColor: pink['A200'],
@@ -75,19 +86,22 @@ class SiteMenu extends Component {
                         value = 'about'
                         label = 'О компании'
                         component = { Link } to = '/about'
-                        sx = { menu.tab }
+                        style = { menu.tab }
+                        //sx = { menu.tab }
                     />
                     <Tab
                         value = 'customers'
                         label = 'Абонентам'
                         component = { Link } to = '/customers'
-                        sx = { menu.tab }
+                        style = { menu.tab }
+                        //sx = { menu.tab }
                     />
                     <Tab
                         value = 'news'
                         label = 'Новости'
                         component = { Link } to = '/news'
-                        sx = { menu.tab }
+                        style = { menu.tab }
+                        //sx = { menu.tab }
                     />
                 </Tabs>
             </div>
