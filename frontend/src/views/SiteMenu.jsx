@@ -75,33 +75,24 @@ class SiteMenu extends Component {
                     onChange = { this.handleChange }
                     style = { menu }
                     classes = {{ indicator: classes.indicator, }}
-                    //sx = { menu }
-                    TabIndicatorProps={{
-                        sx: {
-                            backgroundColor: pink['A200'],
-                        }
-                    }}
                 >
                     <Tab
                         value = 'about'
                         label = 'О компании'
                         component = { Link } to = '/about'
                         style = { menu.tab }
-                        //sx = { menu.tab }
                     />
                     <Tab
                         value = 'customers'
                         label = 'Абонентам'
                         component = { Link } to = '/customers'
                         style = { menu.tab }
-                        //sx = { menu.tab }
                     />
                     <Tab
                         value = 'news'
                         label = 'Новости'
                         component = { Link } to = '/news'
                         style = { menu.tab }
-                        //sx = { menu.tab }
                     />
                 </Tabs>
             </div>
