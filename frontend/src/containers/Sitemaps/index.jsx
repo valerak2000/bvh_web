@@ -14,7 +14,27 @@ import Collapse from '@mui/material/Collapse';
 import CardHeader from '../../components/Card/CardHeaderImpl.jsx';
 import { MENU } from '../../constants/menuStruct';
 
+const styles = theme => ({
+    text: {
+        margin: 'auto auto auto 0.5rem',
+        textAlign: 'justify',
+        textIndent: '1.5em',
+    },
+    icon: {
+        marginRight: 0,
+        color: fade(theme.palette.text.secondary, 0.64),
+    },
+    children: {
+        paddingLeft: theme.spacing.unit * 8,
+//        paddingLeft: theme.spacing(8),
+    },
+    mapItem: {
+        paddingTop: 0,
+        paddingBottom: 0,
+    },
+});
 function ListSiteMaps(props) {
+    const { classes } = props;
     const theme = useTheme();
     const listItems = props.items.map((item, index) => {
         var itemMap = '';
@@ -23,27 +43,17 @@ function ListSiteMaps(props) {
             itemMap = <ListItem
                     key = { item.key }
                     disableGutters
-                    sx = {{
-                        paddingTop: 0,
-                        paddingBottom: 0,
-                    }}
+                    className = { props.classes.mapItem }
                 >
                     { item.leftIcon
-                        && <ListItemIcon sx = {{
-                            marginRight: 0,
-                            color: alpha(theme.palette.text.secondary, 0.64),
-                        }}>
+                        && <ListItemIcon className = { classes.icon }>
                             { item.leftIcon }
                         </ListItemIcon> }
                     { props.topLevel &&
                         <Typography
                             variant = 'body1'
                             color = 'textSecondary'
-                            sx = {{
-                                margin: 'auto auto auto 0.5rem',
-                                textAlign: 'justify',
-                                textIndent: '1.5em',
-                            }}
+                            className = { classes.text }
                         >
                             <strong>{ `${ item.primaryText }` }</strong><br />
                         </Typography> }
@@ -61,17 +71,11 @@ function ListSiteMaps(props) {
                     key = { item.key }
                     button
                     disableGutters
-                    sx = {{
-                        paddingTop: 0,
-                        paddingBottom: 0,
-                    }}
+                    className = { props.classes.mapItem }
                     onClick = { (e) => props.onClick(item.dataRoute, e) }
                 >
                     { item.leftIcon
-                        && <ListItemIcon sx = {{
-                            marginRight: 0,
-                            color: alpha(theme.palette.text.secondary, 0.64),
-                        }}>
+                        && <ListItemIcon className = { classes.icon }>
                             { item.leftIcon }
                         </ListItemIcon> }
                     <ListItemText
@@ -90,9 +94,7 @@ function ListSiteMaps(props) {
                             in = { true }
                             timeout = 'auto'
                             unmountOnExit
-                            sx = {{
-                                paddingLeft: theme.spacing(8),
-                            }}
+                            className = { classes.children }
                         >
                             <ListSiteMaps
                                 items = { item.children }
@@ -115,11 +117,7 @@ function ListSiteMaps(props) {
                 <Typography
                     variant = 'body1'
                     color = 'textSecondary'
-                    sx = {{
-                        margin: 'auto auto auto 0.5rem',
-                        textAlign: 'justify',
-                        textIndent: '1.5em',
-                    }}
+                    className = { classes.text }
                 >
                     Карта сайта отсутствует.
                 </Typography>
@@ -129,12 +127,12 @@ function ListSiteMaps(props) {
 }
 
 function MapsView(props) {
-    const theme = useTheme();
-    const { card } = theme.app;
-
     const handleClick = (dataRoute, e ) => {
         props.history.push(dataRoute);
     };
+
+    const { classes } = this.props;
+    const { card } = this.props.theme.app;
 
     return (
         <Card

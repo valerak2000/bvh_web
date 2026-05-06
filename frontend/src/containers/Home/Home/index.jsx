@@ -114,11 +114,6 @@ function SberActions(props) {
                     alt = 'Автоплатеж Сбербанк'
                     title = 'Автоплатеж Сбербанк'
                     className = { classes.bannerSber }
-                    sx = {{
-                        display: 'block',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                    }}
                 />
             </Button>
         </React.Fragment>
@@ -135,11 +130,6 @@ function KKActions(props) {
                 variant = 'body1'
                 color = 'textSecondary'
                 className = { classes.text }
-                sx = {{
-                    margin: 'auto auto auto 0.5rem',
-                    textAlign: 'justify',
-                    textIndent: '1.5em',
-                }}
             >
                 <ImageZoom
                     image = {{
@@ -211,7 +201,6 @@ function HomeView(props) {
         <Card
             square = { true }
             style = { card }
-            sx = { card }
         >
  
         </Card>
