@@ -178,15 +178,12 @@ module.exports = function (mode) {
                 chunkFilename: isDev ? '[id].css' : '[id].[contenthash].css',
             }),
 
-            // HtmlWebpackPlugin используется только в production режиме
-            // В dev режиме webpack-dev-server сам генерирует HTML с подключенными скриптами
-            ...(isDev ? [] : [
-                new HtmlWebpackPlugin({
-                    template: path.join(PATHS.src, 'index.html.ejs'),
-                    inject: true,
-                    minify: true
-                })
-            ]),
+            // HtmlWebpackPlugin используется в dev и production режимах
+            new HtmlWebpackPlugin({
+                template: path.join(PATHS.src, 'index.html.ejs'),
+                inject: true,
+                minify: !isDev
+            }),
 
             // new webpack.ProvidePlugin({
             //     React: 'react',

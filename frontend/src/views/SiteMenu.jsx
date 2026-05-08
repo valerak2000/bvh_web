@@ -7,9 +7,9 @@ import Tab from '@mui/material/Tab';
 import { pink } from '@mui/material/colors';
 
 const styles = {
-    indicator: {
-        backgroundColor: pink['A200'], //rgb(255, 64, 129)
-    },
+    style: {
+      backgroundColor: pink['A200'], //rgb(255, 64, 129)
+    }
 };
 
 class SiteMenu extends Component {
@@ -62,6 +62,8 @@ class SiteMenu extends Component {
     handleChange = (event, value) => {
         this.setState({ activeTab: value });
     };
+//                    TabIndicatorProps = {{ { classes.style } }}
+
 
     render() {
         const { classes } = this.props;
@@ -74,7 +76,6 @@ class SiteMenu extends Component {
                     value = { activeTab }
                     onChange = { this.handleChange }
                     style = { menu }
-                    classes = {{ indicator: classes.indicator, }}
                 >
                     <Tab
                         value = 'about'

@@ -4,10 +4,10 @@ const commonConfig = require('./common.config');
 const path = require('path');
 const fs = require('fs');
 
-const port = 8080;
+const port = 9000;
 
 module.exports = merge(commonConfig('development'), {
-    devtool: 'eval-source-map',
+    devtool: 'eval',
 
     optimization: {
         splitChunks: {
@@ -50,15 +50,15 @@ module.exports = merge(commonConfig('development'), {
         hot: true,
         open: false,
         port: port,
-        host: 'localhost',
+        allowedHosts: 'auto',
         // Включаем historyApiFallback для SPA
         historyApiFallback: {
-            index: '/index.html',
+            index: '/static/bundles/index.html',
             disableDotRule: true,
         },
         static: {
-            directory: path.join(__dirname, '../public'),
-            publicPath: '/',
+            directory: path.join(__dirname, '../../static/bundles'),
+            publicPath: '/static/bundles/',
         },
         client: {
             overlay: {
@@ -73,6 +73,7 @@ module.exports = merge(commonConfig('development'), {
         // Записываем бандлы на диск для отладки
         devMiddleware: {
             writeToDisk: true,
+            publicPath: '/static/bundles/',
         },
     },
 

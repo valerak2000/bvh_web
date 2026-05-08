@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { common, blue, grey, cyan } from '@mui/material/colors';
+import { common, blue, grey, cyan, pink } from '@mui/material/colors';
 
 export var muiTheme = createTheme({
     palette: {
@@ -221,7 +221,7 @@ export var muiTheme = createTheme({
                 'sans-serif',
             ].join(','),
             bottomNavigation: {
-                position: 'space-around',
+                justifyContent: 'space-around',
                 height: '4rem',
                 backgroundColor: blue[900], //teal200,
                 button: {
@@ -320,5 +320,14 @@ export var muiTheme = createTheme({
         textAlign: 'justify',
         textIndent: '1.5em',
         margin: '0.25rem auto 0.25rem',
+    },
+    components: {
+        MuiTabs: {
+            styleOverrides: {
+                indicator: {
+                    backgroundColor: pink['A200'],
+                },
+            },
+        },
     },
 });
