@@ -28,7 +28,7 @@ class Header extends Component {
         return (
             <AppBar
                 position = 'static'
-                sx = { appBar }
+                style = { appBar }
             >
                 <Toolbar
                     sx = {{

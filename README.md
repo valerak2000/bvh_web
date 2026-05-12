@@ -6,13 +6,21 @@ cd ./backend
 
 linux: virtualenv -p /usr/bin/python3.13 py3
        source py3/bin/activate
+       python -m py3 --upgrade py3
 windows: py -3.13 -m venv py3
 
 pip3 install virtualenv
 #pip3 install psycopg2-binary==2.8.3
 #pip3 install psycopg2 --no-binary :all:
 pip3 install -r py-requirements/dev.txt
+
+pip3 install pip-check-updates
+python3 -m pip_check_updates py-requirements/dev.txt
 pip3 install --upgrade -r py-requirements/dev.txt
+
+pip3 install pip-review
+pip-review --local --interactive
+
 pip install setuptools
 python3 manage.py check --settings=bvh_web.settings.dev
 python3 manage.py migrate --settings=bvh_web.settings.dev

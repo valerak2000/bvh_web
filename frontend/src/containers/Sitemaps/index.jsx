@@ -131,13 +131,13 @@ function MapsView(props) {
         props.history.push(dataRoute);
     };
 
-    const { classes } = this.props;
-    const { card } = this.props.theme.app;
+    const { classes } = props;
+    const { card } = props.theme.app;
 
     return (
         <Card
             square = { true }
-            sx = { card }
+            className = { card }
         >
             <CardHeader
                 title = 'Карта сайта'

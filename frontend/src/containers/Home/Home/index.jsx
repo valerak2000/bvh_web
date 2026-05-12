@@ -163,15 +163,18 @@ function KKActions(props) {
 }
 
 function HomeView(props) {
-/*         const { card } = this.props.theme.app;
-        const { classes, theme } = this.props;
-        const { subParagraf } = this.props.theme;
-        const { activeStep } = this.state;*/
+    const { card } = props.theme.app;
+    const { classes, theme } = props;
+    const { subParagraf } = props.theme;
+    const { dispatch } = props;
+    const { activeStep } = state;
+/*
     const theme = useTheme();
     const { app } = theme;
     const { card, subParagraf } = app;
-    const { dispatch } = props;
     const [activeStep, setActiveStep] = React.useState(0);
+    const classes = styles(theme);
+*/
 
     const goToProtected = () => {
         navigateTo('/protected');
@@ -202,28 +205,22 @@ function HomeView(props) {
             square = { true }
             style = { card }
         >
- 
+          <CardHeader
+                title = 'Брюховецкий водоканал'
+                titleTypographyProps = { card.titleTypography }
+                style = { card.title }
+            />
+            <CardContent
+                style = { card.text }
+            >
+                <Paper square elevation = { 0 } className = { classes.header }>
+                    <Typography>{ splashSteps[activeStep].label }</Typography>
+                </Paper>
+            </CardContent> 
         </Card>
     );
 }
 /*
-           <CardHeader
-                title = 'Брюховецкий водоканал'
-                titleTypographyProps = { card.titleTypography }
-                style = { card.title }
-                sx = { card.title }
-            />
-            <CardContent
-                style = { card.text }
-                sx = { card.text }
-            >
-                <Paper square elevation = { 0 } className = { classes.header } sx = {{
-                    '& .MuiPaper-root': {
-                        paddingBottom: 0,
-                    },
-                }}>
-                    <Typography>{ splashSteps[activeStep].label }</Typography>
-                </Paper>
                 <Slider {...settings}>
                     { splashSteps.map((step, index) => (
                         <div
@@ -235,12 +232,6 @@ function HomeView(props) {
                                     alt = { step.label }
                                     title = { step.label }
                                     className = { classes.imageZoom }
-                                    sx = {{
-                                        display: 'block',
-                                        marginLeft: 'auto',
-                                        marginRight: 'auto',
-                                        width: '50%',
-                                    }}
                                 />
                             ) : null }
                         </div>
@@ -248,11 +239,11 @@ function HomeView(props) {
                 </Slider>
                 <br />
                 <br />
-                <KKActions />
+                <KKActions classes={classes} />
                 <br />
                 <br />
-                <SberActions />
-            </CardContent>
+                <SberActions classes={classes} />
+ 
 */
 HomeView.propTypes = {
     statusText: PropTypes.string,

@@ -7,7 +7,11 @@ const fs = require('fs');
 const port = 9000;
 
 module.exports = merge(commonConfig('development'), {
-    devtool: 'eval',
+    devtool: 'source-map',
+
+    output: {
+        devtoolModuleFilenameTemplate: 'webpack:///[resource-path]',
+    },
 
     optimization: {
         splitChunks: {
@@ -56,15 +60,29 @@ module.exports = merge(commonConfig('development'), {
             index: '/static/bundles/index.html',
             disableDotRule: true,
         },
-        static: {
-            directory: path.join(__dirname, '../../static/bundles'),
-            publicPath: '/static/bundles/',
-        },
+        static: [
+            {
+                directory: path.join(__dirname, '../../static/bundles'),
+                publicPath: '/static/bundles/',
+            },
+            {
+                directory: path.join(__dirname, '../../static'),
+                publicPath: '/static/',
+            },
+        ],
         client: {
             overlay: {
                 errors: true,
                 warnings: false,
             },
+            // Улучшаем стабильность WebSocket соединения
+            webSocketURL: {
+                hostname: 'localhost',
+                port: port,
+                pathname: '/ws',
+                protocol: 'ws',
+            },
+            reconnect: 5, // Количество попыток переподключения
         },
         compress: true,
         headers: {
@@ -75,6 +93,8 @@ module.exports = merge(commonConfig('development'), {
             writeToDisk: true,
             publicPath: '/static/bundles/',
         },
+        // Явно указываем тип WebSocket сервера
+        webSocketServer: 'ws',
     },
 
     plugins: [],

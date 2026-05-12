@@ -170,9 +170,7 @@ module.exports = function (mode) {
         
         plugins: [
             new webpack.ProgressPlugin(),
-            
             new CleanWebpackPlugin(),
-            
             new MiniCssExtractPlugin({
                 filename: isDev ? '[name].css' : '[name].[contenthash].css',
                 chunkFilename: isDev ? '[id].css' : '[id].[contenthash].css',

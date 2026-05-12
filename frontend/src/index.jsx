@@ -32,7 +32,7 @@ const renderComponent = () => {
   root.render(
     <Provider store={store}>
       <ExceptionHandler global disabled={!isProd}>
-        <BrowserRouter basename={base || '/'}>
+        <BrowserRouter basename={base || '/'} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <Root />
         </BrowserRouter>
       </ExceptionHandler>
