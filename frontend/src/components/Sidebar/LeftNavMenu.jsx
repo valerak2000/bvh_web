@@ -9,11 +9,24 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import { withStyles } from 'tss-react/mui';
 
 import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ, HOME_MENU_MP,
     ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../../constants';
 import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../../constants/menuStruct';
 
+const styles = theme => ({
+    drawerPaper: {
+        position: 'relative',
+    },
+    icon: {
+        marginRight: 0,
+        color: fade(theme.palette.text.secondary, 0.64),
+    },
+    children: {
+        paddingLeft: theme.spacing.unit * 4,
+    },
+});
 function NavMenu(props) {
     let initiallyFocused = (props.initiallyFocused === undefined || props.initiallyFocused == null)
         ? props.items[0].key
@@ -41,10 +54,7 @@ function NavMenu(props) {
                     disabled = { item.disabled }
                 >
                     { item.leftIcon
-                      && <ListItemIcon sx={{
-                            marginRight: 0,
-                            color: alpha(props.theme.palette.text.secondary, 0.64),
-                        }}>
+                      && <ListItemIcon className = { props.classes.icon }>
                             { item.leftIcon }
                         </ListItemIcon> }
                     <ListItemText
@@ -82,16 +92,11 @@ function NavMenu(props) {
                                         disableGutters
                                         selected = { initiallySelectedSecond }
                                         onClick = { (e) => props.onClick(ni.dataRoute, ni.key, e) }
-                                        sx={{
-                                            paddingLeft: props.theme.spacing(4),
-                                        }}
+                                        className = { props.classes.children }
                                         disabled = { ni.disabled }
                                     >
                                         { ni.leftIcon
-                                          && <ListItemIcon sx={{
-                                                marginRight: 0,
-                                                color: alpha(props.theme.palette.text.secondary, 0.64),
-                                            }}>
+                                          && <ListItemIcon className = { props.classes.icon }>
                                                 { ni.leftIcon }
                                             </ListItemIcon> }
                                         <ListItemText
@@ -132,6 +137,8 @@ class LeftNavMenu extends Component {
         dispatch: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
     };
 
     state = {
@@ -184,6 +191,7 @@ class LeftNavMenu extends Component {
     };
 
     render() {
+        const { classes } = this.props;
         const { activeMenuTop, activeMenuSecond, activeMenuThird, expanded, ...props } = this.state;
         var initiallyFocused = null;
 
@@ -296,11 +304,8 @@ class LeftNavMenu extends Component {
         return (
             <Drawer
                 variant = 'permanent'
-                sx = {{
-                    position: 'relative',
-                    '& .MuiDrawer-paper': {
-                        position: 'relative',
-                    }
+                classes = {{
+                    paper: classes.drawerPaper,
                 }}
                 style = { leftNav }
             >
@@ -315,4 +320,6 @@ const LeftNavMenuWithTheme = (props) => {
     return <LeftNavMenu {...props} theme={theme} />;
 };
 
+//export default withStyles(styles, { name: 'muiLeftNavMenu', flip: false, withTheme: true })(LeftNavMenu);
+export default withStyles(LeftNavMenu, styles, { name: 'muiLeftNavMenu', flip: false, withTheme: true })
 export default LeftNavMenuWithTheme;
