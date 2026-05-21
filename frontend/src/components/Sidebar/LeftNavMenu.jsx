@@ -27,6 +27,7 @@ const styles = theme => ({
         paddingLeft: theme.spacing.unit * 4,
     },
 });
+
 function NavMenu(props) {
     let initiallyFocused = (props.initiallyFocused === undefined || props.initiallyFocused == null)
         ? props.items[0].key

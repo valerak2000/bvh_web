@@ -74,12 +74,6 @@ class Root extends Component {
 
    /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
    componentDidCatch(error, info) {
-    /* Example stack information:
-       in ComponentThatThrows (created by App)
-       in ErrorBoundary (created by App)
-       in div (created by App)
-       in App
-    */
         console.log(info.componentStack);
     }
 
@@ -122,6 +116,15 @@ class Root extends Component {
                         <div
                             style = { muiTheme.global }
                         >
+                            { !isProd && <DevTools /> }
+                        </div>
+                    </ThemeProvider>
+                </StyledEngineProvider>
+            </div>
+        );
+    }
+}
+/*
                             <MessageBox { ...messageBox } open = { messageBox.open || false } />
 
                             <Header
@@ -167,14 +170,7 @@ class Root extends Component {
                                 { ...this.props }
                                 { ...rest }
                             />
-                            { !isProd && <DevTools /> }
-                        </div>
-                    </ThemeProvider>
-                </StyledEngineProvider>
-            </div>
-        );
-    }
-}
+*/
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -182,4 +178,10 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
+
+
+//export default compose(
+//    withStyles(styles, { name: 'muiRootView', flip: false, withTheme: false }),
+//    connect(mapStateToProps)
+//)(Root);
 export default connect(mapStateToProps)(Root);
