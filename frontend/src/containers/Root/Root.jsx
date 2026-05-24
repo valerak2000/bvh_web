@@ -116,6 +116,16 @@ class Root extends Component {
                         <div
                             style = { muiTheme.global }
                         >
+                            <MessageBox { ...messageBox } open = { messageBox.open || false } />
+
+                            <Header
+                                { ...this.props }
+                                { ...rest }
+                            />
+                            <Footer
+                                { ...this.props }
+                                { ...rest }
+                            />
                             { !isProd && <DevTools /> }
                         </div>
                     </ThemeProvider>
@@ -125,12 +135,6 @@ class Root extends Component {
     }
 }
 /*
-                            <MessageBox { ...messageBox } open = { messageBox.open || false } />
-
-                            <Header
-                                { ...this.props }
-                                { ...rest }
-                            />
                             <div
                                 id = 'app'
                                 style = {{
@@ -166,10 +170,6 @@ class Root extends Component {
                                     { ...rest }
                                 />
                             </div>
-                            <Footer
-                                { ...this.props }
-                                { ...rest }
-                            />
 */
 
 const mapStateToProps = (state, ownProps) => {

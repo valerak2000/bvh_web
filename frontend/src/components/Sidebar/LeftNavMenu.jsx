@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { alpha, useTheme } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
@@ -21,10 +21,10 @@ const styles = theme => ({
     },
     icon: {
         marginRight: 0,
-        color: fade(theme.palette.text.secondary, 0.64),
+        color: alpha(theme.palette.text.secondary, 0.64),
     },
     children: {
-        paddingLeft: theme.spacing.unit * 4,
+        paddingLeft: theme.spacing(4),
     },
 });
 
@@ -46,9 +46,8 @@ function NavMenu(props) {
 
         return (
             <React.Fragment key = { index }>
-                <ListItem
+                <ListItemButton
                     key = { item.key }
-                    button
                     disableGutters
                     selected = { initiallyOpenFirst }
                     onClick = { (e) => props.onClick(item.dataRoute, item.key, e) }
@@ -72,7 +71,7 @@ function NavMenu(props) {
                     />
                     { item.children !== undefined && item.children.length > 0
                       && ( open ? <ExpandLess /> : <ExpandMore /> ) }
-                </ListItem>
+                </ListItemButton>
                 { item.children !== undefined && item.children.length > 0
                   && ( <Collapse
                            in = { open }
@@ -87,9 +86,8 @@ function NavMenu(props) {
                                     initiallyOpenFirst = initiallySelectedSecond;
 
                                 return (
-                                    <ListItem
+                                    <ListItemButton
                                         key = { ni.key }
-                                        button
                                         disableGutters
                                         selected = { initiallySelectedSecond }
                                         onClick = { (e) => props.onClick(ni.dataRoute, ni.key, e) }
@@ -112,7 +110,7 @@ function NavMenu(props) {
                                                 color: 'primary',
                                             }}
                                         />
-                                    </ListItem>
+                                    </ListItemButton>
                                 );
                             }) }
                             </List>
@@ -316,11 +314,5 @@ class LeftNavMenu extends Component {
     }
 }
 
-const LeftNavMenuWithTheme = (props) => {
-    const theme = useTheme();
-    return <LeftNavMenu {...props} theme={theme} />;
-};
-
 //export default withStyles(styles, { name: 'muiLeftNavMenu', flip: false, withTheme: true })(LeftNavMenu);
-export default withStyles(LeftNavMenu, styles, { name: 'muiLeftNavMenu', flip: false, withTheme: true })
-export default LeftNavMenuWithTheme;
+export default withStyles(LeftNavMenu, styles, { name: 'muiLeftNavMenu', flip: false, withTheme: true });

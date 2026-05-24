@@ -158,8 +158,8 @@
     "@iminside/react-yandex-maps": "latest",
     "@loadable/babel-plugin": "latest",
     "@loadable/component": "latest",
-    "@mui/icons-material": "^7.3.8",
-    "@mui/material": "^7.3.8",
+    "@mui/icons-material": "^5.18.0",
+    "@mui/material": "^5.18.0",
     "@mui/system": "^5.18.0",
     "@types/react-slick": "latest",
     "autoprefixer": "latest",
@@ -202,6 +202,7 @@
     "redux-toolbelt": "latest",
     "redux-toolbelt-thunk": "latest",
     "slick-carousel": "latest",
+    "tss-react": "^4.9.21",
     "url-join": "latest",
     "uuid": "latest"
   },
