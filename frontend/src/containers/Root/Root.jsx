@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
-//import { compose } from 'recompose';
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import Fab from '@mui/material/Fab';
 import ArrowUpward from '@mui/icons-material/ArrowUpward';
@@ -13,7 +11,6 @@ import MessageBox from '../../components/MessageBox';
 //Actions
 import NotificationActions from '../../actions/Notifications';
 import '../../styles/main.scss';
-
 import { muiTheme } from '../../styles/styles';
 import DevTools from './DevTools';
 import AppView from '../App';
@@ -23,165 +20,146 @@ import LeftNavMenu from '../../components/Sidebar/LeftNavMenu';
 
 const isProd = process.env.NODE_ENV === 'production';
 
-//Connect component to Redux store.
-@connect(
-    state => ({
-        messageBox: state.messageBox || {},
-        notifications: state.notifications || []
-    }),
-    dispatch => ({
-        actions: bindActionCreators(NotificationActions, dispatch)
-    })
-)
-
-class Root extends Component {
-    static propTypes = {
-        //store: PropTypes.shape().isRequired,
-        history: PropTypes.object.isRequired,
-    };
-
-    static defaultProps = {
-        scrollStepInPx: 50,
-        delayInMs: 16.66,
-    };
-
-    state = {
-        intervalId: 0,
-        goTopEnable: false,
-    };
+const Root = (props) => {
+    const { history, scrollStepInPx = 50, delayInMs = 16.66 } = props;
     
-    constructor(props, context) {
-        super(props, context);
-        this.scrollChange = this.scrollChange.bind(this);
-    }
-
-   /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
-   componentDidMount() {
-        window.addEventListener('scroll', this.scrollChange);
-        if (navigator.platform.indexOf('Win') <= -1) return;
-    }
-
-    componentDidUpdate(prevProps) {
-        // In React Router v6, history prop is not passed the same way
-        // Use window.location instead
-        // if (prevProps.history.location.pathname === window.location.pathname) return;
-        //this.refs.mainPanel.scrollTop = 0;
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.scrollChange);
-    }
-
-   /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
-   componentDidCatch(error, info) {
-        console.log(info.componentStack);
-    }
-
-    onNotificationChange = items => {
-        this.props.actions.addOrUpdateNotifications(items);
-    };
-
-    onNotificationDelete = items => {
-        this.props.actions.deleteNotifications(items);
-    };
-
-    scrollChange() {
-        const notTop = window.pageYOffset === 0 ? false : true;
-        if (notTop !== this.state.goTopEnable) {
-            this.setState({ goTopEnable: notTop });
+    // Redux state
+    const messageBox = useSelector(state => state.messageBox || {});
+    const notifications = useSelector(state => state.notifications || []);
+    const isAuthenticated = useSelector(state => state.auth?.isAuthenticated);
+    const dispatch = useDispatch();
+    
+    // Local state
+    const [intervalId, setIntervalId] = useState(0);
+    const [goTopEnable, setGoTopEnable] = useState(false);
+    
+    // Event handlers
+    const onNotificationChange = useCallback((items) => {
+        dispatch(NotificationActions.addOrUpdateNotifications(items));
+    }, [dispatch]);
+    
+    const onNotificationDelete = useCallback((items) => {
+        dispatch(NotificationActions.deleteNotifications(items));
+    }, [dispatch]);
+    
+    // Scroll handling
+    const scrollChange = useCallback(() => {
+        const notTop = window.pageYOffset !== 0;
+        if (notTop !== goTopEnable) {
+            setGoTopEnable(notTop);
         }
-    }
+    }, [goTopEnable]);
     
-    scrollStep() {
+    const scrollStep = useCallback(() => {
         if (window.pageYOffset === 0) {
-            clearInterval(this.state.intervalId);
+            clearInterval(intervalId);
+            setIntervalId(0);
         }
-        window.scroll(0, window.pageYOffset - this.props.scrollStepInPx);
-    }
-
-    scrollToTop() {
-        //console.log('top');
-        let intervalId = setInterval(this.scrollStep.bind(this), this.props.delayInMs);
-        this.setState({ intervalId: intervalId });
-    }
-
-    render() {
-        const { notifications, messageBox, ...rest } = this.props;
-        const { goTopEnable } = this.state;
-
-        return (
-            <div>
-                <StyledEngineProvider injectFirst>
-                    <ThemeProvider theme = { muiTheme }>
-                        <div
-                            style = { muiTheme.global }
-                        >
-                            <MessageBox { ...messageBox } open = { messageBox.open || false } />
-
-                            <Header
-                                { ...this.props }
-                                { ...rest }
-                            />
-                            <Footer
-                                { ...this.props }
-                                { ...rest }
-                            />
-                            { !isProd && <DevTools /> }
-                        </div>
-                    </ThemeProvider>
-                </StyledEngineProvider>
-            </div>
-        );
-    }
-}
-/*
-                            <div
-                                id = 'app'
-                                style = {{
-                                    display: 'flex',
-                                    width: '100%',
-                                }}
-                            >
-                                <LeftNavMenu
-                                    { ...this.props }
-                                    { ...rest }
-                                />
-                                {
-                                    goTopEnable &&
-                                    <Fab
-                                        aria-label = 'Top'
-                                        size = 'small'
-                                        onClick = { () => this.scrollToTop() }
-                                        style = {{
-                                            margin: 0,
-                                            top: 'auto',
-                                            right: 20,
-                                            bottom: 20,
-                                            left: 'auto',
-                                            position: 'fixed',
-                                            backgroundColor: common['white']
-                                        }}
-                                    >
-                                        <ArrowUpward />
-                                    </Fab>
-                                }
-                                <AppView
-                                    { ...this.props }
-                                    { ...rest }
-                                />
-                            </div>
-*/
-
-const mapStateToProps = (state, ownProps) => {
-    return {
-        isAuthenticated: state.auth.isAuthenticated,
+        window.scroll(0, window.pageYOffset - scrollStepInPx);
+    }, [intervalId, scrollStepInPx]);
+    
+    const scrollToTop = useCallback(() => {
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+        const id = setInterval(scrollStep, delayInMs);
+        setIntervalId(id);
+    }, [intervalId, scrollStep, delayInMs]);
+    
+    // Lifecycle effects
+    useEffect(() => {
+        window.addEventListener('scroll', scrollChange);
+        
+        // Cleanup
+        return () => {
+            window.removeEventListener('scroll', scrollChange);
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+        };
+    }, [scrollChange, intervalId]);
+    
+    // Prepare props for child components
+    const headerProps = {
+        ...props,
+        isAuthenticated,
+        onNotificationChange,
+        onNotificationDelete,
+        notifications,
     };
+    
+    const footerProps = {
+        ...props,
+    };
+    
+    const leftNavProps = {
+        ...props,
+        isAuthenticated,
+        theme: muiTheme,
+    };
+    
+    const appViewProps = {
+        ...props,
+        isAuthenticated,
+    };
+    
+    return (
+        <div>
+            <StyledEngineProvider injectFirst>
+                <ThemeProvider theme={muiTheme}>
+                    <div style={muiTheme.global}>
+                        <MessageBox {...messageBox} open={messageBox.open || false} />
+
+                        <Header {...headerProps} />
+                        
+                        <div
+                            id="app"
+                            style={{
+                                display: 'flex',
+                                width: '100%',
+                            }}
+                        >
+                            <LeftNavMenu {...leftNavProps} />
+                            {
+                                goTopEnable &&
+                                <Fab
+                                    aria-label="Top"
+                                    size="small"
+                                    onClick={() => scrollToTop()}
+                                    style={{
+                                        margin: 0,
+                                        top: 'auto',
+                                        right: 20,
+                                        bottom: 20,
+                                        left: 'auto',
+                                        position: 'fixed',
+                                        backgroundColor: common['white']
+                                    }}
+                                >
+                                    <ArrowUpward />
+                                </Fab>
+                            }
+                            <AppView {...appViewProps} />
+                        </div>
+                        
+                        <Footer {...footerProps} />
+                        {!isProd && <DevTools />}
+                    </div>
+                </ThemeProvider>
+            </StyledEngineProvider>
+        </div>
+    );
 };
 
+Root.propTypes = {
+    history: PropTypes.object.isRequired,
+    scrollStepInPx: PropTypes.number,
+    delayInMs: PropTypes.number,
+};
 
+Root.defaultProps = {
+    scrollStepInPx: 50,
+    delayInMs: 16.66,
+};
 
-//export default compose(
-//    withStyles(styles, { name: 'muiRootView', flip: false, withTheme: false }),
-//    connect(mapStateToProps)
-//)(Root);
-export default connect(mapStateToProps)(Root);
+export default Root;

@@ -2,6 +2,10 @@ import { createTheme } from '@mui/material/styles';
 import { common, blue, grey, cyan, pink } from '@mui/material/colors';
 
 export var muiTheme = createTheme({
+    root: {
+        display: 'flex',
+        width: '100%',
+    },
     palette: {
         textColor: {
             main: blue[900]
