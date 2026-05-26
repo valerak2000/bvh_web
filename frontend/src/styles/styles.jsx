@@ -2,25 +2,25 @@ import { createTheme } from '@mui/material/styles';
 import { common, blue, grey, cyan, pink } from '@mui/material/colors';
 
 export var muiTheme = createTheme({
-    root: {
-        display: 'flex',
-        width: '100%',
-    },
     palette: {
-        textColor: {
-            main: blue[900]
-        },
         text: {
             primary: blue[900],
-            secondary: common['black']
+            secondary: common['black'],
+            disabled: grey[500],
         },
         primary: {
             main: blue[900],
-            contrastText: common['white']
+            contrastText: common['white'],
         },
         secondary: {
             main: blue[900],
+            contrastText: common['white'],
         },
+        background: {
+            default: common['white'],
+            paper: grey[100],
+        },
+        divider: grey[300],
     },
     typography: {
         fontFamily: [
@@ -132,32 +132,35 @@ export var muiTheme = createTheme({
                     //margin: '1.5rem 0 0rem 0',
                 },
                 */
-                logo: {
-                    //2,646370023419204
-                    width: 230,
-                    height: 76,
-                    cursor: 'pointer',
-                    margin: '0.4rem auto auto -0.5rem',
-                    picture: {
-                        height: 'inherit',
-                        width: 201,
-                        objectFit: 'contain',
+                toolbar: {
+                    padding: '0 8px 8px 8px',
+                    logo: {
+                        //2,646370023419204
+                        width: 230,
+                        height: 76,
+                        cursor: 'pointer',
+                        margin: '0.4rem auto auto -0.5rem',
+                        picture: {
+                            height: 'inherit',
+                            width: 201,
+                            objectFit: 'contain',
+                        },
                     },
-                },
-                menu: {
-                    width: '30rem',
-                    height: 'inherit',
-                    margin: '2rem 3rem 0px',
-                    tab: {
-                        fontSize: 18,
-                        fontWeight: 500,
-                        opacity: 1,
-                        textTransform: 'none',
-                        indicator: {
-                            color: cyan[100],
-                            backgroundColor: cyan[100],
+                    menu: {
+                        width: '30rem',
+                        height: 'inherit',
+                        margin: '2rem 3rem 0px',
+                        tab: {
+                            fontSize: 18,
+                            fontWeight: 500,
+                            opacity: 1,
+                            textTransform: 'none',
+                            indicator: {
+                                color: cyan[100],
+                                backgroundColor: cyan[100],
+                            }
                         }
-                    }
+                    },
                 },
                 titleStyle: {
                     width: 'auto',

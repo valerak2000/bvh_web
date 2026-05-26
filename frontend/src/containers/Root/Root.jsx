@@ -21,7 +21,7 @@ import LeftNavMenu from '../../components/Sidebar/LeftNavMenu';
 const isProd = process.env.NODE_ENV === 'production';
 
 const Root = (props) => {
-    const { history, scrollStepInPx = 50, delayInMs = 16.66 } = props;
+    const { scrollStepInPx = 50, delayInMs = 16.66 } = props;
     
     // Redux state
     const messageBox = useSelector(state => state.messageBox || {});
@@ -79,47 +79,33 @@ const Root = (props) => {
         };
     }, [scrollChange, intervalId]);
     
-    // Prepare props for child components
-    const headerProps = {
-        ...props,
-        isAuthenticated,
-        onNotificationChange,
-        onNotificationDelete,
-        notifications,
-    };
-    
-    const footerProps = {
-        ...props,
-    };
-    
-    const leftNavProps = {
-        ...props,
-        isAuthenticated,
-        theme: muiTheme,
-    };
-    
-    const appViewProps = {
-        ...props,
-        isAuthenticated,
-    };
-    
     return (
         <div>
             <StyledEngineProvider injectFirst>
                 <ThemeProvider theme={muiTheme}>
                     <div style={muiTheme.global}>
-                        <MessageBox {...messageBox} open={messageBox.open || false} />
+                        <MessageBox {...messageBox} open={messageBox.open || false}/>
 
-                        <Header {...headerProps} />
+                        <Header
+                            {...props}
+                            isAuthenticated={isAuthenticated}
+                            onNotificationChange={onNotificationChange}
+                            onNotificationDelete={onNotificationDelete}
+                            notifications={notifications}
+                        />
                         
+                        {!isProd && <DevTools />}
+                    </div>
+                </ThemeProvider>
+            </StyledEngineProvider>
+        </div>
+    );
+};
+/*
                         <div
                             id="app"
-                            style={{
-                                display: 'flex',
-                                width: '100%',
-                            }}
                         >
-                            <LeftNavMenu {...leftNavProps} />
+                            <LeftNavMenu {...props, isAuthenticated} />
                             {
                                 goTopEnable &&
                                 <Fab
@@ -139,20 +125,13 @@ const Root = (props) => {
                                     <ArrowUpward />
                                 </Fab>
                             }
-                            <AppView {...appViewProps} />
+                            <AppView {...props,isAuthenticated} />
                         </div>
                         
-                        <Footer {...footerProps} />
-                        {!isProd && <DevTools />}
-                    </div>
-                </ThemeProvider>
-            </StyledEngineProvider>
-        </div>
-    );
-};
+                        <Footer {...props} />
+*/
 
 Root.propTypes = {
-    history: PropTypes.object.isRequired,
     scrollStepInPx: PropTypes.number,
     delayInMs: PropTypes.number,
 };

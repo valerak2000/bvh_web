@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-fetch';
 import { navigateTo } from '../utils/navigate';
 import { SERVER_URL } from '../utils/config';
 import { checkHttpStatus, parseJSON } from '../utils';

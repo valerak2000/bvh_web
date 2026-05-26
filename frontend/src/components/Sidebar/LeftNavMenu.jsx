@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useTheme } from '@mui/material/styles';
 import { alpha } from '@mui/material/styles';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -10,7 +11,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { withStyles } from 'tss-react/mui';
 
 import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ, HOME_MENU_MP,
     ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../../constants';
@@ -164,7 +164,8 @@ NavMenu.propTypes = {
 };
 
 function LeftNavMenu(props) {
-    const { isAuthenticated, theme, classes } = props;
+    const { isAuthenticated, classes } = props;
+    const theme = useTheme();
     const navigate = useNavigate();
     const location = useLocation();
     
@@ -336,8 +337,7 @@ function LeftNavMenu(props) {
 
 LeftNavMenu.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    theme: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(LeftNavMenu, styles, { name: 'muiLeftNavMenu', flip: false, withTheme: true });
+export default LeftNavMenu;

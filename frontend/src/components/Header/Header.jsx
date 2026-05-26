@@ -16,7 +16,11 @@ const Header = (props) => {
     const theme = useTheme();
     
     // Получаем appBar из темы
-    const appBar = theme?.header?.appBar || {};
+    const appBar = theme?.app?.header?.appBar || {};
+    const toolbar = appBar?.toolbar || {};
+    const logo = toolbar?.logo || {};
+    const menu = toolbar?.menu || {};
+    const login = appBar?.login || {};
     
     return (
         <AppBar
@@ -24,9 +28,7 @@ const Header = (props) => {
             style={appBar}
         >
             <Toolbar
-                sx={{
-                    padding: '0 8px 8px 8px',
-                }}
+                style={toolbar}
             >
                 <Button
                     focusRipple={false}
@@ -36,21 +38,21 @@ const Header = (props) => {
                     disableTouchRipple={true}
                     component={Link}
                     to="/"
-                    sx={appBar.logo}
+                    style={logo}
                 >
                     <img
                         src={bvhLogo}
                         alt="Главная"
-                        sx={appBar.logo?.picture}
+                        style={logo?.picture}
                     />
                 </Button>
                 <SiteMenu
-                    style={appBar.menu}
+                    style={menu}
                     {...rest}
                 />
                 <LoginControl
                     isAuthenticated={isAuthenticated}
-                    style={appBar.login}
+                    style={login}
                     {...rest}
                 />
             </Toolbar>
@@ -60,8 +62,6 @@ const Header = (props) => {
 
 Header.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    location: PropTypes.object.isRequired,
 };
 
 export default Header;
