@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -12,37 +13,48 @@ import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 
-import { HOME_MENU, HOME_MENU_EP, HOME_MENU_BO, HOME_MENU_CM, HOME_MENU_FQ, HOME_MENU_MP,
-    ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../../constants';
+import {
+    HOME_MENU,
+    HOME_MENU_EP,
+    HOME_MENU_BO,
+    HOME_MENU_CM,
+    HOME_MENU_FQ,
+    HOME_MENU_MP,
+    ABOUT_MENU,
+    CUSTOMERS_MENU,
+    NEWS_MENU
+} from '../../constants';
 import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../../constants/menuStruct';
 
-const styles = theme => ({
+const styles = (theme) => ({
     drawerPaper: {
-        position: 'relative',
+        position: 'relative'
     },
     icon: {
         marginRight: 0,
-        color: alpha(theme.palette.text.secondary, 0.64),
+        color: alpha(theme.palette.text.secondary, 0.64)
     },
     children: {
-        paddingLeft: theme.spacing(4),
-    },
+        paddingLeft: theme.spacing(4)
+    }
 });
 
 function NavMenu(props) {
     const { items, onClick, initiallyFocused, expanded: expandedProp, classes } = props;
-    
-    const initiallyFocusedValue = (initiallyFocused === undefined || initiallyFocused == null)
-        ? items[0]?.key
-        : initiallyFocused;
+
+    const initiallyFocusedValue =
+        initiallyFocused === undefined || initiallyFocused == null
+            ? items[0]?.key
+            : initiallyFocused;
 
     // Создаем локальную копию expanded для управления состоянием открытия
     const [expandedState, setExpandedState] = useState(() => {
         const state = [];
-        items.forEach(item => {
+        items.forEach((item) => {
             if (item.children?.length > 0) {
-                const isOpen = expandedProp?.some(menu => menu.key === item.key && menu.open) || 
-                              initiallyFocusedValue === item.key;
+                const isOpen =
+                    expandedProp?.some((menu) => menu.key === item.key && menu.open) ||
+                    initiallyFocusedValue === item.key;
                 state.push({ key: item.key, open: isOpen });
             }
         });
@@ -50,16 +62,14 @@ function NavMenu(props) {
     });
 
     const getOpenState = (key) => {
-        const item = expandedState.find(menu => menu.key === key);
+        const item = expandedState.find((menu) => menu.key === key);
         return item ? item.open : false;
     };
 
     const handleItemClick = (dataRoute, key, e, hasChildren) => {
         if (hasChildren) {
-            setExpandedState(prev => 
-                prev.map(menu => 
-                    menu.key === key ? { ...menu, open: !menu.open } : menu
-                )
+            setExpandedState((prev) =>
+                prev.map((menu) => (menu.key === key ? { ...menu, open: !menu.open } : menu))
             );
         }
         onClick(dataRoute, key, e);
@@ -79,35 +89,29 @@ function NavMenu(props) {
                     disabled={item.disabled}
                 >
                     {item.leftIcon && (
-                        <ListItemIcon className={classes.icon}>
-                            {item.leftIcon}
-                        </ListItemIcon>
+                        <ListItemIcon className={classes.icon}>{item.leftIcon}</ListItemIcon>
                     )}
                     <ListItemText
                         primary={item.primaryText}
                         primaryTypographyProps={{
                             variant: 'body1',
-                            color: 'primary',
+                            color: 'primary'
                         }}
                         secondary={item.secondaryText}
                         secondaryTypographyProps={{
                             variant: 'body2',
-                            color: 'primary',
+                            color: 'primary'
                         }}
                     />
                     {hasChildren && (open ? <ExpandLess /> : <ExpandMore />)}
                 </ListItemButton>
                 {hasChildren && (
-                    <Collapse
-                        in={open}
-                        timeout="auto"
-                        unmountOnExit
-                    >
+                    <Collapse in={open} timeout="auto" unmountOnExit>
                         <List disablePadding>
                             {item.children.map((ni, childIndex) => {
                                 const childKey = `${item.key}_${ni.key}`;
                                 const isSelected = initiallyFocusedValue === childKey;
-                                
+
                                 return (
                                     <ListItemButton
                                         key={ni.key}
@@ -126,12 +130,12 @@ function NavMenu(props) {
                                             primary={ni.primaryText}
                                             primaryTypographyProps={{
                                                 variant: 'body1',
-                                                color: 'primary',
+                                                color: 'primary'
                                             }}
                                             secondary={ni.secondaryText}
                                             secondaryTypographyProps={{
                                                 variant: 'body2',
-                                                color: 'primary',
+                                                color: 'primary'
                                             }}
                                         />
                                     </ListItemButton>
@@ -145,10 +149,7 @@ function NavMenu(props) {
     });
 
     return (
-        <List
-            component="nav"
-            style={props.style}
-        >
+        <List component="nav" style={props.style}>
             {listItems}
         </List>
     );
@@ -160,7 +161,7 @@ NavMenu.propTypes = {
     initiallyFocused: PropTypes.string,
     expanded: PropTypes.array,
     classes: PropTypes.object.isRequired,
-    style: PropTypes.object,
+    style: PropTypes.object
 };
 
 function LeftNavMenu(props) {
@@ -168,7 +169,7 @@ function LeftNavMenu(props) {
     const theme = useTheme();
     const navigate = useNavigate();
     const location = useLocation();
-    
+
     const [activeMenuTop, setActiveMenuTop] = useState(HOME_MENU);
     const [activeMenuSecond, setActiveMenuSecond] = useState(null);
     const [activeMenuThird, setActiveMenuThird] = useState(null);
@@ -181,33 +182,37 @@ function LeftNavMenu(props) {
             const currentMenuTop = urls[1] !== '' ? urls[1] : HOME_MENU;
             const currentMenuSecond = urls.length <= 2 || urls[2] === '' ? null : urls[2];
             const currentMenuThird = urls.length <= 3 || urls[3] === '' ? null : urls[3];
-            
+
             setActiveMenuTop(currentMenuTop);
             setActiveMenuSecond(currentMenuSecond);
             setActiveMenuThird(currentMenuThird);
 
             // Если есть второй уровень меню, добавляем его в expanded
-            if (currentMenuSecond && !expanded.some(item => item.key === currentMenuSecond)) {
-                setExpanded(prev => [...prev, { key: currentMenuSecond, open: true }]);
+            if (currentMenuSecond && !expanded.some((item) => item.key === currentMenuSecond)) {
+                setExpanded((prev) => [...prev, { key: currentMenuSecond, open: true }]);
             }
         }
     }, [location]);
 
-    const handleMenuClick = useCallback((dataRoute, key, e) => {
-        const indexOfMenu = expanded.findIndex(i => i.key === key);
-        if (indexOfMenu > -1) {
-            setExpanded(prev => 
-                prev.map((item, idx) => 
-                    idx === indexOfMenu ? { ...item, open: !item.open } : item
-                )
-            );
-        }
-        navigate(dataRoute);
-    }, [expanded, navigate]);
+    const handleMenuClick = useCallback(
+        (dataRoute, key, e) => {
+            const indexOfMenu = expanded.findIndex((i) => i.key === key);
+            if (indexOfMenu > -1) {
+                setExpanded((prev) =>
+                    prev.map((item, idx) =>
+                        idx === indexOfMenu ? { ...item, open: !item.open } : item
+                    )
+                );
+            }
+            navigate(dataRoute);
+        },
+        [expanded, navigate]
+    );
 
     let initiallyFocused = null;
     if (activeMenuSecond !== null) {
-        initiallyFocused = activeMenuSecond + (activeMenuThird != null ? '_' + activeMenuThird : '');
+        initiallyFocused =
+            activeMenuSecond + (activeMenuThird != null ? '_' + activeMenuThird : '');
     }
 
     let leftmenu = null;
@@ -326,7 +331,7 @@ function LeftNavMenu(props) {
         <Drawer
             variant="permanent"
             classes={{
-                paper: classes.drawerPaper,
+                paper: classes.drawerPaper
             }}
             style={leftNav}
         >
@@ -337,7 +342,7 @@ function LeftNavMenu(props) {
 
 LeftNavMenu.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
 };
 
 export default LeftNavMenu;

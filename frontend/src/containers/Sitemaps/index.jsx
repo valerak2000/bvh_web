@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import PropTypes from 'prop-types';
 import { alpha, useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -9,162 +10,154 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
+import Box from '@mui/material/Box';
 
 import CardHeader from '../../components/Card/CardHeaderImpl.jsx';
 import { MENU } from '../../constants/menuStruct';
 
-const styles = theme => ({
-    text: {
-        margin: 'auto auto auto 0.5rem',
-        textAlign: 'justify',
-        textIndent: '1.5em',
-    },
-    icon: {
-        marginRight: 0,
-        color: alpha(theme.palette.text.secondary, 0.64),
-    },
-    children: {
-        paddingLeft: theme.spacing.unit * 8,
-//        paddingLeft: theme.spacing(8),
-    },
-    mapItem: {
-        paddingTop: 0,
-        paddingBottom: 0,
-    },
-});
-
 function ListSiteMaps(props) {
-    const { classes } = props;
     const theme = useTheme();
-    const listItems = props.items.map((item, index) => {
-        var itemMap = '';
+    const { items, onClick, topLevel } = props;
 
-        if ((item.dataRoute === undefined || item.dataRoute === null || item.disabled === true))
-            itemMap = <ListItem
-                    key = { item.key }
-                    disableGutters
-                    className = { props.classes.mapItem }
-                >
-                    { item.leftIcon
-                        && <ListItemIcon className = { classes.icon }>
-                            { item.leftIcon }
-                        </ListItemIcon> }
-                    { props.topLevel &&
-                        <Typography
-                            variant = 'body1'
-                            color = 'textSecondary'
-                            className = { classes.text }
-                        >
-                            <strong>{ `${ item.primaryText }` }</strong><br />
-                        </Typography> }
-                    { !props.topLevel &&
+    const listItems = items.map((item, index) => {
+        const isDisabled =
+            item.dataRoute === undefined || item.dataRoute === null || item.disabled === true;
+
+        const iconStyle = {
+            marginRight: 0,
+            color: alpha(theme.palette.text.secondary, 0.64)
+        };
+
+        const textStyle = {
+            margin: 'auto auto auto 0.5rem',
+            textAlign: 'justify',
+            textIndent: '1.5em'
+        };
+
+        const mapItemStyle = {
+            paddingTop: 0,
+            paddingBottom: 0
+        };
+
+        const childrenStyle = {
+            paddingLeft: theme.spacing(8)
+        };
+
+        let itemMap;
+        if (isDisabled) {
+            itemMap = (
+                <ListItem key={item.key} disableGutters sx={mapItemStyle}>
+                    {item.leftIcon && <ListItemIcon sx={iconStyle}>{item.leftIcon}</ListItemIcon>}
+                    {topLevel ? (
+                        <Typography variant="body1" color="textSecondary" sx={textStyle}>
+                            <strong>{item.primaryText}</strong>
+                            <br />
+                        </Typography>
+                    ) : (
                         <ListItemText
-                            primary = { item.primaryText }
-                            primaryTypographyProps = {{
+                            primary={item.primaryText}
+                            primaryTypographyProps={{
                                 variant: 'body1',
-                                color: 'textSecondary',
+                                color: 'textSecondary'
                             }}
-                        /> }
-                </ListItem>;
-        else
-            itemMap = <ListItem
-                    key = { item.key }
-                    button
+                        />
+                    )}
+                </ListItem>
+            );
+        } else {
+            itemMap = (
+                <ListItemButton
+                    key={item.key}
                     disableGutters
-                    className = { props.classes.mapItem }
-                    onClick = { (e) => props.onClick(item.dataRoute, e) }
+                    sx={mapItemStyle}
+                    onClick={(e) => onClick(item.dataRoute, e)}
                 >
-                    { item.leftIcon
-                        && <ListItemIcon className = { classes.icon }>
-                            { item.leftIcon }
-                        </ListItemIcon> }
+                    {item.leftIcon && <ListItemIcon sx={iconStyle}>{item.leftIcon}</ListItemIcon>}
                     <ListItemText
-                        primary = { item.primaryText }
-                        primaryTypographyProps = {{
+                        primary={item.primaryText}
+                        primaryTypographyProps={{
                             variant: 'body1',
-                            color: 'textSecondary',
+                            color: 'textSecondary'
                         }}
                     />
-                </ListItem>;
+                </ListItemButton>
+            );
+        }
+
         return (
-            <React.Fragment key = { index }>
-                { itemMap }
-                { item.children !== undefined && item.children.length > 0 && item.disabled !== true
-                    && ( <Collapse
-                            in = { true }
-                            timeout = 'auto'
-                            unmountOnExit
-                            className = { classes.children }
-                        >
+            <Box key={index}>
+                {itemMap}
+                {item.children !== undefined &&
+                    item.children.length > 0 &&
+                    item.disabled !== true && (
+                        <Collapse in={true} timeout="auto" unmountOnExit sx={childrenStyle}>
                             <ListSiteMaps
-                                items = { item.children }
-                                onClick = { props.onClick }
-                                classes = { props.classes }
+                                items={item.children}
+                                onClick={onClick}
+                                topLevel={false}
                             />
                         </Collapse>
-                ) }
-            </React.Fragment>
+                    )}
+            </Box>
         );
     });
 
     return (
-        <React.Fragment key = 'site_map'>
-            { props.items.length > 0 ? (
-                <List disablePadding>
-                    { listItems }
-                </List>
+        <Box>
+            {items.length > 0 ? (
+                <List disablePadding>{listItems}</List>
             ) : (
                 <Typography
-                    variant = 'body1'
-                    color = 'textSecondary'
-                    className = { classes.text }
+                    variant="body1"
+                    color="textSecondary"
+                    sx={{
+                        margin: 'auto auto auto 0.5rem',
+                        textAlign: 'justify',
+                        textIndent: '1.5em'
+                    }}
                 >
                     Карта сайта отсутствует.
                 </Typography>
             )}
-        </React.Fragment>
+        </Box>
     );
 }
 
+ListSiteMaps.propTypes = {
+    items: PropTypes.array.isRequired,
+    onClick: PropTypes.func.isRequired,
+    topLevel: PropTypes.bool
+};
+
 function MapsView(props) {
-    const handleClick = (dataRoute, e ) => {
-        props.history.push(dataRoute);
+    const theme = useTheme();
+    const { history } = props;
+
+    const handleClick = (dataRoute, _e) => {
+        history.push(dataRoute);
     };
 
-    const { classes } = props;
-    const { card } = props.theme.app;
+    const cardStyle = theme.app?.card || {};
 
     return (
-        <Card
-            square = { true }
-            className = { card }
-        >
-            <CardHeader
-                title = 'Карта сайта'
-                { ...props }
-            />
+        <Card square={true} sx={cardStyle}>
+            <CardHeader title="Карта сайта" {...props} />
             <CardContent>
-                <div
-                    sx = {{
+                <Box
+                    sx={{
                         display: 'block',
-                        margin: '-1rem auto',
+                        margin: '-1rem auto'
                     }}
                 >
-                    <ListSiteMaps
-                        items = { MENU }
-                        onClick = { handleClick }
-                        topLevel
-                        { ...props }
-                    />
-                </div>
+                    <ListSiteMaps items={MENU} onClick={handleClick} topLevel={true} />
+                </Box>
             </CardContent>
         </Card>
     );
 }
 
 MapsView.propTypes = {
-    theme: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
 };
 
 export default MapsView;

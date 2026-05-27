@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -8,7 +9,7 @@ import { pink } from '@mui/material/colors';
 
 const styles = {
     style: {
-        backgroundColor: pink['A200'], //rgb(255, 64, 129)
+        backgroundColor: pink['A200'] //rgb(255, 64, 129)
     }
 };
 
@@ -23,7 +24,7 @@ const excludedTabs = [
 function SiteMenu() {
     const location = useLocation();
     const theme = useTheme();
-    
+
     const [activeTab, setActiveTab] = useState(false);
 
     // Определяем активную вкладку на основе текущего пути
@@ -31,12 +32,12 @@ function SiteMenu() {
         if (location?.pathname) {
             const urls = location.pathname.split('/');
             let currentTab = urls[1] !== '' ? urls[1] : false;
-            
+
             // Исключаем страницы, которых нет в табах
             if (excludedTabs.includes(currentTab)) {
                 currentTab = false;
             }
-            
+
             setActiveTab(currentTab);
         }
     }, [location]);
@@ -55,11 +56,7 @@ function SiteMenu() {
 
     return (
         <div>
-            <Tabs
-                value={activeTab}
-                onChange={handleChange}
-                style={menuStyle}
-            >
+            <Tabs value={activeTab} onChange={handleChange} style={menuStyle}>
                 <Tab
                     value="about"
                     label="О компании"
@@ -74,13 +71,7 @@ function SiteMenu() {
                     to="/customers"
                     style={tabStyle}
                 />
-                <Tab
-                    value="news"
-                    label="Новости"
-                    component={Link}
-                    to="/news"
-                    style={tabStyle}
-                />
+                <Tab value="news" label="Новости" component={Link} to="/news" style={tabStyle} />
             </Tabs>
         </div>
     );

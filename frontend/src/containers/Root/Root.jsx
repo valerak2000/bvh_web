@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
@@ -93,7 +94,8 @@ const Root = (props) => {
                             onNotificationDelete={onNotificationDelete}
                             notifications={notifications}
                         />
-                        
+
+                        <Footer {...props} />
                         {!isProd && <DevTools />}
                     </div>
                 </ThemeProvider>
