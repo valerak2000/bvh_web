@@ -95,19 +95,16 @@ const Root = (props) => {
                             notifications={notifications}
                         />
 
-                        <Footer {...props} />
-                        {!isProd && <DevTools />}
-                    </div>
-                </ThemeProvider>
-            </StyledEngineProvider>
-        </div>
-    );
-};
-/*
                         <div
                             id="app"
                         >
-                            <LeftNavMenu {...props, isAuthenticated} />
+                            <LeftNavMenu
+                                {...props} 
+                                isAuthenticated={isAuthenticated}
+                                onNotificationChange={onNotificationChange}
+                                onNotificationDelete={onNotificationDelete}
+                                notifications={notifications}
+                            />
                             {
                                 goTopEnable &&
                                 <Fab
@@ -127,11 +124,23 @@ const Root = (props) => {
                                     <ArrowUpward />
                                 </Fab>
                             }
-                            <AppView {...props,isAuthenticated} />
+                            <AppView
+                                {...props}
+                                isAuthenticated={isAuthenticated}
+                                onNotificationChange={onNotificationChange}
+                                onNotificationDelete={onNotificationDelete}
+                                notifications={notifications}
+                            />
                         </div>
-                        
+
                         <Footer {...props} />
-*/
+                        {!isProd && <DevTools />}
+                    </div>
+                </ThemeProvider>
+            </StyledEngineProvider>
+        </div>
+    );
+};
 
 Root.propTypes = {
     scrollStepInPx: PropTypes.number,

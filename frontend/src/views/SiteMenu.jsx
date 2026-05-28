@@ -56,7 +56,11 @@ function SiteMenu() {
 
     return (
         <div>
-            <Tabs value={activeTab} onChange={handleChange} style={menuStyle}>
+            <Tabs
+                value={activeTab}
+                onChange={handleChange}
+                style={menuStyle}
+            >
                 <Tab
                     value="about"
                     label="О компании"
@@ -71,7 +75,13 @@ function SiteMenu() {
                     to="/customers"
                     style={tabStyle}
                 />
-                <Tab value="news" label="Новости" component={Link} to="/news" style={tabStyle} />
+                <Tab
+                    value="news"
+                    label="Новости"
+                    component={Link}
+                    to="/news"
+                    style={tabStyle}
+                />
             </Tabs>
         </div>
     );

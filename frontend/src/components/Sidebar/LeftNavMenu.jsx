@@ -160,7 +160,6 @@ NavMenu.propTypes = {
     onClick: PropTypes.func.isRequired,
     initiallyFocused: PropTypes.string,
     expanded: PropTypes.array,
-    classes: PropTypes.object.isRequired,
     style: PropTypes.object
 };
 
@@ -224,7 +223,6 @@ function LeftNavMenu(props) {
                     onClick={handleMenuClick}
                     initiallyFocused={initiallyFocused}
                     expanded={expanded}
-                    classes={classes}
                 />
             );
             break;
@@ -235,7 +233,6 @@ function LeftNavMenu(props) {
                     onClick={handleMenuClick}
                     initiallyFocused="elektronnaya_priemnaya"
                     expanded={expanded}
-                    classes={classes}
                 />
             );
             break;
@@ -246,7 +243,6 @@ function LeftNavMenu(props) {
                     onClick={handleMenuClick}
                     initiallyFocused="blackouts"
                     expanded={expanded}
-                    classes={classes}
                 />
             );
             break;
@@ -257,7 +253,6 @@ function LeftNavMenu(props) {
                     onClick={handleMenuClick}
                     initiallyFocused="available_capacity_map"
                     expanded={expanded}
-                    classes={classes}
                 />
             );
             break;
@@ -268,7 +263,6 @@ function LeftNavMenu(props) {
                     onClick={handleMenuClick}
                     initiallyFocused="faq"
                     expanded={expanded}
-                    classes={classes}
                 />
             );
             break;
@@ -279,7 +273,6 @@ function LeftNavMenu(props) {
                     onClick={handleMenuClick}
                     initiallyFocused="map"
                     expanded={expanded}
-                    classes={classes}
                 />
             );
             break;
@@ -290,7 +283,6 @@ function LeftNavMenu(props) {
                     onClick={handleMenuClick}
                     initiallyFocused={initiallyFocused}
                     expanded={expanded}
-                    classes={classes}
                 />
             );
             break;
@@ -301,7 +293,6 @@ function LeftNavMenu(props) {
                     onClick={handleMenuClick}
                     initiallyFocused={initiallyFocused}
                     expanded={expanded}
-                    classes={classes}
                 />
             );
             break;
@@ -312,7 +303,6 @@ function LeftNavMenu(props) {
                     onClick={handleMenuClick}
                     initiallyFocused={initiallyFocused}
                     expanded={expanded}
-                    classes={classes}
                 />
             );
             break;
@@ -330,8 +320,11 @@ function LeftNavMenu(props) {
     return (
         <Drawer
             variant="permanent"
-            classes={{
-                paper: classes.drawerPaper
+            sx={{
+                position: 'relative',
+                '& .MuiDrawer-paper': {
+                    position: 'relative',
+                }
             }}
             style={leftNav}
         >
@@ -339,7 +332,11 @@ function LeftNavMenu(props) {
         </Drawer>
     );
 }
-
+/*
+            classes={{
+                paper: classes.drawerPaper
+            }}
+*/
 LeftNavMenu.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired

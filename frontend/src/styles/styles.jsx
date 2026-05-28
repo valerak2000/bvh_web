@@ -66,20 +66,15 @@ export var muiTheme = createTheme({
         margin: '0 auto',
     },
     app: {
-        //margin: '0 auto auto',
         height: 'auto', //по высоте меню 
         width: '80%',
         flexDirection: 'unset',
-        //background: `url(${bgHeader}) no-repeat 0px 0px`,
         card: {
             margin: '0 auto',
-            //minHeight: '32rem',
             height: '100%',
-            //width: '80%',
             header: {
                 objectFit: 'contain',
                 height: 240,
-                //size: 'cover',
             },
             title: {
                 paddingBottom: 0
@@ -115,27 +110,12 @@ export var muiTheme = createTheme({
             },
         },
         header: {
-            /*
-            background: {
-                image: `url(${ bgHeader })`,
-                repeat: 'no-repeat',
-                size: 'cover',
-                position: 'center'
-            },
-            */
             appBar: {
                 height: '5.4rem',
                 width: '100%',
-                /*
-                iconStyleLeft: {
-                    width: '75rem',
-                    //margin: '1.5rem 0 0rem 0',
-                },
-                */
                 toolbar: {
                     padding: '0 8px 8px 8px',
                     logo: {
-                        //2,646370023419204
                         width: 230,
                         height: 76,
                         cursor: 'pointer',
@@ -253,32 +233,6 @@ export var muiTheme = createTheme({
             }
         },
     },
-    /*title: {
-        cursor: 'pointer',
-    },
-    button: {
-        textTransform: 'none',
-    },
-    tabs: {
-        width: '100%',
-        paddingLeft: 20,
-        selectedTextColor: grey[50],
-        textColor: grey[50],
-        tab: {
-            textTransform: 'none',
-        },
-    },
-    badge: {
-        textColor: grey[50],
-    },
-    bottomNavigation: {
-        backgroundColor: blue[800], //teal200,
-        unselectedColor: grey[50], //blue900,
-        selectedColor: grey[50], //blue900,
-        //height: 56,
-        unselectedFontSize: 16,
-        selectedFontSize: 16,
-    },*/
     buttonLink: {
         padding: '6px 6px 6px 6px',
         iconFile: {
@@ -333,6 +287,16 @@ export var muiTheme = createTheme({
             styleOverrides: {
                 indicator: {
                     backgroundColor: pink['A200'],
+                },
+            },
+        },
+        MuiTab: {
+            styleOverrides: {
+                root: {
+                    color: '#757575', // Inactive tab text color
+                    '&.Mui-selected': {
+                        color: '#ff5722', // Active tab text color
+                    },
                 },
             },
         },
