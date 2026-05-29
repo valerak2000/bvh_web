@@ -23,26 +23,32 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const Root = (props) => {
     const { scrollStepInPx = 50, delayInMs = 16.66 } = props;
-    
+
     // Redux state
-    const messageBox = useSelector(state => state.messageBox || {});
-    const notifications = useSelector(state => state.notifications || []);
-    const isAuthenticated = useSelector(state => state.auth?.isAuthenticated);
+    const messageBox = useSelector((state) => state.messageBox || {});
+    const notifications = useSelector((state) => state.notifications || []);
+    const isAuthenticated = useSelector((state) => state.auth?.isAuthenticated);
     const dispatch = useDispatch();
-    
+
     // Local state
     const [intervalId, setIntervalId] = useState(0);
     const [goTopEnable, setGoTopEnable] = useState(false);
-    
+
     // Event handlers
-    const onNotificationChange = useCallback((items) => {
-        dispatch(NotificationActions.addOrUpdateNotifications(items));
-    }, [dispatch]);
-    
-    const onNotificationDelete = useCallback((items) => {
-        dispatch(NotificationActions.deleteNotifications(items));
-    }, [dispatch]);
-    
+    const onNotificationChange = useCallback(
+        (items) => {
+            dispatch(NotificationActions.addOrUpdateNotifications(items));
+        },
+        [dispatch]
+    );
+
+    const onNotificationDelete = useCallback(
+        (items) => {
+            dispatch(NotificationActions.deleteNotifications(items));
+        },
+        [dispatch]
+    );
+
     // Scroll handling
     const scrollChange = useCallback(() => {
         const notTop = window.pageYOffset !== 0;
@@ -50,7 +56,7 @@ const Root = (props) => {
             setGoTopEnable(notTop);
         }
     }, [goTopEnable]);
-    
+
     const scrollStep = useCallback(() => {
         if (window.pageYOffset === 0) {
             clearInterval(intervalId);
@@ -58,7 +64,7 @@ const Root = (props) => {
         }
         window.scroll(0, window.pageYOffset - scrollStepInPx);
     }, [intervalId, scrollStepInPx]);
-    
+
     const scrollToTop = useCallback(() => {
         if (intervalId) {
             clearInterval(intervalId);
@@ -66,11 +72,11 @@ const Root = (props) => {
         const id = setInterval(scrollStep, delayInMs);
         setIntervalId(id);
     }, [intervalId, scrollStep, delayInMs]);
-    
+
     // Lifecycle effects
     useEffect(() => {
         window.addEventListener('scroll', scrollChange);
-        
+
         // Cleanup
         return () => {
             window.removeEventListener('scroll', scrollChange);
@@ -79,13 +85,13 @@ const Root = (props) => {
             }
         };
     }, [scrollChange, intervalId]);
-    
+
     return (
         <div>
             <StyledEngineProvider injectFirst>
                 <ThemeProvider theme={muiTheme}>
                     <div style={muiTheme.global}>
-                        <MessageBox {...messageBox} open={messageBox.open || false}/>
+                        <MessageBox {...messageBox} open={messageBox.open || false} />
 
                         <Header
                             {...props}
@@ -95,18 +101,15 @@ const Root = (props) => {
                             notifications={notifications}
                         />
 
-                        <div
-                            id="app"
-                        >
+                        <div id="app">
                             <LeftNavMenu
-                                {...props} 
+                                {...props}
                                 isAuthenticated={isAuthenticated}
                                 onNotificationChange={onNotificationChange}
                                 onNotificationDelete={onNotificationDelete}
                                 notifications={notifications}
                             />
-                            {
-                                goTopEnable &&
+                            {goTopEnable && (
                                 <Fab
                                     aria-label="Top"
                                     size="small"
@@ -123,7 +126,7 @@ const Root = (props) => {
                                 >
                                     <ArrowUpward />
                                 </Fab>
-                            }
+                            )}
                             <AppView
                                 {...props}
                                 isAuthenticated={isAuthenticated}
@@ -144,12 +147,12 @@ const Root = (props) => {
 
 Root.propTypes = {
     scrollStepInPx: PropTypes.number,
-    delayInMs: PropTypes.number,
+    delayInMs: PropTypes.number
 };
 
 Root.defaultProps = {
     scrollStepInPx: 50,
-    delayInMs: 16.66,
+    delayInMs: 16.66
 };
 
 export default Root;

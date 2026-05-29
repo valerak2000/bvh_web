@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
@@ -26,7 +26,7 @@ import {
 } from '../../constants';
 import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../../constants/menuStruct';
 
-const styles = (theme) => ({
+/* const styles = (theme) => ({
     drawerPaper: {
         position: 'relative'
     },
@@ -38,9 +38,11 @@ const styles = (theme) => ({
         paddingLeft: theme.spacing(4)
     }
 });
+ */
 
 function NavMenu(props) {
     const { items, onClick, initiallyFocused, expanded: expandedProp, classes } = props;
+    const theme = useTheme();
 
     const initiallyFocusedValue =
         initiallyFocused === undefined || initiallyFocused == null
@@ -75,6 +77,10 @@ function NavMenu(props) {
         onClick(dataRoute, key, e);
     };
 
+    const iconStyle = useMemo(() => {
+        return theme?.app?.icon || {};
+    }, [theme]);
+
     const listItems = items.map((item, index) => {
         const open = getOpenState(item.key);
         const hasChildren = item.children !== undefined && item.children.length > 0;
@@ -89,7 +95,7 @@ function NavMenu(props) {
                     disabled={item.disabled}
                 >
                     {item.leftIcon && (
-                        <ListItemIcon className={classes.icon}>{item.leftIcon}</ListItemIcon>
+                        <ListItemIcon className={iconStyle}>{item.leftIcon}</ListItemIcon>
                     )}
                     <ListItemText
                         primary={item.primaryText}
@@ -122,7 +128,7 @@ function NavMenu(props) {
                                         disabled={ni.disabled}
                                     >
                                         {ni.leftIcon && (
-                                            <ListItemIcon className={classes.icon}>
+                                            <ListItemIcon className={iconStyle}>
                                                 {ni.leftIcon}
                                             </ListItemIcon>
                                         )}
@@ -164,7 +170,7 @@ NavMenu.propTypes = {
 };
 
 function LeftNavMenu(props) {
-    const { isAuthenticated, classes } = props;
+    const { isAuthenticated } = props;
     const theme = useTheme();
     const navigate = useNavigate();
     const location = useLocation();
@@ -323,7 +329,7 @@ function LeftNavMenu(props) {
             sx={{
                 position: 'relative',
                 '& .MuiDrawer-paper': {
-                    position: 'relative',
+                    position: 'relative'
                 }
             }}
             style={leftNav}
@@ -338,8 +344,7 @@ function LeftNavMenu(props) {
             }}
 */
 LeftNavMenu.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
-    classes: PropTypes.object.isRequired
+    isAuthenticated: PropTypes.bool.isRequired
 };
 
 export default LeftNavMenu;
