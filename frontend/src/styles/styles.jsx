@@ -65,7 +65,7 @@ export var muiTheme = createTheme({
     app: {
         height: 'auto', //по высоте меню
         width: '80%',
-        flexDirection: 'unset',
+        flexDirection: 'column',
         card: {
             margin: '0 auto',
             height: '100%',
@@ -300,7 +300,7 @@ export var muiTheme = createTheme({
         MuiTab: {
             styleOverrides: {
                 root: {
-                    color: '#757575', // Inactive tab text color
+                    color: '#fff', // Inactive tab text color
                     '&.Mui-selected': {
                         color: '#ff5722' // Active tab text color
                     }

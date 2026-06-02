@@ -1,8 +1,8 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { alpha } from '@mui/material/styles';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -26,10 +26,7 @@ import {
 } from '../../constants';
 import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../../constants/menuStruct';
 
-/* const styles = (theme) => ({
-    drawerPaper: {
-        position: 'relative'
-    },
+const styles = (theme) => ({
     icon: {
         marginRight: 0,
         color: alpha(theme.palette.text.secondary, 0.64)
@@ -38,7 +35,10 @@ import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../../constant
         paddingLeft: theme.spacing(4)
     }
 });
- */
+
+const StyledDrawerPaper = styled(Drawer)({
+    position: 'relative'
+});
 
 function NavMenu(props) {
     const { items, onClick, initiallyFocused, expanded: expandedProp, classes } = props;
@@ -76,7 +76,6 @@ function NavMenu(props) {
         }
         onClick(dataRoute, key, e);
     };
-
     const iconStyle = useMemo(() => {
         return theme?.app?.icon || {};
     }, [theme]);
@@ -170,7 +169,7 @@ NavMenu.propTypes = {
 };
 
 function LeftNavMenu(props) {
-    const { isAuthenticated } = props;
+    //const { isAuthenticated } = props;
     const theme = useTheme();
     const navigate = useNavigate();
     const location = useLocation();
@@ -324,25 +323,12 @@ function LeftNavMenu(props) {
     }
 
     return (
-        <Drawer
-            variant="permanent"
-            sx={{
-                position: 'relative',
-                '& .MuiDrawer-paper': {
-                    position: 'relative'
-                }
-            }}
-            style={leftNav}
-        >
+        <StyledDrawerPaper variant="persistent" style={leftNav}>
             {leftmenu}
-        </Drawer>
+        </StyledDrawerPaper>
     );
 }
-/*
-            classes={{
-                paper: classes.drawerPaper
-            }}
-*/
+
 LeftNavMenu.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired
 };

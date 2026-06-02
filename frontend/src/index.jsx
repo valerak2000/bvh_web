@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -29,21 +29,26 @@ if (token !== null) {
 const root = createRoot(document.getElementById('root'));
 
 const renderComponent = () => {
-  root.render(
-    <Provider store={store}>
-      <ExceptionHandler global disabled={!isProd}>
-        <BrowserRouter basename={base || '/'} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-          <Root />
-        </BrowserRouter>
-      </ExceptionHandler>
-    </Provider>
-  );
+    root.render(
+        <StrictMode>
+            <Provider store={store}>
+                <ExceptionHandler global disabled={!isProd}>
+                    <BrowserRouter
+                        basename={base || '/'}
+                        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+                    >
+                        <Root />
+                    </BrowserRouter>
+                </ExceptionHandler>
+            </Provider>
+        </StrictMode>
+    );
 };
 
 renderComponent();
 
 if (module.hot) {
-  module.hot.accept('./containers/Root/Root', () => {
-    renderComponent();
-  });
+    module.hot.accept('./containers/Root/Root', () => {
+        renderComponent();
+    });
 }

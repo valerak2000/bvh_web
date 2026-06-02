@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
@@ -101,7 +100,13 @@ const Root = (props) => {
                             notifications={notifications}
                         />
 
-                        <div id="app">
+                        <div
+                            id="app"
+                            style={{
+                                display: 'flex',
+                                width: '100%'
+                            }}
+                        >
                             <LeftNavMenu
                                 {...props}
                                 isAuthenticated={isAuthenticated}
