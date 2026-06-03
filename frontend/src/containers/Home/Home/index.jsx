@@ -153,7 +153,7 @@ function HomeView(props) {
     };
 
     return (
-        <Card square style={cardStyle}>
+        <Card square={true} sx={cardStyle}>
             <CardHeader
                 title="Брюховецкий водоканал"
                 titleTypographyProps={cardStyle.titleTypography}

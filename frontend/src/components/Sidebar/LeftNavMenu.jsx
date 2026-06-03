@@ -36,7 +36,7 @@ const styles = (theme) => ({
     }
 });
 
-const StyledDrawerPaper = styled(Drawer)({
+const StyledDrawer = styled(Drawer)({
     position: 'relative'
 });
 
@@ -315,18 +315,14 @@ function LeftNavMenu(props) {
             leftmenu = null;
     }
 
-    const leftNav = { ...theme.leftNav };
+    /*     const leftNav = { ...theme.leftNav };
     if (leftmenu !== null) {
         leftNav.width = '20%';
     } else {
         leftNav.width = '0%';
     }
-
-    return (
-        <StyledDrawerPaper variant="persistent" style={leftNav}>
-            {leftmenu}
-        </StyledDrawerPaper>
-    );
+ */
+    return <StyledDrawer variant="permanent">{leftmenu}</StyledDrawer>;
 }
 
 LeftNavMenu.propTypes = {

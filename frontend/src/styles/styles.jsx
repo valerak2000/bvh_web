@@ -306,6 +306,13 @@ export var muiTheme = createTheme({
                     }
                 }
             }
+        },
+        MuiDrawer: {
+            styleOverrides: {
+                paper: {
+                    position: 'relative'
+                }
+            }
         }
     }
 });

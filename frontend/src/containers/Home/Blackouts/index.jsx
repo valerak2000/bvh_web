@@ -12,17 +12,9 @@ function BlackoutsView(props) {
     const { card } = theme.app;
 
     return (
-        <Card
-            square = { true }
-            sx = { card }
-        >
-            <CardHeader
-                title = 'Отключения'
-                { ...props }
-            />
-            <CardContent
-                sx = { card.text }
-            >
+        <Card square={true} sx={card}>
+            <CardHeader title="Отключения" {...props} />
+            <CardContent sx={card.text}>
                 <UnderConstruct />
             </CardContent>
         </Card>
@@ -30,7 +22,7 @@ function BlackoutsView(props) {
 }
 
 BlackoutsView.propTypes = {
-    theme: PropTypes.object.isRequired,
+    theme: PropTypes.object.isRequired
 };
 
 export default BlackoutsView;
