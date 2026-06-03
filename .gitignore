@@ -373,3 +373,5 @@ docs/.~lock.common struct.xlsx#
 **/webpack-stats.json
 **/size-plugin.json
 frontend/size-plugin.json
+
+kon_tab.json
