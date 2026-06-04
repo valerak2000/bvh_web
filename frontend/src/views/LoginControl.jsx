@@ -17,7 +17,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { authLogoutAndRedirect } from '../actions/auth';
 
-/*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
 export function Login(props) {
     return (
         <Button
@@ -32,10 +31,7 @@ export function Login(props) {
             style={props.style?.button}
         >
             Войти
-            <FontAwesomeIcon
-                icon={faSignInAlt}
-                style={props.style?.button?.icon}
-            />
+            <FontAwesomeIcon icon={faSignInAlt} style={props.style?.button?.icon} />
         </Button>
     );
 }
@@ -65,13 +61,13 @@ export function Logged(props) {
 function LoginControl(props) {
     const { isAuthenticated } = props;
     const theme = useTheme();
-    
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    
-    const userName = useSelector(state => state.auth.userName);
-    
+
+    const userName = useSelector((state) => state.auth.userName);
+
     const [anchorEl, setAnchorEl] = useState(null);
     const isMenuOpen = Boolean(anchorEl);
 
@@ -83,21 +79,30 @@ function LoginControl(props) {
         setAnchorEl(null);
     }, []);
 
-    const handleLogoutClick = useCallback((e) => {
-        e.preventDefault();
-        handleMenuClose();
-        dispatch(authLogoutAndRedirect());
-    }, [dispatch, handleMenuClose]);
+    const handleLogoutClick = useCallback(
+        (e) => {
+            e.preventDefault();
+            handleMenuClose();
+            dispatch(authLogoutAndRedirect());
+        },
+        [dispatch, handleMenuClose]
+    );
 
-    const handleLoginClick = useCallback((e) => {
-        e.preventDefault();
-        navigate('/');
-    }, [navigate]);
+    const handleLoginClick = useCallback(
+        (e) => {
+            e.preventDefault();
+            navigate('/');
+        },
+        [navigate]
+    );
 
-    const handleProtectedClick = useCallback((e) => {
-        e.preventDefault();
-        navigate('/protected');
-    }, [navigate]);
+    const handleProtectedClick = useCallback(
+        (e) => {
+            e.preventDefault();
+            navigate('/protected');
+        },
+        [navigate]
+    );
 
     const loginStyle = theme?.app?.header?.appBar?.login || {};
 
@@ -109,28 +114,17 @@ function LoginControl(props) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem
-                component={Link}
-                to="/protected"
-                onClick={handleProtectedClick}
-            >
+            <MenuItem component={Link} to="/protected" onClick={handleProtectedClick}>
                 <IconButton color="inherit" size="large">
-                    <FontAwesomeIcon
-                        icon={faLock}
-                        style={loginStyle.button?.icon}
-                    />
+                    <FontAwesomeIcon icon={faLock} style={loginStyle.button?.icon} />
                 </IconButton>
-                Личный кабинет (Внести показания, узнать состояние баланса, заказать и оплатить услуги)
+                Личный кабинет (Внести показания, узнать состояние баланса, заказать и оплатить
+                услуги)
             </MenuItem>
             <Divider />
-            <MenuItem
-                onClick={handleLogoutClick}
-            >
+            <MenuItem onClick={handleLogoutClick}>
                 <IconButton color="inherit" size="large">
-                    <FontAwesomeIcon
-                        icon={faSignOutAlt}
-                        style={loginStyle.button?.icon}
-                    />
+                    <FontAwesomeIcon icon={faSignOutAlt} style={loginStyle.button?.icon} />
                 </IconButton>
                 {userName}
             </MenuItem>
@@ -138,50 +132,29 @@ function LoginControl(props) {
     );
 
     return (
-        <span
-            style={loginStyle}
-        >
-            <span
-                style={isAuthenticated ? (loginStyle.badgeLogon) : (loginStyle.badge)}
-            >
-                <span
-                    style={{ fontWeight: 100 }}
-                >
-                    Круглосуточный диспетчер:&nbsp;
-                </span>
-                <FontAwesomeIcon
-                    icon={faPhone}
-                    flip="horizontal"
-                    style={{ fontSize: 12 }}
-                />
-                <span
-                    style={{ fontWeight: 700 }}
-                >
-                    &nbsp;8 (86156) 35-117
-                </span>
+        <span style={loginStyle}>
+            <span style={isAuthenticated ? loginStyle.badgeLogon : loginStyle.badge}>
+                <span style={{ fontWeight: 100 }}>Круглосуточный диспетчер:&nbsp;</span>
+                <FontAwesomeIcon icon={faPhone} flip="horizontal" style={{ fontSize: 12 }} />
+                <span style={{ fontWeight: 700 }}>&nbsp;8 (86156) 35-117</span>
             </span>
-            {
-                isAuthenticated ? (
-                    <Logged
-                        userName={userName}
-                        onClick={handleProfileMenuOpen}
-                        style={loginStyle.button}
-                        anchorEl={anchorEl}
-                    />
-                ) : (
-                    <Login
-                        onClick={handleLoginClick}
-                        style={loginStyle.button}
-                    />
-                )
-            }
+            {isAuthenticated ? (
+                <Logged
+                    userName={userName}
+                    onClick={handleProfileMenuOpen}
+                    style={loginStyle.button}
+                    anchorEl={anchorEl}
+                />
+            ) : (
+                <Login onClick={handleLoginClick} style={loginStyle.button} />
+            )}
             {renderMenuLogon}
         </span>
     );
 }
 
 LoginControl.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired
 };
 
 export default LoginControl;

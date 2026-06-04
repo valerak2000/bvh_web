@@ -163,6 +163,17 @@ function HomeView(props) {
                 <Paper square elevation={0}>
                     <Typography>{splashSteps[activeStep].label}</Typography>
                 </Paper>
+                <br />
+                <br />
+                <KKActions />
+                <br />
+                <br />
+                <SberActions />
+            </CardContent>
+        </Card>
+    );
+}
+/*
                 <Slider {...settings}>
                     {splashSteps.map((step, index) => (
                         <div key={step.label}>
@@ -176,16 +187,7 @@ function HomeView(props) {
                         </div>
                     ))}
                 </Slider>
-                <br />
-                <br />
-                <KKActions />
-                <br />
-                <br />
-                <SberActions />
-            </CardContent>
-        </Card>
-    );
-}
+*/
 
 HomeView.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired

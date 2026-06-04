@@ -139,9 +139,6 @@ export var muiTheme = createTheme({
                         }
                     }
                 },
-                titleStyle: {
-                    width: 'auto'
-                },
                 login: {
                     height: 'inherit',
                     width: 'inherit',
@@ -313,6 +310,27 @@ export var muiTheme = createTheme({
                     position: 'relative'
                 }
             }
+        },
+        MuiAppBar: {
+            defaultProps: {
+                // Set default behavior for all AppBars
+                elevation: 0,
+                color: 'primary',
+            },
+            styleOverrides: {
+                // Override styles for the root element
+                root: {
+                    textTransform: 'none',
+                    backgroundColor: '#2e2e2e',
+                },
+                // Override styles specific to the "primary" color variant
+                colorPrimary: {
+                    backgroundColor: '#1a237e',
+                    color: '#ffffff',
+                },
+            },
+            titleStyle: {
+                width: 'auto'
+            },
         }
-    }
-});
+    });
