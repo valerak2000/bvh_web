@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 import { common, blue, grey, cyan, pink } from '@mui/material/colors';
 
-export var muiTheme = createTheme({
+export const muiTheme = createTheme({
     palette: {
         text: {
             primary: blue[900],
@@ -277,14 +277,14 @@ export var muiTheme = createTheme({
     components: {
         MuiButton: {
             styleOverrides: {
-                app: {
+                root: {
                     fontSize: '1rem'
                 }
             }
         },
         MuiButtonBase: {
             defaultProps: {
-                disableRipple: true // No more ripple, on the whole application 💣!
+                disableRipple: true
             }
         },
         MuiTabs: {
@@ -297,9 +297,9 @@ export var muiTheme = createTheme({
         MuiTab: {
             styleOverrides: {
                 root: {
-                    color: '#fff', // Inactive tab text color
+                    color: '#ffffff',
                     '&.Mui-selected': {
-                        color: '#ff5722' // Active tab text color
+                        color: '#ff5722'
                     }
                 }
             }
@@ -313,24 +313,28 @@ export var muiTheme = createTheme({
         },
         MuiAppBar: {
             defaultProps: {
-                // Set default behavior for all AppBars
                 elevation: 0,
-                color: 'primary',
+                color: 'primary'
             },
             styleOverrides: {
-                // Override styles for the root element
                 root: {
                     textTransform: 'none',
-                    backgroundColor: '#2e2e2e',
+                    backgroundColor: blue[900],
+                    color: '#ffffff'
                 },
-                // Override styles specific to the "primary" color variant
-                colorPrimary: {
-                    backgroundColor: '#1a237e',
-                    color: '#ffffff',
-                },
-            },
-            titleStyle: {
-                width: 'auto'
-            },
+/*                colorPrimary: {
+                    backgroundColor: blue[900],
+                    color: '#ffffff'
+                }*/
+            }
+        },
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: blue[900],
+                    color: '#ffffff'
+                }
+            }
         }
-    });
+    }
+});

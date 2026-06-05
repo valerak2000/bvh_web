@@ -164,7 +164,6 @@
     "@mui/icons-material": "^5.18.0",
     "@mui/material": "^5.18.0",
     "@mui/system": "^5.18.0",
-    "@types/react-slick": "latest",
     "autoprefixer": "latest",
     "axios": "latest",
     "chartist": "latest",
