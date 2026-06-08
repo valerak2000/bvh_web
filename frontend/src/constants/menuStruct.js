@@ -14,15 +14,15 @@ export function LeaderShip(props) {
 
     return (
         <img
-            src = { leaderShip }
-            alt = 'Руководство'
-            style = {{
+            src={leaderShip}
+            alt="Руководство"
+            style={{
                 height: 24,
                 width: 24,
                 objectFit: 'contain',
-                opacity: 0.64,
+                opacity: 0.64
             }}
-            { ...props }
+            {...props}
         />
     );
 }
@@ -32,90 +32,89 @@ export function ColdWather(props) {
 
     return (
         <img
-            src = { leaderShip }
-            alt = 'Подключение к холодому водоснабжению'
-            style = {{
+            src={leaderShip}
+            alt="Подключение к холодому водоснабжению"
+            style={{
                 height: 24,
                 width: 24,
                 objectFit: 'contain',
-                opacity: 0.64,
+                opacity: 0.64
             }}
-            { ...props }
+            {...props}
         />
     );
 }
-
 
 export const MENU_HOME = [
     {
         key: 'home',
         primaryText: 'Главная',
-        leftIcon: (<Home />),
-        dataRoute: '/',
+        leftIcon: <Home />,
+        dataRoute: '/'
     },
     {
         key: 'elektronnaya_priemnaya',
         primaryText: 'Электронная приемная',
-        leftIcon: (<ContactMail />),
-        dataRoute: '/elektronnaya_priemnaya',
+        leftIcon: <ContactMail />,
+        dataRoute: '/elektronnaya_priemnaya'
     },
     {
         key: 'blackouts',
         primaryText: 'Отключения',
         secondaryText: 'Информация об аварийном отключении водоснабжения',
-        leftIcon: (<Announcement />),
-        dataRoute: '/blackouts',
+        leftIcon: <Announcement />,
+        dataRoute: '/blackouts'
     },
     {
         key: 'available_capacity_map',
         primaryText: 'Карта доступной мощности',
-        leftIcon: (<Place />),
-        dataRoute: '/available_capacity_map',
+        leftIcon: <Place />,
+        dataRoute: '/available_capacity_map'
     },
     {
         key: 'faq',
         primaryText: 'Вопрос-ответ',
-        leftIcon: (<QuestionAnswer />),
-        dataRoute: '/faq',
+        leftIcon: <QuestionAnswer />,
+        dataRoute: '/faq'
     },
     {
         key: 'map',
         primaryText: 'Карта сайта',
-        leftIcon: (<Map />),
-        dataRoute: '/map',
-    },
+        leftIcon: <Map />,
+        dataRoute: '/map'
+    }
 ];
 
 export const MENU_ABOUT = [
     {
         key: 'common_info',
         primaryText: 'Общая информация',
-        leftIcon: (<Info />),
-        dataRoute: '/about/common_info',
+        leftIcon: <Info />,
+        dataRoute: '/about/common_info'
     },
     {
         key: 'leadership',
         primaryText: 'Руководство компании',
-        leftIcon: (<LeaderShip />),
-        dataRoute: '/about/leadership',
+        leftIcon: <LeaderShip />,
+        dataRoute: '/about/leadership'
     },
     {
         key: 'contacts',
         primaryText: 'Контакты',
-        leftIcon: (<Contacts />),
-        dataRoute: '/about/contacts',
+        leftIcon: <Contacts />,
+        dataRoute: '/about/contacts'
     },
     {
         key: 'vacancies',
         primaryText: 'Вакансии',
         leftIcon: null,
-        dataRoute: '/about/vacancies',
+        dataRoute: '/about/vacancies'
     },
     {
         key: 'history',
         primaryText: 'Наша история',
         leftIcon: null,
-        dataRoute: '/about/history',
+        dataRoute: '/about/history'
     },
     {
         key: 'zakupki_raskrytie_informacii',
@@ -127,22 +126,22 @@ export const MENU_ABOUT = [
                 key: 'fin_reports',
                 primaryText: 'Финансовая отчетность',
                 leftIcon: null,
-                dataRoute: '/about/zakupki_raskrytie_informacii/fin_reports',
+                dataRoute: '/about/zakupki_raskrytie_informacii/fin_reports'
             },
             {
                 key: 'nal_reports',
                 primaryText: 'Налоговая отчетность',
                 leftIcon: null,
-                dataRoute: '/about/zakupki_raskrytie_informacii/nal_reports',
+                dataRoute: '/about/zakupki_raskrytie_informacii/nal_reports'
             },
             {
                 key: 'fz223',
                 primaryText: '223-ФЗ',
                 leftIcon: null,
-                dataRoute: '/about/zakupki_raskrytie_informacii/fz223',
-            },
+                dataRoute: '/about/zakupki_raskrytie_informacii/fz223'
+            }
         ]
-    },
+    }
 ];
 
 export const MENU_CUSTOMERS = [
@@ -155,10 +154,10 @@ export const MENU_CUSTOMERS = [
             {
                 key: 'connection_holvodosnabjenie',
                 primaryText: 'Холодное водоснабжение',
-                leftIcon: (<ColdWather />),
-                dataRoute: '/customers/connection/connection_holvodosnabjenie',
-            },
-/*
+                leftIcon: <ColdWather />,
+                dataRoute: '/customers/connection/connection_holvodosnabjenie'
+            }
+            /*
             {
                 key: 'poluchenie_tekhnicheskikh_usloviy',
                 primaryText: 'Получение технических условий',
@@ -177,7 +176,7 @@ export const MENU_CUSTOMERS = [
                 leftIcon: null,
                 dataRoute: '/customers/connection/oformlenie_aktov_o_podklyuchenii',
             },
-*/            
+*/
         ]
     },
     {
@@ -188,7 +187,7 @@ export const MENU_CUSTOMERS = [
                 key: 'zaklyuchenie_dogovorov_holvod_fizlica',
                 primaryText: 'Заключение договоров на холодное водоснабжение',
                 leftIcon: null,
-                dataRoute: '/customers/fizlica/zaklyuchenie_dogovorov_holvod_fizlica',
+                dataRoute: '/customers/fizlica/zaklyuchenie_dogovorov_holvod_fizlica'
             },
             /*{
                 key: 'zamena_vodomera_fizlica',
@@ -200,20 +199,20 @@ export const MENU_CUSTOMERS = [
                 key: 'payments_fizlica',
                 primaryText: 'Способы оплаты',
                 leftIcon: null,
-                dataRoute: '/customers/fizlica/payments_fizlica',
+                dataRoute: '/customers/fizlica/payments_fizlica'
             },
             {
                 key: 'peredacha_pokazaniy_fizlica',
                 primaryText: 'Передача показаний счетчиков',
                 leftIcon: null,
-                dataRoute: '/customers/fizlica/peredacha_pokazaniy_fizlica',
+                dataRoute: '/customers/fizlica/peredacha_pokazaniy_fizlica'
             },
             {
                 key: 'pribory_ucheta',
                 primaryText: 'Приборы учета',
                 leftIcon: null,
-                dataRoute: '/customers/fizlica/pribory_ucheta',
-            },
+                dataRoute: '/customers/fizlica/pribory_ucheta'
+            }
         ]
     },
     {
@@ -225,15 +224,15 @@ export const MENU_CUSTOMERS = [
                 key: 'zaklyuchenie_dogovorov_holvod_urlica',
                 primaryText: 'Заключение договоров на холодное водоснабжение',
                 leftIcon: null,
-                dataRoute: '/customers/urlica/zaklyuchenie_dogovorov_holvod_urlica',
+                dataRoute: '/customers/urlica/zaklyuchenie_dogovorov_holvod_urlica'
             },
             {
                 key: 'peredacha_pokazaniy_urlica',
                 primaryText: 'Передача показаний счетчиков',
                 leftIcon: null,
-                dataRoute: '/customers/urlica/peredacha_pokazaniy_urlica',
-            },
-/*
+                dataRoute: '/customers/urlica/peredacha_pokazaniy_urlica'
+            }
+            /*
             {
                 key: 'inspekcia_vodnyh_resursov',
                 primaryText: 'Инспекция водных ресурсов',
@@ -247,13 +246,13 @@ export const MENU_CUSTOMERS = [
         key: 'regulatory_doc',
         primaryText: 'Нормативные документы',
         leftIcon: null,
-        dataRoute: '/customers/regulatory_doc',
+        dataRoute: '/customers/regulatory_doc'
     },
     {
         key: 'tarifs',
         primaryText: 'Тарифы',
         leftIcon: null,
-        dataRoute: '/customers/tarifs',
+        dataRoute: '/customers/tarifs'
     },
     {
         key: 'services',
@@ -264,70 +263,70 @@ export const MENU_CUSTOMERS = [
                 key: 'vyvoz_zhidkih_kommunalnyh_stokov',
                 primaryText: 'Вывоз жидких коммунальных стоков',
                 leftIcon: null,
-                dataRoute: '/customers/services/vyvoz_zhidkih_kommunalnyh_stokov',
+                dataRoute: '/customers/services/vyvoz_zhidkih_kommunalnyh_stokov'
             },
             {
                 key: 'preyskurant_uslug_dlya_fizicheskih_lic',
                 primaryText: 'Прейскурант услуг для физических лиц',
                 leftIcon: null,
-                dataRoute: '/customers/services/preyskurant_uslug_dlya_fizicheskih_lic',
+                dataRoute: '/customers/services/preyskurant_uslug_dlya_fizicheskih_lic'
             },
             {
                 key: 'preyskurant_uslug_dlya_yuridicheskih_lic',
                 primaryText: 'Прейскурант услуг для юридических лиц',
                 leftIcon: null,
-                dataRoute: '/customers/services/preyskurant_uslug_dlya_yuridicheskih_lic',
+                dataRoute: '/customers/services/preyskurant_uslug_dlya_yuridicheskih_lic'
             },
             {
                 key: 'prochie_uslugi',
                 primaryText: 'Прочие услуги',
                 leftIcon: null,
-                dataRoute: '/customers/services/prochie_uslugi',
-            },
+                dataRoute: '/customers/services/prochie_uslugi'
+            }
         ]
     },
     {
         key: 'debtors',
         primaryText: 'Должники',
         leftIcon: null,
-        dataRoute: '/customers/debtors',
-    },
+        dataRoute: '/customers/debtors'
+    }
 ];
 
 export const MENU_NEWS = [
     {
         key: 'news',
         primaryText: 'Новости',
-        leftIcon: (<RssFeed />),
-        dataRoute: '/news',
+        leftIcon: <RssFeed />,
+        dataRoute: '/news'
     },
     {
         key: 'smi_o_nashey_rabote',
         primaryText: 'СМИ о нашей работе',
         leftIcon: null,
-        dataRoute: '/news/smi_o_nashey_rabote',
-    },
+        dataRoute: '/news/smi_o_nashey_rabote'
+    }
 ];
 
 export const MENU = [
     {
         key: 'homeRoot',
         primaryText: 'Основной раздел',
-        children: [...MENU_HOME,],
+        children: [...MENU_HOME]
     },
     {
         key: 'about',
         primaryText: 'О компании',
-        children: [...MENU_ABOUT,],
+        children: [...MENU_ABOUT]
     },
     {
         key: 'customers',
         primaryText: 'Абонентам',
-        children: [...MENU_CUSTOMERS,],
+        children: [...MENU_CUSTOMERS]
     },
     {
         key: 'news',
         primaryText: 'Новости',
-        children: [...MENU_NEWS,],
+        children: [...MENU_NEWS]
     }
 ];

@@ -28,10 +28,10 @@ export function Login(props) {
             disableTouchRipple={true}
             component={Link}
             to="/"
-            style={props.style?.button}
+            style={props.style}
         >
             Войти
-            <FontAwesomeIcon icon={faSignInAlt} style={props.style?.button?.icon} />
+            <FontAwesomeIcon icon={faSignInAlt} style={props.style?.icon} />
         </Button>
     );
 }
@@ -51,7 +51,7 @@ export function Logged(props) {
             disableRipple={true}
             disableTouchRipple={true}
             onClick={props.onClick}
-            style={props.style?.button}
+            style={props.style}
         >
             <AccountCircle />
         </Button>

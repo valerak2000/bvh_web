@@ -144,7 +144,7 @@ export const muiTheme = createTheme({
                     width: 'inherit',
                     backgroundColor: 'inherit',
                     fontSize: 14,
-                    color: grey[50],
+                    color: grey[50], //"#fafafa"
                     display: 'flex',
                     paddingTop: 5,
                     margin: '0rem 0rem 0rem 7rem',
@@ -154,7 +154,7 @@ export const muiTheme = createTheme({
                         fontFamily: '"PFBeauSansPro-Reg", "sans-serif"',
                         fontSize: 14,
                         width: '20rem',
-                        margin: '0rem -6rem 0rem 0rem'
+                        margin: '0rem -6.5rem 0rem 0rem'
                     },
                     badgeLogon: {
                         height: 'inherit',
@@ -196,7 +196,7 @@ export const muiTheme = createTheme({
             width: '20%'
         },
         footer: {
-            backgroundColor: blue[900], //teal200,
+            backgroundColor: blue[900],
             fontFamily: ['pfbeausanspro-reg', 'sans-serif'].join(','),
             bottomNavigation: {
                 justifyContent: 'space-around',
@@ -331,9 +331,10 @@ export const muiTheme = createTheme({
         MuiPaper: {
             styleOverrides: {
                 root: {
-                    backgroundColor: blue[900],
-                    color: '#ffffff'
+//                    color: '#ffffff'
+                    backgroundColor: '#ffffff'
                 }
+
             }
         }
     }

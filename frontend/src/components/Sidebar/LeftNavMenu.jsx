@@ -41,7 +41,7 @@ const StyledDrawer = styled(Drawer)({
 });
 
 function NavMenu(props) {
-    const { items, onClick, initiallyFocused, expanded: expandedProp, classes } = props;
+    const { items, onClick, initiallyFocused, expanded: expandedProp, classes = {} } = props;
     const theme = useTheme();
 
     const initiallyFocusedValue =
