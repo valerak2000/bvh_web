@@ -315,14 +315,16 @@ function LeftNavMenu(props) {
             leftmenu = null;
     }
 
-    /*     const leftNav = { ...theme.leftNav };
-    if (leftmenu !== null) {
-        leftNav.width = '20%';
-    } else {
+    const leftNav = { ...theme.app.leftNav };
+    if (leftmenu === null) {
         leftNav.width = '0%';
     }
- */
-    return <StyledDrawer variant="permanent">{leftmenu}</StyledDrawer>;
+
+    return (
+        <StyledDrawer variant="permanent" sx={leftNav}>
+            {leftmenu}
+        </StyledDrawer>
+    );
 }
 
 LeftNavMenu.propTypes = {

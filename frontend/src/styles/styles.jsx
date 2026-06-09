@@ -321,20 +321,14 @@ export const muiTheme = createTheme({
                     textTransform: 'none',
                     backgroundColor: blue[900],
                     color: '#ffffff'
-                },
-/*                colorPrimary: {
-                    backgroundColor: blue[900],
-                    color: '#ffffff'
-                }*/
+                }
             }
         },
         MuiPaper: {
             styleOverrides: {
                 root: {
-//                    color: '#ffffff'
                     backgroundColor: '#ffffff'
                 }
-
             }
         }
     }
