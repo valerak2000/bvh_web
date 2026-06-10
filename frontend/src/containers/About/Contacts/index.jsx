@@ -440,3 +440,12 @@ ContactsView.defaultProps = {
 };
 
 export default ContactsView;
+/*
+<a 
+  href={`https://yandex.ru{officeCoords[0]},${officeCoords[1]}`} 
+  target="_blank" 
+  rel="noreferrer"
+>
+  Открыть в Яндекс Картах и построить маршрут
+</a>
+*/
