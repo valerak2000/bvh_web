@@ -26,22 +26,26 @@ import {
 } from '../../constants';
 import { MENU_HOME, MENU_ABOUT, MENU_CUSTOMERS, MENU_NEWS } from '../../constants/menuStruct';
 
-const styles = (theme) => ({
-    icon: {
-        marginRight: 0,
-        color: alpha(theme.palette.text.secondary, 0.64)
-    },
-    children: {
-        paddingLeft: theme.spacing(4)
-    }
-});
-
 const StyledDrawer = styled(Drawer)({
     position: 'relative'
 });
 
+const StyledNavList = styled(List)(({ theme }) => ({
+    // Base list styles
+}));
+
+const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
+    '& .icon': {
+        marginRight: 0,
+        color: alpha(theme.palette.text.secondary, 0.64)
+    },
+    '& .children': {
+        paddingLeft: theme.spacing(4)
+    }
+}));
+
 function NavMenu(props) {
-    const { items, onClick, initiallyFocused, expanded: expandedProp, classes = {} } = props;
+    const { items, onClick, initiallyFocused, expanded: expandedProp } = props;
     const theme = useTheme();
 
     const initiallyFocusedValue =
@@ -76,6 +80,7 @@ function NavMenu(props) {
         }
         onClick(dataRoute, key, e);
     };
+
     const iconStyle = useMemo(() => {
         return theme?.app?.icon || {};
     }, [theme]);
@@ -93,9 +98,7 @@ function NavMenu(props) {
                     onClick={(e) => handleItemClick(item.dataRoute, item.key, e, hasChildren)}
                     disabled={item.disabled}
                 >
-                    {item.leftIcon && (
-                        <ListItemIcon className={iconStyle}>{item.leftIcon}</ListItemIcon>
-                    )}
+                    {item.leftIcon && <ListItemIcon className="icon">{item.leftIcon}</ListItemIcon>}
                     <ListItemText
                         primary={item.primaryText}
                         primaryTypographyProps={{
@@ -123,7 +126,7 @@ function NavMenu(props) {
                                         disableGutters
                                         selected={isSelected}
                                         onClick={(e) => onClick(ni.dataRoute, ni.key, e)}
-                                        className={classes.children}
+                                        className="children"
                                         disabled={ni.disabled}
                                     >
                                         {ni.leftIcon && (
@@ -154,9 +157,9 @@ function NavMenu(props) {
     });
 
     return (
-        <List component="nav" style={props.style}>
+        <StyledNavList component="nav" sx={props.style}>
             {listItems}
-        </List>
+        </StyledNavList>
     );
 }
 

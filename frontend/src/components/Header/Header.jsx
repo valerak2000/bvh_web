@@ -23,18 +23,9 @@ const Header = (props) => {
     const login = appBar?.login || {};
 
     return (
-        <AppBar position="static" style={appBar}>
-            <Toolbar style={toolbar}>
-                <Button
-                    focusRipple={false}
-                    aria-selected={false}
-                    centerRipple={false}
-                    disableRipple={true}
-                    disableTouchRipple={true}
-                    component={Link}
-                    to="/"
-                    style={logo}
-                >
+        <AppBar position="static" sx={appBar}>
+            <Toolbar sx={toolbar}>
+                <Button disableRipple component={Link} to="/" sx={logo}>
                     <img src={bvhLogo} alt="Главная" style={logo?.picture} />
                 </Button>
                 <SiteMenu style={menu} {...rest} />

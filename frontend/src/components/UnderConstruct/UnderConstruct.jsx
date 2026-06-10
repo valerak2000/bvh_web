@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
-class UnderConstruct extends Component {
-    render() {
-        return (
-            <Typography
-                variant = 'h3'
-                color = 'textSecondary'
-            >
-                Раздел находится в разработке
-            </Typography>
-        );
-    }
+function UnderConstruct() {
+    return (
+        <Typography
+            variant="h3"
+            color="textSecondary"
+        >
+            Раздел находится в разработке
+        </Typography>
+    );
 }
 
 const UnderConstructWithTheme = (props) => {

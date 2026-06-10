@@ -23,8 +23,8 @@ import CardHeader from '../../../components/Card/CardHeaderImpl.jsx';
 import Loader from '../../../components/loaders';
 import FileLink from '../../../components/FileLink';
 
-const MapsComponent = Loader(() =>
-  import(/* webpackChunkName: "Maps" */ '../../../components/Maps/Maps.jsx')
+const MapsComponent = Loader(
+    () => import(/* webpackChunkName: "Maps" */ '../../../components/Maps/Maps.jsx')
 );
 
 const bvhMainOfficeBuildWP = '/static/images/main_office.webp';
@@ -50,370 +50,364 @@ function ContactsView(props) {
     };
 
     return (
-        <Card
-            square = { true }
-            sx = { card }
-        >
+        <Card square={true} sx={card}>
+            <CardHeader title="Контакты" {...props} />
             <CardHeader
-                title = 'Контакты'
-                { ...props }
-            />
-            <CardHeader
-                subheader = 'ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»'
-                sx = {{
-                    paddingBottom: 0,
+                subheader="ООО «Брюховецкое водопроводное хозяйство», ООО «БВХ»"
+                sx={{
+                    paddingBottom: 0
                 }}
             />
             <FileLink
-                href = { rekvisity_ooo_bvh }
-                label = 'Реквизиты ООО «Брюховецкое водопроводное хозяйство»'
-                sx = {{ margin: 'auto auto auto 2rem', }}
+                href={rekvisity_ooo_bvh}
+                label="Реквизиты ООО «Брюховецкое водопроводное хозяйство»"
+                sx={{ margin: 'auto auto auto 2rem' }}
             />
             <CardHeader
-                subheader = 'ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»'
-                sx = {{
-                    paddingBottom: 0,
+                subheader="ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»"
+                sx={{
+                    paddingBottom: 0
                 }}
             />
             <FileLink
-                href = { rekvisity_ooo_boos }
-                label = 'Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»'
-                sx = {{ margin: 'auto auto auto 2rem', }}
+                href={rekvisity_ooo_boos}
+                label="Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»"
+                sx={{ margin: 'auto auto auto 2rem' }}
             />
-            <CardContent
-                sx = { card.text }
-            >
-                <CardActionArea
-                    onClick = { handleExpandMainClick }
-                    sx = {{ width: '100%' }}
-                >
+            <CardContent sx={card.text}>
+                <CardActionArea onClick={handleExpandMainClick} sx={{ width: '100%' }}>
                     <div
-                        style = {{
+                        style={{
                             boxSizing: 'border-box',
                             position: 'relative',
-                            whiteSpace: 'nowrap',
+                            whiteSpace: 'nowrap'
                         }}
                     >
                         <CardHeader
-                            title = 'Центральный офис'
-                            titleTypographyProps = { card.subtitle1 }
-                            subheader = 'Карта'
-                            subheaderTypographyProps = { card.subtitle2 }
-                            sx = {{
+                            title="Центральный офис"
+                            titleTypographyProps={card.subtitle1}
+                            subheader="Карта"
+                            subheaderTypographyProps={card.subtitle2}
+                            sx={{
                                 display: 'inline-block',
                                 verticalAlign: 'top',
                                 whiteSpace: 'normal',
                                 paddingTop: 0,
                                 paddingBottom: 0,
-                                paddingRight: 90,
+                                paddingRight: 90
                             }}
                         />
                         <span
-                            style = {{
+                            style={{
                                 position: 'absolute',
                                 top: '0.5rem',
                                 right: 4,
-                                height: '100%',
+                                height: '100%'
                             }}
                         >
-                            { expandedMain ? <ExpandLess /> : <ExpandMore /> }
+                            {expandedMain ? <ExpandLess /> : <ExpandMore />}
                         </span>
                     </div>
                 </CardActionArea>
-                <Collapse in = { expandedMain } timeout = 'auto' unmountOnExit>
+                <Collapse in={expandedMain} timeout="auto" unmountOnExit>
                     <MapsComponent
-                        lat = { props.main_office.lat}
-                        lng = { props.main_office.lng}
-                        zoom = { props.zoom }
-                        balloonContent = '352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196'
+                        lat={props.main_office.lat}
+                        lng={props.main_office.lng}
+                        zoom={props.zoom}
+                        balloonContent="352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196"
                         isMarkerShown
                     />
                 </Collapse>
                 <ImageZoom
-                    image = {{
+                    image={{
                         src: bvhMainOfficeBuildWP,
                         alt: 'Центральный офис',
                         title: 'Центральный офис',
-                        className: '',
+                        className: ''
                     }}
-                    zoomImage = {{
+                    zoomImage={{
                         src: bvhMainOfficeBuild,
-                        alt: 'Центральный офис',
+                        alt: 'Центральный офис'
                     }}
-                    shouldRespectMaxDimension = { true }
-                    defaultStyles = {{
+                    shouldRespectMaxDimension={true}
+                    defaultStyles={{
                         zoomContainer: {
-                            zIndex: 10000,
-                        },
+                            zIndex: 10000
+                        }
                     }}
                 />
                 <Typography
-                    variant = 'body1'
-                    color = 'textSecondary'
-                    sx = {{
-                        margin: '0.25rem auto 0.25rem 2rem',
+                    variant="body1"
+                    color="textSecondary"
+                    sx={{
+                        margin: '0.25rem auto 0.25rem 2rem'
                     }}
                 >
-                    <strong>Адрес:</strong><br />
-                    <span style = { subParagraf }>
+                    <strong>Адрес:</strong>
+                    <br />
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faMapMarkedAlt }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faMapMarkedAlt}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196
-                    </span><br />
-                    <span style = { subParagraf }>
+                    </span>
+                    <br />
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faEnvelope }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faEnvelope}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;<a href="mailto:secretar@bruvodokanal.ru">secretar@bruvodokanal.ru</a>
                     </span>
                     <br />
-                    <strong>График работы:</strong><br />
-                    <span style = { subParagraf }>
+                    <strong>График работы:</strong>
+                    <br />
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faClock }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, color: red[0], }}
+                            icon={faClock}
+                            flip="horizontal"
+                            style={{ fontSize: 12, color: red[0] }}
                         />
                         &nbsp;Понедельник-пятница с 08-00 до 17-00, перерыв с 12-00 до 13-00
-                    </span><br />
-                    <span style = { subParagraf }>
+                    </span>
+                    <br />
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faAsterisk }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faAsterisk}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;Выходной: Суббота, Воскресенье
-                    </span><br />
+                    </span>
+                    <br />
                     <strong>Диспетчерская служба</strong>:<br />
-                    <span style = { subParagraf }>
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faPhone }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faPhone}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;8 (86156) 35-117
-                    </span><br />
-                    <span style = { subParagraf }>
-                        Круглосуточно, без перерыва и выходных.
-                    </span><br />
+                    </span>
+                    <br />
+                    <span style={subParagraf}>Круглосуточно, без перерыва и выходных.</span>
+                    <br />
                     <strong>Приемная директора</strong>: <br />
-                    <span style = { subParagraf }>
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faPhone }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faPhone}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;
-                        <FontAwesomeIcon
-                            icon = { faFax }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
-                        />
+                        <FontAwesomeIcon icon={faFax} flip="horizontal" style={{ fontSize: 12 }} />
                         &nbsp;8 (86156) 31-194
-                    </span><br />
+                    </span>
+                    <br />
                     <strong>Главный инженер</strong>:<br />
-                    <span style = { subParagraf }>
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faPhone }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faPhone}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;
-                        <FontAwesomeIcon
-                            icon = { faFax }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
-                        />
+                        <FontAwesomeIcon icon={faFax} flip="horizontal" style={{ fontSize: 12 }} />
                         &nbsp;8 (86156) 31-194
-                    </span><br />
-                    <span style = { subParagraf }>
+                    </span>
+                    <br />
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faClock }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faClock}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;Прием населения: Понедельник, Пятница с 08-00 до 10-00.
-                    </span><br />
+                    </span>
+                    <br />
                     <strong>Производственно-технический отдел</strong>:<br />
-                    <span style = { subParagraf }>
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faPhone }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faPhone}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;8 (86156) 21-809
-                    </span><br />
-                    <span style = { subParagraf }>
+                    </span>
+                    <br />
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faClock }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faClock}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
-                        &nbsp;Прием населения: Понедельник, Пятница с 08-00 до 16-00, перерыв с 12-00 до 13-00
-                    </span><br />
+                        &nbsp;Прием населения: Понедельник, Пятница с 08-00 до 16-00, перерыв с
+                        12-00 до 13-00
+                    </span>
+                    <br />
                     <strong>Вывоз жидких коммунальных стоков</strong>:<br />
-                    <span style = { subParagraf }>
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faPhone }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faPhone}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;8 (86156) 35-117
-                    </span><br />
+                    </span>
+                    <br />
                     <strong>Лаборатория</strong>:<br />
-                    <span style = { subParagraf }>
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faPhone }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faPhone}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;8 (86156) 31-010
-                    </span><br />
+                    </span>
+                    <br />
                     <strong>Юридический отдел</strong>:<br />
-                    <span style = { subParagraf }>
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faPhone }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faPhone}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;8 (86156) 21-809
-                    </span><br />
+                    </span>
+                    <br />
                     <strong>Бухгалтерия</strong>:<br />
-                    <span style = { subParagraf }>
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faPhone }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faPhone}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;8 (86156) 35-200
-                    </span><br />
+                    </span>
+                    <br />
                     <strong>Отдел кадров</strong>:<br />
-                    <span style = { subParagraf }>
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faPhone }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faPhone}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;
-                        <FontAwesomeIcon
-                            icon = { faFax }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
-                        />
+                        <FontAwesomeIcon icon={faFax} flip="horizontal" style={{ fontSize: 12 }} />
                         &nbsp;8 (86156) 31-194
-                    </span><br />
+                    </span>
+                    <br />
                 </Typography>
             </CardContent>
             <Divider />
-            <CardContent
-                sx = { card.text }
-            >
-                <CardActionArea
-                    onClick = { handleExpandAbonClick }
-                    sx = {{ width: '100%' }}
-                >
+            <CardContent sx={card.text}>
+                <CardActionArea onClick={handleExpandAbonClick} sx={{ width: '100%' }}>
                     <div
-                        style = {{
+                        style={{
                             boxSizing: 'border-box',
                             position: 'relative',
-                            whiteSpace: 'nowrap',
+                            whiteSpace: 'nowrap'
                         }}
                     >
                         <CardHeader
-                            title = 'Абонентский отдел'
-                            titleTypographyProps = { card.subtitle1 }
-                            subheader = 'Карта'
-                            subheaderTypographyProps = { card.subtitle2 }
-                            sx = {{
+                            title="Абонентский отдел"
+                            titleTypographyProps={card.subtitle1}
+                            subheader="Карта"
+                            subheaderTypographyProps={card.subtitle2}
+                            sx={{
                                 display: 'inline-block',
                                 verticalAlign: 'top',
                                 whiteSpace: 'normal',
                                 paddingTop: 0,
                                 paddingBottom: 0,
-                                paddingRight: 90,
+                                paddingRight: 90
                             }}
                         />
                         <span
-                            style = {{
+                            style={{
                                 position: 'absolute',
                                 top: '0.5rem',
                                 right: 4,
-                                height: '100%',
+                                height: '100%'
                             }}
                         >
-                            { expandedAbon ? <ExpandLess /> : <ExpandMore /> }
+                            {expandedAbon ? <ExpandLess /> : <ExpandMore />}
                         </span>
                     </div>
                 </CardActionArea>
-                <Collapse in = { expandedAbon } timeout = 'auto' unmountOnExit>
+                <Collapse in={expandedAbon} timeout="auto" unmountOnExit>
                     <MapsComponent
-                        lat = { props.abon_office.lat }
-                        lng = { props.abon_office.lng }
-                        zoom = { props.zoom }
-                        balloonContent = '352750, Краснодарский край, ст.Брюховецкая, ул. Советская, 56, здание БТИ'
+                        lat={props.abon_office.lat}
+                        lng={props.abon_office.lng}
+                        zoom={props.zoom}
+                        balloonContent="352750, Краснодарский край, ст.Брюховецкая, ул. Советская, 56, здание БТИ"
                         isMarkerShown
                     />
                 </Collapse>
                 <ImageZoom
-                    image = {{
+                    image={{
                         src: bvhAbonentsOfficeBuildWP,
                         alt: 'Абонентский отдел',
                         title: 'Абонентский отдел',
-                        className: '',
+                        className: ''
                     }}
-                    zoomImage = {{
+                    zoomImage={{
                         src: bvhAbonentsOfficeBuild,
-                        alt: 'Абонентский отдел',
+                        alt: 'Абонентский отдел'
                     }}
-                    shouldRespectMaxDimension = { true }
-                    defaultStyles = {{
+                    shouldRespectMaxDimension={true}
+                    defaultStyles={{
                         zoomContainer: {
-                            zIndex: 10000,
-                        },
+                            zIndex: 10000
+                        }
                     }}
                 />
                 <Typography
-                    variant = 'body1'
-                    color = 'textSecondary'
-                    sx = {{
-                        margin: '0.25rem auto 0.25rem 2rem',
+                    variant="body1"
+                    color="textSecondary"
+                    sx={{
+                        margin: '0.25rem auto 0.25rem 2rem'
                     }}
                 >
-                    <strong>Адрес:</strong><br />
-                    <span style = { subParagraf }>
+                    <strong>Адрес:</strong>
+                    <br />
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faMapMarkedAlt }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faMapMarkedAlt}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
-                        &nbsp;352750, Краснодарский край, ст. Брюховецкая, ул. Советская, 56, здание БТИ
-                    </span><br />
-                    <strong>Телефон:</strong><br />
-                    <span style = { subParagraf }>
+                        &nbsp;352750, Краснодарский край, ст. Брюховецкая, ул. Советская, 56, здание
+                        БТИ
+                    </span>
+                    <br />
+                    <strong>Телефон:</strong>
+                    <br />
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faPhone }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faPhone}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;8 (86156) 22-257
-                    </span><br />
-                    <strong>График работы:</strong><br />
-                    <span style = { subParagraf }>
+                    </span>
+                    <br />
+                    <strong>График работы:</strong>
+                    <br />
+                    <span style={subParagraf}>
                         <FontAwesomeIcon
-                            icon = { faClock }
-                            flip = 'horizontal'
-                            style = {{ fontSize: 12, }}
+                            icon={faClock}
+                            flip="horizontal"
+                            style={{ fontSize: 12 }}
                         />
                         &nbsp;Понедельник-пятница с 08-00 до 16-00 перерыв с 11-00 до 12-00
-                    </span><br />
-                    <span style = { subParagraf }>
-                        Выходной: Суббота и Воскресенье
-                    </span><br />
+                    </span>
+                    <br />
+                    <span style={subParagraf}>Выходной: Суббота и Воскресенье</span>
+                    <br />
                 </Typography>
             </CardContent>
         </Card>
@@ -424,25 +418,25 @@ ContactsView.propTypes = {
     theme: PropTypes.object.isRequired,
     main_office: PropTypes.shape({
         lat: PropTypes.number,
-        lng: PropTypes.number,
+        lng: PropTypes.number
     }),
     abon_office: PropTypes.shape({
         lat: PropTypes.number,
-        lng: PropTypes.number,
+        lng: PropTypes.number
     }),
-    zoom: PropTypes.number,
+    zoom: PropTypes.number
 };
 
 ContactsView.defaultProps = {
     main_office: {
         lat: 45.787037,
-        lng: 38.990506,
+        lng: 38.990506
     },
     abon_office: {
         lat: 45.806224,
-        lng: 39.007790,
+        lng: 39.00779
     },
-    zoom: 16,
+    zoom: 16
 };
 
 export default ContactsView;

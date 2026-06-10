@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
@@ -6,10 +7,18 @@ const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+// Загружаем переменные из .env файла
+const dotenv = require('dotenv');
+const envFile = path.resolve(__dirname, '../.env');
+let envVars = {};
+if (fs.existsSync(envFile)) {
+    envVars = dotenv.parse(fs.readFileSync(envFile));
+}
+
 // Пути к директориям
 const PATHS = {
     src: path.join(__dirname, '../src'),
-    build: path.join(__dirname, '../../static/bundles'),
+    build: path.join(__dirname, '../../static/bundles')
 };
 
 // Функция для создания конфигурации CSS лоадеров
@@ -19,16 +28,18 @@ const createCssLoaders = (isDev, modules = false) => {
         {
             loader: 'css-loader',
             options: {
-                modules: modules ? {
-                    localIdentName: '[local]',
-                } : false,
+                modules: modules
+                    ? {
+                          localIdentName: '[local]'
+                      }
+                    : false,
                 sourceMap: isDev,
                 importLoaders: 2
             }
         },
         'postcss-loader'
     ];
-    
+
     return loaders;
 };
 
@@ -43,15 +54,15 @@ const createAssetRule = (test, outputPath) => ({
 
 module.exports = function (mode) {
     const isDev = mode === 'development';
-    
+
     return {
         mode,
         context: PATHS.src,
-        
+
         entry: {
             app: './index.jsx'
         },
-        
+
         output: {
             filename: isDev ? '[name].js' : '[name].[contenthash].js',
             chunkFilename: isDev ? '[name].js' : '[name].[contenthash].js',
@@ -59,7 +70,7 @@ module.exports = function (mode) {
             publicPath: '/static/bundles/',
             clean: true
         },
-        
+
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.scss', '.css'],
             alias: {
@@ -72,7 +83,7 @@ module.exports = function (mode) {
                 '@styles': path.join(PATHS.src, 'styles')
             }
         },
-        
+
         module: {
             rules: [
                 // Предварительная обработка .gz файлов
@@ -81,7 +92,7 @@ module.exports = function (mode) {
                     enforce: 'pre',
                     use: 'gzip-loader'
                 },
-                
+
                 // JavaScript и TypeScript
                 {
                     test: /\.(js|jsx|ts|tsx)$/,
@@ -91,18 +102,17 @@ module.exports = function (mode) {
                             loader: 'babel-loader',
                             options: {
                                 cacheDirectory: true
-                                
                             }
-                        },
+                        }
                     ]
                 },
-                
+
                 // CSS
                 {
                     test: /\.css$/,
                     use: createCssLoaders(isDev, true)
                 },
-                
+
                 // Less
                 {
                     test: /\.less$/,
@@ -146,17 +156,17 @@ module.exports = function (mode) {
                         }
                     ]
                 },
-                
+
                 // Изображения
                 createAssetRule(/\.(png|jpe?g|gif|ico)$/i, 'images'),
                 createAssetRule(/\.svg$/i, 'images'),
-                
+
                 // Шрифты
                 createAssetRule(/\.(woff|woff2|ttf|eot|otf)$/i, 'fonts'),
-                
+
                 // Другие файлы
                 createAssetRule(/\.(json|pdf|txt|webp)$/i, 'files'),
-                
+
                 // Конфигурационные файлы
                 {
                     test: /web\.config$/,
@@ -167,13 +177,13 @@ module.exports = function (mode) {
                 }
             ]
         },
-        
+
         plugins: [
             new webpack.ProgressPlugin(),
             new CleanWebpackPlugin(),
             new MiniCssExtractPlugin({
                 filename: isDev ? '[name].css' : '[name].[contenthash].css',
-                chunkFilename: isDev ? '[id].css' : '[id].[contenthash].css',
+                chunkFilename: isDev ? '[id].css' : '[id].[contenthash].css'
             }),
 
             // HtmlWebpackPlugin используется в dev и production режимах
@@ -183,14 +193,19 @@ module.exports = function (mode) {
                 minify: !isDev
             }),
 
+            // Пробрасываем переменные из .env в клиентский код
+            new webpack.DefinePlugin({
+                'process.env.YANDEX_MAPS_API_KEY': JSON.stringify(envVars.YANDEX_MAPS_API_KEY || '')
+            }),
+
             // new webpack.ProvidePlugin({
             //     React: 'react',
             //     ReactDOM: 'react-dom'
             // }),
 
             new ProgressBarPlugin({
-                 format: 'Build [:bar] :percent (:elapsed seconds)',
-                 clear: false,
+                format: 'Build [:bar] :percent (:elapsed seconds)',
+                clear: false
             }),
 
             //new webpack.NoEmitOnErrorsPlugin(),
@@ -201,10 +216,12 @@ module.exports = function (mode) {
             })
         ],
 
-        externals: isDev ? {} : {
-            React: 'react',
-            ReactDOM: 'react-dom'
-        },
+        externals: isDev
+            ? {}
+            : {
+                  React: 'react',
+                  ReactDOM: 'react-dom'
+              },
 
         performance: {
             hints: isDev ? false : 'warning'

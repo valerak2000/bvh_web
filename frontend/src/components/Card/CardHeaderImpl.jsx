@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
-import CardHeader from '@mui/material/CardHeader';
+import MuiCardHeader from '@mui/material/CardHeader';
 
 function CardHeaderImpl(props) {
     const {
@@ -9,33 +9,23 @@ function CardHeaderImpl(props) {
         titleTypographyProps: titleTypographyPropsProp,
         subheader,
         subheaderTypographyProps: subheaderTypographyPropsProp,
-        style: styleProp,
+        sx: sxProp,
         ...other
     } = props;
-    const { card } = props.theme.app;
+    const theme = useTheme();
+    const card = theme?.app?.card || {};
 
-    let titleTypographyProps = titleTypographyPropsProp;
-    if (titleTypographyProps === undefined || titleTypographyProps === null) {
-        titleTypographyProps = card.titleTypography;
-    }
-
-    let subheaderTypographyProps = subheaderTypographyPropsProp;
-    if (subheaderTypographyProps === undefined || subheaderTypographyProps === null) {
-        subheaderTypographyProps = card.subheaderTypography;
-    }
-
-    let style = styleProp;
-    if (style === undefined || style === null) {
-        style = card.title;
-    }
+    const titleTypographyProps = titleTypographyPropsProp ?? card.titleTypography;
+    const subheaderTypographyProps = subheaderTypographyPropsProp ?? card.subheaderTypography;
+    const sx = sxProp ?? card.title;
 
     return (
-        <CardHeader
-            title = { title }
-            titleTypographyProps = { titleTypographyProps }
-            subheader = { subheader }
-            subheaderTypographyProps = { subheaderTypographyProps }
-            style = { style }
+        <MuiCardHeader
+            title={title}
+            titleTypographyProps={titleTypographyProps}
+            subheader={subheader}
+            subheaderTypographyProps={subheaderTypographyProps}
+            sx={sx}
             {...other}
         />
     );
@@ -45,10 +35,4 @@ CardHeaderImpl.propTypes = {
     //title: PropTypes.string.isRequired,
 };
 
-const CardHeaderImplWithTheme = (props) => {
-    const theme = useTheme();
-    return <CardHeaderImpl {...props} theme={theme} />;
-};
-
-export default CardHeaderImplWithTheme;
-export { CardHeaderImpl as CardHeader };
+export default CardHeaderImpl;
