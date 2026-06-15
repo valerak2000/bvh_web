@@ -53,31 +53,25 @@ function NavMenu(props) {
             ? items[0]?.key
             : initiallyFocused;
 
-    // Создаем локальную копию expanded для управления состоянием открытия
-    const [expandedState, setExpandedState] = useState(() => {
-        const state = [];
-        items.forEach((item) => {
-            if (item.children?.length > 0) {
-                const isOpen =
-                    expandedProp?.some((menu) => menu.key === item.key && menu.open) ||
-                    initiallyFocusedValue === item.key;
-                state.push({ key: item.key, open: isOpen });
-            }
-        });
-        return state;
-    });
-
     const getOpenState = (key) => {
-        const item = expandedState.find((menu) => menu.key === key);
-        return item ? item.open : false;
+        const item = expandedProp?.find((menu) => menu.key === key);
+        if (item !== undefined) return item.open;
+        // Если элемента нет в expandedProp, проверяем, нужно ли его открыть по initiallyFocused
+        const menuItem = items.find((i) => i.key === key);
+        if (menuItem?.children?.length > 0) {
+            return (
+                initiallyFocusedValue === key ||
+                menuItem.children.some(
+                    (child) =>
+                        `${key}_${child.key}` === initiallyFocusedValue ||
+                        child.key === initiallyFocusedValue
+                )
+            );
+        }
+        return false;
     };
 
     const handleItemClick = (dataRoute, key, e, hasChildren) => {
-        if (hasChildren) {
-            setExpandedState((prev) =>
-                prev.map((menu) => (menu.key === key ? { ...menu, open: !menu.open } : menu))
-            );
-        }
         onClick(dataRoute, key, e);
     };
 
@@ -194,26 +188,38 @@ function LeftNavMenu(props) {
             setActiveMenuSecond(currentMenuSecond);
             setActiveMenuThird(currentMenuThird);
 
-            // Если есть второй уровень меню, добавляем его в expanded
-            if (currentMenuSecond && !expanded.some((item) => item.key === currentMenuSecond)) {
-                setExpanded((prev) => [...prev, { key: currentMenuSecond, open: true }]);
+            // Если есть второй уровень меню, добавляем его в expanded или устанавливаем open: true
+            if (currentMenuSecond) {
+                setExpanded((prev) => {
+                    const exists = prev.some((item) => item.key === currentMenuSecond);
+                    if (!exists) {
+                        return [...prev, { key: currentMenuSecond, open: true }];
+                    }
+                    return prev.map((item) =>
+                        item.key === currentMenuSecond ? { ...item, open: true } : item
+                    );
+                });
             }
         }
     }, [location]);
 
     const handleMenuClick = useCallback(
         (dataRoute, key, e) => {
-            const indexOfMenu = expanded.findIndex((i) => i.key === key);
-            if (indexOfMenu > -1) {
-                setExpanded((prev) =>
-                    prev.map((item, idx) =>
+            setExpanded((prev) => {
+                const indexOfMenu = prev.findIndex((i) => i.key === key);
+                if (indexOfMenu > -1) {
+                    return prev.map((item, idx) =>
                         idx === indexOfMenu ? { ...item, open: !item.open } : item
-                    )
-                );
+                    );
+                }
+                // Если элемента нет в expanded, добавляем его (открытым)
+                return [...prev, { key, open: true }];
+            });
+            if (dataRoute) {
+                navigate(dataRoute);
             }
-            navigate(dataRoute);
         },
-        [expanded, navigate]
+        [navigate]
     );
 
     let initiallyFocused = null;
