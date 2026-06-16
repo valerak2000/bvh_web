@@ -109,7 +109,7 @@ function NavMenu(props) {
                 </ListItemButton>
                 {hasChildren && (
                     <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List disablePadding>
+                        <List component="div" disablePadding>
                             {item.children.map((ni, childIndex) => {
                                 const childKey = `${item.key}_${ni.key}`;
                                 const isSelected = initiallyFocusedValue === childKey;
@@ -122,6 +122,7 @@ function NavMenu(props) {
                                         onClick={(e) => onClick(ni.dataRoute, ni.key, e)}
                                         className="children"
                                         disabled={ni.disabled}
+                                        sx={{ pl: 4 }}
                                     >
                                         {ni.leftIcon && (
                                             <ListItemIcon className={iconStyle}>
