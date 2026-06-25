@@ -63,17 +63,6 @@ function ContactsView(props) {
                 label="Реквизиты ООО «Брюховецкое водопроводное хозяйство»"
                 sx={{ margin: 'auto auto auto 2rem' }}
             />
-            <CardHeader
-                subheader="ООО «Брюховецкое предприятие отвода и очистки стоков», ООО «БООС»"
-                sx={{
-                    paddingBottom: 0
-                }}
-            />
-            <FileLink
-                href={rekvisity_ooo_boos}
-                label="Реквизиты ООО «Брюховецкое предприятие отвода и очистки стоков»"
-                sx={{ margin: 'auto auto auto 2rem' }}
-            />
             <CardContent sx={card.text}>
                 <CardActionArea onClick={handleExpandMainClick} sx={{ width: '100%' }}>
                     <div
