@@ -1,37 +1,103 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const webpack = require('webpack');
 const commonConfig = require('./common.config');
+const path = require('path');
+const fs = require('fs');
 
-const port = 8080;
-const url = `http://localhost:${port}`;
-const mode = 'development';
+const port = 9000;
 
-module.exports = merge(commonConfig(mode), {
-    mode,
-    entry: {
-        hot: 'react-hot-loader/patch', // activate HMR for React
-        webpack_dev: 'webpack-dev-server/client?${url}', // bundle the client for webpack-dev-server and connect to the provided endpoint
-        webpack_hot: 'webpack/hot/only-dev-server', // bundle the client for hot reloading, only- means to only hot reload for successful updates
-        app: './index.jsx', // the entry point of our app
-        vendors: ['react'],
-    },
-    //devtool: 'cheap-module-source-map', //cheap-module-eval-source-map inline-source-map
+module.exports = merge(commonConfig('development'), {
     devtool: 'source-map',
-    devServer: {
-        hot: true, // enable HMR on the server
-        open: true,
-        port: port,
-		contentBase: './frontend/bundles',
-        historyApiFallback: true,
+
+    output: {
+        devtoolModuleFilenameTemplate: 'webpack:///[resource-path]',
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(), // enable HMR globally
-        new webpack.NamedModulesPlugin() // prints more readable module names in the browser console on HMR updates
-    ],
-    stats: {
-        children: true, 
-        entrypoints: true,
-        errors: true,
-        errorDetails: true,
-    }
+
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                defaultVendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                    priority: -10,
+                    reuseExistingChunk: true,
+                },
+                react: {
+                    test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                    name: 'react',
+                    priority: 21,
+                    reuseExistingChunk: true,
+                },
+                mui: {
+                    test: /[\\/]node_modules[\\/](@mui)/,
+                    name: 'mui',
+                    chunks: 'all',
+                    priority: 20,
+                },
+                moment: {
+                    test: /[\\/]node_modules[\\/]moment[\\/]/,
+                    name: 'moment',
+                    priority: 19,
+                    reuseExistingChunk: true,
+                },
+            },
+        },
+        
+        runtimeChunk: {
+            name: 'runtime'
+        }
+    },
+
+    devServer: {
+        hot: true,
+        open: false,
+        port: port,
+        allowedHosts: 'auto',
+        // Включаем historyApiFallback для SPA
+        historyApiFallback: {
+            index: '/static/bundles/index.html',
+            disableDotRule: true,
+        },
+        static: [
+            {
+                directory: path.join(__dirname, '../../static/bundles'),
+                publicPath: '/static/bundles/',
+            },
+            {
+                directory: path.join(__dirname, '../../static'),
+                publicPath: '/static/',
+            },
+        ],
+        client: {
+            overlay: {
+                errors: true,
+                warnings: false,
+            },
+            // Улучшаем стабильность WebSocket соединения
+            webSocketURL: {
+                hostname: 'localhost',
+                port: port,
+                pathname: '/ws',
+                protocol: 'ws',
+            },
+            reconnect: 5, // Количество попыток переподключения
+        },
+        compress: true,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        },
+        // Записываем бандлы на диск для отладки
+        devMiddleware: {
+            writeToDisk: true,
+            publicPath: '/static/bundles/',
+        },
+        // Явно указываем тип WebSocket сервера
+        webSocketServer: 'ws',
+    },
+
+    plugins: [],
+
+    stats: 'minimal'
 });

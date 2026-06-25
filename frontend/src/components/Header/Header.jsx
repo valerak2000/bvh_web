@@ -1,74 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import withStyles from '@material-ui/core/styles/withStyles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
+import { useTheme } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
 
 import LoginControl from '../../views/LoginControl';
 import SiteMenu from '../../views/SiteMenu';
+
 const bvhLogo = '/static/images/logo_bvh.png';
 
-class Header extends Component {
-    static propTypes = {
-        isAuthenticated: PropTypes.bool.isRequired,
-        dispatch: PropTypes.func.isRequired,
-        location: PropTypes.object.isRequired,
-        theme: PropTypes.object.isRequired,
-        classes: PropTypes.object.isRequired,
-    };
+const Header = (props) => {
+    const { isAuthenticated, ...rest } = props;
+    const theme = useTheme();
 
-    constructor(props, context) {
-        super(props, context);
-    }
+    // Получаем appBar из темы
+    const appBar = theme?.app?.header?.appBar || {};
+    const toolbar = appBar?.toolbar || {};
+    const logo = toolbar?.logo || {};
+    const menu = toolbar?.menu || {};
+    const login = appBar?.login || {};
 
-    render() {
-        const { classes } = this.props;
-        const { appBar } = { ...this.props.theme.app.header };
-        const { isAuthenticated } = this.props;
+    return (
+        <AppBar position="static" sx={appBar}>
+            <Toolbar sx={toolbar}>
+                <Button disableRipple component={Link} to="/" sx={logo}>
+                    <img src={bvhLogo} alt="Главная" style={logo?.picture} />
+                </Button>
+                <SiteMenu style={menu} {...rest} />
+                <LoginControl isAuthenticated={isAuthenticated} style={login} {...rest} />
+            </Toolbar>
+        </AppBar>
+    );
+};
 
-        return (
-            <AppBar
-                position = 'static'
-                style = { appBar }
-            >
-                <Toolbar
-                    style = {{ 
-                        padding: '0 8px 8px 8px',
-                    }}
-                >
-                    <Button
-                        focusRipple = { false }
-                        aria-selected = { false }
-                        centerRipple = { false }
-                        disableRipple = { true }
-                        disableTouchRipple = { true }
-                        component = { Link } to = '/'
-                        style = { appBar.logo }
-                    >
-                        <img
-                            src = { bvhLogo }
-                            alt = 'Главная'
-                            style = { appBar.logo.picture }
-                        />
-                    </Button>
-                    <SiteMenu
-                        style = { appBar.menu }
-                        { ...this.props }
-                    />
-                    <LoginControl
-                        isAuthenticated = { isAuthenticated }
-                        style = { appBar.login }
-                        { ...this.props }
-                    />
-                </Toolbar>
-            </AppBar>
-        );
-    }
-}
+Header.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired
+};
 
-export default withStyles(null, { name: 'muiHeader', flip: false, withTheme: true })(Header);
-
-/*
-*/
+export default Header;

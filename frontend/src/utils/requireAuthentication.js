@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
+import { navigateTo } from './navigate';
 
 export default function requireAuthentication(Component) {
     class AuthenticatedComponent extends Component {
@@ -24,7 +24,7 @@ export default function requireAuthentication(Component) {
         checkAuth() {
             if (!this.props.isAuthenticated) {
                 const redirectAfterLogin = this.props.location.pathname;
-                this.props.dispatch(push(`/login?next=${redirectAfterLogin}`));
+                navigateTo(`/login?next=${redirectAfterLogin}`);
             }
         }
 

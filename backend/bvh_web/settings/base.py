@@ -1,6 +1,8 @@
 """Django settings for bvh_web project."""
-
+import json
 import os
+
+from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PROJECT_NAME = 'bvh_web'
@@ -8,18 +10,22 @@ PROJECT_NAME = 'bvh_web'
 def base_dir_join(*args):
     return os.path.join(BASE_DIR, *args)
 
-# SECURITY WARNING: keep the secret key used in production secret!
-try:
-    SECRET_KEY
-except NameError:
-    SECRET_FILE = base_dir_join('secret.txt')
+# Load secrets from secrets.json file
+SECRETS_FILE = base_dir_join('secrets.json')
+SECRETS = {}
+if os.path.exists(SECRETS_FILE):
     try:
-        with open(SECRET_FILE) as f:
-            SECRET_KEY = f.read().strip()
-        #f = open(SECRET_FILE)
-        #SECRET_KEY = f.read().strip()
-    except IOError:
-        SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'ajsdgas7&*kosdsa21[]jaksdhlka-;kmcv8l$#diepsm8&ah^')
+        with open(SECRETS_FILE, 'r', encoding='utf-8') as f:
+            SECRETS = json.load(f)
+    except (json.JSONDecodeError, OSError) as e:
+        raise ImproperlyConfigured(f'Failed to parse secrets.json: {e}')
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = SECRETS.get('secret_key', os.environ.get('DJANGO_SECRET_KEY', ''))
+if not SECRET_KEY:
+    raise ImproperlyConfigured(
+        'Set SECRET_KEY in secrets.json or DJANGO_SECRET_KEY environment variable'
+    )
 
 DEBUG = True
 
@@ -38,16 +44,12 @@ INSTALLED_APPS = (
     'django_extensions',
     'django_js_reverse',
     'webpack_loader',
-    #'import_export',
-    #'django2_url_robots',
     'accounts',
     'base'
 )
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    #'django.middleware.gzip.GZipMiddleware',
-    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -74,9 +76,7 @@ TEMPLATES = [
 ]
 
 ROOT_URLCONF = PROJECT_NAME + '.urls'
-#ROOT_URLCONF = 'bvh_web.urls'
 WSGI_APPLICATION = PROJECT_NAME + '.wsgi.application'
-#WSGI_APPLICATION = 'bvh_web.wsgi.application'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -134,7 +134,7 @@ REST_FRAMEWORK = {
 
 # ############ REST KNOX ########################
 REST_KNOX = {
-    'SECURE_HASH_ALGORITHM': 'cryptography.hazmat.primitives.hashes.SHA512',
+    'SECURE_HASH_ALGORITHM': 'hashlib.sha512',
     'AUTH_TOKEN_CHARACTER_LENGTH': 64,
     'USER_SERIALIZER': 'knox.serializers.UserSerializer'
 }

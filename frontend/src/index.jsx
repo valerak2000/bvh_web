@@ -1,22 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { Router, Route, Switch, BrowserRouter } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-import { setConfig } from 'react-hot-loader';
-setConfig({ logLevel: 'debug' });
-
-import { GetBaseUrl } from './commons/commonFuncs';
+import { BrowserRouter } from 'react-router-dom';
+import { GetBaseUrl } from './commons/commonFuncs.ts';
 import { authLoginUserSuccess } from './actions/auth';
 import ExceptionHandler from './components/ExceptionHandler';
 import configureStore from './store/configureStore';
-import indexRoutes from 'routes/index.jsx';
+import Root from './containers/Root/Root';
+import { setNavigateFunction } from './utils/navigate';
 
 const initialState = {};
-//Update for Reserved proxy
 const base = GetBaseUrl();
-const history = createBrowserHistory({ basename: base });
-const store = configureStore(initialState, history);
+const store = configureStore(initialState);
 const isProd = process.env.NODE_ENV === 'production';
 
 const token = sessionStorage.getItem('token');
@@ -31,46 +26,29 @@ if (token !== null) {
     store.dispatch(authLoginUserSuccess(token, user));
 }
 
-const createRouter = () => {
-    return (
-        <BrowserRouter basename = { base || '/' }>
-            <Router history = { history }>
-                <Switch>
-                {
-                    indexRoutes.map((prop, key) => {
-                        return (
-                            <Route
-                                path = { prop.path }
-                                component = { prop.component }
-                                key = { key }
-                            />
-                        );
-                    })
-                }
-                </Switch>
-            </Router>
-        </BrowserRouter>
-    );
-};
-  
+const root = createRoot(document.getElementById('root'));
+
 const renderComponent = () => {
-    ReactDOM.render(
-        <Provider store = { store }>
-            <ExceptionHandler global disabled = { !isProd }>
-                { createRouter() }
-            </ExceptionHandler>
-        </Provider>,
-        document.getElementById('root')
+    root.render(
+        <StrictMode>
+            <Provider store={store}>
+                <ExceptionHandler global disabled={!isProd}>
+                    <BrowserRouter
+                        basename={base || '/'}
+                        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+                    >
+                        <Root />
+                    </BrowserRouter>
+                </ExceptionHandler>
+            </Provider>
+        </StrictMode>
     );
 };
 
 renderComponent();
 
-/* devblock:start */
-// Hot Module Replacement API
 if (module.hot) {
     module.hot.accept('./containers/Root/Root', () => {
         renderComponent();
     });
 }
-/* devblock:end */

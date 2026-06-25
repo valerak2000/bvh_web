@@ -1,35 +1,47 @@
-import React from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-// nodejs library to set properties for components
-import PropTypes from "prop-types";
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-// @material-ui/icons
+import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
 
-// core components
-import cardBodyStyle from "assets/jss/material-dashboard-react/components/cardBodyStyle.jsx";
+const StyledCardBody = styled('div', {
+    shouldForwardProp: (prop) => prop !== 'ownerState'
+})(({ theme, ownerState }) => {
+    const { plain, profile } = ownerState;
 
-function CardBody({ ...props }) {
-  const { classes, className, children, plain, profile, ...rest } = props;
-  const cardBodyClasses = classNames({
-    [classes.cardBody]: true,
-    [classes.cardBodyPlain]: plain,
-    [classes.cardBodyProfile]: profile,
-    [className]: className !== undefined
-  });
-  return (
-    <div className={cardBodyClasses} {...rest}>
-      {children}
-    </div>
-  );
+    return {
+        padding: '0.9375rem 20px',
+        flex: '1 1 auto',
+        WebkitBoxFlex: '1',
+        position: 'relative',
+        ...(plain && {
+            paddingLeft: '5px',
+            paddingRight: '5px'
+        }),
+        ...(profile && {
+            marginTop: '15px'
+        })
+    };
+});
+
+function CardBody({ children, plain, profile, className, ...rest }) {
+    const ownerState = { plain, profile };
+
+    const cardBodyClasses = classNames({
+        [className]: className !== undefined
+    });
+
+    return (
+        <StyledCardBody className={cardBodyClasses} ownerState={ownerState} {...rest}>
+            {children}
+        </StyledCardBody>
+    );
 }
 
 CardBody.propTypes = {
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  plain: PropTypes.bool,
-  profile: PropTypes.bool
+    className: PropTypes.string,
+    children: PropTypes.node,
+    plain: PropTypes.bool,
+    profile: PropTypes.bool
 };
 
-export default withStyles(cardBodyStyle)(CardBody);
+export default CardBody;

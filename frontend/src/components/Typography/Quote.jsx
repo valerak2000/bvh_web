@@ -1,24 +1,42 @@
 import React from "react";
 import PropTypes from "prop-types";
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-// core components
-import typographyStyle from "assets/jss/material-dashboard-react/components/typographyStyle.jsx";
+import { styled } from '@mui/material/styles';
 
-function Quote({ ...props }) {
-  const { classes, text, author } = props;
+const StyledQuote = styled('blockquote')({
+  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontWeight: "300",
+  lineHeight: "1.5em",
+  fontSize: "14px",
+  padding: "10px 20px",
+  margin: "0 0 20px",
+  fontSize: "17.5px",
+  borderLeft: "5px solid #eee"
+});
+
+const StyledQuoteText = styled('p')({
+  margin: "0 0 10px",
+  fontStyle: "italic"
+});
+
+const StyledQuoteAuthor = styled('small')({
+  display: "block",
+  fontSize: "80%",
+  lineHeight: "1.42857143",
+  color: "#777"
+});
+
+function Quote({ text, author }) {
   return (
-    <blockquote className={classes.defaultFontStyle + " " + classes.quote}>
-      <p className={classes.quoteText}>{text}</p>
-      <small className={classes.quoteAuthor}>{author}</small>
-    </blockquote>
+    <StyledQuote>
+      <StyledQuoteText>{text}</StyledQuoteText>
+      <StyledQuoteAuthor>{author}</StyledQuoteAuthor>
+    </StyledQuote>
   );
 }
 
 Quote.propTypes = {
-  classes: PropTypes.object.isRequired,
   text: PropTypes.node,
   author: PropTypes.node
 };
 
-export default withStyles(typographyStyle)(Quote);
+export default Quote;

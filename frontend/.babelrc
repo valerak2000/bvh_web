@@ -4,10 +4,12 @@
       "@babel/env",
       {
         "modules": false,
-        "useBuiltIns": "entry"
+        "useBuiltIns": "entry",
+        "corejs": 3
       }
     ],
-    "@babel/react"
+    "@babel/react",
+    "@babel/typescript"
   ],
   "plugins": [
     ["@babel/transform-runtime", { "useESModules": true }],
@@ -15,9 +17,11 @@
     "@babel/plugin-syntax-import-meta",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    ["@babel/plugin-transform-private-methods", { "loose": true }],
+    ["@babel/plugin-transform-private-property-in-object", { "loose": true }],
     "@babel/plugin-proposal-json-strings",
     "@babel/plugin-transform-async-to-generator",
-    "react-loadable/babel",
+    "@loadable/babel-plugin",
     [
       "import",
       {
@@ -46,35 +50,48 @@
       }
     ],
     "babel-plugin-lodash",
-    "react-hot-loader/babel", //Enables React code to work with HMR.
     [
       "module-resolver",
       {
-        "root": ["./src"]
+        "root": ["./src"],
+        "alias": {
+          "@": "./src",
+          "@components": "./src/components",
+          "@containers": "./src/containers",
+          "@actions": "./src/actions",
+          "@reducers": "./src/reducers",
+          "@utils": "./src/utils",
+          "@styles": "./src/styles"
+        }
       }
     ]
   ],
   "env": {
-    "node": {
-      "presets": [["@babel/preset-env"], "@babel/react"],
-      "plugins": [
-        ["@babel/transform-runtime"],
-        ["@babel/plugin-transform-modules-commonjs", { "spec": true }]
+    "development": {
+      "presets": [
+        ["@babel/preset-env", { "modules": false }],
+        "@babel/react"
       ]
     },
+    "production": {
+      "presets": [
+        ["@babel/preset-env", { "modules": false }],
+        "@babel/react"
+      ],
+      "plugins": [
+        "transform-remove-console"
+      ],
+      "comments": false
+    },
     "test": {
-      "presets": [["@babel/preset-env"], "@babel/react"],
+      "presets": [
+        ["@babel/preset-env", { "targets": { "node": "current" } }],
+        "@babel/react"
+      ],
       "plugins": [
         ["@babel/transform-runtime"],
         ["@babel/plugin-transform-modules-commonjs", { "spec": true }]
       ]
     }
-    /*"production": {
-      "presets": [
-        "react-optimize"
-      ],
-      "plugins": ["transform-remove-console"],
-      "comments": false
-    }*/
   }
 }

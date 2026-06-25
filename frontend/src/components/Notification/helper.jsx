@@ -1,9 +1,9 @@
 import NotificationType from './NotificationType';
-import confirmIcon from '@material-ui/icons/Help';
-import errorIcon from '@material-ui/icons/Error';
-import infoIcon from '@material-ui/icons/Info';
-import warningIcon from '@material-ui/icons/Warning';
-import successIcon from '@material-ui/icons/CheckCircle';
+import confirmIcon from '@mui/icons-material/Help';
+import errorIcon from '@mui/icons-material/Error';
+import infoIcon from '@mui/icons-material/Info';
+import warningIcon from '@mui/icons-material/Warning';
+import successIcon from '@mui/icons-material/CheckCircle';
 import linq from 'linq';
 import NotificationStatus from './NotificationStatus';
 import * as guard from '../../commons/guard';
@@ -57,7 +57,8 @@ export function getUnreadItems(items) {
     .where(
       i =>
         i.status === NotificationStatus.NEW ||
-        i.status === NotificationStatus.NOTIFIED
+        i.status === NotificationStatus.NOTIFIED ||
+        i.status === NotificationStatus.DELETED
     )
     .toArray();
 }

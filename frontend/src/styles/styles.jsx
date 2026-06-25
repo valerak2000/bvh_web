@@ -1,187 +1,150 @@
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import common from '@material-ui/core/colors/common';
-import blue from '@material-ui/core/colors/blue';
-import grey from '@material-ui/core/colors/grey';
-import cyan from '@material-ui/core/colors/cyan';
+import { createTheme } from '@mui/material/styles';
+import { common, blue, grey, cyan, pink } from '@mui/material/colors';
 
-export var muiTheme = createMuiTheme({
+export const muiTheme = createTheme({
     palette: {
-        textColor: {
-            main: blue[900]
-        },
-        //alternateTextColor: { main: blue[900] },
         text: {
             primary: blue[900],
-            secondary: common['black']
-        }, //teal300 lightGreen50 lightBlue900
+            secondary: common['black'],
+            disabled: grey[500]
+        },
         primary: {
             main: blue[900],
             contrastText: common['white']
-        }, //teal300 lightGreen50 lightBlue900
+        },
         secondary: {
             main: blue[900],
-            //contrastText: common['white']
+            contrastText: common['white']
         },
-        //secondaryTextColor: {
-        //    main: blue[800]
-        //},
-        //primary2Color: Colors.white,
-        //accent1Color: Colors.white,
-        //accent2Color: { main: common['white'] },
-        //backgroundColor: Colors.teal200,
-        //selectedTextColor: Colors.blue900,
-        //primary2Color: Colors.teal200,
-        //primary: Colors.blue900,
-        //color: Colors.teal200,
-        //canvasColor: Colors.teal200,
+        background: {
+            default: common['white'],
+            paper: grey[100]
+        },
+        divider: grey[300]
     },
     typography: {
-        useNextVariants: true,
-        fontFamily: [
-            'pfbeausanspro-reg',
-            'sans-serif',
-        ].join(','),
+        fontFamily: ['pfbeausanspro-reg', 'sans-serif'].join(','),
         fontSize: 16,
         fontWeight: 500,
         htmlFontSize: 16,
         subtitle1: {
             fontSize: 22,
-            fontWeight: 500,
+            fontWeight: 500
         },
         h3: {
             fontSize: 18,
-            fontWeight: 500,
+            fontWeight: 500
         },
         h4: {
             fontSize: 20,
-            fontWeight: 500,
+            fontWeight: 500
         },
         h5: {
             fontSize: 24,
-            fontWeight: 500,
+            fontWeight: 500
         },
         h6: {
             fontSize: 30,
-            fontWeight: 500,
+            fontWeight: 500
         },
         body1: {
             fontSize: 16,
-            fontWeight: 500,
+            fontWeight: 500
         },
         body2: {
             fontSize: 14,
-            fontWeight: 500,
-        },
+            fontWeight: 500
+        }
     },
     global: {
         maxWidth: '78rem',
         minWidth: '63rem',
         minHeight: '38rem',
-        margin: '0 auto',
+        margin: '0 auto'
     },
     app: {
-        //margin: '0 auto auto',
-        height: 'auto', //по высоте меню 
+        height: 'auto', //по высоте меню
         width: '80%',
-        flexDirection: 'unset',
-        //background: `url(${bgHeader}) no-repeat 0px 0px`,
+        flexDirection: 'column',
         card: {
             margin: '0 auto',
-            //minHeight: '32rem',
             height: '100%',
-            //width: '80%',
             header: {
                 objectFit: 'contain',
-                height: 240,
-                //size: 'cover',
+                height: 240
             },
             title: {
                 paddingBottom: 0
             },
             titleTypography: {
                 variant: 'h6',
-                color: 'textPrimary',
+                color: 'textPrimary'
             },
             subheaderTypography: {
                 variant: 'h5',
-                color: 'textPrimary',
+                color: 'textPrimary'
             },
             headline: {
                 variant: 'h5',
-                color: 'textPrimary',
+                color: 'textPrimary'
             },
             subheader: {
                 variant: 'subtitle1',
-                color: 'primary',
+                color: 'primary'
             },
             subtitle1: {
                 variant: 'h4',
-                color: 'primary',
+                color: 'primary'
             },
             subtitle2: {
                 variant: 'body1',
-                color: 'primary',
+                color: 'primary'
             },
             text: {
                 variant: 'body1',
                 fontSize: 16,
-                color: 'primary',
-            },
+                color: 'primary'
+            }
         },
         header: {
-            /*
-            background: {
-                image: `url(${ bgHeader })`,
-                repeat: 'no-repeat',
-                size: 'cover',
-                position: 'center'
-            },
-            */
             appBar: {
                 height: '5.4rem',
                 width: '100%',
-                /*
-                iconStyleLeft: {
-                    width: '75rem',
-                    //margin: '1.5rem 0 0rem 0',
-                },
-                */
-                logo: {
-                    //2,646370023419204
-                    width: 230,
-                    height: 76,
-                    cursor: 'pointer',
-                    margin: '0.4rem auto auto -0.5rem',
-                    picture: {
-                        height: 'inherit',
-                        width: 201,
-                        objectFit: 'contain',
+                toolbar: {
+                    padding: '0 8px 8px 8px',
+                    logo: {
+                        width: 230,
+                        height: 76,
+                        cursor: 'pointer',
+                        margin: '0.4rem auto auto -0.5rem',
+                        picture: {
+                            height: 'inherit',
+                            width: 201,
+                            objectFit: 'contain'
+                        }
                     },
-                },
-                menu: {
-                    width: '30rem',
-                    height: 'inherit',
-                    margin: '2rem 3rem 0px',
-                    tab: {
-                        fontSize: 18,
-                        fontWeight: 500,
-                        opacity: 1,
-                        textTransform: 'none',
-                        indicator: {
-                            color: cyan[100],
-                            backgroundColor: cyan[100],
+                    menu: {
+                        width: '30rem',
+                        height: 'inherit',
+                        margin: '2rem 3rem 0px',
+                        tab: {
+                            fontSize: 18,
+                            fontWeight: 500,
+                            opacity: 1,
+                            textTransform: 'none',
+                            indicator: {
+                                color: cyan[100],
+                                backgroundColor: cyan[100]
+                            }
                         }
                     }
-                },
-                titleStyle: {
-                    width: 'auto',
                 },
                 login: {
                     height: 'inherit',
                     width: 'inherit',
                     backgroundColor: 'inherit',
                     fontSize: 14,
-                    color: grey[50],
+                    color: grey[50], //"#fafafa"
                     display: 'flex',
                     paddingTop: 5,
                     margin: '0rem 0rem 0rem 7rem',
@@ -191,7 +154,7 @@ export var muiTheme = createMuiTheme({
                         fontFamily: '"PFBeauSansPro-Reg", "sans-serif"',
                         fontSize: 14,
                         width: '20rem',
-                        margin: '0rem -6rem 0rem 0rem',
+                        margin: '0rem -6.5rem 0rem 0rem'
                     },
                     badgeLogon: {
                         height: 'inherit',
@@ -199,7 +162,7 @@ export var muiTheme = createMuiTheme({
                         fontFamily: '"PFBeauSansPro-Reg", "sans-serif"',
                         fontSize: 14,
                         width: '20rem',
-                        margin: '0rem -4.4rem 0rem 0rem',
+                        margin: '0rem -4.4rem 0rem 0rem'
                     },
                     button: {
                         margin: '1.7rem 1rem 0rem 0.5rem',
@@ -213,33 +176,30 @@ export var muiTheme = createMuiTheme({
                         justifyContent: 'flex-end',
                         label: {
                             fontSize: 18,
-                            fontWeight: 500,
+                            fontWeight: 500
                         },
                         icon: {
                             height: '1.25rem',
                             width: '1.25rem',
-                            margin: 'auto auto auto 5px',
+                            margin: 'auto auto auto 5px'
                         },
                         iconMenu: {
                             height: '1.25rem',
                             width: '1.25rem',
-                            color: grey[50],
-                        },
-                    },
-                },
-            },
+                            color: grey[50]
+                        }
+                    }
+                }
+            }
         },
         leftNav: {
-            width: '20%',
+            width: '20%'
         },
         footer: {
-            backgroundColor: blue[900], //teal200,
-            fontFamily: [
-                'pfbeausanspro-reg',
-                'sans-serif',
-            ].join(','),
+            backgroundColor: blue[900],
+            fontFamily: ['pfbeausanspro-reg', 'sans-serif'].join(','),
             bottomNavigation: {
-                position: 'space-around',
+                justifyContent: 'space-around',
                 height: '4rem',
                 backgroundColor: blue[900], //teal200,
                 button: {
@@ -249,9 +209,9 @@ export var muiTheme = createMuiTheme({
                     icon: {
                         height: 24,
                         width: '100%',
-                        objectFit: 'contain',
-                    },
-                },
+                        objectFit: 'contain'
+                    }
+                }
             },
             bottomText: {
                 fontSize: 10,
@@ -259,55 +219,29 @@ export var muiTheme = createMuiTheme({
                 textAlign: 'right',
                 margin: '0 1rem auto auto',
                 link: {
-                    color: cyan[100],
-                },
+                    color: cyan[100]
+                }
             }
-        },
+        }
     },
-    /*title: {
-        cursor: 'pointer',
-    },
-    button: {
-        textTransform: 'none',
-    },
-    tabs: {
-        width: '100%',
-        paddingLeft: 20,
-        selectedTextColor: grey[50],
-        textColor: grey[50],
-        tab: {
-            textTransform: 'none',
-        },
-    },
-    badge: {
-        textColor: grey[50],
-    },
-    bottomNavigation: {
-        backgroundColor: blue[800], //teal200,
-        unselectedColor: grey[50], //blue900,
-        selectedColor: grey[50], //blue900,
-        //height: 56,
-        unselectedFontSize: 16,
-        selectedFontSize: 16,
-    },*/
     buttonLink: {
         padding: '6px 6px 6px 6px',
         iconFile: {
             width: 32,
             height: 38,
             objectFit: 'contain',
-            margin: '0rem auto',
+            margin: '0rem auto'
         },
         labelFile: {
             fontSize: 16,
             fontWeight: 500,
             minHeight: 'inherit',
             display: 'inline-flex',
-            alignItems: 'center',
-        },
+            alignItems: 'center'
+        }
     },
     ul: {
-        margin: 'auto',
+        margin: 'auto'
     },
     li: {
         padding: '0 0 0 25px',
@@ -315,28 +249,87 @@ export var muiTheme = createMuiTheme({
         background: 'url(/static/images/check.svg) no-repeat 0px 2px',
         backgroundSize: 16,
         listStyleImage: 'none',
-        listStyle: 'none',
+        listStyle: 'none'
     },
     siteMaps: {
-        ul: { 
-            paddingLeft: '5rem', margin: 'auto' 
+        ul: {
+            paddingLeft: '5rem',
+            margin: 'auto'
         },
         li: {
-            padding: 'auto auto 0.2rem auto',
-        },
+            padding: 'auto auto 0.2rem auto'
+        }
     },
     icon: {
         height: 24,
         width: '100%',
         objectFit: 'contain',
-        color: 'primary',
+        color: 'primary'
     },
     subParagraf: {
-        margin: '0.25rem auto 0.25rem 4rem',
+        margin: '0.25rem auto 0.25rem 4rem'
     },
     textIdent: {
         textAlign: 'justify',
         textIndent: '1.5em',
-        margin: '0.25rem auto 0.25rem',
+        margin: '0.25rem auto 0.25rem'
     },
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    fontSize: '1rem'
+                }
+            }
+        },
+        MuiButtonBase: {
+            defaultProps: {
+                disableRipple: true
+            }
+        },
+        MuiTabs: {
+            styleOverrides: {
+                indicator: {
+                    backgroundColor: pink['A200']
+                }
+            }
+        },
+        MuiTab: {
+            styleOverrides: {
+                root: {
+                    color: '#ffffff',
+                    '&.Mui-selected': {
+                        color: '#ff5722'
+                    }
+                }
+            }
+        },
+        MuiDrawer: {
+            styleOverrides: {
+                paper: {
+                    position: 'relative'
+                }
+            }
+        },
+        MuiAppBar: {
+            defaultProps: {
+                elevation: 0,
+                color: 'primary'
+            },
+            styleOverrides: {
+                root: {
+                    textTransform: 'none',
+                    backgroundColor: blue[900],
+                    color: '#ffffff'
+                }
+            }
+        },
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: '#ffffff'
+                }
+            }
+        }
+    }
 });

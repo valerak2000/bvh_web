@@ -19,11 +19,6 @@ bld/
 [Oo]bj/
 [Ll]og/
 
-# Visual Studio 2015/2017 cache/options directory
-.vs/
-# Visual Studio 2017 auto generated files
-Generated\ Files/
-
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
@@ -283,6 +278,17 @@ paket-files/
 .idea/
 *.sln.iml
 
+# Visual Studio cache/options directory
+.vs/
+# Visual Studio auto generated files
+Generated\ Files/
+
+#Gigacode
+.gigaide/
+
+#codeassistant
+.codeassistant
+
 # CodeRush
 .cr/
 
@@ -343,12 +349,11 @@ tmp/
 \#*
 
 py3/
-py36/
-py37/
 
 # Python compiled byte code
 *.pyc
 secret.txt
+secrets.json
 
 # SQLite3 database
 *.sqlite
@@ -368,3 +373,5 @@ docs/.~lock.common struct.xlsx#
 **/webpack-stats.json
 **/size-plugin.json
 frontend/size-plugin.json
+
+kon_tab.json

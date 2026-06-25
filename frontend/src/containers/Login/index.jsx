@@ -3,10 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import t from 'tcomb-form';
-import withStyles from '@material-ui/core/styles/withStyles';
-//import i18n from '../../../lib/i18n/ru.json';
-
 import * as actionCreators from '../../actions/auth';
 
 const Form = t.form.Form;
@@ -14,9 +10,6 @@ const Form = t.form.Form;
 const Login = t.struct({
     email: t.String,
     password: t.String
-});
-
-const styles = theme => ({
 });
 
 const LoginFormOptions = {
@@ -49,120 +42,113 @@ const LoginFormOptions = {
     }
 };
 
-class LoginView extends Component {
-    static propTypes = {
-        dispatch: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.bool.isRequired,
-        isAuthenticating: PropTypes.bool.isRequired,
-        statusText: PropTypes.string,
-        actions: PropTypes.shape({
-            authLoginUser: PropTypes.func.isRequired
-        }).isRequired,
-        theme: PropTypes.object.isRequired,
-        classes: PropTypes.object.isRequired,
-    };
+function LoginView(props) {
+    const { dispatch, isAuthenticated, isAuthenticating, statusText, actions, location, history } = props;
+    const [formValues, setFormValues] = React.useState({
+        email: '',
+        password: ''
+    });
+    const redirectRoute = location ? extractRedirect(location.search) || '/' : '/';
+    const [redirectTo] = React.useState(redirectRoute);
+    let loginForm = React.useRef(null);
 
-    static defaultProps = {
-        statusText: '',
-        //location: null
-    };
-
-    constructor(props, context) {
-        super(props, context);
-
-        const redirectRoute = this.props.location ? this.extractRedirect(this.props.location.search) || '/' : '/';
-        this.state = {
-            formValues: {
-                email: '',
-                password: ''
-            },
-            redirectTo: redirectRoute
-        };
-    }
-
-    componentDidMount() {
-        if (this.props.isAuthenticated) {
-            this.props.history.push('/');
+    React.useEffect(() => {
+        if (isAuthenticated) {
+            history.push('/');
         }
-    }
+    }, [isAuthenticated, history]);
 
-    onFormChange = (value) => {
-        this.setState({ formValues: value });
+    const onFormChange = (value) => {
+        setFormValues(value);
     };
 
-    extractRedirect = (string) => {
+    const extractRedirect = (string) => {
         const match = string.match(/next=(.*)/);
         return match ? match[1] : '/';
     };
 
-    login = (e) => {
+    const login = (e) => {
         e.preventDefault();
-        const value = this.loginForm.getValue();
+        const value = loginForm.current.getValue();
         if (value) {
-            this.props.actions.authLoginUser(value.email, value.password, this.state.redirectTo);
+            actions.authLoginUser(value.email, value.password, redirectTo);
         }
     };
 
-    signup = (e) => {
+    const signup = (e) => {
         e.preventDefault();
-        const value = this.loginForm.getValue();
+        const value = loginForm.current.getValue();
         if (value) {
-            this.props.actions.signupLoginUser(value.email, value.password, this.state.redirectTo);
+            actions.signupLoginUser(value.email, value.password, redirectTo);
         }
     };
 
-    render() {
-        const { classes } = this.props;
-        let statusText = null;
-        if (this.props.statusText) {
-            const statusTextClassNames = classNames({
-                'alert': true,
-                'alert-danger': this.props.statusText.indexOf('Authentication Error') === 0,
-                'alert-success': this.props.statusText.indexOf('Authentication Error') !== 0
-            });
+    let statusTextElement = null;
+    if (statusText) {
+        const statusTextClassNames = classNames({
+            'alert': true,
+            'alert-danger': statusText.indexOf('Authentication Error') === 0,
+            'alert-success': statusText.indexOf('Authentication Error') !== 0
+        });
 
-            statusText = (
-                <div className = "row">
-                    <div className = "col-sm-12">
-                        <div className = { statusTextClassNames }>
-                            { this.props.statusText }
-                        </div>
+        statusTextElement = (
+            <div className = "row">
+                <div className = "col-sm-12">
+                    <div className = { statusTextClassNames }>
+                        { statusText }
                     </div>
-                </div>
-            );
-        }
-
-        return (
-            <div className = "container login">
-                <h1 className = "text-center">Вход в личный кабинет</h1>
-                <div className = "login-container margin-top-medium">
-                    { statusText }
-                    <form onSubmit = { this.login }>
-                        <Form ref = { (ref) => { this.loginForm = ref; } }
-                            type = { Login }
-                            options = { LoginFormOptions }
-                            value = { this.state.formValues }
-                            onChange = {this.onFormChange }
-                            context = {{ locale: 'ru-RU' }}
-                        />
-                        <button disabled = { this.props.isAuthenticating }
-                            type = "submit"
-                            className = "btn btn-default btn-primary btn-block"
-                        >
-                            Войти
-                        </button>
-                        <button disabled = { this.props.isAuthenticating }
-                            className = "btn btn-block"
-                            onClick = { this.signup }
-                        >
-                            Зарегистрироваться
-                        </button>
-                    </form>
                 </div>
             </div>
         );
     }
+
+    return (
+        <div className = "container login">
+            <h1 className = "text-center">Вход в личный кабинет</h1>
+            <div className = "login-container margin-top-medium">
+                { statusTextElement }
+                <form onSubmit = { login }>
+                    <Form ref = { (ref) => { loginForm.current = ref; } }
+                        type = { Login }
+                        options = { LoginFormOptions }
+                        value = { formValues }
+                        onChange = {onFormChange }
+                        context = {{ locale: 'ru-RU' }}
+                    />
+                    <button disabled = { isAuthenticating }
+                        type = "submit"
+                        className = "btn btn-default btn-primary btn-block"
+                    >
+                        Войти
+                    </button>
+                    <button disabled = { isAuthenticating }
+                        className = "btn btn-block"
+                        onClick = { signup }
+                    >
+                        Зарегистрироваться
+                    </button>
+                </form>
+            </div>
+        </div>
+    );
 }
+
+LoginView.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    isAuthenticating: PropTypes.bool.isRequired,
+    statusText: PropTypes.string,
+    actions: PropTypes.shape({
+        authLoginUser: PropTypes.func.isRequired,
+        signupLoginUser: PropTypes.func.isRequired,
+    }).isRequired,
+    location: PropTypes.object,
+    history: PropTypes.object.isRequired,
+};
+
+LoginView.defaultProps = {
+    statusText: '',
+};
 
 const mapStateToProps = (state) => {
     return {
@@ -179,5 +165,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default withStyles(styles, { name: 'muiLoginView', flip: false, withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(LoginView));
-//export { LoginView as LoginViewNotConnected };
+export default connect(mapStateToProps, mapDispatchToProps)(LoginView);

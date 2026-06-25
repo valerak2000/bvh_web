@@ -1,2 +1,2 @@
 #!/bin/bash
-npm run start
+npm24 run start-dev

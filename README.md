@@ -2,24 +2,34 @@ using python, react, material-ui
 ==================
 git submodule init
 
-cd backend 
+cd ./backend
 
-linux: virtualenv -p /usr/bin/python3.7 py37
-       source py37/bin/activate 
-windows: py -3.7 -m venv py37
-
+linux: virtualenv -p /usr/bin/python3.13 py3
+       source py3/bin/activate
+       python -m py3 --upgrade py3
+windows: py -3.13 -m venv py3
 
 pip3 install virtualenv
-pip3 install psycopg2-binary==2.8.3
-pip3 install psycopg2 --no-binary :all:
+#pip3 install psycopg2-binary==2.8.3
+#pip3 install psycopg2 --no-binary :all:
 pip3 install -r py-requirements/dev.txt
 
+pip3 install pip-check-updates
+python3 -m pip_check_updates py-requirements/dev.txt
+pip3 install --upgrade -r py-requirements/dev.txt
+
+pip3 install pip-review
+pip-review --local --interactive
+
+pip install setuptools
+python3 manage.py check --settings=bvh_web.settings.dev
 python3 manage.py migrate --settings=bvh_web.settings.dev
 python3 manage.py loaddata fixtures.json --settings=bvh_web.settings.dev
 python3 manage.py runserver --settings=bvh_web.settings.dev
+python3 -m pytest tests/python/base/test_views.py -v
 
-cd ..
-npm i
+cd ../frontend
+npm24 i
 
 test connection to database: psql -h localhost -p 5433 -U djangoreactredux djangoreactredux_dev
 run in dev mode: ./rundev.sh

@@ -6,6 +6,7 @@ from django.views.generic import View
 from knox.auth import TokenAuthentication
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
+from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.template import loader
@@ -20,8 +21,6 @@ class IndexView(View):
         context = {
         }
         return HttpResponse(template.render(context, request))
-#        abspath = open(os.path.join(settings.BASE_DIR, '../static/bundles/index.html'), 'r')
-#        return HttpResponse(content=abspath.read())
 
 class ProtectedDataView(GenericAPIView):
     """Return protected data main page."""

@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
-import { compose } from 'recompose';
-import { MuiThemeProvider } from '@material-ui/core/styles/';
-import common from '@material-ui/core/colors/common';
-import Fab from '@material-ui/core/Fab';
-import ArrowUpward from '@material-ui/icons/ArrowUpward';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import Fab from '@mui/material/Fab';
+import ArrowUpward from '@mui/icons-material/ArrowUpward';
+import { common } from '@mui/material/colors';
 // core components
 import MessageBox from '../../components/MessageBox';
 //Actions
 import NotificationActions from '../../actions/Notifications';
-
 import '../../styles/main.scss';
 import { muiTheme } from '../../styles/styles';
 import DevTools from './DevTools';
@@ -23,126 +20,106 @@ import LeftNavMenu from '../../components/Sidebar/LeftNavMenu';
 
 const isProd = process.env.NODE_ENV === 'production';
 
-//Connect component to Redux store.
-@connect(
-    state => ({
-        messageBox: state.messageBox || {},
-        notifications: state.notifications || []
-    }),
-    dispatch => ({
-        actions: bindActionCreators(NotificationActions, dispatch)
-    })
-)
+const Root = (props) => {
+    const { scrollStepInPx = 50, delayInMs = 16.66 } = props;
 
-class Root extends Component {
-    static propTypes = {
-        //store: PropTypes.shape().isRequired,
-        history: PropTypes.object.isRequired,
-    };
+    // Redux state
+    const messageBox = useSelector((state) => state.messageBox || {});
+    const notifications = useSelector((state) => state.notifications || []);
+    const isAuthenticated = useSelector((state) => state.auth?.isAuthenticated);
+    const dispatch = useDispatch();
 
-    static defaultProps = {
-        scrollStepInPx: 50,
-        delayInMs: 16.66,
-    };
+    // Local state
+    const [intervalId, setIntervalId] = useState(0);
+    const [goTopEnable, setGoTopEnable] = useState(false);
 
-    state = {
-        intervalId: 0,
-        goTopEnable: false,
-    };
-    
-    constructor(props, context) {
-        super(props, context);
-        this.scrollChange = this.scrollChange.bind(this);
-    }
+    // Event handlers
+    const onNotificationChange = useCallback(
+        (items) => {
+            dispatch(NotificationActions.addOrUpdateNotifications(items));
+        },
+        [dispatch]
+    );
 
-   /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
-   componentDidMount() {
-        window.addEventListener('scroll', this.scrollChange);
-        if (navigator.platform.indexOf('Win') <= -1) return;
-    }
+    const onNotificationDelete = useCallback(
+        (items) => {
+            dispatch(NotificationActions.deleteNotifications(items));
+        },
+        [dispatch]
+    );
 
-    componentDidUpdate(e) {
-        if (e.history.location.pathname === e.location.pathname) return;
-        //this.refs.mainPanel.scrollTop = 0;
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.scrollChange);
-    }
-
-   /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
-   componentDidCatch(error, info) {
-    /* Example stack information:
-       in ComponentThatThrows (created by App)
-       in ErrorBoundary (created by App)
-       in div (created by App)
-       in App
-    */
-        console.log(info.componentStack);
-    }
-
-    onNotificationChange = items => {
-        this.props.actions.addOrUpdateNotifications(items);
-    };
-
-    onNotificationDelete = items => {
-        this.props.actions.deleteNotifications(items);
-    };
-
-    scrollChange() {
-        const notTop = window.pageYOffset === 0 ? false : true;
-        if (notTop !== this.state.goTopEnable) {
-            this.setState({ goTopEnable: notTop });
+    // Scroll handling
+    const scrollChange = useCallback(() => {
+        const notTop = window.pageYOffset !== 0;
+        if (notTop !== goTopEnable) {
+            setGoTopEnable(notTop);
         }
-    }
-    
-    scrollStep() {
+    }, [goTopEnable]);
+
+    const scrollStep = useCallback(() => {
         if (window.pageYOffset === 0) {
-            clearInterval(this.state.intervalId);
+            clearInterval(intervalId);
+            setIntervalId(0);
         }
-        window.scroll(0, window.pageYOffset - this.props.scrollStepInPx);
-    }
+        window.scroll(0, window.pageYOffset - scrollStepInPx);
+    }, [intervalId, scrollStepInPx]);
 
-    scrollToTop() {
-        //console.log('top');
-        let intervalId = setInterval(this.scrollStep.bind(this), this.props.delayInMs);
-        this.setState({ intervalId: intervalId });
-    }
+    const scrollToTop = useCallback(() => {
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+        const id = setInterval(scrollStep, delayInMs);
+        setIntervalId(id);
+    }, [intervalId, scrollStep, delayInMs]);
 
-    render() {
-        const { notifications, messageBox, ...rest } = this.props;
-        const { goTopEnable } = this.state;
+    // Lifecycle effects
+    useEffect(() => {
+        window.addEventListener('scroll', scrollChange);
 
-        return (
-            <div>
-                <MuiThemeProvider theme = { muiTheme }>
-                    <div
-                        style = { muiTheme.global }
-                    >
-                        <MessageBox { ...messageBox } open = { messageBox.open || false } />
+        // Cleanup
+        return () => {
+            window.removeEventListener('scroll', scrollChange);
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+        };
+    }, [scrollChange, intervalId]);
+
+    return (
+        <div>
+            <StyledEngineProvider injectFirst>
+                <ThemeProvider theme={muiTheme}>
+                    <div style={muiTheme.global}>
+                        <MessageBox {...messageBox} open={messageBox.open || false} />
 
                         <Header
-                            { ...this.props }
-                            { ...rest }
+                            {...props}
+                            isAuthenticated={isAuthenticated}
+                            onNotificationChange={onNotificationChange}
+                            onNotificationDelete={onNotificationDelete}
+                            notifications={notifications}
                         />
+
                         <div
-                            id = 'app'
-                            style = {{ 
-                                display: 'flex', 
-                                width: '100%',
+                            id="app"
+                            style={{
+                                display: 'flex',
+                                width: '100%'
                             }}
                         >
                             <LeftNavMenu
-                                { ...this.props }
-                                { ...rest }
+                                {...props}
+                                isAuthenticated={isAuthenticated}
+                                onNotificationChange={onNotificationChange}
+                                onNotificationDelete={onNotificationDelete}
+                                notifications={notifications}
                             />
-                            {
-                                goTopEnable &&
+                            {goTopEnable && (
                                 <Fab
-                                    aria-label = 'Top'
-                                    size = 'small'
-                                    onClick = { () => this.scrollToTop() }
-                                    style = {{
+                                    aria-label="Top"
+                                    size="small"
+                                    onClick={() => scrollToTop()}
+                                    style={{
                                         margin: 0,
                                         top: 'auto',
                                         right: 20,
@@ -154,34 +131,33 @@ class Root extends Component {
                                 >
                                     <ArrowUpward />
                                 </Fab>
-                            }
-                            <AppView 
-                                { ...this.props }
-                                { ...rest }
+                            )}
+                            <AppView
+                                {...props}
+                                isAuthenticated={isAuthenticated}
+                                onNotificationChange={onNotificationChange}
+                                onNotificationDelete={onNotificationDelete}
+                                notifications={notifications}
                             />
                         </div>
-                        <Footer
-                            { ...this.props }
-                            { ...rest }
-                        />
-                        { !isProd && <DevTools /> }
-                    </div>
-                </MuiThemeProvider>
-            </div>
-        );
-    }
-}
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        isAuthenticated: state.auth.isAuthenticated,
-    };
+                        <Footer {...props} />
+                        {!isProd && <DevTools />}
+                    </div>
+                </ThemeProvider>
+            </StyledEngineProvider>
+        </div>
+    );
 };
 
-export default compose(
-//    withStyles(styles, { name: 'muiRootView', flip: false, withTheme: false }),
-    connect(mapStateToProps)
-)(Root);
+Root.propTypes = {
+    scrollStepInPx: PropTypes.number,
+    delayInMs: PropTypes.number
+};
 
-/*
-*/
+Root.defaultProps = {
+    scrollStepInPx: 50,
+    delayInMs: 16.66
+};
+
+export default Root;

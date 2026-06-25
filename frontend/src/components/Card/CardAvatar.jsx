@@ -1,35 +1,55 @@
-import React from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-// nodejs library to set properties for components
-import PropTypes from "prop-types";
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-// @material-ui/icons
-// core components
+import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
 
-import cardAvatarStyle from "assets/jss/material-dashboard-react/components/cardAvatarStyle.jsx";
+const StyledCardAvatar = styled('div', {
+    shouldForwardProp: (prop) => prop !== 'ownerState'
+})(({ theme, ownerState }) => {
+    const { profile, plain } = ownerState;
 
-function CardAvatar({ ...props }) {
-  const { classes, children, className, plain, profile, ...rest } = props;
-  const cardAvatarClasses = classNames({
-    [classes.cardAvatar]: true,
-    [classes.cardAvatarProfile]: profile,
-    [classes.cardAvatarPlain]: plain,
-    [className]: className !== undefined
-  });
-  return (
-    <div className={cardAvatarClasses} {...rest}>
-      {children}
-    </div>
-  );
+    return {
+        ...(profile && {
+            '& img': {
+                width: '100%',
+                height: 'auto'
+            }
+        }),
+        ...(profile && {
+            maxWidth: '130px',
+            maxHeight: '130px',
+            margin: '-50px auto 0',
+            borderRadius: '50%',
+            overflow: 'hidden',
+            padding: '0',
+            boxShadow:
+                '0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)',
+            ...(plain && {
+                marginTop: '0'
+            })
+        })
+    };
+});
+
+function CardAvatar({ children, profile, plain, className, ...rest }) {
+    const ownerState = { profile, plain };
+
+    const cardAvatarClasses = classNames({
+        [className]: className !== undefined
+    });
+
+    return (
+        <StyledCardAvatar className={cardAvatarClasses} ownerState={ownerState} {...rest}>
+            {children}
+        </StyledCardAvatar>
+    );
 }
 
 CardAvatar.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  profile: PropTypes.bool,
-  plain: PropTypes.bool
+    children: PropTypes.node.isRequired,
+    className: PropTypes.string,
+    profile: PropTypes.bool,
+    plain: PropTypes.bool
 };
 
-export default withStyles(cardAvatarStyle)(CardAvatar);
+export default CardAvatar;

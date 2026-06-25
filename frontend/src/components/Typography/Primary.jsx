@@ -1,21 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-// core components
-import typographyStyle from "assets/jss/material-dashboard-react/components/typographyStyle.jsx";
+import { styled } from '@mui/material/styles';
 
-function Primary({ ...props }) {
-  const { classes, children } = props;
+const primaryColor = "#9c27b0";
+
+const StyledPrimary = styled('div')({
+  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontWeight: "300",
+  lineHeight: "1.5em",
+  fontSize: "14px",
+  color: primaryColor
+});
+
+function Primary({ children }) {
   return (
-    <div className={classes.defaultFontStyle + " " + classes.primaryText}>
+    <StyledPrimary>
       {children}
-    </div>
+    </StyledPrimary>
   );
 }
 
 Primary.propTypes = {
-  classes: PropTypes.object.isRequired
+  children: PropTypes.node
 };
 
-export default withStyles(typographyStyle)(Primary);
+export default Primary;

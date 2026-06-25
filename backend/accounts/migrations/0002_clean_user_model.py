@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-from django.utils.timezone import utc
+from datetime import timezone
 import datetime
 
 
@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='date_updated',
-            field=models.DateTimeField(default=datetime.datetime(2017, 3, 17, 14, 31, 13, 924508, tzinfo=utc), auto_now=True, verbose_name='date updated'),
+            field=models.DateTimeField(default=datetime.datetime(2017, 3, 17, 14, 31, 13, 924508, tzinfo=timezone.utc), auto_now=True, verbose_name='date updated'),
             preserve_default=False,
         ),
         migrations.AlterField(

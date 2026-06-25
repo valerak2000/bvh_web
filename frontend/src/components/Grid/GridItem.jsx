@@ -1,22 +1,18 @@
 import React from "react";
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 
-const style = {
-    grid: {
-//        padding: '0 15px !important',
-        height: '100%',
-    }
-};
-
-function GridItem({ ...props }) {
-  const { classes, children, ...rest } = props;
+function GridItem({ children, ...rest }) {
   return (
-    <Grid item {...rest} className={classes.grid}>
+    <Grid 
+      item 
+      {...rest}
+      sx={{
+        height: '100%',
+      }}
+    >
       {children}
     </Grid>
   );
 }
 
-export default withStyles(style)(GridItem);
+export default GridItem;

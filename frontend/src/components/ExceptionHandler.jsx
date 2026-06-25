@@ -1,5 +1,5 @@
 /*eslint no-console: ["error", { allow: ["warn", "error"] }] */
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -11,11 +11,8 @@ import NotificationType from '../components/Notification/NotificationType';
 //Connect component to Redux store.
 //This one is a component however we are bot put it into components folder
 //Because it needs to connect to Redux actions to send the notification.
-@connect(
-    undefined,
-    dispatch => ({ actions: bindActionCreators(NotificationActions, dispatch) })
-)
-export default class ExceptionHandler extends React.Component {
+@connect(undefined, (dispatch) => ({ actions: bindActionCreators(NotificationActions, dispatch) }))
+class ExceptionHandler extends React.Component {
     constructor(props, context) {
         super(props, context);
     }
@@ -35,7 +32,7 @@ export default class ExceptionHandler extends React.Component {
      *
      * @memberof ExceptionHandler
      */
-    globalErrorHandler = event => {
+    globalErrorHandler = (event) => {
         event.preventDefault();
         event.cancelBubble = true; //Stop the Bubble up
 
@@ -72,3 +69,5 @@ ExceptionHandler.propTypes = {
     global: PropTypes.bool,
     disabled: PropTypes.bool
 };
+
+export default ExceptionHandler;

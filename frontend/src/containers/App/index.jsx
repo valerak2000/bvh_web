@@ -1,92 +1,47 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Route, Switch, Redirect } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import withTheme from '@material-ui/core/styles/withTheme';
+import { useTheme } from '@mui/material/styles';
 
 import appRoutes from '../../routes/App.jsx';
 
 const switchRoutes = (
-    <Switch>
-    { 
-        appRoutes.map((prop, key) =>
+    <Routes>
+        {appRoutes.map((prop, key) =>
             prop.redirect ? (
-                <Redirect 
-                    from = { prop.path } 
-                    to = { prop.to } 
-                    key = { key } 
-                />
+                <Route path={prop.path} element={<Navigate to={prop.to} replace />} key={key} />
+            ) : prop.path ? (
+                <Route path={prop.path} element={<prop.component />} key={key} end={prop.exact} />
             ) : (
-                prop.path ? (
-                    <Route 
-                        exact
-                        path = { prop.path }
-                        component = { prop.component } 
-                        key = { key } 
-                    />
-                ) : (
-                    <Route 
-                        component = { prop.component } 
-                        key = { key } 
-                    />
-                )
+                <Route path="*" element={<prop.component />} key={key} />
             )
-        )
-    }
-    </Switch>
+        )}
+    </Routes>
 );
 
-class AppView extends Component {
-    static propTypes = {
-        //children: PropTypes.shape().isRequired,
-        dispatch: PropTypes.func.isRequired,
-        location: PropTypes.object.isRequired,
-        theme: PropTypes.object.isRequired,
-        router: PropTypes.object,
-        isAuthenticated: PropTypes.bool.isRequired,
-    };
+function AppView(props) {
+    const theme = useTheme();
+    const { children } = props;
 
-    constructor(props, context) {
-        super(props, context);
-    }
+    let appStyle = { ...theme.app };
 
-    /*eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
-    componentDidCatch(error, info) {
-        /* Example stack information:
-           in ComponentThatThrows (created by App)
-           in ErrorBoundary (created by App)
-           in div (created by App)
-           in App
-        */
-        console.log(info.componentStack);
-    }
+    /*if (props.location && props.location.pathname != null) {
+        let urls = props.location.pathname.split('/');
+        appStyle.width = urls.length <= 2 || urls[2] === '' ? '100%' : '80%';
+    }*/
 
-    render() {
-        var appStyle = { ...this.props.theme.app };
-
-        /*if (this.props.location && this.props.location.pathname != null) {
-            let urls = this.props.location.pathname.split('/');
-            appStyle.width = urls.length <= 2 || urls[2] === '' ? '100%' : '80%';
-        }*/
-
-        return (
-            <div
-                style = { appStyle }
-            >
-                { switchRoutes }
-                { this.props.children }
-            </div>
-        );
-    }
+    return (
+        <div style={appStyle}>
+            {switchRoutes}
+            {children}
+        </div>
+    );
 }
-/*
-*/
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        isAuthenticated: state.auth.isAuthenticated,
-    };
+AppView.propTypes = {
+    children: PropTypes.node,
+    location: PropTypes.object.isRequired
 };
 
-export default withTheme()(connect(mapStateToProps)(AppView));
-//export default withTheme(connect(mapStateToProps)(AppView));
+export default AppView;

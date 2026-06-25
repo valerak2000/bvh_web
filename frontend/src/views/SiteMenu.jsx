@@ -1,109 +1,84 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
+import React, { useState, useEffect, useMemo } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import pink from '@material-ui/core/colors/pink';
-
-//import { HOME_MENU, ABOUT_MENU, CUSTOMERS_MENU, NEWS_MENU } from '../constants';
+import { useTheme } from '@mui/material/styles';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import { pink } from '@mui/material/colors';
 
 const styles = {
-    indicator: {
-        backgroundColor: pink['A200'], //rgb(255, 64, 129)
-    },
+    style: {
+        backgroundColor: pink['A200'] //rgb(255, 64, 129)
+    }
 };
 
-class SiteMenu extends Component {
-    static propTypes = {
-        isAuthenticated: PropTypes.bool.isRequired,
-        dispatch: PropTypes.func.isRequired,
-        location: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired,
-        theme: PropTypes.object.isRequired,
-        classes: PropTypes.object.isRequired,
-    };
+const excludedTabs = [
+    'elektronnaya_priemnaya',
+    'blackouts',
+    'available_capacity_map',
+    'faq',
+    'map'
+];
 
-    static defaultProps = {
-        location: null
-    };
+function SiteMenu() {
+    const location = useLocation();
+    const theme = useTheme();
 
-    state = {
-        activeTab: 0,
-    };
+    const [activeTab, setActiveTab] = useState(false);
 
-    constructor(props, context) {
-        super(props, context);
-    }
+    // Определяем активную вкладку на основе текущего пути
+    useEffect(() => {
+        if (location?.pathname) {
+            const urls = location.pathname.split('/');
+            let currentTab = urls[1] !== '' ? urls[1] : false;
 
-    static getDerivedStateFromProps(props, state) {
-        //console.log(props.location.pathname);
-        let currentTab = false;
-
-        if (props.location !== null && props.location) {
-            let urls = props.location.pathname.split('/');
-            currentTab = urls[1] !== '' ? urls[1] : false;
-        }
-
-        //страницы отсутствующие в табах
-        switch(currentTab) {
-            case 'elektronnaya_priemnaya':
-            case 'blackouts':
-            case 'available_capacity_map':
-            case 'faq':
-            case 'map':
+            // Исключаем страницы, которых нет в табах
+            if (excludedTabs.includes(currentTab)) {
                 currentTab = false;
-                break;
-            default:
-                break;
-        }
-        //console.log(currentTab);
-        return {
-            activeTab: currentTab,
-        };
-    }
+            }
 
-    handleChange = (event, value) => {
-        this.setState({ activeTab: value });
+            setActiveTab(currentTab);
+        }
+    }, [location]);
+
+    const handleChange = (event, value) => {
+        setActiveTab(value);
     };
 
-    render() {
-        const { classes } = this.props;
-        const { activeTab, ...props } = this.state;
-        const { menu } = this.props.theme.app.header.appBar;
+    const menuStyle = useMemo(() => {
+        return theme?.app?.header?.appBar?.menu || {};
+    }, [theme]);
 
-        return (
-            <div>
-                <Tabs
-                    value = { activeTab }
-                    onChange = { this.handleChange }
-                    style = { menu }
-                    classes = {{ indicator: classes.indicator, }}
-                >
-                    <Tab
-                        value = 'about'
-                        label = 'О компании'
-                        component = { Link } to = '/about'
-                        style = { menu.tab }
-                    />
-                    <Tab
-                        value = 'customers'
-                        label = 'Абонентам'
-                        component = { Link } to = '/customers'
-                        style = { menu.tab }
-                    />
-                    <Tab
-                        value = 'news'
-                        label = 'Новости'
-                        component = { Link } to = '/news'
-                        style = { menu.tab }
-                    />
-                </Tabs>
-            </div>
-        );
-    }
+    const tabStyle = useMemo(() => {
+        return menuStyle.tab || {};
+    }, [menuStyle]);
+
+    return (
+        <div>
+            <Tabs value={activeTab} onChange={handleChange} style={menuStyle}>
+                <Tab
+                    value="about"
+                    label="О компании"
+                    component={Link}
+                    to="/about"
+                    style={tabStyle}
+                />
+                <Tab
+                    value="customers"
+                    label="Абонентам"
+                    component={Link}
+                    to="/customers"
+                    style={tabStyle}
+                />
+                <Tab value="news" label="Новости" component={Link} to="/news" style={tabStyle} />
+            </Tabs>
+        </div>
+    );
 }
-/*
-*/
 
-export default withStyles(styles, { name: 'muiSiteMenu', flip: false, withTheme: true })(SiteMenu);
+SiteMenu.propTypes = {};
+
+SiteMenu.defaultProps = {};
+
+export default SiteMenu;

@@ -1,104 +1,160 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import GridItem from '../Grid/GridItem.jsx';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import MessageBoxStyle from './jss';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import Typography from '@mui/material/Typography';
+import { useTheme, styled } from '@mui/material/styles';
 import MessageBoxType from './MessageBoxType';
 import * as helper from './helper';
 
+const primaryColor = '#9c27b0';
+const infoColor = '#00acc1';
+const successColor = '#4caf50';
+const warningColor = '#ff9800';
+const dangerColor = '#f44336';
+
+const StyledDialog = styled(Dialog, {
+    shouldForwardProp: (prop) => prop !== 'type'
+})(({ type }) => {
+    const titleType = {
+        paddingTop: '12px',
+        paddingBottom: '12px',
+        paddingLeft: '25px',
+        paddingRight: '25px',
+        color: 'white',
+        fontWeight: '600'
+    };
+
+    const colorStyles = {
+        confirm: {
+            backgroundColor: primaryColor,
+            ...titleType
+        },
+        info: {
+            backgroundColor: infoColor,
+            ...titleType
+        },
+        success: {
+            backgroundColor: successColor,
+            ...titleType
+        },
+        warning: {
+            backgroundColor: warningColor,
+            ...titleType
+        },
+        danger: {
+            backgroundColor: dangerColor,
+            ...titleType
+        }
+    };
+
+    const iconColorStyles = {
+        confirmIcon: { color: primaryColor },
+        infoIcon: { color: infoColor },
+        successIcon: { color: successColor },
+        warningIcon: { color: warningColor },
+        dangerIcon: { color: dangerColor }
+    };
+
+    return {
+        '& .MuiPaper-root': {
+            minWidth: '40%',
+            maxWidth: '65%'
+        },
+        '& .dialogContent': {
+            padding: '1px',
+            margin: '1px'
+        },
+        '& .content': {
+            fontSize: '20px',
+            display: 'table'
+        },
+        '& .button': {
+            minWidth: '80px'
+        },
+        '& .title': {
+            ...(type && colorStyles[type])
+        },
+        ...iconColorStyles
+    };
+});
+
 function MessageBox({
-  type,
-  open,
-  title,
-  message,
-  actionHandler,
-  icon,
-  okText,
-  cancelText,
-  classes,
-  ...other
+    type = MessageBoxType.INFO,
+    open = true,
+    title,
+    message,
+    actionHandler,
+    icon = true,
+    okText = 'Ok',
+    cancelText = 'Cancel',
+    ...other
 }) {
-  let finalIcon = icon;
-  if (icon === true) finalIcon = helper.getIcon(type, classes);
+    let finalIcon = icon;
+    if (icon === true) finalIcon = helper.getIcon(type);
 
-  return (
-    <Dialog
-      {...other}
-      classes={{ paper: classes.dialog }}
-      maxWidth={false}
-      fullScreen={false}
-      open={open || false}
-      aria-labelledby={`message-box-title-${type}`}
-    >
-      <Typography
-        variant="title"
-        className={helper.getTitleClasses(type, classes)}
-        id={`message-box-title-${type}`}
-      >
-        {title || helper.getTitle(type)}
-      </Typography>
-      <DialogContent className={classes.dialogContent}>
-        <Grid
-          className={classes.content}
-          container
-          alignItems="baseline"
-          direction="row"
-          justify="flex-start"
+    return (
+        <StyledDialog
+            {...other}
+            type={type}
+            maxWidth={false}
+            fullScreen={false}
+            open={open || false}
+            aria-labelledby={`message-box-title-${type}`}
         >
-          {finalIcon && (
-            <GridItem xs={4} sm={2} md={2} style={{ padding: '0px' }}>
-              {finalIcon}
-            </GridItem>
-          )}
+            <Typography variant="h6" className={`title ${type}`} id={`message-box-title-${type}`}>
+                {title || helper.getTitle(type)}
+            </Typography>
+            <DialogContent className="dialogContent">
+                <Grid
+                    className="content"
+                    container
+                    alignItems="baseline"
+                    direction="row"
+                    justifyContent="flex-start"
+                >
+                    {finalIcon && (
+                        <GridItem xs={4} sm={2} md={2} sx={{ padding: '0px' }}>
+                            {finalIcon}
+                        </GridItem>
+                    )}
 
-          <GridItem>
-            <p>{message}</p>
-          </GridItem>
-        </Grid>
-      </DialogContent>
-      <DialogActions>
-        {helper.getActions(type, actionHandler, classes, okText, cancelText)}
-      </DialogActions>
-    </Dialog>
-  );
+                    <GridItem>
+                        <p>{message}</p>
+                    </GridItem>
+                </Grid>
+            </DialogContent>
+            <DialogActions>
+                {helper.getActions(type, actionHandler, null, okText, cancelText)}
+            </DialogActions>
+        </StyledDialog>
+    );
 }
 
-MessageBox.defaultProps = {
-  type: MessageBoxType.INFO,
-  okText: 'Ok',
-  cancelText: 'Cancel',
-  open: true,
-  icon: true
-};
-
 MessageBox.propTypes = {
-  //The type of Message box
-  type: PropTypes.oneOf([
-    MessageBoxType.CONFIRM,
-    MessageBoxType.DANGER,
-    MessageBoxType.INFO,
-    MessageBoxType.SUCCESS,
-    MessageBoxType.WARNING
-  ]),
-  //The title of message box
-  title: PropTypes.string,
-  //show/hide message box
-  open: PropTypes.bool.isRequired,
-  //the message
-  message: PropTypes.string,
-  //the text of Ok button
-  okText: PropTypes.string,
-  //the text of cancel button
-  cancelText: PropTypes.string,
-  //buttons action handler.
-  actionHandler: PropTypes.func,
-  //The icon of notification. set to false to hide the default icon.
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.bool])
+    type: PropTypes.oneOf([
+        MessageBoxType.CONFIRM,
+        MessageBoxType.DANGER,
+        MessageBoxType.INFO,
+        MessageBoxType.SUCCESS,
+        MessageBoxType.WARNING
+    ]),
+    title: PropTypes.string,
+    open: PropTypes.bool.isRequired,
+    message: PropTypes.string,
+    okText: PropTypes.string,
+    cancelText: PropTypes.string,
+    actionHandler: PropTypes.func,
+    icon: PropTypes.oneOfType([PropTypes.element, PropTypes.bool])
 };
 
-export default withStyles(MessageBoxStyle)(MessageBox);
+const MessageBoxWithTheme = (props) => {
+    const theme = useTheme();
+    const { theme: _, ...restProps } = props; // Don't pass theme to MessageBox
+    return <MessageBox {...restProps} />;
+};
+
+export default MessageBoxWithTheme;

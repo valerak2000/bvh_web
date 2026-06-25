@@ -1,205 +1,266 @@
-import React from "react";
-import PropTypes from "prop-types";
-import NotificationPanel from "./NotificationPanel";
-import NotificationPopup from "./NotificationPopup";
-import NotificationStatus from "./NotificationStatus";
-import { Notifications, NotificationsActive } from "@material-ui/icons";
-import { Badge, Tooltip } from "@material-ui/core";
-import withStyles from '@material-ui/core/styles/withStyles';
-import Button from "../CustomButtons/Button";
-import NotificationCenterStyle from "./jss";
-import NotificationItemPropTypes from "./NotificationItemPropTypes";
-import linq from "linq";
-//helper
-import { getUnreadItems, getItemsForPopup } from "./helper";
+import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
+import NotificationPanel from './NotificationPanel';
 
-function defaultButtonComponent({
-  onClick,
-  items,
-  classes,
-  badgeColor,
-  ...others
-}) {
-  return (
-    <Button className={classes.button} onClick={onClick} {...others}>
-      {items.length > 0 && (
-        <Badge
-          classes={{
-            badge: classes.badge,
-            colorSecondary: classes.colorSecondary
-          }}
-          badgeContent={items.length > 99 ? 99 : items.length}
-          color={badgeColor}
-        >
-          <NotificationsActive
-            className={classes.icon + " " + classes.iconActive}
-          />
-        </Badge>
-      )}
-      {items.length <= 0 && <Notifications className={classes.icon} />}
-    </Button>
-  );
+import NotificationPopup from './NotificationPopup';
+import { Notifications, NotificationsActive } from '@mui/icons-material';
+import { Badge, Tooltip, styled } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import Button from '../CustomButtons/Button';
+import NotificationItemPropTypes from './NotificationItemPropTypes';
+import linq from 'linq';
+import { getUnreadItems, getItemsForPopup } from './helper';
+
+const primaryColor = '#9c27b0';
+const grayColor = '#999999';
+
+const StyledButton = styled(Button, {
+    shouldForwardProp: (prop) => prop !== 'ownerState'
+})(({ theme, ownerState }) => {
+    const { badgeColor } = ownerState;
+
+    return {
+        '& .button': {
+            // Base button styles
+        },
+        '& .badge': {
+            width: '20px',
+            height: '20px',
+            fontSize: theme.typography.pxToRem(10)
+        },
+        '& .colorSecondary': {
+            backgroundColor: grayColor
+        },
+        '& .icon': {
+            // Base icon styles
+        },
+        '& .iconActive': {
+            color: primaryColor
+        },
+        '& .tooltip': {
+            background: theme.palette.common.white,
+            color: theme.palette.text.primary,
+            boxShadow: theme.shadows[1],
+            fontSize: 11
+        },
+        '& .arrowPopper': {
+            '&[x-placement*="bottom"] .arrowArrow': {
+                top: 0,
+                left: 0,
+                marginTop: '-0.9em',
+                width: '3em',
+                height: '1em',
+                '&::before': {
+                    borderWidth: '0 1em 1em 1em',
+                    borderColor: `transparent transparent ${theme.palette.common.white} transparent`
+                }
+            },
+            '&[x-placement*="top"] .arrowArrow': {
+                bottom: 0,
+                left: 0,
+                marginBottom: '-0.9em',
+                width: '3em',
+                height: '1em',
+                '&::before': {
+                    borderWidth: '1em 1em 0 1em',
+                    borderColor: `${theme.palette.grey[700]} transparent transparent transparent`
+                }
+            },
+            '&[x-placement*="right"] .arrowArrow': {
+                left: 0,
+                marginLeft: '-0.9em',
+                height: '3em',
+                width: '1em',
+                '&::before': {
+                    borderWidth: '1em 1em 1em 0',
+                    borderColor: `transparent ${theme.palette.grey[700]} transparent transparent`
+                }
+            },
+            '&[x-placement*="left"] .arrowArrow': {
+                right: 0,
+                marginRight: '-0.9em',
+                height: '3em',
+                width: '1em',
+                '&::before': {
+                    borderWidth: '1em 0 1em 1em',
+                    borderColor: `transparent transparent transparent ${theme.palette.grey[700]}`
+                }
+            }
+        },
+        '& .arrowArrow': {
+            position: 'absolute',
+            fontSize: 7,
+            width: '3em',
+            height: '3em',
+            '&::before': {
+                content: '""',
+                margin: 'auto',
+                display: 'block',
+                width: 0,
+                height: 0,
+                borderStyle: 'solid'
+            }
+        }
+    };
+});
+
+function defaultButtonComponent({ onClick, items, badgeColor, ...others }) {
+    return (
+        <StyledButton className="button" onClick={onClick} ownerState={{ badgeColor }} {...others}>
+            {items.length > 0 && (
+                <Badge
+                    badgeContent={items.length > 99 ? 99 : items.length}
+                    color={badgeColor}
+                    sx={{
+                        '& .MuiBadge-badge': {
+                            width: '20px',
+                            height: '20px',
+                            fontSize: '0.625rem'
+                        }
+                    }}
+                >
+                    <NotificationsActive className="icon iconActive" />
+                </Badge>
+            )}
+            {items.length <= 0 && <Notifications className="icon" />}
+        </StyledButton>
+    );
 }
 
 function defaultNotificationPanelComponent(props) {
-  return <NotificationPanel {...props} />;
+    return <NotificationPanel {...props} />;
 }
 
-@withStyles(NotificationCenterStyle)
-export default class NotificationCenter extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+function NotificationCenter({
+    ButtonComponent = defaultButtonComponent,
+    ButtonProps = {},
+    NotificationPanelComponent = defaultNotificationPanelComponent,
+    NotificationPanelProps = {},
+    items = [],
+    title = 'Notification Center',
+    badgeColor = 'secondary',
+    unReadBadgeColor = 'error',
+    displayIn = 3000,
+    subsequentDelay = 600,
+    image,
+    onChange,
+    onDelete
+}) {
+    const [panelOpen, setPanelOpen] = useState(false);
+    const [arrowRef, setArrowRef] = useState(null);
 
-    this.state = { panelOpen: false, arrowRef: null };
-  }
+    const onClick = useCallback(() => {
+        setPanelOpen((prev) => !prev);
+    }, []);
 
-  onClick = () => {
-    this.setState({ panelOpen: !this.state.panelOpen });
-  };
+    const onPanelClose = useCallback(
+        (items) => {
+            setPanelOpen(false);
+            const finalItems = linq
+                .from(items)
+                .where((i) => i.status !== 'READ')
+                .select((i) => ({
+                    id: i.id,
+                    status: 'READ'
+                }))
+                .toArray();
+            if (onChange) onChange(finalItems);
+        },
+        [onChange]
+    );
 
-  //Changes status from NOTIFIED to READ when Panel closed.
-  onPanelClose = items => {
-    this.setState({ panelOpen: false });
-    //Changes status to READ.
-    const finalItems = linq
-      .from(items)
-      .where(i => i.status !== NotificationStatus.READ)
-      .select(i => ({
-        id: i.id,
-        status: NotificationStatus.READ
-      }))
-      .toArray();
-    this.updateStatus(finalItems);
-  };
+    const onItemClose = useCallback(
+        (items) => {
+            if (onChange) onChange(items.map((item) => ({ id: item.id, status: 'DELETED' })));
+            if (onDelete) onDelete(items);
+        },
+        [onChange, onDelete]
+    );
 
-  //changes status to DELETE when the close button clicked
-  onItemClose = items => {
-    const { onDelete } = this.props;
-    if (onDelete) onDelete(items);
-  };
+    const onPopupClose = useCallback(
+        (item) => {
+            if (onChange) onChange([{ id: item.id, status: 'NOTIFIED' }]);
+        },
+        [onChange]
+    );
 
-  //changes status from NEW to NOTIFIED when Popup closed
-  onPopupClose = item => {
-    this.updateStatus([{ id: item.id, status: NotificationStatus.NOTIFIED }]);
-  };
-
-  updateStatus = items => {
-    if (!items || items.length <= 0) return;
-
-    const { onChange } = this.props;
-    if (onChange) onChange(items);
-  };
-
-  handleArrowRef = node => {
-    this.setState({
-      arrowRef: node
-    });
-  };
-
-  render() {
-    const {
-      classes,
-      ButtonComponent,
-      ButtonProps,
-      NotificationPanelComponent,
-      NotificationPanelProps,
-      items,
-      title,
-      badgeColor,
-      unReadBadgeColor,
-      displayIn,
-      subsequentDelay,
-      image
-    } = this.props;
+    const handleArrowRef = useCallback((node) => {
+        setArrowRef(node);
+    }, []);
 
     const unReadItems = getUnreadItems(items);
     const popupItems = getItemsForPopup(items);
 
     return (
-      <React.Fragment>
-        <Tooltip
-          classes={{ tooltip: classes.tooltip, popper: classes.arrowPopper }}
-          title={
-            <React.Fragment>
-              {title}
-              <span className={classes.arrowArrow} ref={this.handleArrowRef} />
-            </React.Fragment>
-          }
-          placement="bottom"
-          PopperProps={{
-            popperOptions: {
-              modifiers: {
-                arrow: {
-                  enabled: Boolean(this.state.arrowRef),
-                  element: this.state.arrowRef
+        <>
+            <Tooltip
+                title={
+                    <>
+                        {title}
+                        <span className="arrowArrow" ref={handleArrowRef} />
+                    </>
                 }
-              }
-            }
-          }}
-        >
-          <ButtonComponent
-            {...ButtonProps}
-            classes={{
-              ...classes,
-              ...ButtonProps.classes
-            }}
-            badgeColor={unReadItems.length > 0 ? unReadBadgeColor : badgeColor}
-            items={unReadItems.length > 0 ? unReadItems : items}
-            onClick={this.onClick}
-          />
-        </Tooltip>
+                placement="bottom"
+                PopperProps={{
+                    popperOptions: {
+                        modifiers: [
+                            {
+                                name: 'arrow',
+                                enabled: Boolean(arrowRef),
+                                options: {
+                                    element: arrowRef
+                                }
+                            }
+                        ]
+                    }
+                }}
+            >
+                <ButtonComponent
+                    {...ButtonProps}
+                    badgeColor={unReadItems.length > 0 ? unReadBadgeColor : badgeColor}
+                    items={unReadItems.length > 0 ? unReadItems : items}
+                    onClick={onClick}
+                />
+            </Tooltip>
 
-        <NotificationPanelComponent
-          {...NotificationPanelProps}
-          image={image}
-          items={items}
-          title={title}
-          open={this.state.panelOpen}
-          onPanelClose={this.onPanelClose}
-          onItemClose={this.onItemClose}
-        />
-        <NotificationPopup
-          items={popupItems}
-          displayIn={displayIn}
-          subsequentDelay={subsequentDelay}
-          onClose={this.onPopupClose}
-        />
-      </React.Fragment>
+            <NotificationPanelComponent
+                {...NotificationPanelProps}
+                image={image}
+                items={items}
+                title={title}
+                open={panelOpen}
+                onPanelClose={onPanelClose}
+                onItemClose={onItemClose}
+            />
+            <NotificationPopup
+                items={popupItems}
+                displayIn={displayIn}
+                subsequentDelay={subsequentDelay}
+                onClose={onPopupClose}
+            />
+        </>
     );
-  }
 }
 
-NotificationCenter.defaultProps = {
-  ButtonComponent: defaultButtonComponent,
-  NotificationPanelComponent: defaultNotificationPanelComponent,
-  badgeColor: "secondary",
-  unReadBadgeColor: "error",
-  items: [],
-  title: "Notification Center",
-  ButtonProps: {},
-  NotificationPanelProps: {},
-  displayIn: 3000,
-  subsequentDelay: 600
-};
-
 NotificationCenter.propTypes = {
-  //The custom Button render
-  ButtonComponent: PropTypes.func,
-  //the custom Props of Button
-  ButtonProps: PropTypes.object,
-  //The custom Panel render
-  NotificationPanelComponent: PropTypes.func,
-  //The custom Props of NotificationPanelComponent
-  NotificationPanelProps: PropTypes.object,
-
-  title: PropTypes.string,
-  items: PropTypes.arrayOf(PropTypes.shape(NotificationItemPropTypes)),
-  displayIn: PropTypes.number,
-  subsequentDelay: PropTypes.number,
-  onChange: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  badgeColor: PropTypes.oneOf(["primary", "secondary", "error"]),
-  unReadBadgeColor: PropTypes.oneOf(["primary", "secondary", "error"]),
-  //The background image of Notification Panel
-  image: PropTypes.string
+    ButtonComponent: PropTypes.func,
+    ButtonProps: PropTypes.object,
+    NotificationPanelComponent: PropTypes.func,
+    NotificationPanelProps: PropTypes.object,
+    title: PropTypes.string,
+    items: PropTypes.arrayOf(PropTypes.shape(NotificationItemPropTypes)),
+    displayIn: PropTypes.number,
+    subsequentDelay: PropTypes.number,
+    onChange: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    badgeColor: PropTypes.oneOf(['primary', 'secondary', 'error']),
+    unReadBadgeColor: PropTypes.oneOf(['primary', 'secondary', 'error']),
+    image: PropTypes.string
 };
+
+const NotificationCenterWithTheme = (props) => {
+    const theme = useTheme();
+    return <NotificationCenter {...props} theme={theme} />;
+};
+
+export default NotificationCenterWithTheme;

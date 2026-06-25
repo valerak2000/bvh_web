@@ -1,22 +1,34 @@
-from bvh_web.settings.base import *  # NOQA (ignore all errors on this line)
+from django.core.exceptions import ImproperlyConfigured
+from bvh_web.settings.base import (
+    MIDDLEWARE, SECRETS, BASE_DIR, base_dir_join,
+    INSTALLED_APPS, REST_FRAMEWORK, TEMPLATES,
+    ROOT_URLCONF, WSGI_APPLICATION, AUTH_USER_MODEL,
+    AUTH_PASSWORD_VALIDATORS, STATICFILES_DIRS, WEBPACK_LOADER,
+    REST_KNOX, ACCOUNT_ACTIVATION_DAYS, SECRET_KEY, DEBUG,
+    ALLOWED_HOSTS, LANGUAGE_CODE, TIME_ZONE, USE_I18N, USE_L10N, USE_TZ,
+)
 
 DEBUG = True
-
-PAGE_CACHE_SECONDS = 1
+PAGE_CACHE_SECONDS = 60  # Added for caching index page
 
 MIDDLEWARE.remove('django.middleware.cache.UpdateCacheMiddleware')
 MIDDLEWARE.remove('django.middleware.cache.FetchFromCacheMiddleware')
 
+db = SECRETS.get('database_dev', {})
+required_db_keys = ['name', 'user', 'password', 'host', 'port']
+missing_keys = [k for k in required_db_keys if not db.get(k)]
+if missing_keys:
+    raise ImproperlyConfigured(
+        f'Missing required database keys in secrets.json: {", ".join(missing_keys)}'
+    )
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangoreactredux_dev',
-        'USER': 'djangoreactredux',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
-        'PORT': 5433,
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite'),  # NOQA (ignore all errors on this line)
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': db.get('name'),
+        'USER': db.get('user'),
+        'PASSWORD': db.get('password'),
+        'HOST': db.get('host'),
+        'PORT': db.get('port'),
     }
 }
 
@@ -42,7 +54,7 @@ EMAIL_FILE_PATH = base_dir_join('tmp_email')
 # django-debug-toolbar and django-debug-toolbar-request-history
 #INSTALLED_APPS += ('debug_toolbar',)
 #MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-INTERNAL_IPS = ['127.0.0.1', '::1']
+INTERNAL_IPS = ['0.0.0.0', '127.0.0.1', '::1']
 
 DEBUG_TOOLBAR_PANELS = [
     'ddt_request_history.panels.request_history.RequestHistoryPanel',

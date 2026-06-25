@@ -1,10 +1,11 @@
 import factory
+from factory.django import DjangoModelFactory
 from django.test import TestCase
 
 from accounts.models import User
 
 
-class UserFactory(factory.DjangoModelFactory):
+class UserFactory(DjangoModelFactory):
     first_name = 'John'
     last_name = 'Doe'
     is_active = True

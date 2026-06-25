@@ -1,20 +1,191 @@
-import React from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-// nodejs library to set properties for components
-import PropTypes from "prop-types";
+import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 
-// material-ui components
-import withStyles from "@material-ui/core/styles/withStyles";
-import Button from "@material-ui/core/Button";
+const StyledButton = styled(Button, {
+    shouldForwardProp: (prop) => prop !== 'ownerState'
+})(({ theme, ownerState }) => {
+    const { color, round, disabled, simple, size, block, link, justIcon } = ownerState;
 
-import buttonStyle from "assets/jss/material-dashboard-react/components/buttonStyle.jsx";
-function RegularButton({ ...props }) {
-  const {
-    classes,
+    const grayColor = '#999999';
+    const primaryColor = '#9c27b0';
+    const infoColor = '#00acc1';
+    const successColor = '#4caf50';
+    const warningColor = '#ff9800';
+    const dangerColor = '#f44336';
+    const roseColor = '#e91e63';
+
+    const baseButton = {
+        minHeight: 'auto',
+        minWidth: 'auto',
+        backgroundColor: grayColor,
+        color: '#FFFFFF',
+        boxShadow:
+            '0 2px 2px 0 rgba(153, 153, 153, 0.14), 0 3px 1px -2px rgba(153, 153, 153, 0.2), 0 1px 5px 0 rgba(153, 153, 153, 0.12)',
+        border: 'none',
+        borderRadius: '3px',
+        position: 'relative',
+        padding: '12px 30px',
+        margin: '.3125rem 1px',
+        fontSize: '12px',
+        fontWeight: '400',
+        textTransform: 'uppercase',
+        letterSpacing: '0',
+        willChange: 'box-shadow, transform',
+        transition:
+            'box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+        lineHeight: '1.42857143',
+        textAlign: 'center',
+        whiteSpace: 'nowrap',
+        verticalAlign: 'middle',
+        touchAction: 'manipulation',
+        cursor: 'pointer',
+        '&:hover,&:focus': {
+            color: '#FFFFFF',
+            backgroundColor: grayColor,
+            boxShadow:
+                '0 14px 26px -12px rgba(153, 153, 153, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(153, 153, 153, 0.2)'
+        },
+        '& .fab,& .fas,& .far,& .fal, &.material-icons': {
+            position: 'relative',
+            display: 'inline-block',
+            top: '0',
+            marginTop: '-1em',
+            marginBottom: '-1em',
+            fontSize: '1.1rem',
+            marginRight: '4px',
+            verticalAlign: 'middle'
+        },
+        '& svg': {
+            position: 'relative',
+            display: 'inline-block',
+            top: '0',
+            width: '18px',
+            height: '18px',
+            marginRight: '4px',
+            verticalAlign: 'middle'
+        }
+    };
+
+    const colorStyles = {
+        rose: {
+            backgroundColor: roseColor,
+            boxShadow:
+                '0 2px 2px 0 rgba(233, 30, 99, 0.14), 0 3px 1px -2px rgba(233, 30, 99, 0.2), 0 1px 5px 0 rgba(233, 30, 99, 0.12)',
+            '&:hover,&:focus': {
+                backgroundColor: roseColor,
+                boxShadow:
+                    '0 14px 26px -12px rgba(233, 30, 99, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(233, 30, 99, 0.2)'
+            }
+        },
+        primary: {
+            backgroundColor: primaryColor,
+            boxShadow:
+                '0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12)',
+            '&:hover,&:focus': {
+                backgroundColor: primaryColor,
+                boxShadow:
+                    '0 14px 26px -12px rgba(156, 39, 176, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(156, 39, 176, 0.2)'
+            }
+        },
+        info: {
+            backgroundColor: infoColor,
+            boxShadow:
+                '0 2px 2px 0 rgba(0, 188, 212, 0.14), 0 3px 1px -2px rgba(0, 188, 212, 0.2), 0 1px 5px 0 rgba(0, 188, 212, 0.12)',
+            '&:hover,&:focus': {
+                backgroundColor: infoColor,
+                boxShadow:
+                    '0 14px 26px -12px rgba(0, 188, 212, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 188, 212, 0.2)'
+            }
+        },
+        success: {
+            backgroundColor: successColor,
+            boxShadow:
+                '0 2px 2px 0 rgba(76, 175, 80, 0.14), 0 3px 1px -2px rgba(76, 175, 80, 0.2), 0 1px 5px 0 rgba(76, 175, 80, 0.12)',
+            '&:hover,&:focus': {
+                backgroundColor: successColor,
+                boxShadow:
+                    '0 14px 26px -12px rgba(76, 175, 80, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(76, 175, 80, 0.2)'
+            }
+        },
+        warning: {
+            backgroundColor: warningColor,
+            boxShadow:
+                '0 2px 2px 0 rgba(255, 152, 0, 0.14), 0 3px 1px -2px rgba(255, 152, 0, 0.2), 0 1px 5px 0 rgba(255, 152, 0, 0.12)',
+            '&:hover,&:focus': {
+                backgroundColor: warningColor,
+                boxShadow:
+                    '0 14px 26px -12px rgba(255, 152, 0, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(255, 152, 0, 0.2)'
+            }
+        },
+        danger: {
+            backgroundColor: dangerColor,
+            boxShadow:
+                '0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12)',
+            '&:hover,&:focus': {
+                backgroundColor: dangerColor,
+                boxShadow:
+                    '0 14px 26px -12px rgba(244, 67, 54, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2)'
+            }
+        }
+    };
+
+    const sizeStyles = {
+        lg: {
+            padding: '1.125rem 2.25rem',
+            fontSize: '0.875rem',
+            lineHeight: '1.333333',
+            borderRadius: '0.2rem'
+        },
+        sm: {
+            padding: '0.40625rem 1.25rem',
+            fontSize: '0.6875rem',
+            lineHeight: '1.5',
+            borderRadius: '0.2rem'
+        }
+    };
+
+    return {
+        ...baseButton,
+        ...(color && colorStyles[color]),
+        ...(size && sizeStyles[size]),
+        ...(round && { borderRadius: '30px' }),
+        ...(block && { width: '100% !important' }),
+        ...(disabled && { opacity: '0.65', pointerEvents: 'none' }),
+        ...(simple && {
+            '&,&:focus,&:hover': {
+                color: '#FFFFFF',
+                background: 'transparent',
+                boxShadow: 'none'
+            }
+        }),
+        ...(link && {
+            '&,&:hover,&:focus': {
+                backgroundColor: 'transparent',
+                color: '#999999',
+                boxShadow: 'none'
+            }
+        }),
+        ...(justIcon && {
+            paddingLeft: '12px',
+            paddingRight: '12px',
+            fontSize: '20px',
+            height: '41px',
+            minWidth: '41px',
+            width: '41px',
+            '& .fab,& .fas,& .far,& .fal,& svg,& .material-icons': {
+                marginRight: '0px'
+            }
+        })
+    };
+});
+
+function RegularButton({
+    children,
     color,
     round,
-    children,
     disabled,
     simple,
     size,
@@ -24,48 +195,36 @@ function RegularButton({ ...props }) {
     className,
     muiClasses,
     ...rest
-  } = props;
-  const btnClasses = classNames({
-    [classes.button]: true,
-    [classes[size]]: size,
-    [classes[color]]: color,
-    [classes.round]: round,
-    [classes.disabled]: disabled,
-    [classes.simple]: simple,
-    [classes.block]: block,
-    [classes.link]: link,
-    [classes.justIcon]: justIcon,
-    [className]: className
-  });
-  return (
-    <Button {...rest} classes={muiClasses} className={btnClasses}>
-      {children}
-    </Button>
-  );
+}) {
+    const ownerState = { color, round, disabled, simple, size, block, link, justIcon };
+
+    return (
+        <StyledButton {...rest} ownerState={ownerState} classes={muiClasses} className={className}>
+            {children}
+        </StyledButton>
+    );
 }
 
 RegularButton.propTypes = {
-  classes: PropTypes.object.isRequired,
-  color: PropTypes.oneOf([
-    "primary",
-    "info",
-    "success",
-    "warning",
-    "danger",
-    "rose",
-    "white",
-    "transparent"
-  ]),
-  size: PropTypes.oneOf(["sm", "lg"]),
-  simple: PropTypes.bool,
-  round: PropTypes.bool,
-  disabled: PropTypes.bool,
-  block: PropTypes.bool,
-  link: PropTypes.bool,
-  justIcon: PropTypes.bool,
-  className: PropTypes.string,
-  // use this to pass the classes props from Material-UI
-  muiClasses: PropTypes.object
+    color: PropTypes.oneOf([
+        'primary',
+        'info',
+        'success',
+        'warning',
+        'danger',
+        'rose',
+        'white',
+        'transparent'
+    ]),
+    size: PropTypes.oneOf(['sm', 'lg']),
+    simple: PropTypes.bool,
+    round: PropTypes.bool,
+    disabled: PropTypes.bool,
+    block: PropTypes.bool,
+    link: PropTypes.bool,
+    justIcon: PropTypes.bool,
+    className: PropTypes.string,
+    muiClasses: PropTypes.object
 };
 
-export default withStyles(buttonStyle)(RegularButton);
+export default RegularButton;
