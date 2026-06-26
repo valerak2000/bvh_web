@@ -20,8 +20,7 @@ module.exports = [
         requireConfigFile: false,
         babelOptions: {
           plugins: [
-            ['@babel/plugin-proposal-decorators', { legacy: true }],
-            '@babel/plugin-proposal-class-properties'
+            ['@babel/plugin-proposal-decorators', { version: 'legacy' }]
           ]
         },
         ecmaFeatures: {
