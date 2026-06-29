@@ -1,27 +1,22 @@
 {
   "presets": [
     [
-      "@babel/env",
+      "@babel/preset-env",
       {
         "modules": false,
         "useBuiltIns": "entry",
         "corejs": 3
       }
     ],
-    "@babel/react",
-    "@babel/typescript"
+    "@babel/preset-react",
+    "@babel/preset-typescript"
   ],
   "plugins": [
-    ["@babel/transform-runtime", { "useESModules": true }],
-    "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-syntax-import-meta",
-    ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "@babel/plugin-transform-runtime",
+    ["@babel/plugin-proposal-decorators", { "version": "legacy" }],
     ["@babel/plugin-transform-private-methods", { "loose": true }],
     ["@babel/plugin-transform-private-property-in-object", { "loose": true }],
-    "@babel/plugin-proposal-json-strings",
     "@babel/plugin-transform-async-to-generator",
-    "@loadable/babel-plugin",
     [
       "import",
       {
@@ -70,13 +65,13 @@
     "development": {
       "presets": [
         ["@babel/preset-env", { "modules": false }],
-        "@babel/react"
+        "@babel/preset-react"
       ]
     },
     "production": {
       "presets": [
         ["@babel/preset-env", { "modules": false }],
-        "@babel/react"
+        "@babel/preset-react"
       ],
       "plugins": [
         "transform-remove-console"
@@ -86,10 +81,10 @@
     "test": {
       "presets": [
         ["@babel/preset-env", { "targets": { "node": "current" } }],
-        "@babel/react"
+        "@babel/preset-react"
       ],
       "plugins": [
-        ["@babel/transform-runtime"],
+        ["@babel/plugin-transform-runtime"],
         ["@babel/plugin-transform-modules-commonjs", { "spec": true }]
       ]
     }
