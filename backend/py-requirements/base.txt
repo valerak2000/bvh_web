@@ -21,9 +21,9 @@ python-dateutil==2.9.0.post0
 # django-rest-logger  # temporarily commented out for compatibility testing
 
 django-rest-knox==5.0.4
-django-webpack-loader==3.2.3
+django-webpack-loader==3.2.4
 
-django-js-reverse==0.10.2
+django-js-reverse==1.0.0
 django-import-export==4.4.1
 django-log-request-id==2.1.2
 django-naomi==0.8

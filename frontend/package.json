@@ -201,11 +201,15 @@
     "slick-carousel": "latest",
     "tss-react": "^4.9.21",
     "url-join": "latest",
-    "uuid": "14.0.1"
+    "uuid": "14.0.1",
+    "brotli": "latest"
   },
   "jest": {
     "coverageDirectory": "<rootDir>/tests/__coverage__/",
     "collectCoverage": true
+  },
+  "overrides": {
+    "iltorb": "$brotli"
   },
   "bundlesize": [
     {
