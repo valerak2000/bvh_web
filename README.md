@@ -9,6 +9,8 @@ linux: virtualenv -p /usr/bin/python3.13 py3
        python -m py3 --upgrade py3
 windows: py -3.13 -m venv py3
 
+sudo apt install -y build-essential libpq-dev python3.13-dev
+
 pip3 install virtualenv
 #pip3 install psycopg2-binary==2.8.3
 #pip3 install psycopg2 --no-binary :all:

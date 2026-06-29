@@ -1,8 +1,8 @@
 from django.core.exceptions import ImproperlyConfigured
 from bvh_web.settings.base import (
     SECRETS, BASE_DIR, base_dir_join,
-    ALLOWED_HOSTS, MIDDLEWARE, INSTALLED_APPS,
-    REST_FRAMEWORK, JS_REVERSE_EXCLUDE_NAMESPACES,
+    ALLOWED_HOSTS, MIDDLEWARE, INSTALLED_APPS, TEMPLATES,
+    REST_FRAMEWORK, WEBPACK_LOADER, JS_REVERSE_EXCLUDE_NAMESPACES,
 )
 
 DEBUG = False
