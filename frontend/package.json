@@ -54,8 +54,8 @@
     "npm": ">=11.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "8.0.0",
-    "@babel/core": "8.0.0",
+    "@babel/cli": "8.0.1",
+    "@babel/core": "8.0.1",
     "@babel/eslint-parser": "8.0.1",
     "@babel/plugin-proposal-decorators": "8.0.2",
     "@babel/plugin-proposal-export-default-from": "8.0.1",
@@ -73,10 +73,8 @@
     "@redux-devtools/extension": "latest",
     "@redux-devtools/log-monitor": "latest",
     "@types/body-parser": "latest",
-    "@types/classnames": "2.3.4",
     "@types/compression": "latest",
     "@types/enzyme": "latest",
-    "@types/history": "5.0.0",
     "@types/jest": "latest",
     "@types/markerclustererplus": "latest",
     "@types/prop-types": "latest",
