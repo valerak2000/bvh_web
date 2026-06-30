@@ -334,7 +334,7 @@ ASALocalRun/
 **/node_modules/
 **/__coverage__/
 **/__reports__/
-**/package-lock.json
+#**/package-lock.json
 **/yarn.lock
 # IDEs
 .project
