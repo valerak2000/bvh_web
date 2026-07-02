@@ -26,6 +26,7 @@ import FileLink from '../../../components/FileLink';
 const MapsComponent = Loader(
     () => import(/* webpackChunkName: "Maps" */ '../../../components/Maps/Maps.jsx')
 );
+const apiKey = process.env.YANDEX_MAPS_API_KEY || '';
 
 const bvhMainOfficeBuildWP = '/static/images/main_office.webp';
 const bvhMainOfficeBuild = '/static/images/main_office.jpg';
