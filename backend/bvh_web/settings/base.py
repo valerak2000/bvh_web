@@ -29,7 +29,7 @@ if not SECRET_KEY:
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['bruvodokanal.ru', 'www.bruvodokanal.ru', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = (
@@ -146,7 +146,7 @@ WEBPACK_LOADER = {
         'STATS_FILE': base_dir_join('../frontend/webpack-stats.json'),
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
-        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+        'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
     }
 }
 
