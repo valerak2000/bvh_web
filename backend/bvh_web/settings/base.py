@@ -146,7 +146,7 @@ WEBPACK_LOADER = {
         'STATS_FILE': base_dir_join('../frontend/webpack-stats.json'),
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
-        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+        'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
     }
 }
 

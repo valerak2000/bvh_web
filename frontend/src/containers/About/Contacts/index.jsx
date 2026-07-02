@@ -32,7 +32,6 @@ const bvhMainOfficeBuild = '/static/images/main_office.jpg';
 const bvhAbonentsOfficeBuildWP = '/static/images/abon_office.webp';
 const bvhAbonentsOfficeBuild = '/static/images/abon_office.jpg';
 const rekvisity_ooo_bvh = '/static/files/media/rekvisity_ooo_bvh.pdf';
-const rekvisity_ooo_boos = '/static/files/media/rekvisity_ooo_boos.pdf';
 
 function ContactsView(props) {
     const theme = useTheme();
@@ -40,6 +39,18 @@ function ContactsView(props) {
     const { card, subParagraf } = app;
     const [expandedMain, setExpandedMain] = React.useState(false);
     const [expandedAbon, setExpandedAbon] = React.useState(false);
+
+    const {
+        main_office = {
+            lat: 45.787037,
+            lng: 38.990506
+        },
+        abon_office = {
+            lat: 45.806224,
+            lng: 39.00779
+        },
+        zoom = 16
+    } = props;
 
     const handleExpandMainClick = () => {
         setExpandedMain(!expandedMain);
@@ -100,9 +111,9 @@ function ContactsView(props) {
                 </CardActionArea>
                 <Collapse in={expandedMain} timeout="auto" unmountOnExit>
                     <MapsComponent
-                        lat={props.main_office.lat}
-                        lng={props.main_office.lng}
-                        zoom={props.zoom}
+                        lat={main_office.lat}
+                        lng={main_office.lng}
+                        zoom={zoom}
                         balloonContent="352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196"
                         isMarkerShown
                     />
@@ -329,9 +340,9 @@ function ContactsView(props) {
                 </CardActionArea>
                 <Collapse in={expandedAbon} timeout="auto" unmountOnExit>
                     <MapsComponent
-                        lat={props.abon_office.lat}
-                        lng={props.abon_office.lng}
-                        zoom={props.zoom}
+                        lat={abon_office.lat}
+                        lng={abon_office.lng}
+                        zoom={zoom}
                         balloonContent="352750, Краснодарский край, ст.Брюховецкая, ул. Советская, 56, здание БТИ"
                         isMarkerShown
                     />
@@ -414,18 +425,6 @@ ContactsView.propTypes = {
         lng: PropTypes.number
     }),
     zoom: PropTypes.number
-};
-
-ContactsView.defaultProps = {
-    main_office: {
-        lat: 45.787037,
-        lng: 38.990506
-    },
-    abon_office: {
-        lat: 45.806224,
-        lng: 39.00779
-    },
-    zoom: 16
 };
 
 export default ContactsView;
