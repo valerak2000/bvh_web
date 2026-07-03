@@ -56,20 +56,23 @@ export const MENU_HOME = [
         key: 'elektronnaya_priemnaya',
         primaryText: 'Электронная приемная',
         leftIcon: <ContactMail />,
-        dataRoute: '/elektronnaya_priemnaya'
+        dataRoute: '/elektronnaya_priemnaya',
+        disabled: true
     },
     {
         key: 'blackouts',
         primaryText: 'Отключения',
         secondaryText: 'Информация об аварийном отключении водоснабжения',
         leftIcon: <Announcement />,
-        dataRoute: '/blackouts'
+        dataRoute: '/blackouts',
+        disabled: true
     },
     {
         key: 'available_capacity_map',
         primaryText: 'Карта доступной мощности',
         leftIcon: <Place />,
-        dataRoute: '/available_capacity_map'
+        dataRoute: '/available_capacity_map',
+        disabled: true
     },
     {
         key: 'faq',
@@ -108,7 +111,8 @@ export const MENU_ABOUT = [
         key: 'vacancies',
         primaryText: 'Вакансии',
         leftIcon: null,
-        dataRoute: '/about/vacancies'
+        dataRoute: '/about/vacancies',
+        disabled: true
     },
     {
         key: 'history',
@@ -189,12 +193,13 @@ export const MENU_CUSTOMERS = [
                 leftIcon: null,
                 dataRoute: '/customers/fizlica/zaklyuchenie_dogovorov_holvod_fizlica'
             },
-            /*{
+            {
                 key: 'zamena_vodomera_fizlica',
                 primaryText: 'Замена счетчика (водомера)',
                 leftIcon: null,
                 dataRoute: '/customers/fizlica/zamena_vodomera_fizlica',
-            },*/
+                disabled: true
+            },
             {
                 key: 'payments_fizlica',
                 primaryText: 'Способы оплаты',
@@ -205,13 +210,15 @@ export const MENU_CUSTOMERS = [
                 key: 'peredacha_pokazaniy_fizlica',
                 primaryText: 'Передача показаний счетчиков',
                 leftIcon: null,
-                dataRoute: '/customers/fizlica/peredacha_pokazaniy_fizlica'
+                dataRoute: '/customers/fizlica/peredacha_pokazaniy_fizlica',
+                disabled: true
             },
             {
                 key: 'pribory_ucheta',
                 primaryText: 'Приборы учета',
                 leftIcon: null,
-                dataRoute: '/customers/fizlica/pribory_ucheta'
+                dataRoute: '/customers/fizlica/pribory_ucheta',
+                disabled: true
             }
         ]
     },
@@ -289,7 +296,8 @@ export const MENU_CUSTOMERS = [
         key: 'debtors',
         primaryText: 'Должники',
         leftIcon: null,
-        dataRoute: '/customers/debtors'
+        dataRoute: '/customers/debtors',
+        disabled: true
     }
 ];
 

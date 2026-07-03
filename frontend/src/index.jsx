@@ -1,7 +1,7 @@
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 import { GetBaseUrl } from './commons/commonFuncs.ts';
 import { authLoginUserSuccess } from './actions/auth';
 import ExceptionHandler from './components/ExceptionHandler';
