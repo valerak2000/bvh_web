@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 import * as actionCreators from '../../actions/auth';
 
 const Form = t.form.Form;
@@ -16,26 +17,26 @@ const LoginFormOptions = {
     //auto: 'placeholders', //'placeholders', 'labels',
     //help: <i>Hint: a@a.com / qw</i>,
     fields: {
-	email: {
-        label: 'E-mail или Логин',
-        //legend: 'E-mail или Логин'
+        email: {
+            label: 'E-mail или Логин',
+            //legend: 'E-mail или Логин'
             attrs: {
                 autoFocus: true,
                 placeholder: 'ivanov@mail.ru'
             }
         },
         password: {
-        label: 'Пароль',
-        //legend: 'Пароль',
+            label: 'Пароль',
+            //legend: 'Пароль',
             type: 'password'
         }
     },
     i18n: {
         Email: 'E-mail',
         Password: 'Пароль',
-	optional: ' (необязательный)',
-	required: ' *',
-	add: 'Добавить',
+        optional: ' (необязательный)',
+        required: ' *',
+        add: 'Добавить',
         remove: 'Убрать',
         up: 'Вверх',
         down: 'Вниз'
@@ -43,7 +44,8 @@ const LoginFormOptions = {
 };
 
 function LoginView(props) {
-    const { dispatch, isAuthenticated, isAuthenticating, statusText, actions, location, history } = props;
+    const { dispatch, isAuthenticated, isAuthenticating, statusText, actions, location } = props;
+    const navigate = useNavigate();
     const [formValues, setFormValues] = React.useState({
         email: '',
         password: ''
@@ -54,9 +56,9 @@ function LoginView(props) {
 
     React.useEffect(() => {
         if (isAuthenticated) {
-            history.push('/');
+            navigate('/');
         }
-    }, [isAuthenticated, history]);
+    }, [isAuthenticated, navigate]);
 
     const onFormChange = (value) => {
         setFormValues(value);
@@ -86,45 +88,44 @@ function LoginView(props) {
     let statusTextElement = null;
     if (statusText) {
         const statusTextClassNames = classNames({
-            'alert': true,
+            alert: true,
             'alert-danger': statusText.indexOf('Authentication Error') === 0,
             'alert-success': statusText.indexOf('Authentication Error') !== 0
         });
 
         statusTextElement = (
-            <div className = "row">
-                <div className = "col-sm-12">
-                    <div className = { statusTextClassNames }>
-                        { statusText }
-                    </div>
+            <div className="row">
+                <div className="col-sm-12">
+                    <div className={statusTextClassNames}>{statusText}</div>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className = "container login">
-            <h1 className = "text-center">Вход в личный кабинет</h1>
-            <div className = "login-container margin-top-medium">
-                { statusTextElement }
-                <form onSubmit = { login }>
-                    <Form ref = { (ref) => { loginForm.current = ref; } }
-                        type = { Login }
-                        options = { LoginFormOptions }
-                        value = { formValues }
-                        onChange = {onFormChange }
-                        context = {{ locale: 'ru-RU' }}
+        <div className="container login">
+            <h1 className="text-center">Вход в личный кабинет</h1>
+            <div className="login-container margin-top-medium">
+                {statusTextElement}
+                <form onSubmit={login}>
+                    <Form
+                        ref={(ref) => {
+                            loginForm.current = ref;
+                        }}
+                        type={Login}
+                        options={LoginFormOptions}
+                        value={formValues}
+                        onChange={onFormChange}
+                        context={{ locale: 'ru-RU' }}
                     />
-                    <button disabled = { isAuthenticating }
-                        type = "submit"
-                        className = "btn btn-default btn-primary btn-block"
+                    <button
+                        disabled={isAuthenticating}
+                        type="submit"
+                        className="btn btn-default btn-primary btn-block"
                     >
                         Войти
                     </button>
-                    <button disabled = { isAuthenticating }
-                        className = "btn btn-block"
-                        onClick = { signup }
-                    >
+                    <button disabled={isAuthenticating} className="btn btn-block" onClick={signup}>
                         Зарегистрироваться
                     </button>
                 </form>
@@ -140,14 +141,13 @@ LoginView.propTypes = {
     statusText: PropTypes.string,
     actions: PropTypes.shape({
         authLoginUser: PropTypes.func.isRequired,
-        signupLoginUser: PropTypes.func.isRequired,
+        signupLoginUser: PropTypes.func.isRequired
     }).isRequired,
-    location: PropTypes.object,
-    history: PropTypes.object.isRequired,
+    location: PropTypes.object
 };
 
 LoginView.defaultProps = {
-    statusText: '',
+    statusText: ''
 };
 
 const mapStateToProps = (state) => {

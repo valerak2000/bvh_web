@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router';
 import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 import { alpha } from '@mui/material/styles';
@@ -79,77 +79,83 @@ function NavMenu(props) {
         return theme?.app?.icon || {};
     }, [theme]);
 
-    const listItems = items.map((item, index) => {
-        const open = getOpenState(item.key);
-        const hasChildren = item.children !== undefined && item.children.length > 0;
+    const listItems = items
+        .filter((item) => !item.disabled)
+        .map((item, index) => {
+            const open = getOpenState(item.key);
+            const hasChildren = item.children !== undefined && item.children.length > 0;
 
-        return (
-            <React.Fragment key={index}>
-                <ListItemButton
-                    key={item.key}
-                    disableGutters
-                    selected={initiallyFocusedValue === item.key}
-                    onClick={(e) => handleItemClick(item.dataRoute, item.key, e, hasChildren)}
-                    disabled={item.disabled}
-                >
-                    {item.leftIcon && <ListItemIcon className="icon">{item.leftIcon}</ListItemIcon>}
-                    <ListItemText
-                        primary={item.primaryText}
-                        primaryTypographyProps={{
-                            variant: 'body1',
-                            color: 'primary'
-                        }}
-                        secondary={item.secondaryText}
-                        secondaryTypographyProps={{
-                            variant: 'body2',
-                            color: 'primary'
-                        }}
-                    />
-                    {hasChildren && (open ? <ExpandLess /> : <ExpandMore />)}
-                </ListItemButton>
-                {hasChildren && (
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            {item.children.map((ni, childIndex) => {
-                                const childKey = `${item.key}_${ni.key}`;
-                                const isSelected = initiallyFocusedValue === childKey;
+            return (
+                <React.Fragment key={index}>
+                    <ListItemButton
+                        key={item.key}
+                        disableGutters
+                        selected={initiallyFocusedValue === item.key}
+                        onClick={(e) => handleItemClick(item.dataRoute, item.key, e, hasChildren)}
+                        disabled={item.disabled}
+                    >
+                        {item.leftIcon && (
+                            <ListItemIcon className="icon">{item.leftIcon}</ListItemIcon>
+                        )}
+                        <ListItemText
+                            primary={item.primaryText}
+                            primaryTypographyProps={{
+                                variant: 'body1',
+                                color: 'primary'
+                            }}
+                            secondary={item.secondaryText}
+                            secondaryTypographyProps={{
+                                variant: 'body2',
+                                color: 'primary'
+                            }}
+                        />
+                        {hasChildren && (open ? <ExpandLess /> : <ExpandMore />)}
+                    </ListItemButton>
+                    {hasChildren && (
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                {item.children
+                                    .filter((ni) => !ni.disabled)
+                                    .map((ni, childIndex) => {
+                                        const childKey = `${item.key}_${ni.key}`;
+                                        const isSelected = initiallyFocusedValue === childKey;
 
-                                return (
-                                    <ListItemButton
-                                        key={ni.key}
-                                        disableGutters
-                                        selected={isSelected}
-                                        onClick={(e) => onClick(ni.dataRoute, ni.key, e)}
-                                        className="children"
-                                        disabled={ni.disabled}
-                                        sx={{ pl: 4 }}
-                                    >
-                                        {ni.leftIcon && (
-                                            <ListItemIcon className={iconStyle}>
-                                                {ni.leftIcon}
-                                            </ListItemIcon>
-                                        )}
-                                        <ListItemText
-                                            primary={ni.primaryText}
-                                            primaryTypographyProps={{
-                                                variant: 'body1',
-                                                color: 'primary'
-                                            }}
-                                            secondary={ni.secondaryText}
-                                            secondaryTypographyProps={{
-                                                variant: 'body2',
-                                                color: 'primary'
-                                            }}
-                                        />
-                                    </ListItemButton>
-                                );
-                            })}
-                        </List>
-                    </Collapse>
-                )}
-            </React.Fragment>
-        );
-    });
+                                        return (
+                                            <ListItemButton
+                                                key={ni.key}
+                                                disableGutters
+                                                selected={isSelected}
+                                                onClick={(e) => onClick(ni.dataRoute, ni.key, e)}
+                                                className="children"
+                                                disabled={ni.disabled}
+                                                sx={{ pl: 4 }}
+                                            >
+                                                {ni.leftIcon && (
+                                                    <ListItemIcon className={iconStyle}>
+                                                        {ni.leftIcon}
+                                                    </ListItemIcon>
+                                                )}
+                                                <ListItemText
+                                                    primary={ni.primaryText}
+                                                    primaryTypographyProps={{
+                                                        variant: 'body1',
+                                                        color: 'primary'
+                                                    }}
+                                                    secondary={ni.secondaryText}
+                                                    secondaryTypographyProps={{
+                                                        variant: 'body2',
+                                                        color: 'primary'
+                                                    }}
+                                                />
+                                            </ListItemButton>
+                                        );
+                                    })}
+                            </List>
+                        </Collapse>
+                    )}
+                </React.Fragment>
+            );
+        });
 
     return (
         <StyledNavList component="nav" sx={props.style}>
