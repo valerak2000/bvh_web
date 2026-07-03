@@ -29,7 +29,7 @@ const rowsBvh = [
         id: 4,
         file: '/static/files/media/План  закупок  2021  БВХ.xls',
         title: 'Планы закупок 2021'
-    },*/
+    },
     {
         id: 5,
         file: '/static/files/media/План  закупок  2022  БВХ.xls',
@@ -39,7 +39,7 @@ const rowsBvh = [
         id: 6,
         file: '/static/files/media/План  закупок  2023  БВХ.xls',
         title: 'Планы закупок 2023'
-    },
+    },*/
     {
         id: 7,
         file: '/static/files/media/План  закупок  2024  БВХ.xls',
@@ -49,6 +49,11 @@ const rowsBvh = [
         id: 8,
         file: '/static/files/media/План  закупок  2025  БВХ.xls',
         title: 'Планы закупок 2025'
+    },
+    {
+        id: 9,
+        file: '/static/files/media/План  закупок  2026  БВХ.xls',
+        title: 'Планы закупок 2026'
     },
     /*    {
         id: 9,
@@ -64,12 +69,12 @@ const rowsBvh = [
         id: 12,
         file: '/static/files/media/Отчетность по договорам БВХ 2021.7z',
         title: 'Отчетность по договорам 2021'
-    },*/
+    },
     {
         id: 13,
         file: '/static/files/media/Отчетность по договорам БВХ 2022.7z',
         title: 'Отчетность по договорам 2022'
-    },
+    },*/
     /*   {
         id: 14,
         file: '/static/files/media/СМ БВХ 2019.xls',
@@ -84,12 +89,12 @@ const rowsBvh = [
         id: 16,
         file: '/static/files/media/СМ БВХ 2021.xls',
         title: 'Годовые отчеты о закупке товаров,работ,услуг у субъектов малого и среднего предпринимательства 2021'
-    },*/
+    },
     {
         id: 17,
         file: '/static/files/media/СМ БВХ 2022.xls',
         title: 'Годовые отчеты о закупке товаров,работ,услуг у субъектов малого и среднего предпринимательства 2022'
-    },
+    },*/
     /*    {
         id: 18,
         file: '/static/files/media/ИП БВХ 2019.doc',
@@ -104,7 +109,7 @@ const rowsBvh = [
         id: 20,
         file: '/static/files/media/ИП БВХ 2021.doc',
         title: 'Годовые отчеты о закупке инновационной продукции,высокотехнологичной продукции 2021'
-    },*/
+    },
     {
         id: 21,
         file: '/static/files/media/ИП БВХ 2022.doc',
@@ -114,11 +119,16 @@ const rowsBvh = [
         id: 22,
         file: '/static/files/media/ИП БВХ 2023.doc',
         title: 'Годовые отчеты о закупке инновационной продукции,высокотехнологичной продукции 2023'
-    },
+    },*/
     {
         id: 23,
         file: '/static/files/media/ИП БВХ 2024.doc',
         title: 'Годовые отчеты о закупке инновационной продукции,высокотехнологичной продукции 2024'
+    },
+    {
+        id: 24,
+        file: '/static/files/media/ИП БВХ 2025.doc',
+        title: 'Годовые отчеты о закупке инновационной продукции,высокотехнологичной продукции 2025'
     }
 ];
 
