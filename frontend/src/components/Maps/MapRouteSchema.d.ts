@@ -94,3 +94,100 @@ const MapRouteSchema: React.FC<MapRouteSchemaProps> = ({
 };
 
 export default MapRouteSchema;
+
+/*
+npm i -D @yandex/ymaps3-types@latest
+Используйте код с осторожностью.В файле tsconfig.json добавьте путь к типам, чтобы глобальное пространство имен ymaps3 стало доступно:json{
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types", "./node_modules/@yandex/ymaps3-types"]
+  }
+}
+
+import { useEffect, useRef, useState } from 'react';
+
+interface MapComponentProps {
+  apiKey: string;
+  center: [number, number]; // [долгота, широта]
+  markerCoords: [number, number];
+  zoom?: number;
+}
+
+export default function YandexMapV3({
+  apiKey,
+  center,
+  markerCoords,
+  zoom = 10
+}: MapComponentProps) {
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // 1. Проверяем, не загружен ли скрипт уже
+    if (!document.querySelector('#ymaps3-script')) {
+      const script = document.createElement('script');
+      script.id = 'ymaps3-script';
+      script.src = `https://api-maps.yandex.ru/v3/?apikey=${apiKey}&lang=ru_RU`;
+      script.async = true;
+      script.onload = () => setIsLoaded(true);
+      document.body.appendChild(script);
+    } else if (window.ymaps3) {
+      setIsLoaded(true);
+    }
+  }, [apiKey]);
+
+  useEffect(() => {
+    if (!isLoaded || !mapContainerRef.current || !window.ymaps3) return;
+
+    let map: any = null;
+
+    async function initMap() {
+      const ymaps = window.ymaps3;
+      
+      // Ждем готовности API
+      await ymaps.ready;
+
+      // Импортируем стандартный модуль маркеров v3
+      const { YMapDefaultMarker } = await ymaps.import('@yandex/ymaps3-markers@latest');
+
+      if (!mapContainerRef.current) return;
+      mapContainerRef.current.innerHTML = ''; // Очистка контейнера
+
+      // Создаем карту
+      map = new ymaps.YMap(mapContainerRef.current, {
+        location: { center, zoom }
+      });
+
+      // Добавляем обязательные слои (схема и гео-объекты)
+      map.addChild(new ymaps.YMapDefaultSchemeLayer({}));
+      map.addChild(new ymaps.YMapDefaultFeaturesLayer({}));
+
+      // Создаем и добавляем маркер
+      const marker = new YMapDefaultMarker({
+        coordinates: markerCoords,
+        title: 'Наша геометка',
+        subtitle: 'Описание точки',
+        color: '#007afb' // Кастомный цвет маркера
+      });
+      
+      map.addChild(marker);
+    }
+
+    initMap();
+
+    // Корректное удаление карты при размонтировании компонента React 19
+    return () => {
+      if (map) {
+        map.destroy();
+      }
+    };
+  }, [isLoaded, center, markerCoords, zoom]);
+
+  return (
+    <div
+      ref={mapContainerRef}
+      style={{ width: '100%', height: '500px', borderRadius: '8px', overflow: 'hidden' }}
+    />
+  );
+}
+
+*/
