@@ -56,7 +56,7 @@ const MapRouteSchema: React.FC<MapRouteSchemaProps> = ({
             // Если скрипт еще не был внедрен в head, создаем его
             script = document.createElement('script');
             script.id = scriptId;
-            script.src = `https://yandex.ru{apiKey}`;
+            script.src = 'https://yandex.ru{apiKey}';
             script.type = 'text/javascript';
             script.async = true;
             script.onload = initMap;
@@ -80,17 +80,16 @@ const MapRouteSchema: React.FC<MapRouteSchemaProps> = ({
 
     return (
         <div
-      ref= { mapContainerRef }
-    style = {{
-        width: '100%',
-            height: '400px',
+            ref= { mapContainerRef }
+            style = {{
+                width: '100%',
+                height: '400px',
                 backgroundColor: '#f5f5f5',
-                    borderRadius: '8px',
-                        overflow: 'hidden',
-      }
-}
-    />
-  );
+                borderRadius: '8px',
+                overflow: 'hidden',
+            }}
+        />
+    );
 };
 
 export default MapRouteSchema;
