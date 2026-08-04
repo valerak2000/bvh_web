@@ -24,7 +24,7 @@ import Loader from '../../../components/loaders';
 import FileLink from '../../../components/FileLink';
 
 const MapsComponent = Loader(
-    () => import(/* webpackChunkName: "Maps" */ '../../../components/Maps/Maps.d.ts')
+    () => import(/* webpackChunkName: "Maps" */ '../../../components/Maps/Maps')
 );
 const apiKey = process.env.YANDEX_MAPS_API_KEY || '';
 
@@ -120,6 +120,7 @@ function ContactsView(props) {
                         zoom={zoom}
                         balloonContent="352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196"
                         isMarkerShown
+                        apiKey={apiKey}
                     />
                 </Collapse>
                 <ImageZoom
@@ -339,6 +340,7 @@ function ContactsView(props) {
                         zoom={zoom}
                         balloonContent="352750, Краснодарский край, ст.Брюховецкая, ул. Советская, 56, здание БТИ"
                         isMarkerShown
+                        apiKey={apiKey}
                     />
                 </Collapse>
                 <ImageZoom

@@ -9,6 +9,7 @@ interface YndxMapsProps {
     lng: number;
     zoom: number;
     isMarkerShown?: boolean;
+    apiKey?: string;
     theme?: unknown;
 }
 
@@ -20,7 +21,10 @@ const YndxMaps: React.FC<YndxMapsProps> = (props) => {
         zoom: props.zoom,
         controls: ['zoomControl', 'fullscreenControl']
     };
-    const apiKey = (typeof process !== 'undefined' && process.env && process.env.YANDEX_MAPS_API_KEY) || '';
+    const apiKey =
+        props.apiKey ||
+        (typeof process !== 'undefined' && process.env && process.env.YANDEX_MAPS_API_KEY) ||
+        '';
 
     return (
         <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
@@ -43,6 +47,7 @@ interface MapsWithThemeProps {
     lng: number;
     zoom: number;
     isMarkerShown?: boolean;
+    apiKey?: string;
 }
 
 const MapsWithTheme: React.FC<MapsWithThemeProps> = (props) => {
