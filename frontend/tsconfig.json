@@ -28,7 +28,8 @@
     "noUnusedLocals": true,
     "experimentalDecorators": true,
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "typeRoots": ["./node_modules/@types", "./node_modules/@yandex/ymaps3-types"]
   },
   "include": [
     "./src/**/*.tsx", 

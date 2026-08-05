@@ -24,7 +24,7 @@ import Loader from '../../../components/loaders';
 import FileLink from '../../../components/FileLink';
 
 const MapsComponent = Loader(
-    () => import(/* webpackChunkName: "Maps" */ '../../../components/Maps/Maps.jsx')
+    () => import(/* webpackChunkName: "Maps" */ '../../../components/Maps/Maps')
 );
 const apiKey = process.env.YANDEX_MAPS_API_KEY || '';
 
@@ -43,10 +43,12 @@ function ContactsView(props) {
 
     const {
         main_office = {
+            title: 'Центральный офис',
             lat: 45.787037,
             lng: 38.990506
         },
         abon_office = {
+            title: 'Абонентский отдел',
             lat: 45.806224,
             lng: 39.00779
         },
@@ -112,11 +114,13 @@ function ContactsView(props) {
                 </CardActionArea>
                 <Collapse in={expandedMain} timeout="auto" unmountOnExit>
                     <MapsComponent
+                        title="Центральный офис"
                         lat={main_office.lat}
                         lng={main_office.lng}
                         zoom={zoom}
                         balloonContent="352750, Краснодарский край, ст. Брюховецкая, ул. О.Кошевого, 196"
                         isMarkerShown
+                        apiKey={apiKey}
                     />
                 </Collapse>
                 <ImageZoom
@@ -259,16 +263,6 @@ function ContactsView(props) {
                         &nbsp;8 (86156) 35-117
                     </span>
                     <br />
-                    <strong>Лаборатория</strong>:<br />
-                    <span style={subParagraf}>
-                        <FontAwesomeIcon
-                            icon={faPhone}
-                            flip="horizontal"
-                            style={{ fontSize: 12 }}
-                        />
-                        &nbsp;8 (86156) 31-010
-                    </span>
-                    <br />
                     <strong>Юридический отдел</strong>:<br />
                     <span style={subParagraf}>
                         <FontAwesomeIcon
@@ -346,6 +340,7 @@ function ContactsView(props) {
                         zoom={zoom}
                         balloonContent="352750, Краснодарский край, ст.Брюховецкая, ул. Советская, 56, здание БТИ"
                         isMarkerShown
+                        apiKey={apiKey}
                     />
                 </Collapse>
                 <ImageZoom
@@ -429,12 +424,3 @@ ContactsView.propTypes = {
 };
 
 export default ContactsView;
-/*
-<a 
-  href={`https://yandex.ru{officeCoords[0]},${officeCoords[1]}`} 
-  target="_blank" 
-  rel="noreferrer"
->
-  Открыть в Яндекс Картах и построить маршрут
-</a>
-*/
