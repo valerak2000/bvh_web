@@ -32,7 +32,7 @@
     "format-check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,md,json}\"",
     "start-dev": "npm run dev",
     "start-nowatch": "npm run dev-nowatch",
-    "start-prod": "npm run build",
+    "start-prod": "NODE_OPTIONS='--max-old-space-size=1024' npm run build",
     "start-node": "npm run dev",
     "start-prod-node": "npm-run-all build prod-server",
     "start-analysis": "npm run build-analysis",
