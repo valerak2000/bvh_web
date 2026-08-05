@@ -6,12 +6,16 @@ const SizePlugin = require('size-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = merge(commonConfig('production'), {
+    cache: {
+        type: 'filesystem', // Кэшируем на диск, а не в оперативку
+    },
     devtool: 'source-map',
     
     optimization: {
         minimize: true,
         minimizer: [
             new TerserPlugin({
+                parallel: 1,
                 terserOptions: {
                     compress: {
                         drop_console: true,
